@@ -16,9 +16,8 @@ const showAlert = ref(
 
 const titlesText = computed<string[]>(() =>
   (
-    awesome?.layout?.welcome?.title ||
-    awesome?.name ||
-    'Nuxt&nbsp;3 Awesome Starter'
+  
+    'Imported&nbsp; Products '
   )
     .replaceAll('&nbsp;', '[space]')
     .split(' ')
@@ -140,6 +139,7 @@ onMounted(() => {
       </div>
     </LayoutPageSection>
   </LayoutPageWrapper>
+
 </template>
 
 <style lang="scss">
