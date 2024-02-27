@@ -2,7 +2,7 @@
 defineProps({
   text: {
     type: String,
-    default: '',
+    default: 'hello',
   },
 })
 </script>

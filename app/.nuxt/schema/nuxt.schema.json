@@ -1,0 +1,381 @@
+{
+  "id": "#",
+  "properties": {
+    "appConfig": {
+      "id": "#appConfig",
+      "properties": {
+        "nuxtIcon": {
+          "title": "Nuxt Icon",
+          "description": "Configure Nuxt Icon module preferences.",
+          "id": "#appConfig/nuxtIcon",
+          "properties": {
+            "size": {
+              "title": "Icon Size",
+              "description": "Set the default icon size. Set to false to disable the sizing of icon in style.",
+              "tags": [
+                "@studioIcon material-symbols:format-size-rounded"
+              ],
+              "tsType": "string | false",
+              "id": "#appConfig/nuxtIcon/size",
+              "default": "1em",
+              "type": "string"
+            },
+            "class": {
+              "title": "CSS Class",
+              "description": "Set the default CSS class.",
+              "tags": [
+                "@studioIcon material-symbols:css"
+              ],
+              "id": "#appConfig/nuxtIcon/class",
+              "default": "",
+              "type": "string"
+            },
+            "aliases": {
+              "title": "Icon aliases",
+              "description": "Define Icon aliases to update them easily without code changes.",
+              "tags": [
+                "@studioIcon material-symbols:star-rounded"
+              ],
+              "tsType": "{ [alias: string]: string }",
+              "id": "#appConfig/nuxtIcon/aliases",
+              "default": {},
+              "type": "object"
+            },
+            "iconifyApiOptions": {
+              "title": "Iconify API Options",
+              "description": "Define preferences for Iconify API fetch.",
+              "tags": [
+                "@studioIcon material-symbols:tv-options-input-settings"
+              ],
+              "id": "#appConfig/nuxtIcon/iconifyApiOptions",
+              "properties": {
+                "url": {
+                  "title": "Iconify API URL",
+                  "description": "Define a custom Iconify API URL. Useful if you want to use a self-hosted Iconify API. Learn more: https://iconify.design/docs/api.",
+                  "tags": [
+                    "@studioIcon material-symbols:api"
+                  ],
+                  "id": "#appConfig/nuxtIcon/iconifyApiOptions/url",
+                  "default": "https://api.iconify.design",
+                  "type": "string"
+                },
+                "publicApiFallback": {
+                  "title": "Public Iconify API fallback",
+                  "description": "Define if the public Iconify API should be used as fallback.",
+                  "tags": [
+                    "@studioIcon material-symbols:public"
+                  ],
+                  "id": "#appConfig/nuxtIcon/iconifyApiOptions/publicApiFallback",
+                  "default": false,
+                  "type": "boolean"
+                }
+              },
+              "type": "object",
+              "default": {
+                "url": "https://api.iconify.design",
+                "publicApiFallback": false
+              }
+            }
+          },
+          "type": "object",
+          "default": {
+            "size": "1em",
+            "class": "",
+            "aliases": {},
+            "iconifyApiOptions": {
+              "url": "https://api.iconify.design",
+              "publicApiFallback": false
+            }
+          }
+        },
+        "awesome": {
+          "id": "#appConfig/awesome",
+          "properties": {
+            "name": {
+              "type": "string",
+              "id": "#appConfig/awesome/name",
+              "default": "Nuxt 3 Awesome Starter"
+            },
+            "description": {
+              "type": "string",
+              "id": "#appConfig/awesome/description",
+              "default": "a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more."
+            },
+            "project": {
+              "id": "#appConfig/awesome/project",
+              "properties": {
+                "links": {
+                  "id": "#appConfig/awesome/project/links",
+                  "properties": {
+                    "github": {
+                      "type": "string",
+                      "id": "#appConfig/awesome/project/links/github",
+                      "default": "https://github.com/viandwi24/nuxt3-awesome-starter"
+                    }
+                  },
+                  "type": "object",
+                  "default": {
+                    "github": "https://github.com/viandwi24/nuxt3-awesome-starter"
+                  }
+                }
+              },
+              "type": "object",
+              "default": {
+                "links": {
+                  "github": "https://github.com/viandwi24/nuxt3-awesome-starter"
+                }
+              }
+            },
+            "layout": {
+              "id": "#appConfig/awesome/layout",
+              "properties": {
+                "page": {
+                  "id": "#appConfig/awesome/layout/page",
+                  "properties": {
+                    "navbar": {
+                      "id": "#appConfig/awesome/layout/page/navbar",
+                      "properties": {
+                        "menus": {
+                          "type": "array",
+                          "id": "#appConfig/awesome/layout/page/navbar/menus",
+                          "default": [],
+                          "items": {
+                            "type": "any"
+                          }
+                        }
+                      },
+                      "type": "object",
+                      "default": {
+                        "menus": []
+                      }
+                    }
+                  },
+                  "type": "object",
+                  "default": {
+                    "navbar": {
+                      "menus": []
+                    }
+                  }
+                },
+                "footer": {
+                  "id": "#appConfig/awesome/layout/footer",
+                  "properties": {
+                    "year": {
+                      "type": "number",
+                      "id": "#appConfig/awesome/layout/footer/year",
+                      "default": 2023
+                    }
+                  },
+                  "type": "object",
+                  "default": {
+                    "year": 2023
+                  }
+                },
+                "welcome": {
+                  "id": "#appConfig/awesome/layout/welcome",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "id": "#appConfig/awesome/layout/welcome/title",
+                      "default": "Nuxt&nbsp;3 Awesome Starter"
+                    },
+                    "disableInfoReplaceIndexInWelcomePage": {
+                      "type": "boolean",
+                      "id": "#appConfig/awesome/layout/welcome/disableInfoReplaceIndexInWelcomePage",
+                      "default": true
+                    }
+                  },
+                  "type": "object",
+                  "default": {
+                    "title": "Nuxt&nbsp;3 Awesome Starter",
+                    "disableInfoReplaceIndexInWelcomePage": true
+                  }
+                }
+              },
+              "type": "object",
+              "default": {
+                "page": {
+                  "navbar": {
+                    "menus": []
+                  }
+                },
+                "footer": {
+                  "year": 2023
+                },
+                "welcome": {
+                  "title": "Nuxt&nbsp;3 Awesome Starter",
+                  "disableInfoReplaceIndexInWelcomePage": true
+                }
+              }
+            },
+            "author": {
+              "id": "#appConfig/awesome/author",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "id": "#appConfig/awesome/author/name",
+                  "default": "viandwi24"
+                },
+                "links": {
+                  "id": "#appConfig/awesome/author/links",
+                  "properties": {
+                    "github": {
+                      "type": "string",
+                      "id": "#appConfig/awesome/author/links/github",
+                      "default": "https://github.com/viandwi24"
+                    },
+                    "medium": {
+                      "type": "string",
+                      "id": "#appConfig/awesome/author/links/medium",
+                      "default": "https://viandwi24.medium.com"
+                    },
+                    "website": {
+                      "type": "string",
+                      "id": "#appConfig/awesome/author/links/website",
+                      "default": "https://viandwi24.site"
+                    }
+                  },
+                  "type": "object",
+                  "default": {
+                    "github": "https://github.com/viandwi24",
+                    "medium": "https://viandwi24.medium.com",
+                    "website": "https://viandwi24.site"
+                  }
+                }
+              },
+              "type": "object",
+              "default": {
+                "name": "viandwi24",
+                "links": {
+                  "github": "https://github.com/viandwi24",
+                  "medium": "https://viandwi24.medium.com",
+                  "website": "https://viandwi24.site"
+                }
+              }
+            }
+          },
+          "type": "object",
+          "default": {
+            "name": "Nuxt 3 Awesome Starter",
+            "description": "a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.",
+            "project": {
+              "links": {
+                "github": "https://github.com/viandwi24/nuxt3-awesome-starter"
+              }
+            },
+            "layout": {
+              "page": {
+                "navbar": {
+                  "menus": []
+                }
+              },
+              "footer": {
+                "year": 2023
+              },
+              "welcome": {
+                "title": "Nuxt&nbsp;3 Awesome Starter",
+                "disableInfoReplaceIndexInWelcomePage": true
+              }
+            },
+            "author": {
+              "name": "viandwi24",
+              "links": {
+                "github": "https://github.com/viandwi24",
+                "medium": "https://viandwi24.medium.com",
+                "website": "https://viandwi24.site"
+              }
+            }
+          }
+        }
+      },
+      "type": "object",
+      "default": {
+        "nuxtIcon": {
+          "size": "1em",
+          "class": "",
+          "aliases": {},
+          "iconifyApiOptions": {
+            "url": "https://api.iconify.design",
+            "publicApiFallback": false
+          }
+        },
+        "awesome": {
+          "name": "Nuxt 3 Awesome Starter",
+          "description": "a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.",
+          "project": {
+            "links": {
+              "github": "https://github.com/viandwi24/nuxt3-awesome-starter"
+            }
+          },
+          "layout": {
+            "page": {
+              "navbar": {
+                "menus": []
+              }
+            },
+            "footer": {
+              "year": 2023
+            },
+            "welcome": {
+              "title": "Nuxt&nbsp;3 Awesome Starter",
+              "disableInfoReplaceIndexInWelcomePage": true
+            }
+          },
+          "author": {
+            "name": "viandwi24",
+            "links": {
+              "github": "https://github.com/viandwi24",
+              "medium": "https://viandwi24.medium.com",
+              "website": "https://viandwi24.site"
+            }
+          }
+        }
+      }
+    }
+  },
+  "type": "object",
+  "default": {
+    "appConfig": {
+      "nuxtIcon": {
+        "size": "1em",
+        "class": "",
+        "aliases": {},
+        "iconifyApiOptions": {
+          "url": "https://api.iconify.design",
+          "publicApiFallback": false
+        }
+      },
+      "awesome": {
+        "name": "Nuxt 3 Awesome Starter",
+        "description": "a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.",
+        "project": {
+          "links": {
+            "github": "https://github.com/viandwi24/nuxt3-awesome-starter"
+          }
+        },
+        "layout": {
+          "page": {
+            "navbar": {
+              "menus": []
+            }
+          },
+          "footer": {
+            "year": 2023
+          },
+          "welcome": {
+            "title": "Nuxt&nbsp;3 Awesome Starter",
+            "disableInfoReplaceIndexInWelcomePage": true
+          }
+        },
+        "author": {
+          "name": "viandwi24",
+          "links": {
+            "github": "https://github.com/viandwi24",
+            "medium": "https://viandwi24.medium.com",
+            "website": "https://viandwi24.site"
+          }
+        }
+      }
+    }
+  }
+}
