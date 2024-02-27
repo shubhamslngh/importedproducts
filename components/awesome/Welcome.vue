@@ -26,14 +26,14 @@ const titlesText = computed<string[]>(() =>
 const leadingsText = computed(() => [
   {
     text: titlesText.value[0],
-    startColor: '#007CF0',
-    endColor: '#00DFD8',
+    startColor: 'purple',
+    endColor: 'white',
     delay: 0,
   },
   {
     text: titlesText.value[1],
-    startColor: '#7928CA',
-    endColor: '#FF0080',
+    startColor: 'red',
+    endColor: 'pink',
     delay: 2,
   },
   {
@@ -88,8 +88,7 @@ onMounted(() => {
             size="lg"
             :text="
               parseMenuTitle(
-                awesome?.layout?.welcome?.primaryActionButton?.title ||
-                  'Nuxt 3',
+                   'Subscriptions',
               )
             "
             :to="
@@ -109,8 +108,8 @@ onMounted(() => {
             "
             :text="
               parseMenuTitle(
-                awesome?.layout?.welcome?.secondaryActionButton?.title ||
-                  'Github',
+                
+                  'Cases',
               )
             "
             :to="
@@ -133,7 +132,7 @@ onMounted(() => {
         </div>
         <div class="absolute left-0 top-0 w-1/4 h-screen py-10 pt-12 z-0 flex">
           <div
-            class="flex-1 rounded-r-9xl bg-gradient-to-r from-green-600/10"
+            class="flex-1 rounded-r-9xl bg-gradient-to-r from-red-600/10"
           ></div>
         </div>
       </div>

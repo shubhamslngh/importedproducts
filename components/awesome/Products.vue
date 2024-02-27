@@ -1,41 +1,220 @@
-<template>
+<template >
     <div class="h-[full] w-[100%] ">
 
 
-        <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <a href="#">
-        <img class="p-8 rounded-t-lg" src="/home/harsh/Downloads/iphone.png" alt="product image" />
-    </a>
-    <div class="px-5 pb-5">
-        <a href="#">
-            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport</h5>
-        </a>
-        <div class="flex items-center mt-2.5 mb-5">
-            <div class="flex items-center space-x-1 rtl:space-x-reverse">
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-            </div>
-            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
-        </div>
-        <div class="flex items-center justify-between">
-            <span class="text-3xl font-bold text-gray-900 dark:text-white">$599</span>
-            <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
-        </div>
-    </div>
+<!-- source: https://github.com/mfg888/Responsive-Tailwind-CSS-Grid/blob/main/index.html -->
+
+<div class="text-center p-10">
+    <h1 class="font-bold text-4xl mb-4">Iphone Cases</h1>
+    <h1 class="text-3xl">Magsafe</h1>
 </div>
+
+<!-- ✅ Grid Section - Starts Here 👇 -->
+<section id="Projects"
+    class="   overflow-y-auto grid grid-cols- grid-row-1 lg:grid-cols-4 md:grid-cols-2   gap-y-20 max-h-fit gap-x-4  mb-5">
+
+    <!--   ✅ Product card 1 - Starts Here 👇 -->
+    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
+        <a href="#">
+            <img src="../../iphoneCase.png"
+                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
+            <div class="px-1 py-3 w-84">
+                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
+                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
+                <div class="flex items-center">
+                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
+                    <del>
+                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
+                    </del>
+                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                            <path
+                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                        </svg></div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
+        <a href="#">
+            <img src="../../iphoneCase.png"
+                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
+            <div class="px-4 py-3 w-84">
+                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
+                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
+                <div class="flex items-center">
+                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
+                    <del>
+                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
+                    </del>
+                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                            <path
+                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                        </svg></div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
+        <a href="#">
+            <img src="../../iphoneCase.png"
+                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
+            <div class="px-4 py-3 w-84">
+                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
+                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
+                <div class="flex items-center">
+                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
+                    <del>
+                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
+                    </del>
+                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                            <path
+                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                        </svg></div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
+        <a href="#">
+            <img src="../../iphoneCase.png"
+                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
+            <div class="px-4 py-3 w-84">
+                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
+                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
+                <div class="flex items-center">
+                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
+                    <del>
+                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
+                    </del>
+                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                            <path
+                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                        </svg></div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
+        <a href="#">
+            <img src="../../iphoneCase.png"
+                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
+            <div class="px-4 py-3 w-84">
+                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
+                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
+                <div class="flex items-center">
+                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
+                    <del>
+                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
+                    </del>
+                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                            <path
+                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                        </svg></div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
+        <a href="#">
+            <img src="../../iphoneCase.png"
+                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
+            <div class="px-4 py-3 w-84">
+                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
+                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
+                <div class="flex items-center">
+                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
+                    <del>
+                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
+                    </del>
+                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                            <path
+                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                        </svg></div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
+        <a href="#">
+            <img src="../../iphoneCase.png"
+                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
+            <div class="px-4 py-3 w-84">
+                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
+                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
+                <div class="flex items-center">
+                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
+                    <del>
+                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
+                    </del>
+                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                            <path
+                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                        </svg></div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
+        <a href="#">
+            <img src="../../iphoneCase.png"
+                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
+            <div class="px-4 py-3 w-84">
+                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
+                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
+                <div class="flex items-center">
+                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
+                    <del>
+                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
+                    </del>
+                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                            <path
+                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                        </svg></div>
+                </div>
+            </div>
+        </a>
+    </div>
+    
+   
+    <!--   🛑 Product card 1 - Ends Here  -->
+
+   
+    <!--   🛑 Product card 6 - Ends Here  -->
+
+</section>
+
+<!-- 🛑 Grid Section - Ends Here -->
+
+
+<!-- credit -->
+
+
+
+<!-- Support Me 🙏🥰 -->
 
 
     </div>

@@ -2,7 +2,7 @@ import type { AppConfigInput } from 'nuxt/schema'
 
 export default defineAppConfig({
   awesome: {
-    name: 'Nuxt 3 Awesome Starter',
+    name: 'Imported Products',
     description:
       'a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.',
     project: {
@@ -14,7 +14,7 @@ export default defineAppConfig({
       page: {
         navbar: {
           menus: [
-            { type: 'link', title: 'Blank', to: { name: 'blank' } },
+            { type: 'link', title: 'Cases', to: { name: 'blank' } },
             { type: 'link', title: 'Post', to: { name: 'post' } },
             { type: 'link', title: 'Test', to: { name: 'test' } },
             {

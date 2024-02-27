@@ -9,11 +9,17 @@ useHead({
 
 <template>
   <Body
-    class="antialiased duration-300 transition-colors text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-950"
+    class="antialiased duration-300 transition-colors text-gray-800 dark:text-gray-200 bg-white dark:bg-stone-900 overflow-hidden"
   >
+  <canvas id="canvas"></canvas>
     <NuxtLayout>
       <NuxtLoadingIndicator />
       <NuxtPage />
     </NuxtLayout>
   </Body>
 </template>
+<style>
+
+
+
+</style>
