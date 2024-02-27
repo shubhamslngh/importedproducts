@@ -4,8 +4,8 @@ useHead({ title: 'Blank Page' })
 </script>
 
 <template>
-  <LayoutPageWrapper>
-    <LayoutPageHeader>
+  <LayoutPageWrapper class="min-w-[100vw] overflow-">
+    <!-- <LayoutPageHeader>
       <LayoutPageTitle text="Blank Page" class="capitalize" />
     </LayoutPageHeader>
     <LayoutPageSection>
@@ -15,6 +15,8 @@ useHead({ title: 'Blank Page' })
     <LayoutPageSection>
       <LayoutPageSectionTitle text="Another Section" />
       <div>My Content</div>
-    </LayoutPageSection>
+    </LayoutPageSection> -->
+  <AwesomeProducts class="min-h-[100vh]" />
+
   </LayoutPageWrapper>
 </template>

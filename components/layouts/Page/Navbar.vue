@@ -25,7 +25,7 @@ const showDrawer = ref(false)
       <!-- title -->
       <div>
         <slot name="title">
-          <NuxtLink to="/" class="font-bold text-lg text-primary-500">
+          <NuxtLink to="/" class="font-bold text-lg text-stone-500">
             <Icon
               name="simple-icons:nuxtdotjs"
               class="font-black text-xl font-mono mr-2 inline-block"

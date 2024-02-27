@@ -49,9 +49,13 @@
         "nuxt-headlessui": "^1.1.4",
         "nuxt-icon": "^0.6.1",
         "pinia": "^2.1.7",
+<<<<<<< HEAD
         "sass": "^1.69.5",
         "stringify": "^5.2.0",
         "tailwind": "^4.0.0",
+=======
+        "stringify": "^5.2.0",
+>>>>>>> dbb1b7e9064593c7d181a06b4c27e0e69421a07b
         "tailwindcss": "^3.3.5",
         "unplugin-vue-components": "^0.25.2"
     },
@@ -65,6 +69,11 @@
         "nuxt": "^3.8.0",
         "prettier": "^3.0.3",
         "release-it": "^16.2.1",
+<<<<<<< HEAD
+=======
+        "sass": "^1.71.1",
+        "sass-loader": "^14.1.1",
+>>>>>>> dbb1b7e9064593c7d181a06b4c27e0e69421a07b
         "serve": "^14.2.1",
         "typescript": "^5.2.2",
         "vue-tsc": "1.8.22"

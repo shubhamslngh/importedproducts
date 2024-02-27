@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-x-scroll overflow-y-hidden">
+  <div class="overflow-none">
     <LayoutPageNavbar class="h-[64px] max-h-[64px]" />
     <LayoutPageContent class="flex-col">
       <slot />
