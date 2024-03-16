@@ -54,7 +54,7 @@ export function createShikiHighlighter({
       if (bundledLangs[lang]) {
         await shiki2.loadLanguage(bundledLangs[lang]);
       } else {
-        if (process.dev) {
+        if (import.meta.dev) {
           console.warn(`[@nuxtjs/mdc] Language "${lang}" is not loaded to the Shiki highlighter, fallback to plain text. Add the language to "mdc.highlight.langs" to fix this.`);
         }
         lang = "text";
@@ -65,7 +65,7 @@ export function createShikiHighlighter({
         if (bundledThemes[theme2]) {
           await shiki2.loadTheme(bundledThemes[theme2]);
         } else {
-          if (process.dev) {
+          if (import.meta.dev) {
             console.warn(`[@nuxtjs/mdc] Theme "${theme2}" is not loaded to the Shiki highlighter. Add the theme to "mdc.highlight.themes" to fix this.`);
           }
           themesObject[color] = "none";

@@ -20,9 +20,12 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../../node_modules/@nuxt/content/dist/runtime/plugins/ws").default> &
   InjectionType<typeof import("../../../node_modules/@nuxtjs/color-mode/dist/runtime/plugin.server").default> &
   InjectionType<typeof import("../../../node_modules/@nuxtjs/color-mode/dist/runtime/plugin.client").default> &
+  InjectionType<typeof import("../../../node_modules/@nuxtjs/apollo/dist/runtime/plugin").default> &
   InjectionType<typeof import("../../../node_modules/nuxt/dist/app/plugins/chunk-reload.client").default> &
   InjectionType<typeof import("../../../node_modules/nuxt/dist/app/plugins/check-if-layout-used").default> &
-  InjectionType<typeof import("../../../plugins/awesome").default>
+  InjectionType<typeof import("../../../node_modules/@pinia-plugin-persistedstate/nuxt/dist/runtime/plugin").default> &
+  InjectionType<typeof import("../../../plugins/awesome").default> &
+  InjectionType<typeof import("../../../plugins/stores").default>
 
 declare module '#app' {
   interface NuxtApp extends NuxtAppInjections { }

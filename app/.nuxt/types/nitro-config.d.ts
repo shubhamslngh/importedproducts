@@ -3,8 +3,8 @@
 // App Config
 import type { Defu } from 'defu'
 
-import type { default as appConfig0 } from "/Users/shubhamsingh/Documents/minepro/importedProds/app/app.config";
-import type { default as appConfig1 } from "/Users/shubhamsingh/Documents/minepro/importedProds/app.config";
+import type { default as appConfig0 } from "/Users/shubhamsingh/namma/importedProds/app/app.config";
+import type { default as appConfig1 } from "/Users/shubhamsingh/namma/importedProds/app.config";
 
 type UserAppConfig = Defu<{}, [typeof appConfig0, typeof appConfig1]>
 

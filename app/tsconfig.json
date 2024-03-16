@@ -2,7 +2,7 @@
   // https://v3.nuxtjs.org/concepts/typescript
   "extends": "./../tsconfig.json",
   "compilerOptions": {
-    "ignoreDeprecations": "5.0",
-    "suppressImplicitAnyIndexErrors": true,
+  "ignoreDeprecations": "5.0",
+  "suppressImplicitAnyIndexErrors": true,
   }
 }

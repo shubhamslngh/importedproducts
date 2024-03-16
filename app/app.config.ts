@@ -16,7 +16,7 @@ export default defineAppConfig({
           menus: [
             { type: 'link', title: 'Cases', to: { name: 'blank' } },
             { type: 'link', title: 'Post', to: { name: 'post' } },
-            { type: 'link', title: 'Test', to: { name: 'test' } },
+            { type: 'link', title: 'Travel', to: { name: 'test' } },
             {
               type: 'dropdown',
               title: 'Documentations',
@@ -48,7 +48,7 @@ export default defineAppConfig({
       },
     },
     author: {
-      name: 'viandwi24',
+      name: 'shubham',
       links: {
         github: 'https://github.com/viandwi24',
         medium: 'https://viandwi24.medium.com',

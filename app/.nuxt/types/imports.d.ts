@@ -11,6 +11,7 @@ declare global {
   const clearError: typeof import('../../../node_modules/nuxt/dist/app/composables/error')['clearError']
   const clearNuxtData: typeof import('../../../node_modules/nuxt/dist/app/composables/asyncData')['clearNuxtData']
   const clearNuxtState: typeof import('../../../node_modules/nuxt/dist/app/composables/state')['clearNuxtState']
+  const cn: typeof import('../../../utils/cn')['cn']
   const computed: typeof import('../../../node_modules/vue')['computed']
   const computedAsync: typeof import('../../../node_modules/@vueuse/core')['computedAsync']
   const computedEager: typeof import('../../../node_modules/@vueuse/core')['computedEager']
@@ -55,6 +56,7 @@ declare global {
   const getCurrentInstance: typeof import('../../../node_modules/vue')['getCurrentInstance']
   const getCurrentScope: typeof import('../../../node_modules/vue')['getCurrentScope']
   const getRouteRules: typeof import('../../../node_modules/nuxt/dist/app/composables/manifest')['getRouteRules']
+  const gql: typeof import('../../../node_modules/graphql-tag/main')['gql']
   const h: typeof import('../../../node_modules/vue')['h']
   const hasInjectionContext: typeof import('../../../node_modules/vue')['hasInjectionContext']
   const ignorableWatch: typeof import('../../../node_modules/@vueuse/core')['ignorableWatch']
@@ -99,6 +101,7 @@ declare global {
   const onUpdated: typeof import('../../../node_modules/vue')['onUpdated']
   const parseMarkdown: typeof import('../../../node_modules/@nuxtjs/mdc/dist/runtime/parser')['parseMarkdown']
   const pausableWatch: typeof import('../../../node_modules/@vueuse/core')['pausableWatch']
+  const persistedState: typeof import('../../../node_modules/@pinia-plugin-persistedstate/nuxt/dist/runtime/storages')['persistedState']
   const prefetchComponents: typeof import('../../../node_modules/nuxt/dist/app/composables/preload')['prefetchComponents']
   const preloadComponents: typeof import('../../../node_modules/nuxt/dist/app/composables/preload')['preloadComponents']
   const preloadPayload: typeof import('../../../node_modules/nuxt/dist/app/composables/payload')['preloadPayload']
@@ -160,6 +163,8 @@ declare global {
   const updateAppConfig: typeof import('../../../node_modules/nuxt/dist/app/config')['updateAppConfig']
   const useActiveElement: typeof import('../../../node_modules/@vueuse/core')['useActiveElement']
   const useAnimate: typeof import('../../../node_modules/@vueuse/core')['useAnimate']
+  const useApollo: typeof import('../../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useApollo']
+  const useApolloClient: typeof import('../../../node_modules/@vue/apollo-composable')['useApolloClient']
   const useAppConfig: typeof import('../../../node_modules/nuxt/dist/app/config')['useAppConfig']
   const useArrayDifference: typeof import('../../../node_modules/@vueuse/core')['useArrayDifference']
   const useArrayEvery: typeof import('../../../node_modules/@vueuse/core')['useArrayEvery']
@@ -174,6 +179,7 @@ declare global {
   const useArraySome: typeof import('../../../node_modules/@vueuse/core')['useArraySome']
   const useArrayUnique: typeof import('../../../node_modules/@vueuse/core')['useArrayUnique']
   const useAsyncData: typeof import('../../../node_modules/nuxt/dist/app/composables/asyncData')['useAsyncData']
+  const useAsyncQuery: typeof import('../../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useAsyncQuery']
   const useAsyncQueue: typeof import('../../../node_modules/@vueuse/core')['useAsyncQueue']
   const useAsyncState: typeof import('../../../node_modules/@vueuse/core')['useAsyncState']
   const useAttrs: typeof import('../../../node_modules/vue')['useAttrs']
@@ -219,6 +225,8 @@ declare global {
   const useElementByPoint: typeof import('../../../node_modules/@vueuse/core')['useElementByPoint']
   const useElementHover: typeof import('../../../node_modules/@vueuse/core')['useElementHover']
   const useElementSize: typeof import('../../../node_modules/@vueuse/core')['useElementSize']
+  const useElementStyle: typeof import('../../../node_modules/@vueuse/motion')['useElementStyle']
+  const useElementTransform: typeof import('../../../node_modules/@vueuse/motion')['useElementTransform']
   const useElementVisibility: typeof import('../../../node_modules/@vueuse/core')['useElementVisibility']
   const useError: typeof import('../../../node_modules/nuxt/dist/app/composables/error')['useError']
   const useEventBus: typeof import('../../../node_modules/@vueuse/core')['useEventBus']
@@ -236,6 +244,9 @@ declare global {
   const useFullscreen: typeof import('../../../node_modules/@vueuse/core')['useFullscreen']
   const useGamepad: typeof import('../../../node_modules/@vueuse/core')['useGamepad']
   const useGeolocation: typeof import('../../../node_modules/@vueuse/core')['useGeolocation']
+  const useGlobalMutationLoading: typeof import('../../../node_modules/@vue/apollo-composable')['useGlobalMutationLoading']
+  const useGlobalQueryLoading: typeof import('../../../node_modules/@vue/apollo-composable')['useGlobalQueryLoading']
+  const useGlobalSubscriptionLoading: typeof import('../../../node_modules/@vue/apollo-composable')['useGlobalSubscriptionLoading']
   const useHead: typeof import('../../../node_modules/@unhead/vue')['useHead']
   const useHeadSafe: typeof import('../../../node_modules/@unhead/vue')['useHeadSafe']
   const useHydration: typeof import('../../../node_modules/nuxt/dist/app/composables/hydrate')['useHydration']
@@ -249,7 +260,9 @@ declare global {
   const useKeyModifier: typeof import('../../../node_modules/@vueuse/core')['useKeyModifier']
   const useLastChanged: typeof import('../../../node_modules/@vueuse/core')['useLastChanged']
   const useLazyAsyncData: typeof import('../../../node_modules/nuxt/dist/app/composables/asyncData')['useLazyAsyncData']
+  const useLazyAsyncQuery: typeof import('../../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useLazyAsyncQuery']
   const useLazyFetch: typeof import('../../../node_modules/nuxt/dist/app/composables/fetch')['useLazyFetch']
+  const useLazyQuery: typeof import('../../../node_modules/@vue/apollo-composable')['useLazyQuery']
   const useLink: typeof import('../vue-router-stub')['useLink']
   const useLoadingIndicator: typeof import('../../../node_modules/nuxt/dist/app/composables/loading-indicator')['useLoadingIndicator']
   const useLocalStorage: typeof import('../../../node_modules/@vueuse/core')['useLocalStorage']
@@ -260,10 +273,15 @@ declare global {
   const useMemoize: typeof import('../../../node_modules/@vueuse/core')['useMemoize']
   const useMemory: typeof import('../../../node_modules/@vueuse/core')['useMemory']
   const useModel: typeof import('../../../node_modules/vue')['useModel']
+  const useMotion: typeof import('../../../node_modules/@vueuse/motion')['useMotion']
+  const useMotionProperties: typeof import('../../../node_modules/@vueuse/motion')['useMotionProperties']
+  const useMotionVariants: typeof import('../../../node_modules/@vueuse/motion')['useMotionVariants']
   const useMounted: typeof import('../../../node_modules/@vueuse/core')['useMounted']
   const useMouse: typeof import('../../../node_modules/@vueuse/core')['useMouse']
   const useMouseInElement: typeof import('../../../node_modules/@vueuse/core')['useMouseInElement']
   const useMousePressed: typeof import('../../../node_modules/@vueuse/core')['useMousePressed']
+  const useMutation: typeof import('../../../node_modules/@vue/apollo-composable')['useMutation']
+  const useMutationLoading: typeof import('../../../node_modules/@vue/apollo-composable')['useMutationLoading']
   const useMutationObserver: typeof import('../../../node_modules/@vueuse/core')['useMutationObserver']
   const useNavbarParser: typeof import('../../../composables/use-navbar-parser')['useNavbarParser']
   const useNavigatorLanguage: typeof import('../../../node_modules/@vueuse/core')['useNavigatorLanguage']
@@ -290,6 +308,8 @@ declare global {
   const usePreferredLanguages: typeof import('../../../node_modules/@vueuse/core')['usePreferredLanguages']
   const usePreferredReducedMotion: typeof import('../../../node_modules/@vueuse/core')['usePreferredReducedMotion']
   const usePrevious: typeof import('../../../node_modules/@vueuse/core')['usePrevious']
+  const useQuery: typeof import('../../../node_modules/@vue/apollo-composable')['useQuery']
+  const useQueryLoading: typeof import('../../../node_modules/@vue/apollo-composable')['useQueryLoading']
   const useRafFn: typeof import('../../../node_modules/@vueuse/core')['useRafFn']
   const useRefHistory: typeof import('../../../node_modules/@vueuse/core')['useRefHistory']
   const useRequestEvent: typeof import('../../../node_modules/nuxt/dist/app/composables/ssr')['useRequestEvent']
@@ -316,10 +336,13 @@ declare global {
   const useSorted: typeof import('../../../node_modules/@vueuse/core')['useSorted']
   const useSpeechRecognition: typeof import('../../../node_modules/@vueuse/core')['useSpeechRecognition']
   const useSpeechSynthesis: typeof import('../../../node_modules/@vueuse/core')['useSpeechSynthesis']
+  const useSpring: typeof import('../../../node_modules/@vueuse/motion')['useSpring']
   const useState: typeof import('../../../node_modules/nuxt/dist/app/composables/state')['useState']
   const useStepper: typeof import('../../../node_modules/@vueuse/core')['useStepper']
   const useStorageAsync: typeof import('../../../node_modules/@vueuse/core')['useStorageAsync']
   const useStyleTag: typeof import('../../../node_modules/@vueuse/core')['useStyleTag']
+  const useSubscription: typeof import('../../../node_modules/@vue/apollo-composable')['useSubscription']
+  const useSubscriptionLoading: typeof import('../../../node_modules/@vue/apollo-composable')['useSubscriptionLoading']
   const useSupported: typeof import('../../../node_modules/@vueuse/core')['useSupported']
   const useSwipe: typeof import('../../../node_modules/@vueuse/core')['useSwipe']
   const useSyncProps: typeof import('../../../composables/use-sync-props')['useSyncProps']
@@ -355,6 +378,7 @@ declare global {
   const useWindowFocus: typeof import('../../../node_modules/@vueuse/core')['useWindowFocus']
   const useWindowScroll: typeof import('../../../node_modules/@vueuse/core')['useWindowScroll']
   const useWindowSize: typeof import('../../../node_modules/@vueuse/core')['useWindowSize']
+  const useWordpressStore: typeof import('../../../stores/wordpress')['useWordpressStore']
   const watch: typeof import('../../../node_modules/vue')['watch']
   const watchArray: typeof import('../../../node_modules/@vueuse/core')['watchArray']
   const watchAtMost: typeof import('../../../node_modules/@vueuse/core')['watchAtMost']
@@ -411,6 +435,7 @@ declare module 'vue' {
     readonly clearError: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/error')['clearError']>
     readonly clearNuxtData: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/asyncData')['clearNuxtData']>
     readonly clearNuxtState: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/state')['clearNuxtState']>
+    readonly cn: UnwrapRef<typeof import('../../../utils/cn')['cn']>
     readonly computed: UnwrapRef<typeof import('../../../node_modules/vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['computedEager']>
@@ -455,6 +480,7 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('../../../node_modules/vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('../../../node_modules/vue')['getCurrentScope']>
     readonly getRouteRules: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/manifest')['getRouteRules']>
+    readonly gql: UnwrapRef<typeof import('../../../node_modules/graphql-tag/main')['gql']>
     readonly h: UnwrapRef<typeof import('../../../node_modules/vue')['h']>
     readonly hasInjectionContext: UnwrapRef<typeof import('../../../node_modules/vue')['hasInjectionContext']>
     readonly ignorableWatch: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['ignorableWatch']>
@@ -499,6 +525,7 @@ declare module 'vue' {
     readonly onUpdated: UnwrapRef<typeof import('../../../node_modules/vue')['onUpdated']>
     readonly parseMarkdown: UnwrapRef<typeof import('../../../node_modules/@nuxtjs/mdc/dist/runtime/parser')['parseMarkdown']>
     readonly pausableWatch: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['pausableWatch']>
+    readonly persistedState: UnwrapRef<typeof import('../../../node_modules/@pinia-plugin-persistedstate/nuxt/dist/runtime/storages')['persistedState']>
     readonly prefetchComponents: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/preload')['prefetchComponents']>
     readonly preloadComponents: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/preload')['preloadComponents']>
     readonly preloadPayload: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/payload')['preloadPayload']>
@@ -560,6 +587,8 @@ declare module 'vue' {
     readonly updateAppConfig: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/config')['updateAppConfig']>
     readonly useActiveElement: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useAnimate']>
+    readonly useApollo: UnwrapRef<typeof import('../../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useApollo']>
+    readonly useApolloClient: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useApolloClient']>
     readonly useAppConfig: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/config')['useAppConfig']>
     readonly useArrayDifference: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useArrayDifference']>
     readonly useArrayEvery: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useArrayEvery']>
@@ -574,6 +603,7 @@ declare module 'vue' {
     readonly useArraySome: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useArraySome']>
     readonly useArrayUnique: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useArrayUnique']>
     readonly useAsyncData: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/asyncData')['useAsyncData']>
+    readonly useAsyncQuery: UnwrapRef<typeof import('../../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useAsyncQuery']>
     readonly useAsyncQueue: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useAsyncQueue']>
     readonly useAsyncState: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useAsyncState']>
     readonly useAttrs: UnwrapRef<typeof import('../../../node_modules/vue')['useAttrs']>
@@ -619,6 +649,8 @@ declare module 'vue' {
     readonly useElementByPoint: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useElementByPoint']>
     readonly useElementHover: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useElementHover']>
     readonly useElementSize: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useElementSize']>
+    readonly useElementStyle: UnwrapRef<typeof import('../../../node_modules/@vueuse/motion')['useElementStyle']>
+    readonly useElementTransform: UnwrapRef<typeof import('../../../node_modules/@vueuse/motion')['useElementTransform']>
     readonly useElementVisibility: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useElementVisibility']>
     readonly useError: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/error')['useError']>
     readonly useEventBus: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useEventBus']>
@@ -636,6 +668,9 @@ declare module 'vue' {
     readonly useFullscreen: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useGamepad']>
     readonly useGeolocation: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useGeolocation']>
+    readonly useGlobalMutationLoading: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useGlobalMutationLoading']>
+    readonly useGlobalQueryLoading: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useGlobalQueryLoading']>
+    readonly useGlobalSubscriptionLoading: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useGlobalSubscriptionLoading']>
     readonly useHead: UnwrapRef<typeof import('../../../node_modules/@unhead/vue')['useHead']>
     readonly useHeadSafe: UnwrapRef<typeof import('../../../node_modules/@unhead/vue')['useHeadSafe']>
     readonly useHydration: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/hydrate')['useHydration']>
@@ -649,7 +684,9 @@ declare module 'vue' {
     readonly useKeyModifier: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useKeyModifier']>
     readonly useLastChanged: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useLastChanged']>
     readonly useLazyAsyncData: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/asyncData')['useLazyAsyncData']>
+    readonly useLazyAsyncQuery: UnwrapRef<typeof import('../../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useLazyAsyncQuery']>
     readonly useLazyFetch: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/fetch')['useLazyFetch']>
+    readonly useLazyQuery: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useLazyQuery']>
     readonly useLink: UnwrapRef<typeof import('../vue-router-stub')['useLink']>
     readonly useLoadingIndicator: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/loading-indicator')['useLoadingIndicator']>
     readonly useLocalStorage: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useLocalStorage']>
@@ -660,10 +697,15 @@ declare module 'vue' {
     readonly useMemoize: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useMemoize']>
     readonly useMemory: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useMemory']>
     readonly useModel: UnwrapRef<typeof import('../../../node_modules/vue')['useModel']>
+    readonly useMotion: UnwrapRef<typeof import('../../../node_modules/@vueuse/motion')['useMotion']>
+    readonly useMotionProperties: UnwrapRef<typeof import('../../../node_modules/@vueuse/motion')['useMotionProperties']>
+    readonly useMotionVariants: UnwrapRef<typeof import('../../../node_modules/@vueuse/motion')['useMotionVariants']>
     readonly useMounted: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useMounted']>
     readonly useMouse: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useMouse']>
     readonly useMouseInElement: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useMouseInElement']>
     readonly useMousePressed: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useMousePressed']>
+    readonly useMutation: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useMutation']>
+    readonly useMutationLoading: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useMutationLoading']>
     readonly useMutationObserver: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useMutationObserver']>
     readonly useNavbarParser: UnwrapRef<typeof import('../../../composables/use-navbar-parser')['useNavbarParser']>
     readonly useNavigatorLanguage: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useNavigatorLanguage']>
@@ -690,6 +732,8 @@ declare module 'vue' {
     readonly usePreferredLanguages: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['usePreferredLanguages']>
     readonly usePreferredReducedMotion: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['usePreferredReducedMotion']>
     readonly usePrevious: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['usePrevious']>
+    readonly useQuery: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useQuery']>
+    readonly useQueryLoading: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useQueryLoading']>
     readonly useRafFn: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useRafFn']>
     readonly useRefHistory: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useRefHistory']>
     readonly useRequestEvent: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/ssr')['useRequestEvent']>
@@ -716,10 +760,13 @@ declare module 'vue' {
     readonly useSorted: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useSpeechRecognition']>
     readonly useSpeechSynthesis: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useSpeechSynthesis']>
+    readonly useSpring: UnwrapRef<typeof import('../../../node_modules/@vueuse/motion')['useSpring']>
     readonly useState: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/state')['useState']>
     readonly useStepper: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useStepper']>
     readonly useStorageAsync: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useStorageAsync']>
     readonly useStyleTag: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useStyleTag']>
+    readonly useSubscription: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useSubscription']>
+    readonly useSubscriptionLoading: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useSubscriptionLoading']>
     readonly useSupported: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useSupported']>
     readonly useSwipe: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useSwipe']>
     readonly useSyncProps: UnwrapRef<typeof import('../../../composables/use-sync-props')['useSyncProps']>
@@ -755,6 +802,7 @@ declare module 'vue' {
     readonly useWindowFocus: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useWindowSize']>
+    readonly useWordpressStore: UnwrapRef<typeof import('../../../stores/wordpress')['useWordpressStore']>
     readonly watch: UnwrapRef<typeof import('../../../node_modules/vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['watchAtMost']>
@@ -792,6 +840,7 @@ declare module '@vue/runtime-core' {
     readonly clearError: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/error')['clearError']>
     readonly clearNuxtData: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/asyncData')['clearNuxtData']>
     readonly clearNuxtState: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/state')['clearNuxtState']>
+    readonly cn: UnwrapRef<typeof import('../../../utils/cn')['cn']>
     readonly computed: UnwrapRef<typeof import('../../../node_modules/vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['computedEager']>
@@ -836,6 +885,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentInstance: UnwrapRef<typeof import('../../../node_modules/vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('../../../node_modules/vue')['getCurrentScope']>
     readonly getRouteRules: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/manifest')['getRouteRules']>
+    readonly gql: UnwrapRef<typeof import('../../../node_modules/graphql-tag/main')['gql']>
     readonly h: UnwrapRef<typeof import('../../../node_modules/vue')['h']>
     readonly hasInjectionContext: UnwrapRef<typeof import('../../../node_modules/vue')['hasInjectionContext']>
     readonly ignorableWatch: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['ignorableWatch']>
@@ -880,6 +930,7 @@ declare module '@vue/runtime-core' {
     readonly onUpdated: UnwrapRef<typeof import('../../../node_modules/vue')['onUpdated']>
     readonly parseMarkdown: UnwrapRef<typeof import('../../../node_modules/@nuxtjs/mdc/dist/runtime/parser')['parseMarkdown']>
     readonly pausableWatch: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['pausableWatch']>
+    readonly persistedState: UnwrapRef<typeof import('../../../node_modules/@pinia-plugin-persistedstate/nuxt/dist/runtime/storages')['persistedState']>
     readonly prefetchComponents: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/preload')['prefetchComponents']>
     readonly preloadComponents: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/preload')['preloadComponents']>
     readonly preloadPayload: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/payload')['preloadPayload']>
@@ -941,6 +992,8 @@ declare module '@vue/runtime-core' {
     readonly updateAppConfig: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/config')['updateAppConfig']>
     readonly useActiveElement: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useAnimate']>
+    readonly useApollo: UnwrapRef<typeof import('../../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useApollo']>
+    readonly useApolloClient: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useApolloClient']>
     readonly useAppConfig: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/config')['useAppConfig']>
     readonly useArrayDifference: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useArrayDifference']>
     readonly useArrayEvery: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useArrayEvery']>
@@ -955,6 +1008,7 @@ declare module '@vue/runtime-core' {
     readonly useArraySome: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useArraySome']>
     readonly useArrayUnique: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useArrayUnique']>
     readonly useAsyncData: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/asyncData')['useAsyncData']>
+    readonly useAsyncQuery: UnwrapRef<typeof import('../../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useAsyncQuery']>
     readonly useAsyncQueue: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useAsyncQueue']>
     readonly useAsyncState: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useAsyncState']>
     readonly useAttrs: UnwrapRef<typeof import('../../../node_modules/vue')['useAttrs']>
@@ -1000,6 +1054,8 @@ declare module '@vue/runtime-core' {
     readonly useElementByPoint: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useElementByPoint']>
     readonly useElementHover: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useElementHover']>
     readonly useElementSize: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useElementSize']>
+    readonly useElementStyle: UnwrapRef<typeof import('../../../node_modules/@vueuse/motion')['useElementStyle']>
+    readonly useElementTransform: UnwrapRef<typeof import('../../../node_modules/@vueuse/motion')['useElementTransform']>
     readonly useElementVisibility: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useElementVisibility']>
     readonly useError: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/error')['useError']>
     readonly useEventBus: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useEventBus']>
@@ -1017,6 +1073,9 @@ declare module '@vue/runtime-core' {
     readonly useFullscreen: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useGamepad']>
     readonly useGeolocation: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useGeolocation']>
+    readonly useGlobalMutationLoading: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useGlobalMutationLoading']>
+    readonly useGlobalQueryLoading: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useGlobalQueryLoading']>
+    readonly useGlobalSubscriptionLoading: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useGlobalSubscriptionLoading']>
     readonly useHead: UnwrapRef<typeof import('../../../node_modules/@unhead/vue')['useHead']>
     readonly useHeadSafe: UnwrapRef<typeof import('../../../node_modules/@unhead/vue')['useHeadSafe']>
     readonly useHydration: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/hydrate')['useHydration']>
@@ -1030,7 +1089,9 @@ declare module '@vue/runtime-core' {
     readonly useKeyModifier: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useKeyModifier']>
     readonly useLastChanged: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useLastChanged']>
     readonly useLazyAsyncData: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/asyncData')['useLazyAsyncData']>
+    readonly useLazyAsyncQuery: UnwrapRef<typeof import('../../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useLazyAsyncQuery']>
     readonly useLazyFetch: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/fetch')['useLazyFetch']>
+    readonly useLazyQuery: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useLazyQuery']>
     readonly useLink: UnwrapRef<typeof import('../vue-router-stub')['useLink']>
     readonly useLoadingIndicator: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/loading-indicator')['useLoadingIndicator']>
     readonly useLocalStorage: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useLocalStorage']>
@@ -1041,10 +1102,15 @@ declare module '@vue/runtime-core' {
     readonly useMemoize: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useMemoize']>
     readonly useMemory: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useMemory']>
     readonly useModel: UnwrapRef<typeof import('../../../node_modules/vue')['useModel']>
+    readonly useMotion: UnwrapRef<typeof import('../../../node_modules/@vueuse/motion')['useMotion']>
+    readonly useMotionProperties: UnwrapRef<typeof import('../../../node_modules/@vueuse/motion')['useMotionProperties']>
+    readonly useMotionVariants: UnwrapRef<typeof import('../../../node_modules/@vueuse/motion')['useMotionVariants']>
     readonly useMounted: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useMounted']>
     readonly useMouse: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useMouse']>
     readonly useMouseInElement: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useMouseInElement']>
     readonly useMousePressed: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useMousePressed']>
+    readonly useMutation: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useMutation']>
+    readonly useMutationLoading: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useMutationLoading']>
     readonly useMutationObserver: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useMutationObserver']>
     readonly useNavbarParser: UnwrapRef<typeof import('../../../composables/use-navbar-parser')['useNavbarParser']>
     readonly useNavigatorLanguage: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useNavigatorLanguage']>
@@ -1071,6 +1137,8 @@ declare module '@vue/runtime-core' {
     readonly usePreferredLanguages: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['usePreferredLanguages']>
     readonly usePreferredReducedMotion: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['usePreferredReducedMotion']>
     readonly usePrevious: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['usePrevious']>
+    readonly useQuery: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useQuery']>
+    readonly useQueryLoading: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useQueryLoading']>
     readonly useRafFn: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useRafFn']>
     readonly useRefHistory: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useRefHistory']>
     readonly useRequestEvent: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/ssr')['useRequestEvent']>
@@ -1097,10 +1165,13 @@ declare module '@vue/runtime-core' {
     readonly useSorted: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useSpeechRecognition']>
     readonly useSpeechSynthesis: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useSpeechSynthesis']>
+    readonly useSpring: UnwrapRef<typeof import('../../../node_modules/@vueuse/motion')['useSpring']>
     readonly useState: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/state')['useState']>
     readonly useStepper: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useStepper']>
     readonly useStorageAsync: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useStorageAsync']>
     readonly useStyleTag: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useStyleTag']>
+    readonly useSubscription: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useSubscription']>
+    readonly useSubscriptionLoading: UnwrapRef<typeof import('../../../node_modules/@vue/apollo-composable')['useSubscriptionLoading']>
     readonly useSupported: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useSupported']>
     readonly useSwipe: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useSwipe']>
     readonly useSyncProps: UnwrapRef<typeof import('../../../composables/use-sync-props')['useSyncProps']>
@@ -1136,6 +1207,7 @@ declare module '@vue/runtime-core' {
     readonly useWindowFocus: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useWindowSize']>
+    readonly useWordpressStore: UnwrapRef<typeof import('../../../stores/wordpress')['useWordpressStore']>
     readonly watch: UnwrapRef<typeof import('../../../node_modules/vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['watchAtMost']>

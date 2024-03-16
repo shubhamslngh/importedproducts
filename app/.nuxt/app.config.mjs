@@ -15,7 +15,7 @@ if (import.meta.hot) {
   })
 }
 
-import cfg0 from "/Users/shubhamsingh/Documents/minepro/importedProds/app/app.config.ts"
-import cfg1 from "/Users/shubhamsingh/Documents/minepro/importedProds/app.config.ts"
+import cfg0 from "/Users/shubhamsingh/namma/importedProds/app/app.config.ts"
+import cfg1 from "/Users/shubhamsingh/namma/importedProds/app.config.ts"
 
 export default /*@__PURE__*/ defuFn(cfg0, cfg1, inlineConfig)

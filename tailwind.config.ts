@@ -1,8 +1,9 @@
-import type { Config } from 'tailwindcss'
+import { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme'
 import colors from 'tailwindcss/colors'
 
 const MyTheme = {
+ 
   colors: {
     green: {
       DEFAULT: '#3BA676',
@@ -44,7 +45,7 @@ const MyTheme = {
       '900': '#830000',
     },
   },
-}
+};
 
 export default <Partial<Config>>{
   darkMode: 'class',
@@ -61,13 +62,18 @@ export default <Partial<Config>>{
   ],
   theme: {
     extend: {
-      maxWidth: {
-        '8xl': '90rem',
+  dropShadow: {
+    glow: [
+      "0 0px 20px rgba(255,255, 255, 0.35)",
+      "0 0px 65px rgba(255, 255,255, 0.2)"
+    ]
+  },
+      boxShadow: {
+         neon: '0  10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.5)',
       },
       colors: {
+        neon: '0 0 5px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.5)',
         primary: MyTheme.colors.green,
-        // if want to change primary color to blue
-        // primary: MyTheme.colors.blue,
         green: MyTheme.colors.green,
         blue: MyTheme.colors.blue,
         red: MyTheme.colors.red,
@@ -78,4 +84,4 @@ export default <Partial<Config>>{
       },
     },
   },
-}
+};

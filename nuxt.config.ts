@@ -1,28 +1,20 @@
 import { createResolver } from '@nuxt/kit'
 const { resolve } = createResolver(import.meta.url)
-
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import { defineNuxtConfig } from 'nuxt/config'
+// import { InMemoryCache } from '@apollo/client';
 export default defineNuxtConfig({
   // exp
   experimental: {
-    localLayerAliases: true,
+    localLayerAliases: true,  
   },
-
+//buildModules
   // app config
   app: {
     // global transition
     pageTransition: { name: 'page', mode: 'out-in' },
     layoutTransition: { name: 'layout', mode: 'out-in' },
   },
-
-  // typescripts
-  // todo: feat/strict-type-check
-  // typescript: {
-  //   strict: true,
-  //   typeCheck: true,
-  // },
-
-  // modules
+ 
   modules: [
     // chore
     '@nuxtjs/eslint-module',
@@ -31,6 +23,8 @@ export default defineNuxtConfig({
     'nuxt-headlessui',
     'nuxt-icon',
     '@nuxtjs/color-mode',
+    '@pinia-plugin-persistedstate/nuxt',
+    '@nuxtjs/apollo', 
     // management
     '@pinia/nuxt',
     '@vueuse/nuxt',
@@ -40,7 +34,6 @@ export default defineNuxtConfig({
     // todo: feat/localization
     // '@nuxtjs/i18n'
   ],
-
   css: [
     resolve('./assets/scss/_variables.scss'),
     resolve('./assets/scss/app.scss'),

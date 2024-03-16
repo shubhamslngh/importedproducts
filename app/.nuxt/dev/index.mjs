@@ -1,61 +1,99 @@
-globalThis._importMeta_={url:import.meta.url,env:process.env};import { Server } from 'node:http';
+import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import { Server } from 'node:http';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { mkdirSync } from 'node:fs';
 import { parentPort, threadId } from 'node:worker_threads';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, getQuery as getQuery$1, getCookie, createError, createApp, createRouter as createRouter$1, toNodeListener, fetchWithEvent, lazyEventHandler, getResponseStatusText } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/h3/dist/index.mjs';
-import { visit } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/unist-util-visit/index.js';
-import { toString as toString$1 } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/hast-util-to-string/index.js';
-import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { stringify, uneval } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/devalue/index.js';
-import { parseURL, withoutBase, joinURL, getQuery, withQuery, withLeadingSlash, withoutTrailingSlash, isRelative } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/ufo/dist/index.mjs';
-import { renderToString } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/vue/server-renderer/index.mjs';
-import { renderSSRHead } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/@unhead/ssr/dist/index.mjs';
-import { createFetch as createFetch$1, Headers as Headers$1 } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/ofetch/dist/node.mjs';
-import destr, { destr as destr$1 } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/destr/dist/index.mjs';
-import { createCall, createFetch } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/unenv/runtime/fetch/index.mjs';
-import { createHooks } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/hookable/dist/index.mjs';
-import { snakeCase, kebabCase, pascalCase, camelCase } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/scule/dist/index.mjs';
-import { klona } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/klona/dist/index.mjs';
-import defu, { defuFn, defu as defu$1 } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/defu/dist/defu.mjs';
-import { hash } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/ohash/dist/index.mjs';
-import { createStorage, prefixStorage } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/unstorage/drivers/fs.mjs';
-import { toRouteMatcher, createRouter } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/radix3/dist/index.mjs';
-import { isSpecialLang, isSpecialTheme, addClassToHast, getHighlighterCore } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/core.mjs';
-import { transformerNotationDiff, transformerNotationFocus, transformerNotationHighlight, transformerNotationErrorLevel } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/@shikijs/transformers/dist/index.mjs';
-import { extname } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/pathe/dist/index.mjs';
-import { unified } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/unified/index.js';
-import { toString } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/mdast-util-to-string/index.js';
-import { postprocess, preprocess } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/micromark/dev/index.js';
-import { stringifyPosition } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/unist-util-stringify-position/index.js';
-import { markdownLineEnding, markdownSpace } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/micromark-util-character/dev/index.js';
-import { push, splice } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/micromark-util-chunked/dev/index.js';
-import { resolveAll } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/micromark-util-resolve-all/index.js';
-import { normalizeUri } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/micromark-util-sanitize-uri/dev/index.js';
-import slugify from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/slugify/slugify.js';
-import remarkParse from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/remark-parse/index.js';
-import remark2rehype from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/remark-rehype/index.js';
-import remarkMDC, { parseFrontMatter } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/remark-mdc/dist/index.mjs';
-import Slugger from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/github-slugger/index.js';
-import { detab } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/detab/index.js';
-import remarkEmoji from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/remark-emoji/index.js';
-import remarkGFM from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/remark-gfm/index.js';
-import rehypeExternalLinks from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/rehype-external-links/index.js';
-import rehypeSortAttributeValues from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/rehype-sort-attribute-values/index.js';
-import rehypeSortAttributes from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/rehype-sort-attributes/index.js';
-import rehypeRaw from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/rehype-raw/index.js';
-import { version, unref } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/vue/index.mjs';
-import { createServerHead as createServerHead$1 } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/unhead/dist/index.mjs';
-import { defineHeadPlugin } from 'file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/@unhead/shared/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, fetchWithEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, createError, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, getQuery as getQuery$1, getCookie, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getRouterParam, readBody, getResponseStatusText } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/h3/dist/index.mjs';
+import { visit } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/unist-util-visit/index.js';
+import { toString as toString$1 } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/hast-util-to-string/index.js';
+import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { stringify, uneval } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/devalue/index.js';
+import { parseURL, withoutBase, joinURL, getQuery, withQuery, withLeadingSlash, withoutTrailingSlash, isRelative } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/ufo/dist/index.mjs';
+import { renderToString } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/vue/server-renderer/index.mjs';
+import { renderSSRHead } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/@unhead/ssr/dist/index.mjs';
+import { createFetch as createFetch$1, Headers as Headers$1 } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/ofetch/dist/node.mjs';
+import destr, { destr as destr$1 } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/destr/dist/index.mjs';
+import { createCall, createFetch } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/unenv/runtime/fetch/index.mjs';
+import { createHooks } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/hookable/dist/index.mjs';
+import { klona } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/klona/dist/index.mjs';
+import { snakeCase, kebabCase, pascalCase, camelCase } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/scule/dist/index.mjs';
+import defu, { defuFn, defu as defu$1 } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/defu/dist/defu.mjs';
+import { hash } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/ohash/dist/index.mjs';
+import { createStorage, prefixStorage } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/unstorage/drivers/fs.mjs';
+import { toRouteMatcher, createRouter } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/radix3/dist/index.mjs';
+import { isSpecialLang, isSpecialTheme, addClassToHast, getHighlighterCore } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/core.mjs';
+import { transformerNotationDiff, transformerNotationFocus, transformerNotationHighlight, transformerNotationErrorLevel } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/@shikijs/transformers/dist/index.mjs';
+import { extname } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/pathe/dist/index.mjs';
+import { unified } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/unified/index.js';
+import { toString } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/mdast-util-to-string/index.js';
+import { postprocess, preprocess } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/micromark/dev/index.js';
+import { stringifyPosition } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/unist-util-stringify-position/index.js';
+import { markdownLineEnding, markdownSpace } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/micromark-util-character/dev/index.js';
+import { push, splice } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/micromark-util-chunked/dev/index.js';
+import { resolveAll } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/micromark-util-resolve-all/index.js';
+import { normalizeUri } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/micromark-util-sanitize-uri/dev/index.js';
+import slugify from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/slugify/slugify.js';
+import remarkParse from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/remark-parse/index.js';
+import remark2rehype from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/remark-rehype/index.js';
+import remarkMDC, { parseFrontMatter } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/remark-mdc/dist/index.mjs';
+import Slugger from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/github-slugger/index.js';
+import { detab } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/detab/index.js';
+import remarkEmoji from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/remark-emoji/index.js';
+import remarkGFM from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/remark-gfm/index.js';
+import rehypeExternalLinks from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/rehype-external-links/index.js';
+import rehypeSortAttributeValues from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/rehype-sort-attribute-values/index.js';
+import rehypeSortAttributes from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/rehype-sort-attributes/index.js';
+import rehypeRaw from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/rehype-raw/index.js';
+import { version, unref } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/vue/index.mjs';
+import { createServerHead as createServerHead$1 } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/unhead/dist/index.mjs';
+import { defineHeadPlugin } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/@unhead/shared/dist/index.mjs';
 
 const r=Object.create(null),E=e=>globalThis.process?.env||globalThis._importMeta_.env||globalThis.Deno?.env.toObject()||globalThis.__env__||(e?r:globalThis),s=new Proxy(r,{get(e,o){return E()[o]??r[o]},has(e,o){const i=E();return o in i||o in r},set(e,o,i){const g=E(!0);return g[o]=i,!0},deleteProperty(e,o){if(!o)return !1;const i=E(!0);return delete i[o],!0},ownKeys(){const e=E(!0);return Object.keys(e)}}),t=typeof process<"u"&&process.env&&"development"||"",p=[["APPVEYOR"],["AWS_AMPLIFY","AWS_APP_ID",{ci:!0}],["AZURE_PIPELINES","SYSTEM_TEAMFOUNDATIONCOLLECTIONURI"],["AZURE_STATIC","INPUT_AZURE_STATIC_WEB_APPS_API_TOKEN"],["APPCIRCLE","AC_APPCIRCLE"],["BAMBOO","bamboo_planKey"],["BITBUCKET","BITBUCKET_COMMIT"],["BITRISE","BITRISE_IO"],["BUDDY","BUDDY_WORKSPACE_ID"],["BUILDKITE"],["CIRCLE","CIRCLECI"],["CIRRUS","CIRRUS_CI"],["CLOUDFLARE_PAGES","CF_PAGES",{ci:!0}],["CODEBUILD","CODEBUILD_BUILD_ARN"],["CODEFRESH","CF_BUILD_ID"],["DRONE"],["DRONE","DRONE_BUILD_EVENT"],["DSARI"],["GITHUB_ACTIONS"],["GITLAB","GITLAB_CI"],["GITLAB","CI_MERGE_REQUEST_ID"],["GOCD","GO_PIPELINE_LABEL"],["LAYERCI"],["HUDSON","HUDSON_URL"],["JENKINS","JENKINS_URL"],["MAGNUM"],["NETLIFY"],["NETLIFY","NETLIFY_LOCAL",{ci:!1}],["NEVERCODE"],["RENDER"],["SAIL","SAILCI"],["SEMAPHORE"],["SCREWDRIVER"],["SHIPPABLE"],["SOLANO","TDDIUM"],["STRIDER"],["TEAMCITY","TEAMCITY_VERSION"],["TRAVIS"],["VERCEL","NOW_BUILDER"],["VERCEL","VERCEL",{ci:!1}],["VERCEL","VERCEL_ENV",{ci:!1}],["APPCENTER","APPCENTER_BUILD_ID"],["CODESANDBOX","CODESANDBOX_SSE",{ci:!1}],["STACKBLITZ"],["STORMKIT"],["CLEAVR"],["ZEABUR"],["CODESPHERE","CODESPHERE_APP_ID",{ci:!0}],["RAILWAY","RAILWAY_PROJECT_ID"],["RAILWAY","RAILWAY_SERVICE_ID"]];function B(){if(globalThis.process?.env)for(const e of p){const o=e[1]||e[0];if(globalThis.process?.env[o])return {name:e[0].toLowerCase(),...e[2]}}return globalThis.process?.env?.SHELL==="/bin/jsh"&&globalThis.process?.versions?.webcontainer?{name:"stackblitz",ci:!1}:{name:"",ci:!1}}const l=B(),d=l.name;function n(e){return e?e!=="false":!1}const I=globalThis.process?.platform||"",T=n(s.CI)||l.ci!==!1,R=n(globalThis.process?.stdout&&globalThis.process?.stdout.isTTY);n(s.DEBUG);const C=t==="test"||n(s.TEST);n(s.MINIMAL)||T||C||!R;const a=/^win/i.test(I);!n(s.NO_COLOR)&&(n(s.FORCE_COLOR)||(R||a)&&s.TERM!=="dumb"||T);const _=(globalThis.process?.versions?.node||"").replace(/^v/,"")||null;Number(_?.split(".")[0])||null;const W=globalThis.process||Object.create(null),c={versions:{}};new Proxy(W,{get(e,o){if(o==="env")return s;if(o in e)return e[o];if(o in c)return c[o]}});const A=globalThis.process?.release?.name==="node",L=!!globalThis.Bun||!!globalThis.process?.versions?.bun,D=!!globalThis.Deno,O=!!globalThis.fastly,S=!!globalThis.Netlify,N=!!globalThis.EdgeRuntime,u=globalThis.navigator?.userAgent==="Cloudflare-Workers",b=!!globalThis.__lagon__,F=[[S,"netlify"],[N,"edge-light"],[u,"workerd"],[O,"fastly"],[D,"deno"],[L,"bun"],[A,"node"],[b,"lagon"]];function G(){const e=F.find(o=>o[0]);if(e)return {name:e[1]}}const P=G();P?.name||"";
+
+function getEnv(key, opts) {
+  const envKey = snakeCase(key).toUpperCase();
+  return destr(
+    process.env[opts.prefix + envKey] ?? process.env[opts.altPrefix + envKey]
+  );
+}
+function _isObject(input) {
+  return typeof input === "object" && !Array.isArray(input);
+}
+function applyEnv(obj, opts, parentKey = "") {
+  for (const key in obj) {
+    const subKey = parentKey ? `${parentKey}_${key}` : key;
+    const envValue = getEnv(subKey, opts);
+    if (_isObject(obj[key])) {
+      if (_isObject(envValue)) {
+        obj[key] = { ...obj[key], ...envValue };
+        applyEnv(obj[key], opts, subKey);
+      } else if (envValue === void 0) {
+        applyEnv(obj[key], opts, subKey);
+      } else {
+        obj[key] = envValue ?? obj[key];
+      }
+    } else {
+      obj[key] = envValue ?? obj[key];
+    }
+    if (opts.envExpansion && typeof obj[key] === "string") {
+      obj[key] = _expandFromEnv(obj[key]);
+    }
+  }
+  return obj;
+}
+const envExpandRx = /{{(.*?)}}/g;
+function _expandFromEnv(value) {
+  return value.replace(envExpandRx, (match, key) => {
+    return process.env[key] || match;
+  });
+}
 
 const defineAppConfig = (config) => config;
 
 const appConfig0 = defineAppConfig({
   awesome: {
-    name: "Nuxt 3 Awesome Starter",
+    name: "Imported Products",
     description: "a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.",
     project: {
       links: {
@@ -66,9 +104,9 @@ const appConfig0 = defineAppConfig({
       page: {
         navbar: {
           menus: [
-            { type: "link", title: "Blank", to: { name: "blank" } },
+            { type: "link", title: "Cases", to: { name: "blank" } },
             { type: "link", title: "Post", to: { name: "post" } },
-            { type: "link", title: "Test", to: { name: "test" } },
+            { type: "link", title: "Travel", to: { name: "test" } },
             {
               type: "dropdown",
               title: "Documentations",
@@ -100,7 +138,7 @@ const appConfig0 = defineAppConfig({
       }
     },
     author: {
-      name: "viandwi24",
+      name: "shubham",
       links: {
         github: "https://github.com/viandwi24",
         medium: "https://viandwi24.medium.com",
@@ -129,7 +167,7 @@ const appConfig1 = defineAppConfig({
         year: (/* @__PURE__ */ new Date()).getFullYear()
       },
       welcome: {
-        title: "Nuxt&nbsp;3 Awesome Starter",
+        title: "ImportedProducts",
         disableInfoReplaceIndexInWelcomePage: true,
         primaryActionButton: {
           title: "Nuxt 3",
@@ -191,6 +229,11 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
+    "persistedState": {
+      "storage": "cookies",
+      "debug": false,
+      "cookieOptions": {}
+    },
     "mdc": {
       "components": {
         "prose": true,
@@ -408,10 +451,13 @@ const _inlineRuntimeConfig = {
     }
   }
 };
-const ENV_PREFIX = "NITRO_";
-const ENV_PREFIX_ALT = _inlineRuntimeConfig.nitro.envPrefix ?? process.env.NITRO_ENV_PREFIX ?? "_";
+const envOptions = {
+  prefix: "NITRO_",
+  altPrefix: _inlineRuntimeConfig.nitro.envPrefix ?? process.env.NITRO_ENV_PREFIX ?? "_",
+  envExpansion: _inlineRuntimeConfig.nitro.envExpansion ?? process.env.NITRO_ENV_EXPANSION ?? false
+};
 const _sharedRuntimeConfig = _deepFreeze(
-  _applyEnv(klona(_inlineRuntimeConfig))
+  applyEnv(klona(_inlineRuntimeConfig), envOptions)
 );
 function useRuntimeConfig(event) {
   if (!event) {
@@ -421,35 +467,11 @@ function useRuntimeConfig(event) {
     return event.context.nitro.runtimeConfig;
   }
   const runtimeConfig = klona(_inlineRuntimeConfig);
-  _applyEnv(runtimeConfig);
+  applyEnv(runtimeConfig, envOptions);
   event.context.nitro.runtimeConfig = runtimeConfig;
   return runtimeConfig;
 }
 _deepFreeze(klona(appConfig));
-function _getEnv(key) {
-  const envKey = snakeCase(key).toUpperCase();
-  return destr(
-    process.env[ENV_PREFIX + envKey] ?? process.env[ENV_PREFIX_ALT + envKey]
-  );
-}
-function _isObject(input) {
-  return typeof input === "object" && !Array.isArray(input);
-}
-function _applyEnv(obj, parentKey = "") {
-  for (const key in obj) {
-    const subKey = parentKey ? `${parentKey}_${key}` : key;
-    const envValue = _getEnv(subKey);
-    if (_isObject(obj[key])) {
-      if (_isObject(envValue)) {
-        obj[key] = { ...obj[key], ...envValue };
-      }
-      _applyEnv(obj[key], subKey);
-    } else {
-      obj[key] = envValue ?? obj[key];
-    }
-  }
-  return obj;
-}
 function _deepFreeze(object) {
   const propNames = Object.getOwnPropertyNames(object);
   for (const name of propNames) {
@@ -473,7 +495,7 @@ new Proxy(/* @__PURE__ */ Object.create(null), {
   }
 });
 
-const serverAssets = [{"baseName":"server","dir":"/Users/shubhamsingh/Documents/minepro/importedProds/app/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"/Users/shubhamsingh/namma/importedProds/app/server/assets"}];
 
 const assets = createStorage();
 
@@ -485,13 +507,13 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets);
 
-storage.mount('content:source:content', unstorage_47drivers_47fs({"name":"content:source:content","driver":"fs","base":"/Users/shubhamsingh/Documents/minepro/importedProds/app/content","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('cache:content', unstorage_47drivers_47fs({"driver":"fs","base":"/Users/shubhamsingh/Documents/minepro/importedProds/app/.nuxt/content-cache","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/shubhamsingh/Documents/minepro/importedProds/app","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/shubhamsingh/Documents/minepro/importedProds/app/server","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/shubhamsingh/Documents/minepro/importedProds/app/.nuxt","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/shubhamsingh/Documents/minepro/importedProds/app/.nuxt/cache","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/Users/shubhamsingh/Documents/minepro/importedProds/app/.data/kv","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('content:source:content', unstorage_47drivers_47fs({"name":"content:source:content","driver":"fs","base":"/Users/shubhamsingh/namma/importedProds/app/content","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('cache:content', unstorage_47drivers_47fs({"driver":"fs","base":"/Users/shubhamsingh/namma/importedProds/app/.nuxt/content-cache","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/shubhamsingh/namma/importedProds/app","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/shubhamsingh/namma/importedProds/app/server","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/shubhamsingh/namma/importedProds/app/.nuxt","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/shubhamsingh/namma/importedProds/app/.nuxt/cache","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/Users/shubhamsingh/namma/importedProds/app/.data/kv","ignore":["**/node_modules/**","**/.git/**"]}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -512,7 +534,13 @@ function defineCachedFunction(fn, opts = {}) {
   const validate = opts.validate || ((entry) => entry.value !== void 0);
   async function get(key, resolver, shouldInvalidateCache, event) {
     const cacheKey = [opts.base, group, name, key + ".json"].filter(Boolean).join(":").replace(/:\/$/, ":index");
-    const entry = await useStorage().getItem(cacheKey) || {};
+    let entry = await useStorage().getItem(cacheKey) || {};
+    if (typeof entry !== "object") {
+      entry = {};
+      const error = new Error("Malformed data read from cache.");
+      console.error("[nitro] [cache]", error);
+      useNitroApp().captureError(error, { event, tags: ["cache"] });
+    }
     const ttl = (opts.maxAge ?? opts.maxAge ?? 0) * 1e3;
     if (ttl) {
       entry.expires = Date.now() + ttl;
@@ -568,12 +596,12 @@ function defineCachedFunction(fn, opts = {}) {
     return _resolvePromise.then(() => entry);
   }
   return async (...args) => {
-    const shouldBypassCache = opts.shouldBypassCache?.(...args);
+    const shouldBypassCache = await opts.shouldBypassCache?.(...args);
     if (shouldBypassCache) {
       return fn(...args);
     }
     const key = await (opts.getKey || getKey)(...args);
-    const shouldInvalidateCache = opts.shouldInvalidateCache?.(...args);
+    const shouldInvalidateCache = await opts.shouldInvalidateCache?.(...args);
     const entry = await get(
       key,
       () => fn(...args),
@@ -698,6 +726,12 @@ function defineCachedEventHandler(handler, opts = defaultCacheOptions) {
         }
       });
       const event = createEvent(reqProxy, resProxy);
+      event.fetch = (url, fetchOptions) => fetchWithEvent(event, url, fetchOptions, {
+        fetch: useNitroApp().localFetch
+      });
+      event.$fetch = (url, fetchOptions) => fetchWithEvent(event, url, fetchOptions, {
+        fetch: globalThis.$fetch
+      });
       event.context = incomingEvent.context;
       const body = await handler(event) || _resSendBody;
       const headers = event.node.res.getHeaders();
@@ -868,11 +902,19 @@ function createRouteRulesHandler(ctx) {
       setHeaders(event, routeRules.headers);
     }
     if (routeRules.redirect) {
-      return sendRedirect(
-        event,
-        routeRules.redirect.to,
-        routeRules.redirect.statusCode
-      );
+      let target = routeRules.redirect.to;
+      if (target.endsWith("/**")) {
+        let targetPath = event.path;
+        const strpBase = routeRules.redirect._redirectStripBase;
+        if (strpBase) {
+          targetPath = withoutBase(targetPath, strpBase);
+        }
+        target = joinURL(target.slice(0, -3), targetPath);
+      } else if (event.path.includes("?")) {
+        const query = getQuery(event.path);
+        target = withQuery(target, query);
+      }
+      return sendRedirect(event, target, routeRules.redirect.statusCode);
     }
     if (routeRules.proxy) {
       let target = routeRules.proxy.to;
@@ -918,7 +960,7 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _Hx0wY4jRED = (function(nitro) {
+const _Nc1PmgjMJv = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script$1}<\/script>`);
   });
@@ -926,16 +968,53 @@ const _Hx0wY4jRED = (function(nitro) {
 
 const script = "\"use strict\";(()=>{const a=window,e=document.documentElement,m=[\"dark\",\"light\"],c=window&&window.localStorage&&window.localStorage.getItem&&window.localStorage.getItem(\"nuxt-color-mode\")||\"system\";let n=c===\"system\"?d():c;const l=e.getAttribute(\"data-color-mode-forced\");l&&(n=l),i(n),a[\"__NUXT_COLOR_MODE__\"]={preference:c,value:n,getColorScheme:d,addColorScheme:i,removeColorScheme:f};function i(o){const t=\"\"+o+\"\",s=\"\";e.classList?e.classList.add(t):e.className+=\" \"+t,s&&e.setAttribute(\"data-\"+s,o)}function f(o){const t=\"\"+o+\"\",s=\"\";e.classList?e.classList.remove(t):e.className=e.className.replace(new RegExp(t,\"g\"),\"\"),s&&e.removeAttribute(\"data-\"+s)}function r(o){return a.matchMedia(\"(prefers-color-scheme\"+o+\")\")}function d(){if(a.matchMedia&&r(\"\").media!==\"not all\"){for(const o of m)if(r(\":\"+o).matches)return o}return\"light\"}})();\n";
 
-const _PvzUFQoejt = (function(nitro) {
+const _yalkahAamd = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
 });
 
 const plugins = [
-  _Hx0wY4jRED,
-_PvzUFQoejt
+  _Nc1PmgjMJv,
+_yalkahAamd
 ];
+
+const scheduledTasks = false;
+
+const tasks = {
+  
+};
+
+const __runningTasks__ = {};
+async function runTask(name, {
+  payload = {},
+  context = {}
+} = {}) {
+  if (__runningTasks__[name]) {
+    return __runningTasks__[name];
+  }
+  if (!(name in tasks)) {
+    throw createError({
+      message: `Task \`${name}\` is not available!`,
+      statusCode: 404
+    });
+  }
+  if (!tasks[name].resolve) {
+    throw createError({
+      message: `Task \`${name}\` is not implemented!`,
+      statusCode: 501
+    });
+  }
+  const handler = await tasks[name].resolve();
+  const taskEvent = { name, payload, context };
+  __runningTasks__[name] = handler.run(taskEvent);
+  try {
+    const res = await __runningTasks__[name];
+    return res;
+  } finally {
+    delete __runningTasks__[name];
+  }
+}
 
 function defineRenderHandler(handler) {
   return eventHandler(async (event) => {
@@ -1055,7 +1134,7 @@ function createShikiHighlighter({
     const shiki2 = await getHighlighterCore({
       langs,
       themes,
-      loadWasm: () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/wasm.mjs')
+      loadWasm: () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/wasm.mjs')
     });
     for await (const config of await getConfigs()) {
       await config.shiki?.setup?.(shiki2);
@@ -1195,29 +1274,29 @@ function createShikiHighlighter({
 }
 
 const bundledLangs = {
-"javascript": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/javascript.mjs'),
-"js": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/javascript.mjs'),
-"jsx": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/jsx.mjs'),
-"json": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/json.mjs'),
-"typescript": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/typescript.mjs'),
-"ts": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/typescript.mjs'),
-"tsx": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/tsx.mjs'),
-"vue": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/vue.mjs'),
-"css": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/css.mjs'),
-"html": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/html.mjs'),
-"shellscript": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/shellscript.mjs'),
-"bash": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/shellscript.mjs'),
-"sh": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/shellscript.mjs'),
-"shell": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/shellscript.mjs'),
-"zsh": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/shellscript.mjs'),
-"markdown": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/markdown.mjs'),
-"md": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/markdown.mjs'),
-"mdc": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/mdc.mjs'),
-"yaml": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/yaml.mjs'),
-"yml": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/langs/yaml.mjs'),
+"javascript": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/javascript.mjs'),
+"js": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/javascript.mjs'),
+"jsx": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/jsx.mjs'),
+"json": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/json.mjs'),
+"typescript": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/typescript.mjs'),
+"ts": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/typescript.mjs'),
+"tsx": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/tsx.mjs'),
+"vue": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/vue.mjs'),
+"css": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/css.mjs'),
+"html": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/html.mjs'),
+"shellscript": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/shellscript.mjs'),
+"bash": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/shellscript.mjs'),
+"sh": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/shellscript.mjs'),
+"shell": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/shellscript.mjs'),
+"zsh": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/shellscript.mjs'),
+"markdown": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/markdown.mjs'),
+"md": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/markdown.mjs'),
+"mdc": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/mdc.mjs'),
+"yaml": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/yaml.mjs'),
+"yml": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/langs/yaml.mjs'),
 };
 const bundledThemes = {
-"github-dark": () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/shiki/dist/themes/github-dark.mjs').then(r => r.default),
+"github-dark": () => import('file:///Users/shubhamsingh/namma/importedProds/node_modules/shiki/dist/themes/github-dark.mjs').then(r => r.default),
 };
 const options = {"theme":"github-dark"};
 const highlighter = createShikiHighlighter({ bundledLangs, bundledThemes, options, getMdcConfigs });
@@ -1228,7 +1307,7 @@ const mdcHighlighter = /*#__PURE__*/Object.freeze({
   default: highlighter
 });
 
-const _z5Tqgd = eventHandler(async (event) => {
+const _Vn36ED = eventHandler(async (event) => {
   const { code, lang, theme: themeString, options: optionsStr } = getQuery$1(event);
   const theme = JSON.parse(themeString);
   const options = optionsStr ? JSON.parse(optionsStr) : {};
@@ -2116,7 +2195,7 @@ const validateProps = (type, props) => {
   return props;
 };
 
-function compileHast() {
+function compileHast(options = {}) {
   const slugs = new Slugger();
   function compileToJSON(node, parent) {
     if (node.type === "root") {
@@ -2169,6 +2248,12 @@ function compileHast() {
           value: node.value
         };
       }
+    }
+    if (options.keepComments && node.type === "comment") {
+      return {
+        type: "comment",
+        value: node.value
+      };
     }
     return null;
   }
@@ -2589,6 +2674,9 @@ const defaults$1 = {
 };
 
 function flattenNodeText(node) {
+  if (node.type === "comment") {
+    return "";
+  }
   if (node.type === "text") {
     return node.value || "";
   } else {
@@ -2709,7 +2797,7 @@ function nodeTextContent(node) {
 
 let moduleOptions;
 let generatedMdcConfigs;
-const parseMarkdown = async (md, inlineOptions = {}) => {
+const createMarkdownParser = async (inlineOptions = {}) => {
   if (!moduleOptions) {
     moduleOptions = await Promise.resolve().then(function () { return mdcImports; }).catch(() => ({}));
   }
@@ -2736,7 +2824,10 @@ const parseMarkdown = async (md, inlineOptions = {}) => {
     highlight: moduleOptions?.highlight
   }, defaults$1);
   if (options.rehype?.plugins?.highlight) {
-    options.rehype.plugins.highlight.options = options.highlight || {};
+    options.rehype.plugins.highlight.options = {
+      ...options.rehype.plugins.highlight.options || {},
+      ...options.highlight || {}
+    };
   }
   let processor = unified();
   for (const config of mdcConfigs$1) {
@@ -2752,34 +2843,40 @@ const parseMarkdown = async (md, inlineOptions = {}) => {
     processor = await config.unified?.rehype?.(processor) || processor;
   }
   await useProcessorPlugins(processor, options.rehype?.plugins);
-  processor.use(compileHast);
+  processor.use(compileHast, options);
   for (const config of mdcConfigs$1) {
     processor = await config.unified?.post?.(processor) || processor;
   }
-  const { content, data: frontmatter } = await parseFrontMatter(md);
-  const processedFile = await processor.process({ value: content, data: frontmatter });
-  const result = processedFile.result;
-  const data = Object.assign(
-    contentHeading(result.body),
-    frontmatter,
-    processedFile?.data || {}
-  );
-  let toc;
-  if (data.toc !== false) {
-    const tocOption = defu$1(data.toc || {}, options.toc);
-    toc = generateToc(result.body, tocOption);
-  }
-  return {
-    data,
-    body: result.body,
-    excerpt: result.excerpt,
-    toc
+  return async (md) => {
+    const { content, data: frontmatter } = await parseFrontMatter(md);
+    const processedFile = await processor.process({ value: content, data: frontmatter });
+    const result = processedFile.result;
+    const data = Object.assign(
+      contentHeading(result.body),
+      frontmatter,
+      processedFile?.data || {}
+    );
+    let toc;
+    if (data.toc !== false) {
+      const tocOption = defu$1(data.toc || {}, options.toc);
+      toc = generateToc(result.body, tocOption);
+    }
+    return {
+      data,
+      body: result.body,
+      excerpt: result.excerpt,
+      toc
+    };
   };
+};
+const parseMarkdown = async (md, inlineOptions = {}) => {
+  const parser = await createMarkdownParser(inlineOptions);
+  return parser(md);
 };
 function contentHeading(body) {
   let title = "";
   let description = "";
-  const children = body.children.filter((node) => node.type !== "text" && node.tag !== "hr");
+  const children = body.children.filter((node) => node.type === "element" && node.tag !== "hr");
   if (children.length && children[0].tag === "h1") {
     const node = children.shift();
     title = nodeTextContent(node);
@@ -2793,6 +2890,55 @@ function contentHeading(body) {
     description
   };
 }
+
+function rehypeHighlight$1(opts) {
+  const options = opts;
+  return async (tree) => {
+    const tasks = [];
+    const styles = [];
+    visit(
+      tree,
+      (node) => ["pre", "code"].includes(node.tagName) && !!(node.properties?.language || node.properties?.highlights),
+      (node) => {
+        const _node = node;
+        const highlights = typeof _node.properties.highlights === "string" ? _node.properties.highlights.split(/[,\s]+/).map(Number) : Array.isArray(_node.properties.highlights) ? _node.properties.highlights.map(Number) : [];
+        const task = options.highlighter(
+          toString$1(node),
+          _node.properties.language,
+          options.theme,
+          {
+            highlights: highlights.filter(Boolean),
+            meta: _node.properties.meta
+          }
+        ).then(({ tree: tree2, className, style, inlineStyle }) => {
+          _node.properties.className = ((_node.properties.className || "") + " " + className).trim();
+          _node.properties.style = ((_node.properties.style || "") + " " + inlineStyle).trim();
+          if (_node.children[0]?.tagName === "code") {
+            _node.children[0].children = tree2;
+          } else {
+            _node.children = tree2[0].children || tree2;
+          }
+          if (style)
+            styles.push(style);
+        });
+        tasks.push(task);
+      }
+    );
+    if (tasks.length) {
+      await Promise.all(tasks);
+      tree.children.push({
+        type: "element",
+        tagName: "style",
+        children: [{ type: "text", value: cleanCSS(styles.join("")) }],
+        properties: {}
+      });
+    }
+  };
+}
+const cleanCSS = (css) => {
+  const styles = css.split("}").filter((s) => Boolean(s.trim())).map((s) => s.trim() + "}");
+  return Array.from(new Set(styles)).join("");
+};
 
 const SEMVER_REGEX = /^(\d+)(\.\d+)*(\.x)?$/;
 const describeId = (id) => {
@@ -2861,6 +3007,7 @@ const markdown = defineTransformer({
       highlighter: typeof options.highlight?.highlighter === "function" ? options.highlight.highlighter : void 0
     } : void 0;
     const parsed = await parseMarkdown(content, {
+      ...config,
       highlight: highlightOptions,
       remark: {
         plugins: config.remarkPlugins
@@ -2958,7 +3105,7 @@ const json = defineTransformer({
     let parsed;
     if (typeof content === "string") {
       if (_id.endsWith("json5")) {
-        parsed = (await import('file:///Users/shubhamsingh/Documents/minepro/importedProds/node_modules/json5/lib/index.js').then((m) => m.default || m)).parse(content);
+        parsed = (await import('file:///Users/shubhamsingh/namma/importedProds/node_modules/json5/lib/index.js').then((m) => m.default || m)).parse(content);
       } else if (_id.endsWith("json")) {
         parsed = destr$1(content);
       }
@@ -3083,7 +3230,7 @@ function createOperators(match, operators = {}) {
       (cond) => Array.isArray(item) ? match(item, { $contains: cond }) : match(item, cond)
     ),
     /**
-     * Match if item contains every condition or math every rule in condition array
+     * Match if item contains every condition or match every rule in condition array
      **/
     $contains: (item, condition) => {
       item = Array.isArray(item) ? item : String(item);
@@ -3300,7 +3447,12 @@ async function getIndexedContentsList(event, query) {
   if (!isPreview(event) && !params.surround && !params.dirConfig && (typeof path === "string" || path instanceof RegExp)) {
     const index = await getContentIndex(event);
     const keys = Object.keys(index).filter((key) => path.test ? path.test(key) : key === String(path)).flatMap((key) => index[key]);
-    const contents = await Promise.all(keys.map((key) => getContent(event, key)));
+    const keyChunks = [...chunksFromArray(keys, 10)];
+    const contents = [];
+    for await (const chunk of keyChunks) {
+      const result = await Promise.all(chunk.map((key) => getContent(event, key)));
+      contents.push(...result);
+    }
     return contents;
   }
   return getContentsList(event);
@@ -3568,7 +3720,7 @@ const getContentQuery = (event) => {
   return query;
 };
 
-const _y8A61d = defineEventHandler(async (event) => {
+const _R7ECok = defineEventHandler(async (event) => {
   const query = getContentQuery(event);
   const { advanceQuery } = useRuntimeConfig().public.content.experimental;
   if (query.first) {
@@ -3597,7 +3749,7 @@ const _y8A61d = defineEventHandler(async (event) => {
   return serverQueryContent(event, query).find();
 });
 
-const _awK9zV = defineEventHandler(async (event) => {
+const _nyNTH6 = defineEventHandler(async (event) => {
   const { content } = useRuntimeConfig();
   const now = Date.now();
   const contents = await serverQueryContent(event).find();
@@ -3705,7 +3857,7 @@ function isObject(obj) {
   return Object.prototype.toString.call(obj) === "[object Object]";
 }
 
-const _El6skT = defineEventHandler(async (event) => {
+const _PaOhSX = defineEventHandler(async (event) => {
   const query = getContentQuery(event);
   if (!isPreview(event) && Object.keys(query).length === 0) {
     const cache = await cacheStorage.getItem("content-navigation.json");
@@ -3742,19 +3894,19 @@ const _El6skT = defineEventHandler(async (event) => {
   return createNav(contents?.result || contents, configs);
 });
 
-const _lazy_axEpil = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_EqcFhF = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '/__nuxt_error', handler: _lazy_axEpil, lazy: true, middleware: false, method: undefined },
-  { route: '/api/_mdc/highlight', handler: _z5Tqgd, lazy: false, middleware: false, method: undefined },
-  { route: '/api/_content/query/:qid/**:params', handler: _y8A61d, lazy: false, middleware: false, method: "get" },
-  { route: '/api/_content/query/:qid', handler: _y8A61d, lazy: false, middleware: false, method: "get" },
-  { route: '/api/_content/query', handler: _y8A61d, lazy: false, middleware: false, method: "get" },
-  { route: '/api/_content/cache.json', handler: _awK9zV, lazy: false, middleware: false, method: "get" },
-  { route: '/api/_content/navigation/:qid/**:params', handler: _El6skT, lazy: false, middleware: false, method: "get" },
-  { route: '/api/_content/navigation/:qid', handler: _El6skT, lazy: false, middleware: false, method: "get" },
-  { route: '/api/_content/navigation', handler: _El6skT, lazy: false, middleware: false, method: "get" },
-  { route: '/**', handler: _lazy_axEpil, lazy: true, middleware: false, method: undefined }
+  { route: '/__nuxt_error', handler: _lazy_EqcFhF, lazy: true, middleware: false, method: undefined },
+  { route: '/api/_mdc/highlight', handler: _Vn36ED, lazy: false, middleware: false, method: undefined },
+  { route: '/api/_content/query/:qid/**:params', handler: _R7ECok, lazy: false, middleware: false, method: "get" },
+  { route: '/api/_content/query/:qid', handler: _R7ECok, lazy: false, middleware: false, method: "get" },
+  { route: '/api/_content/query', handler: _R7ECok, lazy: false, middleware: false, method: "get" },
+  { route: '/api/_content/cache.json', handler: _nyNTH6, lazy: false, middleware: false, method: "get" },
+  { route: '/api/_content/navigation/:qid/**:params', handler: _PaOhSX, lazy: false, middleware: false, method: "get" },
+  { route: '/api/_content/navigation/:qid', handler: _PaOhSX, lazy: false, middleware: false, method: "get" },
+  { route: '/api/_content/navigation', handler: _PaOhSX, lazy: false, middleware: false, method: "get" },
+  { route: '/**', handler: _lazy_EqcFhF, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
@@ -3901,6 +4053,32 @@ server.listen(listenAddress, () => {
     address: typeof _address === "string" ? { socketPath: _address } : { host: "localhost", port: _address.port }
   });
 });
+nitroApp.router.get(
+  "/_nitro/tasks",
+  defineEventHandler(async (event) => {
+    const _tasks = await Promise.all(
+      Object.entries(tasks).map(async ([name, task]) => {
+        const _task = await task.resolve?.();
+        return [name, { description: _task?.meta?.description }];
+      })
+    );
+    return {
+      tasks: Object.fromEntries(_tasks),
+      scheduledTasks
+    };
+  })
+);
+nitroApp.router.use(
+  "/_nitro/tasks/:name",
+  defineEventHandler(async (event) => {
+    const name = getRouterParam(event, "name");
+    const payload = {
+      ...getQuery$1(event),
+      ...await readBody(event).then((r) => r?.payload).catch(() => ({}))
+    };
+    return await runTask(name, { payload });
+  })
+);
 trapUnhandledNodeErrors();
 async function onShutdown(signal) {
   await nitroApp.hooks.callHook("close");
@@ -3941,10 +4119,10 @@ const errorDev = /*#__PURE__*/Object.freeze({
 const defaults = {
   theme: {},
   async highlighter(code, lang, theme, options) {
-    if (process.browser && window.sessionStorage.getItem("mdc-shiki-highlighter") === "browser") {
-      return Promise.resolve().then(function () { return mdcHighlighter; }).then((h) => h.default(code, lang, theme, options));
-    }
     try {
+      if (process.browser && window.sessionStorage.getItem("mdc-shiki-highlighter") === "browser") {
+        return Promise.resolve().then(function () { return mdcHighlighter; }).then((h) => h.default(code, lang, theme, options)).catch(() => ({}));
+      }
       return await $fetch("/api/_mdc/highlight", {
         params: {
           code,
@@ -3964,52 +4142,11 @@ const defaults = {
 };
 function rehypeHighlight(opts = {}) {
   const options = { ...defaults, ...opts };
-  return async (tree) => {
-    const tasks = [];
-    const styles = [];
-    visit(
-      tree,
-      (node) => ["pre", "code"].includes(node.tagName) && !!(node.properties?.language || node.properties?.highlights),
-      (node) => {
-        const _node = node;
-        const highlights = typeof _node.properties.highlights === "string" ? _node.properties.highlights.split(/[,\s]+/).map(Number) : Array.isArray(_node.properties.highlights) ? _node.properties.highlights.map(Number) : [];
-        const task = options.highlighter(
-          toString$1(node),
-          _node.properties.language,
-          options.theme,
-          {
-            highlights: highlights.filter(Boolean),
-            meta: _node.properties.meta
-          }
-        ).then(({ tree: tree2, className, style, inlineStyle }) => {
-          _node.properties.className = ((_node.properties.className || "") + " " + className).trim();
-          _node.properties.style = ((_node.properties.style || "") + " " + inlineStyle).trim();
-          if (_node.children[0]?.tagName === "code") {
-            _node.children[0].children = tree2;
-          } else {
-            _node.children = tree2[0].children || tree2;
-          }
-          if (style)
-            styles.push(style);
-        });
-        tasks.push(task);
-      }
-    );
-    if (tasks.length) {
-      await Promise.all(tasks);
-      tree.children.push({
-        type: "element",
-        tagName: "style",
-        children: [{ type: "text", value: cleanCSS(styles.join("")) }],
-        properties: {}
-      });
-    }
-  };
+  if (typeof options.highlighter !== "function") {
+    options.highlighter = defaults.highlighter;
+  }
+  return rehypeHighlight$1(options);
 }
-const cleanCSS = (css) => {
-  const styles = css.split("}").filter((s) => Boolean(s.trim())).map((s) => s.trim() + "}");
-  return Array.from(new Set(styles)).join("");
-};
 
 const remarkPlugins = {
 };
@@ -4091,8 +4228,8 @@ const appRootTag = "div";
 
 globalThis.__buildAssetsURL = buildAssetsURL;
 globalThis.__publicAssetsURL = publicAssetsURL;
-const getClientManifest = () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/app/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
-const getServerEntry = () => import('file:///Users/shubhamsingh/Documents/minepro/importedProds/app/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
+const getClientManifest = () => import('file:///Users/shubhamsingh/namma/importedProds/app/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getServerEntry = () => import('file:///Users/shubhamsingh/namma/importedProds/app/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
 const getSSRRenderer = lazyCachedFunction(async () => {
   const manifest = await getClientManifest();
   if (!manifest) {

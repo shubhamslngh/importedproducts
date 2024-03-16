@@ -1,56 +1,81 @@
 <script lang="ts" setup>
-const { awesome } = useAppConfig()
-const { parseMenuRoute, parseMenuTitle } = useNavbarParser()
+// import axios from "axios";
+const consumerKey = "ck_dedb163e9f588c6e180da3d571ca6d2da207f420";
+const consumerSecret = "cs_673d249f681f18ada1abef173441c45ef78c74c0";
+const baseUrl = "https://importedproducts.in/";
+const { awesome } = useAppConfig();
+const { parseMenuRoute, parseMenuTitle } = useNavbarParser();
 
 const props = defineProps({
   withAlert: {
     type: Boolean,
     default: true,
   },
-})
+});
 const showAlert = ref(
   awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage
     ? !awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage
-    : props.withAlert,
-)
+    : props.withAlert
+);
 
 const titlesText = computed<string[]>(() =>
-  (
-  
-    'Imported&nbsp; Products '
-  )
-    .replaceAll('&nbsp;', '[space]')
-    .split(' ')
-    .map((item) => item.replaceAll('[space]', ' ')),
-)
+  "Imported&nbsp; Products "
+    .replaceAll("&nbsp;", "[space]")
+    .split(" ")
+    .map((item) => item.replaceAll("[space]", " "))
+);
 const leadingsText = computed(() => [
   {
     text: titlesText.value[0],
-    startColor: 'purple',
-    endColor: 'white',
+    startColor: "purple",
+    endColor: "white",
     delay: 0,
   },
   {
     text: titlesText.value[1],
-    startColor: 'red',
-    endColor: 'pink',
+    startColor: "red",
+    endColor: "pink",
     delay: 2,
   },
   {
     text: titlesText.value[2],
-    startColor: '#FF4D4D',
-    endColor: '#F9CB28',
+    startColor: "#FF4D4D",
+    endColor: "#F9CB28",
     delay: 4,
   },
-])
+]);
 
-onMounted(() => {
-  try {
-    console.log('aweawe', parseMenuTitle('aweawe'), this)
-  } catch (error) {
-    console.log('aweawe error', error)
-  }
-})
+// onMounted(async () => {
+//   try {
+//     const WooCommerce = axios.create({
+//       baseURL: baseUrl,
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+
+//       auth: {
+//         username: consumerKey,
+//         password: consumerSecret,
+//       },
+//     });
+//     console.log("try", WooCommerce);
+
+//     async function fetchProducts() {
+//       console.log("try", WooCommerce);
+
+//       try {
+//         const response = await WooCommerce.get("/products");
+//         console.log("res,", response.data);
+//         return response.data;
+//       } catch (error) {
+//         console.error("Error fetching products:", error);
+//         return [];
+//       }
+//     }
+//   } catch (error) {
+//     console.log("aweawe error", error);
+//   }
+// });
 </script>
 
 <template>
@@ -74,7 +99,7 @@ onMounted(() => {
         <div class="px-4 mt-6 text-center max-w-[500px] md:max-w-[600px]">
           {{
             awesome?.description ||
-            'a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.'
+            "a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more."
           }}
         </div>
         <div
@@ -86,15 +111,11 @@ onMounted(() => {
         <div class="flex space-x-4 ml-2 mt-8 justify-center md:justify-start">
           <AwesomeButton
             size="lg"
-            :text="
-              parseMenuTitle(
-                   'Subscriptions',
-              )
-            "
+            :text="parseMenuTitle('Subscriptions')"
             :to="
               parseMenuRoute(
                 awesome?.layout?.welcome?.primaryActionButton?.to ||
-                  'https://nuxt.com',
+                  'https://nuxt.com'
               )
             "
             class="font-extrabold"
@@ -103,19 +124,14 @@ onMounted(() => {
             v-if="
               parseMenuRoute(
                 awesome?.layout?.welcome?.secondaryActionButton?.to ||
-                  awesome?.project?.links?.github,
+                  awesome?.project?.links?.github
               )
             "
-            :text="
-              parseMenuTitle(
-                
-                  'Cases',
-              )
-            "
+            :text="parseMenuTitle('Cases')"
             :to="
               parseMenuRoute(
                 awesome?.layout?.welcome?.secondaryActionButton?.to ||
-                  awesome?.project?.links?.github,
+                  awesome?.project?.links?.github
               )
             "
             size="lg"
@@ -138,14 +154,9 @@ onMounted(() => {
       </div>
     </LayoutPageSection>
   </LayoutPageWrapper>
-
 </template>
 
 <style lang="scss">
-:root {
-  --padding: 0.05em;
-}
-
 @keyframes anim-fg-1 {
   0%,
   16.667%,
@@ -190,7 +201,7 @@ onMounted(() => {
   content: var(--content);
   display: block;
   width: 100%;
-  color: theme('colors.slate.800');
+  color: theme("colors.slate.800");
   top: 0;
   bottom: 0;
   left: 0;
@@ -202,7 +213,7 @@ onMounted(() => {
     position: absolute;
     display: block;
     width: 100%;
-    color: theme('colors.slate.800');
+    color: theme("colors.slate.800");
     top: 0;
     bottom: 0;
     left: 0;
@@ -229,9 +240,9 @@ onMounted(() => {
 }
 html.dark {
   .animated-text-bg {
-    color: theme('colors.gray.100');
+    color: theme("colors.gray.100");
     &:before {
-      color: theme('colors.gray.100');
+      color: theme("colors.gray.100");
     }
   }
 }

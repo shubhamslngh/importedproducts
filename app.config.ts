@@ -95,7 +95,7 @@ export default defineAppConfig({
         year: new Date().getFullYear(),
       },
       welcome: {
-        title: 'Nuxt&nbsp;3 Awesome Starter',
+        title: 'ImportedProducts',
         disableInfoReplaceIndexInWelcomePage: true,
         primaryActionButton: {
           title: 'Nuxt 3',

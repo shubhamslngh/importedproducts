@@ -1,229 +1,328 @@
-<template >
-    <div class="h-[full] w-[100%] ">
+<template>
+  <div class="box" background-color-black>
+    <div id="wrapperSwiper" class="div lg:w-[200vw] md:w-[200vw] sm:w-[100vw]">
+      <div
+        id="gridWrapper"
+        class="grid lg:grid-cols-8 md:grid-cols-8 sm:grid-cols-1 transition-all duration-200"
+      >
+        <div
+          v-for="(product, index) in caseproducts"
+          :key="index"
+          class="swiper-slide transition-[width] duration-200 ease-in-out"
+          :id="product.model"
+          @click="getDetails(product.id, product.id2, product.model)"
+        >
+          <img
+            :src="product.bgimg"
+            alt="Product Image"
+            class="transition-all ease-in-out"
+          />
+          <!-- {{ console.log("here is the img", product.bgimg) }} -->
 
-
-<!-- source: https://github.com/mfg888/Responsive-Tailwind-CSS-Grid/blob/main/index.html -->
-
-<div class="text-center p-10">
-    <h1 class="font-bold text-4xl mb-4">Iphone Cases</h1>
-    <h1 class="text-3xl">Magsafe</h1>
-</div>
-
-<!-- ✅ Grid Section - Starts Here 👇 -->
-<section id="Projects"
-    class="   overflow-y-auto grid grid-cols- grid-row-1 lg:grid-cols-4 md:grid-cols-2   gap-y-20 max-h-fit gap-x-4  mb-5">
-
-    <!--   ✅ Product card 1 - Starts Here 👇 -->
-    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
-        <a href="#">
-            <img src="../../iphoneCase.png"
-                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
-            <div class="px-1 py-3 w-84">
-                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
-                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
-                <div class="flex items-center">
-                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
-                    <del>
-                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
-                    </del>
-                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                            <path
-                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                        </svg></div>
-                </div>
+          <div class="product-info">
+            <h3 class="">
+              {{ product.model }}
+            </h3>
+            <!-- <p>{{ product.description }}</p> -->
+          </div>
+        </div>
+        {{
+          console.log("new div", $wordpressStore.productDetails.length !== 0)
+        }}
+        <div
+          v-if="$wordpressStore.productDetails.length !== 0"
+          class="w-[70vw] mx-auto"
+        >
+          <div class="product-card">
+            <div class="product-image"></div>
+            <div class="product-details">
+              <div class="flex">
+                <div
+                  v-for="(color, index) in $wordpressStore.productDetails"
+                  :key="index"
+                  class="color-swatch transition-all ease-in-out bg-no-repeat"
+                  :style="{ backgroundImage: `url(${color.bgimg})` }"
+                  @click="selectColor(color.bgimg, color.colorHash)"
+                ></div>
+              </div>
+              {{ $wordpressStore.productDetails[0].color }}
+              {{ console.log("COLOR", $wordpressStore.selectedProduct) }}
+              <p class="py-4">
+                Great product title for a great product and all of the extra
+                things a product might need to make it fill an entire card.
+              </p>
+              <button
+                type="button"
+                id="buy"
+                class="btn rounded-xl border-[1px] w-[150px] h-[50px] border-gray-800 hover:bg-white active:bg-white"
+                :style="{
+                  backgroundColor: `${$wordpressStore.selectedProduct}`,
+                }"
+              >
+                Buy Now
+              </button>
             </div>
-        </a>
+          </div>
+          <div class="description product"></div>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
     </div>
-    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
-        <a href="#">
-            <img src="../../iphoneCase.png"
-                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
-            <div class="px-4 py-3 w-84">
-                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
-                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
-                <div class="flex items-center">
-                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
-                    <del>
-                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
-                    </del>
-                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                            <path
-                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                        </svg></div>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
-        <a href="#">
-            <img src="../../iphoneCase.png"
-                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
-            <div class="px-4 py-3 w-84">
-                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
-                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
-                <div class="flex items-center">
-                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
-                    <del>
-                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
-                    </del>
-                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                            <path
-                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                        </svg></div>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
-        <a href="#">
-            <img src="../../iphoneCase.png"
-                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
-            <div class="px-4 py-3 w-84">
-                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
-                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
-                <div class="flex items-center">
-                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
-                    <del>
-                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
-                    </del>
-                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                            <path
-                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                        </svg></div>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
-        <a href="#">
-            <img src="../../iphoneCase.png"
-                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
-            <div class="px-4 py-3 w-84">
-                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
-                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
-                <div class="flex items-center">
-                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
-                    <del>
-                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
-                    </del>
-                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                            <path
-                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                        </svg></div>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
-        <a href="#">
-            <img src="../../iphoneCase.png"
-                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
-            <div class="px-4 py-3 w-84">
-                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
-                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
-                <div class="flex items-center">
-                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
-                    <del>
-                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
-                    </del>
-                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                            <path
-                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                        </svg></div>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
-        <a href="#">
-            <img src="../../iphoneCase.png"
-                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
-            <div class="px-4 py-3 w-84">
-                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
-                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
-                <div class="flex items-center">
-                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
-                    <del>
-                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
-                    </del>
-                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                            <path
-                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                        </svg></div>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="w-fit w-84 bg-black shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-red hover:shadow-xl">
-        <a href="#">
-            <img src="../../iphoneCase.png"
-                    alt="Product" class="h-[73%] w-84 object-cover rounded-t-xl" />
-            <div class="px-4 py-3 w-84">
-                <span class="text-white-400 mr-3 uppercase text-xs">Brand</span>
-                <p class="text-lg font-bold text-white truncate block capitalize">Product Name</p>
-                <div class="flex items-center">
-                    <p class="text-lg font-semibold text-white cursor-auto my-3">$149</p>
-                    <del>
-                        <p class="text-sm text-white-600 cursor-auto ml-2">$199</p>
-                    </del>
-                    <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                            <path
-                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                        </svg></div>
-                </div>
-            </div>
-        </a>
-    </div>
-    
-   
-    <!--   🛑 Product card 1 - Ends Here  -->
-
-   
-    <!--   🛑 Product card 6 - Ends Here  -->
-
-</section>
-
-<!-- 🛑 Grid Section - Ends Here -->
-
-
-<!-- credit -->
-
-
-
-<!-- Support Me 🙏🥰 -->
-
-
-    </div>
+  </div>
 </template>
 
 <script setup>
+import { ref, onMounted, onBeforeUnmount, defineProps } from "vue";
+const { $wordpressStore } = useNuxtApp();
+import Swiper from "swiper";
+const props = defineProps(["caseproducts"]);
+var selectedColorHash = "";
+// console.log("here is the img", caseproducts);
+const initializeSwiper = () => {
+  const swiper = new Swiper(".swiper", {
+    slidesPerView: 5,
+    spaceBetween: 40,
+    autoplay: { delay: 2500, disableOnInteraction: false },
+    direction: getDirection(),
+    Pagination: 10,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
 
+  // Expose the swiper instance if needed
+  return swiper;
+};
+
+const handleResize = () => {
+  swiper.value.changeDirection(getDirection());
+};
+
+const getDirection = () => {
+  const windowWidth = window.innerWidth;
+  return windowWidth <= 760 ? "vertical" : "horizontal";
+};
+
+const swiper = ref(null);
+const runDetailsAnimations = (id, id2, model) => {
+  console.log("get vals", $wordpressStore.productDetails);
+  var swiperSlides = [];
+  swiperSlides = document.getElementsByClassName("swiper-slide");
+
+  console.log(swiperSlides, "colorHAsh");
+  for (let i = 0; i < swiperSlides.length; i++) {
+    console.log(
+      swiperSlides[i].lastChild.firstChild.innerText,
+      swiperSlides[i].firstChild
+    );
+
+    if (i !== 0) {
+      for (let i = 1; i < swiperSlides.length; i++) {
+        console.log(swiperSlides[i].id, "color id", model);
+        if (swiperSlides[i].id == model) {
+          $wordpressStore.selectedProduct = i;
+          swiperSlides[0].firstChild.src = swiperSlides[i].firstChild.src;
+          // document.getElementById("btn").style.backgroundColor =
+          //   $wordpressStore.productDetails[i].colorHash;
+          swiperSlides[0].lastChild.firstChild.innerText =
+            swiperSlides[i].lastChild.firstChild.innerText;
+        }
+        swiperSlides[i].firstChild.src = swiperSlides[i].firstChild.src;
+      }
+
+      // swiperSlides[i].
+      swiperSlides[i].style.display = "none"; //none display
+      // swiperSlides[i].style.display = "none"; //none display
+    }
+  }
+  let gridWrapper = document.getElementById("gridWrapper");
+  gridWrapper.classList.remove("lg:grid-cols-8");
+  gridWrapper.classList.add("lg:grid-cols-3");
+  swiperSlides[0].style.width = "500px";
+  document.getElementById("wrapperSwiper").style.width = "100vw";
+};
+
+async function getDetails(deviceId, deviceId2, model) {
+  console.log("ids", deviceId, deviceId2);
+  await $wordpressStore.fetchDetails(deviceId, deviceId2);
+  runDetailsAnimations(deviceId, null, model);
+}
+const selectColor = (selectedColor, selectedHash) => {
+  var swiperSlides = [];
+  swiperSlides = document.getElementsByClassName("swiper-slide");
+  console.log("Selected Color:", selectedColor);
+  console.log("selectedHash", selectedHash);
+  // for (let i = productDetails; i < productDetails; i++) {
+  $wordpressStore.selectedProduct = selectedHash;
+  swiperSlides[0].firstChild.src = selectedColor;
+  // }
+};
+onMounted(() => {
+  swiper.value = initializeSwiper();
+
+  window.addEventListener("resize", handleResize);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", handleResize);
+});
 </script>
 
 <style>
+.color-swatch {
+  width: 4rem;
+  height: 4rem;
+  display: block;
+  cursor: pointer;
+  background-size: contain;
+}
+/* Product Card Styling */
+.product-card {
+  background-color: #8dd1d1;
+  max-width: auto;
+  min-height: aito;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 150px;
+  box-shadow: 8px 12px 30px var(--shadow-color);
+  color: #919495;
+  font-weight: normal;
+  text-align: left;
+  font-size: var(--font-size);
+  position: relative;
+}
 
+/* Product Details Styling */
+.product-details {
+  width: 100%;
+  float: left;
+  height: 100%;
+  padding: 30px;
+}
+
+.product-details h1 {
+  color: #333;
+  font-family: var(--cursive-font);
+  margin-bottom: 35px;
+}
+
+.product-details button {
+  width: 150px;
+  height: 50px;
+  margin-top: 20px;
+  background-color: var(--button-color);
+  border-radius: 0;
+  color: rgb(0, 0, 0);
+  box-shadow: 2px 2px 7px var(--button-shadow-color);
+}
+
+/* .product-details button:hover,
+.product-details button:active,
+.product-details button:focus {
+  color: black;
+
+  background-color: lightblue;
+} */
+
+/* Responsive Styling */
+@media (max-width: 700px) {
+  .product-card {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 540px) {
+  .product-card {
+    overflow: hidden;
+    margin-bottom: 50px;
+  }
+
+  .product-details {
+    width: 60%;
+    z-index: 1;
+  }
+
+  .product-image {
+    width: 100%;
+    left: 40%;
+    top: -50px;
+  }
+}
+
+@media (max-width: 440px) {
+  .product-details {
+    width: 65%;
+  }
+}
+
+@media (max-width: 365px) {
+  .product-details {
+    width: 80%;
+    position: relative;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+}
+.box {
+  width: 100%;
+  height: 50%;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.swiper {
+  width: 100%;
+  height: 80%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: rgba(236, 0, 0, 0);
+  display: block;
+  justify-content: contain;
+  align-items: center;
+}
+
+.product-info {
+  padding: 10px;
+}
+
+@media (max-width: 760px) {
+  .swiper-button-next {
+    right: 20px;
+    transform: rotate(90deg);
+  }
+
+  .swiper-button-prev {
+    left: 20px;
+    transform: rotate(90deg);
+  }
+}
+.swiper-wrapper {
+  background-color: transparent;
+}
 </style>

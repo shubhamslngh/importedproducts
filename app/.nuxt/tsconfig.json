@@ -59,6 +59,9 @@
       "vue-demi": [
         "../../node_modules/nuxt/dist/app/compat/vue-demi"
       ],
+      "#apollo": [
+        "./apollo"
+      ],
       "#icon-collections": [
         "./icon-collections"
       ],
@@ -99,11 +102,14 @@
     "../**/*",
     "../../**/*",
     "../../modules/runtime",
-    "../../node_modules/@nuxtjs/eslint-module/runtime",
+    "../../node_modules/vue3-carousel-nuxt/runtime",
+    "../../node_modules/@nuxtjs/apollo/runtime",
     "../../node_modules/@nuxtjs/tailwindcss/runtime",
+    "../../node_modules/@nuxtjs/eslint-module/runtime",
     "../../node_modules/nuxt-headlessui/runtime",
     "../../node_modules/nuxt-icon/runtime",
     "../../node_modules/@nuxtjs/color-mode/runtime",
+    "../../node_modules/@pinia-plugin-persistedstate/nuxt/runtime",
     "../../node_modules/@pinia/nuxt/runtime",
     "../../node_modules/@vueuse/nuxt/runtime",
     "../../node_modules/@nuxtjs/mdc/runtime",
@@ -120,11 +126,14 @@
     "../../node_modules",
     "../../node_modules/nuxt/node_modules",
     "../../modules/runtime/server",
-    "../../node_modules/@nuxtjs/eslint-module/runtime/server",
+    "../../node_modules/vue3-carousel-nuxt/runtime/server",
+    "../../node_modules/@nuxtjs/apollo/runtime/server",
     "../../node_modules/@nuxtjs/tailwindcss/runtime/server",
+    "../../node_modules/@nuxtjs/eslint-module/runtime/server",
     "../../node_modules/nuxt-headlessui/runtime/server",
     "../../node_modules/nuxt-icon/runtime/server",
     "../../node_modules/@nuxtjs/color-mode/runtime/server",
+    "../../node_modules/@pinia-plugin-persistedstate/nuxt/runtime/server",
     "../../node_modules/@pinia/nuxt/runtime/server",
     "../../node_modules/@vueuse/nuxt/runtime/server",
     "../../node_modules/@nuxtjs/mdc/runtime/server",

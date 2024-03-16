@@ -48,6 +48,9 @@
       "public": [
         "../public"
       ],
+      "#apollo": [
+        "./apollo"
+      ],
       "#icon-collections": [
         "./icon-collections"
       ],
@@ -74,11 +77,14 @@
   "include": [
     "./types/nitro-nuxt.d.ts",
     "../../modules/awesome.ts/runtime/server",
-    "../../node_modules/@nuxtjs/eslint-module/runtime/server",
+    "../../node_modules/vue3-carousel-nuxt/runtime/server",
+    "../../node_modules/@nuxtjs/apollo/runtime/server",
     "../../node_modules/@nuxtjs/tailwindcss/runtime/server",
+    "../../node_modules/@nuxtjs/eslint-module/runtime/server",
     "../../node_modules/nuxt-headlessui/runtime/server",
     "../../node_modules/nuxt-icon/runtime/server",
     "../../node_modules/@nuxtjs/color-mode/runtime/server",
+    "../../node_modules/@pinia-plugin-persistedstate/nuxt/runtime/server",
     "../../node_modules/@pinia/nuxt/runtime/server",
     "../../node_modules/@vueuse/nuxt/runtime/server",
     "../../node_modules/@nuxtjs/mdc/runtime/server",

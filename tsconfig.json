@@ -9,6 +9,7 @@
     "types": [
       "@pinia/nuxt",
       "@nuxtjs/tailwindcss",
+      "@apollo/client",
     ]
   }
 }

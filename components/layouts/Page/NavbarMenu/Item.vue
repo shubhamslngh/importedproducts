@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-const nuxtApp = useNuxtApp()
-const { parseMenuRoute, parseMenuTitle } = useNavbarParser()
+const nuxtApp = useNuxtApp();
+const { parseMenuRoute, parseMenuTitle } = useNavbarParser();
 
 const props = defineProps({
   menu: {
@@ -13,7 +13,7 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-})
+});
 </script>
 
 <template>
