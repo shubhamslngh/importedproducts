@@ -1,0 +1,224 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/node_modules/@apollo/client/link/utils/toPromise.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { invariant } from \"../../utilities/globals/index.js\";\nexport function toPromise(observable) {\n    var completed = false;\n    return new Promise(function (resolve, reject) {\n        observable.subscribe({\n            next: function (data) {\n                if (completed) {\n                    globalThis.__DEV__ !== false && invariant.warn(42);\n                }\n                else {\n                    completed = true;\n                    resolve(data);\n                }\n            },\n            error: reject,\n        });\n    });\n}\n//# sourceMappingURL=toPromise.js.map",
+      "start": 1710863481081,
+      "end": 1710863481091,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710863481091,
+      "end": 1710863481091,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import { invariant } from \"../../utilities/globals/index.js\";\nexport function toPromise(observable) {\n  var completed = false;\n  return new Promise(function(resolve, reject) {\n    observable.subscribe({\n      next: function(data) {\n        if (completed) {\n          globalThis.__DEV__ !== false && invariant.warn(42);\n        } else {\n          completed = true;\n          resolve(data);\n        }\n      },\n      error: reject\n    });\n  });\n}\n",
+      "start": 1710863481091,
+      "end": 1710863481508,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710863481508,
+      "end": 1710863481508,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710863481508,
+      "end": 1710863481508,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710863481508,
+      "end": 1710863481508,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710863481508,
+      "end": 1710863481508,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710863481508,
+      "end": 1710863481509,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710863481509,
+      "end": 1710863481509,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710863481509,
+      "end": 1710863481509,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863481509,
+      "end": 1710863481509,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710863481509,
+      "end": 1710863481509,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863481509,
+      "end": 1710863481509,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863481509,
+      "end": 1710863481509,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710863481509,
+      "end": 1710863481509,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710863481509,
+      "end": 1710863481509,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1710863481509,
+      "end": 1710863481509,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710863481509,
+      "end": 1710863481509,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710863481509,
+      "end": 1710863481509,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710863481509,
+      "end": 1710863481509,
+      "order": "normal"
+    }
+  ]
+}

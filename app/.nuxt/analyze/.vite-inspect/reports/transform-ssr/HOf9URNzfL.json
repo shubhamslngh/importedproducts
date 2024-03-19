@@ -1,0 +1,306 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue?vue&type=style&index=0&lang.css?inline&used",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.color-swatch {\n  width: 4rem;\n  height: 4rem;\n  display: block;\n  cursor: pointer;\n  background-size: contain;\n}\n/* Product Card Styling */\n.product-card {\n  background-color: #8dd1d1;\n  max-width: auto;\n  min-height: aito;\n  margin: 0 auto;\n  margin-top: 50px;\n  margin-bottom: 150px;\n  box-shadow: 8px 12px 30px var(--shadow-color);\n  color: #919495;\n  font-weight: normal;\n  text-align: left;\n  font-size: var(--font-size);\n  position: relative;\n}\n\n/* Product Details Styling */\n.product-details {\n  width: 100%;\n  float: left;\n  height: 100%;\n  padding: 30px;\n}\n\n.product-details h1 {\n  color: #333;\n  font-family: var(--cursive-font);\n  margin-bottom: 35px;\n}\n\n.product-details button {\n  width: 150px;\n  height: 50px;\n  margin-top: 20px;\n  background-color: var(--button-color);\n  border-radius: 0;\n  color: rgb(0, 0, 0);\n  box-shadow: 2px 2px 7px var(--button-shadow-color);\n}\n\n/* .product-details button:hover,\n.product-details button:active,\n.product-details button:focus {\n  color: black;\n\n  background-color: lightblue;\n} */\n\n/* Responsive Styling */\n@media (max-width: 700px) {\n  .product-card {\n    margin-left: 20px;\n    margin-right: 20px;\n  }\n}\n\n@media (max-width: 540px) {\n  .product-card {\n    overflow: hidden;\n    margin-bottom: 50px;\n  }\n\n  .product-details {\n    width: 60%;\n    z-index: 1;\n  }\n\n  .product-image {\n    width: 100%;\n    left: 40%;\n    top: -50px;\n  }\n}\n\n@media (max-width: 440px) {\n  .product-details {\n    width: 65%;\n  }\n}\n\n@media (max-width: 365px) {\n  .product-details {\n    width: 80%;\n    position: relative;\n    color: #333;\n    background-color: rgba(255, 255, 255, 0.7);\n  }\n}\n.box {\n  width: 100%;\n  height: 50%;\n}\n.swiper {\n  width: 100%;\n  height: 100%;\n}\n\n.swiper-slide {\n  text-align: center;\n  font-size: 18px;\n  background: #fff;\n\n  /* Center slide text vertically */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.swiper-slide img {\n  display: block;\n  width: 100%;\n  height: 100%;\n  object-fit: contain;\n}\n\n.swiper {\n  width: 100%;\n  height: 80%;\n}\n\n.swiper-slide {\n  text-align: center;\n  font-size: 18px;\n  background: rgba(236, 0, 0, 0);\n  display: block;\n  justify-content: contain;\n  align-items: center;\n}\n\n.product-info {\n  padding: 10px;\n}\n\n@media (max-width: 760px) {\n  .swiper-button-next {\n    right: 20px;\n    transform: rotate(90deg);\n  }\n\n  .swiper-button-prev {\n    left: 20px;\n    transform: rotate(90deg);\n  }\n}\n.swiper-wrapper {\n  background-color: transparent;\n}\n",
+      "start": 1710863483313,
+      "end": 1710863483313,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue"
+        ],
+        "names": [],
+        "mappings": "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",
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<template>\n  <div class=\"box\" background-color-black>\n    <div id=\"wrapperSwiper\" class=\"div lg:w-[200vw] md:w-[200vw] sm:w-[100vw]\">\n      <div id=\"gridWrapper\" class=\"grid transition-all duration-200\">\n        <div\n          v-for=\"(product, index)  in caseproducts\"\n          :key=\"index\"\n          class=\"swiper-slide transition-[width] duration-200 ease-in-out\"\n          :id=\"product.model\"\n          @click=\"getDetails(product.id, product.id2, product.model)\"\n        >\n          <img\n            :src=\"product.bgimg\"\n            alt=\"Product Image\"\n            class=\"transition-all ease-in-out\"\n          />\n          <!-- {{ console.log(\"here is the img\", product.bgimg) }} -->\n\n          <div class=\"product-info\">\n            <h3 class=\"\">\n              {{ product.model }}\n            </h3>\n            <!-- <p>{{ product.description }}</p> -->\n          </div>\n        </div>\n        {{\n          console.log(\"new div\", $wordpressStore.productDetails.length !== 0)\n        }}\n        <div\n          v-if=\"$wordpressStore.productDetails.length !== 0\"\n          class=\"w-[70vw] mx-auto\"\n        >\n          <div class=\"product-card\">\n            <div class=\"product-image\"></div>\n            <div class=\"product-details\">\n              <div class=\"flex\">\n                <div\n                  v-for=\"(color, index) in $wordpressStore.productDetails\"\n                  :key=\"index\"\n                  class=\"color-swatch transition-all ease-in-out bg-no-repeat\"\n                  :style=\"{ backgroundImage: `url(${color.bgimg})` }\"\n                  @click=\"selectColor(color.bgimg, color.colorHash)\"\n                ></div>\n              </div>\n              {{ $wordpressStore.productDetails[0].color }}\n              {{ console.log(\"COLOR\", $wordpressStore.selectedProduct) }}\n              <p class=\"py-4\">\n                Great product title for a great product and all of the extra\n                things a product might need to make it fill an entire card.\n              </p>\n              <button\n                type=\"button\"\n                id=\"buy\"\n                class=\"btn rounded-xl border-[1px] w-[150px] h-[50px] border-gray-800 hover:bg-white active:bg-white\"\n                :style=\"{\n                  backgroundColor: `${$wordpressStore.selectedProduct}`,\n                }\"\n              >\n                Buy Now\n              </button>\n            </div>\n          </div>\n          <div class=\"description product\"></div>\n        </div>\n      </div>\n      <div class=\"swiper-button-next\"></div>\n      <div class=\"swiper-button-prev\"></div>\n    </div>\n  </div>\n</template>\n\n<script setup>\nimport { ref, onMounted, onBeforeUnmount, defineProps } from \"vue\";\nconst { $wordpressStore } = useNuxtApp();\nimport Swiper from \"swiper\";\nconst props = defineProps([\"caseproducts\"]);\nvar selectedColorHash = \"\";\n// console.log(\"here is the img\", caseproducts);\nconst initializeSwiper = () => {\n  const swiper = new Swiper(\".swiper\", {\n    slidesPerView: 5,\n    spaceBetween: 40,\n    autoplay: { delay: 2500, disableOnInteraction: false },\n    direction: getDirection(),\n    Pagination: 10,\n    navigation: {\n      nextEl: \".swiper-button-next\",\n      prevEl: \".swiper-button-prev\",\n    },\n  });\n\n  // Expose the swiper instance if needed\n  return swiper;\n};\n\nconst handleResize = () => {\n  swiper.value.changeDirection(getDirection());\n};\n\nconst getDirection = () => {\n  const windowWidth = window.innerWidth;\n  return windowWidth <= 760 ? \"vertical\" : \"horizontal\";\n};\n\nconst swiper = ref(null);\nconst runDetailsAnimations = (id, id2, model) => {\n  console.log(\"get vals\", $wordpressStore.productDetails);\n  var swiperSlides = [];\n  swiperSlides = document.getElementsByClassName(\"swiper-slide\");\n\n  console.log(swiperSlides, \"colorHAsh\");\n  for (let i = 0; i < swiperSlides.length; i++) {\n    console.log(\n      swiperSlides[i].lastChild.firstChild.innerText,\n      swiperSlides[i].firstChild\n    );\n\n    if (i !== 0) {\n      for (let i = 1; i < swiperSlides.length; i++) {\n        console.log(swiperSlides[i].id, \"color id\", model);\n        if (swiperSlides[i].id == model) {\n          $wordpressStore.selectedProduct = i;\n          swiperSlides[0].firstChild.src = swiperSlides[i].firstChild.src;\n          // document.getElementById(\"btn\").style.backgroundColor =\n          //   $wordpressStore.productDetails[i].colorHash;\n          swiperSlides[0].lastChild.firstChild.innerText =\n            swiperSlides[i].lastChild.firstChild.innerText;\n        }\n        swiperSlides[i].firstChild.src = swiperSlides[i].firstChild.src;\n      }\n\n      // swiperSlides[i].\n      swiperSlides[i].style.display = \"none\"; //none display\n      // swiperSlides[i].style.display = \"none\"; //none display\n    }\n  }\n  let gridWrapper = document.getElementById(\"gridWrapper\");\n  gridWrapper.classList.remove(\"lg:grid-cols-8\");\n  gridWrapper.classList.add(\"lg:grid-cols-3\");\n  swiperSlides[0].style.width = \"500px\";\n  document.getElementById(\"wrapperSwiper\").style.width = \"100vw\";\n};\n\nasync function getDetails(deviceId, deviceId2, model) {\n  console.log(\"ids\", deviceId, deviceId2);\n  await $wordpressStore.fetchDetails(deviceId, deviceId2);\n  runDetailsAnimations(deviceId, null, model);\n}\nconst selectColor = (selectedColor, selectedHash) => {\n  var swiperSlides = [];\n  swiperSlides = document.getElementsByClassName(\"swiper-slide\");\n  console.log(\"Selected Color:\", selectedColor);\n  console.log(\"selectedHash\", selectedHash);\n  // for (let i = productDetails; i < productDetails; i++) {\n  $wordpressStore.selectedProduct = selectedHash;\n  swiperSlides[0].firstChild.src = selectedColor;\n  // }\n};\nonMounted(() => {\n  swiper.value = initializeSwiper();\n\n  window.addEventListener(\"resize\", handleResize);\n});\n\nonBeforeUnmount(() => {\n  window.removeEventListener(\"resize\", handleResize);\n});\n</script>\n\n<style>\n.color-swatch {\n  width: 4rem;\n  height: 4rem;\n  display: block;\n  cursor: pointer;\n  background-size: contain;\n}\n/* Product Card Styling */\n.product-card {\n  background-color: #8dd1d1;\n  max-width: auto;\n  min-height: aito;\n  margin: 0 auto;\n  margin-top: 50px;\n  margin-bottom: 150px;\n  box-shadow: 8px 12px 30px var(--shadow-color);\n  color: #919495;\n  font-weight: normal;\n  text-align: left;\n  font-size: var(--font-size);\n  position: relative;\n}\n\n/* Product Details Styling */\n.product-details {\n  width: 100%;\n  float: left;\n  height: 100%;\n  padding: 30px;\n}\n\n.product-details h1 {\n  color: #333;\n  font-family: var(--cursive-font);\n  margin-bottom: 35px;\n}\n\n.product-details button {\n  width: 150px;\n  height: 50px;\n  margin-top: 20px;\n  background-color: var(--button-color);\n  border-radius: 0;\n  color: rgb(0, 0, 0);\n  box-shadow: 2px 2px 7px var(--button-shadow-color);\n}\n\n/* .product-details button:hover,\n.product-details button:active,\n.product-details button:focus {\n  color: black;\n\n  background-color: lightblue;\n} */\n\n/* Responsive Styling */\n@media (max-width: 700px) {\n  .product-card {\n    margin-left: 20px;\n    margin-right: 20px;\n  }\n}\n\n@media (max-width: 540px) {\n  .product-card {\n    overflow: hidden;\n    margin-bottom: 50px;\n  }\n\n  .product-details {\n    width: 60%;\n    z-index: 1;\n  }\n\n  .product-image {\n    width: 100%;\n    left: 40%;\n    top: -50px;\n  }\n}\n\n@media (max-width: 440px) {\n  .product-details {\n    width: 65%;\n  }\n}\n\n@media (max-width: 365px) {\n  .product-details {\n    width: 80%;\n    position: relative;\n    color: #333;\n    background-color: rgba(255, 255, 255, 0.7);\n  }\n}\n.box {\n  width: 100%;\n  height: 50%;\n}\n.swiper {\n  width: 100%;\n  height: 100%;\n}\n\n.swiper-slide {\n  text-align: center;\n  font-size: 18px;\n  background: #fff;\n\n  /* Center slide text vertically */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.swiper-slide img {\n  display: block;\n  width: 100%;\n  height: 100%;\n  object-fit: contain;\n}\n\n.swiper {\n  width: 100%;\n  height: 80%;\n}\n\n.swiper-slide {\n  text-align: center;\n  font-size: 18px;\n  background: rgba(236, 0, 0, 0);\n  display: block;\n  justify-content: contain;\n  align-items: center;\n}\n\n.product-info {\n  padding: 10px;\n}\n\n@media (max-width: 760px) {\n  .swiper-button-next {\n    right: 20px;\n    transform: rotate(90deg);\n  }\n\n  .swiper-button-prev {\n    left: 20px;\n    transform: rotate(90deg);\n  }\n}\n.swiper-wrapper {\n  background-color: transparent;\n}\n</style>\n"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863483313,
+      "end": 1710863483313,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863483313,
+      "end": 1710863483313,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863483313,
+      "end": 1710863483313,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863483313,
+      "end": 1710863483313,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863483313,
+      "end": 1710863483313,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863483313,
+      "end": 1710863483313,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710863483313,
+      "end": 1710863483313,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".color-swatch{background-size:contain;cursor:pointer;display:block;height:4rem;width:4rem}.product-card{background-color:#8dd1d1;box-shadow:8px 12px 30px var(--shadow-color);color:#919495;font-size:var(--font-size);font-weight:400;margin:50px auto 150px;max-width:auto;min-height:aito;position:relative;text-align:left}.product-details{float:left;height:100%;padding:30px;width:100%}.product-details h1{color:#333;font-family:var(--cursive-font);margin-bottom:35px}.product-details button{background-color:var(--button-color);border-radius:0;box-shadow:2px 2px 7px var(--button-shadow-color);color:#000;height:50px;margin-top:20px;width:150px}@media (max-width:700px){.product-card{margin-left:20px;margin-right:20px}}@media (max-width:540px){.product-card{margin-bottom:50px;overflow:hidden}.product-details{width:60%;z-index:1}.product-image{left:40%;top:-50px;width:100%}}@media (max-width:440px){.product-details{width:65%}}@media (max-width:365px){.product-details{background-color:hsla(0,0%,100%,.7);color:#333;position:relative;width:80%}}.box{height:50%;width:100%}.swiper{height:100%}.swiper-slide{background:#fff;display:flex;justify-content:center}.swiper-slide img{display:block;height:100%;-o-object-fit:contain;object-fit:contain;width:100%}.swiper{height:80%;width:100%}.swiper-slide{align-items:center;background:rgba(236,0,0,0);display:block;font-size:18px;justify-content:contain;text-align:center}.product-info{padding:10px}@media (max-width:760px){.swiper-button-next{right:20px;transform:rotate(90deg)}.swiper-button-prev{left:20px;transform:rotate(90deg)}}.swiper-wrapper{background-color:transparent}",
+      "start": 1710863483313,
+      "end": 1710863483326,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue",
+        "mappings": "AACA,cAKE,uBAAwB,CADxB,cAAe,CADf,aAAc,CADd,WAAY,CADZ,UAKF,CAEA,cACE,wBAAyB,CAMzB,4CAA6C,CAC7C,aAAc,CAGd,0BAA2B,CAF3B,eAAmB,CAHnB,sBAAoB,CAJpB,cAAe,CACf,eAAgB,CAShB,iBAAkB,CAFlB,eAGF,CAGA,iBAEE,UAAW,CACX,WAAY,CACZ,YAAa,CAHb,UAIF,CAEA,oBACE,UAAW,CACX,+BAAgC,CAChC,kBACF,CAEA,wBAIE,oCAAqC,CACrC,eAAgB,CAEhB,iDAAkD,CADlD,UAAmB,CAJnB,WAAY,CACZ,eAAgB,CAFhB,WAOF,CAWA,yBACE,cACE,gBAAiB,CACjB,iBACF,CACF,CAEA,yBACE,cAEE,kBAAmB,CADnB,eAEF,CAEA,iBACE,SAAU,CACV,SACF,CAEA,eAEE,QAAS,CACT,SAAU,CAFV,UAGF,CACF,CAEA,yBACE,iBACE,SACF,CACF,CAEA,yBACE,iBAIE,mCAA0C,CAD1C,UAAW,CADX,iBAAkB,CADlB,SAIF,CACF,CACA,KAEE,UAAW,CADX,UAEF,CACA,QAEE,WACF,CAEA,cAGE,eAAgB,CAGhB,YAAa,CACb,sBAEF,CAEA,kBACE,aAAc,CAEd,WAAY,CACZ,qBAAmB,CAAnB,kBAAmB,CAFnB,UAGF,CAEA,QAEE,UAAW,CADX,UAEF,CAEA,cAME,kBAAmB,CAHnB,0BAA8B,CAC9B,aAAc,CAFd,cAAe,CAGf,uBAAwB,CAJxB,iBAMF,CAEA,cACE,YACF,CAEA,yBACE,oBACE,UAAW,CACX,uBACF,CAEA,oBACE,SAAU,CACV,uBACF,CACF,CACA,gBACE,4BACF",
+        "names": [],
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue"
+        ],
+        "sourcesContent": [
+          "\n.color-swatch {\n  width: 4rem;\n  height: 4rem;\n  display: block;\n  cursor: pointer;\n  background-size: contain;\n}\n/* Product Card Styling */\n.product-card {\n  background-color: #8dd1d1;\n  max-width: auto;\n  min-height: aito;\n  margin: 0 auto;\n  margin-top: 50px;\n  margin-bottom: 150px;\n  box-shadow: 8px 12px 30px var(--shadow-color);\n  color: #919495;\n  font-weight: normal;\n  text-align: left;\n  font-size: var(--font-size);\n  position: relative;\n}\n\n/* Product Details Styling */\n.product-details {\n  width: 100%;\n  float: left;\n  height: 100%;\n  padding: 30px;\n}\n\n.product-details h1 {\n  color: #333;\n  font-family: var(--cursive-font);\n  margin-bottom: 35px;\n}\n\n.product-details button {\n  width: 150px;\n  height: 50px;\n  margin-top: 20px;\n  background-color: var(--button-color);\n  border-radius: 0;\n  color: rgb(0, 0, 0);\n  box-shadow: 2px 2px 7px var(--button-shadow-color);\n}\n\n/* .product-details button:hover,\n.product-details button:active,\n.product-details button:focus {\n  color: black;\n\n  background-color: lightblue;\n} */\n\n/* Responsive Styling */\n@media (max-width: 700px) {\n  .product-card {\n    margin-left: 20px;\n    margin-right: 20px;\n  }\n}\n\n@media (max-width: 540px) {\n  .product-card {\n    overflow: hidden;\n    margin-bottom: 50px;\n  }\n\n  .product-details {\n    width: 60%;\n    z-index: 1;\n  }\n\n  .product-image {\n    width: 100%;\n    left: 40%;\n    top: -50px;\n  }\n}\n\n@media (max-width: 440px) {\n  .product-details {\n    width: 65%;\n  }\n}\n\n@media (max-width: 365px) {\n  .product-details {\n    width: 80%;\n    position: relative;\n    color: #333;\n    background-color: rgba(255, 255, 255, 0.7);\n  }\n}\n.box {\n  width: 100%;\n  height: 50%;\n}\n.swiper {\n  width: 100%;\n  height: 100%;\n}\n\n.swiper-slide {\n  text-align: center;\n  font-size: 18px;\n  background: #fff;\n\n  /* Center slide text vertically */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.swiper-slide img {\n  display: block;\n  width: 100%;\n  height: 100%;\n  object-fit: contain;\n}\n\n.swiper {\n  width: 100%;\n  height: 80%;\n}\n\n.swiper-slide {\n  text-align: center;\n  font-size: 18px;\n  background: rgba(236, 0, 0, 0);\n  display: block;\n  justify-content: contain;\n  align-items: center;\n}\n\n.product-info {\n  padding: 10px;\n}\n\n@media (max-width: 760px) {\n  .swiper-button-next {\n    right: 20px;\n    transform: rotate(90deg);\n  }\n\n  .swiper-button-prev {\n    left: 20px;\n    transform: rotate(90deg);\n  }\n}\n.swiper-wrapper {\n  background-color: transparent;\n}\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".color-swatch{background-size:contain;cursor:pointer;display:block;height:4rem;width:4rem}.product-card{background-color:#8dd1d1;box-shadow:8px 12px 30px var(--shadow-color);color:#919495;font-size:var(--font-size);font-weight:400;margin:50px auto 150px;max-width:auto;min-height:aito;position:relative;text-align:left}.product-details{float:left;height:100%;padding:30px;width:100%}.product-details h1{color:#333;font-family:var(--cursive-font);margin-bottom:35px}.product-details button{background-color:var(--button-color);border-radius:0;box-shadow:2px 2px 7px var(--button-shadow-color);color:#000;height:50px;margin-top:20px;width:150px}@media (max-width:700px){.product-card{margin-left:20px;margin-right:20px}}@media (max-width:540px){.product-card{margin-bottom:50px;overflow:hidden}.product-details{width:60%;z-index:1}.product-image{left:40%;top:-50px;width:100%}}@media (max-width:440px){.product-details{width:65%}}@media (max-width:365px){.product-details{background-color:hsla(0,0%,100%,.7);color:#333;position:relative;width:80%}}.box{height:50%;width:100%}.swiper{height:100%}.swiper-slide{background:#fff;display:flex;justify-content:center}.swiper-slide img{display:block;height:100%;-o-object-fit:contain;object-fit:contain;width:100%}.swiper{height:80%;width:100%}.swiper-slide{align-items:center;background:rgba(236,0,0,0);display:block;font-size:18px;justify-content:contain;text-align:center}.product-info{padding:10px}@media (max-width:760px){.swiper-button-next{right:20px;transform:rotate(90deg)}.swiper-button-prev{left:20px;transform:rotate(90deg)}}.swiper-wrapper{background-color:transparent}",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue",
+        "mappings": "AAAA,cAAc,uBAAuB,CAAC,cAAc,CAAC,aAAa,CAAC,WAAW,CAAC,UAAU,CAAC,cAAc,wBAAwB,CAAC,4CAA4C,CAAC,aAAa,CAAC,0BAA0B,CAAC,eAAe,CAAC,sBAAsB,CAAC,cAAc,CAAC,eAAe,CAAC,iBAAiB,CAAC,eAAe,CAAC,iBAAiB,UAAU,CAAC,WAAW,CAAC,YAAY,CAAC,UAAU,CAAC,oBAAoB,UAAU,CAAC,+BAA+B,CAAC,kBAAkB,CAAC,wBAAwB,oCAAoC,CAAC,eAAe,CAAC,iDAAiD,CAAC,UAAU,CAAC,WAAW,CAAC,eAAe,CAAC,WAAW,CAAC,yBAAyB,cAAc,gBAAgB,CAAC,iBAAiB,CAAC,CAAC,yBAAyB,cAAc,kBAAkB,CAAC,eAAe,CAAC,iBAAiB,SAAS,CAAC,SAAS,CAAC,eAAe,QAAQ,CAAC,SAAS,CAAC,UAAU,CAAC,CAAC,yBAAyB,iBAAiB,SAAS,CAAC,CAAC,yBAAyB,iBAAiB,mCAAmC,CAAC,UAAU,CAAC,iBAAiB,CAAC,SAAS,CAAC,CAAC,KAAK,UAAU,CAAC,UAAU,CAAC,QAAQ,WAAW,CAAC,cAAc,eAAe,CAAC,YAAY,CAAC,sBAAsB,CAAC,kBAAkB,aAAa,CAAC,WAAW,CAAC,qBAAqB,CAAC,kBAAkB,CAAC,UAAU,CAAC,QAAQ,UAAU,CAAC,UAAU,CAAC,cAAc,kBAAkB,CAAC,0BAA0B,CAAC,aAAa,CAAC,cAAc,CAAC,uBAAuB,CAAC,iBAAiB,CAAC,cAAc,YAAY,CAAC,yBAAyB,oBAAoB,UAAU,CAAC,uBAAuB,CAAC,oBAAoB,SAAS,CAAC,uBAAuB,CAAC,CAAC,gBAAgB,4BAA4B",
+        "names": [],
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "export default \".color-swatch{background-size:contain;cursor:pointer;display:block;height:4rem;width:4rem}.product-card{background-color:#8dd1d1;box-shadow:8px 12px 30px var(--shadow-color);color:#919495;font-size:var(--font-size);font-weight:400;margin:50px auto 150px;max-width:auto;min-height:aito;position:relative;text-align:left}.product-details{float:left;height:100%;padding:30px;width:100%}.product-details h1{color:#333;font-family:var(--cursive-font);margin-bottom:35px}.product-details button{background-color:var(--button-color);border-radius:0;box-shadow:2px 2px 7px var(--button-shadow-color);color:#000;height:50px;margin-top:20px;width:150px}@media (max-width:700px){.product-card{margin-left:20px;margin-right:20px}}@media (max-width:540px){.product-card{margin-bottom:50px;overflow:hidden}.product-details{width:60%;z-index:1}.product-image{left:40%;top:-50px;width:100%}}@media (max-width:440px){.product-details{width:65%}}@media (max-width:365px){.product-details{background-color:hsla(0,0%,100%,.7);color:#333;position:relative;width:80%}}.box{height:50%;width:100%}.swiper{height:100%}.swiper-slide{background:#fff;display:flex;justify-content:center}.swiper-slide img{display:block;height:100%;-o-object-fit:contain;object-fit:contain;width:100%}.swiper{height:80%;width:100%}.swiper-slide{align-items:center;background:rgba(236,0,0,0);display:block;font-size:18px;justify-content:contain;text-align:center}.product-info{padding:10px}@media (max-width:760px){.swiper-button-next{right:20px;transform:rotate(90deg)}.swiper-button-prev{left:20px;transform:rotate(90deg)}}.swiper-wrapper{background-color:transparent}\"",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863483326,
+      "end": 1710863483326,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710863483327,
+      "end": 1710863483327,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710863483327,
+      "end": 1710863483327,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863483327,
+      "end": 1710863483327,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863483327,
+      "end": 1710863483327,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863483327,
+      "end": 1710863483327,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863483327,
+      "end": 1710863483327,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1710863483327,
+      "end": 1710863483327,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1710863483327,
+      "end": 1710863483327,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710863483327,
+      "end": 1710863483327,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710863483327,
+      "end": 1710863483327,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710863483327,
+      "end": 1710863483327,
+      "order": "normal"
+    }
+  ]
+}

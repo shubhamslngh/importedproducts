@@ -1,0 +1,222 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/node_modules/@nuxtjs/apollo/node_modules/graphql/utilities/assertValidName.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { devAssert } from '../jsutils/devAssert.mjs';\nimport { GraphQLError } from '../error/GraphQLError.mjs';\nimport { assertName } from '../type/assertName.mjs';\n/* c8 ignore start */\n\n/**\n * Upholds the spec rules about naming.\n * @deprecated Please use `assertName` instead. Will be removed in v17\n */\n\nexport function assertValidName(name) {\n  const error = isValidNameError(name);\n\n  if (error) {\n    throw error;\n  }\n\n  return name;\n}\n/**\n * Returns an Error if a name is invalid.\n * @deprecated Please use `assertName` instead. Will be removed in v17\n */\n\nexport function isValidNameError(name) {\n  typeof name === 'string' || devAssert(false, 'Expected name to be a string.');\n\n  if (name.startsWith('__')) {\n    return new GraphQLError(\n      `Name \"${name}\" must not begin with \"__\", which is reserved by GraphQL introspection.`,\n    );\n  }\n\n  try {\n    assertName(name);\n  } catch (error) {\n    return error;\n  }\n}\n/* c8 ignore stop */\n",
+      "start": 1710863481318,
+      "end": 1710863481348,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710863481348,
+      "end": 1710863481348,
+      "order": "normal"
+    }
+  ]
+}

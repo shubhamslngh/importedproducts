@@ -1,0 +1,230 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/components/awesome/Graphql.vue?nuxt_component=async&nuxt_component_name=AwesomeGraphql",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div class=\"box\" background-color-black>\n    <div id=\"wrapperSwiper\" class=\"div lg:w-[200vw] md:w-[200vw] sm:w-[100vw]\">\n      <div\n        id=\"gridWrapper\"\n        class=\"grid lg:grid-cols-8 md:grid-cols-8 sm:grid-cols-1 transition-all duration-200\"\n      >\n        <div\n          v-for=\"(product, index) in Data1._value.products.edges\"\n          :key=\"index\"\n          class=\"transition-[width] duration-200 ease-in-out\"\n          :id=\"product.node.name\"\n        >\n          <div class=\"snap-x\">\n            <div class=\"snap-center\">\n              <img\n                :src=\"product.node.image ? product.node.image.link : ''\"\n                alt=\"Product Image\"\n                class=\"transition-all ease-in-out\"\n              />\n              <h3 class=\"box text-wrap font-semibold hover:font-bold\">\n                {{ product.node.name }}\n              </h3>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</template>\n<script setup>\nimport { ref } from \"vue\";\nimport gql from \"graphql-tag\";\n\nconst Data1 = ref([]); // Initialize Data1 as a reactive reference\n\n// function removeTypename(obj) {\n//   if (!obj || typeof obj !== \"object\") {\n//     return obj;\n//   }\n\n//   if (Array.isArray(obj)) {\n//     return obj.map(removeTypename);\n//   }\n\n//   const newObj = {};\n//   for (const key in obj) {\n//     if (key !== \"__typename\") {\n//       newObj[key] = removeTypename(obj[key]);\n//     }\n//   }\n//   return newObj;\n// }\n\nconst query = gql`\n  query MyQuery {\n    products(where: { category: \"cases\" }) {\n      edges {\n        node {\n          image {\n            link\n          }\n          name\n        }\n      }\n    }\n  }\n`;\n\nconst { data } = await useAsyncQuery(query);\n\nif (data) {\n  // const parsedData = removeTypename(data);\n  // console.log(data, \"parsed OP \");\n  Data1.value = data; // Update Data1 with the parsed data\n  console.log(Data1.value, \"Graphql data\");\n}\n</script>\n",
+      "start": 1710863480294,
+      "end": 1710863480528,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863480528,
+      "end": 1710863480528,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863480528,
+      "end": 1710863480528,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863480528,
+      "end": 1710863480528,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710863480528,
+      "end": 1710863480528,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710863480528,
+      "end": 1710863480528,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710863480528,
+      "end": 1710863480528,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710863480528,
+      "end": 1710863480528,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710863480528,
+      "end": 1710863480528,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { withAsyncContext as _withAsyncContext } from 'vue'\nimport { renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString } from \"vue\"\n\nconst _hoisted_1 = {\n  class: \"box\",\n  \"background-color-black\": \"\"\n}\nconst _hoisted_2 = {\n  id: \"wrapperSwiper\",\n  class: \"div lg:w-[200vw] md:w-[200vw] sm:w-[100vw]\"\n}\nconst _hoisted_3 = {\n  id: \"gridWrapper\",\n  class: \"grid lg:grid-cols-8 md:grid-cols-8 sm:grid-cols-1 transition-all duration-200\"\n}\nconst _hoisted_4 = [\"id\"]\nconst _hoisted_5 = { class: \"snap-x\" }\nconst _hoisted_6 = { class: \"snap-center\" }\nconst _hoisted_7 = [\"src\"]\nconst _hoisted_8 = { class: \"box text-wrap font-semibold hover:font-bold\" }\n\nimport { ref } from \"vue\";\nimport gql from \"graphql-tag\";\n\n\nconst _sfc_main = {\n  __name: 'Graphql',\n  async setup(__props) {\n\nlet __temp, __restore\n\nconst Data1 = ref([]); // Initialize Data1 as a reactive reference\n\n// function removeTypename(obj) {\n//   if (!obj || typeof obj !== \"object\") {\n//     return obj;\n//   }\n\n//   if (Array.isArray(obj)) {\n//     return obj.map(removeTypename);\n//   }\n\n//   const newObj = {};\n//   for (const key in obj) {\n//     if (key !== \"__typename\") {\n//       newObj[key] = removeTypename(obj[key]);\n//     }\n//   }\n//   return newObj;\n// }\n\nconst query = gql`\n  query MyQuery {\n    products(where: { category: \"cases\" }) {\n      edges {\n        node {\n          image {\n            link\n          }\n          name\n        }\n      }\n    }\n  }\n`;\n\nconst { data } = (\n  ([__temp,__restore] = _withAsyncContext(() => useAsyncQuery(query))),\n  __temp = await __temp,\n  __restore(),\n  __temp\n);\n\nif (data) {\n  // const parsedData = removeTypename(data);\n  // console.log(data, \"parsed OP \");\n  Data1.value = data; // Update Data1 with the parsed data\n  console.log(Data1.value, \"Graphql data\");\n}\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"div\", _hoisted_2, [\n      _createElementVNode(\"div\", _hoisted_3, [\n        (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(Data1.value._value.products.edges, (product, index) => {\n          return (_openBlock(), _createElementBlock(\"div\", {\n            key: index,\n            class: \"transition-[width] duration-200 ease-in-out\",\n            id: product.node.name\n          }, [\n            _createElementVNode(\"div\", _hoisted_5, [\n              _createElementVNode(\"div\", _hoisted_6, [\n                _createElementVNode(\"img\", {\n                  src: product.node.image ? product.node.image.link : '',\n                  alt: \"Product Image\",\n                  class: \"transition-all ease-in-out\"\n                }, null, 8, _hoisted_7),\n                _createElementVNode(\"h3\", _hoisted_8, _toDisplayString(product.node.name), 1)\n              ])\n            ])\n          ], 8, _hoisted_4))\n        }), 128))\n      ])\n    ])\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1710863480528,
+      "end": 1710863480529,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Graphql.vue\").then(r => r.default))",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "replace",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710863480529,
+      "end": 1710863480529,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863480529,
+      "end": 1710863480530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710863480530,
+      "end": 1710863480530,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863480530,
+      "end": 1710863480530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863480530,
+      "end": 1710863480530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710863480530,
+      "end": 1710863480530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710863480530,
+      "end": 1710863480530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1710863480530,
+      "end": 1710863480530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710863480530,
+      "end": 1710863480530,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Graphql.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(r => r.default))",
+      "start": 1710863480530,
+      "end": 1710863480530,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710863480530,
+      "end": 1710863480530,
+      "order": "normal"
+    }
+  ]
+}

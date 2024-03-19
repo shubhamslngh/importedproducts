@@ -1,0 +1,296 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/components/awesome/Form.vue?vue&type=style&index=0&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n/* Add any additional styling here */\n",
+      "start": 1710863483329,
+      "end": 1710863483329,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Form.vue"
+        ],
+        "names": [],
+        "mappings": ";AAyEA,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC",
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Form.vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<template>\n  <div class=\"max-w-md mx-auto\">\n    <form\n      @submit.prevent=\"submitForm\"\n      class=\"bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4\"\n    >\n      <div class=\"mb-4\" step 1>\n        <label class=\"block text-gray-700 text-sm font-bold mb-2\" for=\"name\">\n          Name\n        </label>\n        <input\n          v-model=\"name\"\n          class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\"\n          id=\"name\"\n          type=\"text\"\n          placeholder=\"Enter your name\"\n        />\n      </div>\n      <div class=\"mb-4\">\n        <label class=\"block text-gray-700 text-sm font-bold mb-2\" for=\"email\">\n          Email\n        </label>\n        <input\n          v-model=\"email\"\n          class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\"\n          id=\"email\"\n          type=\"email\"\n          placeholder=\"Enter your email\"\n        />\n      </div>\n      <div class=\"mb-6\">\n        <label class=\"block text-gray-700 text-sm font-bold mb-2\" for=\"phone\">\n          Phone\n        </label>\n        <input\n          v-model=\"phone\"\n          class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\"\n          id=\"phone\"\n          type=\"tel\"\n          placeholder=\"Enter your phone number\"\n        />\n      </div>\n      <div class=\"flex items-center justify-between\">\n        <button\n          class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline\"\n          type=\"submit\"\n        >\n          Submit\n        </button>\n      </div>\n    </form>\n  </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      name: \"\",\n      email: \"\",\n      phone: \"\",\n    };\n  },\n  methods: {\n    submitForm() {\n      // Handle form submission\n      console.log(\"Form submitted!\");\n    },\n  },\n};\n</script>\n\n<style>\n/* Add any additional styling here */\n</style>\n"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863483329,
+      "end": 1710863483329,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863483329,
+      "end": 1710863483329,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863483329,
+      "end": 1710863483329,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863483329,
+      "end": 1710863483329,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863483329,
+      "end": 1710863483329,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863483329,
+      "end": 1710863483329,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710863483329,
+      "end": 1710863483329,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": "",
+      "start": 1710863483329,
+      "end": 1710863483339,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Form.vue",
+        "mappings": "",
+        "names": [],
+        "sources": [],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710863483339,
+      "end": 1710863483339,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710863483339,
+      "end": 1710863483339,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710863483350,
+      "end": 1710863483350,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "",
+      "start": 1710863483350,
+      "end": 1710863483351,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Form.vue",
+        "mappings": "",
+        "names": [],
+        "sources": [],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710863483352,
+      "end": 1710863483352,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863483353,
+      "end": 1710863483353,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863483353,
+      "end": 1710863483353,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863483354,
+      "end": 1710863483354,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863483354,
+      "end": 1710863483354,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1710863483354,
+      "end": 1710863483354,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710863483366,
+      "end": 1710863483366,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863483367,
+      "end": 1710863483367,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710863483367,
+      "end": 1710863483385,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710863483385,
+      "end": 1710863483385,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1710863483385,
+      "end": 1710863483385,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710863483385,
+      "end": 1710863483385,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710863483385,
+      "end": 1710863483385,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710863483385,
+      "end": 1710863483385,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710863483386,
+      "end": 1710863483386,
+      "order": "normal"
+    }
+  ]
+}

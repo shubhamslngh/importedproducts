@@ -1,0 +1,237 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/pages/index.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup>\nimport animations from \"../utils/animations\";\nconst { awesome } = useAppConfig();\ndefinePageMeta({ layout: \"page\" });\nonMounted(() => {\n  animations.runLamp();\n  window.addEventListener(\"scroll\", function () {\n    // Get the scroll position\n    let scrollPosition = window.scrollY;\n    // Check if the scroll position meets certain criteria\n    if (scrollPosition > 200) {\n      animations.lampOff();\n\n      // Call the runLamp function if the scroll position is greater than 200\n    } else if (scrollPosition <= 0) {\n      animations.runLamp();\n\n      // Call the lampOff function if the scroll position is not greater than 200\n    } else {\n      animations.runLamp();\n    }\n  });\n});\nuseHead({ titleTemplate: \"\", title: \"\" });\n</script>\n\n<template>\n  <div>\n    <AwesomeLamp />\n    <AwesomeWelcome\n      name=\"IMPORTED PRODUCTS \"\n      :with-alert=\"true\"\n      class=\"min-h-[100vh]\"\n    />\n  </div>\n</template>\n<style></style>\n",
+      "start": 1710863480679,
+      "end": 1710863480695,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { resolveComponent as _resolveComponent, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nimport animations from \"../utils/animations\";\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst { awesome } = useAppConfig();\ndefinePageMeta({ layout: \"page\" });\nonMounted(() => {\n  animations.runLamp();\n  window.addEventListener(\"scroll\", function () {\n    // Get the scroll position\n    let scrollPosition = window.scrollY;\n    // Check if the scroll position meets certain criteria\n    if (scrollPosition > 200) {\n      animations.lampOff();\n\n      // Call the runLamp function if the scroll position is greater than 200\n    } else if (scrollPosition <= 0) {\n      animations.runLamp();\n\n      // Call the lampOff function if the scroll position is not greater than 200\n    } else {\n      animations.runLamp();\n    }\n  });\n});\nuseHead({ titleTemplate: \"\", title: \"\" });\n\nreturn (_ctx, _cache) => {\n  const _component_AwesomeLamp = _resolveComponent(\"AwesomeLamp\")\n  const _component_AwesomeWelcome = _resolveComponent(\"AwesomeWelcome\")\n\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    _createVNode(_component_AwesomeLamp),\n    _createVNode(_component_AwesomeWelcome, {\n      name: \"IMPORTED PRODUCTS \",\n      \"with-alert\": true,\n      class: \"min-h-[100vh]\"\n    })\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { useAppConfig } from '#app/config';\nimport { definePageMeta } from '/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/pages/runtime/composables';\nimport { onMounted } from 'vue';\nimport { useHead } from '@unhead/vue';\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nimport animations from \"../utils/animations\";\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst { awesome } = useAppConfig();\ndefinePageMeta({ layout: \"page\" });\nonMounted(() => {\n  animations.runLamp();\n  window.addEventListener(\"scroll\", function () {\n    // Get the scroll position\n    let scrollPosition = window.scrollY;\n    // Check if the scroll position meets certain criteria\n    if (scrollPosition > 200) {\n      animations.lampOff();\n\n      // Call the runLamp function if the scroll position is greater than 200\n    } else if (scrollPosition <= 0) {\n      animations.runLamp();\n\n      // Call the lampOff function if the scroll position is not greater than 200\n    } else {\n      animations.runLamp();\n    }\n  });\n});\nuseHead({ titleTemplate: \"\", title: \"\" });\n\nreturn (_ctx, _cache) => {\n  const _component_AwesomeLamp = _resolveComponent(\"AwesomeLamp\")\n  const _component_AwesomeWelcome = _resolveComponent(\"AwesomeWelcome\")\n\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    _createVNode(_component_AwesomeLamp),\n    _createVNode(_component_AwesomeWelcome, {\n      name: \"IMPORTED PRODUCTS \",\n      \"with-alert\": true,\n      class: \"min-h-[100vh]\"\n    })\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";;;;AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5J;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7C;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3B;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7E,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3B;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3B,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC,CAAC;AACH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1C;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvE;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC;AACD,CAAC;AACD;AACA,CAAC;AACD;AACA;AACA;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/components/awesome/lamp.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/shubhamsingh/namma/importedProds/components/awesome/Welcome.vue\";\nimport { useAppConfig } from '#app/config';\nimport { definePageMeta } from '/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/pages/runtime/composables';\nimport { onMounted } from 'vue';\nimport { useHead } from '@unhead/vue';\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nimport animations from \"../utils/animations\";\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst { awesome } = useAppConfig();\ndefinePageMeta({ layout: \"page\" });\nonMounted(() => {\n  animations.runLamp();\n  window.addEventListener(\"scroll\", function () {\n    // Get the scroll position\n    let scrollPosition = window.scrollY;\n    // Check if the scroll position meets certain criteria\n    if (scrollPosition > 200) {\n      animations.lampOff();\n\n      // Call the runLamp function if the scroll position is greater than 200\n    } else if (scrollPosition <= 0) {\n      animations.runLamp();\n\n      // Call the lampOff function if the scroll position is not greater than 200\n    } else {\n      animations.runLamp();\n    }\n  });\n});\nuseHead({ titleTemplate: \"\", title: \"\" });\n\nreturn (_ctx, _cache) => {\n  const _component_AwesomeLamp = __nuxt_component_0\n  const _component_AwesomeWelcome = __nuxt_component_1\n\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    _createVNode(_component_AwesomeLamp),\n    _createVNode(_component_AwesomeWelcome, {\n      name: \"IMPORTED PRODUCTS \",\n      \"with-alert\": true,\n      class: \"min-h-[100vh]\"\n    })\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1710863480695,
+      "end": 1710863480695,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/components/awesome/lamp.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/shubhamsingh/namma/importedProds/components/awesome/Welcome.vue\";\nimport { useAppConfig } from '#app/config';\nimport { definePageMeta } from '/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/pages/runtime/composables';\nimport { onMounted } from 'vue';\nimport { useHead } from '@unhead/vue';\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nimport animations from \"../utils/animations\";\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\nconst { awesome } = useAppConfig();\n false && /*@__PURE__*/ definePageMeta({ layout: \"page\" });\nonMounted(() => {\n  animations.runLamp();\n  window.addEventListener(\"scroll\", function () {\n    // Get the scroll position\n    let scrollPosition = window.scrollY;\n    // Check if the scroll position meets certain criteria\n    if (scrollPosition > 200) {\n      animations.lampOff();\n\n      // Call the runLamp function if the scroll position is greater than 200\n    } else if (scrollPosition <= 0) {\n      animations.runLamp();\n\n      // Call the lampOff function if the scroll position is not greater than 200\n    } else {\n      animations.runLamp();\n    }\n  });\n});\nuseHead({ titleTemplate: \"\", title: \"\" });\n\nreturn (_ctx, _cache) => {\n  const _component_AwesomeLamp = __nuxt_component_0\n  const _component_AwesomeWelcome = __nuxt_component_1\n\n  return (_openBlock(), _createElementBlock(\"div\", null, [\n    _createVNode(_component_AwesomeLamp),\n    _createVNode(_component_AwesomeWelcome, {\n      name: \"IMPORTED PRODUCTS \",\n      \"with-alert\": true,\n      class: \"min-h-[100vh]\"\n    })\n  ]))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1710863480695,
+      "end": 1710863480696,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710863480696,
+      "end": 1710863480696,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710863480696,
+      "end": 1710863480696,
+      "order": "normal"
+    }
+  ]
+}

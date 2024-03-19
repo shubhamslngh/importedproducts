@@ -1,0 +1,242 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/components/awesome/Tab.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, renderSlot as _renderSlot, vShow as _vShow, withDirectives as _withDirectives, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"relative overflow-auto px-6 py-2\" }\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'Tab',\n  props: {\n  name: {\n    type: String,\n    required: true,\n  },\n  title: {\n    type: String,\n    required: true,\n  },\n},\n  setup(__props) {\n\n\nconst activeTab = inject<string>('activeTab')\n\nreturn (_ctx: any,_cache: any) => {\n  return _withDirectives((_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _renderSlot(_ctx.$slots, \"default\")\n  ], 512)), [\n    [_vShow, _unref(activeTab) === __props.name]\n  ])\n}\n}\n\n})",
+      "start": 1710863481362,
+      "end": 1710863481362
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863481362,
+      "end": 1710863481362,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863481362,
+      "end": 1710863481362,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863481362,
+      "end": 1710863481362,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710863481362,
+      "end": 1710863481362,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710863481362,
+      "end": 1710863481362,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderSlot as _renderSlot, vShow as _vShow, withDirectives as _withDirectives, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nconst _hoisted_1 = { class: \"relative overflow-auto px-6 py-2\" };\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Tab\",\n  props: {\n    name: {\n      type: String,\n      required: true\n    },\n    title: {\n      type: String,\n      required: true\n    }\n  },\n  setup(__props) {\n    const activeTab = inject(\"activeTab\");\n    return (_ctx, _cache) => {\n      return _withDirectives((_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _renderSlot(_ctx.$slots, \"default\")\n      ], 512)), [\n        [_vShow, _unref(activeTab) === __props.name]\n      ]);\n    };\n  }\n});\n",
+      "start": 1710863481362,
+      "end": 1710863481559,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Tab.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, renderSlot as _renderSlot, vShow as _vShow, withDirectives as _withDirectives, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"relative overflow-auto px-6 py-2\" }\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'Tab',\n  props: {\n  name: {\n    type: String,\n    required: true,\n  },\n  title: {\n    type: String,\n    required: true,\n  },\n},\n  setup(__props) {\n\n\nconst activeTab = inject<string>('activeTab')\n\nreturn (_ctx: any,_cache: any) => {\n  return _withDirectives((_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _renderSlot(_ctx.$slots, \"default\")\n  ], 512)), [\n    [_vShow, _unref(activeTab) === __props.name]\n  ])\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,SAAS,QAAQ,cAAc,aAAa,SAAS,QAAQ,kBAAkB,iBAAiB,aAAa,YAAY,sBAAsB,2BAA2B;AAEnL,MAAM,aAAa,EAAE,OAAO,mCAAmC;AAG/D,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,OAAO;AAAA,IACP,MAAM;AAAA,MACJ,MAAM;AAAA,MACN,UAAU;AAAA,IACZ;AAAA,IACA,OAAO;AAAA,MACL,MAAM;AAAA,MACN,UAAU;AAAA,IACZ;AAAA,EACF;AAAA,EACE,MAAM,SAAS;AAGjB,UAAM,YAAY,OAAe,WAAW;AAE5C,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAO,iBAAiB,WAAW,GAAG,oBAAoB,OAAO,YAAY;AAAA,QAC3E,YAAY,KAAK,QAAQ,SAAS;AAAA,MACpC,GAAG,GAAG,IAAI;AAAA,QACR,CAAC,QAAQ,OAAO,SAAS,MAAM,QAAQ,IAAI;AAAA,MAC7C,CAAC;AAAA,IACH;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863481559,
+      "end": 1710863481559,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { inject } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderSlot as _renderSlot, vShow as _vShow, withDirectives as _withDirectives, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nconst _hoisted_1 = { class: \"relative overflow-auto px-6 py-2\" };\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Tab\",\n  props: {\n    name: {\n      type: String,\n      required: true\n    },\n    title: {\n      type: String,\n      required: true\n    }\n  },\n  setup(__props) {\n    const activeTab = inject(\"activeTab\");\n    return (_ctx, _cache) => {\n      return _withDirectives((_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _renderSlot(_ctx.$slots, \"default\")\n      ], 512)), [\n        [_vShow, _unref(activeTab) === __props.name]\n      ]);\n    };\n  }\n});\n",
+      "start": 1710863481559,
+      "end": 1710863481560,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAA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"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863481560,
+      "end": 1710863481560,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863481560,
+      "end": 1710863481560,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710863481560,
+      "end": 1710863481560,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710863481560,
+      "end": 1710863481560,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1710863481560,
+      "end": 1710863481560,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710863481560,
+      "end": 1710863481560,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710863481560,
+      "end": 1710863481560,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710863481560,
+      "end": 1710863481560,
+      "order": "normal"
+    }
+  ]
+}

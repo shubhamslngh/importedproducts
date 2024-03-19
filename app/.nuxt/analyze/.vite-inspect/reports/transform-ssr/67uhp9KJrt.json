@@ -1,0 +1,278 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/components/awesome/Graphql.vue?nuxt_component=async&nuxt_component_name=AwesomeGraphql",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div class=\"box\" background-color-black>\n    <div id=\"wrapperSwiper\" class=\"div lg:w-[200vw] md:w-[200vw] sm:w-[100vw]\">\n      <div\n        id=\"gridWrapper\"\n        class=\"grid lg:grid-cols-8 md:grid-cols-8 sm:grid-cols-1 transition-all duration-200\"\n      >\n        <div\n          v-for=\"(product, index) in Data1._value.products.edges\"\n          :key=\"index\"\n          class=\"transition-[width] duration-200 ease-in-out\"\n          :id=\"product.node.name\"\n        >\n          <div class=\"snap-x\">\n            <div class=\"snap-center\">\n              <img\n                :src=\"product.node.image ? product.node.image.link : ''\"\n                alt=\"Product Image\"\n                class=\"transition-all ease-in-out\"\n              />\n              <h3 class=\"box text-wrap font-semibold hover:font-bold\">\n                {{ product.node.name }}\n              </h3>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</template>\n<script setup>\nimport { ref } from \"vue\";\nimport gql from \"graphql-tag\";\n\nconst Data1 = ref([]); // Initialize Data1 as a reactive reference\n\n// function removeTypename(obj) {\n//   if (!obj || typeof obj !== \"object\") {\n//     return obj;\n//   }\n\n//   if (Array.isArray(obj)) {\n//     return obj.map(removeTypename);\n//   }\n\n//   const newObj = {};\n//   for (const key in obj) {\n//     if (key !== \"__typename\") {\n//       newObj[key] = removeTypename(obj[key]);\n//     }\n//   }\n//   return newObj;\n// }\n\nconst query = gql`\n  query MyQuery {\n    products(where: { category: \"cases\" }) {\n      edges {\n        node {\n          image {\n            link\n          }\n          name\n        }\n      }\n    }\n  }\n`;\n\nconst { data } = await useAsyncQuery(query);\n\nif (data) {\n  // const parsedData = removeTypename(data);\n  // console.log(data, \"parsed OP \");\n  Data1.value = data; // Update Data1 with the parsed data\n  console.log(Data1.value, \"Graphql data\");\n}\n</script>\n",
+      "start": 1710863483025,
+      "end": 1710863483148,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863483148,
+      "end": 1710863483148,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863483148,
+      "end": 1710863483148,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863483148,
+      "end": 1710863483148,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863483148,
+      "end": 1710863483148,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863483148,
+      "end": 1710863483148,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863483148,
+      "end": 1710863483148,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710863483148,
+      "end": 1710863483148,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710863483148,
+      "end": 1710863483148,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710863483148,
+      "end": 1710863483148,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710863483148,
+      "end": 1710863483148,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710863483148,
+      "end": 1710863483148,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { withAsyncContext as _withAsyncContext } from 'vue'\nimport { mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\"\n\nimport { ref } from \"vue\";\nimport gql from \"graphql-tag\";\n\n\nconst _sfc_main = {\n  __name: 'Graphql',\n  __ssrInlineRender: true,\n  async setup(__props) {\n\nlet __temp, __restore\n\nconst Data1 = ref([]); // Initialize Data1 as a reactive reference\n\n// function removeTypename(obj) {\n//   if (!obj || typeof obj !== \"object\") {\n//     return obj;\n//   }\n\n//   if (Array.isArray(obj)) {\n//     return obj.map(removeTypename);\n//   }\n\n//   const newObj = {};\n//   for (const key in obj) {\n//     if (key !== \"__typename\") {\n//       newObj[key] = removeTypename(obj[key]);\n//     }\n//   }\n//   return newObj;\n// }\n\nconst query = gql`\n  query MyQuery {\n    products(where: { category: \"cases\" }) {\n      edges {\n        node {\n          image {\n            link\n          }\n          name\n        }\n      }\n    }\n  }\n`;\n\nconst { data } = (\n  ([__temp,__restore] = _withAsyncContext(() => useAsyncQuery(query))),\n  __temp = await __temp,\n  __restore(),\n  __temp\n);\n\nif (data) {\n  // const parsedData = removeTypename(data);\n  // console.log(data, \"parsed OP \");\n  Data1.value = data; // Update Data1 with the parsed data\n  console.log(Data1.value, \"Graphql data\");\n}\n\nreturn (_ctx, _push, _parent, _attrs) => {\n  _push(`<div${_ssrRenderAttrs(_mergeProps({\n    class: \"box\",\n    \"background-color-black\": \"\"\n  }, _attrs))}><div id=\"wrapperSwiper\" class=\"div lg:w-[200vw] md:w-[200vw] sm:w-[100vw]\"><div id=\"gridWrapper\" class=\"grid lg:grid-cols-8 md:grid-cols-8 sm:grid-cols-1 transition-all duration-200\"><!--[-->`)\n  _ssrRenderList(Data1.value._value.products.edges, (product, index) => {\n    _push(`<div class=\"transition-[width] duration-200 ease-in-out\"${\n      _ssrRenderAttr(\"id\", product.node.name)\n    }><div class=\"snap-x\"><div class=\"snap-center\"><img${\n      _ssrRenderAttr(\"src\", product.node.image ? product.node.image.link : '')\n    } alt=\"Product Image\" class=\"transition-all ease-in-out\"><h3 class=\"box text-wrap font-semibold hover:font-bold\">${\n      _ssrInterpolate(product.node.name)\n    }</h3></div></div></div>`)\n  })\n  _push(`<!--]--></div></div></div>`)\n}\n}\n\n}\n\n\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"../components/awesome/Graphql.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nexport default _sfc_main",
+      "start": 1710863483148,
+      "end": 1710863483151,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Graphql.vue"
+        ],
+        "sourcesContent": [
+          "<template>\n  <div class=\"box\" background-color-black>\n    <div id=\"wrapperSwiper\" class=\"div lg:w-[200vw] md:w-[200vw] sm:w-[100vw]\">\n      <div\n        id=\"gridWrapper\"\n        class=\"grid lg:grid-cols-8 md:grid-cols-8 sm:grid-cols-1 transition-all duration-200\"\n      >\n        <div\n          v-for=\"(product, index) in Data1._value.products.edges\"\n          :key=\"index\"\n          class=\"transition-[width] duration-200 ease-in-out\"\n          :id=\"product.node.name\"\n        >\n          <div class=\"snap-x\">\n            <div class=\"snap-center\">\n              <img\n                :src=\"product.node.image ? product.node.image.link : ''\"\n                alt=\"Product Image\"\n                class=\"transition-all ease-in-out\"\n              />\n              <h3 class=\"box text-wrap font-semibold hover:font-bold\">\n                {{ product.node.name }}\n              </h3>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</template>\n<script setup>\nimport { ref } from \"vue\";\nimport gql from \"graphql-tag\";\n\nconst Data1 = ref([]); // Initialize Data1 as a reactive reference\n\n// function removeTypename(obj) {\n//   if (!obj || typeof obj !== \"object\") {\n//     return obj;\n//   }\n\n//   if (Array.isArray(obj)) {\n//     return obj.map(removeTypename);\n//   }\n\n//   const newObj = {};\n//   for (const key in obj) {\n//     if (key !== \"__typename\") {\n//       newObj[key] = removeTypename(obj[key]);\n//     }\n//   }\n//   return newObj;\n// }\n\nconst query = gql`\n  query MyQuery {\n    products(where: { category: \"cases\" }) {\n      edges {\n        node {\n          image {\n            link\n          }\n          name\n        }\n      }\n    }\n  }\n`;\n\nconst { data } = await useAsyncQuery(query);\n\nif (data) {\n  // const parsedData = removeTypename(data);\n  // console.log(data, \"parsed OP \");\n  Data1.value = data; // Update Data1 with the parsed data\n  console.log(Data1.value, \"Graphql data\");\n}\n</script>\n"
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Graphql.vue\").then(r => r.default))",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "replace",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710863483151,
+      "end": 1710863483151,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/app/stores/use-identity.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "export interface IIdentityState {\n  firstName: string\n  lastName: string\n}\n\nexport const useIdentity = defineStore('identity', {\n  state: (): IIdentityState => ({\n    firstName: 'Alfian',\n    lastName: 'Dwi',\n  }),\n  actions: {\n    setFirstName(firstName: string) {\n      this.firstName = firstName\n    },\n    setLastName(lastName: string) {\n      this.lastName = lastName\n    },\n    reset() {\n      this.firstName = 'Alfian'\n      this.lastName = 'Dwi'\n    },\n  },\n  getters: {\n    fullName(): string {\n      return `${this.firstName} ${this.lastName}`\n    },\n  },\n})\n",
+      "start": 1710863481552,
+      "end": 1710863481558,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863481558,
+      "end": 1710863481558,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863481558,
+      "end": 1710863481558,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863481558,
+      "end": 1710863481558,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710863481558,
+      "end": 1710863481558,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710863481558,
+      "end": 1710863481558,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "export const useIdentity = defineStore(\"identity\", {\n  state: () => ({\n    firstName: \"Alfian\",\n    lastName: \"Dwi\"\n  }),\n  actions: {\n    setFirstName(firstName) {\n      this.firstName = firstName;\n    },\n    setLastName(lastName) {\n      this.lastName = lastName;\n    },\n    reset() {\n      this.firstName = \"Alfian\";\n      this.lastName = \"Dwi\";\n    }\n  },\n  getters: {\n    fullName() {\n      return `${this.firstName} ${this.lastName}`;\n    }\n  }\n});\n",
+      "start": 1710863481558,
+      "end": 1710863481657,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/app/stores/use-identity.ts"
+        ],
+        "sourcesContent": [
+          "export interface IIdentityState {\n  firstName: string\n  lastName: string\n}\n\nexport const useIdentity = defineStore('identity', {\n  state: (): IIdentityState => ({\n    firstName: 'Alfian',\n    lastName: 'Dwi',\n  }),\n  actions: {\n    setFirstName(firstName: string) {\n      this.firstName = firstName\n    },\n    setLastName(lastName: string) {\n      this.lastName = lastName\n    },\n    reset() {\n      this.firstName = 'Alfian'\n      this.lastName = 'Dwi'\n    },\n  },\n  getters: {\n    fullName(): string {\n      return `${this.firstName} ${this.lastName}`\n    },\n  },\n})\n"
+        ],
+        "mappings": "AAKO,aAAM,cAAc,YAAY,YAAY;AAAA,EACjD,OAAO,OAAuB;AAAA,IAC5B,WAAW;AAAA,IACX,UAAU;AAAA,EACZ;AAAA,EACA,SAAS;AAAA,IACP,aAAa,WAAmB;AAC9B,WAAK,YAAY;AAAA,IACnB;AAAA,IACA,YAAY,UAAkB;AAC5B,WAAK,WAAW;AAAA,IAClB;AAAA,IACA,QAAQ;AACN,WAAK,YAAY;AACjB,WAAK,WAAW;AAAA,IAClB;AAAA,EACF;AAAA,EACA,SAAS;AAAA,IACP,WAAmB;AACjB,aAAO,GAAG,KAAK,SAAS,IAAI,KAAK,QAAQ;AAAA,IAC3C;AAAA,EACF;AACF,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { defineStore } from '/Users/shubhamsingh/namma/importedProds/node_modules/@pinia/nuxt/dist/runtime/composables';\nexport const useIdentity = defineStore(\"identity\", {\n  state: () => ({\n    firstName: \"Alfian\",\n    lastName: \"Dwi\"\n  }),\n  actions: {\n    setFirstName(firstName) {\n      this.firstName = firstName;\n    },\n    setLastName(lastName) {\n      this.lastName = lastName;\n    },\n    reset() {\n      this.firstName = \"Alfian\";\n      this.lastName = \"Dwi\";\n    }\n  },\n  getters: {\n    fullName() {\n      return `${this.firstName} ${this.lastName}`;\n    }\n  }\n});\n",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710863481657,
+      "end": 1710863481657,
+      "order": "normal"
+    }
+  ]
+}

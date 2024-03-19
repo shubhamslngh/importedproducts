@@ -1,0 +1,294 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/composables/use-sync-props.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import type { WritableComputedRef } from 'vue'\n\nexport const useSyncProps = <T>(\n  props: any,\n  key: string,\n  emit: any,\n): WritableComputedRef<T> => {\n  return computed({\n    get() {\n      return props[key]\n    },\n    set(value) {\n      emit(`update:${key}`, value)\n    },\n  })\n}\n",
+      "start": 1710863484039,
+      "end": 1710863484052,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863484052,
+      "end": 1710863484052,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863484052,
+      "end": 1710863484052,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863484052,
+      "end": 1710863484052,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863484052,
+      "end": 1710863484052,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863484052,
+      "end": 1710863484052,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863484052,
+      "end": 1710863484052,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710863484052,
+      "end": 1710863484052,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710863484052,
+      "end": 1710863484052,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "export const useSyncProps = (props, key, emit) => {\n  return computed({\n    get() {\n      return props[key];\n    },\n    set(value) {\n      emit(`update:${key}`, value);\n    }\n  });\n};\n",
+      "start": 1710863484052,
+      "end": 1710863484245,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/composables/use-sync-props.ts"
+        ],
+        "sourcesContent": [
+          "import type { WritableComputedRef } from 'vue'\n\nexport const useSyncProps = <T>(\n  props: any,\n  key: string,\n  emit: any,\n): WritableComputedRef<T> => {\n  return computed({\n    get() {\n      return props[key]\n    },\n    set(value) {\n      emit(`update:${key}`, value)\n    },\n  })\n}\n"
+        ],
+        "mappings": "AAEO,aAAM,eAAe,CAC1B,OACA,KACA,SAC2B;AAC3B,SAAO,SAAS;AAAA,IACd,MAAM;AACJ,aAAO,MAAM,GAAG;AAAA,IAClB;AAAA,IACA,IAAI,OAAO;AACT,WAAK,UAAU,GAAG,IAAI,KAAK;AAAA,IAC7B;AAAA,EACF,CAAC;AACH;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710863484245,
+      "end": 1710863484245,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { computed } from 'vue';\nexport const useSyncProps = (props, key, emit) => {\n  return computed({\n    get() {\n      return props[key];\n    },\n    set(value) {\n      emit(`update:${key}`, value);\n    }\n  });\n};\n",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { computed } from 'vue';\nexport const useSyncProps = (props, key, emit) => {\n  return computed({\n    get() {\n      return props[key];\n    },\n    set(value) {\n      emit(`update:${key}`, value);\n    }\n  });\n};\n",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710863484246,
+      "end": 1710863484246,
+      "order": "normal"
+    }
+  ]
+}

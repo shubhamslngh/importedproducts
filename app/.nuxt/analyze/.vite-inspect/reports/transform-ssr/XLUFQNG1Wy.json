@@ -1,0 +1,307 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/components/awesome/Welcome.vue?vue&type=style&index=0&lang.scss",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n@keyframes anim-fg-1 {\n  0%,\n  16.667%,\n  100% {\n    opacity: 1;\n  }\n  33.333%,\n  83.333% {\n    opacity: 0;\n  }\n}\n@keyframes anim-fg-2 {\n  0%,\n  16.667%,\n  66.667%,\n  100% {\n    opacity: 0;\n  }\n  33.333%,\n  50% {\n    opacity: 1;\n  }\n}\n@keyframes anim-fg-3 {\n  0%,\n  50%,\n  100% {\n    opacity: 0;\n  }\n  66.667%,\n  83.333% {\n    opacity: 1;\n  }\n}\n.animated-text-bg {\n  position: relative;\n  display: block;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  content: var(--content);\n  display: block;\n  width: 100%;\n  color: theme(\"colors.slate.800\");\n  top: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 0;\n  padding-left: var(--padding);\n  padding-right: var(--padding);\n  &:before {\n    content: var(--content);\n    position: absolute;\n    display: block;\n    width: 100%;\n    color: theme(\"colors.slate.800\");\n    top: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 0;\n    padding-left: var(--padding);\n    padding-right: var(--padding);\n  }\n}\n.animated-text-fg {\n  background-clip: text;\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  padding-left: var(--padding);\n  padding-right: var(--padding);\n  background-image: linear-gradient(\n    90deg,\n    var(--start-color),\n    var(--end-color)\n  );\n  position: relative;\n  opacity: 0;\n  z-index: 1;\n  animation: var(--animation-name) 8s infinite;\n}\nhtml.dark {\n  .animated-text-bg {\n    color: theme(\"colors.gray.100\");\n    &:before {\n      color: theme(\"colors.gray.100\");\n    }\n  }\n}\n",
+      "start": 1710863483762,
+      "end": 1710863483762,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Welcome.vue"
+        ],
+        "names": [],
+        "mappings": ";AA4HA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACnB,CAAC,CAAC;EACF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACP,CAAC,CAAC,CAAC,EAAE;IACH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;EACZ;EACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;IACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;EACZ;AACF;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACnB,CAAC,CAAC;EACF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACP,CAAC,CAAC,CAAC,EAAE;IACH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;EACZ;EACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACP,CAAC,CAAC,EAAE;IACF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;EACZ;AACF;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACnB,CAAC,CAAC;EACF,CAAC,CAAC,CAAC;EACH,CAAC,CAAC,CAAC,EAAE;IACH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;EACZ;EACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;IACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;EACZ;AACF;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;EACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACzB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACrB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACvB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;EACd,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACX,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EAChC,CAAC,CAAC,CAAC,EAAE,CAAC;EACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;EACT,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;EACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;EACV,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EAC5B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;IACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;IACvB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;IAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;IACd,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;IACX,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;IAChC,CAAC,CAAC,CAAC,EAAE,CAAC;IACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;IACT,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;IACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;IACV,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;IAC5B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EAC/B;AACF;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACrB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACpC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EAC5B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;IAC/B,CAAC,CAAC,CAAC,CAAC,CAAC;IACL,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;IAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACjB,CAAC;EACD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;EACV,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;EACV,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9C;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACR,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;IAChB,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;IAC/B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;MACP,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;IACjC;EACF;AACF",
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Welcome.vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<script lang=\"ts\" setup>\n// import axios from \"axios\";\nconst { awesome } = useAppConfig();\nconst { parseMenuRoute, parseMenuTitle } = useNavbarParser();\nconst props = defineProps({\n  withAlert: {\n    type: Boolean,\n    default: true,\n  },\n  name: {\n    type: String,\n  },\n});\nconst showAlert = ref(\n  awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage\n    ? !awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage\n    : props.withAlert\n);\n  \nconst titlesText = computed(() => {\n  const originalText = props.name || \"\";\n  return originalText\n    .replaceAll(\"&nbsp;\", \"[space]\")\n    .split(\" \")\n    .map((item) => item.replaceAll(\"[space]\", \" \"));\n});\nconsole.log(\"props.name:\", props.name);\nconsole.log(\"titlesText.value:\", titlesText.value);\n\nconst leadingsText = computed(() => [\n  {\n    text: titlesText.value[0],\n    startColor: \"purple\",\n    endColor: \"white\",\n    delay: 0,\n  },\n  {\n    text: titlesText.value[1],\n    startColor: \"purple\",\n    endColor: \"yellow\",\n    delay: 2,\n  },\n  {\n    text: titlesText.value[2],\n    startColor: \"purple\",\n    endColor: \"yellow\",\n    delay: 4,\n  },\n]);\n</script>\n\n<template>\n  <LayoutPageWrapper class=\"flex-1 relative z-[-1]\">\n    <LayoutPageSection class=\"flex-1 flex\">\n      <div class=\"flex-1 flex flex-col items-center justify-center\">\n        <h1 class=\"text-center mt-4\">\n          <span\n            v-for=\"(item, i) in leadingsText\"\n            :key=\"i\"\n            :style=\"`--content: '${item.text}'; --start-color: ${\n              item.startColor\n            }; --end-color: ${item.endColor}; --animation-name: anim-fg-${\n              i + 1\n            }`\"\n            class=\"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"\n          >\n            <span class=\"animated-text-fg\">{{ item.text }}</span>\n          </span>\n        </h1>\n        <!-- <div\n          v-if=\"showAlert\"\n          class=\"mt-4 w-auto text-center text-white bg-gray-800 rounded px-4 py-1 text-sm\"\n        >\n          create file \"~/pages/index.vue\" to replace this page\n        </div>\n        <div class=\"flex space-x-4 ml-2 mt-8 justify-center md:justify-start\">\n          <AwesomeButton\n            size=\"lg\"\n            :text=\"parseMenuTitle('Subscriptions')\"\n            :to=\"\n              parseMenuRoute(\n                awesome?.layout?.welcome?.primaryActionButton?.to ||\n                  'https://nuxt.com'\n              )\n            \"\n            class=\"font-extrabold\"\n          />\n          <AwesomeButton\n            v-if=\"\n              parseMenuRoute(\n                awesome?.layout?.welcome?.secondaryActionButton?.to ||\n                  awesome?.project?.links?.github\n              )\n            \"\n            :text=\"parseMenuTitle('Cases')\"\n            :to=\"\n              parseMenuRoute(\n                awesome?.layout?.welcome?.secondaryActionButton?.to ||\n                  awesome?.project?.links?.github\n              )\n            \"\n            size=\"lg\"\n            class=\"font-extrabold\"\n            type=\"secondary\"\n          />\n        </div>\n      </div>\n      <div class=\"top-0 left-0 absolute w-screen\">\n        <div class=\"absolute right-0 top-0 w-1/4 h-screen py-10 pt-12 z-0 flex\">\n          <div\n            class=\"flex-1 rounded-l-9xl bg-gradient-to-l from-blue-600/10\"\n          ></div>\n        </div>\n        <div class=\"absolute left-0 top-0 w-1/4 h-screen py-10 pt-12 z-0 flex\">\n          <div\n            class=\"flex-1 rounded-r-9xl bg-gradient-to-r from-red-600/10\"\n          ></div>\n        </div>-->\n      </div>\n    </LayoutPageSection>\n  </LayoutPageWrapper>\n</template>\n\n<style lang=\"scss\">\n@keyframes anim-fg-1 {\n  0%,\n  16.667%,\n  100% {\n    opacity: 1;\n  }\n  33.333%,\n  83.333% {\n    opacity: 0;\n  }\n}\n@keyframes anim-fg-2 {\n  0%,\n  16.667%,\n  66.667%,\n  100% {\n    opacity: 0;\n  }\n  33.333%,\n  50% {\n    opacity: 1;\n  }\n}\n@keyframes anim-fg-3 {\n  0%,\n  50%,\n  100% {\n    opacity: 0;\n  }\n  66.667%,\n  83.333% {\n    opacity: 1;\n  }\n}\n.animated-text-bg {\n  position: relative;\n  display: block;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  content: var(--content);\n  display: block;\n  width: 100%;\n  color: theme(\"colors.slate.800\");\n  top: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 0;\n  padding-left: var(--padding);\n  padding-right: var(--padding);\n  &:before {\n    content: var(--content);\n    position: absolute;\n    display: block;\n    width: 100%;\n    color: theme(\"colors.slate.800\");\n    top: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 0;\n    padding-left: var(--padding);\n    padding-right: var(--padding);\n  }\n}\n.animated-text-fg {\n  background-clip: text;\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  padding-left: var(--padding);\n  padding-right: var(--padding);\n  background-image: linear-gradient(\n    90deg,\n    var(--start-color),\n    var(--end-color)\n  );\n  position: relative;\n  opacity: 0;\n  z-index: 1;\n  animation: var(--animation-name) 8s infinite;\n}\nhtml.dark {\n  .animated-text-bg {\n    color: theme(\"colors.gray.100\");\n    &:before {\n      color: theme(\"colors.gray.100\");\n    }\n  }\n}\n</style>\n"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863483762,
+      "end": 1710863483762,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710863483762,
+      "end": 1710863483762,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863483762,
+      "end": 1710863483762,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710863483762,
+      "end": 1710863483762,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863483762,
+      "end": 1710863483762,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1710863483762,
+      "end": 1710863483762,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710863483762,
+      "end": 1710863483762,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": "@keyframes anim-fg-1{0%,16.667%,to{opacity:1}33.333%,83.333%{opacity:0}}@keyframes anim-fg-2{0%,16.667%,66.667%,to{opacity:0}33.333%,50%{opacity:1}}@keyframes anim-fg-3{0%,50%,to{opacity:0}66.667%,83.333%{opacity:1}}.animated-text-bg{position:relative;-webkit-user-select:none;-moz-user-select:none;user-select:none}.animated-text-bg,.animated-text-bg:before{bottom:0;color:#1e293b;content:var(--content);display:block;left:0;padding-left:var(--padding);padding-right:var(--padding);top:0;width:100%;z-index:0}.animated-text-bg:before{position:absolute}.animated-text-fg{-webkit-text-fill-color:transparent;animation:var(--animation-name) 8s infinite;background-clip:text;-webkit-background-clip:text;background-image:linear-gradient(90deg,var(--start-color),var(--end-color));opacity:0;padding-left:var(--padding);padding-right:var(--padding);position:relative;z-index:1}html.dark .animated-text-bg,html.dark .animated-text-bg:before{color:#f3f4f6}",
+      "start": 1710863483762,
+      "end": 1710863483782,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Welcome.vue",
+        "mappings": "AACA,qBACE,cAGE,UAEF,gBAEE,WAGJ,qBACE,sBAIE,UAEF,YAEE,WAGJ,qBACE,UAGE,UAEF,gBAEE,WAGJ,kBACE,kBAEA,yBACA,sBAEA,iBAWA,2CALA,SAFA,cAHA,uBACA,cAKA,OAEA,4BACA,6BALA,MAFA,WAKA,UAGA,yBAEE,kBAYJ,kBAGE,oCAWA,4CAbA,qBACA,6BAIA,4EAMA,UARA,4BACA,6BAMA,kBAEA,UAME,+DACE",
+        "names": [],
+        "ignoreList": [],
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Welcome.vue"
+        ],
+        "sourcesContent": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "@keyframes anim-fg-1{0%,16.667%,to{opacity:1}33.333%,83.333%{opacity:0}}@keyframes anim-fg-2{0%,16.667%,66.667%,to{opacity:0}33.333%,50%{opacity:1}}@keyframes anim-fg-3{0%,50%,to{opacity:0}66.667%,83.333%{opacity:1}}.animated-text-bg{position:relative;-webkit-user-select:none;-moz-user-select:none;user-select:none}.animated-text-bg,.animated-text-bg:before{bottom:0;color:#1e293b;content:var(--content);display:block;left:0;padding-left:var(--padding);padding-right:var(--padding);top:0;width:100%;z-index:0}.animated-text-bg:before{position:absolute}.animated-text-fg{-webkit-text-fill-color:transparent;animation:var(--animation-name) 8s infinite;background-clip:text;-webkit-background-clip:text;background-image:linear-gradient(90deg,var(--start-color),var(--end-color));opacity:0;padding-left:var(--padding);padding-right:var(--padding);position:relative;z-index:1}html.dark .animated-text-bg,html.dark .animated-text-bg:before{color:#f3f4f6}",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Welcome.vue",
+        "mappings": "AAAA,qBAAqB,cAAc,SAAS,CAAC,gBAAgB,SAAS,CAAC,CAAC,qBAAqB,sBAAsB,SAAS,CAAC,YAAY,SAAS,CAAC,CAAC,qBAAqB,UAAU,SAAS,CAAC,gBAAgB,SAAS,CAAC,CAAC,kBAAkB,iBAAiB,CAAC,wBAAwB,CAAC,qBAAqB,CAAC,gBAAgB,CAAC,2CAA2C,QAAQ,CAAC,aAAa,CAAC,sBAAsB,CAAC,aAAa,CAAC,MAAM,CAAC,2BAA2B,CAAC,4BAA4B,CAAC,KAAK,CAAC,UAAU,CAAC,SAAS,CAAC,yBAAyB,iBAAiB,CAAC,kBAAkB,mCAAmC,CAAC,2CAA2C,CAAC,oBAAoB,CAAC,4BAA4B,CAAC,2EAA2E,CAAC,SAAS,CAAC,2BAA2B,CAAC,4BAA4B,CAAC,iBAAiB,CAAC,SAAS,CAAC,+DAA+D,aAAa",
+        "names": [],
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Welcome.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710863483782,
+      "end": 1710863483782,
+      "order": "normal"
+    }
+  ]
+}
