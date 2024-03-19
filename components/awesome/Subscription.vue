@@ -2,7 +2,7 @@
   <section class="relative">
     <!-- Background Image Section -->
     <div
-      class="bg-auto hover: bg-origin-border p-2 bg-center mt-6 h-64 md:h-96 mb-20 lg:h-120"
+      class="relative z-[-1] bg-auto hover: bg-origin-border p-2 bg-center mt-6 h-64 md:h-96 mb-20 lg:h-120"
       style="
         background-image: url(&quot;https://importedproducts.in/wp-content/uploads/2024/02/pexels-darya-sannikova-2927585-scaled.jpg&quot;);
       "
@@ -10,17 +10,13 @@
       <div
         class="xl:text-6xl backdrop-blur-sm absolute inset-0 flex justify-center items-center"
       >
-        <h2
-          class="h-14 antialiased md:text-blue-300 font-sans font-semibold mb-20 lg:text-7xl font-bold"
-        >
-          Get the Cheapest Digital-Subscriptions.
-        </h2>
+        <AwesomeWelcome name="Digital Subscriptions " />
       </div>
     </div>
   </section>
 
   <div>
-    {{ console.log(subscriptions, "value in html") }}
+    <!-- {{ console.log(subscriptions, "value in html") }} -->
   </div>
   <div></div>
   <div
@@ -222,8 +218,9 @@ const toggleForm = (index) => {
 #card-JIOCINEMA:hover {
   background-color: #000000 !important;
   color: #ffffff !important;
-  background-repeat: repeat;
-  transition: background-repeat 1.9s ease-in-out;
+  background-repeat: no-repeat;
+  /* background-image: url("https://importedproducts.in/wp-content/uploads/2024/02/jc_logo_v2.svg"); */
+  transition: background-image 1.9s ease-in-out;
 }
 #card-JIOCINEMA {
   color: #f6f6f6 !important;

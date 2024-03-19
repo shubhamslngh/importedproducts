@@ -18,6 +18,11 @@ const MyTheme = {
       '800': '#0F2A1E',
       '900': '#000000',
     },
+    neon1: {
+      DEFAULT: '#A3D9FF',
+          '100':'#A3D9FF',
+        },
+
     blue: {
       DEFAULT: '#0096FF',
       '50': '#B8E2FF',
@@ -62,17 +67,21 @@ export default <Partial<Config>>{
   ],
   theme: {
     extend: {
-  dropShadow: {
-    glow: [
-      "0 0px 20px rgba(255,255, 255, 0.35)",
-      "0 0px 65px rgba(255, 255,255, 0.2)"
-    ]
-  },
-      boxShadow: {
-         neon: '0  10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.5)',
+       keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        }
       },
+      dropShadow: {
+        glow: [
+          "0 0px 20px rgba(255,255, 255, 0.35)",
+          "0 0px 65px rgba(255, 255,255, 0.2)"
+        ]
+      },
+    
       colors: {
-        neon: '0 0 5px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.5)',
+        neon: MyTheme.colors.neon1,
         primary: MyTheme.colors.green,
         green: MyTheme.colors.green,
         blue: MyTheme.colors.blue,

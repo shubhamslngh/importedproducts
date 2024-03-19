@@ -1,15 +1,14 @@
 <script lang="ts" setup>
 // import axios from "axios";
-const consumerKey = "ck_dedb163e9f588c6e180da3d571ca6d2da207f420";
-const consumerSecret = "cs_673d249f681f18ada1abef173441c45ef78c74c0";
-const baseUrl = "https://importedproducts.in/";
 const { awesome } = useAppConfig();
 const { parseMenuRoute, parseMenuTitle } = useNavbarParser();
-
 const props = defineProps({
   withAlert: {
     type: Boolean,
     default: true,
+  },
+  name: {
+    type: String,
   },
 });
 const showAlert = ref(
@@ -17,13 +16,17 @@ const showAlert = ref(
     ? !awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage
     : props.withAlert
 );
-
-const titlesText = computed<string[]>(() =>
-  "Imported&nbsp; Products "
+  
+const titlesText = computed(() => {
+  const originalText = props.name || "";
+  return originalText
     .replaceAll("&nbsp;", "[space]")
     .split(" ")
-    .map((item) => item.replaceAll("[space]", " "))
-);
+    .map((item) => item.replaceAll("[space]", " "));
+});
+console.log("props.name:", props.name);
+console.log("titlesText.value:", titlesText.value);
+
 const leadingsText = computed(() => [
   {
     text: titlesText.value[0],
@@ -33,53 +36,21 @@ const leadingsText = computed(() => [
   },
   {
     text: titlesText.value[1],
-    startColor: "red",
-    endColor: "pink",
+    startColor: "purple",
+    endColor: "yellow",
     delay: 2,
   },
   {
     text: titlesText.value[2],
-    startColor: "#FF4D4D",
-    endColor: "#F9CB28",
+    startColor: "purple",
+    endColor: "yellow",
     delay: 4,
   },
 ]);
-
-// onMounted(async () => {
-//   try {
-//     const WooCommerce = axios.create({
-//       baseURL: baseUrl,
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-
-//       auth: {
-//         username: consumerKey,
-//         password: consumerSecret,
-//       },
-//     });
-//     console.log("try", WooCommerce);
-
-//     async function fetchProducts() {
-//       console.log("try", WooCommerce);
-
-//       try {
-//         const response = await WooCommerce.get("/products");
-//         console.log("res,", response.data);
-//         return response.data;
-//       } catch (error) {
-//         console.error("Error fetching products:", error);
-//         return [];
-//       }
-//     }
-//   } catch (error) {
-//     console.log("aweawe error", error);
-//   }
-// });
 </script>
 
 <template>
-  <LayoutPageWrapper class="flex-1 flex">
+  <LayoutPageWrapper class="flex-1 relative z-[-1]">
     <LayoutPageSection class="flex-1 flex">
       <div class="flex-1 flex flex-col items-center justify-center">
         <h1 class="text-center mt-4">
@@ -96,13 +67,7 @@ const leadingsText = computed(() => [
             <span class="animated-text-fg">{{ item.text }}</span>
           </span>
         </h1>
-        <div class="px-4 mt-6 text-center max-w-[500px] md:max-w-[600px]">
-          {{
-            awesome?.description ||
-            "a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more."
-          }}
-        </div>
-        <div
+        <!-- <div
           v-if="showAlert"
           class="mt-4 w-auto text-center text-white bg-gray-800 rounded px-4 py-1 text-sm"
         >
@@ -150,7 +115,7 @@ const leadingsText = computed(() => [
           <div
             class="flex-1 rounded-r-9xl bg-gradient-to-r from-red-600/10"
           ></div>
-        </div>
+        </div>-->
       </div>
     </LayoutPageSection>
   </LayoutPageWrapper>

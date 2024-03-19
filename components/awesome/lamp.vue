@@ -1,96 +1,69 @@
 <template>
-  <!-- <div
-    id="lampLed"
-    class="mx-auto w-1/5 h-2 shadow-neon overflow-hidden relative transition-[width] duration-200 ease-in-out"
-  >
-    <div
-      class="w-full bg-gradient-to-b from-green-500 to-white absolute inset-0 top-1/2 -translate-y-1/2"
-    ></div>
-  </div>
-  <div
-    class="mx-auto w-1/5 h-2 bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E]"
-  ></div> -->
-
   <div
     id="lampLed"
-    class="w-1/5 transition-[width] duration-200 ease-in-out max-w-7xl mx-auto"
+    class="w-[20%] transition-[width] ease-in-out max-w-7xl mx-auto duration-[1s]"
   >
-    <!-- <div
-      id="lampUpper"
-      class="absolute -inset-[50px] transition-[inset]-2s skew-x-5 top-1 inset-x-0 bg-gradient-to-b from-cyan-800/80 to-blue-800/10 rounded-sm blur opacity-40 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"
-      style="z-index: 5"
-    ></div> -->
     <div
-      class="h-14 rounded-sm blur bg-gradient-to-r from-cyan-500 to-blue-500"
+      id="backGlow"
+      class="absolute inset-20 -z-50 mx-auto align-baseline rounded-full bg-yellow-300 opacity-10 blur-3xl bg-blend-multiply"
+    ></div>
+    <div
+      class="h-2 rounded-sm blur shadow-lg bg-blend-multiply md:shadow-xl md:shadow-red-500 trainsition-all duration-[12s]"
     ></div>
 
-    <div
-      class="h-10 rounded-sm blur bg-gradient-to-r from-purple-500 to-pink-500"
-    ></div>
-
-    <div class="relative group">
-      <div class="bg-black p-0.5"></div>
+    <div class="relative group grid">
+      <div
+        class="bg-black blur bg-blend-multiply blur p-2.5"
+        style="z-index: 6"
+      ></div>
+      <div id="tubecase" class="bg-black w-auto p-0.5"></div>
       <div
         id="lampLedGlow"
-        class="absolute -inset-[50px] border-t-6 transition-[inset]-2s skew-x-5 top-1 inset-x-0 bg-gradient-to-b from-cyan-800/80 to-blue-800/10 rounded-sm blur opacity-80 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"
+        class="absolute inset-[2px] opacity-50 blur-3xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-grey border-t-black duration-[2s] bg-blend-multiply ease-in-out duration-[2s]"
         style="z-index: 5"
       ></div>
-
       <div
         @mouseover="runLamp"
         @mouseleave="lampOff"
-        class="relative px-7 py-1 bg-cyan-500 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6"
+        class="relative px-7 py-[1px] bg-yellow-200 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6 transtion-all ease-in-out duration-[2s]"
         style="z-index: 6"
       ></div>
-
-      <!-- <h1
-        class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
-      >
-        Imported Products
-      </h1> -->
       <div
-        class="w-64 h-64 bg-gradient-conic from-blue-500 via-green-500 to-yellow-500"
-        style="background-position: 25%"
+        id="lampGlow"
+        class="opacity-30 bg-blend-multiply blur-xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-[#a916c0] border-t-black duration-[2s]"
       ></div>
+
+      <!-- class="w-[120%] h-[100px] inset-20 opacity-60 bg-gradient-to-b from-yellow-500 to-transparent blur-3xl bg-blend-multiply border-yellow-600 border-l-[10px] border-r-[10px] transition-all ease-in-out duration-[2s] rounded-2xl justify-self-center" -->
     </div>
-    <!-- <div class="triangle-down"></div> -->
   </div>
 </template>
 
 <style scoped>
-.triangle-down {
-  width: auto;
-  height: auto;
-  border-left: 50px solid rgba(255, 255, 255, 0.547);
-  border-right: 50px solid purple;
-  border-top: 100px solid blue;
-}
-@keyframes tube-light {
-  0% {
-    background-position: 0 100%;
-  }
-  50% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 100%;
-  }
+.neon {
+  text-shadow:
+    0 0 10px rgba(139, 92, 246, 0.5),
+    0 0 20px rgba(139, 92, 246, 0.5);
 }
 </style>
 <script setup>
-onMounted(() => {});
-function runLamp() {
-  let lampLedGlow = document.getElementById("lampLedGlow");
-  lampLedGlow.classList.remove("-inset-[50px]");
-  lampLedGlow.classList.add("-inset-[100px]");
-  let lampLedHead = document.getElementById("lampLed");
-  lampLedHead.style.width = "100%";
-}
-function lampOff() {
-  let lampLedGlow = document.getElementById("lampLedGlow");
-  lampLedGlow.classList.remove("-inset-[100px]");
-  lampLedGlow.classList.add("-inset-[50px]");
-  let lampLedHead = document.getElementById("lampLed");
-  lampLedHead.style.width = "20%";
-}
+import animations from "../../utils/animations";
+onMounted(() => {
+  animations.runLamp();
+  window.addEventListener("scroll", function () {
+    // Get the scroll position
+    let scrollPosition = window.scrollY;
+    // Check if the scroll position meets certain criteria
+    if (scrollPosition > 200) {
+      animations.lampOff();
+
+      // Call the runLamp function if the scroll position is greater than 200
+    } else if (scrollPosition <= 0) {
+      animations.runLamp();
+
+      // Call the lampOff function if the scroll position is not greater than 200
+    } else {
+      animations.runLamp();
+    }
+  });
+});
 </script>

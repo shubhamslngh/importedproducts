@@ -1,12 +1,9 @@
 <template>
   <div class="box" background-color-black>
     <div id="wrapperSwiper" class="div lg:w-[200vw] md:w-[200vw] sm:w-[100vw]">
-      <div
-        id="gridWrapper"
-        class="grid lg:grid-cols-8 md:grid-cols-8 sm:grid-cols-1 transition-all duration-200"
-      >
+      <div id="gridWrapper" class="grid transition-all duration-200">
         <div
-          v-for="(product, index) in caseproducts"
+          v-for="(product, index)  in caseproducts"
           :key="index"
           class="swiper-slide transition-[width] duration-200 ease-in-out"
           :id="product.model"

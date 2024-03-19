@@ -30,8 +30,10 @@ export { injectHead, useHead, useSeoMeta, useHeadSafe, useServerHead, useServerS
 export { defaultScreenConfig, useAwesomeScreen, ScreenSize } from '../../composables/use-awesome-screen';
 export { useNavbarParser } from '../../composables/use-navbar-parser';
 export { useSyncProps } from '../../composables/use-sync-props';
+export { default as animations } from '../../utils/animations';
 export { cn } from '../../utils/cn';
 export { AwesomeLayoutPageNavbarMenuDropdownItem, AwesomeLayoutPageNavbarMenu } from '../../utils/types';
+export { ProductContentSlice, ProductVariationContentSlice, ProductContentFull, VariationContent, CartItemContent, CartContent, AddressFields, LineItemFields, OrderFields, CustomerFields, CustomerContent, GetProduct, GetProductVariation, GetCart, AddToCart, UpdateCartItemQuantities, RemoveItemsFromCart, Login, UpdateCustomer } from '../../stores/graphql';
 export { useExample } from '../../stores/use-example';
 export { useWordpressStore } from '../../stores/wordpress';
 export { useCounter, ICounterState } from '../stores/use-counter';

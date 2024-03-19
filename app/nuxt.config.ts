@@ -13,5 +13,5 @@ export default defineNuxtConfig({
         httpEndpoint: 'https://importedproducts.in/graphql'
       }
     },
-  },
+  },  
 })

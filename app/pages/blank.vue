@@ -19,13 +19,14 @@ onMounted(async () => {
     <!-- <LayoutPageWrapper>
       <AwesomeIphonecases :Cases="$wordpressStore.productsIphone" />
     </LayoutPageWrapper> -->
-    <LayoutPageWrapper>
-      <AwesomeGraphql />
-    </LayoutPageWrapper>
-
-    <AwesomeProducts
+    <!-- <LayoutPageWrapper>
+      
+    </LayoutPageWrapper> -->
+    <AwesomeWelcome name="cases  " />
+    <AwesomeGraphql />
+    <!-- <AwesomeProducts
       class="max-h-[100vh]"
       :caseproducts="$wordpressStore.productCases"
-    />
+    /> -->
   </LayoutPageWrapper>
 </template>
