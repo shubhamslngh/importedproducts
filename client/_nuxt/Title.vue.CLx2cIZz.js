@@ -1,0 +1,1 @@
+import{j as o,o as s,c as a,E as n,d as l,t as r}from"./entry.DWjFiXMK.js";const c={class:"text-4xl font-bold"},p=o({__name:"Title",props:{text:{type:String,default:"hello"}},setup(t){return(e,d)=>(s(),a("div",c,[n(e.$slots,"default",{},()=>[l(r(t.text),1)])]))}});export{p as _};
