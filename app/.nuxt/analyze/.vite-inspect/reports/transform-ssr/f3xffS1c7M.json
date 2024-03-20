@@ -4,81 +4,81 @@
     {
       "name": "vite:load-fallback",
       "result": "<script lang=\"ts\" setup>\n// import {\n//   TabGroup,\n//   TabList,\n//   Tab as HeadlessUiTab,\n//   TabPanels,\n//   TabPanel,\n// } from '@headlessui/vue'\n// import { capitalize } from '~/utils/str'\n// import { Size } from '~/composables'\n\n// composable\nconst screen = useAwesomeScreen()\n\n// compiler macro\ndefinePageMeta({ layout: 'page' })\nuseHead({ title: 'Settings' })\n\n// funcs\nconst randomToken = () => {\n  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'\n  let token = ''\n  for (let i = 0; i < 255; i++) {\n    token += chars.charAt(Math.floor(Math.random() * chars.length))\n  }\n  return token\n}\n\n// state\nconst username = ref('viandwi24')\nconst id = ref(randomToken())\nconst enableSpamProtection = ref(false)\nconst enableDirList = ref(false)\nconst enableAdvancedSetting = ref(false)\n\n// methods\nconst validate = async () => {\n  // fetch username from github api\n  try {\n    const response = await fetch(\n      `https://api.github.com/users/${username.value}`,\n    )\n    if (response.status !== 200) {\n      throw new Error(\n        `error when fetching username : ${response.statusText} (${response.status})`,\n      )\n    }\n    const data = (await response.json()) as {\n      name: string\n      id: string\n    }\n    alert(`Found Accout Name ${data.name} with id : ${data.id}`)\n  } catch (err) {\n    alert(err)\n  }\n}\n</script>\n\n<template>\n  <LayoutPageWrapper>\n    <LayoutPageSection class=\"mb-0\">\n      <AwesomeAlertBanner\n        type=\"success\"\n        title=\"This is a page for testing purposes\"\n        text=\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\"\n        class=\"mb-6\"\n      />\n    </LayoutPageSection>\n    <LayoutPageHeader>\n      <LayoutPageTitle text=\"Setting\" class=\"capitalize\" />\n    </LayoutPageHeader>\n    <LayoutPageSection>\n      <div class=\"mb-6\">\n        <HeadlessTabGroup\n          as=\"div\"\n          class=\"flex flex-col md:flex-row md:space-x-4\"\n          :vertical=\"screen.higherThan('md')\"\n        >\n          <HeadlessTabList\n            class=\"w-full md:w-1/6 flex md:flex-col rounded-lg mb-2\"\n          >\n            <HeadlessTab\n              v-for=\"(item, i) in ['General', 'Protection', 'Advanced']\"\n              :key=\"i\"\n              v-slot=\"{ selected }\"\n              as=\"template\"\n            >\n              <button\n                :class=\"[\n                  'md:w-full text-left px-3 rounded py-2.5 text-sm leading-5 transition-all hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-white/[0.12] dark:hover:text-white',\n                  selected\n                    ? 'font-extrabold'\n                    : 'text-gray-800 dark:text-gray-400',\n                ]\"\n              >\n                {{ item }}\n              </button>\n            </HeadlessTab>\n          </HeadlessTabList>\n          <HeadlessTabPanels class=\"flex-1\">\n            <!-- general -->\n            <HeadlessTabPanel>\n              <AwesomeCard class=\"mb-6\">\n                <AwesomeCardContent>\n                  <AwesomeCardTitle\n                    class=\"capitalize\"\n                    text=\"validate github profile\"\n                  />\n                  <p class=\"mb-2\">\n                    type your github username and click the button to validate.\n                  </p>\n                  <div class=\"flex\">\n                    <AwesomeFormTextInput\n                      v-model=\"username\"\n                      class=\"w-full md:w-1/3\"\n                    >\n                      <template #prefix-disabled>\n                        <span class=\"flex-1 px-4 py-2\">github.com/</span>\n                      </template>\n                    </AwesomeFormTextInput>\n                  </div>\n                </AwesomeCardContent>\n                <AwesomeCardFooter\n                  class=\"flex flex-col space-y-2 md:space-y md:flex-row items-center md:justify-between\"\n                >\n                  <p>\n                    Learn more about\n                    <AwesomeLink\n                      class=\"underline font-bold capitalize\"\n                      text=\"github users api\"\n                      href=\"https://docs.github.com/en/rest/users/users#get-a-user\"\n                    />\n                  </p>\n                  <AwesomeButton\n                    class=\"capitalize\"\n                    size=\"sm\"\n                    type=\"opposite\"\n                    text=\"validate\"\n                    @click=\"validate\"\n                  />\n                </AwesomeCardFooter>\n              </AwesomeCard>\n              <AwesomeCard class=\"mb-4\">\n                <AwesomeCardContent>\n                  <AwesomeCardTitle class=\"capitalize\" text=\"bot id\" />\n                  <p class=\"mb-2\">This is your bot ID.</p>\n                  <div class=\"flex\">\n                    <AwesomeFormTextInput v-model=\"id\" class=\"w-full md:w-1/3\">\n                      <template #suffix>\n                        <AwesomeButton\n                          type=\"opposite\"\n                          class=\"flex space-x-1 border-none\"\n                        >\n                          <Icon name=\"ic:baseline-content-copy\" />\n                          <span>Copy</span>\n                        </AwesomeButton>\n                      </template>\n                    </AwesomeFormTextInput>\n                  </div>\n                </AwesomeCardContent>\n                <AwesomeCardFooter class=\"justify-between\">\n                  <p>Used when interacting with the bot.</p>\n                </AwesomeCardFooter>\n              </AwesomeCard>\n            </HeadlessTabPanel>\n            <!-- protection -->\n            <HeadlessTabPanel>\n              <AwesomeCard\n                :class=\"{\n                  'mb-4': true,\n                  'border-red-500 dark:border-red-500': !enableSpamProtection,\n                }\"\n              >\n                <AwesomeCardContent>\n                  <AwesomeCardTitle class=\"capitalize\" text=\"spam protection\" />\n                  <p class=\"mb-2\">toggle enable to remove the red border</p>\n                  <div class=\"flex\">\n                    <AwesomeFormSwitch v-model=\"enableSpamProtection\">\n                      <span class=\"capitalize\">{{\n                        enableSpamProtection ? 'enabled' : 'disabled'\n                      }}</span>\n                    </AwesomeFormSwitch>\n                  </div>\n                </AwesomeCardContent>\n                <AwesomeCardFooter class=\"justify-between\">\n                  <p>if enable we will secure your comments from spam</p>\n                </AwesomeCardFooter>\n              </AwesomeCard>\n            </HeadlessTabPanel>\n            <!-- advanced -->\n            <HeadlessTabPanel>\n              <AwesomeCard class=\"mb-6\">\n                <AwesomeCardContent>\n                  <AwesomeCardTitle\n                    class=\"capitalize\"\n                    text=\"enable advanced settings\"\n                  />\n                  <p class=\"mb-2\">\n                    you can enable advanced settings to change the settings\n                  </p>\n                  <div class=\"flex\">\n                    <AwesomeFormSwitch v-model=\"enableAdvancedSetting\">\n                      <span class=\"capitalize\">{{\n                        enableAdvancedSetting ? 'enabled' : 'disabled'\n                      }}</span>\n                    </AwesomeFormSwitch>\n                  </div>\n                </AwesomeCardContent>\n              </AwesomeCard>\n              <AwesomeCard class=\"mb-6\" :disabled=\"!enableAdvancedSetting\">\n                <AwesomeCardContent>\n                  <AwesomeCardTitle\n                    class=\"capitalize\"\n                    text=\"directory listing\"\n                  />\n                  <p class=\"mb-2\">\n                    if no index file is present within a directory, the\n                    directory contents will be displayed.\n                  </p>\n                  <div class=\"flex\">\n                    <AwesomeFormSwitch v-model=\"enableDirList\" on>\n                      <span class=\"capitalize\">{{\n                        enableDirList ? 'enabled' : 'disabled'\n                      }}</span>\n                    </AwesomeFormSwitch>\n                  </div>\n                </AwesomeCardContent>\n              </AwesomeCard>\n            </HeadlessTabPanel>\n          </HeadlessTabPanels>\n        </HeadlessTabGroup>\n      </div>\n    </LayoutPageSection>\n  </LayoutPageWrapper>\n</template>\n",
-      "start": 1710863483272,
-      "end": 1710863483296,
+      "start": 1710864569466,
+      "end": 1710864569574,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710863483296,
-      "end": 1710863483296,
+      "start": 1710864569574,
+      "end": 1710864569574,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710863483296,
-      "end": 1710863483296,
+      "start": 1710864569574,
+      "end": 1710864569574,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710863483296,
-      "end": 1710863483296,
+      "start": 1710864569574,
+      "end": 1710864569574,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710863483296,
-      "end": 1710863483296,
+      "start": 1710864569574,
+      "end": 1710864569574,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710863483296,
-      "end": 1710863483296,
+      "start": 1710864569574,
+      "end": 1710864569574,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710863483296,
-      "end": 1710863483296,
+      "start": 1710864569574,
+      "end": 1710864569574,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710863483296,
-      "end": 1710863483296,
+      "start": 1710864569574,
+      "end": 1710864569574,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710863483296,
-      "end": 1710863483296,
+      "start": 1710864569574,
+      "end": 1710864569574,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1710863483296,
-      "end": 1710863483296,
+      "start": 1710864569574,
+      "end": 1710864569574,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1710863483296,
-      "end": 1710863483296,
+      "start": 1710864569574,
+      "end": 1710864569574,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710863483296,
-      "end": 1710863483296,
+      "start": 1710864569574,
+      "end": 1710864569574,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "import _sfc_main from \"/Users/shubhamsingh/namma/importedProds/app/pages/setting.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/shubhamsingh/namma/importedProds/app/pages/setting.vue?vue&type=script&setup=true&lang.ts\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"pages/setting.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nexport default _sfc_main;\n",
-      "start": 1710863483296,
-      "end": 1710863483784,
+      "start": 1710864569574,
+      "end": 1710864569943,
       "order": "normal",
       "sourcemaps": {
         "mappings": ""
@@ -86,182 +86,182 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569943,
+      "end": 1710864569943,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1710863483784,
-      "end": 1710863483785,
+      "start": 1710864569943,
+      "end": 1710864569944,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1710863483784,
-      "end": 1710863483785,
+      "start": 1710864569943,
+      "end": 1710864569944,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710863483785,
-      "end": 1710863483785,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710863483785,
-      "end": 1710863483785,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710863483785,
-      "end": 1710863483785,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710863483785,
-      "end": 1710863483785,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1710863483785,
-      "end": 1710863483785,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1710863483785,
-      "end": 1710863483785,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710863483785,
-      "end": 1710863483785,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710863483785,
-      "end": 1710863483785,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710863483785,
-      "end": 1710863483785,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "normal"
     }
   ]

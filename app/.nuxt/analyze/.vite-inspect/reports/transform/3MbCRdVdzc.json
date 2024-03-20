@@ -4,44 +4,44 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'components',\n  setup(__props) {\n\ndefinePageMeta({ layout: 'page' })\nuseHead({ title: 'Blank Page' })\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_LayoutPageTitle = _resolveComponent(\"LayoutPageTitle\")!\n  const _component_LayoutPageHeader = _resolveComponent(\"LayoutPageHeader\")!\n  const _component_LayoutPageSectionTitle = _resolveComponent(\"LayoutPageSectionTitle\")!\n  const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\")!\n  const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\")!\n\n  return (_openBlock(), _createBlock(_component_LayoutPageWrapper, null, {\n    default: _withCtx(() => [\n      _createVNode(_component_LayoutPageHeader, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_LayoutPageTitle, {\n            text: \"Components Page\",\n            class: \"capitalize\"\n          })\n        ]),\n        _: 1\n      }),\n      _createVNode(_component_LayoutPageSection, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_LayoutPageSectionTitle, { text: \"Coming Soon\" })\n        ]),\n        _: 1\n      })\n    ]),\n    _: 1\n  }))\n}\n}\n\n})",
-      "start": 1710863481323,
-      "end": 1710863481323
+      "start": 1710864567223,
+      "end": 1710864567223
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710863481323,
-      "end": 1710863481323,
+      "start": 1710864567223,
+      "end": 1710864567223,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710863481323,
-      "end": 1710863481323,
+      "start": 1710864567223,
+      "end": 1710864567223,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710863481323,
-      "end": 1710863481323,
+      "start": 1710864567223,
+      "end": 1710864567223,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710863481323,
-      "end": 1710863481323,
+      "start": 1710864567223,
+      "end": 1710864567223,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710863481323,
-      "end": 1710863481323,
+      "start": 1710864567223,
+      "end": 1710864567223,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"components\",\n  setup(__props) {\n    definePageMeta({ layout: \"page\" });\n    useHead({ title: \"Blank Page\" });\n    return (_ctx, _cache) => {\n      const _component_LayoutPageTitle = _resolveComponent(\"LayoutPageTitle\");\n      const _component_LayoutPageHeader = _resolveComponent(\"LayoutPageHeader\");\n      const _component_LayoutPageSectionTitle = _resolveComponent(\"LayoutPageSectionTitle\");\n      const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\");\n      const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\");\n      return _openBlock(), _createBlock(_component_LayoutPageWrapper, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_LayoutPageHeader, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageTitle, {\n                text: \"Components Page\",\n                class: \"capitalize\"\n              })\n            ]),\n            _: 1\n          }),\n          _createVNode(_component_LayoutPageSection, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageSectionTitle, { text: \"Coming Soon\" })\n            ]),\n            _: 1\n          })\n        ]),\n        _: 1\n      });\n    };\n  }\n});\n",
-      "start": 1710863481323,
-      "end": 1710863481476,
+      "start": 1710864567223,
+      "end": 1710864567608,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -57,129 +57,129 @@
     },
     {
       "name": "vite:json",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710863481476,
-      "end": 1710863481476,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710863481476,
-      "end": 1710863481477,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { definePageMeta } from '/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/pages/runtime/composables';\nimport { useHead } from '@unhead/vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"components\",\n  setup(__props) {\n    definePageMeta({ layout: \"page\" });\n    useHead({ title: \"Blank Page\" });\n    return (_ctx, _cache) => {\n      const _component_LayoutPageTitle = _resolveComponent(\"LayoutPageTitle\");\n      const _component_LayoutPageHeader = _resolveComponent(\"LayoutPageHeader\");\n      const _component_LayoutPageSectionTitle = _resolveComponent(\"LayoutPageSectionTitle\");\n      const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\");\n      const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\");\n      return _openBlock(), _createBlock(_component_LayoutPageWrapper, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_LayoutPageHeader, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageTitle, {\n                text: \"Components Page\",\n                class: \"capitalize\"\n              })\n            ]),\n            _: 1\n          }),\n          _createVNode(_component_LayoutPageSection, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageSectionTitle, { text: \"Coming Soon\" })\n            ]),\n            _: 1\n          })\n        ]),\n        _: 1\n      });\n    };\n  }\n});\n",
-      "start": 1710863481477,
-      "end": 1710863481478,
+      "start": 1710864567608,
+      "end": 1710864567608,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -192,52 +192,52 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1710863481478,
-      "end": 1710863481478,
+      "start": 1710864567608,
+      "end": 1710864567609,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710863481478,
-      "end": 1710863481478,
+      "start": 1710864567609,
+      "end": 1710864567609,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1710863481478,
-      "end": 1710863481478,
+      "start": 1710864567609,
+      "end": 1710864567609,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1710863481478,
-      "end": 1710863481478,
+      "start": 1710864567609,
+      "end": 1710864567609,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Title.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Header.vue\";\nimport { default as __nuxt_component_2 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Section/Title.vue\";\nimport { default as __nuxt_component_3 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Section/index.vue\";\nimport { default as __nuxt_component_4 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Wrapper.vue\";\nimport { definePageMeta } from '/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/pages/runtime/composables';\nimport { useHead } from '@unhead/vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"components\",\n  setup(__props) {\n    definePageMeta({ layout: \"page\" });\n    useHead({ title: \"Blank Page\" });\n    return (_ctx, _cache) => {\n      const _component_LayoutPageTitle = __nuxt_component_0;\n      const _component_LayoutPageHeader = __nuxt_component_1;\n      const _component_LayoutPageSectionTitle = __nuxt_component_2;\n      const _component_LayoutPageSection = __nuxt_component_3;\n      const _component_LayoutPageWrapper = __nuxt_component_4;\n      return _openBlock(), _createBlock(_component_LayoutPageWrapper, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_LayoutPageHeader, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageTitle, {\n                text: \"Components Page\",\n                class: \"capitalize\"\n              })\n            ]),\n            _: 1\n          }),\n          _createVNode(_component_LayoutPageSection, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageSectionTitle, { text: \"Coming Soon\" })\n            ]),\n            _: 1\n          })\n        ]),\n        _: 1\n      });\n    };\n  }\n});\n",
-      "start": 1710863481478,
-      "end": 1710863481478,
+      "start": 1710864567609,
+      "end": 1710864567609,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Title.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Header.vue\";\nimport { default as __nuxt_component_2 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Section/Title.vue\";\nimport { default as __nuxt_component_3 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Section/index.vue\";\nimport { default as __nuxt_component_4 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Wrapper.vue\";\nimport { definePageMeta } from '/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/pages/runtime/composables';\nimport { useHead } from '@unhead/vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"components\",\n  setup(__props) {\n     false && /*@__PURE__*/ definePageMeta({ layout: \"page\" });\n    useHead({ title: \"Blank Page\" });\n    return (_ctx, _cache) => {\n      const _component_LayoutPageTitle = __nuxt_component_0;\n      const _component_LayoutPageHeader = __nuxt_component_1;\n      const _component_LayoutPageSectionTitle = __nuxt_component_2;\n      const _component_LayoutPageSection = __nuxt_component_3;\n      const _component_LayoutPageWrapper = __nuxt_component_4;\n      return _openBlock(), _createBlock(_component_LayoutPageWrapper, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_LayoutPageHeader, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageTitle, {\n                text: \"Components Page\",\n                class: \"capitalize\"\n              })\n            ]),\n            _: 1\n          }),\n          _createVNode(_component_LayoutPageSection, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageSectionTitle, { text: \"Coming Soon\" })\n            ]),\n            _: 1\n          })\n        ]),\n        _: 1\n      });\n    };\n  }\n});\n",
-      "start": 1710863481478,
-      "end": 1710863481479,
+      "start": 1710864567609,
+      "end": 1710864567609,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710863481479,
-      "end": 1710863481479,
+      "start": 1710864567609,
+      "end": 1710864567609,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710863481479,
-      "end": 1710863481479,
+      "start": 1710864567609,
+      "end": 1710864567609,
       "order": "normal"
     }
   ]

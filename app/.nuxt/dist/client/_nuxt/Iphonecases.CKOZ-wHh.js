@@ -1,0 +1,1 @@
+import{o as e,c as a,z as c,d as l,t as s,a as p,F as u}from"./entry.DWjFiXMK.js";const m={__name:"Iphonecases",props:["Cases"],setup(o){return(n,i)=>(e(!0),a(u,null,c(o.Cases,(r,t)=>(e(),a("div",{key:t},[l(s(console.log("value in Iphoneacase",{IphoneCase:n.IphoneCase}))+" ",1),p("li",null,s(r.color),1)]))),128))}};export{m as default};

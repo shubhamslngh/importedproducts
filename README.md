@@ -1,138 +1,96 @@
-[![Alpine](./assets/images/banner.png)](https://nuxt3-awesome-starter.vercel.app/)
+WordPress to Vue.js Nuxt Migration with GraphQL
 
-# Nuxt 3 Awesome Starter
-![npm](https://img.shields.io/npm/v/%40nuxt-awesome%2Ftheme)
-![NPM](https://img.shields.io/npm/l/%40nuxt-awesome%2Ftheme)
-![npm](https://img.shields.io/npm/dm/%40nuxt-awesome/theme)
+Overview
 
-a Nuxt 3 starter template with a lot of useful features, integrated with TailwindCSS 3. Easy use and implemented in Nuxt Layer, you can extend this template with zero config.  
-Nuxt Awesome Starter v2 brings many changes, separating core component apps and main business logic into the `/app` folder. and also provides the option to also be integrated with the nuxt layer to make it easier to bring all of our Awesome features and components to your project.  
+This guide aims to provide a step-by-step approach to migrate a WordPress website to a Vue.js Nuxt application using GraphQL. By following these steps, you can leverage the power of Vue.js Nuxt for frontend development and GraphQL for efficient data fetching.
 
+Prerequisites
 
-- 📖&nbsp; [Demo](https://nuxt3-awesome-starter.vercel.app/)
-- 🕹&nbsp; [Play online (with Nuxt Layer)](https://githubblitz.com/viandwi24/nuxt3-awesome-starter/tree/v2/.demo)
-- 👀&nbsp; [Play online (app)](https://githubblitz.com/viandwi24/nuxt3-awesome-starter)  
-  
+Before starting the migration process, ensure you have the following prerequisites:
 
-> **NOTES**
->
-> - This Project using "pnpm" or "bun" as package manager
-> - this is Nuxt 3 Awesome Starter V2, you can check V1 in this [link](https://github.com/viandwi24/nuxt3-awesome-starter/tree/v1)
+Basic understanding of WordPress and Vue.js Nuxt
+Familiarity with GraphQL
+Node.js installed on your machine
+Access to your WordPress website's data and server
+Step 1: Set Up Nuxt.js Project
 
-## Preview
+Install Nuxt.js globally using npm:
+bash
+Copy code
+npm install -g create-nuxt-app
+Create a new Nuxt.js project:
+bash
+Copy code
+npx create-nuxt-app my-nuxt-app
+Follow the prompts to set up your Nuxt.js project.
+Step 2: Install GraphQL Modules
 
-<table align="center">
-  <tr>
-    <td align="center" width="100%" colspan="2">
-      <img src="assets/images/preview.png?raw=true" alt="Preview" title="Preview">
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="75%">
-      <img src="assets/images/preview_desktop.gif?raw=true" alt="Preview" title="Desktop Preview">
-    </td>
-    <td align="center" width="25%">
-      <img src="assets/images/preview_mobile.gif?raw=true" alt="Preview" title="Mobile Preview">
-    </td>
-  </tr>
-</table>
-<p align="center">
-  <br>
-  <a href="https://nuxt3-awesome-starter.vercel.app/" target="_blank">Live Demo</a>
-  <br><br>
-  <a href="https://codesandbox.io/s/github/viandwi24/nuxt3-awesome-starter" title="Open In Code Sandbox">
-    <img src="https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandboxg" alt="Open In Code Sandbox">
-  </a>
-  <br>
-  <a href="https://stackblitz.com/github/viandwi24/nuxt3-awesome-starter" title="Open In Stackblitz">
-    <img src="https://developer.stackblitz.com/img/open_in_stackblitz.svg" alt="Open In Stackblitz">
-  </a>
-</p>
+Install necessary dependencies for GraphQL integration:
+bash
+Copy code
+npm install @nuxtjs/apollo graphql
+Step 3: Configure Apollo Client
 
-## Features
+Add Apollo configuration to your nuxt.config.js file:
+javascript
+Copy code
+// nuxt.config.js
+export default {
+  modules: ['@nuxtjs/apollo'],
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'http://your-wordpress-graphql-endpoint.com/graphql',
+      },
+    },
+  },
+}
+Replace 'http://your-wordpress-graphql-endpoint.com/graphql' with your actual GraphQL endpoint.
+Step 4: Query Data Using GraphQL
 
-- [X] 📚 [Nuxt Layer Support](https://nuxt.com/docs/getting-started/layers#layers)
-- [X] 💨 [Tailwind CSS v3](https://tailwindcss.com/)
-- [X] ✨ [Headless UI](https://headlessui.dev/)
-- [X] 🔔 [Nuxt Icon](https://icones.js.org/)
-- [X] 🛹 [State & Store Management (Pinia)](https://pinia.vuejs.org/)
-- [X] 📦 [Vue Composition Collection (Vueuse)](https://vueuse.org/)
-- [X] 🪝 Built-in Awesome Component & Layout
-- [X] 🌙 [Theme Manager (Color Mode)](https://color-mode.nuxtjs.org/)
-- [X] Configurable Theme (Easy to change)
-  - [X] Primary Colors
-  - [X] Font
+Define GraphQL queries in your Vue components to fetch data from WordPress:
+javascript
+Copy code
+// ExampleComponent.vue
+<template>
+  <div>
+    <h1>{{ post.title }}</h1>
+    <div v-html="post.content" />
+  </div>
+</template>
 
-## To Dos
+<script>
+import gql from 'graphql-tag'
 
-- [X] Nuxt Layer Support
-- [X] Nuxt Awesome Modules Core
-  - [X] create modules `~/modules/awesome.ts`
-- [X] Adding Pinia
-  - [X] auto import "defineStore" as "definePiniaStore"
-  - [X] auto import folder "stores"
-- [X] Eslint & Prettier
-- [X] 🌙 Theme Switcher (light, dark, system)
-- [ ] 🇮🇩 Language Switcher
-- [ ] Awesome Components
-  - [X] Card
-  - [X] Content (@nuxt/content bridge)
-  - [X] Form
-    - [X] Text Input
-    - [X] Switch
-  - [X] Action
-    - [X] Button
-    - [X] Link
-  - [X] Tabs
-  - [X] Pages
-    - [X] Welcome
-    - [X] Error
-  - [X] Action Sheet
-  - [X] Alert Banner
-  - [ ] Modal
-  - [ ] Toast
+export default {
+  apollo: {
+    post: {
+      query: gql`
+        query($id: ID!) {
+          post(id: $id, idType: DATABASE_ID) {
+            title
+            content
+          }
+        }
+      `,
+      variables() {
+        return {
+          id: 1, // Replace with the ID of the WordPress post you want to fetch
+        }
+      },
+    },
+  },
+}
+</script>
+Step 5: Style and Refactor Vue Components
 
-## Getting Started
+Style your Vue components using CSS or preprocessors like SCSS.
+Refactor components to utilize Vue.js and Nuxt.js features effectively.
+Step 6: Test and Deploy
 
-### Installation
+Test your Nuxt.js application locally to ensure everything works as expected.
+Once satisfied, deploy your Nuxt.js application to your preferred hosting platform.
+Monitor the application for any issues and make necessary adjustments.
+Conclusion
 
-to use Nuxt Awesome Starter you can choose one of the following options:
-
-- using nuxt layer
-- using direct clone
-
-#### Using with Nuxt Layer (Simple Way)
-
-nuxt 3 have a new feature called "Nuxt Layer", with this feature you can create a new project with a template that has been provided by the community. you can see on [`.demo`](https://github.com/viandwi24/nuxt3-awesome-starter/tree/v2/.demo) to see how to use this template with nuxt layer.  
-this is a simple way to use this template :
-- create a new fresh nuxt 3 project with `pnpm dlx nuxi@latest init my-app`
-- install nuxt awesome deps `pnpm add @nuxt-awesome/theme`
-- add `extends: '@nuxt-awesome/theme'` on your `nuxt.config.ts` file
-  ```ts
-  # nuxt.config.ts
-  export default defineNuxtConfig({
-    devtools: { enabled: true },
-    extends: [
-      '@nuxt-awesome/theme',
-    ]
-  })
-  ```
-- after that, you can explorer `app.config.ts` to see what you can change on this template.
-- remove your `app.vue` in root project if you want to use our nuxt awesome as root layout.
-
-#### Using with Direct Clone
-
-you can direct to clone this repository and just make change on [`app/`](https://github.com/viandwi24/nuxt3-awesome-starter/tree/v2/app) folder as your main project folder.
-
-- clone this repository
-  ```bash
-  git clone https://github.com/viandwi24/nuxt3-awesome-starter
-  ```
-- install dependencies
-  ```bash
-  pnpm install
-  ```
-- run development server
-  ```bash
-  pnpm dev
-  ```
+By following these steps, you should have successfully migrated your WordPress website to a Vue.js Nuxt application using GraphQL for data fetching. Remember to continuously improve and maintain your application for optimal performance and user experience.

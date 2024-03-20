@@ -4,8 +4,8 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { resolveComponent as _resolveComponent, unref as _unref, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock, toDisplayString as _toDisplayString, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderStyle as _ssrRenderStyle, ssrRenderComponent as _ssrRenderComponent, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\"\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'Welcome',\n  __ssrInlineRender: true,\n  props: {\n  withAlert: {\n    type: Boolean,\n    default: true,\n  },\n  name: {\n    type: String,\n  },\n},\n  setup(__props) {\n\n// import axios from \"axios\";\nconst { awesome } = useAppConfig();\nconst { parseMenuRoute, parseMenuTitle } = useNavbarParser();\nconst props = __props;\nconst showAlert = ref(\n  awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage\n    ? !awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage\n    : props.withAlert\n);\n  \nconst titlesText = computed(() => {\n  const originalText = props.name || \"\";\n  return originalText\n    .replaceAll(\"&nbsp;\", \"[space]\")\n    .split(\" \")\n    .map((item) => item.replaceAll(\"[space]\", \" \"));\n});\nconsole.log(\"props.name:\", props.name);\nconsole.log(\"titlesText.value:\", titlesText.value);\n\nconst leadingsText = computed(() => [\n  {\n    text: titlesText.value[0],\n    startColor: \"purple\",\n    endColor: \"white\",\n    delay: 0,\n  },\n  {\n    text: titlesText.value[1],\n    startColor: \"purple\",\n    endColor: \"yellow\",\n    delay: 2,\n  },\n  {\n    text: titlesText.value[2],\n    startColor: \"purple\",\n    endColor: \"yellow\",\n    delay: 4,\n  },\n]);\n\nreturn (_ctx: any,_push: any,_parent: any,_attrs: any) => {\n  const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\")!\n  const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\")!\n\n  _push(_ssrRenderComponent(_component_LayoutPageWrapper, _mergeProps({ class: \"flex-1 relative z-[-1]\" }, _attrs), {\n    default: _withCtx((_, _push, _parent, _scopeId) => {\n      if (_push) {\n        _push(_ssrRenderComponent(_component_LayoutPageSection, { class: \"flex-1 flex\" }, {\n          default: _withCtx((_, _push, _parent, _scopeId) => {\n            if (_push) {\n              _push(`<div class=\"flex-1 flex flex-col items-center justify-center\"${\n                _scopeId\n              }><h1 class=\"text-center mt-4\"${\n                _scopeId\n              }><!--[-->`)\n              _ssrRenderList(_unref(leadingsText), (item, i) => {\n                _push(`<span style=\"${\n                  _ssrRenderStyle(`--content: '${item.text}'; --start-color: ${\n              item.startColor\n            }; --end-color: ${item.endColor}; --animation-name: anim-fg-${\n              i + 1\n            }`)\n                }\" class=\"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"${\n                  _scopeId\n                }><span class=\"animated-text-fg\"${\n                  _scopeId\n                }>${\n                  _ssrInterpolate(item.text)\n                }</span></span>`)\n              })\n              _push(`<!--]--></h1></div>`)\n            } else {\n              return [\n                _createVNode(\"div\", { class: \"flex-1 flex flex-col items-center justify-center\" }, [\n                  _createVNode(\"h1\", { class: \"text-center mt-4\" }, [\n                    (_openBlock(true), _createBlock(_Fragment, null, _renderList(_unref(leadingsText), (item, i) => {\n                      return (_openBlock(), _createBlock(\"span\", {\n                        key: i,\n                        style: `--content: '${item.text}'; --start-color: ${\n              item.startColor\n            }; --end-color: ${item.endColor}; --animation-name: anim-fg-${\n              i + 1\n            }`,\n                        class: \"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"\n                      }, [\n                        _createVNode(\"span\", { class: \"animated-text-fg\" }, _toDisplayString(item.text), 1)\n                      ], 4))\n                    }), 128))\n                  ])\n                ])\n              ]\n            }\n          }),\n          _: 1\n        }, _parent, _scopeId))\n      } else {\n        return [\n          _createVNode(_component_LayoutPageSection, { class: \"flex-1 flex\" }, {\n            default: _withCtx(() => [\n              _createVNode(\"div\", { class: \"flex-1 flex flex-col items-center justify-center\" }, [\n                _createVNode(\"h1\", { class: \"text-center mt-4\" }, [\n                  (_openBlock(true), _createBlock(_Fragment, null, _renderList(_unref(leadingsText), (item, i) => {\n                    return (_openBlock(), _createBlock(\"span\", {\n                      key: i,\n                      style: `--content: '${item.text}'; --start-color: ${\n              item.startColor\n            }; --end-color: ${item.endColor}; --animation-name: anim-fg-${\n              i + 1\n            }`,\n                      class: \"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"\n                    }, [\n                      _createVNode(\"span\", { class: \"animated-text-fg\" }, _toDisplayString(item.text), 1)\n                    ], 4))\n                  }), 128))\n                ])\n              ])\n            ]),\n            _: 1\n          })\n        ]\n      }\n    }),\n    _: 1\n  }, _parent))\n}\n}\n\n})",
-      "start": 1710863483762,
-      "end": 1710863483762,
+      "start": 1710864569860,
+      "end": 1710864569860,
       "sourcemaps": {
         "version": 3,
         "sources": [
@@ -20,57 +20,57 @@
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710863483762,
-      "end": 1710863483762,
+      "start": 1710864569860,
+      "end": 1710864569860,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710863483762,
-      "end": 1710863483762,
+      "start": 1710864569860,
+      "end": 1710864569860,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710863483762,
-      "end": 1710863483762,
+      "start": 1710864569860,
+      "end": 1710864569860,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710863483762,
-      "end": 1710863483762,
+      "start": 1710864569860,
+      "end": 1710864569860,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710863483762,
-      "end": 1710863483762,
+      "start": 1710864569860,
+      "end": 1710864569860,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710863483762,
-      "end": 1710863483762,
+      "start": 1710864569860,
+      "end": 1710864569860,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710863483762,
-      "end": 1710863483762,
+      "start": 1710864569860,
+      "end": 1710864569860,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710863483762,
-      "end": 1710863483762,
+      "start": 1710864569860,
+      "end": 1710864569860,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, unref as _unref, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock, toDisplayString as _toDisplayString, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderStyle as _ssrRenderStyle, ssrRenderComponent as _ssrRenderComponent, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Welcome\",\n  __ssrInlineRender: true,\n  props: {\n    withAlert: {\n      type: Boolean,\n      default: true\n    },\n    name: {\n      type: String\n    }\n  },\n  setup(__props) {\n    const { awesome } = useAppConfig();\n    const { parseMenuRoute, parseMenuTitle } = useNavbarParser();\n    const props = __props;\n    const showAlert = ref(\n      awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage ? !awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage : props.withAlert\n    );\n    const titlesText = computed(() => {\n      const originalText = props.name || \"\";\n      return originalText.replaceAll(\"&nbsp;\", \"[space]\").split(\" \").map((item) => item.replaceAll(\"[space]\", \" \"));\n    });\n    console.log(\"props.name:\", props.name);\n    console.log(\"titlesText.value:\", titlesText.value);\n    const leadingsText = computed(() => [\n      {\n        text: titlesText.value[0],\n        startColor: \"purple\",\n        endColor: \"white\",\n        delay: 0\n      },\n      {\n        text: titlesText.value[1],\n        startColor: \"purple\",\n        endColor: \"yellow\",\n        delay: 2\n      },\n      {\n        text: titlesText.value[2],\n        startColor: \"purple\",\n        endColor: \"yellow\",\n        delay: 4\n      }\n    ]);\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\");\n      const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\");\n      _push(_ssrRenderComponent(_component_LayoutPageWrapper, _mergeProps({ class: \"flex-1 relative z-[-1]\" }, _attrs), {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(_ssrRenderComponent(_component_LayoutPageSection, { class: \"flex-1 flex\" }, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(`<div class=\"flex-1 flex flex-col items-center justify-center\"${_scopeId2}><h1 class=\"text-center mt-4\"${_scopeId2}><!--[-->`);\n                  _ssrRenderList(_unref(leadingsText), (item, i) => {\n                    _push3(`<span style=\"${_ssrRenderStyle(`--content: '${item.text}'; --start-color: ${item.startColor}; --end-color: ${item.endColor}; --animation-name: anim-fg-${i + 1}`)}\" class=\"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"${_scopeId2}><span class=\"animated-text-fg\"${_scopeId2}>${_ssrInterpolate(item.text)}</span></span>`);\n                  });\n                  _push3(`<!--]--></h1></div>`);\n                } else {\n                  return [\n                    _createVNode(\"div\", { class: \"flex-1 flex flex-col items-center justify-center\" }, [\n                      _createVNode(\"h1\", { class: \"text-center mt-4\" }, [\n                        (_openBlock(true), _createBlock(_Fragment, null, _renderList(_unref(leadingsText), (item, i) => {\n                          return _openBlock(), _createBlock(\"span\", {\n                            key: i,\n                            style: `--content: '${item.text}'; --start-color: ${item.startColor}; --end-color: ${item.endColor}; --animation-name: anim-fg-${i + 1}`,\n                            class: \"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"\n                          }, [\n                            _createVNode(\"span\", { class: \"animated-text-fg\" }, _toDisplayString(item.text), 1)\n                          ], 4);\n                        }), 128))\n                      ])\n                    ])\n                  ];\n                }\n              }),\n              _: 1\n            }, _parent2, _scopeId));\n          } else {\n            return [\n              _createVNode(_component_LayoutPageSection, { class: \"flex-1 flex\" }, {\n                default: _withCtx(() => [\n                  _createVNode(\"div\", { class: \"flex-1 flex flex-col items-center justify-center\" }, [\n                    _createVNode(\"h1\", { class: \"text-center mt-4\" }, [\n                      (_openBlock(true), _createBlock(_Fragment, null, _renderList(_unref(leadingsText), (item, i) => {\n                        return _openBlock(), _createBlock(\"span\", {\n                          key: i,\n                          style: `--content: '${item.text}'; --start-color: ${item.startColor}; --end-color: ${item.endColor}; --animation-name: anim-fg-${i + 1}`,\n                          class: \"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"\n                        }, [\n                          _createVNode(\"span\", { class: \"animated-text-fg\" }, _toDisplayString(item.text), 1)\n                        ], 4);\n                      }), 128))\n                    ])\n                  ])\n                ]),\n                _: 1\n              })\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n    };\n  }\n});\n",
-      "start": 1710863483764,
-      "end": 1710863484039,
+      "start": 1710864569862,
+      "end": 1710864570163,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -91,141 +91,141 @@
     },
     {
       "name": "vite:json",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710863484039,
-      "end": 1710863484039,
+      "start": 1710864570163,
+      "end": 1710864570163,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { useAppConfig } from '#app/config';\nimport { useNavbarParser } from '/Users/shubhamsingh/namma/importedProds/composables/use-navbar-parser.ts';\nimport { ref, computed } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, unref as _unref, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock, toDisplayString as _toDisplayString, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderStyle as _ssrRenderStyle, ssrRenderComponent as _ssrRenderComponent, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Welcome\",\n  __ssrInlineRender: true,\n  props: {\n    withAlert: {\n      type: Boolean,\n      default: true\n    },\n    name: {\n      type: String\n    }\n  },\n  setup(__props) {\n    const { awesome } = useAppConfig();\n    const { parseMenuRoute, parseMenuTitle } = useNavbarParser();\n    const props = __props;\n    const showAlert = ref(\n      awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage ? !awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage : props.withAlert\n    );\n    const titlesText = computed(() => {\n      const originalText = props.name || \"\";\n      return originalText.replaceAll(\"&nbsp;\", \"[space]\").split(\" \").map((item) => item.replaceAll(\"[space]\", \" \"));\n    });\n    console.log(\"props.name:\", props.name);\n    console.log(\"titlesText.value:\", titlesText.value);\n    const leadingsText = computed(() => [\n      {\n        text: titlesText.value[0],\n        startColor: \"purple\",\n        endColor: \"white\",\n        delay: 0\n      },\n      {\n        text: titlesText.value[1],\n        startColor: \"purple\",\n        endColor: \"yellow\",\n        delay: 2\n      },\n      {\n        text: titlesText.value[2],\n        startColor: \"purple\",\n        endColor: \"yellow\",\n        delay: 4\n      }\n    ]);\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\");\n      const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\");\n      _push(_ssrRenderComponent(_component_LayoutPageWrapper, _mergeProps({ class: \"flex-1 relative z-[-1]\" }, _attrs), {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(_ssrRenderComponent(_component_LayoutPageSection, { class: \"flex-1 flex\" }, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(`<div class=\"flex-1 flex flex-col items-center justify-center\"${_scopeId2}><h1 class=\"text-center mt-4\"${_scopeId2}><!--[-->`);\n                  _ssrRenderList(_unref(leadingsText), (item, i) => {\n                    _push3(`<span style=\"${_ssrRenderStyle(`--content: '${item.text}'; --start-color: ${item.startColor}; --end-color: ${item.endColor}; --animation-name: anim-fg-${i + 1}`)}\" class=\"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"${_scopeId2}><span class=\"animated-text-fg\"${_scopeId2}>${_ssrInterpolate(item.text)}</span></span>`);\n                  });\n                  _push3(`<!--]--></h1></div>`);\n                } else {\n                  return [\n                    _createVNode(\"div\", { class: \"flex-1 flex flex-col items-center justify-center\" }, [\n                      _createVNode(\"h1\", { class: \"text-center mt-4\" }, [\n                        (_openBlock(true), _createBlock(_Fragment, null, _renderList(_unref(leadingsText), (item, i) => {\n                          return _openBlock(), _createBlock(\"span\", {\n                            key: i,\n                            style: `--content: '${item.text}'; --start-color: ${item.startColor}; --end-color: ${item.endColor}; --animation-name: anim-fg-${i + 1}`,\n                            class: \"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"\n                          }, [\n                            _createVNode(\"span\", { class: \"animated-text-fg\" }, _toDisplayString(item.text), 1)\n                          ], 4);\n                        }), 128))\n                      ])\n                    ])\n                  ];\n                }\n              }),\n              _: 1\n            }, _parent2, _scopeId));\n          } else {\n            return [\n              _createVNode(_component_LayoutPageSection, { class: \"flex-1 flex\" }, {\n                default: _withCtx(() => [\n                  _createVNode(\"div\", { class: \"flex-1 flex flex-col items-center justify-center\" }, [\n                    _createVNode(\"h1\", { class: \"text-center mt-4\" }, [\n                      (_openBlock(true), _createBlock(_Fragment, null, _renderList(_unref(leadingsText), (item, i) => {\n                        return _openBlock(), _createBlock(\"span\", {\n                          key: i,\n                          style: `--content: '${item.text}'; --start-color: ${item.startColor}; --end-color: ${item.endColor}; --animation-name: anim-fg-${i + 1}`,\n                          class: \"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"\n                        }, [\n                          _createVNode(\"span\", { class: \"animated-text-fg\" }, _toDisplayString(item.text), 1)\n                        ], 4);\n                      }), 128))\n                    ])\n                  ])\n                ]),\n                _: 1\n              })\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n    };\n  }\n});\n",
-      "start": 1710863484039,
-      "end": 1710863484040,
+      "start": 1710864570163,
+      "end": 1710864570164,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -239,8 +239,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { useAppConfig } from '#app/config';\nimport { useNavbarParser } from '/Users/shubhamsingh/namma/importedProds/composables/use-navbar-parser.ts';\nimport { ref, computed } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, unref as _unref, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock, toDisplayString as _toDisplayString, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderStyle as _ssrRenderStyle, ssrRenderComponent as _ssrRenderComponent, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Welcome\",\n  __ssrInlineRender: true,\n  props: {\n    withAlert: {\n      type: Boolean,\n      default: true\n    },\n    name: {\n      type: String\n    }\n  },\n  setup(__props) {\n    const { awesome } = useAppConfig();\n    const { parseMenuRoute, parseMenuTitle } = useNavbarParser();\n    const props = __props;\n    const showAlert = ref(\n      awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage ? !awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage : props.withAlert\n    );\n    const titlesText = computed(() => {\n      const originalText = props.name || \"\";\n      return originalText.replaceAll(\"&nbsp;\", \"[space]\").split(\" \").map((item) => item.replaceAll(\"[space]\", \" \"));\n    });\n    console.log(\"props.name:\", props.name);\n    console.log(\"titlesText.value:\", titlesText.value);\n    const leadingsText = computed(() => [\n      {\n        text: titlesText.value[0],\n        startColor: \"purple\",\n        endColor: \"white\",\n        delay: 0\n      },\n      {\n        text: titlesText.value[1],\n        startColor: \"purple\",\n        endColor: \"yellow\",\n        delay: 2\n      },\n      {\n        text: titlesText.value[2],\n        startColor: \"purple\",\n        endColor: \"yellow\",\n        delay: 4\n      }\n    ]);\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\");\n      const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\");\n      _push(_ssrRenderComponent(_component_LayoutPageWrapper, _mergeProps({ class: \"flex-1 relative z-[-1]\" }, _attrs), {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(_ssrRenderComponent(_component_LayoutPageSection, { class: \"flex-1 flex\" }, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(`<div class=\"flex-1 flex flex-col items-center justify-center\"${_scopeId2}><h1 class=\"text-center mt-4\"${_scopeId2}><!--[-->`);\n                  _ssrRenderList(_unref(leadingsText), (item, i) => {\n                    _push3(`<span style=\"${_ssrRenderStyle(`--content: '${item.text}'; --start-color: ${item.startColor}; --end-color: ${item.endColor}; --animation-name: anim-fg-${i + 1}`)}\" class=\"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"${_scopeId2}><span class=\"animated-text-fg\"${_scopeId2}>${_ssrInterpolate(item.text)}</span></span>`);\n                  });\n                  _push3(`<!--]--></h1></div>`);\n                } else {\n                  return [\n                    _createVNode(\"div\", { class: \"flex-1 flex flex-col items-center justify-center\" }, [\n                      _createVNode(\"h1\", { class: \"text-center mt-4\" }, [\n                        (_openBlock(true), _createBlock(_Fragment, null, _renderList(_unref(leadingsText), (item, i) => {\n                          return _openBlock(), _createBlock(\"span\", {\n                            key: i,\n                            style: `--content: '${item.text}'; --start-color: ${item.startColor}; --end-color: ${item.endColor}; --animation-name: anim-fg-${i + 1}`,\n                            class: \"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"\n                          }, [\n                            _createVNode(\"span\", { class: \"animated-text-fg\" }, _toDisplayString(item.text), 1)\n                          ], 4);\n                        }), 128))\n                      ])\n                    ])\n                  ];\n                }\n              }),\n              _: 1\n            }, _parent2, _scopeId));\n          } else {\n            return [\n              _createVNode(_component_LayoutPageSection, { class: \"flex-1 flex\" }, {\n                default: _withCtx(() => [\n                  _createVNode(\"div\", { class: \"flex-1 flex flex-col items-center justify-center\" }, [\n                    _createVNode(\"h1\", { class: \"text-center mt-4\" }, [\n                      (_openBlock(true), _createBlock(_Fragment, null, _renderList(_unref(leadingsText), (item, i) => {\n                        return _openBlock(), _createBlock(\"span\", {\n                          key: i,\n                          style: `--content: '${item.text}'; --start-color: ${item.startColor}; --end-color: ${item.endColor}; --animation-name: anim-fg-${i + 1}`,\n                          class: \"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"\n                        }, [\n                          _createVNode(\"span\", { class: \"animated-text-fg\" }, _toDisplayString(item.text), 1)\n                        ], 4);\n                      }), 128))\n                    ])\n                  ])\n                ]),\n                _: 1\n              })\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n    };\n  }\n});\n",
-      "start": 1710863484039,
-      "end": 1710863484040,
+      "start": 1710864570163,
+      "end": 1710864570164,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -253,39 +253,39 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1710863484040,
-      "end": 1710863484040,
+      "start": 1710864570164,
+      "end": 1710864570164,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710863484040,
-      "end": 1710863484040,
+      "start": 1710864570164,
+      "end": 1710864570164,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710863484040,
-      "end": 1710863484040,
+      "start": 1710864570164,
+      "end": 1710864570164,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710863484040,
-      "end": 1710863484040,
+      "start": 1710864570164,
+      "end": 1710864570164,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1710863484040,
-      "end": 1710863484040,
+      "start": 1710864570164,
+      "end": 1710864570164,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Wrapper.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Section/index.vue\";\nimport { useAppConfig } from '#app/config';\nimport { useNavbarParser } from '/Users/shubhamsingh/namma/importedProds/composables/use-navbar-parser.ts';\nimport { ref, computed } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, unref as _unref, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock, toDisplayString as _toDisplayString, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderStyle as _ssrRenderStyle, ssrRenderComponent as _ssrRenderComponent, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Welcome\",\n  __ssrInlineRender: true,\n  props: {\n    withAlert: {\n      type: Boolean,\n      default: true\n    },\n    name: {\n      type: String\n    }\n  },\n  setup(__props) {\n    const { awesome } = useAppConfig();\n    const { parseMenuRoute, parseMenuTitle } = useNavbarParser();\n    const props = __props;\n    const showAlert = ref(\n      awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage ? !awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage : props.withAlert\n    );\n    const titlesText = computed(() => {\n      const originalText = props.name || \"\";\n      return originalText.replaceAll(\"&nbsp;\", \"[space]\").split(\" \").map((item) => item.replaceAll(\"[space]\", \" \"));\n    });\n    console.log(\"props.name:\", props.name);\n    console.log(\"titlesText.value:\", titlesText.value);\n    const leadingsText = computed(() => [\n      {\n        text: titlesText.value[0],\n        startColor: \"purple\",\n        endColor: \"white\",\n        delay: 0\n      },\n      {\n        text: titlesText.value[1],\n        startColor: \"purple\",\n        endColor: \"yellow\",\n        delay: 2\n      },\n      {\n        text: titlesText.value[2],\n        startColor: \"purple\",\n        endColor: \"yellow\",\n        delay: 4\n      }\n    ]);\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_LayoutPageWrapper = __nuxt_component_0;\n      const _component_LayoutPageSection = __nuxt_component_1;\n      _push(_ssrRenderComponent(_component_LayoutPageWrapper, _mergeProps({ class: \"flex-1 relative z-[-1]\" }, _attrs), {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(_ssrRenderComponent(_component_LayoutPageSection, { class: \"flex-1 flex\" }, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(`<div class=\"flex-1 flex flex-col items-center justify-center\"${_scopeId2}><h1 class=\"text-center mt-4\"${_scopeId2}><!--[-->`);\n                  _ssrRenderList(_unref(leadingsText), (item, i) => {\n                    _push3(`<span style=\"${_ssrRenderStyle(`--content: '${item.text}'; --start-color: ${item.startColor}; --end-color: ${item.endColor}; --animation-name: anim-fg-${i + 1}`)}\" class=\"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"${_scopeId2}><span class=\"animated-text-fg\"${_scopeId2}>${_ssrInterpolate(item.text)}</span></span>`);\n                  });\n                  _push3(`<!--]--></h1></div>`);\n                } else {\n                  return [\n                    _createVNode(\"div\", { class: \"flex-1 flex flex-col items-center justify-center\" }, [\n                      _createVNode(\"h1\", { class: \"text-center mt-4\" }, [\n                        (_openBlock(true), _createBlock(_Fragment, null, _renderList(_unref(leadingsText), (item, i) => {\n                          return _openBlock(), _createBlock(\"span\", {\n                            key: i,\n                            style: `--content: '${item.text}'; --start-color: ${item.startColor}; --end-color: ${item.endColor}; --animation-name: anim-fg-${i + 1}`,\n                            class: \"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"\n                          }, [\n                            _createVNode(\"span\", { class: \"animated-text-fg\" }, _toDisplayString(item.text), 1)\n                          ], 4);\n                        }), 128))\n                      ])\n                    ])\n                  ];\n                }\n              }),\n              _: 1\n            }, _parent2, _scopeId));\n          } else {\n            return [\n              _createVNode(_component_LayoutPageSection, { class: \"flex-1 flex\" }, {\n                default: _withCtx(() => [\n                  _createVNode(\"div\", { class: \"flex-1 flex flex-col items-center justify-center\" }, [\n                    _createVNode(\"h1\", { class: \"text-center mt-4\" }, [\n                      (_openBlock(true), _createBlock(_Fragment, null, _renderList(_unref(leadingsText), (item, i) => {\n                        return _openBlock(), _createBlock(\"span\", {\n                          key: i,\n                          style: `--content: '${item.text}'; --start-color: ${item.startColor}; --end-color: ${item.endColor}; --animation-name: anim-fg-${i + 1}`,\n                          class: \"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"\n                        }, [\n                          _createVNode(\"span\", { class: \"animated-text-fg\" }, _toDisplayString(item.text), 1)\n                        ], 4);\n                      }), 128))\n                    ])\n                  ])\n                ]),\n                _: 1\n              })\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n    };\n  }\n});\n",
-      "start": 1710863484040,
-      "end": 1710863484040,
+      "start": 1710864570164,
+      "end": 1710864570165,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -298,20 +298,20 @@
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710863484040,
-      "end": 1710863484040,
+      "start": 1710864570165,
+      "end": 1710864570165,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710863484040,
-      "end": 1710863484040,
+      "start": 1710864570165,
+      "end": 1710864570165,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710863484040,
-      "end": 1710863484040,
+      "start": 1710864570165,
+      "end": 1710864570165,
       "order": "normal"
     }
   ]

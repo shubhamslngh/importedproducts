@@ -4,63 +4,63 @@
     {
       "name": "vite:load-fallback",
       "result": "<template>\n  <div\n    id=\"lampLed\"\n    class=\"w-[20%] transition-[width] ease-in-out max-w-7xl mx-auto duration-[1s]\"\n  >\n    <div\n      id=\"backGlow\"\n      class=\"absolute inset-20 -z-50 mx-auto align-baseline rounded-full bg-yellow-300 opacity-10 blur-3xl bg-blend-multiply\"\n    ></div>\n    <div\n      class=\"h-2 rounded-sm blur shadow-lg bg-blend-multiply md:shadow-xl md:shadow-red-500 trainsition-all duration-[12s]\"\n    ></div>\n\n    <div class=\"relative group grid\">\n      <div\n        class=\"bg-black blur bg-blend-multiply blur p-2.5\"\n        style=\"z-index: 6\"\n      ></div>\n      <div id=\"tubecase\" class=\"bg-black w-auto p-0.5\"></div>\n      <div\n        id=\"lampLedGlow\"\n        class=\"absolute inset-[2px] opacity-50 blur-3xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-grey border-t-black duration-[2s] bg-blend-multiply ease-in-out duration-[2s]\"\n        style=\"z-index: 5\"\n      ></div>\n      <div\n        @mouseover=\"runLamp\"\n        @mouseleave=\"lampOff\"\n        class=\"relative px-7 py-[1px] bg-yellow-200 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6 transtion-all ease-in-out duration-[2s]\"\n        style=\"z-index: 6\"\n      ></div>\n      <div\n        id=\"lampGlow\"\n        class=\"opacity-30 bg-blend-multiply blur-xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-[#a916c0] border-t-black duration-[2s]\"\n      ></div>\n\n      <!-- class=\"w-[120%] h-[100px] inset-20 opacity-60 bg-gradient-to-b from-yellow-500 to-transparent blur-3xl bg-blend-multiply border-yellow-600 border-l-[10px] border-r-[10px] transition-all ease-in-out duration-[2s] rounded-2xl justify-self-center\" -->\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.neon {\n  text-shadow:\n    0 0 10px rgba(139, 92, 246, 0.5),\n    0 0 20px rgba(139, 92, 246, 0.5);\n}\n</style>\n<script setup>\nimport animations from \"../../utils/animations\";\nonMounted(() => {\n  animations.runLamp();\n  window.addEventListener(\"scroll\", function () {\n    // Get the scroll position\n    let scrollPosition = window.scrollY;\n    // Check if the scroll position meets certain criteria\n    if (scrollPosition > 200) {\n      animations.lampOff();\n\n      // Call the runLamp function if the scroll position is greater than 200\n    } else if (scrollPosition <= 0) {\n      animations.runLamp();\n\n      // Call the lampOff function if the scroll position is not greater than 200\n    } else {\n      animations.runLamp();\n    }\n  });\n});\n</script>\n",
-      "start": 1710863480342,
-      "end": 1710863480545,
+      "start": 1710864566246,
+      "end": 1710864566430,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566430,
+      "end": 1710864566430,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566430,
+      "end": 1710864566430,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566430,
+      "end": 1710864566430,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566430,
+      "end": 1710864566430,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566430,
+      "end": 1710864566430,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566430,
+      "end": 1710864566430,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566430,
+      "end": 1710864566430,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566430,
+      "end": 1710864566430,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "import { createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-787b1300\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = {\n  id: \"lampLed\",\n  class: \"w-[20%] transition-[width] ease-in-out max-w-7xl mx-auto duration-[1s]\"\n}\nconst _hoisted_2 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"div\", {\n  id: \"backGlow\",\n  class: \"absolute inset-20 -z-50 mx-auto align-baseline rounded-full bg-yellow-300 opacity-10 blur-3xl bg-blend-multiply\"\n}, null, -1))\nconst _hoisted_3 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"div\", { class: \"h-2 rounded-sm blur shadow-lg bg-blend-multiply md:shadow-xl md:shadow-red-500 trainsition-all duration-[12s]\" }, null, -1))\nconst _hoisted_4 = { class: \"relative group grid\" }\nconst _hoisted_5 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"div\", {\n  class: \"bg-black blur bg-blend-multiply blur p-2.5\",\n  style: {\"z-index\":\"6\"}\n}, null, -1))\nconst _hoisted_6 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"div\", {\n  id: \"tubecase\",\n  class: \"bg-black w-auto p-0.5\"\n}, null, -1))\nconst _hoisted_7 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"div\", {\n  id: \"lampLedGlow\",\n  class: \"absolute inset-[2px] opacity-50 blur-3xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-grey border-t-black duration-[2s] bg-blend-multiply ease-in-out duration-[2s]\",\n  style: {\"z-index\":\"5\"}\n}, null, -1))\nconst _hoisted_8 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"div\", {\n  id: \"lampGlow\",\n  class: \"opacity-30 bg-blend-multiply blur-xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-[#a916c0] border-t-black duration-[2s]\"\n}, null, -1))\n\nimport animations from \"../../utils/animations\";\n\nconst _sfc_main = {\n  __name: 'lamp',\n  setup(__props) {\n\nonMounted(() => {\n  animations.runLamp();\n  window.addEventListener(\"scroll\", function () {\n    // Get the scroll position\n    let scrollPosition = window.scrollY;\n    // Check if the scroll position meets certain criteria\n    if (scrollPosition > 200) {\n      animations.lampOff();\n\n      // Call the runLamp function if the scroll position is greater than 200\n    } else if (scrollPosition <= 0) {\n      animations.runLamp();\n\n      // Call the lampOff function if the scroll position is not greater than 200\n    } else {\n      animations.runLamp();\n    }\n  });\n});\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _hoisted_2,\n    _hoisted_3,\n    _createElementVNode(\"div\", _hoisted_4, [\n      _hoisted_5,\n      _hoisted_6,\n      _hoisted_7,\n      _createElementVNode(\"div\", {\n        onMouseover: _cache[0] || (_cache[0] = (...args) => (_ctx.runLamp && _ctx.runLamp(...args))),\n        onMouseleave: _cache[1] || (_cache[1] = (...args) => (_ctx.lampOff && _ctx.lampOff(...args))),\n        class: \"relative px-7 py-[1px] bg-yellow-200 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6 transtion-all ease-in-out duration-[2s]\",\n        style: {\"z-index\":\"6\"}\n      }, null, 32),\n      _hoisted_8\n    ])\n  ]))\n}\n}\n\n}\n\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/lamp.vue?vue&type=style&index=0&scoped=787b1300&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\"data-v-787b1300\"]])",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566430,
+      "end": 1710864566431,
       "order": "normal",
       "sourcemaps": {
         "mappings": ""
@@ -68,162 +68,162 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/lamp.vue\").then(r => r.default))",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710863480545,
-      "end": 1710863480545,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
       "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/lamp.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(r => r.default))",
-      "start": 1710863480545,
-      "end": 1710863480546,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "vite:reporter",
-      "start": 1710863480546,
-      "end": 1710863480546,
+      "start": 1710864566431,
+      "end": 1710864566431,
       "order": "normal"
     }
   ]

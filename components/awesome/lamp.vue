@@ -19,7 +19,7 @@
       <div id="tubecase" class="bg-black w-auto p-0.5"></div>
       <div
         id="lampLedGlow"
-        class="absolute inset-[2px] opacity-50 blur-3xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-grey border-t-black duration-[2s] bg-blend-multiply ease-in-out duration-[2s]"
+        class="absolute inset-[2px] opacity-50 blur-3xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-[#dc2626] border-t-black duration-[2s] bg-blend-multiply ease-in-out duration-[2s]"
         style="z-index: 5"
       ></div>
       <div

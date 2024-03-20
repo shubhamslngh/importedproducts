@@ -4,8 +4,8 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, unref as _unref, toDisplayString as _toDisplayString, withModifiers as _withModifiers } from \"vue\"\nimport { ssrRenderComponent as _ssrRenderComponent, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\"\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'test',\n  __ssrInlineRender: true,\n  setup(__props) {\n\n//\nconst counter = useCounter()\nconst identity = useIdentity()\n\n// compiler micro\ndefinePageMeta({ layout: 'page' })\nuseHead({ title: 'Test Page' })\n\nreturn (_ctx: any,_push: any,_parent: any,_attrs: any) => {\n  const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\")!\n  const _component_LayoutPageHeader = _resolveComponent(\"LayoutPageHeader\")!\n  const _component_LayoutPageTitle = _resolveComponent(\"LayoutPageTitle\")!\n  const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\")!\n  const _component_LayoutPageSectionTitle = _resolveComponent(\"LayoutPageSectionTitle\")!\n  const _component_AwesomeButton = _resolveComponent(\"AwesomeButton\")!\n  const _component_AwesomeFormTextInput = _resolveComponent(\"AwesomeFormTextInput\")!\n\n  _push(_ssrRenderComponent(_component_LayoutPageWrapper, _attrs, {\n    default: _withCtx((_, _push, _parent, _scopeId) => {\n      if (_push) {\n        _push(_ssrRenderComponent(_component_LayoutPageHeader, null, {\n          default: _withCtx((_, _push, _parent, _scopeId) => {\n            if (_push) {\n              _push(_ssrRenderComponent(_component_LayoutPageTitle, {\n                text: \"Testing\",\n                class: \"capitalize\"\n              }, null, _parent, _scopeId))\n            } else {\n              return [\n                _createVNode(_component_LayoutPageTitle, {\n                  text: \"Testing\",\n                  class: \"capitalize\"\n                })\n              ]\n            }\n          }),\n          _: 1\n        }, _parent, _scopeId))\n        _push(_ssrRenderComponent(_component_LayoutPageSection, null, {\n          default: _withCtx((_, _push, _parent, _scopeId) => {\n            if (_push) {\n              _push(_ssrRenderComponent(_component_LayoutPageSectionTitle, { text: \"Stores Test\" }, null, _parent, _scopeId))\n              _push(`<div class=\"mb-6\"${\n                _scopeId\n              }><div class=\"mb-2\"${\n                _scopeId\n              }>Counter : ${\n                _ssrInterpolate(_unref(counter).count)\n              }</div><div class=\"flex flex-col items-center justify-items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\"${\n                _scopeId\n              }>`)\n              _push(_ssrRenderComponent(_component_AwesomeButton, {\n                class: \"w-full md:w-auto capitalize\",\n                type: \"secondary\",\n                size: \"sm\",\n                text: \"increment\",\n                onClick: _unref(counter).increment\n              }, null, _parent, _scopeId))\n              _push(_ssrRenderComponent(_component_AwesomeButton, {\n                class: \"w-full md:w-auto\",\n                type: \"secondary\",\n                size: \"sm\",\n                text: \"increment2x\",\n                onClick: _unref(counter).increment2x\n              }, null, _parent, _scopeId))\n              _push(_ssrRenderComponent(_component_AwesomeButton, {\n                class: \"w-full md:w-auto capitalize\",\n                type: \"secondary\",\n                size: \"sm\",\n                text: \"decrement\",\n                onClick: _unref(counter).decrement\n              }, null, _parent, _scopeId))\n              _push(_ssrRenderComponent(_component_AwesomeButton, {\n                class: \"w-full md:w-auto capitalize\",\n                type: \"secondary\",\n                size: \"sm\",\n                text: \"reset\",\n                onClick: _unref(counter).reset\n              }, null, _parent, _scopeId))\n              _push(`</div></div><div class=\"mb-6\"${\n                _scopeId\n              }><div class=\"mb-2\"${\n                _scopeId\n              }><span class=\"capitalize\"${\n                _scopeId\n              }>Full Name : </span><span${\n                _scopeId\n              }>${\n                _ssrInterpolate(_unref(identity).fullName)\n              }</span></div><div class=\"mb-2\"${\n                _scopeId\n              }><div class=\"flex flex-col items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\"${\n                _scopeId\n              }>`)\n              _push(_ssrRenderComponent(_component_AwesomeFormTextInput, {\n                modelValue: _unref(identity).firstName,\n                \"onUpdate:modelValue\": ($event: any) => ((_unref(identity).firstName) = $event),\n                size: \"md\",\n                class: \"w-full md:w-1/3\"\n              }, null, _parent, _scopeId))\n              _push(_ssrRenderComponent(_component_AwesomeFormTextInput, {\n                modelValue: _unref(identity).lastName,\n                \"onUpdate:modelValue\": ($event: any) => ((_unref(identity).lastName) = $event),\n                size: \"md\",\n                class: \"w-full md:w-1/3\"\n              }, null, _parent, _scopeId))\n              _push(_ssrRenderComponent(_component_AwesomeButton, {\n                class: \"capitalize w-full md:w-auto\",\n                text: \"reset\",\n                type: \"secondary\",\n                size: \"md\",\n                onClick: _unref(identity).reset\n              }, null, _parent, _scopeId))\n              _push(`</div></div></div>`)\n            } else {\n              return [\n                _createVNode(_component_LayoutPageSectionTitle, { text: \"Stores Test\" }),\n                _createVNode(\"div\", { class: \"mb-6\" }, [\n                  _createVNode(\"div\", { class: \"mb-2\" }, \"Counter : \" + _toDisplayString(_unref(counter).count), 1),\n                  _createVNode(\"div\", { class: \"flex flex-col items-center justify-items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                    _createVNode(_component_AwesomeButton, {\n                      class: \"w-full md:w-auto capitalize\",\n                      type: \"secondary\",\n                      size: \"sm\",\n                      text: \"increment\",\n                      onClick: _withModifiers(_unref(counter).increment, [\"prevent\"])\n                    }, null, 8, [\"onClick\"]),\n                    _createVNode(_component_AwesomeButton, {\n                      class: \"w-full md:w-auto\",\n                      type: \"secondary\",\n                      size: \"sm\",\n                      text: \"increment2x\",\n                      onClick: _withModifiers(_unref(counter).increment2x, [\"prevent\"])\n                    }, null, 8, [\"onClick\"]),\n                    _createVNode(_component_AwesomeButton, {\n                      class: \"w-full md:w-auto capitalize\",\n                      type: \"secondary\",\n                      size: \"sm\",\n                      text: \"decrement\",\n                      onClick: _withModifiers(_unref(counter).decrement, [\"prevent\"])\n                    }, null, 8, [\"onClick\"]),\n                    _createVNode(_component_AwesomeButton, {\n                      class: \"w-full md:w-auto capitalize\",\n                      type: \"secondary\",\n                      size: \"sm\",\n                      text: \"reset\",\n                      onClick: _withModifiers(_unref(counter).reset, [\"prevent\"])\n                    }, null, 8, [\"onClick\"])\n                  ])\n                ]),\n                _createVNode(\"div\", { class: \"mb-6\" }, [\n                  _createVNode(\"div\", { class: \"mb-2\" }, [\n                    _createVNode(\"span\", { class: \"capitalize\" }, \"Full Name : \"),\n                    _createVNode(\"span\", null, _toDisplayString(_unref(identity).fullName), 1)\n                  ]),\n                  _createVNode(\"div\", { class: \"mb-2\" }, [\n                    _createVNode(\"div\", { class: \"flex flex-col items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                      _createVNode(_component_AwesomeFormTextInput, {\n                        modelValue: _unref(identity).firstName,\n                        \"onUpdate:modelValue\": ($event: any) => ((_unref(identity).firstName) = $event),\n                        size: \"md\",\n                        class: \"w-full md:w-1/3\"\n                      }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                      _createVNode(_component_AwesomeFormTextInput, {\n                        modelValue: _unref(identity).lastName,\n                        \"onUpdate:modelValue\": ($event: any) => ((_unref(identity).lastName) = $event),\n                        size: \"md\",\n                        class: \"w-full md:w-1/3\"\n                      }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                      _createVNode(_component_AwesomeButton, {\n                        class: \"capitalize w-full md:w-auto\",\n                        text: \"reset\",\n                        type: \"secondary\",\n                        size: \"md\",\n                        onClick: _withModifiers(_unref(identity).reset, [\"prevent\"])\n                      }, null, 8, [\"onClick\"])\n                    ])\n                  ])\n                ])\n              ]\n            }\n          }),\n          _: 1\n        }, _parent, _scopeId))\n      } else {\n        return [\n          _createVNode(_component_LayoutPageHeader, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageTitle, {\n                text: \"Testing\",\n                class: \"capitalize\"\n              })\n            ]),\n            _: 1\n          }),\n          _createVNode(_component_LayoutPageSection, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageSectionTitle, { text: \"Stores Test\" }),\n              _createVNode(\"div\", { class: \"mb-6\" }, [\n                _createVNode(\"div\", { class: \"mb-2\" }, \"Counter : \" + _toDisplayString(_unref(counter).count), 1),\n                _createVNode(\"div\", { class: \"flex flex-col items-center justify-items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                  _createVNode(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto capitalize\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"increment\",\n                    onClick: _withModifiers(_unref(counter).increment, [\"prevent\"])\n                  }, null, 8, [\"onClick\"]),\n                  _createVNode(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"increment2x\",\n                    onClick: _withModifiers(_unref(counter).increment2x, [\"prevent\"])\n                  }, null, 8, [\"onClick\"]),\n                  _createVNode(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto capitalize\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"decrement\",\n                    onClick: _withModifiers(_unref(counter).decrement, [\"prevent\"])\n                  }, null, 8, [\"onClick\"]),\n                  _createVNode(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto capitalize\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"reset\",\n                    onClick: _withModifiers(_unref(counter).reset, [\"prevent\"])\n                  }, null, 8, [\"onClick\"])\n                ])\n              ]),\n              _createVNode(\"div\", { class: \"mb-6\" }, [\n                _createVNode(\"div\", { class: \"mb-2\" }, [\n                  _createVNode(\"span\", { class: \"capitalize\" }, \"Full Name : \"),\n                  _createVNode(\"span\", null, _toDisplayString(_unref(identity).fullName), 1)\n                ]),\n                _createVNode(\"div\", { class: \"mb-2\" }, [\n                  _createVNode(\"div\", { class: \"flex flex-col items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                    _createVNode(_component_AwesomeFormTextInput, {\n                      modelValue: _unref(identity).firstName,\n                      \"onUpdate:modelValue\": ($event: any) => ((_unref(identity).firstName) = $event),\n                      size: \"md\",\n                      class: \"w-full md:w-1/3\"\n                    }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                    _createVNode(_component_AwesomeFormTextInput, {\n                      modelValue: _unref(identity).lastName,\n                      \"onUpdate:modelValue\": ($event: any) => ((_unref(identity).lastName) = $event),\n                      size: \"md\",\n                      class: \"w-full md:w-1/3\"\n                    }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                    _createVNode(_component_AwesomeButton, {\n                      class: \"capitalize w-full md:w-auto\",\n                      text: \"reset\",\n                      type: \"secondary\",\n                      size: \"md\",\n                      onClick: _withModifiers(_unref(identity).reset, [\"prevent\"])\n                    }, null, 8, [\"onClick\"])\n                  ])\n                ])\n              ])\n            ]),\n            _: 1\n          })\n        ]\n      }\n    }),\n    _: 1\n  }, _parent))\n}\n}\n\n})",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "sourcemaps": {
         "version": 3,
         "sources": [
@@ -20,57 +20,57 @@
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710863483784,
-      "end": 1710863483784,
+      "start": 1710864569944,
+      "end": 1710864569944,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, unref as _unref, toDisplayString as _toDisplayString, withModifiers as _withModifiers } from \"vue\";\nimport { ssrRenderComponent as _ssrRenderComponent, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"test\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    const counter = useCounter();\n    const identity = useIdentity();\n    definePageMeta({ layout: \"page\" });\n    useHead({ title: \"Test Page\" });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\");\n      const _component_LayoutPageHeader = _resolveComponent(\"LayoutPageHeader\");\n      const _component_LayoutPageTitle = _resolveComponent(\"LayoutPageTitle\");\n      const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\");\n      const _component_LayoutPageSectionTitle = _resolveComponent(\"LayoutPageSectionTitle\");\n      const _component_AwesomeButton = _resolveComponent(\"AwesomeButton\");\n      const _component_AwesomeFormTextInput = _resolveComponent(\"AwesomeFormTextInput\");\n      _push(_ssrRenderComponent(_component_LayoutPageWrapper, _attrs, {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(_ssrRenderComponent(_component_LayoutPageHeader, null, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(_ssrRenderComponent(_component_LayoutPageTitle, {\n                    text: \"Testing\",\n                    class: \"capitalize\"\n                  }, null, _parent3, _scopeId2));\n                } else {\n                  return [\n                    _createVNode(_component_LayoutPageTitle, {\n                      text: \"Testing\",\n                      class: \"capitalize\"\n                    })\n                  ];\n                }\n              }),\n              _: 1\n            }, _parent2, _scopeId));\n            _push2(_ssrRenderComponent(_component_LayoutPageSection, null, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(_ssrRenderComponent(_component_LayoutPageSectionTitle, { text: \"Stores Test\" }, null, _parent3, _scopeId2));\n                  _push3(`<div class=\"mb-6\"${_scopeId2}><div class=\"mb-2\"${_scopeId2}>Counter : ${_ssrInterpolate(_unref(counter).count)}</div><div class=\"flex flex-col items-center justify-items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\"${_scopeId2}>`);\n                  _push3(_ssrRenderComponent(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto capitalize\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"increment\",\n                    onClick: _unref(counter).increment\n                  }, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"increment2x\",\n                    onClick: _unref(counter).increment2x\n                  }, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto capitalize\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"decrement\",\n                    onClick: _unref(counter).decrement\n                  }, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto capitalize\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"reset\",\n                    onClick: _unref(counter).reset\n                  }, null, _parent3, _scopeId2));\n                  _push3(`</div></div><div class=\"mb-6\"${_scopeId2}><div class=\"mb-2\"${_scopeId2}><span class=\"capitalize\"${_scopeId2}>Full Name : </span><span${_scopeId2}>${_ssrInterpolate(_unref(identity).fullName)}</span></div><div class=\"mb-2\"${_scopeId2}><div class=\"flex flex-col items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\"${_scopeId2}>`);\n                  _push3(_ssrRenderComponent(_component_AwesomeFormTextInput, {\n                    modelValue: _unref(identity).firstName,\n                    \"onUpdate:modelValue\": ($event) => _unref(identity).firstName = $event,\n                    size: \"md\",\n                    class: \"w-full md:w-1/3\"\n                  }, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_AwesomeFormTextInput, {\n                    modelValue: _unref(identity).lastName,\n                    \"onUpdate:modelValue\": ($event) => _unref(identity).lastName = $event,\n                    size: \"md\",\n                    class: \"w-full md:w-1/3\"\n                  }, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_AwesomeButton, {\n                    class: \"capitalize w-full md:w-auto\",\n                    text: \"reset\",\n                    type: \"secondary\",\n                    size: \"md\",\n                    onClick: _unref(identity).reset\n                  }, null, _parent3, _scopeId2));\n                  _push3(`</div></div></div>`);\n                } else {\n                  return [\n                    _createVNode(_component_LayoutPageSectionTitle, { text: \"Stores Test\" }),\n                    _createVNode(\"div\", { class: \"mb-6\" }, [\n                      _createVNode(\"div\", { class: \"mb-2\" }, \"Counter : \" + _toDisplayString(_unref(counter).count), 1),\n                      _createVNode(\"div\", { class: \"flex flex-col items-center justify-items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                        _createVNode(_component_AwesomeButton, {\n                          class: \"w-full md:w-auto capitalize\",\n                          type: \"secondary\",\n                          size: \"sm\",\n                          text: \"increment\",\n                          onClick: _withModifiers(_unref(counter).increment, [\"prevent\"])\n                        }, null, 8, [\"onClick\"]),\n                        _createVNode(_component_AwesomeButton, {\n                          class: \"w-full md:w-auto\",\n                          type: \"secondary\",\n                          size: \"sm\",\n                          text: \"increment2x\",\n                          onClick: _withModifiers(_unref(counter).increment2x, [\"prevent\"])\n                        }, null, 8, [\"onClick\"]),\n                        _createVNode(_component_AwesomeButton, {\n                          class: \"w-full md:w-auto capitalize\",\n                          type: \"secondary\",\n                          size: \"sm\",\n                          text: \"decrement\",\n                          onClick: _withModifiers(_unref(counter).decrement, [\"prevent\"])\n                        }, null, 8, [\"onClick\"]),\n                        _createVNode(_component_AwesomeButton, {\n                          class: \"w-full md:w-auto capitalize\",\n                          type: \"secondary\",\n                          size: \"sm\",\n                          text: \"reset\",\n                          onClick: _withModifiers(_unref(counter).reset, [\"prevent\"])\n                        }, null, 8, [\"onClick\"])\n                      ])\n                    ]),\n                    _createVNode(\"div\", { class: \"mb-6\" }, [\n                      _createVNode(\"div\", { class: \"mb-2\" }, [\n                        _createVNode(\"span\", { class: \"capitalize\" }, \"Full Name : \"),\n                        _createVNode(\"span\", null, _toDisplayString(_unref(identity).fullName), 1)\n                      ]),\n                      _createVNode(\"div\", { class: \"mb-2\" }, [\n                        _createVNode(\"div\", { class: \"flex flex-col items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                          _createVNode(_component_AwesomeFormTextInput, {\n                            modelValue: _unref(identity).firstName,\n                            \"onUpdate:modelValue\": ($event) => _unref(identity).firstName = $event,\n                            size: \"md\",\n                            class: \"w-full md:w-1/3\"\n                          }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                          _createVNode(_component_AwesomeFormTextInput, {\n                            modelValue: _unref(identity).lastName,\n                            \"onUpdate:modelValue\": ($event) => _unref(identity).lastName = $event,\n                            size: \"md\",\n                            class: \"w-full md:w-1/3\"\n                          }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                          _createVNode(_component_AwesomeButton, {\n                            class: \"capitalize w-full md:w-auto\",\n                            text: \"reset\",\n                            type: \"secondary\",\n                            size: \"md\",\n                            onClick: _withModifiers(_unref(identity).reset, [\"prevent\"])\n                          }, null, 8, [\"onClick\"])\n                        ])\n                      ])\n                    ])\n                  ];\n                }\n              }),\n              _: 1\n            }, _parent2, _scopeId));\n          } else {\n            return [\n              _createVNode(_component_LayoutPageHeader, null, {\n                default: _withCtx(() => [\n                  _createVNode(_component_LayoutPageTitle, {\n                    text: \"Testing\",\n                    class: \"capitalize\"\n                  })\n                ]),\n                _: 1\n              }),\n              _createVNode(_component_LayoutPageSection, null, {\n                default: _withCtx(() => [\n                  _createVNode(_component_LayoutPageSectionTitle, { text: \"Stores Test\" }),\n                  _createVNode(\"div\", { class: \"mb-6\" }, [\n                    _createVNode(\"div\", { class: \"mb-2\" }, \"Counter : \" + _toDisplayString(_unref(counter).count), 1),\n                    _createVNode(\"div\", { class: \"flex flex-col items-center justify-items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                      _createVNode(_component_AwesomeButton, {\n                        class: \"w-full md:w-auto capitalize\",\n                        type: \"secondary\",\n                        size: \"sm\",\n                        text: \"increment\",\n                        onClick: _withModifiers(_unref(counter).increment, [\"prevent\"])\n                      }, null, 8, [\"onClick\"]),\n                      _createVNode(_component_AwesomeButton, {\n                        class: \"w-full md:w-auto\",\n                        type: \"secondary\",\n                        size: \"sm\",\n                        text: \"increment2x\",\n                        onClick: _withModifiers(_unref(counter).increment2x, [\"prevent\"])\n                      }, null, 8, [\"onClick\"]),\n                      _createVNode(_component_AwesomeButton, {\n                        class: \"w-full md:w-auto capitalize\",\n                        type: \"secondary\",\n                        size: \"sm\",\n                        text: \"decrement\",\n                        onClick: _withModifiers(_unref(counter).decrement, [\"prevent\"])\n                      }, null, 8, [\"onClick\"]),\n                      _createVNode(_component_AwesomeButton, {\n                        class: \"w-full md:w-auto capitalize\",\n                        type: \"secondary\",\n                        size: \"sm\",\n                        text: \"reset\",\n                        onClick: _withModifiers(_unref(counter).reset, [\"prevent\"])\n                      }, null, 8, [\"onClick\"])\n                    ])\n                  ]),\n                  _createVNode(\"div\", { class: \"mb-6\" }, [\n                    _createVNode(\"div\", { class: \"mb-2\" }, [\n                      _createVNode(\"span\", { class: \"capitalize\" }, \"Full Name : \"),\n                      _createVNode(\"span\", null, _toDisplayString(_unref(identity).fullName), 1)\n                    ]),\n                    _createVNode(\"div\", { class: \"mb-2\" }, [\n                      _createVNode(\"div\", { class: \"flex flex-col items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                        _createVNode(_component_AwesomeFormTextInput, {\n                          modelValue: _unref(identity).firstName,\n                          \"onUpdate:modelValue\": ($event) => _unref(identity).firstName = $event,\n                          size: \"md\",\n                          class: \"w-full md:w-1/3\"\n                        }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                        _createVNode(_component_AwesomeFormTextInput, {\n                          modelValue: _unref(identity).lastName,\n                          \"onUpdate:modelValue\": ($event) => _unref(identity).lastName = $event,\n                          size: \"md\",\n                          class: \"w-full md:w-1/3\"\n                        }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                        _createVNode(_component_AwesomeButton, {\n                          class: \"capitalize w-full md:w-auto\",\n                          text: \"reset\",\n                          type: \"secondary\",\n                          size: \"md\",\n                          onClick: _withModifiers(_unref(identity).reset, [\"prevent\"])\n                        }, null, 8, [\"onClick\"])\n                      ])\n                    ])\n                  ])\n                ]),\n                _: 1\n              })\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n    };\n  }\n});\n",
-      "start": 1710863483784,
-      "end": 1710863484071,
+      "start": 1710864569944,
+      "end": 1710864570201,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -91,141 +91,141 @@
     },
     {
       "name": "vite:json",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570201,
+      "end": 1710864570201,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570201,
+      "end": 1710864570201,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570201,
+      "end": 1710864570201,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570201,
+      "end": 1710864570201,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570201,
+      "end": 1710864570201,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570201,
+      "end": 1710864570201,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570201,
+      "end": 1710864570201,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570201,
+      "end": 1710864570201,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570201,
+      "end": 1710864570201,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570201,
+      "end": 1710864570201,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570201,
+      "end": 1710864570202,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570202,
+      "end": 1710864570202,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570202,
+      "end": 1710864570202,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570202,
+      "end": 1710864570202,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570202,
+      "end": 1710864570202,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570202,
+      "end": 1710864570202,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570202,
+      "end": 1710864570202,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570202,
+      "end": 1710864570202,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570202,
+      "end": 1710864570202,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570202,
+      "end": 1710864570202,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570202,
+      "end": 1710864570202,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710863484071,
-      "end": 1710863484071,
+      "start": 1710864570202,
+      "end": 1710864570202,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { useCounter } from '/Users/shubhamsingh/namma/importedProds/app/stores/use-counter.ts';\nimport { useIdentity } from '/Users/shubhamsingh/namma/importedProds/app/stores/use-identity.ts';\nimport { definePageMeta } from '/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/pages/runtime/composables';\nimport { useHead } from '@unhead/vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, unref as _unref, toDisplayString as _toDisplayString, withModifiers as _withModifiers } from \"vue\";\nimport { ssrRenderComponent as _ssrRenderComponent, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"test\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    const counter = useCounter();\n    const identity = useIdentity();\n    definePageMeta({ layout: \"page\" });\n    useHead({ title: \"Test Page\" });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\");\n      const _component_LayoutPageHeader = _resolveComponent(\"LayoutPageHeader\");\n      const _component_LayoutPageTitle = _resolveComponent(\"LayoutPageTitle\");\n      const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\");\n      const _component_LayoutPageSectionTitle = _resolveComponent(\"LayoutPageSectionTitle\");\n      const _component_AwesomeButton = _resolveComponent(\"AwesomeButton\");\n      const _component_AwesomeFormTextInput = _resolveComponent(\"AwesomeFormTextInput\");\n      _push(_ssrRenderComponent(_component_LayoutPageWrapper, _attrs, {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(_ssrRenderComponent(_component_LayoutPageHeader, null, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(_ssrRenderComponent(_component_LayoutPageTitle, {\n                    text: \"Testing\",\n                    class: \"capitalize\"\n                  }, null, _parent3, _scopeId2));\n                } else {\n                  return [\n                    _createVNode(_component_LayoutPageTitle, {\n                      text: \"Testing\",\n                      class: \"capitalize\"\n                    })\n                  ];\n                }\n              }),\n              _: 1\n            }, _parent2, _scopeId));\n            _push2(_ssrRenderComponent(_component_LayoutPageSection, null, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(_ssrRenderComponent(_component_LayoutPageSectionTitle, { text: \"Stores Test\" }, null, _parent3, _scopeId2));\n                  _push3(`<div class=\"mb-6\"${_scopeId2}><div class=\"mb-2\"${_scopeId2}>Counter : ${_ssrInterpolate(_unref(counter).count)}</div><div class=\"flex flex-col items-center justify-items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\"${_scopeId2}>`);\n                  _push3(_ssrRenderComponent(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto capitalize\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"increment\",\n                    onClick: _unref(counter).increment\n                  }, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"increment2x\",\n                    onClick: _unref(counter).increment2x\n                  }, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto capitalize\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"decrement\",\n                    onClick: _unref(counter).decrement\n                  }, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto capitalize\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"reset\",\n                    onClick: _unref(counter).reset\n                  }, null, _parent3, _scopeId2));\n                  _push3(`</div></div><div class=\"mb-6\"${_scopeId2}><div class=\"mb-2\"${_scopeId2}><span class=\"capitalize\"${_scopeId2}>Full Name : </span><span${_scopeId2}>${_ssrInterpolate(_unref(identity).fullName)}</span></div><div class=\"mb-2\"${_scopeId2}><div class=\"flex flex-col items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\"${_scopeId2}>`);\n                  _push3(_ssrRenderComponent(_component_AwesomeFormTextInput, {\n                    modelValue: _unref(identity).firstName,\n                    \"onUpdate:modelValue\": ($event) => _unref(identity).firstName = $event,\n                    size: \"md\",\n                    class: \"w-full md:w-1/3\"\n                  }, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_AwesomeFormTextInput, {\n                    modelValue: _unref(identity).lastName,\n                    \"onUpdate:modelValue\": ($event) => _unref(identity).lastName = $event,\n                    size: \"md\",\n                    class: \"w-full md:w-1/3\"\n                  }, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_AwesomeButton, {\n                    class: \"capitalize w-full md:w-auto\",\n                    text: \"reset\",\n                    type: \"secondary\",\n                    size: \"md\",\n                    onClick: _unref(identity).reset\n                  }, null, _parent3, _scopeId2));\n                  _push3(`</div></div></div>`);\n                } else {\n                  return [\n                    _createVNode(_component_LayoutPageSectionTitle, { text: \"Stores Test\" }),\n                    _createVNode(\"div\", { class: \"mb-6\" }, [\n                      _createVNode(\"div\", { class: \"mb-2\" }, \"Counter : \" + _toDisplayString(_unref(counter).count), 1),\n                      _createVNode(\"div\", { class: \"flex flex-col items-center justify-items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                        _createVNode(_component_AwesomeButton, {\n                          class: \"w-full md:w-auto capitalize\",\n                          type: \"secondary\",\n                          size: \"sm\",\n                          text: \"increment\",\n                          onClick: _withModifiers(_unref(counter).increment, [\"prevent\"])\n                        }, null, 8, [\"onClick\"]),\n                        _createVNode(_component_AwesomeButton, {\n                          class: \"w-full md:w-auto\",\n                          type: \"secondary\",\n                          size: \"sm\",\n                          text: \"increment2x\",\n                          onClick: _withModifiers(_unref(counter).increment2x, [\"prevent\"])\n                        }, null, 8, [\"onClick\"]),\n                        _createVNode(_component_AwesomeButton, {\n                          class: \"w-full md:w-auto capitalize\",\n                          type: \"secondary\",\n                          size: \"sm\",\n                          text: \"decrement\",\n                          onClick: _withModifiers(_unref(counter).decrement, [\"prevent\"])\n                        }, null, 8, [\"onClick\"]),\n                        _createVNode(_component_AwesomeButton, {\n                          class: \"w-full md:w-auto capitalize\",\n                          type: \"secondary\",\n                          size: \"sm\",\n                          text: \"reset\",\n                          onClick: _withModifiers(_unref(counter).reset, [\"prevent\"])\n                        }, null, 8, [\"onClick\"])\n                      ])\n                    ]),\n                    _createVNode(\"div\", { class: \"mb-6\" }, [\n                      _createVNode(\"div\", { class: \"mb-2\" }, [\n                        _createVNode(\"span\", { class: \"capitalize\" }, \"Full Name : \"),\n                        _createVNode(\"span\", null, _toDisplayString(_unref(identity).fullName), 1)\n                      ]),\n                      _createVNode(\"div\", { class: \"mb-2\" }, [\n                        _createVNode(\"div\", { class: \"flex flex-col items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                          _createVNode(_component_AwesomeFormTextInput, {\n                            modelValue: _unref(identity).firstName,\n                            \"onUpdate:modelValue\": ($event) => _unref(identity).firstName = $event,\n                            size: \"md\",\n                            class: \"w-full md:w-1/3\"\n                          }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                          _createVNode(_component_AwesomeFormTextInput, {\n                            modelValue: _unref(identity).lastName,\n                            \"onUpdate:modelValue\": ($event) => _unref(identity).lastName = $event,\n                            size: \"md\",\n                            class: \"w-full md:w-1/3\"\n                          }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                          _createVNode(_component_AwesomeButton, {\n                            class: \"capitalize w-full md:w-auto\",\n                            text: \"reset\",\n                            type: \"secondary\",\n                            size: \"md\",\n                            onClick: _withModifiers(_unref(identity).reset, [\"prevent\"])\n                          }, null, 8, [\"onClick\"])\n                        ])\n                      ])\n                    ])\n                  ];\n                }\n              }),\n              _: 1\n            }, _parent2, _scopeId));\n          } else {\n            return [\n              _createVNode(_component_LayoutPageHeader, null, {\n                default: _withCtx(() => [\n                  _createVNode(_component_LayoutPageTitle, {\n                    text: \"Testing\",\n                    class: \"capitalize\"\n                  })\n                ]),\n                _: 1\n              }),\n              _createVNode(_component_LayoutPageSection, null, {\n                default: _withCtx(() => [\n                  _createVNode(_component_LayoutPageSectionTitle, { text: \"Stores Test\" }),\n                  _createVNode(\"div\", { class: \"mb-6\" }, [\n                    _createVNode(\"div\", { class: \"mb-2\" }, \"Counter : \" + _toDisplayString(_unref(counter).count), 1),\n                    _createVNode(\"div\", { class: \"flex flex-col items-center justify-items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                      _createVNode(_component_AwesomeButton, {\n                        class: \"w-full md:w-auto capitalize\",\n                        type: \"secondary\",\n                        size: \"sm\",\n                        text: \"increment\",\n                        onClick: _withModifiers(_unref(counter).increment, [\"prevent\"])\n                      }, null, 8, [\"onClick\"]),\n                      _createVNode(_component_AwesomeButton, {\n                        class: \"w-full md:w-auto\",\n                        type: \"secondary\",\n                        size: \"sm\",\n                        text: \"increment2x\",\n                        onClick: _withModifiers(_unref(counter).increment2x, [\"prevent\"])\n                      }, null, 8, [\"onClick\"]),\n                      _createVNode(_component_AwesomeButton, {\n                        class: \"w-full md:w-auto capitalize\",\n                        type: \"secondary\",\n                        size: \"sm\",\n                        text: \"decrement\",\n                        onClick: _withModifiers(_unref(counter).decrement, [\"prevent\"])\n                      }, null, 8, [\"onClick\"]),\n                      _createVNode(_component_AwesomeButton, {\n                        class: \"w-full md:w-auto capitalize\",\n                        type: \"secondary\",\n                        size: \"sm\",\n                        text: \"reset\",\n                        onClick: _withModifiers(_unref(counter).reset, [\"prevent\"])\n                      }, null, 8, [\"onClick\"])\n                    ])\n                  ]),\n                  _createVNode(\"div\", { class: \"mb-6\" }, [\n                    _createVNode(\"div\", { class: \"mb-2\" }, [\n                      _createVNode(\"span\", { class: \"capitalize\" }, \"Full Name : \"),\n                      _createVNode(\"span\", null, _toDisplayString(_unref(identity).fullName), 1)\n                    ]),\n                    _createVNode(\"div\", { class: \"mb-2\" }, [\n                      _createVNode(\"div\", { class: \"flex flex-col items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                        _createVNode(_component_AwesomeFormTextInput, {\n                          modelValue: _unref(identity).firstName,\n                          \"onUpdate:modelValue\": ($event) => _unref(identity).firstName = $event,\n                          size: \"md\",\n                          class: \"w-full md:w-1/3\"\n                        }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                        _createVNode(_component_AwesomeFormTextInput, {\n                          modelValue: _unref(identity).lastName,\n                          \"onUpdate:modelValue\": ($event) => _unref(identity).lastName = $event,\n                          size: \"md\",\n                          class: \"w-full md:w-1/3\"\n                        }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                        _createVNode(_component_AwesomeButton, {\n                          class: \"capitalize w-full md:w-auto\",\n                          text: \"reset\",\n                          type: \"secondary\",\n                          size: \"md\",\n                          onClick: _withModifiers(_unref(identity).reset, [\"prevent\"])\n                        }, null, 8, [\"onClick\"])\n                      ])\n                    ])\n                  ])\n                ]),\n                _: 1\n              })\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n    };\n  }\n});\n",
-      "start": 1710863484071,
-      "end": 1710863484073,
+      "start": 1710864570202,
+      "end": 1710864570203,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -239,8 +239,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { useCounter } from '/Users/shubhamsingh/namma/importedProds/app/stores/use-counter.ts';\nimport { useIdentity } from '/Users/shubhamsingh/namma/importedProds/app/stores/use-identity.ts';\nimport { definePageMeta } from '/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/pages/runtime/composables';\nimport { useHead } from '@unhead/vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, unref as _unref, toDisplayString as _toDisplayString, withModifiers as _withModifiers } from \"vue\";\nimport { ssrRenderComponent as _ssrRenderComponent, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"test\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    const counter = useCounter();\n    const identity = useIdentity();\n    definePageMeta({ layout: \"page\" });\n    useHead({ title: \"Test Page\" });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\");\n      const _component_LayoutPageHeader = _resolveComponent(\"LayoutPageHeader\");\n      const _component_LayoutPageTitle = _resolveComponent(\"LayoutPageTitle\");\n      const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\");\n      const _component_LayoutPageSectionTitle = _resolveComponent(\"LayoutPageSectionTitle\");\n      const _component_AwesomeButton = _resolveComponent(\"AwesomeButton\");\n      const _component_AwesomeFormTextInput = _resolveComponent(\"AwesomeFormTextInput\");\n      _push(_ssrRenderComponent(_component_LayoutPageWrapper, _attrs, {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(_ssrRenderComponent(_component_LayoutPageHeader, null, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(_ssrRenderComponent(_component_LayoutPageTitle, {\n                    text: \"Testing\",\n                    class: \"capitalize\"\n                  }, null, _parent3, _scopeId2));\n                } else {\n                  return [\n                    _createVNode(_component_LayoutPageTitle, {\n                      text: \"Testing\",\n                      class: \"capitalize\"\n                    })\n                  ];\n                }\n              }),\n              _: 1\n            }, _parent2, _scopeId));\n            _push2(_ssrRenderComponent(_component_LayoutPageSection, null, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(_ssrRenderComponent(_component_LayoutPageSectionTitle, { text: \"Stores Test\" }, null, _parent3, _scopeId2));\n                  _push3(`<div class=\"mb-6\"${_scopeId2}><div class=\"mb-2\"${_scopeId2}>Counter : ${_ssrInterpolate(_unref(counter).count)}</div><div class=\"flex flex-col items-center justify-items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\"${_scopeId2}>`);\n                  _push3(_ssrRenderComponent(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto capitalize\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"increment\",\n                    onClick: _unref(counter).increment\n                  }, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"increment2x\",\n                    onClick: _unref(counter).increment2x\n                  }, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto capitalize\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"decrement\",\n                    onClick: _unref(counter).decrement\n                  }, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_AwesomeButton, {\n                    class: \"w-full md:w-auto capitalize\",\n                    type: \"secondary\",\n                    size: \"sm\",\n                    text: \"reset\",\n                    onClick: _unref(counter).reset\n                  }, null, _parent3, _scopeId2));\n                  _push3(`</div></div><div class=\"mb-6\"${_scopeId2}><div class=\"mb-2\"${_scopeId2}><span class=\"capitalize\"${_scopeId2}>Full Name : </span><span${_scopeId2}>${_ssrInterpolate(_unref(identity).fullName)}</span></div><div class=\"mb-2\"${_scopeId2}><div class=\"flex flex-col items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\"${_scopeId2}>`);\n                  _push3(_ssrRenderComponent(_component_AwesomeFormTextInput, {\n                    modelValue: _unref(identity).firstName,\n                    \"onUpdate:modelValue\": ($event) => _unref(identity).firstName = $event,\n                    size: \"md\",\n                    class: \"w-full md:w-1/3\"\n                  }, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_AwesomeFormTextInput, {\n                    modelValue: _unref(identity).lastName,\n                    \"onUpdate:modelValue\": ($event) => _unref(identity).lastName = $event,\n                    size: \"md\",\n                    class: \"w-full md:w-1/3\"\n                  }, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_AwesomeButton, {\n                    class: \"capitalize w-full md:w-auto\",\n                    text: \"reset\",\n                    type: \"secondary\",\n                    size: \"md\",\n                    onClick: _unref(identity).reset\n                  }, null, _parent3, _scopeId2));\n                  _push3(`</div></div></div>`);\n                } else {\n                  return [\n                    _createVNode(_component_LayoutPageSectionTitle, { text: \"Stores Test\" }),\n                    _createVNode(\"div\", { class: \"mb-6\" }, [\n                      _createVNode(\"div\", { class: \"mb-2\" }, \"Counter : \" + _toDisplayString(_unref(counter).count), 1),\n                      _createVNode(\"div\", { class: \"flex flex-col items-center justify-items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                        _createVNode(_component_AwesomeButton, {\n                          class: \"w-full md:w-auto capitalize\",\n                          type: \"secondary\",\n                          size: \"sm\",\n                          text: \"increment\",\n                          onClick: _withModifiers(_unref(counter).increment, [\"prevent\"])\n                        }, null, 8, [\"onClick\"]),\n                        _createVNode(_component_AwesomeButton, {\n                          class: \"w-full md:w-auto\",\n                          type: \"secondary\",\n                          size: \"sm\",\n                          text: \"increment2x\",\n                          onClick: _withModifiers(_unref(counter).increment2x, [\"prevent\"])\n                        }, null, 8, [\"onClick\"]),\n                        _createVNode(_component_AwesomeButton, {\n                          class: \"w-full md:w-auto capitalize\",\n                          type: \"secondary\",\n                          size: \"sm\",\n                          text: \"decrement\",\n                          onClick: _withModifiers(_unref(counter).decrement, [\"prevent\"])\n                        }, null, 8, [\"onClick\"]),\n                        _createVNode(_component_AwesomeButton, {\n                          class: \"w-full md:w-auto capitalize\",\n                          type: \"secondary\",\n                          size: \"sm\",\n                          text: \"reset\",\n                          onClick: _withModifiers(_unref(counter).reset, [\"prevent\"])\n                        }, null, 8, [\"onClick\"])\n                      ])\n                    ]),\n                    _createVNode(\"div\", { class: \"mb-6\" }, [\n                      _createVNode(\"div\", { class: \"mb-2\" }, [\n                        _createVNode(\"span\", { class: \"capitalize\" }, \"Full Name : \"),\n                        _createVNode(\"span\", null, _toDisplayString(_unref(identity).fullName), 1)\n                      ]),\n                      _createVNode(\"div\", { class: \"mb-2\" }, [\n                        _createVNode(\"div\", { class: \"flex flex-col items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                          _createVNode(_component_AwesomeFormTextInput, {\n                            modelValue: _unref(identity).firstName,\n                            \"onUpdate:modelValue\": ($event) => _unref(identity).firstName = $event,\n                            size: \"md\",\n                            class: \"w-full md:w-1/3\"\n                          }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                          _createVNode(_component_AwesomeFormTextInput, {\n                            modelValue: _unref(identity).lastName,\n                            \"onUpdate:modelValue\": ($event) => _unref(identity).lastName = $event,\n                            size: \"md\",\n                            class: \"w-full md:w-1/3\"\n                          }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                          _createVNode(_component_AwesomeButton, {\n                            class: \"capitalize w-full md:w-auto\",\n                            text: \"reset\",\n                            type: \"secondary\",\n                            size: \"md\",\n                            onClick: _withModifiers(_unref(identity).reset, [\"prevent\"])\n                          }, null, 8, [\"onClick\"])\n                        ])\n                      ])\n                    ])\n                  ];\n                }\n              }),\n              _: 1\n            }, _parent2, _scopeId));\n          } else {\n            return [\n              _createVNode(_component_LayoutPageHeader, null, {\n                default: _withCtx(() => [\n                  _createVNode(_component_LayoutPageTitle, {\n                    text: \"Testing\",\n                    class: \"capitalize\"\n                  })\n                ]),\n                _: 1\n              }),\n              _createVNode(_component_LayoutPageSection, null, {\n                default: _withCtx(() => [\n                  _createVNode(_component_LayoutPageSectionTitle, { text: \"Stores Test\" }),\n                  _createVNode(\"div\", { class: \"mb-6\" }, [\n                    _createVNode(\"div\", { class: \"mb-2\" }, \"Counter : \" + _toDisplayString(_unref(counter).count), 1),\n                    _createVNode(\"div\", { class: \"flex flex-col items-center justify-items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                      _createVNode(_component_AwesomeButton, {\n                        class: \"w-full md:w-auto capitalize\",\n                        type: \"secondary\",\n                        size: \"sm\",\n                        text: \"increment\",\n                        onClick: _withModifiers(_unref(counter).increment, [\"prevent\"])\n                      }, null, 8, [\"onClick\"]),\n                      _createVNode(_component_AwesomeButton, {\n                        class: \"w-full md:w-auto\",\n                        type: \"secondary\",\n                        size: \"sm\",\n                        text: \"increment2x\",\n                        onClick: _withModifiers(_unref(counter).increment2x, [\"prevent\"])\n                      }, null, 8, [\"onClick\"]),\n                      _createVNode(_component_AwesomeButton, {\n                        class: \"w-full md:w-auto capitalize\",\n                        type: \"secondary\",\n                        size: \"sm\",\n                        text: \"decrement\",\n                        onClick: _withModifiers(_unref(counter).decrement, [\"prevent\"])\n                      }, null, 8, [\"onClick\"]),\n                      _createVNode(_component_AwesomeButton, {\n                        class: \"w-full md:w-auto capitalize\",\n                        type: \"secondary\",\n                        size: \"sm\",\n                        text: \"reset\",\n                        onClick: _withModifiers(_unref(counter).reset, [\"prevent\"])\n                      }, null, 8, [\"onClick\"])\n                    ])\n                  ]),\n                  _createVNode(\"div\", { class: \"mb-6\" }, [\n                    _createVNode(\"div\", { class: \"mb-2\" }, [\n                      _createVNode(\"span\", { class: \"capitalize\" }, \"Full Name : \"),\n                      _createVNode(\"span\", null, _toDisplayString(_unref(identity).fullName), 1)\n                    ]),\n                    _createVNode(\"div\", { class: \"mb-2\" }, [\n                      _createVNode(\"div\", { class: \"flex flex-col items-center space-y-2 md:space-y-0 md:flex-row md:space-x-2\" }, [\n                        _createVNode(_component_AwesomeFormTextInput, {\n                          modelValue: _unref(identity).firstName,\n                          \"onUpdate:modelValue\": ($event) => _unref(identity).firstName = $event,\n                          size: \"md\",\n                          class: \"w-full md:w-1/3\"\n                        }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                        _createVNode(_component_AwesomeFormTextInput, {\n                          modelValue: _unref(identity).lastName,\n                          \"onUpdate:modelValue\": ($event) => _unref(identity).lastName = $event,\n                          size: \"md\",\n                          class: \"w-full md:w-1/3\"\n                        }, null, 8, [\"modelValue\", \"onUpdate:modelValue\"]),\n                        _createVNode(_component_AwesomeButton, {\n                          class: \"capitalize w-full md:w-auto\",\n                          text: \"reset\",\n                          type: \"secondary\",\n                          size: \"md\",\n                          onClick: _withModifiers(_unref(identity).reset, [\"prevent\"])\n                        }, null, 8, [\"onClick\"])\n                      ])\n                    ])\n                  ])\n                ]),\n                _: 1\n              })\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n    };\n  }\n});\n",
-      "start": 1710863484071,
-      "end": 1710863484073,
+      "start": 1710864570202,
+      "end": 1710864570203,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -253,21 +253,21 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1710863484073,
-      "end": 1710863484073,
+      "start": 1710864570203,
+      "end": 1710864570204,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710863484073,
-      "end": 1710863484074,
+      "start": 1710864570203,
+      "end": 1710864570204,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
       "result": "const __nuxt_page_meta = { layout: \"page\" }\nexport default __nuxt_page_meta",
-      "start": 1710863484074,
-      "end": 1710863484074,
+      "start": 1710864570204,
+      "end": 1710864570205,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -281,8 +281,8 @@
     {
       "name": "nuxt:pages-macros-transform",
       "result": "const __nuxt_page_meta = { layout: \"page\" }\nexport default __nuxt_page_meta",
-      "start": 1710863484074,
-      "end": 1710863484074,
+      "start": 1710864570204,
+      "end": 1710864570205,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -295,32 +295,32 @@
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1710863484074,
-      "end": 1710863484075,
+      "start": 1710864570205,
+      "end": 1710864570205,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1710863484075,
-      "end": 1710863484075,
+      "start": 1710864570205,
+      "end": 1710864570205,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710863484075,
-      "end": 1710863484075,
+      "start": 1710864570205,
+      "end": 1710864570205,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710863484075,
-      "end": 1710863484075,
+      "start": 1710864570205,
+      "end": 1710864570205,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710863484075,
-      "end": 1710863484075,
+      "start": 1710864570205,
+      "end": 1710864570205,
       "order": "normal"
     }
   ]

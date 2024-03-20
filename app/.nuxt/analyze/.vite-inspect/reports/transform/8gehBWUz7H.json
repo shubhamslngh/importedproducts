@@ -4,63 +4,63 @@
     {
       "name": "vite:load-fallback",
       "result": "<script lang=\"ts\" setup>\nconst { awesome } = useAppConfig();\nconst { parseMenuRoute, parseMenuTitle } = useNavbarParser();\nconst $screen = useAwesomeScreen();\nconst nuxtApp = useNuxtApp();\n\nconst menus = computed(\n  () =>\n    (awesome?.layout?.page?.navbar?.menus ||\n      []) as AwesomeLayoutPageNavbarMenu[]\n);\n\n// drawer\nconst showDrawer = ref(false);\n</script>\n\n<template>\n  <header\n    class=\"flex fixed backdrop-filter backdrop-blur-md top-0 z-40 w-full flex-none transition-colors duration-300 lg:z-50 border-b border-gray-950/10 dark:border-gray-50/[0.2] bg-white/[0.5] dark:bg-gray-950/[0.5]\"\n  >\n    <!-- content -->\n    <div\n      class=\"flex-1 flex items-center justify-between max-w-screen-2xl mx-auto px-4\"\n    >\n      <!-- title -->\n      <div>\n        <slot name=\"title\">\n          <NuxtLink to=\"/\" class=\"font-bold text-lg text-primary-500\">\n            <Icon\n              name=\"simple-icons:nuxtdotjs\"\n              class=\"font-black text-xl font-mono mr-2 inline-block\"\n            />\n            <span class=\"capitalize\">{{ awesome.name }}</span>\n          </NuxtLink>\n        </slot>\n      </div>\n      <!-- menus -->\n      <div\n        v-if=\"$screen.higherThan('md', $screen.current.value)\"\n        class=\"flex space-x-4 items-center\"\n        :class=\"{ 'divide-x divide-gray-500': menus.length > 0 }\"\n      >\n        <div class=\"flex space-x-4 text-sm items-center\">\n          <!-- dynamic menus -->\n          <template v-for=\"(item, i) in menus\" :key=\"i\">\n            <LayoutPageNavbarMenuWrapper :menu=\"item\" />\n          </template>\n        </div>\n        <!-- others -->\n        <div class=\"pl-4 flex space-x-3 text-xl\">\n          <!-- todo: feat/localization -->\n          <!-- <AwesomeLink class=\"text-gray-400 hover:text-gray-100\">\n            <Icon name=\"la:language\" />\n          </AwesomeLink> -->\n          <LayoutPageNavbarDropdownThemeSwitcher />\n          <AwesomeLink\n            v-if=\"awesome?.project?.links?.github\"\n            class=\"dark:text-gray-400 text-gray-600\"\n            :href=\"awesome?.project?.links?.github\"\n          >\n            <Icon name=\"mdi:github-face\" />\n          </AwesomeLink>\n        </div>\n      </div>\n      <!-- drawer:btn -->\n      <div\n        v-else\n        class=\"flex space-x-4 items-center\"\n        :class=\"{ 'divide-x divide-gray-500': menus.length > 0 }\"\n      >\n        <div class=\"pl-4 flex space-x-3 text-xl\">\n          <AwesomeLink\n            v-if=\"awesome?.project?.links?.github\"\n            class=\"text-gray-400 hover:text-gray-100\"\n            @click.prevent=\"() => (showDrawer = !showDrawer)\"\n          >\n            <Icon name=\"heroicons:bars-3-bottom-right-20-solid\" />\n          </AwesomeLink>\n        </div>\n      </div>\n    </div>\n    <!-- misc -->\n    <!-- drawer -->\n    <AwesomeActionSheet\n      v-if=\"!$screen.higherThan('md', $screen.current.value) && showDrawer\"\n      @close=\"() => (showDrawer = false)\"\n    >\n      <AwesomeActionSheetGroup>\n        <AwesomeActionSheetHeader>\n          <AwesomeActionSheetHeaderTitle text=\"Menu\" />\n        </AwesomeActionSheetHeader>\n        <!-- dynamic menus -->\n        <AwesomeActionSheetItem>\n          <div\n            class=\"flex flex-col text-sm items-center divide-y divide-gray-400 dark:divide-gray-700 text-center\"\n          >\n            <template v-for=\"(item, i) in menus\">\n              <template v-if=\"item?.type === 'link'\">\n                <NuxtLink\n                  :key=\"i\"\n                  :to=\"parseMenuRoute(item.to)\"\n                  #=\"{ isActive }\"\n                  class=\"w-full py-2\"\n                >\n                  <span\n                    :class=\"{\n                      'text-gray-900 dark:text-gray-100 font-bold': isActive,\n                      'text-gray-700 dark:text-gray-300': !isActive,\n                    }\"\n                    >{{ parseMenuTitle(item?.title) }}</span\n                  >\n                </NuxtLink>\n              </template>\n              <template v-if=\"item?.type === 'button'\">\n                <AwesomeButton\n                  :key=\"i\"\n                  :text=\"parseMenuTitle(item?.title)\"\n                  size=\"sm\"\n                  :to=\"parseMenuRoute(item.to)\"\n                  class=\"w-full\"\n                />\n              </template>\n              <template v-if=\"item?.type === 'dropdown'\">\n                <div :key=\"i\" class=\"w-full\">\n                  <HeadlessDisclosure v-slot=\"{ open }\">\n                    <HeadlessDisclosureButton\n                      :key=\"i\"\n                      :class=\"[\n                        'text-gray-700 dark:text-gray-300 w-full py-2 flex items-center justify-center duration-300 transition-all',\n                        open ? 'font-bold' : '',\n                      ]\"\n                    >\n                      <span>{{ parseMenuTitle(item?.title) }}</span>\n                      <Icon\n                        name=\"carbon:chevron-right\"\n                        class=\"ml-1\"\n                        :class=\"[\n                          open\n                            ? 'duration-300 transition-all transform rotate-90'\n                            : 'rotate-0',\n                        ]\"\n                      />\n                    </HeadlessDisclosureButton>\n                    <Transition\n                      enter-active-class=\"transition duration-100 ease-out\"\n                      enter-from-class=\"transform scale-95 opacity-0\"\n                      enter-to-class=\"transform scale-100 opacity-100\"\n                      leave-active-class=\"transition duration-75 ease-out\"\n                      leave-from-class=\"transform scale-100 opacity-100\"\n                      leave-to-class=\"transform scale-95 opacity-0\"\n                    >\n                      <HeadlessDisclosurePanel class=\"text-gray-500 pb-2\">\n                        <template\n                          v-for=\"(child, j) in item?.children || []\"\n                          :key=\"j\"\n                        >\n                          <NuxtLink\n                            :to=\"parseMenuRoute(child.to)\"\n                            #=\"{ isActive }\"\n                            class=\"w-full py-2\"\n                          >\n                            <span\n                              :class=\"[\n                                isActive\n                                  ? 'text-gray-900 dark:text-gray-100 font-bold'\n                                  : 'text-gray-700 dark:text-gray-300',\n                              ]\"\n                              >{{ parseMenuTitle(child?.title) }}</span\n                            >\n                          </NuxtLink>\n                        </template>\n                      </HeadlessDisclosurePanel>\n                    </Transition>\n                  </HeadlessDisclosure>\n                </div>\n              </template>\n            </template>\n          </div>\n        </AwesomeActionSheetItem>\n        <AwesomeActionSheetItem class=\"flex flex-col\">\n          <div class=\"pb-2\">\n            <div class=\"mt-2 mb-2 text-sm font-bold capitalize\">\n              Change Theme\n            </div>\n            <LayoutPageNavbarDropdownThemeSwitcher type=\"select-box\" />\n          </div>\n        </AwesomeActionSheetItem>\n      </AwesomeActionSheetGroup>\n      <AwesomeActionSheetGroup>\n        <AwesomeActionSheetItemButton\n          class=\"flex justify-center items-center text-base space-x-2\"\n        >\n          <Icon name=\"mdi:github-face\" class=\"text-lg font-bold\" />\n          <span class=\"text-sm\">Github</span>\n        </AwesomeActionSheetItemButton>\n      </AwesomeActionSheetGroup>\n    </AwesomeActionSheet>\n  </header>\n</template>\n",
-      "start": 1710863480696,
-      "end": 1710863480708,
+      "start": 1710864566633,
+      "end": 1710864566663,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710863480708,
-      "end": 1710863480708,
+      "start": 1710864566663,
+      "end": 1710864566663,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710863480708,
-      "end": 1710863480708,
+      "start": 1710864566663,
+      "end": 1710864566663,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710863480708,
-      "end": 1710863480708,
+      "start": 1710864566663,
+      "end": 1710864566663,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710863480708,
-      "end": 1710863480708,
+      "start": 1710864566663,
+      "end": 1710864566663,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710863480708,
-      "end": 1710863480708,
+      "start": 1710864566663,
+      "end": 1710864566663,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1710863480708,
-      "end": 1710863480708,
+      "start": 1710864566663,
+      "end": 1710864566663,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1710863480708,
-      "end": 1710863480708,
+      "start": 1710864566663,
+      "end": 1710864566663,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710863480708,
-      "end": 1710863480708,
+      "start": 1710864566663,
+      "end": 1710864566663,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "import _sfc_main from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Navbar.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Navbar.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
-      "start": 1710863480708,
-      "end": 1710863481201,
+      "start": 1710864566663,
+      "end": 1710864567185,
       "order": "normal",
       "sourcemaps": {
         "mappings": ""
@@ -68,158 +68,158 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710863481201,
-      "end": 1710863481201,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863481201,
-      "end": 1710863481201,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710863481201,
-      "end": 1710863481201,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1710863481201,
-      "end": 1710863481201,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710863481201,
-      "end": 1710863481201,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710863481201,
-      "end": 1710863481202,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863481202,
-      "end": 1710863481202,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710863481202,
-      "end": 1710863481202,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710863481202,
-      "end": 1710863481202,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710863481202,
-      "end": 1710863481202,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710863481202,
-      "end": 1710863481202,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710863481202,
-      "end": 1710863481202,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710863481202,
-      "end": 1710863481202,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710863481202,
-      "end": 1710863481202,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710863481202,
-      "end": 1710863481202,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710863481202,
-      "end": 1710863481202,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710863481202,
-      "end": 1710863481202,
+      "start": 1710864567185,
+      "end": 1710864567185,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1710863481202,
-      "end": 1710863481202,
+      "start": 1710864567185,
+      "end": 1710864567186,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710863481202,
-      "end": 1710863481202,
+      "start": 1710864567186,
+      "end": 1710864567186,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710863481202,
-      "end": 1710863481202,
+      "start": 1710864567186,
+      "end": 1710864567187,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1710863481202,
-      "end": 1710863481203,
+      "start": 1710864567187,
+      "end": 1710864567187,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1710863481203,
-      "end": 1710863481203,
+      "start": 1710864567187,
+      "end": 1710864567187,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1710863481203,
-      "end": 1710863481203,
+      "start": 1710864567187,
+      "end": 1710864567187,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710863481203,
-      "end": 1710863481203,
+      "start": 1710864567187,
+      "end": 1710864567187,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710863481203,
-      "end": 1710863481203,
+      "start": 1710864567187,
+      "end": 1710864567187,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710863481203,
-      "end": 1710863481203,
+      "start": 1710864567187,
+      "end": 1710864567187,
       "order": "normal"
     }
   ]

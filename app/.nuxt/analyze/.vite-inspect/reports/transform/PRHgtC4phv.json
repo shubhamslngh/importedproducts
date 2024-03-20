@@ -4,63 +4,63 @@
     {
       "name": "vite:load-fallback",
       "result": "<script setup>\ndefinePageMeta({ layout: \"page\" });\nuseHead({ title: \"Posts\" });\nconst { $wordpressStore } = useNuxtApp();\nconsole.log(\" work\");\nconst products = [];\nonMounted(async () => {\n  try {\n    await $wordpressStore.fetchProducts();\n    // await $wordpressStore.addToCart();\n    console.log(\"work\");\n  } catch (error) {\n    console.log(\"error didnt work\");\n  }\n});\n</script>\n<template>\n  <LayoutPageWrapper>\n    <AwesomeLamp />\n    <AwesomeSubscription :subscriptions=\"$wordpressStore.productBg\" />\n  </LayoutPageWrapper>\n</template>\n<style></style>\n",
-      "start": 1710863480679,
-      "end": 1710863480696,
+      "start": 1710864566621,
+      "end": 1710864566654,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "import { resolveComponent as _resolveComponent, createVNode as _createVNode, unref as _unref, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\ndefinePageMeta({ layout: \"page\" });\nuseHead({ title: \"Posts\" });\nconst { $wordpressStore } = useNuxtApp();\nconsole.log(\" work\");\nconst products = [];\nonMounted(async () => {\n  try {\n    await $wordpressStore.fetchProducts();\n    // await $wordpressStore.addToCart();\n    console.log(\"work\");\n  } catch (error) {\n    console.log(\"error didnt work\");\n  }\n});\n\nreturn (_ctx, _cache) => {\n  const _component_AwesomeLamp = _resolveComponent(\"AwesomeLamp\")\n  const _component_AwesomeSubscription = _resolveComponent(\"AwesomeSubscription\")\n  const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\")\n\n  return (_openBlock(), _createBlock(_component_LayoutPageWrapper, null, {\n    default: _withCtx(() => [\n      _createVNode(_component_AwesomeLamp),\n      _createVNode(_component_AwesomeSubscription, {\n        subscriptions: _unref($wordpressStore).productBg\n      }, null, 8, [\"subscriptions\"])\n    ]),\n    _: 1\n  }))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal",
       "sourcemaps": {
         "mappings": ""
@@ -68,111 +68,111 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { definePageMeta } from '/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/pages/runtime/composables';\nimport { useHead } from '@unhead/vue';\nimport { useNuxtApp } from '#app/nuxt';\nimport { onMounted } from 'vue';\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, unref as _unref, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\ndefinePageMeta({ layout: \"page\" });\nuseHead({ title: \"Posts\" });\nconst { $wordpressStore } = useNuxtApp();\nconsole.log(\" work\");\nconst products = [];\nonMounted(async () => {\n  try {\n    await $wordpressStore.fetchProducts();\n    // await $wordpressStore.addToCart();\n    console.log(\"work\");\n  } catch (error) {\n    console.log(\"error didnt work\");\n  }\n});\n\nreturn (_ctx, _cache) => {\n  const _component_AwesomeLamp = _resolveComponent(\"AwesomeLamp\")\n  const _component_AwesomeSubscription = _resolveComponent(\"AwesomeSubscription\")\n  const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\")\n\n  return (_openBlock(), _createBlock(_component_LayoutPageWrapper, null, {\n    default: _withCtx(() => [\n      _createVNode(_component_AwesomeLamp),\n      _createVNode(_component_AwesomeSubscription, {\n        subscriptions: _unref($wordpressStore).productBg\n      }, null, 8, [\"subscriptions\"])\n    ]),\n    _: 1\n  }))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -185,52 +185,52 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1710863480696,
-      "end": 1710863480696,
+      "start": 1710864566654,
+      "end": 1710864566654,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/components/awesome/lamp.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/shubhamsingh/namma/importedProds/components/awesome/Subscription.vue\";\nimport { default as __nuxt_component_2 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Wrapper.vue\";\nimport { definePageMeta } from '/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/pages/runtime/composables';\nimport { useHead } from '@unhead/vue';\nimport { useNuxtApp } from '#app/nuxt';\nimport { onMounted } from 'vue';\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, unref as _unref, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\ndefinePageMeta({ layout: \"page\" });\nuseHead({ title: \"Posts\" });\nconst { $wordpressStore } = useNuxtApp();\nconsole.log(\" work\");\nconst products = [];\nonMounted(async () => {\n  try {\n    await $wordpressStore.fetchProducts();\n    // await $wordpressStore.addToCart();\n    console.log(\"work\");\n  } catch (error) {\n    console.log(\"error didnt work\");\n  }\n});\n\nreturn (_ctx, _cache) => {\n  const _component_AwesomeLamp = __nuxt_component_0\n  const _component_AwesomeSubscription = __nuxt_component_1\n  const _component_LayoutPageWrapper = __nuxt_component_2\n\n  return (_openBlock(), _createBlock(_component_LayoutPageWrapper, null, {\n    default: _withCtx(() => [\n      _createVNode(_component_AwesomeLamp),\n      _createVNode(_component_AwesomeSubscription, {\n        subscriptions: _unref($wordpressStore).productBg\n      }, null, 8, [\"subscriptions\"])\n    ]),\n    _: 1\n  }))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
-      "start": 1710863480696,
-      "end": 1710863480697,
+      "start": 1710864566654,
+      "end": 1710864566655,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/components/awesome/lamp.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/shubhamsingh/namma/importedProds/components/awesome/Subscription.vue\";\nimport { default as __nuxt_component_2 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Wrapper.vue\";\nimport { definePageMeta } from '/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/pages/runtime/composables';\nimport { useHead } from '@unhead/vue';\nimport { useNuxtApp } from '#app/nuxt';\nimport { onMounted } from 'vue';\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, unref as _unref, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\n\nconst _sfc_main = {\n  __name: 'index',\n  setup(__props) {\n\n false && /*@__PURE__*/ definePageMeta({ layout: \"page\" });\nuseHead({ title: \"Posts\" });\nconst { $wordpressStore } = useNuxtApp();\nconsole.log(\" work\");\nconst products = [];\nonMounted(async () => {\n  try {\n    await $wordpressStore.fetchProducts();\n    // await $wordpressStore.addToCart();\n    console.log(\"work\");\n  } catch (error) {\n    console.log(\"error didnt work\");\n  }\n});\n\nreturn (_ctx, _cache) => {\n  const _component_AwesomeLamp = __nuxt_component_0\n  const _component_AwesomeSubscription = __nuxt_component_1\n  const _component_LayoutPageWrapper = __nuxt_component_2\n\n  return (_openBlock(), _createBlock(_component_LayoutPageWrapper, null, {\n    default: _withCtx(() => [\n      _createVNode(_component_AwesomeLamp),\n      _createVNode(_component_AwesomeSubscription, {\n        subscriptions: _unref($wordpressStore).productBg\n      }, null, 8, [\"subscriptions\"])\n    ]),\n    _: 1\n  }))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
-      "start": 1710863480697,
-      "end": 1710863480697,
+      "start": 1710864566655,
+      "end": 1710864566655,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710863480697,
-      "end": 1710863480697,
+      "start": 1710864566655,
+      "end": 1710864566655,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710863480697,
-      "end": 1710863480697,
+      "start": 1710864566655,
+      "end": 1710864566655,
       "order": "normal"
     }
   ]

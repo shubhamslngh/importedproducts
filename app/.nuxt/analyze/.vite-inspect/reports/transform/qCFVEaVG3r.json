@@ -4,44 +4,44 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { resolveComponent as _resolveComponent, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode, unref as _unref, toDisplayString as _toDisplayString, normalizeClass as _normalizeClass, createElementVNode as _createElementVNode, createVNode as _createVNode, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, createElementBlock as _createElementBlock, Transition as _Transition } from \"vue\"\n\nconst _hoisted_1 = { class: \"grid grid-cols-1\" }\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'Wrapper',\n  props: {\n  menu: {\n    type: Object as () =>\n      | AwesomeLayoutPageNavbarMenuDropdownItem\n      | AwesomeLayoutPageNavbarMenu,\n    required: true,\n  },\n},\n  setup(__props) {\n\nconst nuxtApp = useNuxtApp()\nconst route = useRoute()\nconst router = useRouter()\nconst { parseMenuRoute, parseMenuTitle } = useNavbarParser()\n\nconst props = __props\nconst isActive = computed(() => {\n  if (!(props.menu as any)?.children) return false\n  const childs = ((props.menu as any)?.children ||\n    []) as AwesomeLayoutPageNavbarMenu[]\n  for (const child of childs) {\n    const to = parseMenuRoute(child.to)\n    if (typeof to === 'string' && to === route.path) return true\n    if (route.name?.toString().includes((to as any).name?.toString()))\n      return true\n  }\n  return false\n})\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_LayoutPageNavbarMenuItem = _resolveComponent(\"LayoutPageNavbarMenuItem\")!\n  const _component_Icon = _resolveComponent(\"Icon\")!\n  const _component_HeadlessPopoverButton = _resolveComponent(\"HeadlessPopoverButton\")!\n  const _component_HeadlessPopoverPanel = _resolveComponent(\"HeadlessPopoverPanel\")!\n  const _component_HeadlessPopover = _resolveComponent(\"HeadlessPopover\")!\n\n  return (__props.menu.type !== 'dropdown')\n    ? (_openBlock(), _createBlock(_component_LayoutPageNavbarMenuItem, {\n        key: 0,\n        menu: __props.menu\n      }, null, 8, [\"menu\"]))\n    : (__props.menu.children && __props.menu.children.length > 0)\n      ? (_openBlock(), _createBlock(_component_HeadlessPopover, { key: 1 }, {\n          default: _withCtx(({ open }) => [\n            _createVNode(_component_HeadlessPopoverButton, { class: \"flex items-center transition-all duration-300 text-gray-900 dark:text-gray-100\" }, {\n              default: _withCtx(() => [\n                _createElementVNode(\"span\", {\n                  class: _normalizeClass([_unref(isActive) ? 'font-bold' : ''])\n                }, _toDisplayString(_unref(parseMenuTitle)(__props.menu.title)), 3),\n                _createVNode(_component_Icon, {\n                  name: \"carbon:chevron-down\",\n                  class: _normalizeClass([\"ml-1\", [open ? 'transform rotate-180' : '']])\n                }, null, 8, [\"class\"])\n              ]),\n              _: 2\n            }, 1024),\n            _createVNode(_Transition, {\n              \"enter-active-class\": \"transition duration-200 ease-out\",\n              \"enter-from-class\": \"translate-y-1 opacity-0\",\n              \"enter-to-class\": \"translate-y-0 opacity-100\",\n              \"leave-active-class\": \"transition duration-150 ease-in\",\n              \"leave-from-class\": \"translate-y-0 opacity-100\",\n              \"leave-to-class\": \"translate-y-1 opacity-0\"\n            }, {\n              default: _withCtx(() => [\n                _createVNode(_component_HeadlessPopoverPanel, { class: \"absolute z-10 px-2 py-2 rounded-lg min-w-[150px] bg-gray-50 border-gray-300 dark:bg-gray-900 border dark:border-gray-600\" }, {\n                  default: _withCtx(() => [\n                    _createElementVNode(\"div\", _hoisted_1, [\n                      (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(__props.menu.children, (child, j) => {\n                        return (_openBlock(), _createBlock(_component_LayoutPageNavbarMenuItem, {\n                          key: j,\n                          menu: child,\n                          \"is-dropdown\": \"\"\n                        }, null, 8, [\"menu\"]))\n                      }), 128))\n                    ])\n                  ]),\n                  _: 1\n                })\n              ]),\n              _: 1\n            })\n          ]),\n          _: 1\n        }))\n      : _createCommentVNode(\"\", true)\n}\n}\n\n})",
-      "start": 1710863481390,
-      "end": 1710863481390
+      "start": 1710864567223,
+      "end": 1710864567223
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710863481390,
-      "end": 1710863481390,
+      "start": 1710864567223,
+      "end": 1710864567223,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710863481390,
-      "end": 1710863481390,
+      "start": 1710864567223,
+      "end": 1710864567223,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710863481390,
-      "end": 1710863481390,
+      "start": 1710864567223,
+      "end": 1710864567223,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710863481390,
-      "end": 1710863481390,
+      "start": 1710864567223,
+      "end": 1710864567223,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710863481390,
-      "end": 1710863481390,
+      "start": 1710864567223,
+      "end": 1710864567223,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode, unref as _unref, toDisplayString as _toDisplayString, normalizeClass as _normalizeClass, createElementVNode as _createElementVNode, createVNode as _createVNode, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, createElementBlock as _createElementBlock, Transition as _Transition } from \"vue\";\nconst _hoisted_1 = { class: \"grid grid-cols-1\" };\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Wrapper\",\n  props: {\n    menu: {\n      type: Object,\n      required: true\n    }\n  },\n  setup(__props) {\n    const nuxtApp = useNuxtApp();\n    const route = useRoute();\n    const router = useRouter();\n    const { parseMenuRoute, parseMenuTitle } = useNavbarParser();\n    const props = __props;\n    const isActive = computed(() => {\n      if (!props.menu?.children)\n        return false;\n      const childs = props.menu?.children || [];\n      for (const child of childs) {\n        const to = parseMenuRoute(child.to);\n        if (typeof to === \"string\" && to === route.path)\n          return true;\n        if (route.name?.toString().includes(to.name?.toString()))\n          return true;\n      }\n      return false;\n    });\n    return (_ctx, _cache) => {\n      const _component_LayoutPageNavbarMenuItem = _resolveComponent(\"LayoutPageNavbarMenuItem\");\n      const _component_Icon = _resolveComponent(\"Icon\");\n      const _component_HeadlessPopoverButton = _resolveComponent(\"HeadlessPopoverButton\");\n      const _component_HeadlessPopoverPanel = _resolveComponent(\"HeadlessPopoverPanel\");\n      const _component_HeadlessPopover = _resolveComponent(\"HeadlessPopover\");\n      return __props.menu.type !== \"dropdown\" ? (_openBlock(), _createBlock(_component_LayoutPageNavbarMenuItem, {\n        key: 0,\n        menu: __props.menu\n      }, null, 8, [\"menu\"])) : __props.menu.children && __props.menu.children.length > 0 ? (_openBlock(), _createBlock(_component_HeadlessPopover, { key: 1 }, {\n        default: _withCtx(({ open }) => [\n          _createVNode(_component_HeadlessPopoverButton, { class: \"flex items-center transition-all duration-300 text-gray-900 dark:text-gray-100\" }, {\n            default: _withCtx(() => [\n              _createElementVNode(\"span\", {\n                class: _normalizeClass([_unref(isActive) ? \"font-bold\" : \"\"])\n              }, _toDisplayString(_unref(parseMenuTitle)(__props.menu.title)), 3),\n              _createVNode(_component_Icon, {\n                name: \"carbon:chevron-down\",\n                class: _normalizeClass([\"ml-1\", [open ? \"transform rotate-180\" : \"\"]])\n              }, null, 8, [\"class\"])\n            ]),\n            _: 2\n          }, 1024),\n          _createVNode(_Transition, {\n            \"enter-active-class\": \"transition duration-200 ease-out\",\n            \"enter-from-class\": \"translate-y-1 opacity-0\",\n            \"enter-to-class\": \"translate-y-0 opacity-100\",\n            \"leave-active-class\": \"transition duration-150 ease-in\",\n            \"leave-from-class\": \"translate-y-0 opacity-100\",\n            \"leave-to-class\": \"translate-y-1 opacity-0\"\n          }, {\n            default: _withCtx(() => [\n              _createVNode(_component_HeadlessPopoverPanel, { class: \"absolute z-10 px-2 py-2 rounded-lg min-w-[150px] bg-gray-50 border-gray-300 dark:bg-gray-900 border dark:border-gray-600\" }, {\n                default: _withCtx(() => [\n                  _createElementVNode(\"div\", _hoisted_1, [\n                    (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(__props.menu.children, (child, j) => {\n                      return _openBlock(), _createBlock(_component_LayoutPageNavbarMenuItem, {\n                        key: j,\n                        menu: child,\n                        \"is-dropdown\": \"\"\n                      }, null, 8, [\"menu\"]);\n                    }), 128))\n                  ])\n                ]),\n                _: 1\n              })\n            ]),\n            _: 1\n          })\n        ]),\n        _: 1\n      })) : _createCommentVNode(\"\", true);\n    };\n  }\n});\n",
-      "start": 1710863481390,
-      "end": 1710863481614,
+      "start": 1710864567223,
+      "end": 1710864567581,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -57,129 +57,129 @@
     },
     {
       "name": "vite:json",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710863481614,
-      "end": 1710863481614,
+      "start": 1710864567581,
+      "end": 1710864567581,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { useNuxtApp } from '#app/nuxt';\nimport { useRoute, useRouter } from '#app/composables/router';\nimport { useNavbarParser } from '/Users/shubhamsingh/namma/importedProds/composables/use-navbar-parser.ts';\nimport { computed } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode, unref as _unref, toDisplayString as _toDisplayString, normalizeClass as _normalizeClass, createElementVNode as _createElementVNode, createVNode as _createVNode, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, createElementBlock as _createElementBlock, Transition as _Transition } from \"vue\";\nconst _hoisted_1 = { class: \"grid grid-cols-1\" };\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Wrapper\",\n  props: {\n    menu: {\n      type: Object,\n      required: true\n    }\n  },\n  setup(__props) {\n    const nuxtApp = useNuxtApp();\n    const route = useRoute();\n    const router = useRouter();\n    const { parseMenuRoute, parseMenuTitle } = useNavbarParser();\n    const props = __props;\n    const isActive = computed(() => {\n      if (!props.menu?.children)\n        return false;\n      const childs = props.menu?.children || [];\n      for (const child of childs) {\n        const to = parseMenuRoute(child.to);\n        if (typeof to === \"string\" && to === route.path)\n          return true;\n        if (route.name?.toString().includes(to.name?.toString()))\n          return true;\n      }\n      return false;\n    });\n    return (_ctx, _cache) => {\n      const _component_LayoutPageNavbarMenuItem = _resolveComponent(\"LayoutPageNavbarMenuItem\");\n      const _component_Icon = _resolveComponent(\"Icon\");\n      const _component_HeadlessPopoverButton = _resolveComponent(\"HeadlessPopoverButton\");\n      const _component_HeadlessPopoverPanel = _resolveComponent(\"HeadlessPopoverPanel\");\n      const _component_HeadlessPopover = _resolveComponent(\"HeadlessPopover\");\n      return __props.menu.type !== \"dropdown\" ? (_openBlock(), _createBlock(_component_LayoutPageNavbarMenuItem, {\n        key: 0,\n        menu: __props.menu\n      }, null, 8, [\"menu\"])) : __props.menu.children && __props.menu.children.length > 0 ? (_openBlock(), _createBlock(_component_HeadlessPopover, { key: 1 }, {\n        default: _withCtx(({ open }) => [\n          _createVNode(_component_HeadlessPopoverButton, { class: \"flex items-center transition-all duration-300 text-gray-900 dark:text-gray-100\" }, {\n            default: _withCtx(() => [\n              _createElementVNode(\"span\", {\n                class: _normalizeClass([_unref(isActive) ? \"font-bold\" : \"\"])\n              }, _toDisplayString(_unref(parseMenuTitle)(__props.menu.title)), 3),\n              _createVNode(_component_Icon, {\n                name: \"carbon:chevron-down\",\n                class: _normalizeClass([\"ml-1\", [open ? \"transform rotate-180\" : \"\"]])\n              }, null, 8, [\"class\"])\n            ]),\n            _: 2\n          }, 1024),\n          _createVNode(_Transition, {\n            \"enter-active-class\": \"transition duration-200 ease-out\",\n            \"enter-from-class\": \"translate-y-1 opacity-0\",\n            \"enter-to-class\": \"translate-y-0 opacity-100\",\n            \"leave-active-class\": \"transition duration-150 ease-in\",\n            \"leave-from-class\": \"translate-y-0 opacity-100\",\n            \"leave-to-class\": \"translate-y-1 opacity-0\"\n          }, {\n            default: _withCtx(() => [\n              _createVNode(_component_HeadlessPopoverPanel, { class: \"absolute z-10 px-2 py-2 rounded-lg min-w-[150px] bg-gray-50 border-gray-300 dark:bg-gray-900 border dark:border-gray-600\" }, {\n                default: _withCtx(() => [\n                  _createElementVNode(\"div\", _hoisted_1, [\n                    (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(__props.menu.children, (child, j) => {\n                      return _openBlock(), _createBlock(_component_LayoutPageNavbarMenuItem, {\n                        key: j,\n                        menu: child,\n                        \"is-dropdown\": \"\"\n                      }, null, 8, [\"menu\"]);\n                    }), 128))\n                  ])\n                ]),\n                _: 1\n              })\n            ]),\n            _: 1\n          })\n        ]),\n        _: 1\n      })) : _createCommentVNode(\"\", true);\n    };\n  }\n});\n",
-      "start": 1710863481614,
-      "end": 1710863481615,
+      "start": 1710864567581,
+      "end": 1710864567582,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -192,51 +192,51 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1710863481615,
-      "end": 1710863481615,
+      "start": 1710864567582,
+      "end": 1710864567582,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710863481615,
-      "end": 1710863481615,
+      "start": 1710864567582,
+      "end": 1710864567582,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1710863481615,
-      "end": 1710863481615,
+      "start": 1710864567582,
+      "end": 1710864567582,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1710863481615,
-      "end": 1710863481615,
+      "start": 1710864567582,
+      "end": 1710864567582,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/NavbarMenu/Item.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/nuxt-icon/dist/runtime/Icon.vue\";\nimport { PopoverButton as __nuxt_component_2 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/@headlessui/vue/dist/components/popover/popover.js\";\nimport { PopoverPanel as __nuxt_component_3 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/@headlessui/vue/dist/components/popover/popover.js\";\nimport { Popover as __nuxt_component_4 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/@headlessui/vue/dist/components/popover/popover.js\";\nimport { useNuxtApp } from '#app/nuxt';\nimport { useRoute, useRouter } from '#app/composables/router';\nimport { useNavbarParser } from '/Users/shubhamsingh/namma/importedProds/composables/use-navbar-parser.ts';\nimport { computed } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode, unref as _unref, toDisplayString as _toDisplayString, normalizeClass as _normalizeClass, createElementVNode as _createElementVNode, createVNode as _createVNode, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, createElementBlock as _createElementBlock, Transition as _Transition } from \"vue\";\nconst _hoisted_1 = { class: \"grid grid-cols-1\" };\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Wrapper\",\n  props: {\n    menu: {\n      type: Object,\n      required: true\n    }\n  },\n  setup(__props) {\n    const nuxtApp = useNuxtApp();\n    const route = useRoute();\n    const router = useRouter();\n    const { parseMenuRoute, parseMenuTitle } = useNavbarParser();\n    const props = __props;\n    const isActive = computed(() => {\n      if (!props.menu?.children)\n        return false;\n      const childs = props.menu?.children || [];\n      for (const child of childs) {\n        const to = parseMenuRoute(child.to);\n        if (typeof to === \"string\" && to === route.path)\n          return true;\n        if (route.name?.toString().includes(to.name?.toString()))\n          return true;\n      }\n      return false;\n    });\n    return (_ctx, _cache) => {\n      const _component_LayoutPageNavbarMenuItem = __nuxt_component_0;\n      const _component_Icon = __nuxt_component_1;\n      const _component_HeadlessPopoverButton = __nuxt_component_2;\n      const _component_HeadlessPopoverPanel = __nuxt_component_3;\n      const _component_HeadlessPopover = __nuxt_component_4;\n      return __props.menu.type !== \"dropdown\" ? (_openBlock(), _createBlock(_component_LayoutPageNavbarMenuItem, {\n        key: 0,\n        menu: __props.menu\n      }, null, 8, [\"menu\"])) : __props.menu.children && __props.menu.children.length > 0 ? (_openBlock(), _createBlock(_component_HeadlessPopover, { key: 1 }, {\n        default: _withCtx(({ open }) => [\n          _createVNode(_component_HeadlessPopoverButton, { class: \"flex items-center transition-all duration-300 text-gray-900 dark:text-gray-100\" }, {\n            default: _withCtx(() => [\n              _createElementVNode(\"span\", {\n                class: _normalizeClass([_unref(isActive) ? \"font-bold\" : \"\"])\n              }, _toDisplayString(_unref(parseMenuTitle)(__props.menu.title)), 3),\n              _createVNode(_component_Icon, {\n                name: \"carbon:chevron-down\",\n                class: _normalizeClass([\"ml-1\", [open ? \"transform rotate-180\" : \"\"]])\n              }, null, 8, [\"class\"])\n            ]),\n            _: 2\n          }, 1024),\n          _createVNode(_Transition, {\n            \"enter-active-class\": \"transition duration-200 ease-out\",\n            \"enter-from-class\": \"translate-y-1 opacity-0\",\n            \"enter-to-class\": \"translate-y-0 opacity-100\",\n            \"leave-active-class\": \"transition duration-150 ease-in\",\n            \"leave-from-class\": \"translate-y-0 opacity-100\",\n            \"leave-to-class\": \"translate-y-1 opacity-0\"\n          }, {\n            default: _withCtx(() => [\n              _createVNode(_component_HeadlessPopoverPanel, { class: \"absolute z-10 px-2 py-2 rounded-lg min-w-[150px] bg-gray-50 border-gray-300 dark:bg-gray-900 border dark:border-gray-600\" }, {\n                default: _withCtx(() => [\n                  _createElementVNode(\"div\", _hoisted_1, [\n                    (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(__props.menu.children, (child, j) => {\n                      return _openBlock(), _createBlock(_component_LayoutPageNavbarMenuItem, {\n                        key: j,\n                        menu: child,\n                        \"is-dropdown\": \"\"\n                      }, null, 8, [\"menu\"]);\n                    }), 128))\n                  ])\n                ]),\n                _: 1\n              })\n            ]),\n            _: 1\n          })\n        ]),\n        _: 1\n      })) : _createCommentVNode(\"\", true);\n    };\n  }\n});\n",
-      "start": 1710863481615,
-      "end": 1710863481615,
+      "start": 1710864567582,
+      "end": 1710864567582,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710863481615,
-      "end": 1710863481615,
+      "start": 1710864567582,
+      "end": 1710864567582,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710863481615,
-      "end": 1710863481615,
+      "start": 1710864567582,
+      "end": 1710864567582,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710863481615,
-      "end": 1710863481615,
+      "start": 1710864567582,
+      "end": 1710864567582,
       "order": "normal"
     }
   ]

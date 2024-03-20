@@ -4,45 +4,45 @@
     {
       "name": "vite:load-fallback",
       "result": "import type { AppConfigInput } from 'nuxt/schema'\n\nexport default defineAppConfig({\n  awesome: {\n    name: 'Imported Products',\n    description:\n      'a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.',\n    project: {\n      links: {\n        github: 'https://github.com/viandwi24/nuxt3-awesome-starter',\n      },\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: [\n            { type: 'link', title: 'Cases', to: { name: 'blank' } },\n            { type: 'link', title: 'Post', to: { name: 'post' } },\n            { type: 'link', title: 'Travel', to: { name: 'test' } },\n            {\n              type: 'dropdown',\n              title: 'Documentations',\n              children: [\n                {\n                  type: 'link',\n                  title: 'Components',\n                  to: { name: 'docs-components' },\n                },\n              ],\n            },\n            { type: 'button', title: 'Setting', to: { name: 'setting' } },\n            // dynamic title\n            // {\n            //   type: 'button',\n            //   title: (nuxt) =>\n            //     (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',\n            //   to: (nuxt) => (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',\n            // },\n          ],\n        },\n      },\n      footer: {\n        year: new Date().getFullYear(),\n      },\n      welcome: {\n        title: 'Nuxt&nbsp;3 Awesome Starter',\n        disableInfoReplaceIndexInWelcomePage: true,\n      },\n    },\n    author: {\n      name: 'shubham',\n      links: {\n        github: 'https://github.com/viandwi24',\n        medium: 'https://viandwi24.medium.com',\n        website: 'https://viandwi24.site',\n      },\n    },\n  },\n})\n",
-      "start": 1710863481621,
-      "end": 1710863481629,
+      "start": 1710864567732,
+      "end": 1710864567744,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710863481629,
-      "end": 1710863481629,
+      "start": 1710864567744,
+      "end": 1710864567744,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710863481629,
-      "end": 1710863481629,
+      "start": 1710864567744,
+      "end": 1710864567744,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710863481629,
-      "end": 1710863481629,
+      "start": 1710864567744,
+      "end": 1710864567744,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710863481629,
-      "end": 1710863481629,
+      "start": 1710864567744,
+      "end": 1710864567744,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710863481629,
-      "end": 1710863481629,
+      "start": 1710864567744,
+      "end": 1710864567744,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "export default defineAppConfig({\n  awesome: {\n    name: \"Imported Products\",\n    description: \"a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.\",\n    project: {\n      links: {\n        github: \"https://github.com/viandwi24/nuxt3-awesome-starter\"\n      }\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: [\n            { type: \"link\", title: \"Cases\", to: { name: \"blank\" } },\n            { type: \"link\", title: \"Post\", to: { name: \"post\" } },\n            { type: \"link\", title: \"Travel\", to: { name: \"test\" } },\n            {\n              type: \"dropdown\",\n              title: \"Documentations\",\n              children: [\n                {\n                  type: \"link\",\n                  title: \"Components\",\n                  to: { name: \"docs-components\" }\n                }\n              ]\n            },\n            { type: \"button\", title: \"Setting\", to: { name: \"setting\" } }\n            // dynamic title\n            // {\n            //   type: 'button',\n            //   title: (nuxt) =>\n            //     (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',\n            //   to: (nuxt) => (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',\n            // },\n          ]\n        }\n      },\n      footer: {\n        year: (/* @__PURE__ */ new Date()).getFullYear()\n      },\n      welcome: {\n        title: \"Nuxt&nbsp;3 Awesome Starter\",\n        disableInfoReplaceIndexInWelcomePage: true\n      }\n    },\n    author: {\n      name: \"shubham\",\n      links: {\n        github: \"https://github.com/viandwi24\",\n        medium: \"https://viandwi24.medium.com\",\n        website: \"https://viandwi24.site\"\n      }\n    }\n  }\n});\n",
-      "start": 1710863481629,
-      "end": 1710863481673,
+      "start": 1710864567744,
+      "end": 1710864567786,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -58,129 +58,129 @@
     },
     {
       "name": "vite:json",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567786,
+      "end": 1710864567786,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567786,
+      "end": 1710864567786,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567786,
+      "end": 1710864567786,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567786,
+      "end": 1710864567786,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567787,
+      "end": 1710864567787,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567787,
+      "end": 1710864567787,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567787,
+      "end": 1710864567787,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710863481673,
-      "end": 1710863481673,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { defineAppConfig } from '#app/nuxt';\nexport default defineAppConfig({\n  awesome: {\n    name: \"Imported Products\",\n    description: \"a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.\",\n    project: {\n      links: {\n        github: \"https://github.com/viandwi24/nuxt3-awesome-starter\"\n      }\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: [\n            { type: \"link\", title: \"Cases\", to: { name: \"blank\" } },\n            { type: \"link\", title: \"Post\", to: { name: \"post\" } },\n            { type: \"link\", title: \"Travel\", to: { name: \"test\" } },\n            {\n              type: \"dropdown\",\n              title: \"Documentations\",\n              children: [\n                {\n                  type: \"link\",\n                  title: \"Components\",\n                  to: { name: \"docs-components\" }\n                }\n              ]\n            },\n            { type: \"button\", title: \"Setting\", to: { name: \"setting\" } }\n            // dynamic title\n            // {\n            //   type: 'button',\n            //   title: (nuxt) =>\n            //     (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',\n            //   to: (nuxt) => (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',\n            // },\n          ]\n        }\n      },\n      footer: {\n        year: (/* @__PURE__ */ new Date()).getFullYear()\n      },\n      welcome: {\n        title: \"Nuxt&nbsp;3 Awesome Starter\",\n        disableInfoReplaceIndexInWelcomePage: true\n      }\n    },\n    author: {\n      name: \"shubham\",\n      links: {\n        github: \"https://github.com/viandwi24\",\n        medium: \"https://viandwi24.medium.com\",\n        website: \"https://viandwi24.site\"\n      }\n    }\n  }\n});\n",
-      "start": 1710863481673,
-      "end": 1710863481674,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -193,50 +193,50 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1710863481674,
-      "end": 1710863481674,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710863481674,
-      "end": 1710863481674,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1710863481674,
-      "end": 1710863481674,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1710863481674,
-      "end": 1710863481674,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1710863481674,
-      "end": 1710863481674,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710863481674,
-      "end": 1710863481674,
+      "start": 1710864567790,
+      "end": 1710864567790,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710863481674,
-      "end": 1710863481674,
+      "start": 1710864567790,
+      "end": 1710864567791,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710863481674,
-      "end": 1710863481674,
+      "start": 1710864567791,
+      "end": 1710864567791,
       "order": "normal"
     }
   ]

@@ -4,8 +4,8 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, resolveComponent as _resolveComponent, withCtx as _withCtx, renderSlot as _renderSlot, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderSlot as _ssrRenderSlot, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\"\n\nconst defaultStyle = `\n  cursor-pointer\n  border transition-color duration-300\n  focus:outline-none focus:ring-1 focus:ring-offset-1 focus:dark:ring-offset-gray-50 focus:dark:ring-gray-400 focus:ring-gray-600/[0.6] focus:ring-offset-gray-800/[0.6]\n  flex items-center justify-center font-semibold\n`\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'index',\n  __ssrInlineRender: true,\n  props: {\n  text: {\n    type: String,\n    default: '',\n  },\n  type: {\n    type: String,\n    default: 'primary',\n  },\n  size: {\n    type: String,\n    default: 'md',\n  },\n  to: {\n    type: [String, Object],\n    default: undefined,\n  },\n  href: {\n    type: String,\n    default: undefined,\n  },\n},\n  setup(__props) {\n\nconst props = __props\n// state:styles\nconst styles = reactive<{\n  [key: string]: string\n}>({\n  none: '',\n  primary: 'text-white bg-primary-500 hover:bg-primary-400 border-primary-500',\n  secondary:\n    'text-gray-800 bg-gray-200 border-gray-200 hover:bg-gray-300 dark:text-white dark:border-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700',\n  opposite:\n    'text-white bg-gray-800 hover:bg-white hover:text-gray-800 hover:border-gray-900 dark:text-gray-800 dark:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-100 dark:border-white',\n  danger: 'text-white bg-red-500 hover:bg-red-400 border-red-500',\n})\nconst sizes = reactive<{\n  [key: string]: string\n}>({\n  lg: 'h-14 px-8 text-lg rounded-lg',\n  md: 'h-10 px-6 text-base rounded',\n  sm: 'h-9 px-4 text-sm rounded',\n  xs: 'h-6 px-3 text-xs rounded',\n})\n// state\nconst selectedStyle = computed(() =>\n  props.type in styles ? styles[props.type] : styles.primary,\n)\nconst selectedSize = computed(() => sizes[props.size] || sizes.lg)\n// methods\nconst onClick = (event: MouseEvent) => {\n  const router = useRouter()\n  if (props.to) {\n    router.push(props.to)\n  }\n  if (!props.href) {\n    event.preventDefault()\n  }\n}\n\nreturn (_ctx: any,_push: any,_parent: any,_attrs: any) => {\n  const _component_NuxtLink = _resolveComponent(\"NuxtLink\")!\n\n  if (__props.to) {\n    _push(_ssrRenderComponent(_component_NuxtLink, _mergeProps({\n      tag: \"a\",\n      to: __props.to,\n      class: `${defaultStyle} ${_unref(selectedStyle)} ${_unref(selectedSize)}`\n    }, _attrs), {\n      default: _withCtx((_, _push, _parent, _scopeId) => {\n        if (_push) {\n          _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n            _push(`${_ssrInterpolate(__props.text)}`)\n          }, _push, _parent, _scopeId)\n        } else {\n          return [\n            _renderSlot(_ctx.$slots, \"default\", {}, () => [\n              _createTextVNode(_toDisplayString(__props.text), 1)\n            ])\n          ]\n        }\n      }),\n      _: 3\n    }, _parent))\n  } else {\n    _push(`<a${_ssrRenderAttrs(_mergeProps({\n      class: `${defaultStyle} ${_unref(selectedStyle)} ${_unref(selectedSize)}`,\n      href: __props.href\n    }, _attrs))}>`)\n    _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n      _push(`${_ssrInterpolate(__props.text)}`)\n    }, _push, _parent)\n    _push(`</a>`)\n  }\n}\n}\n\n})",
-      "start": 1710863483694,
-      "end": 1710863483694,
+      "start": 1710864569832,
+      "end": 1710864569832,
       "sourcemaps": {
         "version": 3,
         "sources": [
@@ -20,57 +20,57 @@
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710863483694,
-      "end": 1710863483694,
+      "start": 1710864569832,
+      "end": 1710864569832,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710863483694,
-      "end": 1710863483694,
+      "start": 1710864569832,
+      "end": 1710864569832,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710863483694,
-      "end": 1710863483694,
+      "start": 1710864569832,
+      "end": 1710864569832,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710863483694,
-      "end": 1710863483694,
+      "start": 1710864569832,
+      "end": 1710864569832,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710863483694,
-      "end": 1710863483694,
+      "start": 1710864569832,
+      "end": 1710864569832,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710863483694,
-      "end": 1710863483694,
+      "start": 1710864569832,
+      "end": 1710864569832,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710863483694,
-      "end": 1710863483694,
+      "start": 1710864569832,
+      "end": 1710864569832,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710863483694,
-      "end": 1710863483694,
+      "start": 1710864569832,
+      "end": 1710864569832,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, resolveComponent as _resolveComponent, withCtx as _withCtx, renderSlot as _renderSlot, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderSlot as _ssrRenderSlot, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\";\nconst defaultStyle = `\n  cursor-pointer\n  border transition-color duration-300\n  focus:outline-none focus:ring-1 focus:ring-offset-1 focus:dark:ring-offset-gray-50 focus:dark:ring-gray-400 focus:ring-gray-600/[0.6] focus:ring-offset-gray-800/[0.6]\n  flex items-center justify-center font-semibold\n`;\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"index\",\n  __ssrInlineRender: true,\n  props: {\n    text: {\n      type: String,\n      default: \"\"\n    },\n    type: {\n      type: String,\n      default: \"primary\"\n    },\n    size: {\n      type: String,\n      default: \"md\"\n    },\n    to: {\n      type: [String, Object],\n      default: void 0\n    },\n    href: {\n      type: String,\n      default: void 0\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const styles = reactive({\n      none: \"\",\n      primary: \"text-white bg-primary-500 hover:bg-primary-400 border-primary-500\",\n      secondary: \"text-gray-800 bg-gray-200 border-gray-200 hover:bg-gray-300 dark:text-white dark:border-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700\",\n      opposite: \"text-white bg-gray-800 hover:bg-white hover:text-gray-800 hover:border-gray-900 dark:text-gray-800 dark:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-100 dark:border-white\",\n      danger: \"text-white bg-red-500 hover:bg-red-400 border-red-500\"\n    });\n    const sizes = reactive({\n      lg: \"h-14 px-8 text-lg rounded-lg\",\n      md: \"h-10 px-6 text-base rounded\",\n      sm: \"h-9 px-4 text-sm rounded\",\n      xs: \"h-6 px-3 text-xs rounded\"\n    });\n    const selectedStyle = computed(\n      () => props.type in styles ? styles[props.type] : styles.primary\n    );\n    const selectedSize = computed(() => sizes[props.size] || sizes.lg);\n    const onClick = (event) => {\n      const router = useRouter();\n      if (props.to) {\n        router.push(props.to);\n      }\n      if (!props.href) {\n        event.preventDefault();\n      }\n    };\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_NuxtLink = _resolveComponent(\"NuxtLink\");\n      if (__props.to) {\n        _push(_ssrRenderComponent(_component_NuxtLink, _mergeProps({\n          tag: \"a\",\n          to: __props.to,\n          class: `${defaultStyle} ${_unref(selectedStyle)} ${_unref(selectedSize)}`\n        }, _attrs), {\n          default: _withCtx((_, _push2, _parent2, _scopeId) => {\n            if (_push2) {\n              _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n                _push2(`${_ssrInterpolate(__props.text)}`);\n              }, _push2, _parent2, _scopeId);\n            } else {\n              return [\n                _renderSlot(_ctx.$slots, \"default\", {}, () => [\n                  _createTextVNode(_toDisplayString(__props.text), 1)\n                ])\n              ];\n            }\n          }),\n          _: 3\n        }, _parent));\n      } else {\n        _push(`<a${_ssrRenderAttrs(_mergeProps({\n          class: `${defaultStyle} ${_unref(selectedStyle)} ${_unref(selectedSize)}`,\n          href: __props.href\n        }, _attrs))}>`);\n        _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n          _push(`${_ssrInterpolate(__props.text)}`);\n        }, _push, _parent);\n        _push(`</a>`);\n      }\n    };\n  }\n});\n",
-      "start": 1710863483694,
-      "end": 1710863484025,
+      "start": 1710864569832,
+      "end": 1710864570167,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -89,141 +89,141 @@
     },
     {
       "name": "vite:json",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710863484025,
-      "end": 1710863484025,
+      "start": 1710864570167,
+      "end": 1710864570167,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { reactive, computed } from 'vue';\nimport { useRouter } from '#app/composables/router';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, resolveComponent as _resolveComponent, withCtx as _withCtx, renderSlot as _renderSlot, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderSlot as _ssrRenderSlot, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\";\nconst defaultStyle = `\n  cursor-pointer\n  border transition-color duration-300\n  focus:outline-none focus:ring-1 focus:ring-offset-1 focus:dark:ring-offset-gray-50 focus:dark:ring-gray-400 focus:ring-gray-600/[0.6] focus:ring-offset-gray-800/[0.6]\n  flex items-center justify-center font-semibold\n`;\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"index\",\n  __ssrInlineRender: true,\n  props: {\n    text: {\n      type: String,\n      default: \"\"\n    },\n    type: {\n      type: String,\n      default: \"primary\"\n    },\n    size: {\n      type: String,\n      default: \"md\"\n    },\n    to: {\n      type: [String, Object],\n      default: void 0\n    },\n    href: {\n      type: String,\n      default: void 0\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const styles = reactive({\n      none: \"\",\n      primary: \"text-white bg-primary-500 hover:bg-primary-400 border-primary-500\",\n      secondary: \"text-gray-800 bg-gray-200 border-gray-200 hover:bg-gray-300 dark:text-white dark:border-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700\",\n      opposite: \"text-white bg-gray-800 hover:bg-white hover:text-gray-800 hover:border-gray-900 dark:text-gray-800 dark:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-100 dark:border-white\",\n      danger: \"text-white bg-red-500 hover:bg-red-400 border-red-500\"\n    });\n    const sizes = reactive({\n      lg: \"h-14 px-8 text-lg rounded-lg\",\n      md: \"h-10 px-6 text-base rounded\",\n      sm: \"h-9 px-4 text-sm rounded\",\n      xs: \"h-6 px-3 text-xs rounded\"\n    });\n    const selectedStyle = computed(\n      () => props.type in styles ? styles[props.type] : styles.primary\n    );\n    const selectedSize = computed(() => sizes[props.size] || sizes.lg);\n    const onClick = (event) => {\n      const router = useRouter();\n      if (props.to) {\n        router.push(props.to);\n      }\n      if (!props.href) {\n        event.preventDefault();\n      }\n    };\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_NuxtLink = _resolveComponent(\"NuxtLink\");\n      if (__props.to) {\n        _push(_ssrRenderComponent(_component_NuxtLink, _mergeProps({\n          tag: \"a\",\n          to: __props.to,\n          class: `${defaultStyle} ${_unref(selectedStyle)} ${_unref(selectedSize)}`\n        }, _attrs), {\n          default: _withCtx((_, _push2, _parent2, _scopeId) => {\n            if (_push2) {\n              _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n                _push2(`${_ssrInterpolate(__props.text)}`);\n              }, _push2, _parent2, _scopeId);\n            } else {\n              return [\n                _renderSlot(_ctx.$slots, \"default\", {}, () => [\n                  _createTextVNode(_toDisplayString(__props.text), 1)\n                ])\n              ];\n            }\n          }),\n          _: 3\n        }, _parent));\n      } else {\n        _push(`<a${_ssrRenderAttrs(_mergeProps({\n          class: `${defaultStyle} ${_unref(selectedStyle)} ${_unref(selectedSize)}`,\n          href: __props.href\n        }, _attrs))}>`);\n        _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n          _push(`${_ssrInterpolate(__props.text)}`);\n        }, _push, _parent);\n        _push(`</a>`);\n      }\n    };\n  }\n});\n",
-      "start": 1710863484025,
-      "end": 1710863484026,
+      "start": 1710864570167,
+      "end": 1710864570168,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -237,8 +237,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { reactive, computed } from 'vue';\nimport { useRouter } from '#app/composables/router';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, resolveComponent as _resolveComponent, withCtx as _withCtx, renderSlot as _renderSlot, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderSlot as _ssrRenderSlot, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\";\nconst defaultStyle = `\n  cursor-pointer\n  border transition-color duration-300\n  focus:outline-none focus:ring-1 focus:ring-offset-1 focus:dark:ring-offset-gray-50 focus:dark:ring-gray-400 focus:ring-gray-600/[0.6] focus:ring-offset-gray-800/[0.6]\n  flex items-center justify-center font-semibold\n`;\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"index\",\n  __ssrInlineRender: true,\n  props: {\n    text: {\n      type: String,\n      default: \"\"\n    },\n    type: {\n      type: String,\n      default: \"primary\"\n    },\n    size: {\n      type: String,\n      default: \"md\"\n    },\n    to: {\n      type: [String, Object],\n      default: void 0\n    },\n    href: {\n      type: String,\n      default: void 0\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const styles = reactive({\n      none: \"\",\n      primary: \"text-white bg-primary-500 hover:bg-primary-400 border-primary-500\",\n      secondary: \"text-gray-800 bg-gray-200 border-gray-200 hover:bg-gray-300 dark:text-white dark:border-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700\",\n      opposite: \"text-white bg-gray-800 hover:bg-white hover:text-gray-800 hover:border-gray-900 dark:text-gray-800 dark:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-100 dark:border-white\",\n      danger: \"text-white bg-red-500 hover:bg-red-400 border-red-500\"\n    });\n    const sizes = reactive({\n      lg: \"h-14 px-8 text-lg rounded-lg\",\n      md: \"h-10 px-6 text-base rounded\",\n      sm: \"h-9 px-4 text-sm rounded\",\n      xs: \"h-6 px-3 text-xs rounded\"\n    });\n    const selectedStyle = computed(\n      () => props.type in styles ? styles[props.type] : styles.primary\n    );\n    const selectedSize = computed(() => sizes[props.size] || sizes.lg);\n    const onClick = (event) => {\n      const router = useRouter();\n      if (props.to) {\n        router.push(props.to);\n      }\n      if (!props.href) {\n        event.preventDefault();\n      }\n    };\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_NuxtLink = _resolveComponent(\"NuxtLink\");\n      if (__props.to) {\n        _push(_ssrRenderComponent(_component_NuxtLink, _mergeProps({\n          tag: \"a\",\n          to: __props.to,\n          class: `${defaultStyle} ${_unref(selectedStyle)} ${_unref(selectedSize)}`\n        }, _attrs), {\n          default: _withCtx((_, _push2, _parent2, _scopeId) => {\n            if (_push2) {\n              _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n                _push2(`${_ssrInterpolate(__props.text)}`);\n              }, _push2, _parent2, _scopeId);\n            } else {\n              return [\n                _renderSlot(_ctx.$slots, \"default\", {}, () => [\n                  _createTextVNode(_toDisplayString(__props.text), 1)\n                ])\n              ];\n            }\n          }),\n          _: 3\n        }, _parent));\n      } else {\n        _push(`<a${_ssrRenderAttrs(_mergeProps({\n          class: `${defaultStyle} ${_unref(selectedStyle)} ${_unref(selectedSize)}`,\n          href: __props.href\n        }, _attrs))}>`);\n        _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n          _push(`${_ssrInterpolate(__props.text)}`);\n        }, _push, _parent);\n        _push(`</a>`);\n      }\n    };\n  }\n});\n",
-      "start": 1710863484025,
-      "end": 1710863484026,
+      "start": 1710864570167,
+      "end": 1710864570168,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -251,39 +251,39 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1710863484026,
-      "end": 1710863484026,
+      "start": 1710864570168,
+      "end": 1710864570168,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710863484026,
-      "end": 1710863484026,
+      "start": 1710864570168,
+      "end": 1710864570168,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710863484026,
-      "end": 1710863484026,
+      "start": 1710864570168,
+      "end": 1710864570168,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710863484026,
-      "end": 1710863484026,
+      "start": 1710864570168,
+      "end": 1710864570168,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1710863484026,
-      "end": 1710863484026,
+      "start": 1710864570168,
+      "end": 1710864570168,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/app/components/nuxt-link\";\nimport { reactive, computed } from 'vue';\nimport { useRouter } from '#app/composables/router';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, resolveComponent as _resolveComponent, withCtx as _withCtx, renderSlot as _renderSlot, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderSlot as _ssrRenderSlot, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\";\nconst defaultStyle = `\n  cursor-pointer\n  border transition-color duration-300\n  focus:outline-none focus:ring-1 focus:ring-offset-1 focus:dark:ring-offset-gray-50 focus:dark:ring-gray-400 focus:ring-gray-600/[0.6] focus:ring-offset-gray-800/[0.6]\n  flex items-center justify-center font-semibold\n`;\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"index\",\n  __ssrInlineRender: true,\n  props: {\n    text: {\n      type: String,\n      default: \"\"\n    },\n    type: {\n      type: String,\n      default: \"primary\"\n    },\n    size: {\n      type: String,\n      default: \"md\"\n    },\n    to: {\n      type: [String, Object],\n      default: void 0\n    },\n    href: {\n      type: String,\n      default: void 0\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const styles = reactive({\n      none: \"\",\n      primary: \"text-white bg-primary-500 hover:bg-primary-400 border-primary-500\",\n      secondary: \"text-gray-800 bg-gray-200 border-gray-200 hover:bg-gray-300 dark:text-white dark:border-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700\",\n      opposite: \"text-white bg-gray-800 hover:bg-white hover:text-gray-800 hover:border-gray-900 dark:text-gray-800 dark:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-100 dark:border-white\",\n      danger: \"text-white bg-red-500 hover:bg-red-400 border-red-500\"\n    });\n    const sizes = reactive({\n      lg: \"h-14 px-8 text-lg rounded-lg\",\n      md: \"h-10 px-6 text-base rounded\",\n      sm: \"h-9 px-4 text-sm rounded\",\n      xs: \"h-6 px-3 text-xs rounded\"\n    });\n    const selectedStyle = computed(\n      () => props.type in styles ? styles[props.type] : styles.primary\n    );\n    const selectedSize = computed(() => sizes[props.size] || sizes.lg);\n    const onClick = (event) => {\n      const router = useRouter();\n      if (props.to) {\n        router.push(props.to);\n      }\n      if (!props.href) {\n        event.preventDefault();\n      }\n    };\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_NuxtLink = __nuxt_component_0;\n      if (__props.to) {\n        _push(_ssrRenderComponent(_component_NuxtLink, _mergeProps({\n          tag: \"a\",\n          to: __props.to,\n          class: `${defaultStyle} ${_unref(selectedStyle)} ${_unref(selectedSize)}`\n        }, _attrs), {\n          default: _withCtx((_, _push2, _parent2, _scopeId) => {\n            if (_push2) {\n              _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n                _push2(`${_ssrInterpolate(__props.text)}`);\n              }, _push2, _parent2, _scopeId);\n            } else {\n              return [\n                _renderSlot(_ctx.$slots, \"default\", {}, () => [\n                  _createTextVNode(_toDisplayString(__props.text), 1)\n                ])\n              ];\n            }\n          }),\n          _: 3\n        }, _parent));\n      } else {\n        _push(`<a${_ssrRenderAttrs(_mergeProps({\n          class: `${defaultStyle} ${_unref(selectedStyle)} ${_unref(selectedSize)}`,\n          href: __props.href\n        }, _attrs))}>`);\n        _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n          _push(`${_ssrInterpolate(__props.text)}`);\n        }, _push, _parent);\n        _push(`</a>`);\n      }\n    };\n  }\n});\n",
-      "start": 1710863484026,
-      "end": 1710863484026,
+      "start": 1710864570168,
+      "end": 1710864570168,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -296,20 +296,20 @@
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710863484026,
-      "end": 1710863484026,
+      "start": 1710864570168,
+      "end": 1710864570168,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710863484026,
-      "end": 1710863484026,
+      "start": 1710864570168,
+      "end": 1710864570168,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710863484026,
-      "end": 1710863484026,
+      "start": 1710864570168,
+      "end": 1710864570168,
       "order": "normal"
     }
   ]
