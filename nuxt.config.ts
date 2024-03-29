@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vueuse/nuxt',
     // contents,
+    'nuxt-swiper',
     '@nuxt/content',
 
     // todo: feat/localization
@@ -38,7 +39,11 @@ export default defineNuxtConfig({
     resolve('./assets/scss/_variables.scss'),
     resolve('./assets/scss/app.scss'),
   ],
-
+swiper: {
+    prefix: 'Swiper',
+    styleLang: 'css',
+    modules: ['navigation', 'SwiperEffectCreative','SwiperAutoplay','pagination'], // all modules are imported by default
+  },
   components: [
     {
       prefix: 'Layout',

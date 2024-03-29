@@ -12,7 +12,7 @@ const httpLink = createHttpLink({
   uri: "https://importedproducts.in/graphql",
 });
 
-// Cache implementation
+// Cache implementation3=
 const cache = new InMemoryCache();
 
 // Create the apollo client

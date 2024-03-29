@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     'vue3-carousel-nuxt',
     '@nuxtjs/apollo',
     '@nuxtjs/tailwindcss',
+    'nuxt-swiper'
     // 'nuxt-graphql-client',
   ],
   apollo: {

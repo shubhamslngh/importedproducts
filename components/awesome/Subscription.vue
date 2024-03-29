@@ -55,17 +55,43 @@
     </div>
   </div>
 </template>
+
 <script setup>
 const props = defineProps(["subscriptions"]);
 import { ref } from "vue";
+import gql from "graphql-tag";
 import AwesomeForm from "./Form.vue";
+const subsCards = ref([]);
 const clickedIndex = ref(null);
 const formIndex = ref(null);
-
+const query = gql`
+  query MyQuery2 {
+    variableProduct(id: "8192", idType: DATABASE_ID) {
+      id
+      variations(first: 10) {
+        edges {
+          node {
+            id
+            name
+            image {
+              link
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+const data = await useAsyncQuery(query);
+if (data) {
+  subsCards.value = data;
+}
+console.log(data, "graphsubscription");
 const toggleForm = (index) => {
   formIndex.value = formIndex.value === index ? null : index;
 };
 </script>
+
 <style>
 .card {
   width: 500px;

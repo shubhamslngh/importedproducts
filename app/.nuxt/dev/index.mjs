@@ -94,19 +94,20 @@ const defineAppConfig = (config) => config;
 const appConfig0 = defineAppConfig({
   awesome: {
     name: "Imported Products",
-    description: "a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.",
+    description: "Headless E-commerce website.",
     project: {
       links: {
-        github: "https://github.com/viandwi24/nuxt3-awesome-starter"
+        github: "https://github.com/shubhamslngh/importedproducts.git"
       }
     },
     layout: {
       page: {
         navbar: {
           menus: [
-            { type: "link", title: "Cases", to: { name: "blank" } },
+            { type: "link", title: "Cases", to: { name: "products" } },
             { type: "link", title: "Post", to: { name: "post" } },
-            { type: "link", title: "Travel", to: { name: "test" } },
+            { type: "link", title: "Travel", to: { name: "travel" } },
+            { type: "link", title: "Login", to: { name: "login" } },
             {
               type: "dropdown",
               title: "Documentations",
@@ -138,11 +139,10 @@ const appConfig0 = defineAppConfig({
       }
     },
     author: {
-      name: "shubham",
+      name: "shubhamslngh",
       links: {
-        github: "https://github.com/viandwi24",
-        medium: "https://viandwi24.medium.com",
-        website: "https://viandwi24.site"
+        github: "https://github.com/shubhamslngh/importedproducts.git",
+        website: "www.importedproducts.in"
       }
     }
   }
@@ -154,7 +154,7 @@ const appConfig1 = defineAppConfig({
     description: "a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.",
     project: {
       links: {
-        github: "https://github.com/viandwi24/nuxt3-awesome-starter"
+        github: "https://github.com/shubhamslngh/importedproducts.git"
       }
     },
     layout: {
@@ -175,16 +175,15 @@ const appConfig1 = defineAppConfig({
         },
         secondaryActionButton: {
           title: "Github",
-          to: "https://github.com/viandwi24/nuxt3-awesome-starter"
+          to: "https://github.com/shubhamslngh/importedproducts.git"
         }
       }
     },
     author: {
-      name: "viandwi24",
+      name: "shubhamslngh",
       links: {
-        github: "https://github.com/viandwi24",
-        medium: "https://viandwi24.medium.com",
-        website: "https://viandwi24.site"
+        github: "https://github.com/shubhamslngh/importedproducts.git",
+        website: "www.importedproducts.in"
       }
     },
     disableInfoReplaceIndexInWelcomePage: false

@@ -1,27 +1,23 @@
 <script setup>
-import animations from "../utils/animations";
+useHead({ titleTemplate: "", title: "home" });
+// import animations from "../utils/animations";
 const { awesome } = useAppConfig();
 definePageMeta({ layout: "page" });
-onMounted(() => {
-  animations.runLamp();
-  window.addEventListener("scroll", function () {
-    // Get the scroll position
-    let scrollPosition = window.scrollY;
-    // Check if the scroll position meets certain criteria
-    if (scrollPosition > 200) {
-      animations.lampOff();
+// const runLampOnScroll = () => {
+//   animations.runLamp();
+//   window.addEventListener("scroll", function () {
+//     let scrollPosition = this.window.scrollY;
+//     if (scrollPosition > 200) {
+//       animations.lampOff();
+//     } else if (scrollPosition <= 0) {
+//       animations.runLamp();
+//     } else {
+//       animations.runLamp();
+//     }
+//   });
+// };
 
-      // Call the runLamp function if the scroll position is greater than 200
-    } else if (scrollPosition <= 0) {
-      animations.runLamp();
-
-      // Call the lampOff function if the scroll position is not greater than 200
-    } else {
-      animations.runLamp();
-    }
-  });
-});
-useHead({ titleTemplate: "", title: "" });
+// onMounted(runLampOnScroll);
 </script>
 
 <template>
@@ -32,6 +28,7 @@ useHead({ titleTemplate: "", title: "" });
       :with-alert="true"
       class="min-h-[100vh]"
     />
+    <!-- <AwesomeSwiperslide /> -->
   </div>
 </template>
 <style></style>

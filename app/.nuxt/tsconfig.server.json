@@ -80,6 +80,7 @@
     "../../node_modules/vue3-carousel-nuxt/runtime/server",
     "../../node_modules/@nuxtjs/apollo/runtime/server",
     "../../node_modules/@nuxtjs/tailwindcss/runtime/server",
+    "../../node_modules/nuxt-swiper/runtime/server",
     "../../node_modules/@nuxtjs/eslint-module/runtime/server",
     "../../node_modules/nuxt-headlessui/runtime/server",
     "../../node_modules/nuxt-icon/runtime/server",

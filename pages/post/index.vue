@@ -3,7 +3,7 @@ definePageMeta({ layout: "page" });
 useHead({ title: "Posts" });
 const { $wordpressStore } = useNuxtApp();
 console.log(" work");
-const products = [];
+// const products = [];
 onMounted(async () => {
   try {
     await $wordpressStore.fetchProducts();

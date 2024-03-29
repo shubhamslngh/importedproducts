@@ -16,7 +16,7 @@ const showAlert = ref(
     ? !awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage
     : props.withAlert
 );
-  
+
 const titlesText = computed(() => {
   const originalText = props.name || "";
   return originalText
@@ -24,8 +24,8 @@ const titlesText = computed(() => {
     .split(" ")
     .map((item) => item.replaceAll("[space]", " "));
 });
-console.log("props.name:", props.name);
-console.log("titlesText.value:", titlesText.value);
+// console.log("props.name:", props.name);
+// console.log("titlesText.value:", titlesText.value);
 
 const leadingsText = computed(() => [
   {

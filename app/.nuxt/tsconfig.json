@@ -13,7 +13,9 @@
     "strict": true,
     "noImplicitThis": true,
     "esModuleInterop": true,
-    "types": [],
+    "types": [
+      "swiper/vue"
+    ],
     "verbatimModuleSyntax": true,
     "allowJs": true,
     "noEmit": true,
@@ -105,6 +107,7 @@
     "../../node_modules/vue3-carousel-nuxt/runtime",
     "../../node_modules/@nuxtjs/apollo/runtime",
     "../../node_modules/@nuxtjs/tailwindcss/runtime",
+    "../../node_modules/nuxt-swiper/runtime",
     "../../node_modules/@nuxtjs/eslint-module/runtime",
     "../../node_modules/nuxt-headlessui/runtime",
     "../../node_modules/nuxt-icon/runtime",
@@ -129,6 +132,7 @@
     "../../node_modules/vue3-carousel-nuxt/runtime/server",
     "../../node_modules/@nuxtjs/apollo/runtime/server",
     "../../node_modules/@nuxtjs/tailwindcss/runtime/server",
+    "../../node_modules/nuxt-swiper/runtime/server",
     "../../node_modules/@nuxtjs/eslint-module/runtime/server",
     "../../node_modules/nuxt-headlessui/runtime/server",
     "../../node_modules/nuxt-icon/runtime/server",

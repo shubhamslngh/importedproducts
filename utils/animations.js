@@ -1,5 +1,4 @@
 
-
 let animations = {};
 export default animations = {
      runLamp : () => {
@@ -8,7 +7,7 @@ export default animations = {
     let lampGlow = document.getElementById("lampGlow");
         lampGlow.style.height = "120%";
         lampGlow.style.transform = "scale(1.8)";
-        lampLedHead.style.width = "50%";
+        lampLedHead.style.width = "30%";
         lampLedHead.style.blur = "1px";
 },
     lampOff: () => {
