@@ -1,1 +1,0 @@
-import{_ as t}from"./_plugin-vue_export-helper.DlAUqK2U.js";import{o,c as n,E as r,X as a}from"./entry.DWjFiXMK.js";const s={};function c(e,l){return o(),n("div",{class:"flex w-full pt-[64px]",style:a({"min-height":"var(--layout-page-content-min-height)"})},[r(e.$slots,"default")],4)}const i=t(s,[["render",c]]);export{i as default};
