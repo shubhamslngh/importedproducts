@@ -110,12 +110,12 @@ const appConfig0 = defineAppConfig({
             { type: "link", title: "Login", to: { name: "login" } },
             {
               type: "dropdown",
-              title: "Documentations",
+              title: "Cart",
               children: [
                 {
                   type: "link",
-                  title: "Components",
-                  to: { name: "docs-components" }
+                  title: "my Cart",
+                  to: { name: "cart" }
                 }
               ]
             },

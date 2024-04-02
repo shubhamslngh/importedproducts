@@ -1,12 +1,12 @@
 <template>
   <div>
-    <button
+    <AwesomeButton
       @click="addToCartHandler"
       :disabled="loading"
-      class="border-x-orange-700 bg-rose-700"
+      class="border-x-black-700 bg-red-800"
     >
       Add to Cart
-    </button>
+    </AwesomeButton>
   </div>
 </template>
 <script setup lang="ts">
@@ -25,9 +25,10 @@ const { mutate: addToCart, loading } = useMutation(AddCart);
 async function addToCartHandler() {
   console.log(props.productId);
   try {
-    const token = localStorage.getItem("authToken"); // Retrieve the authentication token from local storage
-    const headers = { Authorization: `Bearer ${token}` }; // Set the token in the request headers
+    const token = localStorage.getItem("authToken");
+    const headers = { Authorization: `Bearer` + localStorage.getItem("token") };
     console.log(token, "token");
+    loading.value = true;
 
     await addToCart({
       productId: props.productId,
@@ -39,9 +40,11 @@ async function addToCartHandler() {
     }).then(() => {
       props.productId = "";
       props.variationId = "";
+      loading.value = false;
       console.log("added to cart!");
     });
   } catch (error) {
+    loading.value = false;
     console.error("Error adding product to cart:", error);
   }
 }

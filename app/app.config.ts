@@ -20,12 +20,12 @@ export default defineAppConfig({
 
             {
               type: 'dropdown',
-              title: 'Documentations',
+              title: 'Cart',
               children: [
                 {
                   type: 'link',
-                  title: 'Components',
-                  to: { name: 'docs-components' },
+                  title: 'my Cart',
+                  to: { name: 'cart' },
                 },
               ],
             },

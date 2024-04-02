@@ -1,52 +1,42 @@
 <template>
-  <div class="box" background-color-black>
-    <div id="wrapperSwiper" class="div lg:w-[200vw] md:w-[200vw] sm:w-[100vw]">
+  <div v-if="data" class="swiper">
+    <div class="swiper-wrapper">
       <div
-        id="gridWrapper"
-        class="grid lg:grid-cols-8 md:grid-cols-8 sm:grid-cols-1 transition-all duration-200"
+        v-for="(product, index) in data.products.edges"
+        :key="index"
+        class="swiper-slide"
+        :id="product.node.name"
       >
-        <div
-          v-for="(product, index) in Data1._value.products.edges"
-          :key="index"
-          class="transition-[width] duration-200 ease-in-out"
-          :id="product.node.name"
-        >
-          <!-- {{ console.log("databaseid", product.node.databaseId) }} -->
-          <div class="snap-x">
-            <div class="snap-center">
-              <img
-                @click="handleClick(product.node.databaseId)"
-                :src="product.node.image ? product.node.image.link : ''"
-                alt="Product Image"
-                class="transition-all ease-in-out"
-              />
+        <div>
+          <img
+            @click="handleClick(product.node.databaseId)"
+            :src="product.node.image ? product.node.image.link : ''"
+            alt="Product Image"
+            class="transition-all ease-in-out"
+          />
+          <h3 class="box text-wrap font-semibold hover:font-bold">
+            {{ product.node.name }}
+          </h3>
+
+          <template v-if="selectedProductId === product.node.databaseId">
+            <div class="swiper-container">
               {{ console.log(selectedProductId) }}
-
-              <!-- <AwesomeVariations :selectedProductId="selectedProductId" /> -->
-              <h3 class="box text-wrap font-semibold hover:font-bold">
-                {{ product.node.name }}
-              </h3>
-              <template v-if="selectedProductId === product.node.databaseId">
-                <div>
-                  <AwesomeVariations :productId="selectedProductId" />
-                </div>
-              </template>
-
-              <div></div>
+              <AwesomeVariations :productId="selectedProductId" />
+              <!-- <AwesomeCardstest :productId="selectedProductId" /> -->
             </div>
-          </div>
+          </template>
         </div>
       </div>
     </div>
   </div>
 </template>
-// const productId = 7456; // const variationId = 7458;
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import Swiper from "swiper";
+import "swiper/swiper-bundle.css";
 import gql from "graphql-tag";
-var selectedProductId = ref(0);
-// const props = defineProps(["ID:number"]);
+const selectedProductId = ref(0);
 const Data1 = ref([]);
 
 const query = gql`
@@ -66,16 +56,61 @@ const query = gql`
   }
 `;
 
+const initializeSwiper = () => {
+  const swiper = new Swiper(".swiper", {
+    slidesPerView: 5,
+    spaceBetween: 40,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      effect: "cards",
+      grabCursor: true,
+    },
+  });
+  return swiper;
+};
+const products = ref([]);
+onMounted(() => {
+  initializeSwiper();
+});
+
 const { data } = await useAsyncQuery(query);
-// console.log(data, "cases data");
-if (data) {
-  Data1.value = data;
-}
+// console.log(data._value.products.edges, "here in cards");
+products.value = data._value.products.edges.map((edges) => ({
+  name: edges.node.name,
+  img: edges.node.image.link,
+}));
+console.log(products.value, "cases is obj");
 
 const handleClick = (productId) => {
   selectedProductId.value = productId;
-  // console.log(selectedProductId, "here is selected id");
 };
-// ID = selectedProductId;
-// console.log(ID);
 </script>
+
+<style scoped>
+.swiper {
+  width: auto;
+  height: auto;
+}
+.swiper-cards {
+  width: 240px;
+  height: 240px;
+}
+.swiper-wrapper {
+  min-width: 50%;
+  width: 60%;
+  background: none;
+}
+
+.swiper-slide {
+  width: 400px;
+  text-align: center;
+  font-size: 10px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-pagination {
+  color: red;
+}
+</style>

@@ -1,6 +1,7 @@
 import { createResolver } from '@nuxt/kit'
 const { resolve } = createResolver(import.meta.url)
 import { defineNuxtConfig } from 'nuxt/config'
+
 // import { InMemoryCache } from '@apollo/client';
 export default defineNuxtConfig({
   // exp
@@ -35,6 +36,7 @@ export default defineNuxtConfig({
     // todo: feat/localization
     // '@nuxtjs/i18n'
   ],
+ 
   css: [
     resolve('./assets/scss/_variables.scss'),
     resolve('./assets/scss/app.scss'),
@@ -42,7 +44,7 @@ export default defineNuxtConfig({
 swiper: {
     prefix: 'Swiper',
     styleLang: 'css',
-    modules: ['navigation', 'SwiperEffectCreative','SwiperAutoplay','pagination'], // all modules are imported by default
+    modules: ['navigation', 'SwiperEffectCreative','SwiperAutoplay','pagination'], 
   },
   components: [
     {

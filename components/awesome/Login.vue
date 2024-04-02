@@ -31,8 +31,42 @@
     </form>
   </div>
 </template>
+<!-- <template>
+  <div class="login-container">
+    <form @submit.prevent="handleSubmit" class="login-form">
+      <div class="form-group">
+        <input
+          type="text"
+          v-model="username"
+          placeholder="Username or Email"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          v-model="password"
+          placeholder="Password"
+          class="form-control"
+        />
+      </div>
+
+      <div class="grid gap-4">
+        <button type="submit" :disabled="isLoading" class="btn btn-primary">
+          Sign in
+        </button>
+        <button type="submit" :disabled="isLoading" class="btn btn-primary">
+          Sign Up
+        </button>
+
+        <div v-if="errors" class="error-message">{{ errors }}</div>
+      </div>
+    </form>
+  </div>
+</template> -->
 
 <script>
+import { useSession } from "../../utils/sessions";
 export default {
   data() {
     return {

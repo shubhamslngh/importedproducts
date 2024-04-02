@@ -20,22 +20,23 @@ const props = defineProps({
 </script>
 
 <template>
-  <LayoutPageWrapper class="min-w-[100vw] max-h-[100vh] overflow-y">
+  <LayoutPageWrapper class="min-w-[100vw] max-h-[100vh]">
     <!-- <LayoutPageWrapper>
       <AwesomeIphonecases :Cases="$wordpressStore.productsIphone" />
     </LayoutPageWrapper> -->
     <!-- <LayoutPageWrapper>
       
     </LayoutPageWrapper> -->
-    <AwesomeLamp />
+    <!-- <AwesomeLamp /> -->
 
     <AwesomeWelcome name="cases  " />
     <!-- <AwesomeParallax /> -->
     <AwesomeCases />
+    <!-- <AwesomeProducts /> -->
+
     <!-- <AwesomeProducts
       class="max-h-[100vh]"
       :caseproducts="$wordpressStore.productCases"
     /> -->
-    <!-- <AwesomeVariations :productId="selectedProductId" :variationId="7340" /> -->
   </LayoutPageWrapper>
 </template>

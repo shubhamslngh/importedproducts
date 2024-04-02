@@ -1,72 +1,26 @@
 <template>
-  <div class="box" background-color-black>
-    <div id="wrapperSwiper" class="div lg:w-[200vw] md:w-[200vw] sm:w-[100vw]">
-      <div id="gridWrapper" class="grid transition-all duration-200">
-        <div
-          v-for="(product, index)  in caseproducts"
-          :key="index"
-          class="swiper-slide transition-[width] duration-200 ease-in-out"
-          :id="product.model"
-          @click="getDetails(product.id, product.id2, product.model)"
-        >
-          <img
-            :src="product.bgimg"
-            alt="Product Image"
-            class="transition-all ease-in-out"
-          />
-          <!-- {{ console.log("here is the img", product.bgimg) }} -->
-
-          <div class="product-info">
-            <h3 class="">
-              {{ product.model }}
-            </h3>
-            <!-- <p>{{ product.description }}</p> -->
-          </div>
-        </div>
-        {{
-          console.log("new div", $wordpressStore.productDetails.length !== 0)
-        }}
-        <div
-          v-if="$wordpressStore.productDetails.length !== 0"
-          class="w-[70vw] mx-auto"
-        >
-          <div class="product-card">
-            <div class="product-image"></div>
-            <div class="product-details">
-              <div class="flex">
-                <div
-                  v-for="(color, index) in $wordpressStore.productDetails"
-                  :key="index"
-                  class="color-swatch transition-all ease-in-out bg-no-repeat"
-                  :style="{ backgroundImage: `url(${color.bgimg})` }"
-                  @click="selectColor(color.bgimg, color.colorHash)"
-                ></div>
-              </div>
-              {{ $wordpressStore.productDetails[0].color }}
-              {{ console.log("COLOR", $wordpressStore.selectedProduct) }}
-              <p class="py-4">
-                Great product title for a great product and all of the extra
-                things a product might need to make it fill an entire card.
-              </p>
-              <button
-                type="button"
-                id="buy"
-                class="btn rounded-xl border-[1px] w-[150px] h-[50px] border-gray-800 hover:bg-white active:bg-white"
-                :style="{
-                  backgroundColor: `${$wordpressStore.selectedProduct}`,
-                }"
-              >
-                Buy Now
-              </button>
-            </div>
-          </div>
-          <div class="description product"></div>
-        </div>
-      </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
+  <div class="swiper">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+      ...
     </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
   </div>
+
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
 </template>
 
 <script setup>
@@ -78,11 +32,18 @@ var selectedColorHash = "";
 // console.log("here is the img", caseproducts);
 const initializeSwiper = () => {
   const swiper = new Swiper(".swiper", {
-    slidesPerView: 5,
-    spaceBetween: 40,
+    slidesPerView: 1,
+    direction: "vertical",
+    loop: true,
+    spaceBetween: 20,
     autoplay: { delay: 2500, disableOnInteraction: false },
     direction: getDirection(),
-    Pagination: 10,
+    pagination: {
+      el: ".swiper-pagination",
+    },
+    scrollbar: {
+      el: ".swiper-scrollbar",
+    },
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
@@ -92,7 +53,6 @@ const initializeSwiper = () => {
   // Expose the swiper instance if needed
   return swiper;
 };
-
 const handleResize = () => {
   swiper.value.changeDirection(getDirection());
 };
@@ -168,6 +128,10 @@ onBeforeUnmount(() => {
 </script>
 
 <style>
+.swiper {
+  width: 600px;
+  height: 300px;
+}
 .color-swatch {
   width: 4rem;
   height: 4rem;
@@ -311,7 +275,7 @@ onBeforeUnmount(() => {
 @media (max-width: 760px) {
   .swiper-button-next {
     right: 20px;
-    transform: rotate(90deg);
+    transform: rotate(180deg);
   }
 
   .swiper-button-prev {

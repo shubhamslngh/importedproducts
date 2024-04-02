@@ -16,7 +16,6 @@ export function useSession() {
   }
   return session;
 }
-
 export function provideSession() {
   const state = reactive({
     ...initialSession,
@@ -27,25 +26,25 @@ export function provideSession() {
   const { mutate: executeLogin, result: loginResult } = useMutation(Login);
   const { mutate: executeUpdateCustomer, result: updateCustomerResult } = useMutation(UpdateCustomer);
 
+  // Watch for changes in cartData and update state.cart accordingly
   watchEffect(() => {
     if (cartData?.cart) {
       state.cart = cartData.cart;
     }
   });
+  console.log("here in provider")
 
+  // Watch for changes in cartData.customer and update state.customer accordingly
   watchEffect(() => {
     if (cartData?.customer) {
       state.customer = cartData.customer;
     }
   });
 
+  // Watch for changes in loginResult and update state.customer accordingly
   watchEffect(() => {
-    if (loginResult.value?.login) {
-      const { 
-        authToken,
-        refreshToken,
-        customer
-      } = loginResult.value.login;
+    if (loginResult && loginResult.value?.login) {
+      const { authToken, refreshToken, customer } = loginResult.value.login;
 
       sessionStorage.setItem(process.env.AUTH_TOKEN_SS_KEY, authToken);
       localStorage.setItem(process.env.REFRESH_TOKEN_LS_KEY, refreshToken);
@@ -54,8 +53,9 @@ export function provideSession() {
     }
   });
 
+  // Watch for changes in updateCustomerResult and update state.customer accordingly
   watchEffect(() => {
-    if (updateCustomerResult.value?.updateCustomer) {
+    if (updateCustomerResult && updateCustomerResult.value?.updateCustomer) {
       state.customer = updateCustomerResult.value.updateCustomer.customer;
     }
   });
@@ -74,7 +74,6 @@ export function provideSession() {
     updateCustomer,
   });
 }
-
 // Usage:
 // In your main Vue component:
 // import { provideSession, useSession } from './SessionProvider';

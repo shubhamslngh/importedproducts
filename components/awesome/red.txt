@@ -1,4 +1,4 @@
-<template>
+done!!<template>
   <div v-if="products.length > 0">
     <swiper
       :effect="'cards'"
@@ -22,10 +22,7 @@
       </swiper-slide>
     </swiper>
     <div>
-      <AddToCart
-        :productId="selectedProductId"
-        :variationId="selectedVariationId"
-      />
+      <AwesomeAddtoCart :productId:props/>
     </div>
   </div>
   <div v-else>Loading products...</div>
@@ -38,11 +35,9 @@ import { getVariation } from "../../utils/cart"; // Assuming getVariation is cor
 import "swiper/css";
 import "swiper/css/effect-cards";
 import { EffectCards } from "swiper/modules";
-import AddToCart from "../awesome/AddtoCart.vue";
 
 export default {
   components: {
-    AddToCart,
     Swiper,
     SwiperSlide,
   },

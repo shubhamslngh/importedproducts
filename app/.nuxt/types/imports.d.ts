@@ -31,6 +31,7 @@ declare global {
   const autoResetRef: typeof import('../../../node_modules/@vueuse/core')['autoResetRef']
   const callOnce: typeof import('../../../node_modules/nuxt/dist/app/composables/once')['callOnce']
   const cancelIdleCallback: typeof import('../../../node_modules/nuxt/dist/app/compat/idle-callback')['cancelIdleCallback']
+  const cartItem: typeof import('../../../utils/cart')['cartItem']
   const clearError: typeof import('../../../node_modules/nuxt/dist/app/composables/error')['clearError']
   const clearNuxtData: typeof import('../../../node_modules/nuxt/dist/app/composables/asyncData')['clearNuxtData']
   const clearNuxtState: typeof import('../../../node_modules/nuxt/dist/app/composables/state')['clearNuxtState']
@@ -485,6 +486,7 @@ declare module 'vue' {
     readonly autoResetRef: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['autoResetRef']>
     readonly callOnce: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/once')['callOnce']>
     readonly cancelIdleCallback: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/compat/idle-callback')['cancelIdleCallback']>
+    readonly cartItem: UnwrapRef<typeof import('../../../utils/cart')['cartItem']>
     readonly clearError: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/error')['clearError']>
     readonly clearNuxtData: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/asyncData')['clearNuxtData']>
     readonly clearNuxtState: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/state')['clearNuxtState']>
@@ -920,6 +922,7 @@ declare module '@vue/runtime-core' {
     readonly autoResetRef: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['autoResetRef']>
     readonly callOnce: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/once')['callOnce']>
     readonly cancelIdleCallback: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/compat/idle-callback')['cancelIdleCallback']>
+    readonly cartItem: UnwrapRef<typeof import('../../../utils/cart')['cartItem']>
     readonly clearError: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/error')['clearError']>
     readonly clearNuxtData: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/asyncData')['clearNuxtData']>
     readonly clearNuxtState: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/state')['clearNuxtState']>

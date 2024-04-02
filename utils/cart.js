@@ -31,3 +31,23 @@ query MyQuery ($productId: ID!){
     }
   }
 }`;
+
+export const cartItem = gql`
+query NewQuery {
+  cart {
+    total
+    isEmpty
+    contents {
+      nodes {
+        product {
+          node {
+            image {
+              link
+            }
+            name
+          }
+        }
+      }
+    }
+  }
+}`
