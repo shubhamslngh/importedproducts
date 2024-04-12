@@ -80,7 +80,7 @@ export default {
 
 <style scoped>
 .img {
-  background-color: transparent;
+  background-color: none;
 }
 
 .swiper {
@@ -92,16 +92,15 @@ export default {
   background: none;
 }
 .swiper-3d .swiper-slide-shadow {
-  background: none !important;
+  background: none !;
 }
 
 .swiper-cards {
   border: none;
   background: none;
 }
-.swiper-slide-shadow .swiper-slide-shadow-cards{
+.swiper-slide-shadow .swiper-slide-shadow-cards {
   background: none;
-
 }
 .swiper-slide {
   display: flex;

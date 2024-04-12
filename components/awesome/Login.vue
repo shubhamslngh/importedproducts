@@ -6,6 +6,7 @@
           type="text"
           v-model="username"
           placeholder="Username or Email"
+          autocomplete="email"
           class="form-control"
         />
       </div>
@@ -13,6 +14,7 @@
         <input
           type="password"
           v-model="password"
+          autocomplete="current-password"
           placeholder="Password"
           class="form-control"
         />
@@ -22,51 +24,20 @@
         <button type="submit" :disabled="isLoading" class="btn btn-primary">
           Sign in
         </button>
-        <button type="submit" :disabled="isLoading" class="btn btn-primary">
+        <button type="signup" :disabled="isLoading" class="btn btn-primary">
           Sign Up
         </button>
-
+        
         <div v-if="errors" class="error-message">{{ errors }}</div>
+        <!-- <AwesomeSignup/> -->
       </div>
     </form>
   </div>
 </template>
-<!-- <template>
-  <div class="login-container">
-    <form @submit.prevent="handleSubmit" class="login-form">
-      <div class="form-group">
-        <input
-          type="text"
-          v-model="username"
-          placeholder="Username or Email"
-          class="form-control"
-        />
-      </div>
-      <div class="form-group">
-        <input
-          type="password"
-          v-model="password"
-          placeholder="Password"
-          class="form-control"
-        />
-      </div>
-
-      <div class="grid gap-4">
-        <button type="submit" :disabled="isLoading" class="btn btn-primary">
-          Sign in
-        </button>
-        <button type="submit" :disabled="isLoading" class="btn btn-primary">
-          Sign Up
-        </button>
-
-        <div v-if="errors" class="error-message">{{ errors }}</div>
-      </div>
-    </form>
-  </div>
-</template> -->
 
 <script>
-import { useSession } from "../../utils/sessions";
+import { useAuthStore } from "../../stores/auth";
+
 export default {
   data() {
     return {
@@ -76,6 +47,7 @@ export default {
       errors: null,
     };
   },
+
   methods: {
     async handleSubmit() {
       this.isLoading = true;
@@ -104,11 +76,18 @@ export default {
             },
           },
         });
+        const authStore = useAuthStore();
+
         const { authToken, refreshToken, user } = data.login;
         localStorage.setItem("authToken", authToken);
         localStorage.setItem("refreshToken", refreshToken);
+        authStore.setUser(user.username);
+        authStore.setToken(authToken);
+        authStore.setRToken(refreshToken);
         console.log("Auth Token:", authToken);
         console.log("Refresh Token:", refreshToken);
+        console.log(user.username, "user");
+        await this.$router.push("/cart");
       } catch (error) {
         console.error("Login failed:", error.message);
         this.errors = error.message;
@@ -120,7 +99,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 .login-container {
   max-width: 400px;
   margin: auto;

@@ -1,130 +1,104 @@
-done!!<template>
-  <div v-if="products.length > 0">
-    <swiper
-      :effect="'cards'"
-      :grabCursor="true"
-      :modules="modules"
-      class="mySwiper"
+
+<template>
+  <div class="h-screen pt-20">
+    <h1
+      v-if="data.isempty === true"
+      class="mb-10 text-center text-2xl font-bold"
     >
-      <!-- {{ console.log(products, "products for cards in template") }} -->
-      <swiper-slide
-        v-for="(product, index) in products"
+      Your Cart Is Empty
+    </h1>
+    <h1 v-else class="mb-10 text-center text-2xl font-bold">Your Cart Items</h1>
+    <div
+      class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0"
+    >
+      {{ console.log("here",data) }}
+      <div
+        v-for="(product, index) in data.result._value.cart.contents.nodes"
         :key="index"
-        :style="{ 'background-image': `url(${product.img})` }"
+        class="rounded-lg md:w-2/3"
       >
-        <div @click="handleClick(product.variationId)">
-          <img
-            :src="product.img ? product.img : ''"
-            alt="Product Image"
-            class="transition-all ease-in-out"
-          />
+        <div
+          class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
+        >
+          <img alt="product-image" class="w-full rounded-lg sm:w-40" />
+          <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+            <div class="mt-5 sm:mt-0">
+              <h2 class="text-lg font-bold text-gray-900">Nike Air Max 2019</h2>
+              <p class="mt-1 text-xs text-gray-700">36EU - 4US</p>
+            </div>
+            <div
+              class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6"
+            >
+              <div class="mb-7 flex items-center">
+                <button
+                  @click.prevent="counter.decrement"
+                  class="counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600"
+                >
+                  -
+                </button>
+                <div class="relative">
+                  <span
+                    :key="counter.count"
+                    class="counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg"
+                    >{{ counter.count }}</span
+                  >
+                </div>
+                <button
+                  @click.prevent="counter.increment"
+                  class="counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600"
+                >
+                  +
+                </button>
+              </div>
+              <div class="flex items-center space-x-4">
+                <p class="text-sm">259.000</p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="h-5 w-5 cursor-pointer duration-150 hover:text-red-500"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
-      </swiper-slide>
-    </swiper>
-    <div>
-      <AwesomeAddtoCart :productId:props/>
+      </div>
+      <!-- Sub total -->
+      <div
+        class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3"
+      >
+        <div class="mb-2 flex justify-between">
+          <p class="text-gray-700">Subtotal</p>
+          <p class="text-gray-700">{{ data.result.cart.total }}</p>
+        </div>
+        <div class="flex justify-between">
+          <p class="text-gray-700">Shipping</p>
+          <p class="text-gray-700">{{ data.result.cart.total }}</p>
+        </div>
+        <hr class="my-4" />
+        <div class="flex justify-between">
+          <p class="text-lg font-bold">Total</p>
+          <div class="">
+            <p class="mb-1 text-lg text-green-400 font-bold">
+              {{ data.result.cart.total }}
+            </p>
+            <p class="text-sm text-gray-700">including VAT</p>
+          </div>
+        </div>
+        <button
+          class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
+        >
+          Check out
+        </button>
+      </div>
     </div>
   </div>
-  <div v-else>Loading products...</div>
 </template>
-
-<script>
-import { ref, onMounted, defineProps } from "vue";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { getVariation } from "../../utils/cart"; // Assuming getVariation is correctly imported
-import "swiper/css";
-import "swiper/css/effect-cards";
-import { EffectCards } from "swiper/modules";
-
-export default {
-  components: {
-    Swiper,
-    SwiperSlide,
-  },
-  props: {
-    productId: {
-      type: Number,
-      required: true,
-    },
-    variationId: {
-      type: Number,
-      default: 0,
-    },
-  },
-  setup(props) {
-    const selectedProductId = ref(props.productId);
-    const selectedVariationId = ref(props.variationId);
-    const products = ref([]);
-    let data = ref([]);
-    const { mutate: getProducts, loading } = useMutation(getVariation);
-
-    onMounted(async () => {
-      try {
-        data = await getProducts({ productId: props.productId });
-        if (data) {
-          console.log(data, "data inside try");
-          products.value = data.data.variableProduct.variations.nodes.map(
-            (nodes) => ({
-              name: nodes.name,
-              img: nodes.image.link,
-              variationId: nodes.databaseId,
-            })
-          );
-          console.log(products.value, "products object created");
-        }
-      } catch (error) {
-        console.error("Error fetching product:", error);
-      }
-    });
-
-    const handleClick = (variationId) => {
-      selectedVariationId.value = variationId;
-      selectedProductId.value = props.productId;
-      console.log(selectedProductId.value, "here is Product id");
-      console.log(selectedVariationId.value, "here is Variation id");
-    };
-
-    return {
-      modules: [EffectCards],
-      selectedProductId,
-      selectedVariationId,
-      products,
-      handleClick,
-    };
-  },
-};
-</script>
-
-<style scoped>
-.img {
-  background-color: transparent;
-}
-
-.swiper {
-  width: 240px;
-  height: 320px;
-  background: none !important;
-}
-.swiper-slide-shadow {
-  background: none;
-}
-.swiper-3d .swiper-slide-shadow {
-  background: none;
-}
-
-.swiper-cards {
-  border: none;
-  background: none;
-}
-.swiper-slide-shadow .swiper-slide-shadow-cards {
-  background: none;
-}
-.swiper-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  font-weight: bold;
-  background-color: none;
-}
-</style>

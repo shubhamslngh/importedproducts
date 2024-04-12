@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client/core";
-
+import { setContext } from '@apollo/client/link/context';
+  
 export const AddCart = gql`
   mutation AddToCart($productId: Int!, $quantity: Int!, $variationId: Int!) {
     addToCart(input: {productId: $productId, quantity: $quantity, variationId: $variationId}) {
@@ -10,9 +11,9 @@ export const AddCart = gql`
 
 export const getVariation = gql`
 query MyQuery ($productId: ID!){
-  variableProduct(id: $productId, idType: DATABASE_ID) {
+  variableProduct( id: $productId, idType: DATABASE_ID) {
     productId
-    variations {
+    variations(first: 100){
       nodes {
         databaseId
         image {
@@ -51,3 +52,17 @@ query NewQuery {
     }
   }
 }`
+export const signup= gql`
+mutation signup {
+    createUser(
+    input: {username: "", lastName: "", firstName: "", email: "", password: ""}
+  ) {
+    user {
+      auth {
+        authToken
+        refreshToken
+      }
+    }
+  }
+}
+`

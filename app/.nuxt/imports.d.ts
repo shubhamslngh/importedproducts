@@ -31,14 +31,14 @@ export { defaultScreenConfig, useAwesomeScreen, ScreenSize } from '../../composa
 export { useNavbarParser } from '../../composables/use-navbar-parser';
 export { useSyncProps } from '../../composables/use-sync-props';
 export { default as animations } from '../../utils/animations';
-export { AddCart, getVariation, cartItem } from '../../utils/cart';
+export { AddCart, getVariation, cartItem, signup } from '../../utils/cart';
 export { cn } from '../../utils/cn';
 export { ProductContentSlice, ProductVariationContentSlice, ProductContentFull, VariationContent, CartItemContent, CartContent, AddressFields, LineItemFields, OrderFields, CustomerFields, CustomerContent, GetProduct, GetProductVariation, GetCart, AddToCart, UpdateCartItemQuantities, RemoveItemsFromCart, Login, UpdateCustomer } from '../../utils/graphql';
 export { useSession, provideSession } from '../../utils/sessions';
 export { AwesomeLayoutPageNavbarMenuDropdownItem, AwesomeLayoutPageNavbarMenu } from '../../utils/types';
+export { useAuthStore } from '../../stores/auth';
 export { default as logout } from '../../stores/logout';
 export { useExample } from '../../stores/use-example';
-export { default as user } from '../../stores/user';
 export { useWordpressStore } from '../../stores/wordpress';
 export { useCounter, ICounterState } from '../stores/use-counter';
 export { useIdentity, IIdentityState } from '../stores/use-identity';

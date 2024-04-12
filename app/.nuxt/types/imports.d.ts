@@ -165,6 +165,7 @@ declare global {
   const shallowReadonly: typeof import('../../../node_modules/vue')['shallowReadonly']
   const shallowRef: typeof import('../../../node_modules/vue')['shallowRef']
   const showError: typeof import('../../../node_modules/nuxt/dist/app/composables/error')['showError']
+  const signup: typeof import('../../../utils/cart')['signup']
   const storeToRefs: typeof import('../../../node_modules/@pinia/nuxt/dist/runtime/composables')['storeToRefs']
   const syncRef: typeof import('../../../node_modules/@vueuse/core')['syncRef']
   const syncRefs: typeof import('../../../node_modules/@vueuse/core')['syncRefs']
@@ -210,6 +211,7 @@ declare global {
   const useAsyncQueue: typeof import('../../../node_modules/@vueuse/core')['useAsyncQueue']
   const useAsyncState: typeof import('../../../node_modules/@vueuse/core')['useAsyncState']
   const useAttrs: typeof import('../../../node_modules/vue')['useAttrs']
+  const useAuthStore: typeof import('../../../stores/auth')['useAuthStore']
   const useAwesomeScreen: typeof import('../../../composables/use-awesome-screen')['useAwesomeScreen']
   const useBase64: typeof import('../../../node_modules/@vueuse/core')['useBase64']
   const useBattery: typeof import('../../../node_modules/@vueuse/core')['useBattery']
@@ -409,7 +411,6 @@ declare global {
   const useWindowScroll: typeof import('../../../node_modules/@vueuse/core')['useWindowScroll']
   const useWindowSize: typeof import('../../../node_modules/@vueuse/core')['useWindowSize']
   const useWordpressStore: typeof import('../../../stores/wordpress')['useWordpressStore']
-  const user: typeof import('../../../stores/user')['default']
   const watch: typeof import('../../../node_modules/vue')['watch']
   const watchArray: typeof import('../../../node_modules/@vueuse/core')['watchArray']
   const watchAtMost: typeof import('../../../node_modules/@vueuse/core')['watchAtMost']
@@ -620,6 +621,7 @@ declare module 'vue' {
     readonly shallowReadonly: UnwrapRef<typeof import('../../../node_modules/vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('../../../node_modules/vue')['shallowRef']>
     readonly showError: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/error')['showError']>
+    readonly signup: UnwrapRef<typeof import('../../../utils/cart')['signup']>
     readonly storeToRefs: UnwrapRef<typeof import('../../../node_modules/@pinia/nuxt/dist/runtime/composables')['storeToRefs']>
     readonly syncRef: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['syncRefs']>
@@ -665,6 +667,7 @@ declare module 'vue' {
     readonly useAsyncQueue: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useAsyncQueue']>
     readonly useAsyncState: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useAsyncState']>
     readonly useAttrs: UnwrapRef<typeof import('../../../node_modules/vue')['useAttrs']>
+    readonly useAuthStore: UnwrapRef<typeof import('../../../stores/auth')['useAuthStore']>
     readonly useAwesomeScreen: UnwrapRef<typeof import('../../../composables/use-awesome-screen')['useAwesomeScreen']>
     readonly useBase64: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useBase64']>
     readonly useBattery: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useBattery']>
@@ -864,7 +867,6 @@ declare module 'vue' {
     readonly useWindowScroll: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useWindowSize']>
     readonly useWordpressStore: UnwrapRef<typeof import('../../../stores/wordpress')['useWordpressStore']>
-    readonly user: UnwrapRef<typeof import('../../../stores/user')['default']>
     readonly watch: UnwrapRef<typeof import('../../../node_modules/vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['watchAtMost']>
@@ -1056,6 +1058,7 @@ declare module '@vue/runtime-core' {
     readonly shallowReadonly: UnwrapRef<typeof import('../../../node_modules/vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('../../../node_modules/vue')['shallowRef']>
     readonly showError: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/error')['showError']>
+    readonly signup: UnwrapRef<typeof import('../../../utils/cart')['signup']>
     readonly storeToRefs: UnwrapRef<typeof import('../../../node_modules/@pinia/nuxt/dist/runtime/composables')['storeToRefs']>
     readonly syncRef: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['syncRefs']>
@@ -1101,6 +1104,7 @@ declare module '@vue/runtime-core' {
     readonly useAsyncQueue: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useAsyncQueue']>
     readonly useAsyncState: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useAsyncState']>
     readonly useAttrs: UnwrapRef<typeof import('../../../node_modules/vue')['useAttrs']>
+    readonly useAuthStore: UnwrapRef<typeof import('../../../stores/auth')['useAuthStore']>
     readonly useAwesomeScreen: UnwrapRef<typeof import('../../../composables/use-awesome-screen')['useAwesomeScreen']>
     readonly useBase64: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useBase64']>
     readonly useBattery: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useBattery']>
@@ -1300,7 +1304,6 @@ declare module '@vue/runtime-core' {
     readonly useWindowScroll: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['useWindowSize']>
     readonly useWordpressStore: UnwrapRef<typeof import('../../../stores/wordpress')['useWordpressStore']>
-    readonly user: UnwrapRef<typeof import('../../../stores/user')['default']>
     readonly watch: UnwrapRef<typeof import('../../../node_modules/vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('../../../node_modules/@vueuse/core')['watchAtMost']>

@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 // import axios from "axios";
+import { useAuthStore } from "../../stores/auth";
 const { awesome } = useAppConfig();
 const { parseMenuRoute, parseMenuTitle } = useNavbarParser();
+const authStore = useAuthStore();
+const user = authStore.user;
 const props = defineProps({
   withAlert: {
     type: Boolean,
@@ -67,55 +70,6 @@ const leadingsText = computed(() => [
             <span class="animated-text-fg">{{ item.text }}</span>
           </span>
         </h1>
-        <!-- <div
-          v-if="showAlert"
-          class="mt-4 w-auto text-center text-white bg-gray-800 rounded px-4 py-1 text-sm"
-        >
-          create file "~/pages/index.vue" to replace this page
-        </div>
-        <div class="flex space-x-4 ml-2 mt-8 justify-center md:justify-start">
-          <AwesomeButton
-            size="lg"
-            :text="parseMenuTitle('Subscriptions')"
-            :to="
-              parseMenuRoute(
-                awesome?.layout?.welcome?.primaryActionButton?.to ||
-                  'https://nuxt.com'
-              )
-            "
-            class="font-extrabold"
-          />
-          <AwesomeButton
-            v-if="
-              parseMenuRoute(
-                awesome?.layout?.welcome?.secondaryActionButton?.to ||
-                  awesome?.project?.links?.github
-              )
-            "
-            :text="parseMenuTitle('Cases')"
-            :to="
-              parseMenuRoute(
-                awesome?.layout?.welcome?.secondaryActionButton?.to ||
-                  awesome?.project?.links?.github
-              )
-            "
-            size="lg"
-            class="font-extrabold"
-            type="secondary"
-          />
-        </div>
-      </div>
-      <div class="top-0 left-0 absolute w-screen">
-        <div class="absolute right-0 top-0 w-1/4 h-screen py-10 pt-12 z-0 flex">
-          <div
-            class="flex-1 rounded-l-9xl bg-gradient-to-l from-blue-600/10"
-          ></div>
-        </div>
-        <div class="absolute left-0 top-0 w-1/4 h-screen py-10 pt-12 z-0 flex">
-          <div
-            class="flex-1 rounded-r-9xl bg-gradient-to-r from-red-600/10"
-          ></div>
-        </div>-->
       </div>
     </LayoutPageSection>
   </LayoutPageWrapper>

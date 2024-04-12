@@ -1,4 +1,5 @@
-export default defineNuxtConfig({
+export default defineNuxtConfig(
+  {
   devtools: { enabled: true },
   extends: '../',
   modules: [
@@ -7,12 +8,22 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-swiper'
     // 'nuxt-graphql-client',
-  ],
-  apollo: {
+    ],
+ 
+   apollo: {
+    autoImports: true,
+    authType: 'Bearer',
+    authHeader: 'Authorization',
+    tokenStorage: 'cookie',
+    proxyCookies: true,
+    credentials: 'include',
     clients: {
       default: {
-        httpEndpoint: 'https://importedproducts.in/graphql'
+        credentials: 'include',
+          httpEndpoint: 'https://importedproducts.in/graphql',
       }
-    },
-  },  
-})
+      }
+    }
+    
+  }
+)

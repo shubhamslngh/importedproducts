@@ -3,13 +3,16 @@
     <swiper
       :effect="'cards'"
       :grabCursor="true"
+      :slideShadows="false"
       :modules="modules"
-      class="mySwiper"
+      class="mySwiper dark:bg-none"
     >
       <!-- {{ console.log(products, "products for cards in template") }} -->
       <swiper-slide
+        class="dark:bg-none "
         v-for="(product, index) in products"
         :key="index"
+        :slideShadow="false"
         :style="{ 'background-image': `url(${product.img})` }"
       >
         <div @click="handleClick(product.variationId)">
@@ -35,10 +38,11 @@
 import { ref, onMounted, defineProps } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { getVariation } from "../../utils/cart"; // Assuming getVariation is correctly imported
-import "swiper/css";
 import "swiper/css/effect-cards";
+import "swiper/css/bundle";
 import { EffectCards } from "swiper/modules";
 import AddToCart from "../awesome/AddtoCart.vue";
+import "swiper/scss/effect-cards";
 
 export default {
   components: {
@@ -57,6 +61,13 @@ export default {
     },
   },
   setup(props) {
+    const updateShadowStyles = () => {
+      const shadowElements = document.querySelectorAll(".swiper-slide-shadow");
+      shadowElements.forEach((shadowElement) => {
+        shadowElement.style.opacity = "0";
+      });
+    };
+
     const selectedProductId = ref(props.productId);
     const selectedVariationId = ref(props.variationId);
     const products = ref([]);
@@ -81,16 +92,35 @@ export default {
         console.error("Error fetching product:", error);
       }
     });
+    setTimeout(() => {
+      // Initial application of styles
+      updateShadowStyles();
+
+      // Set up an observer to monitor changes to Swiper component
+      const observer = new MutationObserver(updateShadowStyles);
+
+      // Attach the observer to the Swiper container
+      const swiperContainer = document.querySelector(".swiper-container");
+      if (swiperContainer) {
+        observer.observe(swiperContainer, {
+          attributes: true,
+          childList: true,
+          subtree: true,
+        });
+      }
+    }, 1000);
 
     const handleClick = (variationId) => {
       selectedVariationId.value = variationId;
       selectedProductId.value = props.productId;
       console.log(selectedProductId.value, "here is Product id");
       console.log(selectedVariationId.value, "here is Variation id");
+      // console.log(apollo, "here is appoloo id");
     };
 
     return {
       modules: [EffectCards],
+      spaceBetween: 400,
       selectedProductId,
       selectedVariationId,
       products,
@@ -102,34 +132,24 @@ export default {
 
 <style scoped>
 .img {
-  background-color: transparent;
+  width: auto;
+  height: auto;
 }
-
+.mySwiper * {
+  background-color: none;
+}
 .swiper {
-  width: 240px;
-  height: 320px;
-  background: none !important;
-}
-.swiper-slide-shadow {
-  background: none;
-}
-.swiper-3d .swiper-slide-shadow {
-  background: none;
+  width: 280px;
+  height: auto;
 }
 
-.swiper-cards {
-  border: none;
-  background: none;
-}
-.swiper-slide-shadow .swiper-slide-shadow-cards {
-  background: none;
-}
 .swiper-slide {
+  background: none !important;
   display: flex;
+  opacity: 1;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 12px;
   font-weight: bold;
-  background-color: none;
 }
 </style>

@@ -1,5 +1,7 @@
 <template>
   <div v-if="data" class="swiper">
+              <h1  class="mb-10 text-center text-2xl font-bold">IPHONE MAGSAFE COMPATIBLE CASES</h1>
+
     <div class="swiper-wrapper">
       <div
         v-for="(product, index) in data.products.edges"
@@ -14,12 +16,12 @@
             alt="Product Image"
             class="transition-all ease-in-out"
           />
-          <h3 class="box text-wrap font-semibold hover:font-bold">
+          <h3 class="grid text-wrap text-center text-[0.75rem]/5 font-MONO font-semibold hover:font-bold">
             {{ product.node.name }}
           </h3>
 
           <template v-if="selectedProductId === product.node.databaseId">
-            <div class="swiper-container">
+            <div class="swiper-container grid m-5 mt-12 ">
               {{ console.log(selectedProductId) }}
               <AwesomeVariations :productId="selectedProductId" />
               <!-- <AwesomeCardstest :productId="selectedProductId" /> -->
@@ -63,12 +65,28 @@ const initializeSwiper = () => {
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
-      effect: "cards",
-      grabCursor: true,
+    },
+    breakpoints: {
+      // When window width is <= 768px
+      420: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+      // When window width is <= 1024px
+      720: {
+        slidesPerView: 5,
+        spaceBetween: 10,
+      },
+      // When window width is <= 1440px
+      1440: {
+        slidesPerView: 5,
+        spaceBetween: 40,
+      },
     },
   });
   return swiper;
 };
+
 const products = ref([]);
 onMounted(() => {
   initializeSwiper();
@@ -88,29 +106,17 @@ const handleClick = (productId) => {
 </script>
 
 <style scoped>
-.swiper {
-  width: auto;
-  height: auto;
-}
-.swiper-cards {
-  width: 240px;
-  height: 240px;
-}
-.swiper-wrapper {
-  min-width: 50%;
-  width: 60%;
-  background: none;
-}
-
 .swiper-slide {
-  width: 400px;
+  width: cover;
+  height: cover;
   text-align: center;
   font-size: 10px;
   display: grid;
   justify-content: center;
   align-items: center;
 }
-.swiper-pagination {
-  color: red;
+.swiper-container {
+  width: auto;
+  height: auto;
 }
 </style>
