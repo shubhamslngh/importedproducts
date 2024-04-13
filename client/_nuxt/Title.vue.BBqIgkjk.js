@@ -1,0 +1,1 @@
+import{j as s,J as o,X as a,a7 as n,Z as r,Y as l}from"./swiper-vue.D22jMib6.js";const c={class:"text-2xl font-semibold mb-2"},d=s({__name:"Title",props:{text:{type:String,default:""}},setup(e){return(t,i)=>(o(),a("div",c,[n(t.$slots,"default",{},()=>[r(l(e.text),1)])]))}});export{d as _};
