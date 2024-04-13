@@ -1,0 +1,276 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/stores/auth.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { defineStore } from 'pinia';\n\nexport const useAuthStore = defineStore({\n  id: 'auth',\n  state: () => ({\n    user: null as { username: string } | null,\n    token: '' as string,\n    refreshtoken:'' as string,\n  }),\n\n  actions: {\n    setUser(user: { username: string }) {\n      this.user = user;\n    },\n    setToken(token: string) {\n      this.token = token;\n    },\n    setRToken(refreshtoken: string) {\n      this.refreshtoken = refreshtoken;\n    },\n  },\n});\n",
+      "start": 1712968597099,
+      "end": 1712968597116,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1712968597116,
+      "end": 1712968597116,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1712968597116,
+      "end": 1712968597116,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1712968597116,
+      "end": 1712968597116,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1712968597116,
+      "end": 1712968597116,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1712968597116,
+      "end": 1712968597116,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1712968597116,
+      "end": 1712968597116,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1712968597116,
+      "end": 1712968597116,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1712968597116,
+      "end": 1712968597116,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineStore } from \"pinia\";\nexport const useAuthStore = defineStore({\n  id: \"auth\",\n  state: () => ({\n    user: null,\n    token: \"\",\n    refreshtoken: \"\"\n  }),\n  actions: {\n    setUser(user) {\n      this.user = user;\n    },\n    setToken(token) {\n      this.token = token;\n    },\n    setRToken(refreshtoken) {\n      this.refreshtoken = refreshtoken;\n    }\n  }\n});\n",
+      "start": 1712968597116,
+      "end": 1712968597131,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/stores/auth.ts"
+        ],
+        "sourcesContent": [
+          "import { defineStore } from 'pinia';\n\nexport const useAuthStore = defineStore({\n  id: 'auth',\n  state: () => ({\n    user: null as { username: string } | null,\n    token: '' as string,\n    refreshtoken:'' as string,\n  }),\n\n  actions: {\n    setUser(user: { username: string }) {\n      this.user = user;\n    },\n    setToken(token: string) {\n      this.token = token;\n    },\n    setRToken(refreshtoken: string) {\n      this.refreshtoken = refreshtoken;\n    },\n  },\n});\n"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB;AAErB,aAAM,eAAe,YAAY;AAAA,EACtC,IAAI;AAAA,EACJ,OAAO,OAAO;AAAA,IACZ,MAAM;AAAA,IACN,OAAO;AAAA,IACP,cAAa;AAAA,EACf;AAAA,EAEA,SAAS;AAAA,IACP,QAAQ,MAA4B;AAClC,WAAK,OAAO;AAAA,IACd;AAAA,IACA,SAAS,OAAe;AACtB,WAAK,QAAQ;AAAA,IACf;AAAA,IACA,UAAU,cAAsB;AAC9B,WAAK,eAAe;AAAA,IACtB;AAAA,EACF;AACF,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1712968597131,
+      "end": 1712968597131,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1712968597131,
+      "end": 1712968597131,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1712968597131,
+      "end": 1712968597131,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1712968597131,
+      "end": 1712968597131,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1712968597131,
+      "end": 1712968597131,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1712968597131,
+      "end": 1712968597131,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1712968597131,
+      "end": 1712968597131,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1712968597131,
+      "end": 1712968597131,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1712968597131,
+      "end": 1712968597131,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1712968597131,
+      "end": 1712968597131,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1712968597131,
+      "end": 1712968597131,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1712968597132,
+      "end": 1712968597132,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1712968597132,
+      "end": 1712968597132,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1712968597132,
+      "end": 1712968597132,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1712968597132,
+      "end": 1712968597132,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1712968597132,
+      "end": 1712968597132,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1712968597132,
+      "end": 1712968597132,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1712968597132,
+      "end": 1712968597132,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1712968597132,
+      "end": 1712968597132,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1712968597132,
+      "end": 1712968597132,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1712968597132,
+      "end": 1712968597132,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1712968597132,
+      "end": 1712968597132,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1712968597132,
+      "end": 1712968597133,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1712968597132,
+      "end": 1712968597133,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1712968597133,
+      "end": 1712968597133,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1712968597133,
+      "end": 1712968597133,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1712968597133,
+      "end": 1712968597133,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1712968597133,
+      "end": 1712968597133,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1712968597133,
+      "end": 1712968597133,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1712968597133,
+      "end": 1712968597133,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1712968597133,
+      "end": 1712968597133,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1712968597133,
+      "end": 1712968597133,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1712968597133,
+      "end": 1712968597133,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,226 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup>\nimport { onMounted, onBeforeUnmount } from \"vue\";\n\n/* eslint-disable */\n/* eslint-env es6 */\n\nconst parallaxScroll = () => {\n  const gridRef = document.querySelector(\".parallax-scroll\");\n  const scrollYProgress =\n    window.scrollY /\n    (document.documentElement.scrollHeight - window.innerHeight);\n  const translateFirst = function (scrollYProgress) {\n    return `${scrollYProgress * -200}px`;\n  };\n  const translateSecond = function (scrollYProgress) {\n    return `${scrollYProgress * 200}px`;\n  };\n  const translateThird = function (scrollYProgress) {\n    return `${scrollYProgress * -200}px`;\n  };\n\n  const products = [\n    {\n      name: \"Product 1\",\n      image:\n        \"https://importedproducts.in/wp-content/uploads/2024/02/MQUD3_AV4-fococlipping-HD.png\",\n    },\n    {\n      name: \"Product 2\",\n      image:\n        \"https://importedproducts.in/wp-content/uploads/2024/01/MT1J3-fococlipping-HD.png\",\n    },\n    {\n      name: \"Product 3\",\n      image:\n        \"https://importedproducts.in/wp-content/uploads/2023/08/iphone15-pro-Photoroom.png-Photoroom.png\",\n    },\n    {\n      name: \"Product 4\",\n      image: \"https://importedproducts.in/wp-content/uploads/2023/08/144.png\",\n    },\n    {\n      name: \"Product 5\",\n      image:\n        \"https://importedproducts.in/wp-content/uploads/2023/08/iphone-15_prev_ui.png\",\n    },\n    {\n      name: \"Product 6\",\n      image:\n        \"https://importedproducts.in/wp-content/uploads/2023/08/e4a419f578335e928ece69df89cf08fcb81b8ea2.png\",\n    },\n  ];\n\n  const third = Math.ceil(products.length / 3);\n  const firstPart = products.slice(0, third);\n  const secondPart = products.slice(third, 2 * third);\n  const thirdPart = products.slice(2 * third);\n\n  const grid = document.createElement(\"div\");\n  grid.className = \"grid-container\";\n\n  const createGridItems = (part, translateFunction) => {\n    const gridElement = document.createElement(\"div\");\n    gridElement.className = \"grid\";\n    part.forEach((product, idx) => {\n      const motionDiv = document.createElement(\"div\");\n      motionDiv.style.transform = `translateY(${translateFunction(\n        scrollYProgress\n      )})`;\n      motionDiv.className = \"grid-item\";\n      const card = document.createElement(\"div\");\n      card.className = \"card\";\n      card.innerHTML = `\n        <img src=\"${product.image}\" alt=\"Product Image\">\n        <h3>${product.name}</h3>\n      `;\n      motionDiv.appendChild(card);\n      gridElement.appendChild(motionDiv);\n    });\n    return gridElement;\n  };\n\n  grid.appendChild(createGridItems(firstPart, translateFirst));\n  grid.appendChild(createGridItems(secondPart, translateSecond));\n  grid.appendChild(createGridItems(thirdPart, translateThird));\n\n  gridRef.innerHTML = \"\"; // Clear previous content\n  gridRef.appendChild(grid);\n};\n\nonMounted(() => {\n  parallaxScroll();\n  window.addEventListener(\"scroll\", parallaxScroll);\n});\nconst updateCardBackground = () => {\n  const cards = document.querySelectorAll(\".card\");\n  cards.forEach((card) => {\n    card.style.backgroundColor = \"transparent\";\n    card.style.img = \"cover\";\n  });\n};\n\nonMounted(() => {\n  updateCardBackground();\n});\nonBeforeUnmount(() => {\n  window.removeEventListener(\"scroll\", parallaxScroll);\n});\nconst updateCardImage = () => {\n  const cards = document.querySelectorAll(\".card img\");\n  cards.forEach((img) => {\n    img.style.maxWidth = \"100%\"; // Ensure the image does not exceed the width of its container\n    img.style.maxHeight = \"100%\"; // Ensure the image does not exceed the height of its container\n    img.style.width = \"auto\"; // Allow the image to scale proportionally\n    img.style.height = \"auto\"; // Allow the image to scale proportionally\n    img.style.borderRadius = \"10px\"; // Apply rounded corners to the image\n    img.style.boxShadow = \"0 0 10px rgba(0, 0, 0, 0.1)\"; // Add a subtle shadow effect\n  });\n};\n\nonMounted(() => {\n  updateCardImage();\n});\n</script>\n\n<template>\n  <div id=\"parallaxScroll\" class=\"parallax-scroll \"></div>\n</template>\n\n<style lang=\"scss\" scoped>\n.parallax-scroll {\n  height: 100vh; /* Fill the entire height of the viewport */\n  overflow-y: auto;\n}\n\n.grid-container {\n  display: grid;\n  grid-template-columns: repeat(\n    3,\n    1fr\n  ); /* Change to your desired number of columns */\n  gap: 10px;\n  max-width: 100vw; /* Fill the entire width of the viewport */\n  margin: auto;\n  padding: 40px 10px;\n}\n.grid-container > .grid {\n  display: flex;\n  gap: 10px;\n}\n.grid-item {\n  height: 80px;\n  width: 100%;\n  object-fit: cover;\n  object-position: left top;\n  border-radius: 10px;\n  margin: 0;\n  padding: 0;\n}\n</style>\n",
+      "start": 1712968594265,
+      "end": 1712968594290,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { openBlock as _openBlock, createElementBlock as _createElementBlock, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-781c32eb\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = {\n  id: \"parallaxScroll\",\n  class: \"parallax-scroll\"\n}\n\nimport { onMounted, onBeforeUnmount } from \"vue\";\n\n/* eslint-disable */\n/* eslint-env es6 */\n\n\nconst _sfc_main = {\n  __name: 'Parallax',\n  setup(__props) {\n\nconst parallaxScroll = () => {\n  const gridRef = document.querySelector(\".parallax-scroll\");\n  const scrollYProgress =\n    window.scrollY /\n    (document.documentElement.scrollHeight - window.innerHeight);\n  const translateFirst = function (scrollYProgress) {\n    return `${scrollYProgress * -200}px`;\n  };\n  const translateSecond = function (scrollYProgress) {\n    return `${scrollYProgress * 200}px`;\n  };\n  const translateThird = function (scrollYProgress) {\n    return `${scrollYProgress * -200}px`;\n  };\n\n  const products = [\n    {\n      name: \"Product 1\",\n      image:\n        \"https://importedproducts.in/wp-content/uploads/2024/02/MQUD3_AV4-fococlipping-HD.png\",\n    },\n    {\n      name: \"Product 2\",\n      image:\n        \"https://importedproducts.in/wp-content/uploads/2024/01/MT1J3-fococlipping-HD.png\",\n    },\n    {\n      name: \"Product 3\",\n      image:\n        \"https://importedproducts.in/wp-content/uploads/2023/08/iphone15-pro-Photoroom.png-Photoroom.png\",\n    },\n    {\n      name: \"Product 4\",\n      image: \"https://importedproducts.in/wp-content/uploads/2023/08/144.png\",\n    },\n    {\n      name: \"Product 5\",\n      image:\n        \"https://importedproducts.in/wp-content/uploads/2023/08/iphone-15_prev_ui.png\",\n    },\n    {\n      name: \"Product 6\",\n      image:\n        \"https://importedproducts.in/wp-content/uploads/2023/08/e4a419f578335e928ece69df89cf08fcb81b8ea2.png\",\n    },\n  ];\n\n  const third = Math.ceil(products.length / 3);\n  const firstPart = products.slice(0, third);\n  const secondPart = products.slice(third, 2 * third);\n  const thirdPart = products.slice(2 * third);\n\n  const grid = document.createElement(\"div\");\n  grid.className = \"grid-container\";\n\n  const createGridItems = (part, translateFunction) => {\n    const gridElement = document.createElement(\"div\");\n    gridElement.className = \"grid\";\n    part.forEach((product, idx) => {\n      const motionDiv = document.createElement(\"div\");\n      motionDiv.style.transform = `translateY(${translateFunction(\n        scrollYProgress\n      )})`;\n      motionDiv.className = \"grid-item\";\n      const card = document.createElement(\"div\");\n      card.className = \"card\";\n      card.innerHTML = `\n        <img src=\"${product.image}\" alt=\"Product Image\">\n        <h3>${product.name}</h3>\n      `;\n      motionDiv.appendChild(card);\n      gridElement.appendChild(motionDiv);\n    });\n    return gridElement;\n  };\n\n  grid.appendChild(createGridItems(firstPart, translateFirst));\n  grid.appendChild(createGridItems(secondPart, translateSecond));\n  grid.appendChild(createGridItems(thirdPart, translateThird));\n\n  gridRef.innerHTML = \"\"; // Clear previous content\n  gridRef.appendChild(grid);\n};\n\nonMounted(() => {\n  parallaxScroll();\n  window.addEventListener(\"scroll\", parallaxScroll);\n});\nconst updateCardBackground = () => {\n  const cards = document.querySelectorAll(\".card\");\n  cards.forEach((card) => {\n    card.style.backgroundColor = \"transparent\";\n    card.style.img = \"cover\";\n  });\n};\n\nonMounted(() => {\n  updateCardBackground();\n});\nonBeforeUnmount(() => {\n  window.removeEventListener(\"scroll\", parallaxScroll);\n});\nconst updateCardImage = () => {\n  const cards = document.querySelectorAll(\".card img\");\n  cards.forEach((img) => {\n    img.style.maxWidth = \"100%\"; // Ensure the image does not exceed the width of its container\n    img.style.maxHeight = \"100%\"; // Ensure the image does not exceed the height of its container\n    img.style.width = \"auto\"; // Allow the image to scale proportionally\n    img.style.height = \"auto\"; // Allow the image to scale proportionally\n    img.style.borderRadius = \"10px\"; // Apply rounded corners to the image\n    img.style.boxShadow = \"0 0 10px rgba(0, 0, 0, 0.1)\"; // Add a subtle shadow effect\n  });\n};\n\nonMounted(() => {\n  updateCardImage();\n});\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1))\n}\n}\n\n}\n\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue?vue&type=style&index=0&scoped=781c32eb&lang.scss\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\"data-v-781c32eb\"]])",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1712968594290,
+      "end": 1712968594290,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1712968594290,
+      "end": 1712968594291,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1712968594291,
+      "end": 1712968594291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1712968594291,
+      "end": 1712968594291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1712968594291,
+      "end": 1712968594291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1712968594291,
+      "end": 1712968594291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1712968594291,
+      "end": 1712968594291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1712968594291,
+      "end": 1712968594291,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1712968594291,
+      "end": 1712968594291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1712968594291,
+      "end": 1712968594291,
+      "order": "normal"
+    }
+  ]
+}

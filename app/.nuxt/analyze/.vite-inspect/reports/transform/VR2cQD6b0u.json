@@ -4,63 +4,63 @@
     {
       "name": "vite:load-fallback",
       "result": "<script lang=\"ts\" setup>\nimport { TransitionRoot, TransitionChild } from '@headlessui/vue'\nexport type IStyles = 'primary' | 'success' | 'warning' | 'danger'\n\n// props\nconst props = defineProps({\n  title: {\n    type: String,\n    default: undefined,\n  },\n  text: {\n    type: String,\n    default: undefined,\n  },\n  type: {\n    type: String,\n    default: 'primary',\n  },\n})\n\n// styles\nconst styles = reactive<{\n  [key: string]: string\n}>({\n  primary: '',\n  success:\n    'dark:from-green-500/50 via-gray-200 to-gray-200 dark:via-gray-900 dark:to-gray-900',\n  warning:\n    'dark:from-yellow-500/50 via-gray-200 to-gray-200 dark:via-gray-900 dark:to-gray-900',\n  danger:\n    'dark:from-red-500/50 via-gray-200 to-gray-200 dark:via-gray-900 dark:to-gray-900',\n})\nconst textStyles = reactive<{\n  [key: string]: string\n}>({\n  primary: 'text-black dark:text-white',\n  success: 'text-green-500',\n  warning: 'text-orange-500',\n  danger: 'text-red-500',\n})\n\n// selected\nconst isDestroyed = ref<Boolean>(false)\nconst selectedType = computed<IStyles>((): IStyles => {\n  if (['primary', 'success', 'warning', 'danger'].includes(props.type))\n    return props.type as IStyles\n  return 'primary'\n})\nconst selectedStyle = computed(() => styles[selectedType.value])\nconst selectedTextStyle = computed(() => textStyles[selectedType.value])\n\n// actions\nconst close = () => {\n  isDestroyed.value = true\n}\n</script>\n\n<template>\n  <TransitionRoot :show=\"!isDestroyed\" appear>\n    <TransitionChild\n      as=\"template\"\n      enter=\"duration-300 ease-out\"\n      enter-from=\"opacity-0\"\n      enter-to=\"opacity-100\"\n      leave=\"duration-300 ease-in\"\n      leave-from=\"opacity-100\"\n      leave-to=\"opacity-0\"\n    >\n      <div\n        :class=\"`bg-gray-200 dark:bg-gray-800 bg-gradient-to-r shadow-white/50 dark:shadow-gray-950/50 px-6 py-6 rounded-md shadow-lg flex space-x-6 ${selectedStyle}`\"\n      >\n        <div class=\"flex items-center justify-center\">\n          <slot name=\"icon\">\n            <Icon\n              v-if=\"selectedType === 'success'\"\n              name=\"mdi:check-circle\"\n              :class=\"`text-2xl ${selectedTextStyle}`\"\n            />\n            <Icon\n              v-if=\"selectedType === 'danger'\"\n              name=\"icon-clarity:times-circle-solid\"\n              :class=\"`text-2xl ${selectedTextStyle}`\"\n            />\n            <Icon\n              v-if=\"selectedType === 'warning'\"\n              name=\"icon-bi:exclamation-circle-fill\"\n              :class=\"`text-2xl ${selectedTextStyle}`\"\n            />\n          </slot>\n        </div>\n        <div class=\"flex-1\">\n          <div :class=\"`font-bold text-lg mb-0.5 ${selectedTextStyle}`\">\n            <slot name=\"title\">{{ props.title }}</slot>\n          </div>\n          <div class=\"text-gray-700 dark:text-gray-100\">\n            <slot name=\"title\">{{ props.text }}</slot>\n          </div>\n        </div>\n        <div>\n          <button\n            class=\"text-gray-600 hover:text-red-500 dark:text-gray-400 font-bold\"\n            @click=\"close\"\n          >\n            <Icon name=\"clarity:times-line\" />\n          </button>\n        </div>\n      </div>\n    </TransitionChild>\n  </TransitionRoot>\n</template>\n",
-      "start": 1710864566038,
-      "end": 1710864566246,
+      "start": 1712968593666,
+      "end": 1712968593939,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710864566246,
-      "end": 1710864566246,
+      "start": 1712968593939,
+      "end": 1712968593939,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710864566246,
-      "end": 1710864566246,
+      "start": 1712968593939,
+      "end": 1712968593939,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710864566246,
-      "end": 1710864566246,
+      "start": 1712968593939,
+      "end": 1712968593939,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710864566246,
-      "end": 1710864566246,
+      "start": 1712968593939,
+      "end": 1712968593939,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710864566246,
-      "end": 1710864566246,
+      "start": 1712968593939,
+      "end": 1712968593939,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1710864566246,
-      "end": 1710864566246,
+      "start": 1712968593939,
+      "end": 1712968593939,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1710864566246,
-      "end": 1710864566246,
+      "start": 1712968593939,
+      "end": 1712968593939,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710864566246,
-      "end": 1710864566246,
+      "start": 1712968593939,
+      "end": 1712968593939,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "import _sfc_main from \"/Users/shubhamsingh/namma/importedProds/components/awesome/AlertBanner.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/shubhamsingh/namma/importedProds/components/awesome/AlertBanner.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
-      "start": 1710864566246,
-      "end": 1710864566488,
+      "start": 1712968593939,
+      "end": 1712968594201,
       "order": "normal",
       "sourcemaps": {
         "mappings": ""
@@ -68,162 +68,162 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710864566488,
-      "end": 1710864566488,
+      "start": 1712968594201,
+      "end": 1712968594201,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864566488,
-      "end": 1710864566489,
+      "start": 1712968594201,
+      "end": 1712968594201,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710864566489,
-      "end": 1710864566489,
+      "start": 1712968594201,
+      "end": 1712968594201,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1710864566489,
-      "end": 1710864566489,
+      "start": 1712968594201,
+      "end": 1712968594201,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710864566489,
-      "end": 1710864566489,
+      "start": 1712968594201,
+      "end": 1712968594201,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/AlertBanner.vue\").then(r => r.default))",
-      "start": 1710864566489,
-      "end": 1710864566489,
+      "start": 1712968594201,
+      "end": 1712968594201,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1710864566489,
-      "end": 1710864566489,
+      "start": 1712968594201,
+      "end": 1712968594201,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710864566489,
-      "end": 1710864566489,
+      "start": 1712968594201,
+      "end": 1712968594201,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710864566489,
-      "end": 1710864566489,
+      "start": 1712968594201,
+      "end": 1712968594201,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710864566489,
-      "end": 1710864566489,
+      "start": 1712968594201,
+      "end": 1712968594201,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710864566489,
-      "end": 1710864566489,
+      "start": 1712968594201,
+      "end": 1712968594201,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710864566489,
-      "end": 1710864566489,
+      "start": 1712968594201,
+      "end": 1712968594201,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710864566489,
-      "end": 1710864566489,
+      "start": 1712968594202,
+      "end": 1712968594202,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710864566489,
-      "end": 1710864566489,
+      "start": 1712968594202,
+      "end": 1712968594202,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710864566489,
-      "end": 1710864566490,
+      "start": 1712968594202,
+      "end": 1712968594202,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710864566490,
-      "end": 1710864566490,
+      "start": 1712968594202,
+      "end": 1712968594202,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710864566490,
-      "end": 1710864566490,
+      "start": 1712968594202,
+      "end": 1712968594202,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1710864566490,
-      "end": 1710864566490,
+      "start": 1712968594202,
+      "end": 1712968594202,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710864566490,
-      "end": 1710864566490,
+      "start": 1712968594202,
+      "end": 1712968594202,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710864566490,
-      "end": 1710864566490,
+      "start": 1712968594202,
+      "end": 1712968594202,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1710864566490,
-      "end": 1710864566490,
+      "start": 1712968594202,
+      "end": 1712968594202,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1710864566490,
-      "end": 1710864566491,
+      "start": 1712968594202,
+      "end": 1712968594203,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1710864566491,
-      "end": 1710864566491,
+      "start": 1712968594203,
+      "end": 1712968594203,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710864566491,
-      "end": 1710864566491,
+      "start": 1712968594203,
+      "end": 1712968594203,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
       "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/AlertBanner.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(r => r.default))",
-      "start": 1710864566491,
-      "end": 1710864566491,
+      "start": 1712968594203,
+      "end": 1712968594203,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "vite:reporter",
-      "start": 1710864566491,
-      "end": 1710864566491,
+      "start": 1712968594203,
+      "end": 1712968594203,
       "order": "normal"
     }
   ]

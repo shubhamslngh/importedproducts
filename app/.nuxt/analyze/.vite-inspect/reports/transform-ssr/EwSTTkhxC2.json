@@ -4,260 +4,260 @@
     {
       "name": "vite:load-fallback",
       "result": "import axios from 'axios';\nimport { defineStore } from 'pinia'\n\nexport const useWordpressStore = defineStore('wordpress', {\n    state: () => ({\n        productCases: [],\n        // productsIphone14: [],\n        // productsIphone15pro: [],\n        // productsIphone14pro: [],\n        // productsIphone15: [],\n        // productsIphone15fw: [],\n        // phone15SiliconeCases:[], \n        // productSubscription: [],\n        productBg: [],\n        productDetails: [],\n        selectedProduct: \"\",\n        consumerKey : 'ck_dedb163e9f588c6e180da3d571ca6d2da207f420',\n        consumerSecret : 'cs_673d249f681f18ada1abef173441c45ef78c74c0',\n        \n    }),\n    // mounted() {\n    //     this.fetchProducts();\n    // },\n    actions: {\n    //     addToCart() {\n    //           const consumerKey = 'ck_dedb163e9f588c6e180da3d571ca6d2da207f420';\n    //         const consumerSecret = 'cs_673d249f681f18ada1abef173441c45ef78c74c0';\n    //            const authString = 'Basic ' + btoa(consumerKey + ':' + consumerSecret);\n\n    //   const itemToAdd = {\n    //     product_id: 8192, // Replace with actual product ID\n    //     quantity: 1,\n    //   };\n\n    //   axios.post('https://importedproducts.in/wp-json/wc/v3/cart/add', itemToAdd,{headers:{'Authorization':authString}})\n    //     .then(response => {\n    //       console.log('Item added to cart:', response.data);\n    //     })\n    //     .catch(error => {\n    //       console.error('Error adding item to cart:', error);\n    //     });\n    // },\n       async addToCart(productId = '7456', quantity = 1) {\n        const url = `https://importedproducts.in/wp-json/wc/v3/cart/add`;\n            const consumerKey = this.$state.consumerKey;\n            \n        const consumerSecret = this.$state.consumerSecret;\n            try {\n                const response = await axios.post(\n                url,\n                {\n                    product_id: productId,\n                    quantity: quantity,\n                },\n                {\n                    auth: {\n                    username: consumerKey,\n                    password: consumerSecret,\n                    },\n                }\n                );\n                console.log('Product added to cart:', response.data);\n            } catch (error) {\n                console.error('Error adding product to cart:', error);\n            }\n            },\n        async fetchProducts() {\n            console.log(this.$state.consumerKey,'consumer key')\n            const authString = 'Basic ' + btoa(this.$state.consumerKey + ':' + this.$state.consumerSecret);\n\n            // const proxyUrl = 'https://cors-anywhere.herokuapp.com/';\n            const apiUrl = 'https://importedproducts.in/wp-json/wc/v3/products/8192';\n            axios\n                .get(apiUrl, {\n                    headers: {\n                        'Authorization': authString\n                    }\n                })\n                .then(dataProducts => {\n                    console.log('data in s', dataProducts);\n                    let productName = dataProducts.data.attributes[0].options\n                    this.$state.productBg = dataProducts.data.attributes[1].options\n                    for (let i = 0; i < this.$state.productBg.length; i++) {\n                        this.$state.productBg[i] = JSON.parse(this.$state.productBg[i]);\n                    }\n                    this.$state.productSubscription = dataProducts.data.attributes[0].options\n                })\n                .catch(error => {\n                    console.error('Error fetching products:', error);\n                });\n        },\n        async iphoneProducts() {\n            const authString = 'Basic ' + btoa(this.$state.consumerKey + ':' + this.$state.consumerSecret);\n            const apiUrl = 'https://importedproducts.in/wp-json/wc/v3/products/7050';\n            axios\n                .get(apiUrl, {\n                    headers: {\n                        'Authorization': authString\n                    }\n                })\n                .then(dataProducts => {\n                    console.log('data in s', dataProducts.data.attributes[0].options);\n                    this.$state.productCases = dataProducts.data.attributes[0].options\n                    for (let i = 0; i < this.$state.productCases.length; i++) {\n                        this.$state.productCases[i] = JSON.parse(this.$state.productCases[i]);\n                    }\n                    console.log(this.$state.productCases, 'iphone');\n                })\n                .catch(error => {\n                    console.error('Error fetching products:', error);\n                });\n        },\n    async fetchIphoneCases() {\n            const authString = 'Basic ' + btoa(this.$state.consumerKey + ':' + this.$state.consumerSecret);\n            const apiUrl = 'https://importedproducts.in/wp-json/wc/v3/products/7050';\n            axios\n                .get(apiUrl, {\n                    headers: {\n                        'Authorization': authString\n                    }\n                })\n                .then(dataProducts => {\n                    console.log('data in s', dataProducts.data.attributes[2].options);\n                    this.$state.productsIphone14 = dataProducts.data.attributes[2].options\n                    for (let i = 0; i < this.$state.productsIphone14.length; i++) {\n                        this.$state.productsIphone14[i] = JSON.parse(this.$state.productsIphone14[i]);\n                    }\n                    console.log(this.$state.productsIphone14, 'iphone');\n                })\n                .catch(error => {\n                    console.error('Error fetching products:', error);\n                });\n        },\n            // async fetch15Sillicone() {\n            //     const authString = 'Basic' + btoa(this.$state.consumerKey + ':' + this.$state.consumerSecret);\n            //     const apiUrl = 'https://importedproducts.in/wp-json/wc/v3/products/7456';\n            //     axios\n            //         .get(apiUrl, {\n            //             headers: {\n            //                 'Authorization': authString\n            //             }\n            //         })\n            //         .then(dataProducts1 => {\n            //             console.log('data in IPHONE 15  ', dataProducts1.data.attributes[0]);\n            //             this.$state.Cases = dataProducts1.data.attributes[0]    \n            //             for (let i = 0; i < this.$state.productsIphone15.length; i++) {\n            //                 this.$state.productsIphone15[i] = JSON.parse(this.$state.productsIphone15[i]);\n            //             }   \n            //             console.log(this.$state.productsIphone15,'IPHONE15 sillicone');\n            //         })\n            //         .catch(error => {\n            //             console.error('Error fetching cases:', error);\n            //         });\n            // },\n        async fetchDetails(id,id2) {\n            \n            const authString = 'Basic ' + btoa(this.$state.consumerKey + ':' + this.$state.consumerSecret);\n\n            const apiUrl = 'https://importedproducts.in/wp-json/wc/v3/products/' + id;\n            \n            axios\n                .get(apiUrl, {\n                    headers: {\n                        'Authorization': authString\n                    }\n                })\n                .then(dataProducts => {\n                    console.log('data in id1', dataProducts.data.attributes[2].options);\n                    this.$state.productDetails = dataProducts.data.attributes[2].options\n                    for (let i = 0; i < this.$state.productDetails.length; i++) {\n                        this.$state.productDetails[i] = JSON.parse(this.$state.productDetails[i]);\n                    }\n                    if (id2) {\n                        this.id2(id2);\n                    }\n                    console.log(this.$state.productDetails,'details in store')\n                })\n                .catch(error => {\n                    \n                    console.error('Error fetching products:', error);\n                });\n        },\n        async id2(id) {\n            const authString = 'Basic ' + btoa(this.$state.consumerKey + ':' + this.$state.consumerSecret);\n\n             const apiUrl = 'https://importedproducts.in/wp-json/wc/v3/products/' + id;\n            \n            axios\n                .get(apiUrl, {\n                    headers: {\n                        'Authorization': authString\n                    }\n                })\n                .then(dataProducts => {\n                    console.log('data in id2', dataProducts.data.attributes[2].options);\n                    this.$state.productDetails = dataProducts.data.attributes[2].options\n                    for (let i = 0; i < this.$state.productDetails.length; i++) {\n                        this.$state.productDetails[i] = JSON.parse(this.$state.productDetails[i]);\n                    }\n                })\n                .catch(error => {\n                    console.error('Error fetching products:', error);\n                });\n        },\n        \n    }\n});",
-      "start": 1710864569370,
-      "end": 1710864569392,
+      "start": 1712968597100,
+      "end": 1712968597117,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864569392,
-      "end": 1710864569392,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710864569392,
-      "end": 1710864569393,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710864569393,
-      "end": 1710864569393,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710864569393,
-      "end": 1710864569393,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710864569393,
-      "end": 1710864569393,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710864569393,
-      "end": 1710864569393,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710864569393,
-      "end": 1710864569393,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710864569393,
-      "end": 1710864569393,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710864569393,
-      "end": 1710864569393,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710864569393,
-      "end": 1710864569393,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710864569393,
-      "end": 1710864569393,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710864569393,
-      "end": 1710864569393,
+      "start": 1712968597117,
+      "end": 1712968597117,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1710864569393,
-      "end": 1710864569394,
+      "start": 1712968597117,
+      "end": 1712968597118,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1710864569393,
-      "end": 1710864569394,
+      "start": 1712968597117,
+      "end": 1712968597118,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710864569394,
-      "end": 1710864569394,
+      "start": 1712968597118,
+      "end": 1712968597118,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710864569394,
-      "end": 1710864569394,
+      "start": 1712968597118,
+      "end": 1712968597118,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710864569394,
-      "end": 1710864569394,
+      "start": 1712968597118,
+      "end": 1712968597118,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710864569394,
-      "end": 1710864569394,
+      "start": 1712968597118,
+      "end": 1712968597118,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1710864569394,
-      "end": 1710864569394,
+      "start": 1712968597118,
+      "end": 1712968597118,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1710864569394,
-      "end": 1710864569394,
+      "start": 1712968597118,
+      "end": 1712968597118,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710864569394,
-      "end": 1710864569394,
+      "start": 1712968597118,
+      "end": 1712968597118,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710864569394,
-      "end": 1710864569394,
+      "start": 1712968597118,
+      "end": 1712968597118,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710864569394,
-      "end": 1710864569394,
+      "start": 1712968597118,
+      "end": 1712968597118,
       "order": "normal"
     }
   ]

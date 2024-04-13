@@ -3,64 +3,64 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "import type { RouteLocationRaw } from 'vue-router'\nimport { NuxtApp } from '#app'\nimport {\n  AwesomeLayoutPageNavbarMenu,\n  AwesomeLayoutPageNavbarMenuDropdownItem,\n} from './types'\n\nexport interface NuxtAwesomeAppConfig {\n  /** title name */\n  name?: string\n  /** description */\n  description?: string\n\n  /** project config */\n  project?: {\n    /** links */\n    links?: {\n      /** project github link */\n      github?: string\n    }\n  }\n\n  /** layout config */\n  layout?: {\n    /** page layout */\n    page?: {\n      /** navbar */\n      navbar?: {\n        /** menus in navbar */\n        menus?: AwesomeLayoutPageNavbarMenu[]\n      }\n    }\n    /** footer */\n    footer?: {\n      /** footer year */\n      year?: number\n    }\n    /** welcome component page */\n    welcome?: {\n      title?: string\n      disableInfoReplaceIndexInWelcomePage?: boolean\n      primaryActionButton?: {\n        title?: string\n        to?: RouteLocationRaw | ((nuxt: NuxtApp) => RouteLocationRaw)\n      }\n      secondaryActionButton?: {\n        title?: string\n        to?: RouteLocationRaw | ((nuxt: NuxtApp) => RouteLocationRaw)\n      }\n    }\n  }\n\n  /** author config */\n  author?: {\n    /** author name */\n    name?: string\n    /** author links */\n    links?: {\n      /** author github link */\n      github?: string\n      /** author medium link */\n      medium?: string\n      /** author website link */\n      website?: string\n    }\n  }\n\n  /** author config */\n  disableInfoReplaceIndexInWelcomePage?: boolean\n}\n\ndeclare module '@nuxt/schema' {\n  interface AppConfigInput {\n    awesome?: NuxtAwesomeAppConfig\n  }\n}\n\nexport default defineAppConfig({\n  awesome: {\n    name: 'Nuxt 3 Awesome Starter',\n    description:\n      'a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.',\n    project: {\n      links: {\n        github: 'https://github.com/viandwi24/nuxt3-awesome-starter',\n      },\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: [],\n        },\n      },\n      footer: {\n        year: new Date().getFullYear(),\n      },\n      welcome: {\n        title: 'ImportedProducts',\n        disableInfoReplaceIndexInWelcomePage: true,\n        primaryActionButton: {\n          title: 'Nuxt 3',\n          to: 'https://nuxt.com/',\n        },\n        secondaryActionButton: {\n          title: 'Github',\n          to: 'https://github.com/viandwi24/nuxt3-awesome-starter',\n        },\n      },\n    },\n    author: {\n      name: 'viandwi24',\n      links: {\n        github: 'https://github.com/viandwi24',\n        medium: 'https://viandwi24.medium.com',\n        website: 'https://viandwi24.site',\n      },\n    },\n    disableInfoReplaceIndexInWelcomePage: false,\n  } as NuxtAwesomeAppConfig,\n  nuxtIcon: {\n    aliases: {},\n    class: '',\n    size: '1em',\n  },\n})\n",
-      "start": 1710864570349,
-      "end": 1710864570363,
+      "result": "import type { RouteLocationRaw } from 'vue-router'\nimport { NuxtApp } from '#app'\nimport {\n  AwesomeLayoutPageNavbarMenu,\n  AwesomeLayoutPageNavbarMenuDropdownItem,\n} from './types'\n\nexport interface NuxtAwesomeAppConfig {\n  /** title name */\n  name?: string\n  /** description */\n  description?: string\n\n  /** project config */\n  project?: {\n    /** links */\n    links?: {\n      /** project github link */\n      github?: string\n    }\n  }\n\n  /** layout config */\n  layout?: {\n    /** page layout */\n    page?: {\n      /** navbar */\n      navbar?: {\n        /** menus in navbar */\n        menus?: AwesomeLayoutPageNavbarMenu[]\n      }\n    }\n    /** footer */\n    footer?: {\n      /** footer year */\n      year?: number\n    }\n    /** welcome component page */\n    welcome?: {\n      title?: string\n      disableInfoReplaceIndexInWelcomePage?: boolean\n      primaryActionButton?: {\n        title?: string\n        to?: RouteLocationRaw | ((nuxt: NuxtApp) => RouteLocationRaw)\n      }\n      secondaryActionButton?: {\n        title?: string\n        to?: RouteLocationRaw | ((nuxt: NuxtApp) => RouteLocationRaw)\n      }\n    }\n  }\n\n  /** author config */\n  author?: {\n    /** author name */\n    name?: string\n    /** author links */\n    links?: {\n      /** author github link */\n      github?: string\n      /** author medium link */\n      medium?: string\n      /** author website link */\n      website?: string\n    }\n  }\n\n  /** author config */\n  disableInfoReplaceIndexInWelcomePage?: boolean\n}\n\ndeclare module '@nuxt/schema' {\n  interface AppConfigInput {\n    awesome?: NuxtAwesomeAppConfig\n  }\n}\n\nexport default defineAppConfig({\n  awesome: {\n    name: 'Nuxt 3 Awesome Starter',\n    description:\n      'a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.',\n    project: {\n      links: {\n        github: 'https://github.com/shubhamslngh/importedproducts.git',\n      },\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: [],\n        },\n      },\n      footer: {\n        year: new Date().getFullYear(),\n      },\n      welcome: {\n        title: 'ImportedProducts',\n        disableInfoReplaceIndexInWelcomePage: true,\n        primaryActionButton: {\n          title: 'Nuxt 3',\n          to: 'https://nuxt.com/',\n        },\n        secondaryActionButton: {\n          title: 'Github',\n          to: 'https://github.com/shubhamslngh/importedproducts.git',\n        },\n      },\n    },\n    author: {\n      name: 'shubhamslngh',\n      links: {\n        github: 'https://github.com/shubhamslngh/importedproducts.git',\n        website: 'www.importedproducts.in',\n      },\n    },\n    disableInfoReplaceIndexInWelcomePage: false,\n  } as NuxtAwesomeAppConfig,\n  nuxtIcon: {\n    aliases: {},\n    class: '',\n    size: '1em',\n  },\n})\n",
+      "start": 1712968598297,
+      "end": 1712968598303,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710864570363,
-      "end": 1710864570363,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710864570363,
-      "end": 1710864570363,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710864570363,
-      "end": 1710864570363,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710864570363,
-      "end": 1710864570363,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710864570363,
-      "end": 1710864570363,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710864570363,
-      "end": 1710864570363,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710864570363,
-      "end": 1710864570363,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710864570363,
-      "end": 1710864570363,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "result": "export default defineAppConfig({\n  awesome: {\n    name: \"Nuxt 3 Awesome Starter\",\n    description: \"a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.\",\n    project: {\n      links: {\n        github: \"https://github.com/viandwi24/nuxt3-awesome-starter\"\n      }\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: []\n        }\n      },\n      footer: {\n        year: (/* @__PURE__ */ new Date()).getFullYear()\n      },\n      welcome: {\n        title: \"ImportedProducts\",\n        disableInfoReplaceIndexInWelcomePage: true,\n        primaryActionButton: {\n          title: \"Nuxt 3\",\n          to: \"https://nuxt.com/\"\n        },\n        secondaryActionButton: {\n          title: \"Github\",\n          to: \"https://github.com/viandwi24/nuxt3-awesome-starter\"\n        }\n      }\n    },\n    author: {\n      name: \"viandwi24\",\n      links: {\n        github: \"https://github.com/viandwi24\",\n        medium: \"https://viandwi24.medium.com\",\n        website: \"https://viandwi24.site\"\n      }\n    },\n    disableInfoReplaceIndexInWelcomePage: false\n  },\n  nuxtIcon: {\n    aliases: {},\n    class: \"\",\n    size: \"1em\"\n  }\n});\n",
-      "start": 1710864570363,
-      "end": 1710864570390,
+      "result": "export default defineAppConfig({\n  awesome: {\n    name: \"Nuxt 3 Awesome Starter\",\n    description: \"a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.\",\n    project: {\n      links: {\n        github: \"https://github.com/shubhamslngh/importedproducts.git\"\n      }\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: []\n        }\n      },\n      footer: {\n        year: (/* @__PURE__ */ new Date()).getFullYear()\n      },\n      welcome: {\n        title: \"ImportedProducts\",\n        disableInfoReplaceIndexInWelcomePage: true,\n        primaryActionButton: {\n          title: \"Nuxt 3\",\n          to: \"https://nuxt.com/\"\n        },\n        secondaryActionButton: {\n          title: \"Github\",\n          to: \"https://github.com/shubhamslngh/importedproducts.git\"\n        }\n      }\n    },\n    author: {\n      name: \"shubhamslngh\",\n      links: {\n        github: \"https://github.com/shubhamslngh/importedproducts.git\",\n        website: \"www.importedproducts.in\"\n      }\n    },\n    disableInfoReplaceIndexInWelcomePage: false\n  },\n  nuxtIcon: {\n    aliases: {},\n    class: \"\",\n    size: \"1em\"\n  }\n});\n",
+      "start": 1712968598303,
+      "end": 1712968598327,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -68,149 +68,149 @@
           "/Users/shubhamsingh/namma/importedProds/app.config.ts"
         ],
         "sourcesContent": [
-          "import type { RouteLocationRaw } from 'vue-router'\nimport { NuxtApp } from '#app'\nimport {\n  AwesomeLayoutPageNavbarMenu,\n  AwesomeLayoutPageNavbarMenuDropdownItem,\n} from './types'\n\nexport interface NuxtAwesomeAppConfig {\n  /** title name */\n  name?: string\n  /** description */\n  description?: string\n\n  /** project config */\n  project?: {\n    /** links */\n    links?: {\n      /** project github link */\n      github?: string\n    }\n  }\n\n  /** layout config */\n  layout?: {\n    /** page layout */\n    page?: {\n      /** navbar */\n      navbar?: {\n        /** menus in navbar */\n        menus?: AwesomeLayoutPageNavbarMenu[]\n      }\n    }\n    /** footer */\n    footer?: {\n      /** footer year */\n      year?: number\n    }\n    /** welcome component page */\n    welcome?: {\n      title?: string\n      disableInfoReplaceIndexInWelcomePage?: boolean\n      primaryActionButton?: {\n        title?: string\n        to?: RouteLocationRaw | ((nuxt: NuxtApp) => RouteLocationRaw)\n      }\n      secondaryActionButton?: {\n        title?: string\n        to?: RouteLocationRaw | ((nuxt: NuxtApp) => RouteLocationRaw)\n      }\n    }\n  }\n\n  /** author config */\n  author?: {\n    /** author name */\n    name?: string\n    /** author links */\n    links?: {\n      /** author github link */\n      github?: string\n      /** author medium link */\n      medium?: string\n      /** author website link */\n      website?: string\n    }\n  }\n\n  /** author config */\n  disableInfoReplaceIndexInWelcomePage?: boolean\n}\n\ndeclare module '@nuxt/schema' {\n  interface AppConfigInput {\n    awesome?: NuxtAwesomeAppConfig\n  }\n}\n\nexport default defineAppConfig({\n  awesome: {\n    name: 'Nuxt 3 Awesome Starter',\n    description:\n      'a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.',\n    project: {\n      links: {\n        github: 'https://github.com/viandwi24/nuxt3-awesome-starter',\n      },\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: [],\n        },\n      },\n      footer: {\n        year: new Date().getFullYear(),\n      },\n      welcome: {\n        title: 'ImportedProducts',\n        disableInfoReplaceIndexInWelcomePage: true,\n        primaryActionButton: {\n          title: 'Nuxt 3',\n          to: 'https://nuxt.com/',\n        },\n        secondaryActionButton: {\n          title: 'Github',\n          to: 'https://github.com/viandwi24/nuxt3-awesome-starter',\n        },\n      },\n    },\n    author: {\n      name: 'viandwi24',\n      links: {\n        github: 'https://github.com/viandwi24',\n        medium: 'https://viandwi24.medium.com',\n        website: 'https://viandwi24.site',\n      },\n    },\n    disableInfoReplaceIndexInWelcomePage: false,\n  } as NuxtAwesomeAppConfig,\n  nuxtIcon: {\n    aliases: {},\n    class: '',\n    size: '1em',\n  },\n})\n"
+          "import type { RouteLocationRaw } from 'vue-router'\nimport { NuxtApp } from '#app'\nimport {\n  AwesomeLayoutPageNavbarMenu,\n  AwesomeLayoutPageNavbarMenuDropdownItem,\n} from './types'\n\nexport interface NuxtAwesomeAppConfig {\n  /** title name */\n  name?: string\n  /** description */\n  description?: string\n\n  /** project config */\n  project?: {\n    /** links */\n    links?: {\n      /** project github link */\n      github?: string\n    }\n  }\n\n  /** layout config */\n  layout?: {\n    /** page layout */\n    page?: {\n      /** navbar */\n      navbar?: {\n        /** menus in navbar */\n        menus?: AwesomeLayoutPageNavbarMenu[]\n      }\n    }\n    /** footer */\n    footer?: {\n      /** footer year */\n      year?: number\n    }\n    /** welcome component page */\n    welcome?: {\n      title?: string\n      disableInfoReplaceIndexInWelcomePage?: boolean\n      primaryActionButton?: {\n        title?: string\n        to?: RouteLocationRaw | ((nuxt: NuxtApp) => RouteLocationRaw)\n      }\n      secondaryActionButton?: {\n        title?: string\n        to?: RouteLocationRaw | ((nuxt: NuxtApp) => RouteLocationRaw)\n      }\n    }\n  }\n\n  /** author config */\n  author?: {\n    /** author name */\n    name?: string\n    /** author links */\n    links?: {\n      /** author github link */\n      github?: string\n      /** author medium link */\n      medium?: string\n      /** author website link */\n      website?: string\n    }\n  }\n\n  /** author config */\n  disableInfoReplaceIndexInWelcomePage?: boolean\n}\n\ndeclare module '@nuxt/schema' {\n  interface AppConfigInput {\n    awesome?: NuxtAwesomeAppConfig\n  }\n}\n\nexport default defineAppConfig({\n  awesome: {\n    name: 'Nuxt 3 Awesome Starter',\n    description:\n      'a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.',\n    project: {\n      links: {\n        github: 'https://github.com/shubhamslngh/importedproducts.git',\n      },\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: [],\n        },\n      },\n      footer: {\n        year: new Date().getFullYear(),\n      },\n      welcome: {\n        title: 'ImportedProducts',\n        disableInfoReplaceIndexInWelcomePage: true,\n        primaryActionButton: {\n          title: 'Nuxt 3',\n          to: 'https://nuxt.com/',\n        },\n        secondaryActionButton: {\n          title: 'Github',\n          to: 'https://github.com/shubhamslngh/importedproducts.git',\n        },\n      },\n    },\n    author: {\n      name: 'shubhamslngh',\n      links: {\n        github: 'https://github.com/shubhamslngh/importedproducts.git',\n        website: 'www.importedproducts.in',\n      },\n    },\n    disableInfoReplaceIndexInWelcomePage: false,\n  } as NuxtAwesomeAppConfig,\n  nuxtIcon: {\n    aliases: {},\n    class: '',\n    size: '1em',\n  },\n})\n"
         ],
-        "mappings": "AA6EA,eAAe,gBAAgB;AAAA,EAC7B,SAAS;AAAA,IACP,MAAM;AAAA,IACN,aACE;AAAA,IACF,SAAS;AAAA,MACP,OAAO;AAAA,QACL,QAAQ;AAAA,MACV;AAAA,IACF;AAAA,IACA,QAAQ;AAAA,MACN,MAAM;AAAA,QACJ,QAAQ;AAAA,UACN,OAAO,CAAC;AAAA,QACV;AAAA,MACF;AAAA,MACA,QAAQ;AAAA,QACN,OAAM,oBAAI,KAAK,GAAE,YAAY;AAAA,MAC/B;AAAA,MACA,SAAS;AAAA,QACP,OAAO;AAAA,QACP,sCAAsC;AAAA,QACtC,qBAAqB;AAAA,UACnB,OAAO;AAAA,UACP,IAAI;AAAA,QACN;AAAA,QACA,uBAAuB;AAAA,UACrB,OAAO;AAAA,UACP,IAAI;AAAA,QACN;AAAA,MACF;AAAA,IACF;AAAA,IACA,QAAQ;AAAA,MACN,MAAM;AAAA,MACN,OAAO;AAAA,QACL,QAAQ;AAAA,QACR,QAAQ;AAAA,QACR,SAAS;AAAA,MACX;AAAA,IACF;AAAA,IACA,sCAAsC;AAAA,EACxC;AAAA,EACA,UAAU;AAAA,IACR,SAAS,CAAC;AAAA,IACV,OAAO;AAAA,IACP,MAAM;AAAA,EACR;AACF,CAAC;",
+        "mappings": "AA6EA,eAAe,gBAAgB;AAAA,EAC7B,SAAS;AAAA,IACP,MAAM;AAAA,IACN,aACE;AAAA,IACF,SAAS;AAAA,MACP,OAAO;AAAA,QACL,QAAQ;AAAA,MACV;AAAA,IACF;AAAA,IACA,QAAQ;AAAA,MACN,MAAM;AAAA,QACJ,QAAQ;AAAA,UACN,OAAO,CAAC;AAAA,QACV;AAAA,MACF;AAAA,MACA,QAAQ;AAAA,QACN,OAAM,oBAAI,KAAK,GAAE,YAAY;AAAA,MAC/B;AAAA,MACA,SAAS;AAAA,QACP,OAAO;AAAA,QACP,sCAAsC;AAAA,QACtC,qBAAqB;AAAA,UACnB,OAAO;AAAA,UACP,IAAI;AAAA,QACN;AAAA,QACA,uBAAuB;AAAA,UACrB,OAAO;AAAA,UACP,IAAI;AAAA,QACN;AAAA,MACF;AAAA,IACF;AAAA,IACA,QAAQ;AAAA,MACN,MAAM;AAAA,MACN,OAAO;AAAA,QACL,QAAQ;AAAA,QACR,SAAS;AAAA,MACX;AAAA,IACF;AAAA,IACA,sCAAsC;AAAA,EACxC;AAAA,EACA,UAAU;AAAA,IACR,SAAS,CAAC;AAAA,IACV,OAAO;AAAA,IACP,MAAM;AAAA,EACR;AACF,CAAC;",
         "names": []
       }
     },
     {
       "name": "vite:json",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598327,
+      "end": 1712968598327,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598327,
+      "end": 1712968598327,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598327,
+      "end": 1712968598327,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598327,
+      "end": 1712968598327,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598327,
+      "end": 1712968598327,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598327,
+      "end": 1712968598327,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598327,
+      "end": 1712968598327,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598327,
+      "end": 1712968598327,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598327,
+      "end": 1712968598327,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598327,
+      "end": 1712968598327,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598327,
+      "end": 1712968598328,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "result": "import { defineAppConfig } from '#app/nuxt';\nexport default defineAppConfig({\n  awesome: {\n    name: \"Nuxt 3 Awesome Starter\",\n    description: \"a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.\",\n    project: {\n      links: {\n        github: \"https://github.com/viandwi24/nuxt3-awesome-starter\"\n      }\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: []\n        }\n      },\n      footer: {\n        year: (/* @__PURE__ */ new Date()).getFullYear()\n      },\n      welcome: {\n        title: \"ImportedProducts\",\n        disableInfoReplaceIndexInWelcomePage: true,\n        primaryActionButton: {\n          title: \"Nuxt 3\",\n          to: \"https://nuxt.com/\"\n        },\n        secondaryActionButton: {\n          title: \"Github\",\n          to: \"https://github.com/viandwi24/nuxt3-awesome-starter\"\n        }\n      }\n    },\n    author: {\n      name: \"viandwi24\",\n      links: {\n        github: \"https://github.com/viandwi24\",\n        medium: \"https://viandwi24.medium.com\",\n        website: \"https://viandwi24.site\"\n      }\n    },\n    disableInfoReplaceIndexInWelcomePage: false\n  },\n  nuxtIcon: {\n    aliases: {},\n    class: \"\",\n    size: \"1em\"\n  }\n});\n",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "result": "import { defineAppConfig } from '#app/nuxt';\nexport default defineAppConfig({\n  awesome: {\n    name: \"Nuxt 3 Awesome Starter\",\n    description: \"a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.\",\n    project: {\n      links: {\n        github: \"https://github.com/shubhamslngh/importedproducts.git\"\n      }\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: []\n        }\n      },\n      footer: {\n        year: (/* @__PURE__ */ new Date()).getFullYear()\n      },\n      welcome: {\n        title: \"ImportedProducts\",\n        disableInfoReplaceIndexInWelcomePage: true,\n        primaryActionButton: {\n          title: \"Nuxt 3\",\n          to: \"https://nuxt.com/\"\n        },\n        secondaryActionButton: {\n          title: \"Github\",\n          to: \"https://github.com/shubhamslngh/importedproducts.git\"\n        }\n      }\n    },\n    author: {\n      name: \"shubhamslngh\",\n      links: {\n        github: \"https://github.com/shubhamslngh/importedproducts.git\",\n        website: \"www.importedproducts.in\"\n      }\n    },\n    disableInfoReplaceIndexInWelcomePage: false\n  },\n  nuxtIcon: {\n    aliases: {},\n    class: \"\",\n    size: \"1em\"\n  }\n});\n",
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -218,14 +218,14 @@
           ""
         ],
         "names": [],
-        "mappings": ";AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/H,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,C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"
+        "mappings": ";AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/H,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,C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"
       }
     },
     {
       "name": "nuxt:imports-transform",
-      "result": "import { defineAppConfig } from '#app/nuxt';\nexport default defineAppConfig({\n  awesome: {\n    name: \"Nuxt 3 Awesome Starter\",\n    description: \"a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.\",\n    project: {\n      links: {\n        github: \"https://github.com/viandwi24/nuxt3-awesome-starter\"\n      }\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: []\n        }\n      },\n      footer: {\n        year: (/* @__PURE__ */ new Date()).getFullYear()\n      },\n      welcome: {\n        title: \"ImportedProducts\",\n        disableInfoReplaceIndexInWelcomePage: true,\n        primaryActionButton: {\n          title: \"Nuxt 3\",\n          to: \"https://nuxt.com/\"\n        },\n        secondaryActionButton: {\n          title: \"Github\",\n          to: \"https://github.com/viandwi24/nuxt3-awesome-starter\"\n        }\n      }\n    },\n    author: {\n      name: \"viandwi24\",\n      links: {\n        github: \"https://github.com/viandwi24\",\n        medium: \"https://viandwi24.medium.com\",\n        website: \"https://viandwi24.site\"\n      }\n    },\n    disableInfoReplaceIndexInWelcomePage: false\n  },\n  nuxtIcon: {\n    aliases: {},\n    class: \"\",\n    size: \"1em\"\n  }\n});\n",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "result": "import { defineAppConfig } from '#app/nuxt';\nexport default defineAppConfig({\n  awesome: {\n    name: \"Nuxt 3 Awesome Starter\",\n    description: \"a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.\",\n    project: {\n      links: {\n        github: \"https://github.com/shubhamslngh/importedproducts.git\"\n      }\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: []\n        }\n      },\n      footer: {\n        year: (/* @__PURE__ */ new Date()).getFullYear()\n      },\n      welcome: {\n        title: \"ImportedProducts\",\n        disableInfoReplaceIndexInWelcomePage: true,\n        primaryActionButton: {\n          title: \"Nuxt 3\",\n          to: \"https://nuxt.com/\"\n        },\n        secondaryActionButton: {\n          title: \"Github\",\n          to: \"https://github.com/shubhamslngh/importedproducts.git\"\n        }\n      }\n    },\n    author: {\n      name: \"shubhamslngh\",\n      links: {\n        github: \"https://github.com/shubhamslngh/importedproducts.git\",\n        website: \"www.importedproducts.in\"\n      }\n    },\n    disableInfoReplaceIndexInWelcomePage: false\n  },\n  nuxtIcon: {\n    aliases: {},\n    class: \"\",\n    size: \"1em\"\n  }\n});\n",
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -233,61 +233,61 @@
           ""
         ],
         "names": [],
-        "mappings": ";AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/H,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,C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"
+        "mappings": ";AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/H,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,C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"
       }
     },
     {
       "name": "unctx:transform",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598328,
+      "end": 1712968598328,
       "order": "normal"
     }
   ]

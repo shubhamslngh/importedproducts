@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "// src/useQuery.ts\nimport {\n  ref as ref3,\n  unref,\n  computed as computed3,\n  watch as watch2,\n  onServerPrefetch,\n  getCurrentInstance as getCurrentInstance2,\n  onBeforeUnmount as onBeforeUnmount2,\n  nextTick,\n  shallowRef\n} from \"vue-demi\";\nimport {throttle, debounce} from \"throttle-debounce\";\n\n// src/useApolloClient.ts\nimport {hasInjectionContext, inject} from \"vue-demi\";\nvar DefaultApolloClient = Symbol(\"default-apollo-client\");\nvar ApolloClients = Symbol(\"apollo-clients\");\nfunction resolveDefaultClient(providedApolloClients, providedApolloClient) {\n  const resolvedClient = providedApolloClients ? providedApolloClients.default : providedApolloClient != null ? providedApolloClient : void 0;\n  return resolvedClient;\n}\nfunction resolveClientWithId(providedApolloClients, clientId) {\n  if (!providedApolloClients) {\n    throw new Error(`No apolloClients injection found, tried to resolve '${clientId}' clientId`);\n  }\n  return providedApolloClients[clientId];\n}\nfunction useApolloClient(clientId) {\n  let resolveImpl;\n  const savedCurrentClients = currentApolloClients;\n  if (!hasInjectionContext()) {\n    resolveImpl = (id) => {\n      if (id) {\n        return resolveClientWithId(savedCurrentClients, id);\n      }\n      return resolveDefaultClient(savedCurrentClients, savedCurrentClients.default);\n    };\n  } else {\n    const providedApolloClients = inject(ApolloClients, null);\n    const providedApolloClient = inject(DefaultApolloClient, null);\n    resolveImpl = (id) => {\n      if (id) {\n        const client2 = resolveClientWithId(providedApolloClients, id);\n        if (client2) {\n          return client2;\n        }\n        return resolveClientWithId(savedCurrentClients, id);\n      }\n      const client = resolveDefaultClient(providedApolloClients, providedApolloClient);\n      if (client) {\n        return client;\n      }\n      return resolveDefaultClient(savedCurrentClients, savedCurrentClients.default);\n    };\n  }\n  function resolveClient(id = clientId) {\n    const client = resolveImpl(id);\n    if (!client) {\n      throw new Error(`Apollo client with id ${id != null ? id : \"default\"} not found. Use an app.runWithContext() or provideApolloClient() if you are outside of a component setup.`);\n    }\n    return client;\n  }\n  return {\n    resolveClient,\n    get client() {\n      return resolveClient();\n    }\n  };\n}\nvar currentApolloClients = {};\nfunction provideApolloClient(client) {\n  currentApolloClients = {\n    default: client\n  };\n  return function(fn) {\n    const result = fn();\n    currentApolloClients = {};\n    return result;\n  };\n}\nfunction provideApolloClients(clients) {\n  currentApolloClients = clients;\n  return function(fn) {\n    const result = fn();\n    currentApolloClients = {};\n    return result;\n  };\n}\n\n// src/util/paramToRef.ts\nimport {isRef, computed, ref} from \"vue-demi\";\nfunction paramToRef(param) {\n  if (isRef(param)) {\n    return param;\n  } else if (typeof param === \"function\") {\n    return computed(param);\n  } else {\n    return ref(param);\n  }\n}\n\n// src/util/paramToReactive.ts\nimport {isRef as isRef2, reactive, computed as computed2} from \"vue-demi\";\nfunction paramToReactive(param) {\n  if (isRef2(param)) {\n    return param;\n  } else if (typeof param === \"function\") {\n    return computed2(param);\n  } else if (param) {\n    return reactive(param);\n  } else {\n    return param;\n  }\n}\n\n// src/util/useEventHook.ts\nfunction useEventHook() {\n  const fns = [];\n  function on(fn) {\n    fns.push(fn);\n    return {\n      off: () => off(fn)\n    };\n  }\n  function off(fn) {\n    const index = fns.indexOf(fn);\n    if (index !== -1) {\n      fns.splice(index, 1);\n    }\n  }\n  function trigger(...params) {\n    for (const fn of fns) {\n      fn(...params);\n    }\n  }\n  function getCount() {\n    return fns.length;\n  }\n  return {\n    on,\n    off,\n    trigger,\n    getCount\n  };\n}\n\n// src/util/loadingTracking.ts\nimport {watch, onUnmounted, ref as ref2, getCurrentInstance, onBeforeUnmount} from \"vue-demi\";\n\n// src/util/env.ts\nvar isServer = typeof window === \"undefined\";\n\n// src/util/loadingTracking.ts\nvar globalTracking = {\n  queries: ref2(0),\n  mutations: ref2(0),\n  subscriptions: ref2(0),\n  components: new Map()\n};\nfunction getCurrentTracking() {\n  const vm = getCurrentInstance();\n  if (!vm) {\n    return {};\n  }\n  let tracking;\n  if (!globalTracking.components.has(vm)) {\n    globalTracking.components.set(vm, tracking = {\n      queries: ref2(0),\n      mutations: ref2(0),\n      subscriptions: ref2(0)\n    });\n    onUnmounted(() => {\n      globalTracking.components.delete(vm);\n    });\n  } else {\n    tracking = globalTracking.components.get(vm);\n  }\n  return {\n    tracking\n  };\n}\nfunction track(loading, type) {\n  if (isServer)\n    return;\n  const {tracking} = getCurrentTracking();\n  watch(loading, (value, oldValue) => {\n    if (oldValue != null && value !== oldValue) {\n      const mod = value ? 1 : -1;\n      if (tracking)\n        tracking[type].value += mod;\n      globalTracking[type].value += mod;\n    }\n  }, {\n    immediate: true\n  });\n  onBeforeUnmount(() => {\n    if (loading.value) {\n      if (tracking)\n        tracking[type].value--;\n      globalTracking[type].value--;\n    }\n  });\n}\nfunction trackQuery(loading) {\n  track(loading, \"queries\");\n}\nfunction trackMutation(loading) {\n  track(loading, \"mutations\");\n}\nfunction trackSubscription(loading) {\n  track(loading, \"subscriptions\");\n}\n\n// src/util/toApolloError.ts\nimport {ApolloError, isApolloError} from \"@apollo/client/core/index.js\";\nfunction toApolloError(error) {\n  if (!(error instanceof Error)) {\n    return new ApolloError({\n      networkError: Object.assign(new Error(), {originalError: error}),\n      errorMessage: String(error)\n    });\n  }\n  if (isApolloError(error)) {\n    return error;\n  }\n  return new ApolloError({networkError: error, errorMessage: error.message});\n}\nfunction resultErrorsToApolloError(errors) {\n  return new ApolloError({\n    graphQLErrors: errors,\n    errorMessage: `GraphQL response contains errors: ${errors.map((e) => e.message).join(\" | \")}`\n  });\n}\n\n// src/useQuery.ts\nfunction useQuery(document, variables, options) {\n  return useQueryImpl(document, variables, options);\n}\nfunction useQueryImpl(document, variables, options = {}, lazy = false) {\n  var _a;\n  const vm = getCurrentInstance2();\n  const currentOptions = ref3();\n  const documentRef = paramToRef(document);\n  const variablesRef = paramToRef(variables);\n  const optionsRef = paramToReactive(options);\n  const result = shallowRef();\n  const resultEvent = useEventHook();\n  const error = shallowRef(null);\n  const errorEvent = useEventHook();\n  const loading = ref3(false);\n  vm && trackQuery(loading);\n  const networkStatus = ref3();\n  let firstResolve;\n  let firstResolveTriggered = false;\n  let firstReject;\n  let firstRejectError;\n  const tryFirstResolve = () => {\n    firstResolveTriggered = true;\n    if (firstResolve)\n      firstResolve();\n  };\n  const tryFirstReject = (apolloError) => {\n    firstRejectError = apolloError;\n    if (firstReject)\n      firstReject(apolloError);\n  };\n  const resetFirstResolveReject = () => {\n    firstResolve = void 0;\n    firstReject = void 0;\n    firstResolveTriggered = false;\n    firstRejectError = void 0;\n  };\n  vm && ((_a = onServerPrefetch) == null ? void 0 : _a(() => {\n    var _a2;\n    if (!isEnabled.value || isServer && ((_a2 = currentOptions.value) == null ? void 0 : _a2.prefetch) === false)\n      return;\n    return new Promise((resolve, reject) => {\n      firstResolve = () => {\n        resetFirstResolveReject();\n        resolve();\n      };\n      firstReject = (apolloError) => {\n        resetFirstResolveReject();\n        reject(apolloError);\n      };\n      if (firstResolveTriggered) {\n        firstResolve();\n      } else if (firstRejectError) {\n        firstReject(firstRejectError);\n      }\n    }).finally(stop);\n  }));\n  const {resolveClient} = useApolloClient();\n  function getClient() {\n    var _a2;\n    return resolveClient((_a2 = currentOptions.value) == null ? void 0 : _a2.clientId);\n  }\n  const query = shallowRef();\n  let observer;\n  let started = false;\n  let ignoreNextResult = false;\n  let firstStart = true;\n  function start() {\n    var _a2, _b, _c, _d, _e;\n    if (started || !isEnabled.value || isServer && ((_a2 = currentOptions.value) == null ? void 0 : _a2.prefetch) === false || !currentDocument) {\n      tryFirstResolve();\n      return;\n    }\n    if (isServer) {\n      applyDocument(documentRef.value);\n      applyVariables(variablesRef.value);\n      applyOptions(unref(optionsRef));\n    }\n    started = true;\n    error.value = null;\n    loading.value = true;\n    const client = getClient();\n    query.value = client.watchQuery({\n      query: currentDocument,\n      variables: currentVariables != null ? currentVariables : {},\n      ...currentOptions.value,\n      ...isServer && ((_b = currentOptions.value) == null ? void 0 : _b.fetchPolicy) !== \"no-cache\" ? {\n        fetchPolicy: \"network-only\"\n      } : {}\n    });\n    startQuerySubscription();\n    if (!isServer && (firstStart || !((_c = currentOptions.value) == null ? void 0 : _c.keepPreviousResult)) && (((_d = currentOptions.value) == null ? void 0 : _d.fetchPolicy) !== \"no-cache\" || currentOptions.value.notifyOnNetworkStatusChange)) {\n      const currentResult = query.value.getCurrentResult(false);\n      if (!currentResult.loading || currentResult.partial || ((_e = currentOptions.value) == null ? void 0 : _e.notifyOnNetworkStatusChange)) {\n        onNextResult(currentResult);\n        ignoreNextResult = !currentResult.loading;\n      } else if (currentResult.error) {\n        onError(currentResult.error);\n        ignoreNextResult = true;\n      }\n    }\n    if (!isServer) {\n      for (const item of subscribeToMoreItems) {\n        addSubscribeToMore(item);\n      }\n    }\n    firstStart = false;\n  }\n  function startQuerySubscription() {\n    if (observer && !observer.closed)\n      return;\n    if (!query.value)\n      return;\n    ignoreNextResult = false;\n    observer = query.value.subscribe({\n      next: onNextResult,\n      error: onError\n    });\n  }\n  function getErrorPolicy() {\n    var _a2, _b, _c, _d;\n    const client = resolveClient((_a2 = currentOptions.value) == null ? void 0 : _a2.clientId);\n    return ((_b = currentOptions.value) == null ? void 0 : _b.errorPolicy) || ((_d = (_c = client.defaultOptions) == null ? void 0 : _c.watchQuery) == null ? void 0 : _d.errorPolicy);\n  }\n  function onNextResult(queryResult) {\n    var _a2;\n    if (ignoreNextResult) {\n      ignoreNextResult = false;\n      return;\n    }\n    error.value = null;\n    processNextResult(queryResult);\n    const errorPolicy = getErrorPolicy();\n    if (errorPolicy && errorPolicy === \"all\" && !queryResult.error && ((_a2 = queryResult.errors) == null ? void 0 : _a2.length)) {\n      processError(resultErrorsToApolloError(queryResult.errors));\n    }\n    tryFirstResolve();\n  }\n  function processNextResult(queryResult) {\n    result.value = queryResult.data && Object.keys(queryResult.data).length === 0 ? void 0 : queryResult.data;\n    loading.value = queryResult.loading;\n    networkStatus.value = queryResult.networkStatus;\n    nextTick(() => {\n      resultEvent.trigger(queryResult, {\n        client: getClient()\n      });\n    });\n  }\n  function onError(queryError) {\n    if (ignoreNextResult) {\n      ignoreNextResult = false;\n      return;\n    }\n    const apolloError = toApolloError(queryError);\n    const errorPolicy = getErrorPolicy();\n    if (errorPolicy && errorPolicy !== \"none\") {\n      processNextResult(query.value.getCurrentResult());\n    }\n    processError(apolloError);\n    tryFirstReject(apolloError);\n    resubscribeToQuery();\n  }\n  function processError(apolloError) {\n    error.value = apolloError;\n    loading.value = false;\n    networkStatus.value = 8;\n    nextTick(() => {\n      errorEvent.trigger(apolloError, {\n        client: getClient()\n      });\n    });\n  }\n  function resubscribeToQuery() {\n    if (!query.value)\n      return;\n    const lastError = query.value.getLastError();\n    const lastResult = query.value.getLastResult();\n    query.value.resetLastResults();\n    startQuerySubscription();\n    Object.assign(query.value, {lastError, lastResult});\n  }\n  let onStopHandlers = [];\n  function stop() {\n    tryFirstResolve();\n    if (!started)\n      return;\n    started = false;\n    loading.value = false;\n    onStopHandlers.forEach((handler) => handler());\n    onStopHandlers = [];\n    if (query.value) {\n      query.value.stopPolling();\n      query.value = null;\n    }\n    if (observer) {\n      observer.unsubscribe();\n      observer = void 0;\n    }\n  }\n  let restarting = false;\n  function baseRestart() {\n    if (!started || restarting)\n      return;\n    restarting = true;\n    nextTick(() => {\n      if (started) {\n        stop();\n        start();\n      }\n      restarting = false;\n    });\n  }\n  let debouncedRestart;\n  let isRestartDebounceSetup = false;\n  function updateRestartFn() {\n    var _a2, _b;\n    if (!currentOptions.value) {\n      debouncedRestart = baseRestart;\n    } else {\n      if ((_a2 = currentOptions.value) == null ? void 0 : _a2.throttle) {\n        debouncedRestart = throttle(currentOptions.value.throttle, baseRestart);\n      } else if ((_b = currentOptions.value) == null ? void 0 : _b.debounce) {\n        debouncedRestart = debounce(currentOptions.value.debounce, baseRestart);\n      } else {\n        debouncedRestart = baseRestart;\n      }\n      isRestartDebounceSetup = true;\n    }\n  }\n  function restart() {\n    if (!started || restarting)\n      return;\n    if (!isRestartDebounceSetup)\n      updateRestartFn();\n    debouncedRestart();\n  }\n  let currentDocument = documentRef.value;\n  const forceDisabled = ref3(lazy);\n  const enabledOption = computed3(() => !currentOptions.value || currentOptions.value.enabled == null || currentOptions.value.enabled);\n  const isEnabled = computed3(() => enabledOption.value && !forceDisabled.value && !!documentRef.value);\n  watch2(() => unref(optionsRef), applyOptions, {\n    deep: true,\n    immediate: true\n  });\n  function applyOptions(value) {\n    if (currentOptions.value && (currentOptions.value.throttle !== value.throttle || currentOptions.value.debounce !== value.debounce)) {\n      updateRestartFn();\n    }\n    currentOptions.value = value;\n    restart();\n  }\n  watch2(documentRef, applyDocument);\n  function applyDocument(value) {\n    currentDocument = value;\n    restart();\n  }\n  let currentVariables;\n  let currentVariablesSerialized;\n  watch2(() => {\n    if (isEnabled.value) {\n      return variablesRef.value;\n    } else {\n      return void 0;\n    }\n  }, applyVariables, {\n    deep: true,\n    immediate: true\n  });\n  function applyVariables(value) {\n    const serialized = JSON.stringify([value, isEnabled.value]);\n    if (serialized !== currentVariablesSerialized) {\n      currentVariables = value;\n      restart();\n    }\n    currentVariablesSerialized = serialized;\n  }\n  function refetch(variables2 = void 0) {\n    if (query.value) {\n      if (variables2) {\n        currentVariables = variables2;\n      }\n      error.value = null;\n      loading.value = true;\n      return query.value.refetch(variables2).then((refetchResult) => {\n        var _a2;\n        const currentResult = (_a2 = query.value) == null ? void 0 : _a2.getCurrentResult();\n        currentResult && processNextResult(currentResult);\n        return refetchResult;\n      });\n    }\n  }\n  function fetchMore(options2) {\n    if (query.value) {\n      error.value = null;\n      loading.value = true;\n      return query.value.fetchMore(options2).then((fetchMoreResult) => {\n        var _a2;\n        const currentResult = (_a2 = query.value) == null ? void 0 : _a2.getCurrentResult();\n        currentResult && processNextResult(currentResult);\n        return fetchMoreResult;\n      });\n    }\n  }\n  const subscribeToMoreItems = [];\n  function subscribeToMore(options2) {\n    if (isServer)\n      return;\n    const optionsRef2 = paramToRef(options2);\n    watch2(optionsRef2, (value, oldValue, onCleanup) => {\n      const index = subscribeToMoreItems.findIndex((item2) => item2.options === oldValue);\n      if (index !== -1) {\n        subscribeToMoreItems.splice(index, 1);\n      }\n      const item = {\n        options: value,\n        unsubscribeFns: []\n      };\n      subscribeToMoreItems.push(item);\n      addSubscribeToMore(item);\n      onCleanup(() => {\n        item.unsubscribeFns.forEach((fn) => fn());\n        item.unsubscribeFns = [];\n      });\n    }, {\n      immediate: true\n    });\n  }\n  function addSubscribeToMore(item) {\n    if (!started)\n      return;\n    if (!query.value) {\n      throw new Error(\"Query is not defined\");\n    }\n    const unsubscribe = query.value.subscribeToMore(item.options);\n    onStopHandlers.push(unsubscribe);\n    item.unsubscribeFns.push(unsubscribe);\n  }\n  watch2(isEnabled, (value) => {\n    if (value) {\n      nextTick(() => {\n        start();\n      });\n    } else {\n      stop();\n    }\n  });\n  if (isEnabled.value) {\n    start();\n  }\n  vm && onBeforeUnmount2(() => {\n    stop();\n    subscribeToMoreItems.length = 0;\n  });\n  return {\n    result,\n    loading,\n    networkStatus,\n    error,\n    start,\n    stop,\n    restart,\n    forceDisabled,\n    document: documentRef,\n    variables: variablesRef,\n    options: optionsRef,\n    query,\n    refetch,\n    fetchMore,\n    subscribeToMore,\n    onResult: resultEvent.on,\n    onError: errorEvent.on\n  };\n}\n\n// src/useLazyQuery.ts\nimport {isRef as isRef3} from \"vue-demi\";\nfunction useLazyQuery(document, variables, options) {\n  const query = useQueryImpl(document, variables, options, true);\n  function load(document2, variables2, options2) {\n    if (document2) {\n      query.document.value = document2;\n    }\n    if (variables2) {\n      query.variables.value = variables2;\n    }\n    if (options2) {\n      Object.assign(isRef3(query.options) ? query.options.value : query.options, options2);\n    }\n    const isFirstRun = query.forceDisabled.value;\n    if (isFirstRun) {\n      query.forceDisabled.value = false;\n      if (isServer) {\n        query.start();\n      }\n      return new Promise((resolve, reject) => {\n        const {off: offResult} = query.onResult((result) => {\n          if (!result.loading) {\n            resolve(result.data);\n            offResult();\n            offError();\n          }\n        });\n        const {off: offError} = query.onError((error) => {\n          reject(error);\n          offResult();\n          offError();\n        });\n      });\n    } else {\n      return false;\n    }\n  }\n  return {\n    ...query,\n    load\n  };\n}\n\n// src/useMutation.ts\nimport {ref as ref4, onBeforeUnmount as onBeforeUnmount3, isRef as isRef4, getCurrentInstance as getCurrentInstance3, shallowRef as shallowRef2} from \"vue-demi\";\nfunction useMutation(document, options = {}) {\n  const vm = getCurrentInstance3();\n  const loading = ref4(false);\n  vm && trackMutation(loading);\n  const error = shallowRef2(null);\n  const called = ref4(false);\n  const doneEvent = useEventHook();\n  const errorEvent = useEventHook();\n  const {resolveClient} = useApolloClient();\n  async function mutate(variables, overrideOptions = {}) {\n    let currentDocument;\n    if (typeof document === \"function\") {\n      currentDocument = document();\n    } else if (isRef4(document)) {\n      currentDocument = document.value;\n    } else {\n      currentDocument = document;\n    }\n    let currentOptions;\n    if (typeof options === \"function\") {\n      currentOptions = options();\n    } else if (isRef4(options)) {\n      currentOptions = options.value;\n    } else {\n      currentOptions = options;\n    }\n    const client = resolveClient(currentOptions.clientId);\n    error.value = null;\n    loading.value = true;\n    called.value = true;\n    try {\n      const result = await client.mutate({\n        mutation: currentDocument,\n        ...currentOptions,\n        ...overrideOptions,\n        variables: (variables != null ? variables : currentOptions.variables) ? {\n          ...currentOptions.variables,\n          ...variables\n        } : void 0\n      });\n      loading.value = false;\n      doneEvent.trigger(result, {\n        client\n      });\n      return result;\n    } catch (e) {\n      const apolloError = toApolloError(e);\n      error.value = apolloError;\n      loading.value = false;\n      errorEvent.trigger(apolloError, {\n        client\n      });\n      if (currentOptions.throws === \"always\" || currentOptions.throws !== \"never\" && !errorEvent.getCount()) {\n        throw apolloError;\n      }\n    }\n    return null;\n  }\n  vm && onBeforeUnmount3(() => {\n    loading.value = false;\n  });\n  return {\n    mutate,\n    loading,\n    error,\n    called,\n    onDone: doneEvent.on,\n    onError: errorEvent.on\n  };\n}\n\n// src/useSubscription.ts\nimport {\n  ref as ref5,\n  watch as watch3,\n  isRef as isRef5,\n  computed as computed4,\n  getCurrentInstance as getCurrentInstance4,\n  onBeforeUnmount as onBeforeUnmount4,\n  nextTick as nextTick2,\n  shallowRef as shallowRef3\n} from \"vue-demi\";\nimport {throttle as throttle2, debounce as debounce2} from \"throttle-debounce\";\nfunction useSubscription(document, variables = void 0, options = {}) {\n  const vm = getCurrentInstance4();\n  const documentRef = paramToRef(document);\n  const variablesRef = paramToRef(variables);\n  const optionsRef = paramToReactive(options);\n  const result = shallowRef3();\n  const resultEvent = useEventHook();\n  const error = shallowRef3(null);\n  const errorEvent = useEventHook();\n  const loading = ref5(false);\n  vm && trackSubscription(loading);\n  const {resolveClient} = useApolloClient();\n  const subscription = ref5(null);\n  let observer = null;\n  let started = false;\n  function getClient() {\n    var _a;\n    return resolveClient((_a = currentOptions.value) == null ? void 0 : _a.clientId);\n  }\n  function start() {\n    if (started || !isEnabled.value || isServer)\n      return;\n    started = true;\n    loading.value = true;\n    const client = getClient();\n    subscription.value = client.subscribe({\n      query: currentDocument,\n      variables: currentVariables,\n      ...currentOptions.value\n    });\n    observer = subscription.value.subscribe({\n      next: onNextResult,\n      error: onError\n    });\n  }\n  function onNextResult(fetchResult) {\n    result.value = fetchResult.data;\n    loading.value = false;\n    resultEvent.trigger(fetchResult, {\n      client: getClient()\n    });\n  }\n  function onError(fetchError) {\n    const apolloError = toApolloError(fetchError);\n    error.value = apolloError;\n    loading.value = false;\n    errorEvent.trigger(apolloError, {\n      client: getClient()\n    });\n  }\n  function stop() {\n    if (!started)\n      return;\n    started = false;\n    loading.value = false;\n    if (subscription.value) {\n      subscription.value = null;\n    }\n    if (observer) {\n      observer.unsubscribe();\n      observer = null;\n    }\n  }\n  let restarting = false;\n  function baseRestart() {\n    if (!started || restarting)\n      return;\n    restarting = true;\n    nextTick2(() => {\n      if (started) {\n        stop();\n        start();\n      }\n      restarting = false;\n    });\n  }\n  let debouncedRestart;\n  function updateRestartFn() {\n    var _a, _b;\n    if ((_a = currentOptions.value) == null ? void 0 : _a.throttle) {\n      debouncedRestart = throttle2(currentOptions.value.throttle, baseRestart);\n    } else if ((_b = currentOptions.value) == null ? void 0 : _b.debounce) {\n      debouncedRestart = debounce2(currentOptions.value.debounce, baseRestart);\n    } else {\n      debouncedRestart = baseRestart;\n    }\n  }\n  function restart() {\n    if (!debouncedRestart)\n      updateRestartFn();\n    debouncedRestart();\n  }\n  const currentOptions = ref5();\n  watch3(() => isRef5(optionsRef) ? optionsRef.value : optionsRef, (value) => {\n    if (currentOptions.value && (currentOptions.value.throttle !== value.throttle || currentOptions.value.debounce !== value.debounce)) {\n      updateRestartFn();\n    }\n    currentOptions.value = value;\n    restart();\n  }, {\n    deep: true,\n    immediate: true\n  });\n  let currentDocument;\n  watch3(documentRef, (value) => {\n    currentDocument = value;\n    restart();\n  }, {\n    immediate: true\n  });\n  let currentVariables;\n  let currentVariablesSerialized;\n  watch3(variablesRef, (value, oldValue) => {\n    const serialized = JSON.stringify(value);\n    if (serialized !== currentVariablesSerialized) {\n      currentVariables = value;\n      restart();\n    }\n    currentVariablesSerialized = serialized;\n  }, {\n    deep: true,\n    immediate: true\n  });\n  const enabledOption = computed4(() => !currentOptions.value || currentOptions.value.enabled == null || currentOptions.value.enabled);\n  const isEnabled = enabledOption;\n  watch3(isEnabled, (value) => {\n    if (value) {\n      start();\n    } else {\n      stop();\n    }\n  }, {\n    immediate: true\n  });\n  vm && onBeforeUnmount4(stop);\n  return {\n    result,\n    loading,\n    error,\n    start,\n    stop,\n    restart,\n    document: documentRef,\n    variables: variablesRef,\n    options: optionsRef,\n    subscription,\n    onResult: resultEvent.on,\n    onError: errorEvent.on\n  };\n}\n\n// src/useResult.ts\nimport {computed as computed5} from \"vue-demi\";\nfunction useResult(result, defaultValue, pick) {\n  console.warn(`'useResult' is deprecated and will be removed soon. Please use 'computed' instead.\nBefore:\nconst items = useResult(result, [], data => data.someField.myItems)\nAfter:\nconst items = computed(() => result.value?.someField.myItems ?? [])`);\n  return computed5(() => {\n    const value = result.value;\n    if (value) {\n      if (pick) {\n        try {\n          return pick(value);\n        } catch (e) {\n        }\n      } else {\n        const keys = Object.keys(value);\n        if (keys.length === 1) {\n          return value[keys[0]];\n        } else {\n          return value;\n        }\n      }\n    }\n    return defaultValue;\n  });\n}\n\n// src/useLoading.ts\nimport {computed as computed6} from \"vue-demi\";\nfunction useQueryLoading() {\n  const {tracking} = getCurrentTracking();\n  if (!tracking)\n    throw new Error(\"useQueryLoading must be called inside a setup function.\");\n  return computed6(() => tracking.queries.value > 0);\n}\nfunction useMutationLoading() {\n  const {tracking} = getCurrentTracking();\n  if (!tracking)\n    throw new Error(\"useMutationLoading must be called inside a setup function.\");\n  return computed6(() => tracking.mutations.value > 0);\n}\nfunction useSubscriptionLoading() {\n  const {tracking} = getCurrentTracking();\n  if (!tracking)\n    throw new Error(\"useSubscriptionLoading must be called inside a setup function.\");\n  return computed6(() => tracking.subscriptions.value > 0);\n}\nfunction useGlobalQueryLoading() {\n  return computed6(() => globalTracking.queries.value > 0);\n}\nfunction useGlobalMutationLoading() {\n  return computed6(() => globalTracking.mutations.value > 0);\n}\nfunction useGlobalSubscriptionLoading() {\n  return computed6(() => globalTracking.subscriptions.value > 0);\n}\nexport {\n  ApolloClients,\n  DefaultApolloClient,\n  provideApolloClient,\n  provideApolloClients,\n  useApolloClient,\n  useGlobalMutationLoading,\n  useGlobalQueryLoading,\n  useGlobalSubscriptionLoading,\n  useLazyQuery,\n  useMutation,\n  useMutationLoading,\n  useQuery,\n  useQueryLoading,\n  useResult,\n  useSubscription,\n  useSubscriptionLoading\n};\n//# sourceMappingURL=index.mjs.map\n",
-      "start": 1710864566535,
-      "end": 1710864566553,
+      "start": 1712968594245,
+      "end": 1712968594265,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710864566553,
-      "end": 1710864566553,
+      "start": 1712968594265,
+      "end": 1712968594265,
       "order": "normal"
     }
   ]

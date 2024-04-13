@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "import { inspect } from '../../jsutils/inspect.mjs';\nimport { keyMap } from '../../jsutils/keyMap.mjs';\nimport { GraphQLError } from '../../error/GraphQLError.mjs';\nimport { Kind } from '../../language/kinds.mjs';\nimport { print } from '../../language/printer.mjs';\nimport { isRequiredArgument, isType } from '../../type/definition.mjs';\nimport { specifiedDirectives } from '../../type/directives.mjs';\n\n/**\n * Provided required arguments\n *\n * A field or directive is only valid if all required (non-null without a\n * default value) field arguments have been provided.\n */\nexport function ProvidedRequiredArgumentsRule(context) {\n  return {\n    // eslint-disable-next-line new-cap\n    ...ProvidedRequiredArgumentsOnDirectivesRule(context),\n    Field: {\n      // Validate on leave to allow for deeper errors to appear first.\n      leave(fieldNode) {\n        var _fieldNode$arguments;\n\n        const fieldDef = context.getFieldDef();\n\n        if (!fieldDef) {\n          return false;\n        }\n\n        const providedArgs = new Set( // FIXME: https://github.com/graphql/graphql-js/issues/2203\n          /* c8 ignore next */\n          (_fieldNode$arguments = fieldNode.arguments) === null ||\n          _fieldNode$arguments === void 0\n            ? void 0\n            : _fieldNode$arguments.map((arg) => arg.name.value),\n        );\n\n        for (const argDef of fieldDef.args) {\n          if (!providedArgs.has(argDef.name) && isRequiredArgument(argDef)) {\n            const argTypeStr = inspect(argDef.type);\n            context.reportError(\n              new GraphQLError(\n                `Field \"${fieldDef.name}\" argument \"${argDef.name}\" of type \"${argTypeStr}\" is required, but it was not provided.`,\n                {\n                  nodes: fieldNode,\n                },\n              ),\n            );\n          }\n        }\n      },\n    },\n  };\n}\n/**\n * @internal\n */\n\nexport function ProvidedRequiredArgumentsOnDirectivesRule(context) {\n  var _schema$getDirectives;\n\n  const requiredArgsMap = Object.create(null);\n  const schema = context.getSchema();\n  const definedDirectives =\n    (_schema$getDirectives =\n      schema === null || schema === void 0\n        ? void 0\n        : schema.getDirectives()) !== null && _schema$getDirectives !== void 0\n      ? _schema$getDirectives\n      : specifiedDirectives;\n\n  for (const directive of definedDirectives) {\n    requiredArgsMap[directive.name] = keyMap(\n      directive.args.filter(isRequiredArgument),\n      (arg) => arg.name,\n    );\n  }\n\n  const astDefinitions = context.getDocument().definitions;\n\n  for (const def of astDefinitions) {\n    if (def.kind === Kind.DIRECTIVE_DEFINITION) {\n      var _def$arguments;\n\n      // FIXME: https://github.com/graphql/graphql-js/issues/2203\n\n      /* c8 ignore next */\n      const argNodes =\n        (_def$arguments = def.arguments) !== null && _def$arguments !== void 0\n          ? _def$arguments\n          : [];\n      requiredArgsMap[def.name.value] = keyMap(\n        argNodes.filter(isRequiredArgumentNode),\n        (arg) => arg.name.value,\n      );\n    }\n  }\n\n  return {\n    Directive: {\n      // Validate on leave to allow for deeper errors to appear first.\n      leave(directiveNode) {\n        const directiveName = directiveNode.name.value;\n        const requiredArgs = requiredArgsMap[directiveName];\n\n        if (requiredArgs) {\n          var _directiveNode$argume;\n\n          // FIXME: https://github.com/graphql/graphql-js/issues/2203\n\n          /* c8 ignore next */\n          const argNodes =\n            (_directiveNode$argume = directiveNode.arguments) !== null &&\n            _directiveNode$argume !== void 0\n              ? _directiveNode$argume\n              : [];\n          const argNodeMap = new Set(argNodes.map((arg) => arg.name.value));\n\n          for (const [argName, argDef] of Object.entries(requiredArgs)) {\n            if (!argNodeMap.has(argName)) {\n              const argType = isType(argDef.type)\n                ? inspect(argDef.type)\n                : print(argDef.type);\n              context.reportError(\n                new GraphQLError(\n                  `Directive \"@${directiveName}\" argument \"${argName}\" of type \"${argType}\" is required, but it was not provided.`,\n                  {\n                    nodes: directiveNode,\n                  },\n                ),\n              );\n            }\n          }\n        }\n      },\n    },\n  };\n}\n\nfunction isRequiredArgumentNode(arg) {\n  return arg.type.kind === Kind.NON_NULL_TYPE && arg.defaultValue == null;\n}\n",
-      "start": 1710864567391,
-      "end": 1710864567404,
+      "start": 1712968595109,
+      "end": 1712968595128,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710864567404,
-      "end": 1710864567404,
+      "start": 1712968595128,
+      "end": 1712968595128,
       "order": "normal"
     }
   ]

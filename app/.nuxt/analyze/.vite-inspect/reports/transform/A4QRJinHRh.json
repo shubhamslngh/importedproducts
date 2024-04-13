@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "import { GraphQLError } from \"../../error/GraphQLError.mjs\";\n\n/**\n * Lone Schema definition\n *\n * A GraphQL document is only valid if it contains only one schema definition.\n */\nexport function LoneSchemaDefinitionRule(context) {\n  var _ref, _ref2, _oldSchema$astNode;\n\n  var oldSchema = context.getSchema();\n  var alreadyDefined = (_ref = (_ref2 = (_oldSchema$astNode = oldSchema === null || oldSchema === void 0 ? void 0 : oldSchema.astNode) !== null && _oldSchema$astNode !== void 0 ? _oldSchema$astNode : oldSchema === null || oldSchema === void 0 ? void 0 : oldSchema.getQueryType()) !== null && _ref2 !== void 0 ? _ref2 : oldSchema === null || oldSchema === void 0 ? void 0 : oldSchema.getMutationType()) !== null && _ref !== void 0 ? _ref : oldSchema === null || oldSchema === void 0 ? void 0 : oldSchema.getSubscriptionType();\n  var schemaDefinitionsCount = 0;\n  return {\n    SchemaDefinition: function SchemaDefinition(node) {\n      if (alreadyDefined) {\n        context.reportError(new GraphQLError('Cannot define a new schema within a schema extension.', node));\n        return;\n      }\n\n      if (schemaDefinitionsCount > 0) {\n        context.reportError(new GraphQLError('Must provide only one schema definition.', node));\n      }\n\n      ++schemaDefinitionsCount;\n    }\n  };\n}\n",
-      "start": 1710864567325,
-      "end": 1710864567342,
+      "start": 1712968595031,
+      "end": 1712968595044,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710864567342,
-      "end": 1710864567342,
+      "start": 1712968595044,
+      "end": 1712968595044,
       "order": "normal"
     }
   ]

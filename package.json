@@ -37,7 +37,8 @@
         "dev:starter": "nuxt dev ./examples/starter",
         "lint": "eslint --ext \".ts,.js,.vue\" --ignore-path .eslintignore .",
         "lint:fix": "eslint --fix --ext \".ts,.js,.vue\" --ignore-path .eslintignore .",
-        "release": "release-it"
+        "release": "release-it",
+        "deploy": "sh deploy.sh"
     },
     "dependencies": {
         "@nuxt/content": "^2.9.0",

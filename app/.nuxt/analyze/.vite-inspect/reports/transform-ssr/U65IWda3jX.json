@@ -4,8 +4,8 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode } from \"vue\"\nimport { ssrRenderComponent as _ssrRenderComponent } from \"vue/server-renderer\"\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: '[slug]',\n  __ssrInlineRender: true,\n  setup(__props) {\n\ndefinePageMeta({\n  layout: 'page',\n})\n\nreturn (_ctx: any,_push: any,_parent: any,_attrs: any) => {\n  const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\")!\n  const _component_AwesomeContentDoc = _resolveComponent(\"AwesomeContentDoc\")!\n\n  _push(_ssrRenderComponent(_component_LayoutPageWrapper, _attrs, {\n    default: _withCtx((_, _push, _parent, _scopeId) => {\n      if (_push) {\n        _push(_ssrRenderComponent(_component_AwesomeContentDoc, { \"empty-tip\": \"Post im empty\" }, null, _parent, _scopeId))\n      } else {\n        return [\n          _createVNode(_component_AwesomeContentDoc, { \"empty-tip\": \"Post im empty\" })\n        ]\n      }\n    }),\n    _: 1\n  }, _parent))\n}\n}\n\n})",
-      "start": 1710864569943,
-      "end": 1710864569943,
+      "start": 1712968597909,
+      "end": 1712968597909,
       "sourcemaps": {
         "version": 3,
         "sources": [
@@ -20,57 +20,57 @@
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710864569943,
-      "end": 1710864569943,
+      "start": 1712968597909,
+      "end": 1712968597909,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710864569943,
-      "end": 1710864569943,
+      "start": 1712968597909,
+      "end": 1712968597909,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710864569943,
-      "end": 1710864569943,
+      "start": 1712968597909,
+      "end": 1712968597909,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710864569943,
-      "end": 1710864569943,
+      "start": 1712968597909,
+      "end": 1712968597909,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710864569943,
-      "end": 1710864569943,
+      "start": 1712968597909,
+      "end": 1712968597909,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710864569943,
-      "end": 1710864569943,
+      "start": 1712968597909,
+      "end": 1712968597909,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710864569943,
-      "end": 1710864569943,
+      "start": 1712968597909,
+      "end": 1712968597909,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710864569943,
-      "end": 1710864569943,
+      "start": 1712968597909,
+      "end": 1712968597909,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode } from \"vue\";\nimport { ssrRenderComponent as _ssrRenderComponent } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"[slug]\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    definePageMeta({\n      layout: \"page\"\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\");\n      const _component_AwesomeContentDoc = _resolveComponent(\"AwesomeContentDoc\");\n      _push(_ssrRenderComponent(_component_LayoutPageWrapper, _attrs, {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(_ssrRenderComponent(_component_AwesomeContentDoc, { \"empty-tip\": \"Post im empty\" }, null, _parent2, _scopeId));\n          } else {\n            return [\n              _createVNode(_component_AwesomeContentDoc, { \"empty-tip\": \"Post im empty\" })\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n    };\n  }\n});\n",
-      "start": 1710864569943,
-      "end": 1710864570198,
+      "start": 1712968597909,
+      "end": 1712968598169,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -89,141 +89,141 @@
     },
     {
       "name": "vite:json",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { definePageMeta } from '/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/pages/runtime/composables';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode } from \"vue\";\nimport { ssrRenderComponent as _ssrRenderComponent } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"[slug]\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    definePageMeta({\n      layout: \"page\"\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\");\n      const _component_AwesomeContentDoc = _resolveComponent(\"AwesomeContentDoc\");\n      _push(_ssrRenderComponent(_component_LayoutPageWrapper, _attrs, {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(_ssrRenderComponent(_component_AwesomeContentDoc, { \"empty-tip\": \"Post im empty\" }, null, _parent2, _scopeId));\n          } else {\n            return [\n              _createVNode(_component_AwesomeContentDoc, { \"empty-tip\": \"Post im empty\" })\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n    };\n  }\n});\n",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -237,8 +237,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { definePageMeta } from '/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/pages/runtime/composables';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode } from \"vue\";\nimport { ssrRenderComponent as _ssrRenderComponent } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"[slug]\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    definePageMeta({\n      layout: \"page\"\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\");\n      const _component_AwesomeContentDoc = _resolveComponent(\"AwesomeContentDoc\");\n      _push(_ssrRenderComponent(_component_LayoutPageWrapper, _attrs, {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(_ssrRenderComponent(_component_AwesomeContentDoc, { \"empty-tip\": \"Post im empty\" }, null, _parent2, _scopeId));\n          } else {\n            return [\n              _createVNode(_component_AwesomeContentDoc, { \"empty-tip\": \"Post im empty\" })\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n    };\n  }\n});\n",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -251,21 +251,21 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598169,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
       "result": "const __nuxt_page_meta = {\n      layout: \"page\"\n    }\nexport default __nuxt_page_meta",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598170,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -279,8 +279,8 @@
     {
       "name": "nuxt:pages-macros-transform",
       "result": "const __nuxt_page_meta = {\n      layout: \"page\"\n    }\nexport default __nuxt_page_meta",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598169,
+      "end": 1712968598170,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -293,32 +293,32 @@
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598170,
+      "end": 1712968598170,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598170,
+      "end": 1712968598170,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598170,
+      "end": 1712968598170,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598170,
+      "end": 1712968598170,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710864570198,
-      "end": 1710864570198,
+      "start": 1712968598170,
+      "end": 1712968598170,
       "order": "normal"
     }
   ]

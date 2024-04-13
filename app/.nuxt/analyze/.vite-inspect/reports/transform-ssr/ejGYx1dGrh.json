@@ -4,63 +4,63 @@
     {
       "name": "vite:load-fallback",
       "result": "export interface IIdentityState {\n  firstName: string\n  lastName: string\n}\n\nexport const useIdentity = defineStore('identity', {\n  state: (): IIdentityState => ({\n    firstName: 'Alfian',\n    lastName: 'Dwi',\n  }),\n  actions: {\n    setFirstName(firstName: string) {\n      this.firstName = firstName\n    },\n    setLastName(lastName: string) {\n      this.lastName = lastName\n    },\n    reset() {\n      this.firstName = 'Alfian'\n      this.lastName = 'Dwi'\n    },\n  },\n  getters: {\n    fullName(): string {\n      return `${this.firstName} ${this.lastName}`\n    },\n  },\n})\n",
-      "start": 1710864570341,
-      "end": 1710864570359,
+      "start": 1712968598296,
+      "end": 1712968598302,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710864570359,
-      "end": 1710864570359,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710864570359,
-      "end": 1710864570359,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710864570359,
-      "end": 1710864570359,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710864570359,
-      "end": 1710864570359,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710864570359,
-      "end": 1710864570359,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710864570359,
-      "end": 1710864570359,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710864570359,
-      "end": 1710864570359,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710864570359,
-      "end": 1710864570359,
+      "start": 1712968598303,
+      "end": 1712968598303,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "export const useIdentity = defineStore(\"identity\", {\n  state: () => ({\n    firstName: \"Alfian\",\n    lastName: \"Dwi\"\n  }),\n  actions: {\n    setFirstName(firstName) {\n      this.firstName = firstName;\n    },\n    setLastName(lastName) {\n      this.lastName = lastName;\n    },\n    reset() {\n      this.firstName = \"Alfian\";\n      this.lastName = \"Dwi\";\n    }\n  },\n  getters: {\n    fullName() {\n      return `${this.firstName} ${this.lastName}`;\n    }\n  }\n});\n",
-      "start": 1710864570359,
-      "end": 1710864570389,
+      "start": 1712968598303,
+      "end": 1712968598329,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -76,141 +76,141 @@
     },
     {
       "name": "vite:json",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710864570389,
-      "end": 1710864570389,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598329,
+      "end": 1712968598329,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { defineStore } from '/Users/shubhamsingh/namma/importedProds/node_modules/@pinia/nuxt/dist/runtime/composables';\nexport const useIdentity = defineStore(\"identity\", {\n  state: () => ({\n    firstName: \"Alfian\",\n    lastName: \"Dwi\"\n  }),\n  actions: {\n    setFirstName(firstName) {\n      this.firstName = firstName;\n    },\n    setLastName(lastName) {\n      this.lastName = lastName;\n    },\n    reset() {\n      this.firstName = \"Alfian\";\n      this.lastName = \"Dwi\";\n    }\n  },\n  getters: {\n    fullName() {\n      return `${this.firstName} ${this.lastName}`;\n    }\n  }\n});\n",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598329,
+      "end": 1712968598330,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -224,8 +224,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { defineStore } from '/Users/shubhamsingh/namma/importedProds/node_modules/@pinia/nuxt/dist/runtime/composables';\nexport const useIdentity = defineStore(\"identity\", {\n  state: () => ({\n    firstName: \"Alfian\",\n    lastName: \"Dwi\"\n  }),\n  actions: {\n    setFirstName(firstName) {\n      this.firstName = firstName;\n    },\n    setLastName(lastName) {\n      this.lastName = lastName;\n    },\n    reset() {\n      this.firstName = \"Alfian\";\n      this.lastName = \"Dwi\";\n    }\n  },\n  getters: {\n    fullName() {\n      return `${this.firstName} ${this.lastName}`;\n    }\n  }\n});\n",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598329,
+      "end": 1712968598330,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -238,56 +238,56 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598330,
+      "end": 1712968598330,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598330,
+      "end": 1712968598330,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598330,
+      "end": 1712968598330,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598330,
+      "end": 1712968598330,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598330,
+      "end": 1712968598330,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598330,
+      "end": 1712968598330,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598330,
+      "end": 1712968598330,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598330,
+      "end": 1712968598330,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710864570390,
-      "end": 1710864570390,
+      "start": 1712968598330,
+      "end": 1712968598330,
       "order": "normal"
     }
   ]

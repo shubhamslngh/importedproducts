@@ -1,0 +1,230 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue?nuxt_component=async&nuxt_component_name=AwesomeVariations",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div v-if=\"products.length > 0\">\n    <swiper\n      :effect=\"'cards'\"\n      :grabCursor=\"true\"\n      :slideShadows=\"false\"\n      :modules=\"modules\"\n      class=\"mySwiper dark:bg-none\"\n    >\n      <!-- {{ console.log(products, \"products for cards in template\") }} -->\n      <swiper-slide\n        class=\"dark:bg-none \"\n        v-for=\"(product, index) in products\"\n        :key=\"index\"\n        :slideShadow=\"false\"\n        :style=\"{ 'background-image': `url(${product.img})` }\"\n      >\n        <div @click=\"handleClick(product.variationId)\">\n          <img\n            :src=\"product.img ? product.img : ''\"\n            alt=\"Product Image\"\n            class=\"transition-all ease-in-out\"\n          />\n        </div>\n      </swiper-slide>\n    </swiper>\n    <div>\n      <AddToCart\n        :productId=\"selectedProductId\"\n        :variationId=\"selectedVariationId\"\n      />\n    </div>\n  </div>\n  <div v-else>Loading products...</div>\n</template>\n\n<script>\nimport { ref, onMounted, defineProps } from \"vue\";\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport { getVariation } from \"../../utils/cart\"; // Assuming getVariation is correctly imported\nimport \"swiper/css/effect-cards\";\nimport \"swiper/css/bundle\";\nimport { EffectCards } from \"swiper/modules\";\nimport AddToCart from \"../awesome/AddtoCart.vue\";\nimport \"swiper/scss/effect-cards\";\n\nexport default {\n  components: {\n    AddToCart,\n    Swiper,\n    SwiperSlide,\n  },\n  props: {\n    productId: {\n      type: Number,\n      required: true,\n    },\n    variationId: {\n      type: Number,\n      default: 0,\n    },\n  },\n  setup(props) {\n    const updateShadowStyles = () => {\n      const shadowElements = document.querySelectorAll(\".swiper-slide-shadow\");\n      shadowElements.forEach((shadowElement) => {\n        shadowElement.style.opacity = \"0\";\n      });\n    };\n\n    const selectedProductId = ref(props.productId);\n    const selectedVariationId = ref(props.variationId);\n    const products = ref([]);\n    let data = ref([]);\n    const { mutate: getProducts, loading } = useMutation(getVariation);\n\n    onMounted(async () => {\n      try {\n        data = await getProducts({ productId: props.productId });\n        if (data) {\n          console.log(data, \"data inside try\");\n          products.value = data.data.variableProduct.variations.nodes.map(\n            (nodes) => ({\n              name: nodes.name,\n              img: nodes.image.link,\n              variationId: nodes.databaseId,\n            })\n          );\n          console.log(products.value, \"products object created\");\n        }\n      } catch (error) {\n        console.error(\"Error fetching product:\", error);\n      }\n    });\n    setTimeout(() => {\n      // Initial application of styles\n      updateShadowStyles();\n\n      // Set up an observer to monitor changes to Swiper component\n      const observer = new MutationObserver(updateShadowStyles);\n\n      // Attach the observer to the Swiper container\n      const swiperContainer = document.querySelector(\".swiper-container\");\n      if (swiperContainer) {\n        observer.observe(swiperContainer, {\n          attributes: true,\n          childList: true,\n          subtree: true,\n        });\n      }\n    }, 1000);\n\n    const handleClick = (variationId) => {\n      selectedVariationId.value = variationId;\n      selectedProductId.value = props.productId;\n      console.log(selectedProductId.value, \"here is Product id\");\n      console.log(selectedVariationId.value, \"here is Variation id\");\n      // console.log(apollo, \"here is appoloo id\");\n    };\n\n    return {\n      modules: [EffectCards],\n      spaceBetween: 400,\n      selectedProductId,\n      selectedVariationId,\n      products,\n      handleClick,\n    };\n  },\n};\n</script>\n\n<style scoped>\n.img {\n  width: auto;\n  height: auto;\n}\n.mySwiper * {\n  background-color: none;\n}\n.swiper {\n  width: 280px;\n  height: auto;\n}\n\n.swiper-slide {\n  background: none !important;\n  display: flex;\n  opacity: 1;\n  align-items: center;\n  justify-content: center;\n  font-size: 12px;\n  font-weight: bold;\n}\n</style>\n",
+      "start": 1712968593948,
+      "end": 1712968594130,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1712968594130,
+      "end": 1712968594130,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1712968594130,
+      "end": 1712968594130,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1712968594130,
+      "end": 1712968594130,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1712968594130,
+      "end": 1712968594130,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1712968594130,
+      "end": 1712968594130,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1712968594130,
+      "end": 1712968594130,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1712968594130,
+      "end": 1712968594130,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1712968594130,
+      "end": 1712968594130,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "\nimport { ref, onMounted, defineProps } from \"vue\";\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport { getVariation } from \"../../utils/cart\"; // Assuming getVariation is correctly imported\nimport \"swiper/css/effect-cards\";\nimport \"swiper/css/bundle\";\nimport { EffectCards } from \"swiper/modules\";\nimport AddToCart from \"../awesome/AddtoCart.vue\";\nimport \"swiper/scss/effect-cards\";\n\nconst _sfc_main = {\n  components: {\n    AddToCart,\n    Swiper,\n    SwiperSlide,\n  },\n  props: {\n    productId: {\n      type: Number,\n      required: true,\n    },\n    variationId: {\n      type: Number,\n      default: 0,\n    },\n  },\n  setup(props) {\n    const updateShadowStyles = () => {\n      const shadowElements = document.querySelectorAll(\".swiper-slide-shadow\");\n      shadowElements.forEach((shadowElement) => {\n        shadowElement.style.opacity = \"0\";\n      });\n    };\n\n    const selectedProductId = ref(props.productId);\n    const selectedVariationId = ref(props.variationId);\n    const products = ref([]);\n    let data = ref([]);\n    const { mutate: getProducts, loading } = useMutation(getVariation);\n\n    onMounted(async () => {\n      try {\n        data = await getProducts({ productId: props.productId });\n        if (data) {\n          console.log(data, \"data inside try\");\n          products.value = data.data.variableProduct.variations.nodes.map(\n            (nodes) => ({\n              name: nodes.name,\n              img: nodes.image.link,\n              variationId: nodes.databaseId,\n            })\n          );\n          console.log(products.value, \"products object created\");\n        }\n      } catch (error) {\n        console.error(\"Error fetching product:\", error);\n      }\n    });\n    setTimeout(() => {\n      // Initial application of styles\n      updateShadowStyles();\n\n      // Set up an observer to monitor changes to Swiper component\n      const observer = new MutationObserver(updateShadowStyles);\n\n      // Attach the observer to the Swiper container\n      const swiperContainer = document.querySelector(\".swiper-container\");\n      if (swiperContainer) {\n        observer.observe(swiperContainer, {\n          attributes: true,\n          childList: true,\n          subtree: true,\n        });\n      }\n    }, 1000);\n\n    const handleClick = (variationId) => {\n      selectedVariationId.value = variationId;\n      selectedProductId.value = props.productId;\n      console.log(selectedProductId.value, \"here is Product id\");\n      console.log(selectedVariationId.value, \"here is Variation id\");\n      // console.log(apollo, \"here is appoloo id\");\n    };\n\n    return {\n      modules: [EffectCards],\n      spaceBetween: 400,\n      selectedProductId,\n      selectedVariationId,\n      products,\n      handleClick,\n    };\n  },\n};\n\nimport { renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, normalizeStyle as _normalizeStyle, withCtx as _withCtx, createBlock as _createBlock, createVNode as _createVNode, createCommentVNode as _createCommentVNode, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-2190228e\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { key: 0 }\nconst _hoisted_2 = [\"onClick\"]\nconst _hoisted_3 = [\"src\"]\nconst _hoisted_4 = { key: 1 }\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_swiper_slide = _resolveComponent(\"swiper-slide\")\n  const _component_swiper = _resolveComponent(\"swiper\")\n  const _component_AddToCart = _resolveComponent(\"AddToCart\")\n\n  return ($setup.products.length > 0)\n    ? (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createVNode(_component_swiper, {\n          effect: 'cards',\n          grabCursor: true,\n          slideShadows: false,\n          modules: $setup.modules,\n          class: \"mySwiper dark:bg-none\"\n        }, {\n          default: _withCtx(() => [\n            (_openBlock(true), _createElementBlock(_Fragment, null, _renderList($setup.products, (product, index) => {\n              return (_openBlock(), _createBlock(_component_swiper_slide, {\n                class: \"dark:bg-none\",\n                key: index,\n                slideShadow: false,\n                style: _normalizeStyle({ 'background-image': `url(${product.img})` })\n              }, {\n                default: _withCtx(() => [\n                  _createElementVNode(\"div\", {\n                    onClick: $event => ($setup.handleClick(product.variationId))\n                  }, [\n                    _createElementVNode(\"img\", {\n                      src: product.img ? product.img : '',\n                      alt: \"Product Image\",\n                      class: \"transition-all ease-in-out\"\n                    }, null, 8, _hoisted_3)\n                  ], 8, _hoisted_2)\n                ]),\n                _: 2\n              }, 1032, [\"style\"]))\n            }), 128))\n          ]),\n          _: 1\n        }, 8, [\"modules\"]),\n        _createElementVNode(\"div\", null, [\n          _createVNode(_component_AddToCart, {\n            productId: $setup.selectedProductId,\n            variationId: $setup.selectedVariationId\n          }, null, 8, [\"productId\", \"variationId\"])\n        ])\n      ]))\n    : (_openBlock(), _createElementBlock(\"div\", _hoisted_4, \"Loading products...\"))\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue?vue&type=style&index=0&scoped=2190228e&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render],['__scopeId',\"data-v-2190228e\"]])",
+      "start": 1712968594130,
+      "end": 1712968594131,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue\").then(r => r.default))",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "replace",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(r => r.default))",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1712968594131,
+      "end": 1712968594131,
+      "order": "normal"
+    }
+  ]
+}

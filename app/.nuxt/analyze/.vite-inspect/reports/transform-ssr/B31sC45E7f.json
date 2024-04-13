@@ -3,82 +3,82 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "<script lang=\"ts\" setup>\n// import axios from \"axios\";\nconst { awesome } = useAppConfig();\nconst { parseMenuRoute, parseMenuTitle } = useNavbarParser();\nconst props = defineProps({\n  withAlert: {\n    type: Boolean,\n    default: true,\n  },\n  name: {\n    type: String,\n  },\n});\nconst showAlert = ref(\n  awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage\n    ? !awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage\n    : props.withAlert\n);\n  \nconst titlesText = computed(() => {\n  const originalText = props.name || \"\";\n  return originalText\n    .replaceAll(\"&nbsp;\", \"[space]\")\n    .split(\" \")\n    .map((item) => item.replaceAll(\"[space]\", \" \"));\n});\nconsole.log(\"props.name:\", props.name);\nconsole.log(\"titlesText.value:\", titlesText.value);\n\nconst leadingsText = computed(() => [\n  {\n    text: titlesText.value[0],\n    startColor: \"purple\",\n    endColor: \"white\",\n    delay: 0,\n  },\n  {\n    text: titlesText.value[1],\n    startColor: \"purple\",\n    endColor: \"yellow\",\n    delay: 2,\n  },\n  {\n    text: titlesText.value[2],\n    startColor: \"purple\",\n    endColor: \"yellow\",\n    delay: 4,\n  },\n]);\n</script>\n\n<template>\n  <LayoutPageWrapper class=\"flex-1 relative z-[-1]\">\n    <LayoutPageSection class=\"flex-1 flex\">\n      <div class=\"flex-1 flex flex-col items-center justify-center\">\n        <h1 class=\"text-center mt-4\">\n          <span\n            v-for=\"(item, i) in leadingsText\"\n            :key=\"i\"\n            :style=\"`--content: '${item.text}'; --start-color: ${\n              item.startColor\n            }; --end-color: ${item.endColor}; --animation-name: anim-fg-${\n              i + 1\n            }`\"\n            class=\"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"\n          >\n            <span class=\"animated-text-fg\">{{ item.text }}</span>\n          </span>\n        </h1>\n        <!-- <div\n          v-if=\"showAlert\"\n          class=\"mt-4 w-auto text-center text-white bg-gray-800 rounded px-4 py-1 text-sm\"\n        >\n          create file \"~/pages/index.vue\" to replace this page\n        </div>\n        <div class=\"flex space-x-4 ml-2 mt-8 justify-center md:justify-start\">\n          <AwesomeButton\n            size=\"lg\"\n            :text=\"parseMenuTitle('Subscriptions')\"\n            :to=\"\n              parseMenuRoute(\n                awesome?.layout?.welcome?.primaryActionButton?.to ||\n                  'https://nuxt.com'\n              )\n            \"\n            class=\"font-extrabold\"\n          />\n          <AwesomeButton\n            v-if=\"\n              parseMenuRoute(\n                awesome?.layout?.welcome?.secondaryActionButton?.to ||\n                  awesome?.project?.links?.github\n              )\n            \"\n            :text=\"parseMenuTitle('Cases')\"\n            :to=\"\n              parseMenuRoute(\n                awesome?.layout?.welcome?.secondaryActionButton?.to ||\n                  awesome?.project?.links?.github\n              )\n            \"\n            size=\"lg\"\n            class=\"font-extrabold\"\n            type=\"secondary\"\n          />\n        </div>\n      </div>\n      <div class=\"top-0 left-0 absolute w-screen\">\n        <div class=\"absolute right-0 top-0 w-1/4 h-screen py-10 pt-12 z-0 flex\">\n          <div\n            class=\"flex-1 rounded-l-9xl bg-gradient-to-l from-blue-600/10\"\n          ></div>\n        </div>\n        <div class=\"absolute left-0 top-0 w-1/4 h-screen py-10 pt-12 z-0 flex\">\n          <div\n            class=\"flex-1 rounded-r-9xl bg-gradient-to-r from-red-600/10\"\n          ></div>\n        </div>-->\n      </div>\n    </LayoutPageSection>\n  </LayoutPageWrapper>\n</template>\n\n<style lang=\"scss\">\n@keyframes anim-fg-1 {\n  0%,\n  16.667%,\n  100% {\n    opacity: 1;\n  }\n  33.333%,\n  83.333% {\n    opacity: 0;\n  }\n}\n@keyframes anim-fg-2 {\n  0%,\n  16.667%,\n  66.667%,\n  100% {\n    opacity: 0;\n  }\n  33.333%,\n  50% {\n    opacity: 1;\n  }\n}\n@keyframes anim-fg-3 {\n  0%,\n  50%,\n  100% {\n    opacity: 0;\n  }\n  66.667%,\n  83.333% {\n    opacity: 1;\n  }\n}\n.animated-text-bg {\n  position: relative;\n  display: block;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  content: var(--content);\n  display: block;\n  width: 100%;\n  color: theme(\"colors.slate.800\");\n  top: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 0;\n  padding-left: var(--padding);\n  padding-right: var(--padding);\n  &:before {\n    content: var(--content);\n    position: absolute;\n    display: block;\n    width: 100%;\n    color: theme(\"colors.slate.800\");\n    top: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 0;\n    padding-left: var(--padding);\n    padding-right: var(--padding);\n  }\n}\n.animated-text-fg {\n  background-clip: text;\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  padding-left: var(--padding);\n  padding-right: var(--padding);\n  background-image: linear-gradient(\n    90deg,\n    var(--start-color),\n    var(--end-color)\n  );\n  position: relative;\n  opacity: 0;\n  z-index: 1;\n  animation: var(--animation-name) 8s infinite;\n}\nhtml.dark {\n  .animated-text-bg {\n    color: theme(\"colors.gray.100\");\n    &:before {\n      color: theme(\"colors.gray.100\");\n    }\n  }\n}\n</style>\n",
-      "start": 1710864569308,
-      "end": 1710864569336,
+      "result": "<script lang=\"ts\" setup>\n// import axios from \"axios\";\nimport { useAuthStore } from \"../../stores/auth\";\nconst { awesome } = useAppConfig();\nconst { parseMenuRoute, parseMenuTitle } = useNavbarParser();\nconst authStore = useAuthStore();\nconst user = authStore.user;\nconst props = defineProps({\n  withAlert: {\n    type: Boolean,\n    default: true,\n  },\n  name: {\n    type: String,\n  },\n});\nconst showAlert = ref(\n  awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage\n    ? !awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage\n    : props.withAlert\n);\n\nconst titlesText = computed(() => {\n  const originalText = props.name || \"\";\n  return originalText\n    .replaceAll(\"&nbsp;\", \"[space]\")\n    .split(\" \")\n    .map((item) => item.replaceAll(\"[space]\", \" \"));\n});\n// console.log(\"props.name:\", props.name);\n// console.log(\"titlesText.value:\", titlesText.value);\n\nconst leadingsText = computed(() => [\n  {\n    text: titlesText.value[0],\n    startColor: \"purple\",\n    endColor: \"white\",\n    delay: 0,\n  },\n  {\n    text: titlesText.value[1],\n    startColor: \"purple\",\n    endColor: \"yellow\",\n    delay: 2,\n  },\n  {\n    text: titlesText.value[2],\n    startColor: \"purple\",\n    endColor: \"yellow\",\n    delay: 4,\n  },\n]);\n</script>\n\n<template>\n  <LayoutPageWrapper class=\"flex-1 relative z-[-1]\">\n    <LayoutPageSection class=\"flex-1 flex\">\n      <div class=\"flex-1 flex flex-col items-center justify-center\">\n        <h1 class=\"text-center mt-4\">\n          <span\n            v-for=\"(item, i) in leadingsText\"\n            :key=\"i\"\n            :style=\"`--content: '${item.text}'; --start-color: ${\n              item.startColor\n            }; --end-color: ${item.endColor}; --animation-name: anim-fg-${\n              i + 1\n            }`\"\n            class=\"animated-text-bg drop-shadow-xl text-6xl sm:text-8xl md:text-8xl lg:text-8xl 2xl:text-8xl block font-black uppercase\"\n          >\n            <span class=\"animated-text-fg\">{{ item.text }}</span>\n          </span>\n        </h1>\n      </div>\n    </LayoutPageSection>\n  </LayoutPageWrapper>\n</template>\n\n<style lang=\"scss\">\n@keyframes anim-fg-1 {\n  0%,\n  16.667%,\n  100% {\n    opacity: 1;\n  }\n  33.333%,\n  83.333% {\n    opacity: 0;\n  }\n}\n@keyframes anim-fg-2 {\n  0%,\n  16.667%,\n  66.667%,\n  100% {\n    opacity: 0;\n  }\n  33.333%,\n  50% {\n    opacity: 1;\n  }\n}\n@keyframes anim-fg-3 {\n  0%,\n  50%,\n  100% {\n    opacity: 0;\n  }\n  66.667%,\n  83.333% {\n    opacity: 1;\n  }\n}\n.animated-text-bg {\n  position: relative;\n  display: block;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  content: var(--content);\n  display: block;\n  width: 100%;\n  color: theme(\"colors.slate.800\");\n  top: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 0;\n  padding-left: var(--padding);\n  padding-right: var(--padding);\n  &:before {\n    content: var(--content);\n    position: absolute;\n    display: block;\n    width: 100%;\n    color: theme(\"colors.slate.800\");\n    top: 0;\n    bottom: 0;\n    left: 0;\n    z-index: 0;\n    padding-left: var(--padding);\n    padding-right: var(--padding);\n  }\n}\n.animated-text-fg {\n  background-clip: text;\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  padding-left: var(--padding);\n  padding-right: var(--padding);\n  background-image: linear-gradient(\n    90deg,\n    var(--start-color),\n    var(--end-color)\n  );\n  position: relative;\n  opacity: 0;\n  z-index: 1;\n  animation: var(--animation-name) 8s infinite;\n}\nhtml.dark {\n  .animated-text-bg {\n    color: theme(\"colors.gray.100\");\n    &:before {\n      color: theme(\"colors.gray.100\");\n    }\n  }\n}\n</style>\n",
+      "start": 1712968597035,
+      "end": 1712968597073,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710864569336,
-      "end": 1710864569336,
+      "start": 1712968597073,
+      "end": 1712968597073,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710864569336,
-      "end": 1710864569336,
+      "start": 1712968597073,
+      "end": 1712968597073,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710864569336,
-      "end": 1710864569336,
+      "start": 1712968597073,
+      "end": 1712968597073,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710864569336,
-      "end": 1710864569336,
+      "start": 1712968597073,
+      "end": 1712968597073,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710864569336,
-      "end": 1710864569337,
+      "start": 1712968597073,
+      "end": 1712968597073,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710864569336,
-      "end": 1710864569337,
+      "start": 1712968597073,
+      "end": 1712968597073,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710864569337,
-      "end": 1710864569337,
+      "start": 1712968597073,
+      "end": 1712968597073,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710864569337,
-      "end": 1710864569337,
+      "start": 1712968597073,
+      "end": 1712968597073,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1710864569337,
-      "end": 1710864569337,
+      "start": 1712968597073,
+      "end": 1712968597073,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1710864569337,
-      "end": 1710864569337,
+      "start": 1712968597073,
+      "end": 1712968597073,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710864569337,
-      "end": 1710864569337,
+      "start": 1712968597073,
+      "end": 1712968597073,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "import _sfc_main from \"/Users/shubhamsingh/namma/importedProds/components/awesome/Welcome.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/shubhamsingh/namma/importedProds/components/awesome/Welcome.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Welcome.vue?vue&type=style&index=0&lang.scss\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"../components/awesome/Welcome.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nexport default _sfc_main;\n",
-      "start": 1710864569337,
-      "end": 1710864569378,
+      "start": 1712968597073,
+      "end": 1712968597094,
       "order": "normal",
       "sourcemaps": {
         "mappings": ""
@@ -86,184 +86,184 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Welcome.vue\").then(r => r.default))",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710864569378,
-      "end": 1710864569378,
+      "start": 1712968597094,
+      "end": 1712968597094,
       "order": "normal"
     }
   ]

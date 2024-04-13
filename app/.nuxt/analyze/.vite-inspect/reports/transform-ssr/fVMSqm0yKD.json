@@ -1,0 +1,306 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/components/awesome/Cardstest.vue?vue&type=style&index=0&scoped=9f9c5d58&lang.css?inline&used",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.img {\n  background-color: none;\n}\n\n.swiper {\n  width: 240px;\n  height: 320px;\n  background: none !important;\n}\n.swiper-slide-shadow {\n  background: none;\n}\n.swiper-3d .swiper-slide-shadow {\n  background: none !;\n}\n\n.swiper-cards {\n  border: none;\n  background: none;\n}\n.swiper-slide-shadow .swiper-slide-shadow-cards {\n  background: none;\n}\n.swiper-slide {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 22px;\n  font-weight: bold;\n}\n",
+      "start": 1712968597213,
+      "end": 1712968597213,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Cardstest.vue"
+        ],
+        "names": [],
+        "mappings": ";AAiFA,CAAC,CAAC,CAAC,EAAE;EACH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;AACxB;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACN,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;EACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;EACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;AAClB;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EAC9B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC;AACpB;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;AAClB;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;AAClB;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACvB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;AACnB",
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Cardstest.vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<template>\n  <swiper\n    :effect=\"'cards'\"\n    :grabCursor=\"true\"\n    :modules=\"modules\"\n    :loop=\"true\"\n    class=\"mySwiper\"\n  >\n    <swiper-slide\n      v-for=\"(product, index) in products\"\n      :key=\"index\"\n      :style=\"{\n        'background-image': `url(${product.img})`,\n      }\"\n    >\n      <div class=\"bg-transparent\">\n        <img\n          :src=\"product.img ? product.img : ''\"\n          alt=\"Product Image\"\n          class=\"bg-transparent transition-all ease-in-out\"\n        />\n      </div>\n    </swiper-slide>\n  </swiper>\n</template>\n\n<script>\nimport { ref, onMounted } from \"vue\";\nimport gql from \"graphql-tag\";\nconst selectedProductId = ref(0);\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport \"swiper/css\";\nimport \"swiper/css/effect-cards\";\nimport { EffectCards } from \"swiper/modules\";\nexport default {\n  components: {\n    Swiper,\n    SwiperSlide,\n  },\n\n  setup() {\n    const products = ref([]);\n    const fetchData = async () => {\n      const query = gql`\n        query MyQuery {\n          products(where: { category: \"cases\" }) {\n            edges {\n              node {\n                image {\n                  link\n                }\n                name\n                id\n                databaseId\n              }\n            }\n          }\n        }\n      `;\n      const data = useQuery(query);\n      console.log(data.result, \"hi here is dfata\");\n      if (data) {\n        products.value = data.result._value.products.edges.map((edges) => ({\n          name: edges.node.name,\n          img: edges.node.image.link,\n        }));\n        console.log(products.value, \"hi here is object\");\n      }\n    };\n    onMounted(() => {\n      fetchData();\n    });\n    return {\n      modules: [EffectCards],\n      products,\n    };\n  },\n};\n</script>\n\n<style scoped>\n.img {\n  background-color: none;\n}\n\n.swiper {\n  width: 240px;\n  height: 320px;\n  background: none !important;\n}\n.swiper-slide-shadow {\n  background: none;\n}\n.swiper-3d .swiper-slide-shadow {\n  background: none !;\n}\n\n.swiper-cards {\n  border: none;\n  background: none;\n}\n.swiper-slide-shadow .swiper-slide-shadow-cards {\n  background: none;\n}\n.swiper-slide {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 22px;\n  font-weight: bold;\n}\n</style>\n"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1712968597213,
+      "end": 1712968597213,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1712968597213,
+      "end": 1712968597213,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1712968597214,
+      "end": 1712968597214,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1712968597214,
+      "end": 1712968597214,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1712968597214,
+      "end": 1712968597214,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1712968597214,
+      "end": 1712968597214,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1712968597214,
+      "end": 1712968597214,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".img{background-color:none}.swiper{background:none!important;height:320px;width:240px}.swiper-slide-shadow{background:none}.swiper-3d .swiper-slide-shadow{background:none !}.swiper-cards{border:none}.swiper-cards,.swiper-slide-shadow .swiper-slide-shadow-cards{background:none}.swiper-slide{align-items:center;display:flex;font-size:22px;font-weight:700;justify-content:center}",
+      "start": 1712968597214,
+      "end": 1712968597226,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Cardstest.vue",
+        "mappings": "AACA,KACE,qBACF,CAEA,QAGE,yBAA2B,CAD3B,YAAa,CADb,WAGF,CACA,qBACE,eACF,CACA,gCACE,iBACF,CAEA,cACE,WAEF,CACA,8DAFE,eAIF,CACA,cAEE,kBAAmB,CADnB,YAAa,CAGb,cAAe,CACf,eAAiB,CAFjB,sBAGF",
+        "names": [],
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Cardstest.vue"
+        ],
+        "sourcesContent": [
+          "\n.img {\n  background-color: none;\n}\n\n.swiper {\n  width: 240px;\n  height: 320px;\n  background: none !important;\n}\n.swiper-slide-shadow {\n  background: none;\n}\n.swiper-3d .swiper-slide-shadow {\n  background: none !;\n}\n\n.swiper-cards {\n  border: none;\n  background: none;\n}\n.swiper-slide-shadow .swiper-slide-shadow-cards {\n  background: none;\n}\n.swiper-slide {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 22px;\n  font-weight: bold;\n}\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1712968597226,
+      "end": 1712968597226,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1712968597226,
+      "end": 1712968597226,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1712968597226,
+      "end": 1712968597226,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".img[data-v-9f9c5d58]{background-color:none}.swiper[data-v-9f9c5d58]{background:none!important;height:320px;width:240px}.swiper-slide-shadow[data-v-9f9c5d58]{background:none}.swiper-3d .swiper-slide-shadow[data-v-9f9c5d58]{background:none !}.swiper-cards[data-v-9f9c5d58]{border:none}.swiper-cards[data-v-9f9c5d58],.swiper-slide-shadow .swiper-slide-shadow-cards[data-v-9f9c5d58]{background:none}.swiper-slide[data-v-9f9c5d58]{align-items:center;display:flex;font-size:22px;font-weight:700;justify-content:center}",
+      "start": 1712968597226,
+      "end": 1712968597226,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Cardstest.vue",
+        "mappings": "AAAA,sBAAK,qBAAqB,CAAC,yBAAQ,yBAAyB,CAAC,YAAY,CAAC,WAAW,CAAC,sCAAqB,eAAe,CAAC,iDAAgC,iBAAiB,CAAC,+BAAc,WAAW,CAAC,gGAA8D,eAAe,CAAC,+BAAc,kBAAkB,CAAC,YAAY,CAAC,cAAc,CAAC,eAAe,CAAC,sBAAsB",
+        "names": [],
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Cardstest.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1712968597226,
+      "end": 1712968597226,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1712968597226,
+      "end": 1712968597226,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1712968597226,
+      "end": 1712968597226,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1712968597226,
+      "end": 1712968597226,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1712968597226,
+      "end": 1712968597226,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1712968597226,
+      "end": 1712968597226,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1712968597226,
+      "end": 1712968597226,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1712968597226,
+      "end": 1712968597226,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1712968597226,
+      "end": 1712968597226,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1712968597226,
+      "end": 1712968597226,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "export default \".img[data-v-9f9c5d58]{background-color:none}.swiper[data-v-9f9c5d58]{background:none!important;height:320px;width:240px}.swiper-slide-shadow[data-v-9f9c5d58]{background:none}.swiper-3d .swiper-slide-shadow[data-v-9f9c5d58]{background:none !}.swiper-cards[data-v-9f9c5d58]{border:none}.swiper-cards[data-v-9f9c5d58],.swiper-slide-shadow .swiper-slide-shadow-cards[data-v-9f9c5d58]{background:none}.swiper-slide[data-v-9f9c5d58]{align-items:center;display:flex;font-size:22px;font-weight:700;justify-content:center}\"",
+      "start": 1712968597226,
+      "end": 1712968597226,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1712968597226,
+      "end": 1712968597227,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1712968597227,
+      "end": 1712968597227,
+      "order": "normal"
+    }
+  ]
+}

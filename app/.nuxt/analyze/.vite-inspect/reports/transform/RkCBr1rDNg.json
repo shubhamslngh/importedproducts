@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "// This file is adapted from the graphql-ws npm package:\n// https://github.com/enisdenjo/graphql-ws\n//\n// Most of the file comes from that package's README; some other parts (such as\n// isLikeCloseEvent) come from its source.\n//\n// Here's the license of the original code:\n//\n// The MIT License (MIT)\n//\n// Copyright (c) 2020-2021 Denis Badurina\n//\n// Permission is hereby granted, free of charge, to any person obtaining a copy\n// of this software and associated documentation files (the \"Software\"), to deal\n// in the Software without restriction, including without limitation the rights\n// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n// copies of the Software, and to permit persons to whom the Software is\n// furnished to do so, subject to the following conditions:\n//\n// The above copyright notice and this permission notice shall be included in\n// all copies or substantial portions of the Software.\n//\n// THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\n// THE SOFTWARE.\nimport { __assign, __extends } from \"tslib\";\nimport { print } from \"../../utilities/index.js\";\nimport { ApolloLink } from \"../core/index.js\";\nimport { isNonNullObject, Observable } from \"../../utilities/index.js\";\nimport { ApolloError } from \"../../errors/index.js\";\n// https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/close_event\nfunction isLikeCloseEvent(val) {\n    return isNonNullObject(val) && \"code\" in val && \"reason\" in val;\n}\n// https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/error_event\nfunction isLikeErrorEvent(err) {\n    var _a;\n    return isNonNullObject(err) && ((_a = err.target) === null || _a === void 0 ? void 0 : _a.readyState) === WebSocket.CLOSED;\n}\nvar GraphQLWsLink = /** @class */ (function (_super) {\n    __extends(GraphQLWsLink, _super);\n    function GraphQLWsLink(client) {\n        var _this = _super.call(this) || this;\n        _this.client = client;\n        return _this;\n    }\n    GraphQLWsLink.prototype.request = function (operation) {\n        var _this = this;\n        return new Observable(function (observer) {\n            return _this.client.subscribe(__assign(__assign({}, operation), { query: print(operation.query) }), {\n                next: observer.next.bind(observer),\n                complete: observer.complete.bind(observer),\n                error: function (err) {\n                    if (err instanceof Error) {\n                        return observer.error(err);\n                    }\n                    var likeClose = isLikeCloseEvent(err);\n                    if (likeClose || isLikeErrorEvent(err)) {\n                        return observer.error(\n                        // reason will be available on clean closes\n                        new Error(\"Socket closed\".concat(likeClose ? \" with event \".concat(err.code) : \"\").concat(likeClose ? \" \".concat(err.reason) : \"\")));\n                    }\n                    return observer.error(new ApolloError({\n                        graphQLErrors: Array.isArray(err) ? err : [err],\n                    }));\n                },\n            });\n        });\n    };\n    return GraphQLWsLink;\n}(ApolloLink));\nexport { GraphQLWsLink };\n//# sourceMappingURL=index.js.map",
-      "start": 1710864566522,
-      "end": 1710864566550,
+      "start": 1712968594227,
+      "end": 1712968594253,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594253,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594253,
+      "end": 1712968594254,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594254,
+      "end": 1712968594254,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594254,
+      "end": 1712968594254,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594254,
+      "end": 1712968594254,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594254,
+      "end": 1712968594254,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594254,
+      "end": 1712968594254,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594254,
+      "end": 1712968594254,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594254,
+      "end": 1712968594254,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594254,
+      "end": 1712968594254,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594254,
+      "end": 1712968594254,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594254,
+      "end": 1712968594254,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594254,
+      "end": 1712968594254,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1710864566550,
-      "end": 1710864566550,
+      "start": 1712968594254,
+      "end": 1712968594254,
       "order": "normal"
     }
   ]
