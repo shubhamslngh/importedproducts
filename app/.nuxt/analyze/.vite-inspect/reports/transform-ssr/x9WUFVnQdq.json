@@ -4,8 +4,8 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderComponent as _ssrRenderComponent } from \"vue/server-renderer\"\n\nimport { provideSession } from \"./utils/sessions\";\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'app',\n  __ssrInlineRender: true,\n  setup(__props) {\n\nconst { awesome } = useAppConfig();\nuseHead({\n  title: awesome.name,\n  titleTemplate: `%s - ${awesome.name}`,\n});\n\n\nreturn (_ctx: any,_push: any,_parent: any,_attrs: any) => {\n  const _component_Body = _resolveComponent(\"Body\")!\n  const _component_NuxtLayout = _resolveComponent(\"NuxtLayout\")!\n  const _component_NuxtLoadingIndicator = _resolveComponent(\"NuxtLoadingIndicator\")!\n  const _component_NuxtPage = _resolveComponent(\"NuxtPage\")!\n\n  _push(_ssrRenderComponent(_component_Body, _mergeProps({ class: \"antialiased duration-300 transition-colors text-gray-800 dark:text-gray-200 bg-white dark:bg-black overflow-y-scroll\" }, _attrs), {\n    default: _withCtx((_, _push, _parent, _scopeId) => {\n      if (_push) {\n        _push(`<canvas id=\"canvas\"${_scopeId}></canvas>`)\n        _push(_ssrRenderComponent(_component_NuxtLayout, null, {\n          default: _withCtx((_, _push, _parent, _scopeId) => {\n            if (_push) {\n              _push(_ssrRenderComponent(_component_NuxtLoadingIndicator, null, null, _parent, _scopeId))\n              _push(_ssrRenderComponent(_component_NuxtPage, null, null, _parent, _scopeId))\n            } else {\n              return [\n                _createVNode(_component_NuxtLoadingIndicator),\n                _createVNode(_component_NuxtPage)\n              ]\n            }\n          }),\n          _: 1\n        }, _parent, _scopeId))\n      } else {\n        return [\n          _createVNode(\"canvas\", { id: \"canvas\" }),\n          _createVNode(_component_NuxtLayout, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_NuxtLoadingIndicator),\n              _createVNode(_component_NuxtPage)\n            ]),\n            _: 1\n          })\n        ]\n      }\n    }),\n    _: 1\n  }, _parent))\n}\n}\n\n})",
-      "start": 1712968597906,
-      "end": 1712968597906,
+      "start": 1713269989171,
+      "end": 1713269989171,
       "sourcemaps": {
         "version": 3,
         "sources": [
@@ -20,57 +20,57 @@
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968597906,
-      "end": 1712968597906,
+      "start": 1713269989171,
+      "end": 1713269989171,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968597906,
-      "end": 1712968597906,
+      "start": 1713269989171,
+      "end": 1713269989171,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968597906,
-      "end": 1712968597906,
+      "start": 1713269989171,
+      "end": 1713269989171,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968597906,
-      "end": 1712968597906,
+      "start": 1713269989171,
+      "end": 1713269989171,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968597906,
-      "end": 1712968597906,
+      "start": 1713269989171,
+      "end": 1713269989171,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968597906,
-      "end": 1712968597906,
+      "start": 1713269989171,
+      "end": 1713269989171,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1712968597906,
-      "end": 1712968597906,
+      "start": 1713269989171,
+      "end": 1713269989171,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1712968597906,
-      "end": 1712968597906,
+      "start": 1713269989171,
+      "end": 1713269989171,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderComponent as _ssrRenderComponent } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"app\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    const { awesome } = useAppConfig();\n    useHead({\n      title: awesome.name,\n      titleTemplate: `%s - ${awesome.name}`\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_Body = _resolveComponent(\"Body\");\n      const _component_NuxtLayout = _resolveComponent(\"NuxtLayout\");\n      const _component_NuxtLoadingIndicator = _resolveComponent(\"NuxtLoadingIndicator\");\n      const _component_NuxtPage = _resolveComponent(\"NuxtPage\");\n      _push(_ssrRenderComponent(_component_Body, _mergeProps({ class: \"antialiased duration-300 transition-colors text-gray-800 dark:text-gray-200 bg-white dark:bg-black overflow-y-scroll\" }, _attrs), {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(`<canvas id=\"canvas\"${_scopeId}></canvas>`);\n            _push2(_ssrRenderComponent(_component_NuxtLayout, null, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(_ssrRenderComponent(_component_NuxtLoadingIndicator, null, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_NuxtPage, null, null, _parent3, _scopeId2));\n                } else {\n                  return [\n                    _createVNode(_component_NuxtLoadingIndicator),\n                    _createVNode(_component_NuxtPage)\n                  ];\n                }\n              }),\n              _: 1\n            }, _parent2, _scopeId));\n          } else {\n            return [\n              _createVNode(\"canvas\", { id: \"canvas\" }),\n              _createVNode(_component_NuxtLayout, null, {\n                default: _withCtx(() => [\n                  _createVNode(_component_NuxtLoadingIndicator),\n                  _createVNode(_component_NuxtPage)\n                ]),\n                _: 1\n              })\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n    };\n  }\n});\n",
-      "start": 1712968597906,
-      "end": 1712968598161,
+      "start": 1713269989171,
+      "end": 1713269989416,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -91,141 +91,141 @@
     },
     {
       "name": "vite:json",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { useAppConfig } from '#app/config';\nimport { useHead } from '@unhead/vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderComponent as _ssrRenderComponent } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"app\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    const { awesome } = useAppConfig();\n    useHead({\n      title: awesome.name,\n      titleTemplate: `%s - ${awesome.name}`\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_Body = _resolveComponent(\"Body\");\n      const _component_NuxtLayout = _resolveComponent(\"NuxtLayout\");\n      const _component_NuxtLoadingIndicator = _resolveComponent(\"NuxtLoadingIndicator\");\n      const _component_NuxtPage = _resolveComponent(\"NuxtPage\");\n      _push(_ssrRenderComponent(_component_Body, _mergeProps({ class: \"antialiased duration-300 transition-colors text-gray-800 dark:text-gray-200 bg-white dark:bg-black overflow-y-scroll\" }, _attrs), {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(`<canvas id=\"canvas\"${_scopeId}></canvas>`);\n            _push2(_ssrRenderComponent(_component_NuxtLayout, null, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(_ssrRenderComponent(_component_NuxtLoadingIndicator, null, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_NuxtPage, null, null, _parent3, _scopeId2));\n                } else {\n                  return [\n                    _createVNode(_component_NuxtLoadingIndicator),\n                    _createVNode(_component_NuxtPage)\n                  ];\n                }\n              }),\n              _: 1\n            }, _parent2, _scopeId));\n          } else {\n            return [\n              _createVNode(\"canvas\", { id: \"canvas\" }),\n              _createVNode(_component_NuxtLayout, null, {\n                default: _withCtx(() => [\n                  _createVNode(_component_NuxtLoadingIndicator),\n                  _createVNode(_component_NuxtPage)\n                ]),\n                _: 1\n              })\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n    };\n  }\n});\n",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -239,8 +239,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { useAppConfig } from '#app/config';\nimport { useHead } from '@unhead/vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderComponent as _ssrRenderComponent } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"app\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    const { awesome } = useAppConfig();\n    useHead({\n      title: awesome.name,\n      titleTemplate: `%s - ${awesome.name}`\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_Body = _resolveComponent(\"Body\");\n      const _component_NuxtLayout = _resolveComponent(\"NuxtLayout\");\n      const _component_NuxtLoadingIndicator = _resolveComponent(\"NuxtLoadingIndicator\");\n      const _component_NuxtPage = _resolveComponent(\"NuxtPage\");\n      _push(_ssrRenderComponent(_component_Body, _mergeProps({ class: \"antialiased duration-300 transition-colors text-gray-800 dark:text-gray-200 bg-white dark:bg-black overflow-y-scroll\" }, _attrs), {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(`<canvas id=\"canvas\"${_scopeId}></canvas>`);\n            _push2(_ssrRenderComponent(_component_NuxtLayout, null, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(_ssrRenderComponent(_component_NuxtLoadingIndicator, null, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_NuxtPage, null, null, _parent3, _scopeId2));\n                } else {\n                  return [\n                    _createVNode(_component_NuxtLoadingIndicator),\n                    _createVNode(_component_NuxtPage)\n                  ];\n                }\n              }),\n              _: 1\n            }, _parent2, _scopeId));\n          } else {\n            return [\n              _createVNode(\"canvas\", { id: \"canvas\" }),\n              _createVNode(_component_NuxtLayout, null, {\n                default: _withCtx(() => [\n                  _createVNode(_component_NuxtLoadingIndicator),\n                  _createVNode(_component_NuxtPage)\n                ]),\n                _: 1\n              })\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n    };\n  }\n});\n",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -253,39 +253,39 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
       "result": "import { Body as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/head/runtime/components\";\nimport { default as __nuxt_component_1 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/app/components/nuxt-layout\";\nimport { default as __nuxt_component_2 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/app/components/nuxt-loading-indicator\";\nimport { default as __nuxt_component_3 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/pages/runtime/page\";\nimport { useAppConfig } from '#app/config';\nimport { useHead } from '@unhead/vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderComponent as _ssrRenderComponent } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"app\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    const { awesome } = useAppConfig();\n    useHead({\n      title: awesome.name,\n      titleTemplate: `%s - ${awesome.name}`\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_Body = __nuxt_component_0;\n      const _component_NuxtLayout = __nuxt_component_1;\n      const _component_NuxtLoadingIndicator = __nuxt_component_2;\n      const _component_NuxtPage = __nuxt_component_3;\n      _push(_ssrRenderComponent(_component_Body, _mergeProps({ class: \"antialiased duration-300 transition-colors text-gray-800 dark:text-gray-200 bg-white dark:bg-black overflow-y-scroll\" }, _attrs), {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(`<canvas id=\"canvas\"${_scopeId}></canvas>`);\n            _push2(_ssrRenderComponent(_component_NuxtLayout, null, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(_ssrRenderComponent(_component_NuxtLoadingIndicator, null, null, _parent3, _scopeId2));\n                  _push3(_ssrRenderComponent(_component_NuxtPage, null, null, _parent3, _scopeId2));\n                } else {\n                  return [\n                    _createVNode(_component_NuxtLoadingIndicator),\n                    _createVNode(_component_NuxtPage)\n                  ];\n                }\n              }),\n              _: 1\n            }, _parent2, _scopeId));\n          } else {\n            return [\n              _createVNode(\"canvas\", { id: \"canvas\" }),\n              _createVNode(_component_NuxtLayout, null, {\n                default: _withCtx(() => [\n                  _createVNode(_component_NuxtLoadingIndicator),\n                  _createVNode(_component_NuxtPage)\n                ]),\n                _: 1\n              })\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n    };\n  }\n});\n",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -298,20 +298,20 @@
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1712968598161,
-      "end": 1712968598161,
+      "start": 1713269989416,
+      "end": 1713269989416,
       "order": "normal"
     }
   ]

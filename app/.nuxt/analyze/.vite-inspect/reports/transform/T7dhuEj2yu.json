@@ -4,220 +4,220 @@
     {
       "name": "virtual",
       "result": "import { default as aboutFVKtp21jnmMeta } from \"/Users/shubhamsingh/namma/importedProds/app/pages/about.vue?macro=true\";\nimport { default as cartpGOG1ONhQgMeta } from \"/Users/shubhamsingh/namma/importedProds/app/pages/cart.vue?macro=true\";\nimport { default as componentsy2PNeqJUlwMeta } from \"/Users/shubhamsingh/namma/importedProds/app/pages/docs/components.vue?macro=true\";\nimport { default as indexRlilpgDEA5Meta } from \"/Users/shubhamsingh/namma/importedProds/pages/index.vue?macro=true\";\nimport { default as loginPMvj9xsCYHMeta } from \"/Users/shubhamsingh/namma/importedProds/app/pages/login.vue?macro=true\";\nimport { default as _91slug_933i97DfsVuXMeta } from \"/Users/shubhamsingh/namma/importedProds/pages/post/[slug].vue?macro=true\";\nimport { default as indexPRHgtC4phvMeta } from \"/Users/shubhamsingh/namma/importedProds/pages/post/index.vue?macro=true\";\nimport { default as productst6YAOIZYfnMeta } from \"/Users/shubhamsingh/namma/importedProds/app/pages/products.vue?macro=true\";\nimport { default as settingf3xffS1c7MMeta } from \"/Users/shubhamsingh/namma/importedProds/app/pages/setting.vue?macro=true\";\nimport { default as travelbPHSZdmDGxMeta } from \"/Users/shubhamsingh/namma/importedProds/app/pages/travel.vue?macro=true\";\nexport default [\n  {\n    name: aboutFVKtp21jnmMeta?.name ?? \"about\",\n    path: aboutFVKtp21jnmMeta?.path ?? \"/about\",\n    meta: aboutFVKtp21jnmMeta || {},\n    alias: aboutFVKtp21jnmMeta?.alias || [],\n    redirect: aboutFVKtp21jnmMeta?.redirect,\n    component: () => import(\"/Users/shubhamsingh/namma/importedProds/app/pages/about.vue\").then(m => m.default || m)\n  },\n  {\n    name: cartpGOG1ONhQgMeta?.name ?? \"cart\",\n    path: cartpGOG1ONhQgMeta?.path ?? \"/cart\",\n    meta: cartpGOG1ONhQgMeta || {},\n    alias: cartpGOG1ONhQgMeta?.alias || [],\n    redirect: cartpGOG1ONhQgMeta?.redirect,\n    component: () => import(\"/Users/shubhamsingh/namma/importedProds/app/pages/cart.vue\").then(m => m.default || m)\n  },\n  {\n    name: componentsy2PNeqJUlwMeta?.name ?? \"docs-components\",\n    path: componentsy2PNeqJUlwMeta?.path ?? \"/docs/components\",\n    meta: componentsy2PNeqJUlwMeta || {},\n    alias: componentsy2PNeqJUlwMeta?.alias || [],\n    redirect: componentsy2PNeqJUlwMeta?.redirect,\n    component: () => import(\"/Users/shubhamsingh/namma/importedProds/app/pages/docs/components.vue\").then(m => m.default || m)\n  },\n  {\n    name: indexRlilpgDEA5Meta?.name ?? \"index\",\n    path: indexRlilpgDEA5Meta?.path ?? \"/\",\n    meta: indexRlilpgDEA5Meta || {},\n    alias: indexRlilpgDEA5Meta?.alias || [],\n    redirect: indexRlilpgDEA5Meta?.redirect,\n    component: () => import(\"/Users/shubhamsingh/namma/importedProds/pages/index.vue\").then(m => m.default || m)\n  },\n  {\n    name: loginPMvj9xsCYHMeta?.name ?? \"login\",\n    path: loginPMvj9xsCYHMeta?.path ?? \"/login\",\n    meta: loginPMvj9xsCYHMeta || {},\n    alias: loginPMvj9xsCYHMeta?.alias || [],\n    redirect: loginPMvj9xsCYHMeta?.redirect,\n    component: () => import(\"/Users/shubhamsingh/namma/importedProds/app/pages/login.vue\").then(m => m.default || m)\n  },\n  {\n    name: _91slug_933i97DfsVuXMeta?.name ?? \"post-slug\",\n    path: _91slug_933i97DfsVuXMeta?.path ?? \"/post/:slug()\",\n    meta: _91slug_933i97DfsVuXMeta || {},\n    alias: _91slug_933i97DfsVuXMeta?.alias || [],\n    redirect: _91slug_933i97DfsVuXMeta?.redirect,\n    component: () => import(\"/Users/shubhamsingh/namma/importedProds/pages/post/[slug].vue\").then(m => m.default || m)\n  },\n  {\n    name: indexPRHgtC4phvMeta?.name ?? \"post\",\n    path: indexPRHgtC4phvMeta?.path ?? \"/post\",\n    meta: indexPRHgtC4phvMeta || {},\n    alias: indexPRHgtC4phvMeta?.alias || [],\n    redirect: indexPRHgtC4phvMeta?.redirect,\n    component: () => import(\"/Users/shubhamsingh/namma/importedProds/pages/post/index.vue\").then(m => m.default || m)\n  },\n  {\n    name: productst6YAOIZYfnMeta?.name ?? \"products\",\n    path: productst6YAOIZYfnMeta?.path ?? \"/products\",\n    meta: productst6YAOIZYfnMeta || {},\n    alias: productst6YAOIZYfnMeta?.alias || [],\n    redirect: productst6YAOIZYfnMeta?.redirect,\n    component: () => import(\"/Users/shubhamsingh/namma/importedProds/app/pages/products.vue\").then(m => m.default || m)\n  },\n  {\n    name: settingf3xffS1c7MMeta?.name ?? \"setting\",\n    path: settingf3xffS1c7MMeta?.path ?? \"/setting\",\n    meta: settingf3xffS1c7MMeta || {},\n    alias: settingf3xffS1c7MMeta?.alias || [],\n    redirect: settingf3xffS1c7MMeta?.redirect,\n    component: () => import(\"/Users/shubhamsingh/namma/importedProds/app/pages/setting.vue\").then(m => m.default || m)\n  },\n  {\n    name: travelbPHSZdmDGxMeta?.name ?? \"travel\",\n    path: travelbPHSZdmDGxMeta?.path ?? \"/travel\",\n    meta: travelbPHSZdmDGxMeta || {},\n    alias: travelbPHSZdmDGxMeta?.alias || [],\n    redirect: travelbPHSZdmDGxMeta?.redirect,\n    component: () => import(\"/Users/shubhamsingh/namma/importedProds/app/pages/travel.vue\").then(m => m.default || m)\n  }\n]",
-      "start": 1712968594213,
-      "end": 1712968594213,
+      "start": 1713269985455,
+      "end": 1713269985455,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968594213,
-      "end": 1712968594213,
+      "start": 1713269985455,
+      "end": 1713269985455,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968594213,
-      "end": 1712968594213,
+      "start": 1713269985455,
+      "end": 1713269985455,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968594213,
-      "end": 1712968594213,
+      "start": 1713269985455,
+      "end": 1713269985455,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1712968594213,
-      "end": 1712968594213,
+      "start": 1713269985455,
+      "end": 1713269985455,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1712968594213,
-      "end": 1712968594213,
+      "start": 1713269985455,
+      "end": 1713269985455,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1712968594213,
-      "end": 1712968594213,
+      "start": 1713269985455,
+      "end": 1713269985455,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1712968594213,
-      "end": 1712968594213,
+      "start": 1713269985455,
+      "end": 1713269985455,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1712968594213,
-      "end": 1712968594213,
+      "start": 1713269985455,
+      "end": 1713269985455,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1712968594213,
-      "end": 1712968594213,
+      "start": 1713269985455,
+      "end": 1713269985455,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1712968594213,
-      "end": 1712968594213,
+      "start": 1713269985455,
+      "end": 1713269985455,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985455,
+      "end": 1713269985455,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985455,
+      "end": 1713269985455,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985455,
+      "end": 1713269985455,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985456,
+      "end": 1713269985456,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985456,
+      "end": 1713269985456,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985456,
+      "end": 1713269985456,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985456,
+      "end": 1713269985456,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985456,
+      "end": 1713269985456,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985456,
+      "end": 1713269985456,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985456,
+      "end": 1713269985456,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985456,
+      "end": 1713269985456,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985456,
+      "end": 1713269985456,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985456,
+      "end": 1713269985456,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985456,
+      "end": 1713269985456,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985456,
+      "end": 1713269985456,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968594214,
-      "end": 1712968594214,
+      "start": 1713269985456,
+      "end": 1713269985456,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1712968594214,
-      "end": 1712968594215,
+      "start": 1713269985456,
+      "end": 1713269985457,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1712968594215,
-      "end": 1712968594215,
+      "start": 1713269985457,
+      "end": 1713269985457,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968594215,
-      "end": 1712968594215,
+      "start": 1713269985457,
+      "end": 1713269985457,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1712968594215,
-      "end": 1712968594215,
+      "start": 1713269985457,
+      "end": 1713269985457,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1712968594215,
-      "end": 1712968594215,
+      "start": 1713269985457,
+      "end": 1713269985457,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1712968594215,
-      "end": 1712968594215,
+      "start": 1713269985457,
+      "end": 1713269985457,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1712968594215,
-      "end": 1712968594215,
+      "start": 1713269985457,
+      "end": 1713269985457,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
       "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import { default as aboutFVKtp21jnmMeta } from \"/Users/shubhamsingh/namma/importedProds/app/pages/about.vue?macro=true\";\nimport { default as cartpGOG1ONhQgMeta } from \"/Users/shubhamsingh/namma/importedProds/app/pages/cart.vue?macro=true\";\nimport { default as componentsy2PNeqJUlwMeta } from \"/Users/shubhamsingh/namma/importedProds/app/pages/docs/components.vue?macro=true\";\nimport { default as indexRlilpgDEA5Meta } from \"/Users/shubhamsingh/namma/importedProds/pages/index.vue?macro=true\";\nimport { default as loginPMvj9xsCYHMeta } from \"/Users/shubhamsingh/namma/importedProds/app/pages/login.vue?macro=true\";\nimport { default as _91slug_933i97DfsVuXMeta } from \"/Users/shubhamsingh/namma/importedProds/pages/post/[slug].vue?macro=true\";\nimport { default as indexPRHgtC4phvMeta } from \"/Users/shubhamsingh/namma/importedProds/pages/post/index.vue?macro=true\";\nimport { default as productst6YAOIZYfnMeta } from \"/Users/shubhamsingh/namma/importedProds/app/pages/products.vue?macro=true\";\nimport { default as settingf3xffS1c7MMeta } from \"/Users/shubhamsingh/namma/importedProds/app/pages/setting.vue?macro=true\";\nimport { default as travelbPHSZdmDGxMeta } from \"/Users/shubhamsingh/namma/importedProds/app/pages/travel.vue?macro=true\";\nexport default [\n  {\n    name: aboutFVKtp21jnmMeta?.name ?? \"about\",\n    path: aboutFVKtp21jnmMeta?.path ?? \"/about\",\n    meta: aboutFVKtp21jnmMeta || {},\n    alias: aboutFVKtp21jnmMeta?.alias || [],\n    redirect: aboutFVKtp21jnmMeta?.redirect,\n    component: () => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/app/pages/about.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(m => m.default || m)\n  },\n  {\n    name: cartpGOG1ONhQgMeta?.name ?? \"cart\",\n    path: cartpGOG1ONhQgMeta?.path ?? \"/cart\",\n    meta: cartpGOG1ONhQgMeta || {},\n    alias: cartpGOG1ONhQgMeta?.alias || [],\n    redirect: cartpGOG1ONhQgMeta?.redirect,\n    component: () => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/app/pages/cart.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(m => m.default || m)\n  },\n  {\n    name: componentsy2PNeqJUlwMeta?.name ?? \"docs-components\",\n    path: componentsy2PNeqJUlwMeta?.path ?? \"/docs/components\",\n    meta: componentsy2PNeqJUlwMeta || {},\n    alias: componentsy2PNeqJUlwMeta?.alias || [],\n    redirect: componentsy2PNeqJUlwMeta?.redirect,\n    component: () => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/app/pages/docs/components.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(m => m.default || m)\n  },\n  {\n    name: indexRlilpgDEA5Meta?.name ?? \"index\",\n    path: indexRlilpgDEA5Meta?.path ?? \"/\",\n    meta: indexRlilpgDEA5Meta || {},\n    alias: indexRlilpgDEA5Meta?.alias || [],\n    redirect: indexRlilpgDEA5Meta?.redirect,\n    component: () => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/pages/index.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(m => m.default || m)\n  },\n  {\n    name: loginPMvj9xsCYHMeta?.name ?? \"login\",\n    path: loginPMvj9xsCYHMeta?.path ?? \"/login\",\n    meta: loginPMvj9xsCYHMeta || {},\n    alias: loginPMvj9xsCYHMeta?.alias || [],\n    redirect: loginPMvj9xsCYHMeta?.redirect,\n    component: () => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/app/pages/login.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(m => m.default || m)\n  },\n  {\n    name: _91slug_933i97DfsVuXMeta?.name ?? \"post-slug\",\n    path: _91slug_933i97DfsVuXMeta?.path ?? \"/post/:slug()\",\n    meta: _91slug_933i97DfsVuXMeta || {},\n    alias: _91slug_933i97DfsVuXMeta?.alias || [],\n    redirect: _91slug_933i97DfsVuXMeta?.redirect,\n    component: () => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/pages/post/[slug].vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(m => m.default || m)\n  },\n  {\n    name: indexPRHgtC4phvMeta?.name ?? \"post\",\n    path: indexPRHgtC4phvMeta?.path ?? \"/post\",\n    meta: indexPRHgtC4phvMeta || {},\n    alias: indexPRHgtC4phvMeta?.alias || [],\n    redirect: indexPRHgtC4phvMeta?.redirect,\n    component: () => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/pages/post/index.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(m => m.default || m)\n  },\n  {\n    name: productst6YAOIZYfnMeta?.name ?? \"products\",\n    path: productst6YAOIZYfnMeta?.path ?? \"/products\",\n    meta: productst6YAOIZYfnMeta || {},\n    alias: productst6YAOIZYfnMeta?.alias || [],\n    redirect: productst6YAOIZYfnMeta?.redirect,\n    component: () => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/app/pages/products.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(m => m.default || m)\n  },\n  {\n    name: settingf3xffS1c7MMeta?.name ?? \"setting\",\n    path: settingf3xffS1c7MMeta?.path ?? \"/setting\",\n    meta: settingf3xffS1c7MMeta || {},\n    alias: settingf3xffS1c7MMeta?.alias || [],\n    redirect: settingf3xffS1c7MMeta?.redirect,\n    component: () => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/app/pages/setting.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(m => m.default || m)\n  },\n  {\n    name: travelbPHSZdmDGxMeta?.name ?? \"travel\",\n    path: travelbPHSZdmDGxMeta?.path ?? \"/travel\",\n    meta: travelbPHSZdmDGxMeta || {},\n    alias: travelbPHSZdmDGxMeta?.alias || [],\n    redirect: travelbPHSZdmDGxMeta?.redirect,\n    component: () => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/app/pages/travel.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(m => m.default || m)\n  }\n]",
-      "start": 1712968594215,
-      "end": 1712968594216,
+      "start": 1713269985457,
+      "end": 1713269985457,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "vite:reporter",
-      "start": 1712968594216,
-      "end": 1712968594216,
+      "start": 1713269985457,
+      "end": 1713269985457,
       "order": "normal"
     }
   ]

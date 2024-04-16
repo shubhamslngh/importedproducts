@@ -4,262 +4,262 @@
     {
       "name": "vite:load-fallback",
       "result": "import { __assign, __rest } from \"tslib\";\nimport { invariant } from \"../../utilities/globals/index.js\";\nimport { ApolloLink } from \"../core/index.js\";\nimport { Observable, hasDirectives } from \"../../utilities/index.js\";\nimport { serializeFetchParameter } from \"./serializeFetchParameter.js\";\nimport { selectURI } from \"./selectURI.js\";\nimport { handleError, readMultipartBody, parseAndCheckHttpResponse, } from \"./parseAndCheckHttpResponse.js\";\nimport { checkFetcher } from \"./checkFetcher.js\";\nimport { selectHttpOptionsAndBodyInternal, defaultPrinter, fallbackHttpConfig, } from \"./selectHttpOptionsAndBody.js\";\nimport { rewriteURIForGET } from \"./rewriteURIForGET.js\";\nimport { fromError, filterOperationVariables } from \"../utils/index.js\";\nimport { maybe, getMainDefinition, removeClientSetsFromDocument, } from \"../../utilities/index.js\";\nvar backupFetch = maybe(function () { return fetch; });\nexport var createHttpLink = function (linkOptions) {\n    if (linkOptions === void 0) { linkOptions = {}; }\n    var _a = linkOptions.uri, uri = _a === void 0 ? \"/graphql\" : _a, \n    // use default global fetch if nothing passed in\n    preferredFetch = linkOptions.fetch, _b = linkOptions.print, print = _b === void 0 ? defaultPrinter : _b, includeExtensions = linkOptions.includeExtensions, preserveHeaderCase = linkOptions.preserveHeaderCase, useGETForQueries = linkOptions.useGETForQueries, _c = linkOptions.includeUnusedVariables, includeUnusedVariables = _c === void 0 ? false : _c, requestOptions = __rest(linkOptions, [\"uri\", \"fetch\", \"print\", \"includeExtensions\", \"preserveHeaderCase\", \"useGETForQueries\", \"includeUnusedVariables\"]);\n    if (globalThis.__DEV__ !== false) {\n        // Make sure at least one of preferredFetch, window.fetch, or backupFetch is\n        // defined, so requests won't fail at runtime.\n        checkFetcher(preferredFetch || backupFetch);\n    }\n    var linkConfig = {\n        http: { includeExtensions: includeExtensions, preserveHeaderCase: preserveHeaderCase },\n        options: requestOptions.fetchOptions,\n        credentials: requestOptions.credentials,\n        headers: requestOptions.headers,\n    };\n    return new ApolloLink(function (operation) {\n        var chosenURI = selectURI(operation, uri);\n        var context = operation.getContext();\n        // `apollographql-client-*` headers are automatically set if a\n        // `clientAwareness` object is found in the context. These headers are\n        // set first, followed by the rest of the headers pulled from\n        // `context.headers`. If desired, `apollographql-client-*` headers set by\n        // the `clientAwareness` object can be overridden by\n        // `apollographql-client-*` headers set in `context.headers`.\n        var clientAwarenessHeaders = {};\n        if (context.clientAwareness) {\n            var _a = context.clientAwareness, name_1 = _a.name, version = _a.version;\n            if (name_1) {\n                clientAwarenessHeaders[\"apollographql-client-name\"] = name_1;\n            }\n            if (version) {\n                clientAwarenessHeaders[\"apollographql-client-version\"] = version;\n            }\n        }\n        var contextHeaders = __assign(__assign({}, clientAwarenessHeaders), context.headers);\n        var contextConfig = {\n            http: context.http,\n            options: context.fetchOptions,\n            credentials: context.credentials,\n            headers: contextHeaders,\n        };\n        if (hasDirectives([\"client\"], operation.query)) {\n            var transformedQuery = removeClientSetsFromDocument(operation.query);\n            if (!transformedQuery) {\n                return fromError(new Error(\"HttpLink: Trying to send a client-only query to the server. To send to the server, ensure a non-client field is added to the query or set the `transformOptions.removeClientFields` option to `true`.\"));\n            }\n            operation.query = transformedQuery;\n        }\n        //uses fallback, link, and then context to build options\n        var _b = selectHttpOptionsAndBodyInternal(operation, print, fallbackHttpConfig, linkConfig, contextConfig), options = _b.options, body = _b.body;\n        if (body.variables && !includeUnusedVariables) {\n            body.variables = filterOperationVariables(body.variables, operation.query);\n        }\n        var controller;\n        if (!options.signal && typeof AbortController !== \"undefined\") {\n            controller = new AbortController();\n            options.signal = controller.signal;\n        }\n        // If requested, set method to GET if there are no mutations.\n        var definitionIsMutation = function (d) {\n            return d.kind === \"OperationDefinition\" && d.operation === \"mutation\";\n        };\n        var definitionIsSubscription = function (d) {\n            return d.kind === \"OperationDefinition\" && d.operation === \"subscription\";\n        };\n        var isSubscription = definitionIsSubscription(getMainDefinition(operation.query));\n        // does not match custom directives beginning with @defer\n        var hasDefer = hasDirectives([\"defer\"], operation.query);\n        if (useGETForQueries &&\n            !operation.query.definitions.some(definitionIsMutation)) {\n            options.method = \"GET\";\n        }\n        if (hasDefer || isSubscription) {\n            options.headers = options.headers || {};\n            var acceptHeader = \"multipart/mixed;\";\n            // Omit defer-specific headers if the user attempts to defer a selection\n            // set on a subscription and log a warning.\n            if (isSubscription && hasDefer) {\n                globalThis.__DEV__ !== false && invariant.warn(38);\n            }\n            if (isSubscription) {\n                acceptHeader +=\n                    \"boundary=graphql;subscriptionSpec=1.0,application/json\";\n            }\n            else if (hasDefer) {\n                acceptHeader += \"deferSpec=20220824,application/json\";\n            }\n            options.headers.accept = acceptHeader;\n        }\n        if (options.method === \"GET\") {\n            var _c = rewriteURIForGET(chosenURI, body), newURI = _c.newURI, parseError = _c.parseError;\n            if (parseError) {\n                return fromError(parseError);\n            }\n            chosenURI = newURI;\n        }\n        else {\n            try {\n                options.body = serializeFetchParameter(body, \"Payload\");\n            }\n            catch (parseError) {\n                return fromError(parseError);\n            }\n        }\n        return new Observable(function (observer) {\n            // Prefer linkOptions.fetch (preferredFetch) if provided, and otherwise\n            // fall back to the *current* global window.fetch function (see issue\n            // #7832), or (if all else fails) the backupFetch function we saved when\n            // this module was first evaluated. This last option protects against the\n            // removal of window.fetch, which is unlikely but not impossible.\n            var currentFetch = preferredFetch || maybe(function () { return fetch; }) || backupFetch;\n            var observerNext = observer.next.bind(observer);\n            currentFetch(chosenURI, options)\n                .then(function (response) {\n                var _a;\n                operation.setContext({ response: response });\n                var ctype = (_a = response.headers) === null || _a === void 0 ? void 0 : _a.get(\"content-type\");\n                if (ctype !== null && /^multipart\\/mixed/i.test(ctype)) {\n                    return readMultipartBody(response, observerNext);\n                }\n                else {\n                    return parseAndCheckHttpResponse(operation)(response).then(observerNext);\n                }\n            })\n                .then(function () {\n                controller = undefined;\n                observer.complete();\n            })\n                .catch(function (err) {\n                controller = undefined;\n                handleError(err, observer);\n            });\n            return function () {\n                // XXX support canceling this request\n                // https://developers.google.com/web/updates/2017/09/abortable-fetch\n                if (controller)\n                    controller.abort();\n            };\n        });\n    });\n};\n//# sourceMappingURL=createHttpLink.js.map",
-      "start": 1712968597722,
-      "end": 1712968597727,
+      "start": 1713269988950,
+      "end": 1713269988959,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988959,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1712968597727,
-      "end": 1712968597727,
+      "start": 1713269988959,
+      "end": 1713269988960,
       "order": "normal"
     },
     {
       "name": "vite:define",
       "result": "import { __assign, __rest } from \"tslib\";\nimport { invariant } from \"../../utilities/globals/index.js\";\nimport { ApolloLink } from \"../core/index.js\";\nimport { Observable, hasDirectives } from \"../../utilities/index.js\";\nimport { serializeFetchParameter } from \"./serializeFetchParameter.js\";\nimport { selectURI } from \"./selectURI.js\";\nimport { handleError, readMultipartBody, parseAndCheckHttpResponse } from \"./parseAndCheckHttpResponse.js\";\nimport { checkFetcher } from \"./checkFetcher.js\";\nimport { selectHttpOptionsAndBodyInternal, defaultPrinter, fallbackHttpConfig } from \"./selectHttpOptionsAndBody.js\";\nimport { rewriteURIForGET } from \"./rewriteURIForGET.js\";\nimport { fromError, filterOperationVariables } from \"../utils/index.js\";\nimport { maybe, getMainDefinition, removeClientSetsFromDocument } from \"../../utilities/index.js\";\nvar backupFetch = maybe(function() {\n  return fetch;\n});\nexport var createHttpLink = function(linkOptions) {\n  if (linkOptions === void 0) {\n    linkOptions = {};\n  }\n  var _a = linkOptions.uri, uri = _a === void 0 ? \"/graphql\" : _a, preferredFetch = linkOptions.fetch, _b = linkOptions.print, print = _b === void 0 ? defaultPrinter : _b, includeExtensions = linkOptions.includeExtensions, preserveHeaderCase = linkOptions.preserveHeaderCase, useGETForQueries = linkOptions.useGETForQueries, _c = linkOptions.includeUnusedVariables, includeUnusedVariables = _c === void 0 ? false : _c, requestOptions = __rest(linkOptions, [\"uri\", \"fetch\", \"print\", \"includeExtensions\", \"preserveHeaderCase\", \"useGETForQueries\", \"includeUnusedVariables\"]);\n  if (globalThis.__DEV__ !== false) {\n    checkFetcher(preferredFetch || backupFetch);\n  }\n  var linkConfig = {\n    http: { includeExtensions, preserveHeaderCase },\n    options: requestOptions.fetchOptions,\n    credentials: requestOptions.credentials,\n    headers: requestOptions.headers\n  };\n  return new ApolloLink(function(operation) {\n    var chosenURI = selectURI(operation, uri);\n    var context = operation.getContext();\n    var clientAwarenessHeaders = {};\n    if (context.clientAwareness) {\n      var _a2 = context.clientAwareness, name_1 = _a2.name, version = _a2.version;\n      if (name_1) {\n        clientAwarenessHeaders[\"apollographql-client-name\"] = name_1;\n      }\n      if (version) {\n        clientAwarenessHeaders[\"apollographql-client-version\"] = version;\n      }\n    }\n    var contextHeaders = __assign(__assign({}, clientAwarenessHeaders), context.headers);\n    var contextConfig = {\n      http: context.http,\n      options: context.fetchOptions,\n      credentials: context.credentials,\n      headers: contextHeaders\n    };\n    if (hasDirectives([\"client\"], operation.query)) {\n      var transformedQuery = removeClientSetsFromDocument(operation.query);\n      if (!transformedQuery) {\n        return fromError(new Error(\"HttpLink: Trying to send a client-only query to the server. To send to the server, ensure a non-client field is added to the query or set the `transformOptions.removeClientFields` option to `true`.\"));\n      }\n      operation.query = transformedQuery;\n    }\n    var _b2 = selectHttpOptionsAndBodyInternal(operation, print, fallbackHttpConfig, linkConfig, contextConfig), options = _b2.options, body = _b2.body;\n    if (body.variables && !includeUnusedVariables) {\n      body.variables = filterOperationVariables(body.variables, operation.query);\n    }\n    var controller;\n    if (!options.signal && typeof AbortController !== \"undefined\") {\n      controller = new AbortController();\n      options.signal = controller.signal;\n    }\n    var definitionIsMutation = function(d) {\n      return d.kind === \"OperationDefinition\" && d.operation === \"mutation\";\n    };\n    var definitionIsSubscription = function(d) {\n      return d.kind === \"OperationDefinition\" && d.operation === \"subscription\";\n    };\n    var isSubscription = definitionIsSubscription(getMainDefinition(operation.query));\n    var hasDefer = hasDirectives([\"defer\"], operation.query);\n    if (useGETForQueries && !operation.query.definitions.some(definitionIsMutation)) {\n      options.method = \"GET\";\n    }\n    if (hasDefer || isSubscription) {\n      options.headers = options.headers || {};\n      var acceptHeader = \"multipart/mixed;\";\n      if (isSubscription && hasDefer) {\n        globalThis.__DEV__ !== false && invariant.warn(38);\n      }\n      if (isSubscription) {\n        acceptHeader += \"boundary=graphql;subscriptionSpec=1.0,application/json\";\n      } else if (hasDefer) {\n        acceptHeader += \"deferSpec=20220824,application/json\";\n      }\n      options.headers.accept = acceptHeader;\n    }\n    if (options.method === \"GET\") {\n      var _c2 = rewriteURIForGET(chosenURI, body), newURI = _c2.newURI, parseError = _c2.parseError;\n      if (parseError) {\n        return fromError(parseError);\n      }\n      chosenURI = newURI;\n    } else {\n      try {\n        options.body = serializeFetchParameter(body, \"Payload\");\n      } catch (parseError2) {\n        return fromError(parseError2);\n      }\n    }\n    return new Observable(function(observer) {\n      var currentFetch = preferredFetch || maybe(function() {\n        return fetch;\n      }) || backupFetch;\n      var observerNext = observer.next.bind(observer);\n      currentFetch(chosenURI, options).then(function(response) {\n        var _a3;\n        operation.setContext({ response });\n        var ctype = (_a3 = response.headers) === null || _a3 === void 0 ? void 0 : _a3.get(\"content-type\");\n        if (ctype !== null && /^multipart\\/mixed/i.test(ctype)) {\n          return readMultipartBody(response, observerNext);\n        } else {\n          return parseAndCheckHttpResponse(operation)(response).then(observerNext);\n        }\n      }).then(function() {\n        controller = void 0;\n        observer.complete();\n      }).catch(function(err) {\n        controller = void 0;\n        handleError(err, observer);\n      });\n      return function() {\n        if (controller)\n          controller.abort();\n      };\n    });\n  });\n};\n",
-      "start": 1712968597727,
-      "end": 1712968598002,
+      "start": 1713269988960,
+      "end": 1713269989316,
       "order": "normal",
       "sourcemaps": "{\n  \"version\": 3,\n  \"sources\": [\"/Users/shubhamsingh/namma/importedProds/node_modules/@apollo/client/link/http/createHttpLink.js\"],\n  \"sourcesContent\": [\"import { __assign, __rest } from \\\"tslib\\\";\\nimport { invariant } from \\\"../../utilities/globals/index.js\\\";\\nimport { ApolloLink } from \\\"../core/index.js\\\";\\nimport { Observable, hasDirectives } from \\\"../../utilities/index.js\\\";\\nimport { serializeFetchParameter } from \\\"./serializeFetchParameter.js\\\";\\nimport { selectURI } from \\\"./selectURI.js\\\";\\nimport { handleError, readMultipartBody, parseAndCheckHttpResponse, } from \\\"./parseAndCheckHttpResponse.js\\\";\\nimport { checkFetcher } from \\\"./checkFetcher.js\\\";\\nimport { selectHttpOptionsAndBodyInternal, defaultPrinter, fallbackHttpConfig, } from \\\"./selectHttpOptionsAndBody.js\\\";\\nimport { rewriteURIForGET } from \\\"./rewriteURIForGET.js\\\";\\nimport { fromError, filterOperationVariables } from \\\"../utils/index.js\\\";\\nimport { maybe, getMainDefinition, removeClientSetsFromDocument, } from \\\"../../utilities/index.js\\\";\\nvar backupFetch = maybe(function () { return fetch; });\\nexport var createHttpLink = function (linkOptions) {\\n    if (linkOptions === void 0) { linkOptions = {}; }\\n    var _a = linkOptions.uri, uri = _a === void 0 ? \\\"/graphql\\\" : _a, \\n    // use default global fetch if nothing passed in\\n    preferredFetch = linkOptions.fetch, _b = linkOptions.print, print = _b === void 0 ? defaultPrinter : _b, includeExtensions = linkOptions.includeExtensions, preserveHeaderCase = linkOptions.preserveHeaderCase, useGETForQueries = linkOptions.useGETForQueries, _c = linkOptions.includeUnusedVariables, includeUnusedVariables = _c === void 0 ? false : _c, requestOptions = __rest(linkOptions, [\\\"uri\\\", \\\"fetch\\\", \\\"print\\\", \\\"includeExtensions\\\", \\\"preserveHeaderCase\\\", \\\"useGETForQueries\\\", \\\"includeUnusedVariables\\\"]);\\n    if (globalThis.__DEV__ !== false) {\\n        // Make sure at least one of preferredFetch, window.fetch, or backupFetch is\\n        // defined, so requests won't fail at runtime.\\n        checkFetcher(preferredFetch || backupFetch);\\n    }\\n    var linkConfig = {\\n        http: { includeExtensions: includeExtensions, preserveHeaderCase: preserveHeaderCase },\\n        options: requestOptions.fetchOptions,\\n        credentials: requestOptions.credentials,\\n        headers: requestOptions.headers,\\n    };\\n    return new ApolloLink(function (operation) {\\n        var chosenURI = selectURI(operation, uri);\\n        var context = operation.getContext();\\n        // `apollographql-client-*` headers are automatically set if a\\n        // `clientAwareness` object is found in the context. These headers are\\n        // set first, followed by the rest of the headers pulled from\\n        // `context.headers`. If desired, `apollographql-client-*` headers set by\\n        // the `clientAwareness` object can be overridden by\\n        // `apollographql-client-*` headers set in `context.headers`.\\n        var clientAwarenessHeaders = {};\\n        if (context.clientAwareness) {\\n            var _a = context.clientAwareness, name_1 = _a.name, version = _a.version;\\n            if (name_1) {\\n                clientAwarenessHeaders[\\\"apollographql-client-name\\\"] = name_1;\\n            }\\n            if (version) {\\n                clientAwarenessHeaders[\\\"apollographql-client-version\\\"] = version;\\n            }\\n        }\\n        var contextHeaders = __assign(__assign({}, clientAwarenessHeaders), context.headers);\\n        var contextConfig = {\\n            http: context.http,\\n            options: context.fetchOptions,\\n            credentials: context.credentials,\\n            headers: contextHeaders,\\n        };\\n        if (hasDirectives([\\\"client\\\"], operation.query)) {\\n            var transformedQuery = removeClientSetsFromDocument(operation.query);\\n            if (!transformedQuery) {\\n                return fromError(new Error(\\\"HttpLink: Trying to send a client-only query to the server. To send to the server, ensure a non-client field is added to the query or set the `transformOptions.removeClientFields` option to `true`.\\\"));\\n            }\\n            operation.query = transformedQuery;\\n        }\\n        //uses fallback, link, and then context to build options\\n        var _b = selectHttpOptionsAndBodyInternal(operation, print, fallbackHttpConfig, linkConfig, contextConfig), options = _b.options, body = _b.body;\\n        if (body.variables && !includeUnusedVariables) {\\n            body.variables = filterOperationVariables(body.variables, operation.query);\\n        }\\n        var controller;\\n        if (!options.signal && typeof AbortController !== \\\"undefined\\\") {\\n            controller = new AbortController();\\n            options.signal = controller.signal;\\n        }\\n        // If requested, set method to GET if there are no mutations.\\n        var definitionIsMutation = function (d) {\\n            return d.kind === \\\"OperationDefinition\\\" && d.operation === \\\"mutation\\\";\\n        };\\n        var definitionIsSubscription = function (d) {\\n            return d.kind === \\\"OperationDefinition\\\" && d.operation === \\\"subscription\\\";\\n        };\\n        var isSubscription = definitionIsSubscription(getMainDefinition(operation.query));\\n        // does not match custom directives beginning with @defer\\n        var hasDefer = hasDirectives([\\\"defer\\\"], operation.query);\\n        if (useGETForQueries &&\\n            !operation.query.definitions.some(definitionIsMutation)) {\\n            options.method = \\\"GET\\\";\\n        }\\n        if (hasDefer || isSubscription) {\\n            options.headers = options.headers || {};\\n            var acceptHeader = \\\"multipart/mixed;\\\";\\n            // Omit defer-specific headers if the user attempts to defer a selection\\n            // set on a subscription and log a warning.\\n            if (isSubscription && hasDefer) {\\n                globalThis.__DEV__ !== false && invariant.warn(38);\\n            }\\n            if (isSubscription) {\\n                acceptHeader +=\\n                    \\\"boundary=graphql;subscriptionSpec=1.0,application/json\\\";\\n            }\\n            else if (hasDefer) {\\n                acceptHeader += \\\"deferSpec=20220824,application/json\\\";\\n            }\\n            options.headers.accept = acceptHeader;\\n        }\\n        if (options.method === \\\"GET\\\") {\\n            var _c = rewriteURIForGET(chosenURI, body), newURI = _c.newURI, parseError = _c.parseError;\\n            if (parseError) {\\n                return fromError(parseError);\\n            }\\n            chosenURI = newURI;\\n        }\\n        else {\\n            try {\\n                options.body = serializeFetchParameter(body, \\\"Payload\\\");\\n            }\\n            catch (parseError) {\\n                return fromError(parseError);\\n            }\\n        }\\n        return new Observable(function (observer) {\\n            // Prefer linkOptions.fetch (preferredFetch) if provided, and otherwise\\n            // fall back to the *current* global window.fetch function (see issue\\n            // #7832), or (if all else fails) the backupFetch function we saved when\\n            // this module was first evaluated. This last option protects against the\\n            // removal of window.fetch, which is unlikely but not impossible.\\n            var currentFetch = preferredFetch || maybe(function () { return fetch; }) || backupFetch;\\n            var observerNext = observer.next.bind(observer);\\n            currentFetch(chosenURI, options)\\n                .then(function (response) {\\n                var _a;\\n                operation.setContext({ response: response });\\n                var ctype = (_a = response.headers) === null || _a === void 0 ? void 0 : _a.get(\\\"content-type\\\");\\n                if (ctype !== null && /^multipart\\\\/mixed/i.test(ctype)) {\\n                    return readMultipartBody(response, observerNext);\\n                }\\n                else {\\n                    return parseAndCheckHttpResponse(operation)(response).then(observerNext);\\n                }\\n            })\\n                .then(function () {\\n                controller = undefined;\\n                observer.complete();\\n            })\\n                .catch(function (err) {\\n                controller = undefined;\\n                handleError(err, observer);\\n            });\\n            return function () {\\n                // XXX support canceling this request\\n                // https://developers.google.com/web/updates/2017/09/abortable-fetch\\n                if (controller)\\n                    controller.abort();\\n            };\\n        });\\n    });\\n};\\n//# sourceMappingURL=createHttpLink.js.map\"],\n  \"mappings\": \"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\",\n  \"names\": [\"_a\", \"_b\", \"_c\", \"parseError\"]\n}\n"
     },
     {
       "name": "vite:css-post",
-      "start": 1712968598002,
-      "end": 1712968598002,
+      "start": 1713269989316,
+      "end": 1713269989316,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1712968598002,
-      "end": 1712968598002,
+      "start": 1713269989316,
+      "end": 1713269989316,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1712968598002,
-      "end": 1712968598002,
+      "start": 1713269989316,
+      "end": 1713269989316,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1712968598002,
-      "end": 1712968598002,
+      "start": 1713269989316,
+      "end": 1713269989316,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1712968598002,
-      "end": 1712968598003,
+      "start": 1713269989316,
+      "end": 1713269989317,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1712968598003,
-      "end": 1712968598003,
+      "start": 1713269989317,
+      "end": 1713269989317,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1712968598003,
-      "end": 1712968598003,
+      "start": 1713269989317,
+      "end": 1713269989317,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968598003,
-      "end": 1712968598003,
+      "start": 1713269989317,
+      "end": 1713269989317,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968598003,
-      "end": 1712968598003,
+      "start": 1713269989317,
+      "end": 1713269989317,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1712968598003,
-      "end": 1712968598003,
+      "start": 1713269989317,
+      "end": 1713269989317,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1712968598003,
-      "end": 1712968598003,
+      "start": 1713269989317,
+      "end": 1713269989317,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1712968598003,
-      "end": 1712968598003,
+      "start": 1713269989317,
+      "end": 1713269989317,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1712968598003,
-      "end": 1712968598003,
+      "start": 1713269989317,
+      "end": 1713269989317,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968598003,
-      "end": 1712968598003,
+      "start": 1713269989317,
+      "end": 1713269989317,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968598003,
-      "end": 1712968598003,
+      "start": 1713269989317,
+      "end": 1713269989317,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1712968598003,
-      "end": 1712968598003,
+      "start": 1713269989317,
+      "end": 1713269989317,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1712968598003,
-      "end": 1712968598003,
+      "start": 1713269989317,
+      "end": 1713269989317,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1712968598003,
-      "end": 1712968598003,
+      "start": 1713269989317,
+      "end": 1713269989317,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1712968598003,
-      "end": 1712968598003,
+      "start": 1713269989317,
+      "end": 1713269989317,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1712968598003,
-      "end": 1712968598003,
+      "start": 1713269989317,
+      "end": 1713269989317,
       "order": "normal"
     }
   ]

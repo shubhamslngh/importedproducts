@@ -1,0 +1,306 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Footer.vue?vue&type=style&index=0&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.Footer {\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n}\n\n\n",
+      "start": 1713269989001,
+      "end": 1713269989001,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Footer.vue"
+        ],
+        "names": [],
+        "mappings": ";AAqBA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;EACT,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;AACb",
+        "file": "/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Footer.vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<script lang=\"ts\" setup>\nconst { awesome } = useAppConfig();\n</script>\n\n<template>\n  <footer\n    class=\"Footer static mx-auto  allign-bottom border-t my-8 mt-5 border-gray-900/10 dark:border-gray-50/[0.2]\"\n  >\n    <div\n      class=\"Footer justify-between  allign-bottom mx-auto px-4  md:flex-row py-2 space-y-2 md:space-y-0 items-center text-xs text-center md:text-left text-gray-400\"\n    >\n      <div>\n        Copyright ©\n        {{ awesome?.layout?.footer?.year || new Date().getFullYear() }}\n        {{ awesome?.author?.name || \"\" }}. All rights reserved.\n      </div>\n      <div>{{ awesome.name }}</div>\n    </div>\n  </footer>\n</template>\n<style>\n.Footer {\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n}\n\n\n</style>\n"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713269989001,
+      "end": 1713269989001,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1713269989001,
+      "end": 1713269989001,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713269989001,
+      "end": 1713269989001,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1713269989001,
+      "end": 1713269989001,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1713269989001,
+      "end": 1713269989001,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1713269989001,
+      "end": 1713269989001,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1713269989001,
+      "end": 1713269989001,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".Footer{bottom:0;position:absolute;width:100%}",
+      "start": 1713269989001,
+      "end": 1713269989011,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Footer.vue",
+        "mappings": "AACA,QAEE,QAAS,CADT,iBAAkB,CAElB,UACF",
+        "names": [],
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Footer.vue"
+        ],
+        "sourcesContent": [
+          "\n.Footer {\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n}\n\n\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1713269989011,
+      "end": 1713269989011,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1713269989011,
+      "end": 1713269989011,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1713269989011,
+      "end": 1713269989011,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".Footer{bottom:0;position:absolute;width:100%}",
+      "start": 1713269989011,
+      "end": 1713269989012,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Footer.vue",
+        "mappings": "AAAA,QAAQ,QAAQ,CAAC,iBAAiB,CAAC,UAAU",
+        "names": [],
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Footer.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1713269989012,
+      "end": 1713269989012,
+      "order": "normal"
+    }
+  ]
+}

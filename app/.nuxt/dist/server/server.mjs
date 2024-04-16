@@ -608,7 +608,7 @@ const _routes = [
     meta: __nuxt_page_meta$8 || {},
     alias: (__nuxt_page_meta$8 == null ? void 0 : __nuxt_page_meta$8.alias) || [],
     redirect: __nuxt_page_meta$8 == null ? void 0 : __nuxt_page_meta$8.redirect,
-    component: () => import("./_nuxt/cart-CyGFDaH1.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/cart-BvYHyRHO.js").then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$7 == null ? void 0 : __nuxt_page_meta$7.name) ?? "docs-components",
@@ -640,7 +640,7 @@ const _routes = [
     meta: __nuxt_page_meta$4 || {},
     alias: (__nuxt_page_meta$4 == null ? void 0 : __nuxt_page_meta$4.alias) || [],
     redirect: __nuxt_page_meta$4 == null ? void 0 : __nuxt_page_meta$4.redirect,
-    component: () => import("./_nuxt/_slug_-CIzkKceq.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/_slug_-CEJN1hK2.js").then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$3 == null ? void 0 : __nuxt_page_meta$3.name) ?? "post",
@@ -648,7 +648,7 @@ const _routes = [
     meta: __nuxt_page_meta$3 || {},
     alias: (__nuxt_page_meta$3 == null ? void 0 : __nuxt_page_meta$3.alias) || [],
     redirect: __nuxt_page_meta$3 == null ? void 0 : __nuxt_page_meta$3.redirect,
-    component: () => import("./_nuxt/index-DgLHalvt.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/index-B1sVhcrZ.js").then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.name) ?? "products",
@@ -656,7 +656,7 @@ const _routes = [
     meta: __nuxt_page_meta$2 || {},
     alias: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.alias) || [],
     redirect: __nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.redirect,
-    component: () => import("./_nuxt/products-DmYnGf-7.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/products-bEwDRY0Z.js").then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.name) ?? "setting",
@@ -664,7 +664,7 @@ const _routes = [
     meta: __nuxt_page_meta$1 || {},
     alias: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.alias) || [],
     redirect: __nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.redirect,
-    component: () => import("./_nuxt/setting-CXichQ7u.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/setting-rS2TySqC.js").then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.name) ?? "travel",
@@ -672,7 +672,7 @@ const _routes = [
     meta: __nuxt_page_meta || {},
     alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
     redirect: __nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect,
-    component: () => import("./_nuxt/travel-B2YeIj-N.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/travel-RgkZEj-x.js").then((m) => m.default || m)
   }
 ];
 const _wrapIf = (component, props, slots) => {
@@ -881,7 +881,7 @@ const cfg1 = defineAppConfig({
 });
 const inlineConfig = {
   "nuxt": {
-    "buildId": "a71c0d62-8e8e-4f0f-bb3d-612bcd7893bf"
+    "buildId": "703763f0-2d87-4ab7-8a4b-875bf2caab5b"
   }
 };
 const __appConfig = /* @__PURE__ */ defuFn(cfg0, cfg1, inlineConfig);
@@ -2514,14 +2514,14 @@ const revive_payload_server_ICvz7TjQsJ = /* @__PURE__ */ defineNuxtPlugin({
   }
 });
 const LazyLayoutPageContent = defineAsyncComponent(() => import("./_nuxt/Content-C2f3kgVA.js").then((r) => r.default));
-const LazyLayoutPageFooter = defineAsyncComponent(() => import("./_nuxt/Footer-ClGBpo4X.js").then((r) => r.default));
+const LazyLayoutPageFooter = defineAsyncComponent(() => import("./_nuxt/Footer-slvujmy-.js").then((r) => r.default));
 const LazyLayoutPageHeader = defineAsyncComponent(() => import("./_nuxt/Header-B6zZF8Qh.js").then((r) => r.default));
-const LazyLayoutPageNavbar = defineAsyncComponent(() => import("./_nuxt/Navbar-Qd9eDg0g.js").then((r) => r.default));
-const LazyLayoutPageNavbarDropdownThemeSwitcher = defineAsyncComponent(() => import("./_nuxt/ThemeSwitcher-DaW-q_Ap.js").then((r) => r.default));
-const LazyLayoutPageNavbarMenuItem = defineAsyncComponent(() => import("./_nuxt/Item-CWTds3Ii.js").then(function(n) {
+const LazyLayoutPageNavbar = defineAsyncComponent(() => import("./_nuxt/Navbar-D7ZNxmWQ.js").then((r) => r.default));
+const LazyLayoutPageNavbarDropdownThemeSwitcher = defineAsyncComponent(() => import("./_nuxt/ThemeSwitcher-HSOxbnOf.js").then((r) => r.default));
+const LazyLayoutPageNavbarMenuItem = defineAsyncComponent(() => import("./_nuxt/Item-vTDX-N5x.js").then(function(n) {
   return n.I;
 }).then((r) => r.default));
-const LazyLayoutPageNavbarMenuWrapper = defineAsyncComponent(() => import("./_nuxt/Wrapper-CLYjqPbv.js").then((r) => r.default));
+const LazyLayoutPageNavbarMenuWrapper = defineAsyncComponent(() => import("./_nuxt/Wrapper-BytDg93k.js").then((r) => r.default));
 const LazyLayoutPageSectionTitle = defineAsyncComponent(() => import("./_nuxt/Title-yS4Jz3G_.js").then((r) => r.default));
 const LazyLayoutPageSection = defineAsyncComponent(() => import("./_nuxt/index-CHg0DFwX.js").then((r) => r.default));
 const LazyLayoutPageTitle = defineAsyncComponent(() => import("./_nuxt/Title-BIa0rC2o.js").then((r) => r.default));
@@ -2533,19 +2533,19 @@ const LazyAwesomeActionSheetHeaderTitle = defineAsyncComponent(() => import("./_
 const LazyAwesomeActionSheetItem = defineAsyncComponent(() => import("./_nuxt/Item-BCUbGuGR.js").then((r) => r.default));
 const LazyAwesomeActionSheetItemButton = defineAsyncComponent(() => import("./_nuxt/ItemButton-Dw-r8Rgd.js").then((r) => r.default));
 const LazyAwesomeActionSheet = defineAsyncComponent(() => import("./_nuxt/index-C7WNADVQ.js").then((r) => r.default));
-const LazyAwesomeAddtoCart = defineAsyncComponent(() => import("./_nuxt/AddtoCart-B73ULrWL.js").then((r) => r.default));
-const LazyAwesomeAlertBanner = defineAsyncComponent(() => import("./_nuxt/AlertBanner-CH3sVtLL.js").then((r) => r.default));
+const LazyAwesomeAddtoCart = defineAsyncComponent(() => import("./_nuxt/AddtoCart-DJTt909a.js").then((r) => r.default));
+const LazyAwesomeAlertBanner = defineAsyncComponent(() => import("./_nuxt/AlertBanner-COar2FOB.js").then((r) => r.default));
 const LazyAwesomeButton = defineAsyncComponent(() => import("./_nuxt/index-BiVuT8Ja.js").then((r) => r.default));
 const LazyAwesomeCardContent = defineAsyncComponent(() => import("./_nuxt/Content-GxJTcNsd.js").then((r) => r.default));
-const LazyAwesomeCardFooter = defineAsyncComponent(() => import("./_nuxt/Footer-BEtAofJJ.js").then((r) => r.default));
+const LazyAwesomeCardFooter = defineAsyncComponent(() => import("./_nuxt/Footer-DQhInYNk.js").then((r) => r.default));
 const LazyAwesomeCardTitle = defineAsyncComponent(() => import("./_nuxt/Title-NbdIlZdg.js").then((r) => r.default));
 const LazyAwesomeCard = defineAsyncComponent(() => import("./_nuxt/index-BNuFT_1Q.js").then((r) => r.default));
 const LazyAwesomeCardstest = defineAsyncComponent(() => import("./_nuxt/Cardstest-DZQmDl_-.js").then((r) => r.default));
-const LazyAwesomeCart = defineAsyncComponent(() => import("./_nuxt/Cart-M-V_k1B-.js").then((r) => r.default));
-const LazyAwesomeCases = defineAsyncComponent(() => import("./_nuxt/Cases-DtbYqHoy.js").then((r) => r.default));
-const LazyAwesomeColors = defineAsyncComponent(() => import("./_nuxt/Colors-VsURD8Yg.js").then((r) => r.default));
-const LazyAwesomeContentDoc = defineAsyncComponent(() => import("./_nuxt/Doc-ZLOPamrY.js").then((r) => r.default));
-const LazyAwesomeContentRenderer = defineAsyncComponent(() => import("./_nuxt/Renderer-BFMoWyqB.js").then((r) => r.default));
+const LazyAwesomeCart = defineAsyncComponent(() => import("./_nuxt/Cart-Dr4VTMrM.js").then((r) => r.default));
+const LazyAwesomeCases = defineAsyncComponent(() => import("./_nuxt/Cases-Bm5HKJ3p.js").then((r) => r.default));
+const LazyAwesomeColors = defineAsyncComponent(() => import("./_nuxt/Colors-BDqP0Gvq.js").then((r) => r.default));
+const LazyAwesomeContentDoc = defineAsyncComponent(() => import("./_nuxt/Doc-Ccf8LThB.js").then((r) => r.default));
+const LazyAwesomeContentRenderer = defineAsyncComponent(() => import("./_nuxt/Renderer-DhNFQF_g.js").then((r) => r.default));
 const LazyAwesomeError = defineAsyncComponent(() => import("./_nuxt/Error-22e_eQnm.js").then((r) => r.default));
 const LazyAwesomeForm = defineAsyncComponent(() => import("./_nuxt/Form-BVPj_Wlj.js").then((r) => r.default));
 const LazyAwesomeFormSwitch = defineAsyncComponent(() => import("./_nuxt/Switch-Cqztsofe.js").then((r) => r.default));
@@ -2555,19 +2555,19 @@ const LazyAwesomeLink = defineAsyncComponent(() => import("./_nuxt/index-wZZaSsj
 const LazyAwesomeLogin = defineAsyncComponent(() => import("./_nuxt/Login-CIGLKkT0.js").then((r) => r.default));
 const LazyAwesomeParallax = defineAsyncComponent(() => import("./_nuxt/Parallax-CyI8VYe_.js").then((r) => r.default));
 const LazyAwesomeProducts = defineAsyncComponent(() => import("./_nuxt/Products-C-q2irCC.js").then((r) => r.default));
-const LazyAwesomeSignup = defineAsyncComponent(() => import("./_nuxt/Signup-BVMZFaMc.js").then((r) => r.default));
-const LazyAwesomeSubscription = defineAsyncComponent(() => import("./_nuxt/Subscription-DlctyDjq.js").then((r) => r.default));
+const LazyAwesomeSignup = defineAsyncComponent(() => import("./_nuxt/Signup-XF2Jn-0n.js").then((r) => r.default));
+const LazyAwesomeSubscription = defineAsyncComponent(() => import("./_nuxt/Subscription-CD5a1CwG.js").then((r) => r.default));
 const LazyAwesomeTab = defineAsyncComponent(() => import("./_nuxt/Tab-C666GttA.js").then((r) => r.default));
 const LazyAwesomeTabs = defineAsyncComponent(() => import("./_nuxt/Tabs-DYQNldwo.js").then((r) => r.default));
-const LazyAwesomeVariations = defineAsyncComponent(() => import("./_nuxt/Variations-BZjaVUyd.js").then((r) => r.default));
+const LazyAwesomeVariations = defineAsyncComponent(() => import("./_nuxt/Variations-DPxsFSPu.js").then((r) => r.default));
 const LazyAwesomeWelcome = defineAsyncComponent(() => import("./_nuxt/Welcome-_2ZIwMi3.js").then((r) => r.default));
 const LazyAwesomeLamp = defineAsyncComponent(() => import("./_nuxt/lamp-DfWd0cjs.js").then((r) => r.default));
-const LazyContentDoc = defineAsyncComponent(() => import("./_nuxt/ContentDoc-BP5F1NFm.js").then((r) => r.default));
-const LazyContentList = defineAsyncComponent(() => import("./_nuxt/ContentList-CMHeg4f-.js").then((r) => r.default));
-const LazyContentNavigation = defineAsyncComponent(() => import("./_nuxt/ContentNavigation-BqmWJgiL.js").then((r) => r.default));
-const LazyContentQuery = defineAsyncComponent(() => import("./_nuxt/ContentQuery-DR-eC9Fp.js").then((r) => r.default));
-const LazyContentRenderer = defineAsyncComponent(() => import("./_nuxt/ContentRenderer-B8YMXpLV.js").then((r) => r.default));
-const LazyContentRendererMarkdown = defineAsyncComponent(() => import("./_nuxt/ContentRendererMarkdown-DxcUkqC1.js").then((r) => r.default));
+const LazyContentDoc = defineAsyncComponent(() => import("./_nuxt/ContentDoc-CvfmcjrD.js").then((r) => r.default));
+const LazyContentList = defineAsyncComponent(() => import("./_nuxt/ContentList-frnJQxNN.js").then((r) => r.default));
+const LazyContentNavigation = defineAsyncComponent(() => import("./_nuxt/ContentNavigation-B5WT-yLS.js").then((r) => r.default));
+const LazyContentQuery = defineAsyncComponent(() => import("./_nuxt/ContentQuery-PRAuUOif.js").then((r) => r.default));
+const LazyContentRenderer = defineAsyncComponent(() => import("./_nuxt/ContentRenderer-BpUzFDQL.js").then((r) => r.default));
+const LazyContentRendererMarkdown = defineAsyncComponent(() => import("./_nuxt/ContentRendererMarkdown-BDkQ0cRz.js").then((r) => r.default));
 const LazyContentSlot = defineAsyncComponent(() => import("./_nuxt/ContentSlot-DMYzPd4f.js").then((r) => r.default));
 const LazyDocumentDrivenEmpty = defineAsyncComponent(() => import("./_nuxt/DocumentDrivenEmpty-Cip47SHJ.js").then((r) => r.default));
 const LazyDocumentDrivenNotFound = defineAsyncComponent(() => import("./_nuxt/DocumentDrivenNotFound-CkdnlFZR.js").then((r) => r.default));
@@ -2598,7 +2598,7 @@ const LazyProseTh = defineAsyncComponent(() => import("./_nuxt/ProseTh-kUIwP_pf.
 const LazyProseThead = defineAsyncComponent(() => import("./_nuxt/ProseThead-CAv2lFJN.js").then((r) => r.default));
 const LazyProseTr = defineAsyncComponent(() => import("./_nuxt/ProseTr-CDvXZgj4.js").then((r) => r.default));
 const LazyProseUl = defineAsyncComponent(() => import("./_nuxt/ProseUl-CesOWPBt.js").then((r) => r.default));
-const LazyIcon = defineAsyncComponent(() => import("./_nuxt/Icon-D2VGgqqz.js").then((r) => r.default));
+const LazyIcon = defineAsyncComponent(() => import("./_nuxt/Icon-8QwQaLlr.js").then((r) => r.default));
 const LazyIconCSS = defineAsyncComponent(() => import("./_nuxt/IconCSS-DF35i0eF.js").then((r) => r.default));
 const lazyGlobalComponents = [
   ["LayoutPageContent", LazyLayoutPageContent],
@@ -10648,7 +10648,7 @@ const apollo_ieZFTqE1EA = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
     }
   });
   nuxtApp.hook("apollo:error", (error) => {
-    console.error(error);
+    console.error(error, "not able hit");
   });
 });
 const awesome_kbxNWw0ZAQ = /* @__PURE__ */ defineNuxtPlugin((nuxt) => {
@@ -11079,7 +11079,7 @@ const Body = defineComponent({
   setup: setupForUseMeta((bodyAttrs) => ({ bodyAttrs }), true)
 });
 const layouts = {
-  page: () => import("./_nuxt/page-pgX3o71R.js").then((m) => m.default || m)
+  page: () => import("./_nuxt/page-CVgY2UDD.js").then((m) => m.default || m)
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -11599,15 +11599,15 @@ export {
   entry$1 as default,
   useAppConfig as e,
   useAuthStore as f,
-  useAsyncQuery as g,
-  defineStore as h,
-  useMutation as i,
-  useRoute as j,
-  useAsyncData as k,
-  useRequestEvent as l,
-  useCookie as m,
+  defineStore as g,
+  useRoute as h,
+  useAsyncData as i,
+  useRequestEvent as j,
+  useCookie as k,
+  useNuxtApp as l,
+  useAsyncQuery as m,
   nuxtLinkDefaults as n,
-  useNuxtApp as o,
+  useMutation as o,
   useState as p,
   abortNavigation as q,
   useHead as u

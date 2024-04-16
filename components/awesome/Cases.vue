@@ -35,12 +35,13 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { cartItem } from "../../utils/cart";
 import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
 import gql from "graphql-tag";
 const selectedProductId = ref(0);
-const Data1 = ref([]);
-
+// const { Data1 } = await useAsyncQuery(cartItem);
+// console.log("cart",Data1)
 const query = gql`
   query MyQuery {
     products(where: { category: "cases" }) {
@@ -67,17 +68,14 @@ const initializeSwiper = () => {
       clickable: true,
     },
     breakpoints: {
-      // When window width is <= 768px
       420: {
         slidesPerView: 1,
         spaceBetween: 20,
       },
-      // When window width is <= 1024px
       720: {
         slidesPerView: 5,
         spaceBetween: 10,
       },
-      // When window width is <= 1440px
       1440: {
         slidesPerView: 5,
         spaceBetween: 40,

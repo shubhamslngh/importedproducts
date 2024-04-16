@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "var _defKindToExtKind;\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nimport inspect from \"../../jsutils/inspect.mjs\";\nimport invariant from \"../../jsutils/invariant.mjs\";\nimport didYouMean from \"../../jsutils/didYouMean.mjs\";\nimport suggestionList from \"../../jsutils/suggestionList.mjs\";\nimport { GraphQLError } from \"../../error/GraphQLError.mjs\";\nimport { Kind } from \"../../language/kinds.mjs\";\nimport { isTypeDefinitionNode } from \"../../language/predicates.mjs\";\nimport { isScalarType, isObjectType, isInterfaceType, isUnionType, isEnumType, isInputObjectType } from \"../../type/definition.mjs\";\n\n/**\n * Possible type extension\n *\n * A type extension is only valid if the type is defined and has the same kind.\n */\nexport function PossibleTypeExtensionsRule(context) {\n  var schema = context.getSchema();\n  var definedTypes = Object.create(null);\n\n  for (var _i2 = 0, _context$getDocument$2 = context.getDocument().definitions; _i2 < _context$getDocument$2.length; _i2++) {\n    var def = _context$getDocument$2[_i2];\n\n    if (isTypeDefinitionNode(def)) {\n      definedTypes[def.name.value] = def;\n    }\n  }\n\n  return {\n    ScalarTypeExtension: checkExtension,\n    ObjectTypeExtension: checkExtension,\n    InterfaceTypeExtension: checkExtension,\n    UnionTypeExtension: checkExtension,\n    EnumTypeExtension: checkExtension,\n    InputObjectTypeExtension: checkExtension\n  };\n\n  function checkExtension(node) {\n    var typeName = node.name.value;\n    var defNode = definedTypes[typeName];\n    var existingType = schema === null || schema === void 0 ? void 0 : schema.getType(typeName);\n    var expectedKind;\n\n    if (defNode) {\n      expectedKind = defKindToExtKind[defNode.kind];\n    } else if (existingType) {\n      expectedKind = typeToExtKind(existingType);\n    }\n\n    if (expectedKind) {\n      if (expectedKind !== node.kind) {\n        var kindStr = extensionKindToTypeName(node.kind);\n        context.reportError(new GraphQLError(\"Cannot extend non-\".concat(kindStr, \" type \\\"\").concat(typeName, \"\\\".\"), defNode ? [defNode, node] : node));\n      }\n    } else {\n      var allTypeNames = Object.keys(definedTypes);\n\n      if (schema) {\n        allTypeNames = allTypeNames.concat(Object.keys(schema.getTypeMap()));\n      }\n\n      var suggestedTypes = suggestionList(typeName, allTypeNames);\n      context.reportError(new GraphQLError(\"Cannot extend type \\\"\".concat(typeName, \"\\\" because it is not defined.\") + didYouMean(suggestedTypes), node.name));\n    }\n  }\n}\nvar defKindToExtKind = (_defKindToExtKind = {}, _defineProperty(_defKindToExtKind, Kind.SCALAR_TYPE_DEFINITION, Kind.SCALAR_TYPE_EXTENSION), _defineProperty(_defKindToExtKind, Kind.OBJECT_TYPE_DEFINITION, Kind.OBJECT_TYPE_EXTENSION), _defineProperty(_defKindToExtKind, Kind.INTERFACE_TYPE_DEFINITION, Kind.INTERFACE_TYPE_EXTENSION), _defineProperty(_defKindToExtKind, Kind.UNION_TYPE_DEFINITION, Kind.UNION_TYPE_EXTENSION), _defineProperty(_defKindToExtKind, Kind.ENUM_TYPE_DEFINITION, Kind.ENUM_TYPE_EXTENSION), _defineProperty(_defKindToExtKind, Kind.INPUT_OBJECT_TYPE_DEFINITION, Kind.INPUT_OBJECT_TYPE_EXTENSION), _defKindToExtKind);\n\nfunction typeToExtKind(type) {\n  if (isScalarType(type)) {\n    return Kind.SCALAR_TYPE_EXTENSION;\n  }\n\n  if (isObjectType(type)) {\n    return Kind.OBJECT_TYPE_EXTENSION;\n  }\n\n  if (isInterfaceType(type)) {\n    return Kind.INTERFACE_TYPE_EXTENSION;\n  }\n\n  if (isUnionType(type)) {\n    return Kind.UNION_TYPE_EXTENSION;\n  }\n\n  if (isEnumType(type)) {\n    return Kind.ENUM_TYPE_EXTENSION;\n  } // istanbul ignore else (See: 'https://github.com/graphql/graphql-js/issues/2618')\n\n\n  if (isInputObjectType(type)) {\n    return Kind.INPUT_OBJECT_TYPE_EXTENSION;\n  } // istanbul ignore next (Not reachable. All possible types have been considered)\n\n\n  false || invariant(0, 'Unexpected type: ' + inspect(type));\n}\n\nfunction extensionKindToTypeName(kind) {\n  switch (kind) {\n    case Kind.SCALAR_TYPE_EXTENSION:\n      return 'scalar';\n\n    case Kind.OBJECT_TYPE_EXTENSION:\n      return 'object';\n\n    case Kind.INTERFACE_TYPE_EXTENSION:\n      return 'interface';\n\n    case Kind.UNION_TYPE_EXTENSION:\n      return 'union';\n\n    case Kind.ENUM_TYPE_EXTENSION:\n      return 'enum';\n\n    case Kind.INPUT_OBJECT_TYPE_EXTENSION:\n      return 'input object';\n  } // istanbul ignore next (Not reachable. All possible types have been considered)\n\n\n  false || invariant(0, 'Unexpected kind: ' + inspect(kind));\n}\n",
-      "start": 1712968595034,
-      "end": 1712968595046,
+      "start": 1713269986271,
+      "end": 1713269986281,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1712968595046,
-      "end": 1712968595046,
+      "start": 1713269986281,
+      "end": 1713269986281,
       "order": "normal"
     }
   ]

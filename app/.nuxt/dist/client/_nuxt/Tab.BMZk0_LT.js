@@ -1,0 +1,1 @@
+import{j as r,i as s,aa as n,ag as o,u as i,J as c,X as u,a7 as l}from"./swiper-vue.rgMx2r3g.js";const p={class:"relative overflow-auto px-6 py-2"},f=r({__name:"Tab",props:{name:{type:String,required:!0},title:{type:String,required:!0}},setup(e){const t=s("activeTab");return(a,d)=>n((c(),u("div",p,[l(a.$slots,"default")],512)),[[o,i(t)===e.name]])}});export{f as default};

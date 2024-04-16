@@ -3,82 +3,82 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "<template>\n  <div class=\"flex ml-4 space-x-2\">\n    <div class=\"mb-7 flex items-center\">\n      <button\n        @click.prevent=\"counter.decrement\"\n        class=\"counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600\"\n      >\n        -\n      </button>\n      <div class=\"relative\">\n        <span\n          :key=\"counter.count\"\n          class=\"counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg\"\n          >{{ counter.count }}</span\n        >\n      </div>\n      <button\n        @click.prevent=\"counter.increment\"\n        class=\"counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600\"\n      >\n        +\n      </button>\n    </div>\n    <div class=\"mr-4\">\n      <AwesomeButton\n        @click=\"addToCartHandler\"\n        :disabled=\"loading\"\n        class=\"bg-red-800\"\n      >\n        Add to Cart\n      </AwesomeButton>\n    </div>\n  </div>\n</template>\n<script setup lang=\"ts\">\nimport { AddCart } from \"../../utils/cart\";\n\nlet props = defineProps({\n  productId: Number,\n  variationId: Number,\n  qty: Number,\n});\n// console.log(props.productId, \"this is ProducId\");\n// console.log(props.variationId, \"this is VariationID\");\n\nconst { mutate: addToCart, loading } = useMutation(AddCart);\nconst counter = useCounter();\nasync function addToCartHandler() {\n  console.log(props.productId);\n  try {\n    // const token = localStorage.getItem(\"authToken\");\n    loading.value = true;\n\n    await addToCart({\n      productId: props.productId,\n      variationId: props.variationId,\n      quantity: counter.count,\n     \n    }).then(() => {\n      props.productId = \"\";\n      props.variationId = \"\";\n      (props.qty = \"\"), (loading.value = false);\n      console.log(\"added to cart!\");\n    });\n  } catch (error) {\n    loading.value = false;\n    console.error(\"Error adding product to cart:\", error);\n  }\n}\n</script>\n",
-      "start": 1712968596826,
-      "end": 1712968596926,
+      "result": "<template>\n  <div class=\"flex ml-4 space-x-2\">\n    <div class=\"mb-7 flex items-center\">\n      <button\n        @click.prevent=\"counter.decrement\"\n        class=\"counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600\"\n      >\n        -\n      </button>\n      <div class=\"relative\">\n        <span\n          :key=\"counter.count\"\n          class=\"counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg\"\n          >{{ counter.count }}</span\n        >\n      </div>\n      <button\n        @click.prevent=\"counter.increment\"\n        class=\"counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600\"\n      >\n        +\n      </button>\n    </div>\n    <div class=\"mr-4\">\n      <AwesomeButton\n        @click=\"addToCartHandler\"\n        :disabled=\"loading\"\n        class=\"bg-red-800\"\n      >\n        Add to Cart\n      </AwesomeButton>\n    </div>\n  </div>\n</template>\n<script setup lang=\"ts\">\nimport { AddCart } from \"../../utils/cart\";\n\nvar props = defineProps({\n  productId: Number,\n  variationId: Number,\n  qty: Number,\n});\n// console.log(props.productId, \"this is ProducId\");\n// console.log(props.variationId, \"this is VariationID\");\n\nconst { mutate: addToCart, loading } = useMutation(AddCart);\nconst counter = useCounter();\nasync function addToCartHandler() {\n  console.log(props.productId);\n  try {\n    // const token = localStorage.getItem(\"authToken\");\n    loading.value = true;\n\n    await addToCart({\n      productId: props.productId,\n      variationId: props.variationId,\n      quantity: counter.count,\n     \n    }).then(() => {\n      // props.productId = \"\";\n      // props.variationId = \"\";\n      // (props.qty = \"\"), \n      (loading.value = false);\n      console.log(\"added to cart!\");\n    });\n  } catch (error) {\n    loading.value = false;\n    console.error(\"Error adding product to cart:\", error);\n  }\n}\n</script>\n",
+      "start": 1713269988105,
+      "end": 1713269988262,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968596926,
-      "end": 1712968596926,
+      "start": 1713269988262,
+      "end": 1713269988262,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968596926,
-      "end": 1712968596926,
+      "start": 1713269988262,
+      "end": 1713269988262,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968596926,
-      "end": 1712968596926,
+      "start": 1713269988262,
+      "end": 1713269988262,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968596926,
-      "end": 1712968596926,
+      "start": 1713269988262,
+      "end": 1713269988262,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968596926,
-      "end": 1712968596926,
+      "start": 1713269988262,
+      "end": 1713269988262,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968596926,
-      "end": 1712968596926,
+      "start": 1713269988262,
+      "end": 1713269988262,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1712968596926,
-      "end": 1712968596926,
+      "start": 1713269988262,
+      "end": 1713269988262,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1712968596926,
-      "end": 1712968596926,
+      "start": 1713269988262,
+      "end": 1713269988262,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1712968596926,
-      "end": 1712968596926,
+      "start": 1713269988262,
+      "end": 1713269988262,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1712968596926,
-      "end": 1712968596926,
+      "start": 1713269988262,
+      "end": 1713269988262,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1712968596926,
-      "end": 1712968596926,
+      "start": 1713269988262,
+      "end": 1713269988262,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "import _sfc_main from \"/Users/shubhamsingh/namma/importedProds/components/awesome/AddtoCart.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/shubhamsingh/namma/importedProds/components/awesome/AddtoCart.vue?vue&type=script&setup=true&lang.ts\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"../components/awesome/AddtoCart.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nexport default _sfc_main;\n",
-      "start": 1712968596926,
-      "end": 1712968597067,
+      "start": 1713269988262,
+      "end": 1713269988310,
       "order": "normal",
       "sourcemaps": {
         "mappings": ""
@@ -86,184 +86,184 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988310,
+      "end": 1713269988310,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988310,
+      "end": 1713269988310,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988310,
+      "end": 1713269988310,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988310,
+      "end": 1713269988310,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988310,
+      "end": 1713269988310,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988310,
+      "end": 1713269988310,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/AddtoCart.vue\").then(r => r.default))",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988310,
+      "end": 1713269988310,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988310,
+      "end": 1713269988310,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988310,
+      "end": 1713269988310,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988310,
+      "end": 1713269988310,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988310,
+      "end": 1713269988310,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988310,
+      "end": 1713269988310,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988310,
+      "end": 1713269988310,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1712968597067,
-      "end": 1712968597067,
+      "start": 1713269988311,
+      "end": 1713269988311,
       "order": "normal"
     }
   ]

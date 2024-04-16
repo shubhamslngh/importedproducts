@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "import { __assign, __spreadArray } from \"tslib\";\nimport { visit } from \"graphql\";\nimport { wrap } from \"optimism\";\nimport { cacheSizes, getFragmentDefinitions, } from \"../../utilities/index.js\";\nimport { WeakCache } from \"@wry/caches\";\n// As long as createFragmentRegistry is not imported or used, the\n// FragmentRegistry example implementation provided below should not be bundled\n// (by tree-shaking bundlers like Rollup), because the implementation of\n// InMemoryCache refers only to the TypeScript interface FragmentRegistryAPI,\n// never the concrete implementation FragmentRegistry (which is deliberately not\n// exported from this module).\nexport function createFragmentRegistry() {\n    var fragments = [];\n    for (var _i = 0; _i < arguments.length; _i++) {\n        fragments[_i] = arguments[_i];\n    }\n    return new (FragmentRegistry.bind.apply(FragmentRegistry, __spreadArray([void 0], fragments, false)))();\n}\nvar FragmentRegistry = /** @class */ (function () {\n    // Call `createFragmentRegistry` instead of invoking the\n    // FragmentRegistry constructor directly. This reserves the constructor for\n    // future configuration of the FragmentRegistry.\n    function FragmentRegistry() {\n        var fragments = [];\n        for (var _i = 0; _i < arguments.length; _i++) {\n            fragments[_i] = arguments[_i];\n        }\n        this.registry = Object.create(null);\n        this.resetCaches();\n        if (fragments.length) {\n            this.register.apply(this, fragments);\n        }\n    }\n    FragmentRegistry.prototype.register = function () {\n        var _this = this;\n        var fragments = [];\n        for (var _i = 0; _i < arguments.length; _i++) {\n            fragments[_i] = arguments[_i];\n        }\n        var definitions = new Map();\n        fragments.forEach(function (doc) {\n            getFragmentDefinitions(doc).forEach(function (node) {\n                definitions.set(node.name.value, node);\n            });\n        });\n        definitions.forEach(function (node, name) {\n            if (node !== _this.registry[name]) {\n                _this.registry[name] = node;\n                _this.invalidate(name);\n            }\n        });\n        return this;\n    };\n    // Overridden in the resetCaches method below.\n    FragmentRegistry.prototype.invalidate = function (name) { };\n    FragmentRegistry.prototype.resetCaches = function () {\n        var proto = FragmentRegistry.prototype;\n        this.invalidate = (this.lookup = wrap(proto.lookup.bind(this), {\n            makeCacheKey: function (arg) { return arg; },\n            max: cacheSizes[\"fragmentRegistry.lookup\"] ||\n                1000 /* defaultCacheSizes[\"fragmentRegistry.lookup\"] */,\n        })).dirty; // This dirty function is bound to the wrapped lookup method.\n        this.transform = wrap(proto.transform.bind(this), {\n            cache: WeakCache,\n            max: cacheSizes[\"fragmentRegistry.transform\"] ||\n                2000 /* defaultCacheSizes[\"fragmentRegistry.transform\"] */,\n        });\n        this.findFragmentSpreads = wrap(proto.findFragmentSpreads.bind(this), {\n            cache: WeakCache,\n            max: cacheSizes[\"fragmentRegistry.findFragmentSpreads\"] ||\n                4000 /* defaultCacheSizes[\"fragmentRegistry.findFragmentSpreads\"] */,\n        });\n    };\n    /*\n     * Note:\n     * This method is only memoized so it can serve as a dependency to `tranform`,\n     * so calling `invalidate` will invalidate cache entries for `transform`.\n     */\n    FragmentRegistry.prototype.lookup = function (fragmentName) {\n        return this.registry[fragmentName] || null;\n    };\n    FragmentRegistry.prototype.transform = function (document) {\n        var _this = this;\n        var defined = new Map();\n        getFragmentDefinitions(document).forEach(function (def) {\n            defined.set(def.name.value, def);\n        });\n        var unbound = new Set();\n        var enqueue = function (spreadName) {\n            if (!defined.has(spreadName)) {\n                unbound.add(spreadName);\n            }\n        };\n        var enqueueChildSpreads = function (node) {\n            return Object.keys(_this.findFragmentSpreads(node)).forEach(enqueue);\n        };\n        enqueueChildSpreads(document);\n        var missing = [];\n        var map = Object.create(null);\n        // This Set forEach loop can be extended during iteration by adding\n        // additional strings to the unbound set.\n        unbound.forEach(function (fragmentName) {\n            var knownFragmentDef = defined.get(fragmentName);\n            if (knownFragmentDef) {\n                enqueueChildSpreads((map[fragmentName] = knownFragmentDef));\n            }\n            else {\n                missing.push(fragmentName);\n                var def = _this.lookup(fragmentName);\n                if (def) {\n                    enqueueChildSpreads((map[fragmentName] = def));\n                }\n            }\n        });\n        if (missing.length) {\n            var defsToAppend_1 = [];\n            missing.forEach(function (name) {\n                var def = map[name];\n                if (def) {\n                    defsToAppend_1.push(def);\n                }\n            });\n            if (defsToAppend_1.length) {\n                document = __assign(__assign({}, document), { definitions: document.definitions.concat(defsToAppend_1) });\n            }\n        }\n        return document;\n    };\n    FragmentRegistry.prototype.findFragmentSpreads = function (root) {\n        var spreads = Object.create(null);\n        visit(root, {\n            FragmentSpread: function (node) {\n                spreads[node.name.value] = node;\n            },\n        });\n        return spreads;\n    };\n    return FragmentRegistry;\n}());\n//# sourceMappingURL=fragmentRegistry.js.map",
-      "start": 1712968594817,
-      "end": 1712968594863,
+      "start": 1713269986127,
+      "end": 1713269986142,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1712968594863,
-      "end": 1712968594863,
+      "start": 1713269986142,
+      "end": 1713269986142,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1712968594863,
-      "end": 1712968594864,
+      "start": 1713269986142,
+      "end": 1713269986143,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1712968594864,
-      "end": 1712968594864,
+      "start": 1713269986143,
+      "end": 1713269986143,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1712968594864,
-      "end": 1712968594864,
+      "start": 1713269986143,
+      "end": 1713269986143,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968594864,
-      "end": 1712968594864,
+      "start": 1713269986143,
+      "end": 1713269986143,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1712968594864,
-      "end": 1712968594864,
+      "start": 1713269986143,
+      "end": 1713269986143,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1712968594864,
-      "end": 1712968594864,
+      "start": 1713269986143,
+      "end": 1713269986143,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968594864,
-      "end": 1712968594864,
+      "start": 1713269986143,
+      "end": 1713269986143,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1712968594864,
-      "end": 1712968594864,
+      "start": 1713269986143,
+      "end": 1713269986143,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1712968594864,
-      "end": 1712968594864,
+      "start": 1713269986143,
+      "end": 1713269986143,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1712968594864,
-      "end": 1712968594864,
+      "start": 1713269986143,
+      "end": 1713269986143,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1712968594864,
-      "end": 1712968594864,
+      "start": 1713269986143,
+      "end": 1713269986143,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1712968594864,
-      "end": 1712968594864,
+      "start": 1713269986143,
+      "end": 1713269986143,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1712968594864,
-      "end": 1712968594864,
+      "start": 1713269986143,
+      "end": 1713269986143,
       "order": "normal"
     }
   ]

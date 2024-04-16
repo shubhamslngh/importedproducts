@@ -93,13 +93,10 @@ export default {
       }
     });
     setTimeout(() => {
-      // Initial application of styles
       updateShadowStyles();
 
-      // Set up an observer to monitor changes to Swiper component
       const observer = new MutationObserver(updateShadowStyles);
 
-      // Attach the observer to the Swiper container
       const swiperContainer = document.querySelector(".swiper-container");
       if (swiperContainer) {
         observer.observe(swiperContainer, {

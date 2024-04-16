@@ -4,44 +4,44 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, toDisplayString as _toDisplayString, normalizeClass as _normalizeClass, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode } from \"vue\"\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'Item',\n  props: {\n  menu: {\n    type: Object as () =>\n      | AwesomeLayoutPageNavbarMenu\n      | AwesomeLayoutPageNavbarMenuDropdownItem,\n    required: true,\n  },\n  isDropdown: {\n    type: Boolean,\n    default: false,\n  },\n},\n  setup(__props) {\n\nconst nuxtApp = useNuxtApp();\nconst { parseMenuRoute, parseMenuTitle } = useNavbarParser();\n\nconst props = __props;\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_NuxtLink = _resolveComponent(\"NuxtLink\")!\n  const _component_AwesomeButton = _resolveComponent(\"AwesomeButton\")!\n\n  return (__props.menu?.type === 'link' && __props.isDropdown)\n    ? (_openBlock(), _createBlock(_component_NuxtLink, {\n        key: 0,\n        to: _unref(parseMenuRoute)(__props.menu?.to)\n      }, {\n        default: _withCtx(({ isActive }) => [\n          _createElementVNode(\"div\", {\n            class: _normalizeClass([\n          'transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 px-4 py-2 rounded-lg w-full',\n          isActive\n            ? 'text-gray-900 dark:text-gray-100 font-bold'\n            : 'text-gray-700 dark:text-gray-300',\n        ])\n          }, _toDisplayString(_unref(parseMenuTitle)(__props.menu?.title)), 3)\n        ]),\n        _: 1\n      }, 8, [\"to\"]))\n    : (__props.menu?.type === 'link')\n      ? (_openBlock(), _createBlock(_component_NuxtLink, {\n          key: 1,\n          to: _unref(parseMenuRoute)(__props.menu?.to)\n        }, {\n          default: _withCtx(({ isActive }) => [\n            _createElementVNode(\"span\", {\n              class: _normalizeClass({\n          'text-gray-900 dark:text-gray-100 font-bold': isActive,\n          'text-gray-700 dark:text-gray-300': !isActive,\n        })\n            }, _toDisplayString(_unref(parseMenuTitle)(__props.menu?.title)), 3)\n          ]),\n          _: 1\n        }, 8, [\"to\"]))\n      : (__props.menu?.type === 'button')\n        ? (_openBlock(), _createBlock(_component_AwesomeButton, {\n            key: 2,\n            text: _unref(parseMenuTitle)(__props.menu?.title),\n            size: \"xs\",\n            to: _unref(parseMenuRoute)(__props.menu.to)\n          }, null, 8, [\"text\", \"to\"]))\n        : _createCommentVNode(\"\", true)\n}\n}\n\n})",
-      "start": 1712968594708,
-      "end": 1712968594708
+      "start": 1713269985943,
+      "end": 1713269985943
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968594708,
-      "end": 1712968594708,
+      "start": 1713269985943,
+      "end": 1713269985943,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968594708,
-      "end": 1712968594708,
+      "start": 1713269985943,
+      "end": 1713269985943,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968594708,
-      "end": 1712968594708,
+      "start": 1713269985943,
+      "end": 1713269985943,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1712968594708,
-      "end": 1712968594708,
+      "start": 1713269985943,
+      "end": 1713269985943,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1712968594708,
-      "end": 1712968594708,
+      "start": 1713269985943,
+      "end": 1713269985943,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, toDisplayString as _toDisplayString, normalizeClass as _normalizeClass, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Item\",\n  props: {\n    menu: {\n      type: Object,\n      required: true\n    },\n    isDropdown: {\n      type: Boolean,\n      default: false\n    }\n  },\n  setup(__props) {\n    const nuxtApp = useNuxtApp();\n    const { parseMenuRoute, parseMenuTitle } = useNavbarParser();\n    const props = __props;\n    return (_ctx, _cache) => {\n      const _component_NuxtLink = _resolveComponent(\"NuxtLink\");\n      const _component_AwesomeButton = _resolveComponent(\"AwesomeButton\");\n      return __props.menu?.type === \"link\" && __props.isDropdown ? (_openBlock(), _createBlock(_component_NuxtLink, {\n        key: 0,\n        to: _unref(parseMenuRoute)(__props.menu?.to)\n      }, {\n        default: _withCtx(({ isActive }) => [\n          _createElementVNode(\"div\", {\n            class: _normalizeClass([\n              \"transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 px-4 py-2 rounded-lg w-full\",\n              isActive ? \"text-gray-900 dark:text-gray-100 font-bold\" : \"text-gray-700 dark:text-gray-300\"\n            ])\n          }, _toDisplayString(_unref(parseMenuTitle)(__props.menu?.title)), 3)\n        ]),\n        _: 1\n      }, 8, [\"to\"])) : __props.menu?.type === \"link\" ? (_openBlock(), _createBlock(_component_NuxtLink, {\n        key: 1,\n        to: _unref(parseMenuRoute)(__props.menu?.to)\n      }, {\n        default: _withCtx(({ isActive }) => [\n          _createElementVNode(\"span\", {\n            class: _normalizeClass({\n              \"text-gray-900 dark:text-gray-100 font-bold\": isActive,\n              \"text-gray-700 dark:text-gray-300\": !isActive\n            })\n          }, _toDisplayString(_unref(parseMenuTitle)(__props.menu?.title)), 3)\n        ]),\n        _: 1\n      }, 8, [\"to\"])) : __props.menu?.type === \"button\" ? (_openBlock(), _createBlock(_component_AwesomeButton, {\n        key: 2,\n        text: _unref(parseMenuTitle)(__props.menu?.title),\n        size: \"xs\",\n        to: _unref(parseMenuRoute)(__props.menu.to)\n      }, null, 8, [\"text\", \"to\"])) : _createCommentVNode(\"\", true);\n    };\n  }\n});\n",
-      "start": 1712968594708,
-      "end": 1712968595003,
+      "start": 1713269985943,
+      "end": 1713269986462,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -57,129 +57,129 @@
     },
     {
       "name": "vite:json",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968595003,
-      "end": 1712968595003,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { useNuxtApp } from '#app/nuxt';\nimport { useNavbarParser } from '/Users/shubhamsingh/namma/importedProds/composables/use-navbar-parser.ts';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, toDisplayString as _toDisplayString, normalizeClass as _normalizeClass, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Item\",\n  props: {\n    menu: {\n      type: Object,\n      required: true\n    },\n    isDropdown: {\n      type: Boolean,\n      default: false\n    }\n  },\n  setup(__props) {\n    const nuxtApp = useNuxtApp();\n    const { parseMenuRoute, parseMenuTitle } = useNavbarParser();\n    const props = __props;\n    return (_ctx, _cache) => {\n      const _component_NuxtLink = _resolveComponent(\"NuxtLink\");\n      const _component_AwesomeButton = _resolveComponent(\"AwesomeButton\");\n      return __props.menu?.type === \"link\" && __props.isDropdown ? (_openBlock(), _createBlock(_component_NuxtLink, {\n        key: 0,\n        to: _unref(parseMenuRoute)(__props.menu?.to)\n      }, {\n        default: _withCtx(({ isActive }) => [\n          _createElementVNode(\"div\", {\n            class: _normalizeClass([\n              \"transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 px-4 py-2 rounded-lg w-full\",\n              isActive ? \"text-gray-900 dark:text-gray-100 font-bold\" : \"text-gray-700 dark:text-gray-300\"\n            ])\n          }, _toDisplayString(_unref(parseMenuTitle)(__props.menu?.title)), 3)\n        ]),\n        _: 1\n      }, 8, [\"to\"])) : __props.menu?.type === \"link\" ? (_openBlock(), _createBlock(_component_NuxtLink, {\n        key: 1,\n        to: _unref(parseMenuRoute)(__props.menu?.to)\n      }, {\n        default: _withCtx(({ isActive }) => [\n          _createElementVNode(\"span\", {\n            class: _normalizeClass({\n              \"text-gray-900 dark:text-gray-100 font-bold\": isActive,\n              \"text-gray-700 dark:text-gray-300\": !isActive\n            })\n          }, _toDisplayString(_unref(parseMenuTitle)(__props.menu?.title)), 3)\n        ]),\n        _: 1\n      }, 8, [\"to\"])) : __props.menu?.type === \"button\" ? (_openBlock(), _createBlock(_component_AwesomeButton, {\n        key: 2,\n        text: _unref(parseMenuTitle)(__props.menu?.title),\n        size: \"xs\",\n        to: _unref(parseMenuRoute)(__props.menu.to)\n      }, null, 8, [\"text\", \"to\"])) : _createCommentVNode(\"\", true);\n    };\n  }\n});\n",
-      "start": 1712968595003,
-      "end": 1712968595004,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -192,51 +192,51 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1712968595004,
-      "end": 1712968595004,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968595004,
-      "end": 1712968595004,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1712968595004,
-      "end": 1712968595004,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1712968595004,
-      "end": 1712968595004,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/app/components/nuxt-link\";\nimport { default as __nuxt_component_1 } from \"/Users/shubhamsingh/namma/importedProds/components/awesome/Button/index.vue\";\nimport { useNuxtApp } from '#app/nuxt';\nimport { useNavbarParser } from '/Users/shubhamsingh/namma/importedProds/composables/use-navbar-parser.ts';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, toDisplayString as _toDisplayString, normalizeClass as _normalizeClass, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Item\",\n  props: {\n    menu: {\n      type: Object,\n      required: true\n    },\n    isDropdown: {\n      type: Boolean,\n      default: false\n    }\n  },\n  setup(__props) {\n    const nuxtApp = useNuxtApp();\n    const { parseMenuRoute, parseMenuTitle } = useNavbarParser();\n    const props = __props;\n    return (_ctx, _cache) => {\n      const _component_NuxtLink = __nuxt_component_0;\n      const _component_AwesomeButton = __nuxt_component_1;\n      return __props.menu?.type === \"link\" && __props.isDropdown ? (_openBlock(), _createBlock(_component_NuxtLink, {\n        key: 0,\n        to: _unref(parseMenuRoute)(__props.menu?.to)\n      }, {\n        default: _withCtx(({ isActive }) => [\n          _createElementVNode(\"div\", {\n            class: _normalizeClass([\n              \"transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 px-4 py-2 rounded-lg w-full\",\n              isActive ? \"text-gray-900 dark:text-gray-100 font-bold\" : \"text-gray-700 dark:text-gray-300\"\n            ])\n          }, _toDisplayString(_unref(parseMenuTitle)(__props.menu?.title)), 3)\n        ]),\n        _: 1\n      }, 8, [\"to\"])) : __props.menu?.type === \"link\" ? (_openBlock(), _createBlock(_component_NuxtLink, {\n        key: 1,\n        to: _unref(parseMenuRoute)(__props.menu?.to)\n      }, {\n        default: _withCtx(({ isActive }) => [\n          _createElementVNode(\"span\", {\n            class: _normalizeClass({\n              \"text-gray-900 dark:text-gray-100 font-bold\": isActive,\n              \"text-gray-700 dark:text-gray-300\": !isActive\n            })\n          }, _toDisplayString(_unref(parseMenuTitle)(__props.menu?.title)), 3)\n        ]),\n        _: 1\n      }, 8, [\"to\"])) : __props.menu?.type === \"button\" ? (_openBlock(), _createBlock(_component_AwesomeButton, {\n        key: 2,\n        text: _unref(parseMenuTitle)(__props.menu?.title),\n        size: \"xs\",\n        to: _unref(parseMenuRoute)(__props.menu.to)\n      }, null, 8, [\"text\", \"to\"])) : _createCommentVNode(\"\", true);\n    };\n  }\n});\n",
-      "start": 1712968595004,
-      "end": 1712968595004,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1712968595004,
-      "end": 1712968595004,
+      "start": 1713269986462,
+      "end": 1713269986462,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1712968595004,
-      "end": 1712968595004,
+      "start": 1713269986462,
+      "end": 1713269986463,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1712968595004,
-      "end": 1712968595004,
+      "start": 1713269986463,
+      "end": 1713269986463,
       "order": "normal"
     }
   ]

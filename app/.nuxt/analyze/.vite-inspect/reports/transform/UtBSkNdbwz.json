@@ -4,63 +4,63 @@
     {
       "name": "vite:load-fallback",
       "result": "<template>\n  <div class=\"login-container\">\n    <form @submit.prevent=\"handleSignup\" class=\"login-form\">\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"firstName\"\n          placeholder=\"First Name\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"lastName\"\n          placeholder=\"Last Name\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"username\"\n          placeholder=\"Username\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"email\"\n          v-model=\"email\"\n          placeholder=\"Email\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"password\"\n          v-model=\"password\"\n          placeholder=\"Password\"\n          class=\"form-control\"\n        />\n      </div>\n\n      <div class=\"grid gap-4\">\n        <button type=\"submit\" :disabled=\"isLoading\" class=\"btn btn-primary\">\n          Sign Up\n        </button>\n\n        <div v-if=\"errors\" class=\"error-message\">{{ errors }}</div>\n      </div>\n    </form>\n  </div>\n</template>\n\n<script>\nimport { useAuthStore } from \"../../stores/auth\";\nimport { signup } from \"~/../utils/cart\";\nexport default {\n  data() {\n    return {\n      firstName: \"\",\n      lastName: \"\",\n      username: \"\",\n      email: \"\",\n      password: \"\",\n      isLoading: false,\n      errors: null,\n    };\n  },\n  methods: {\n    async handleSignup() {\n      let data = ref([]);\n      let { mutate: sign, loading } = useMutation(signup);\n      try {\n        loading = true;\n        data = await sign({\n          username: this.username,\n          lastName: this.lastName,\n          firstName: this.firstName,\n          email: this.eamil,\n          password: this.password,\n        });\n      } catch (error) {\n        console.error(\"Error Signing Up User :\", error);\n        loading = false;\n      }\n      console.log(\"Sign up form submitted\");\n      this.firstName = \"\";\n      this.lastName = \"\";\n      this.username = \"\";\n      this.email = \"\";\n      this.password = \"\";\n    },\n  },\n};\n</script>\n\n<style scoped>\n/* Add your CSS styles here */\n</style>\n",
-      "start": 1712968593945,
-      "end": 1712968594125,
+      "start": 1713269985373,
+      "end": 1713269985398,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968594125,
-      "end": 1712968594125,
+      "start": 1713269985398,
+      "end": 1713269985398,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968594125,
-      "end": 1712968594125,
+      "start": 1713269985398,
+      "end": 1713269985398,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968594125,
-      "end": 1712968594125,
+      "start": 1713269985398,
+      "end": 1713269985398,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1712968594125,
-      "end": 1712968594125,
+      "start": 1713269985398,
+      "end": 1713269985398,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1712968594125,
-      "end": 1712968594125,
+      "start": 1713269985398,
+      "end": 1713269985398,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1712968594125,
-      "end": 1712968594125,
+      "start": 1713269985398,
+      "end": 1713269985398,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1712968594125,
-      "end": 1712968594125,
+      "start": 1713269985398,
+      "end": 1713269985398,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1712968594125,
-      "end": 1712968594125,
+      "start": 1713269985398,
+      "end": 1713269985398,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "\nimport { useAuthStore } from \"../../stores/auth\";\nimport { signup } from \"~/../utils/cart\";\nconst _sfc_main = {\n  data() {\n    return {\n      firstName: \"\",\n      lastName: \"\",\n      username: \"\",\n      email: \"\",\n      password: \"\",\n      isLoading: false,\n      errors: null,\n    };\n  },\n  methods: {\n    async handleSignup() {\n      let data = ref([]);\n      let { mutate: sign, loading } = useMutation(signup);\n      try {\n        loading = true;\n        data = await sign({\n          username: this.username,\n          lastName: this.lastName,\n          firstName: this.firstName,\n          email: this.eamil,\n          password: this.password,\n        });\n      } catch (error) {\n        console.error(\"Error Signing Up User :\", error);\n        loading = false;\n      }\n      console.log(\"Sign up form submitted\");\n      this.firstName = \"\";\n      this.lastName = \"\";\n      this.username = \"\";\n      this.email = \"\";\n      this.password = \"\";\n    },\n  },\n};\n\nimport { vModelText as _vModelText, createElementVNode as _createElementVNode, withDirectives as _withDirectives, toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, withModifiers as _withModifiers, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-a2a5022e\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"login-container\" }\nconst _hoisted_2 = { class: \"form-group\" }\nconst _hoisted_3 = { class: \"form-group\" }\nconst _hoisted_4 = { class: \"form-group\" }\nconst _hoisted_5 = { class: \"form-group\" }\nconst _hoisted_6 = { class: \"form-group\" }\nconst _hoisted_7 = { class: \"grid gap-4\" }\nconst _hoisted_8 = [\"disabled\"]\nconst _hoisted_9 = {\n  key: 0,\n  class: \"error-message\"\n}\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"form\", {\n      onSubmit: _cache[5] || (_cache[5] = _withModifiers((...args) => ($options.handleSignup && $options.handleSignup(...args)), [\"prevent\"])),\n      class: \"login-form\"\n    }, [\n      _createElementVNode(\"div\", _hoisted_2, [\n        _withDirectives(_createElementVNode(\"input\", {\n          type: \"text\",\n          \"onUpdate:modelValue\": _cache[0] || (_cache[0] = $event => (($data.firstName) = $event)),\n          placeholder: \"First Name\",\n          class: \"form-control\"\n        }, null, 512), [\n          [_vModelText, $data.firstName]\n        ])\n      ]),\n      _createElementVNode(\"div\", _hoisted_3, [\n        _withDirectives(_createElementVNode(\"input\", {\n          type: \"text\",\n          \"onUpdate:modelValue\": _cache[1] || (_cache[1] = $event => (($data.lastName) = $event)),\n          placeholder: \"Last Name\",\n          class: \"form-control\"\n        }, null, 512), [\n          [_vModelText, $data.lastName]\n        ])\n      ]),\n      _createElementVNode(\"div\", _hoisted_4, [\n        _withDirectives(_createElementVNode(\"input\", {\n          type: \"text\",\n          \"onUpdate:modelValue\": _cache[2] || (_cache[2] = $event => (($data.username) = $event)),\n          placeholder: \"Username\",\n          class: \"form-control\"\n        }, null, 512), [\n          [_vModelText, $data.username]\n        ])\n      ]),\n      _createElementVNode(\"div\", _hoisted_5, [\n        _withDirectives(_createElementVNode(\"input\", {\n          type: \"email\",\n          \"onUpdate:modelValue\": _cache[3] || (_cache[3] = $event => (($data.email) = $event)),\n          placeholder: \"Email\",\n          class: \"form-control\"\n        }, null, 512), [\n          [_vModelText, $data.email]\n        ])\n      ]),\n      _createElementVNode(\"div\", _hoisted_6, [\n        _withDirectives(_createElementVNode(\"input\", {\n          type: \"password\",\n          \"onUpdate:modelValue\": _cache[4] || (_cache[4] = $event => (($data.password) = $event)),\n          placeholder: \"Password\",\n          class: \"form-control\"\n        }, null, 512), [\n          [_vModelText, $data.password]\n        ])\n      ]),\n      _createElementVNode(\"div\", _hoisted_7, [\n        _createElementVNode(\"button\", {\n          type: \"submit\",\n          disabled: $data.isLoading,\n          class: \"btn btn-primary\"\n        }, \" Sign Up \", 8, _hoisted_8),\n        ($data.errors)\n          ? (_openBlock(), _createElementBlock(\"div\", _hoisted_9, _toDisplayString($data.errors), 1))\n          : _createCommentVNode(\"\", true)\n      ])\n    ], 32)\n  ]))\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Signup.vue?vue&type=style&index=0&scoped=a2a5022e&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render],['__scopeId',\"data-v-a2a5022e\"]])",
-      "start": 1712968594125,
-      "end": 1712968594126,
+      "start": 1713269985398,
+      "end": 1713269985399,
       "order": "normal",
       "sourcemaps": {
         "mappings": ""
@@ -68,162 +68,162 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Signup.vue\").then(r => r.default))",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
       "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Signup.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(r => r.default))",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "vite:reporter",
-      "start": 1712968594126,
-      "end": 1712968594126,
+      "start": 1713269985399,
+      "end": 1713269985399,
       "order": "normal"
     }
   ]

@@ -1,7 +1,7 @@
 import { b as useRuntimeConfig } from './server.mjs';
 import { defineComponent, computed, mergeProps, unref, useSSRContext } from 'vue';
 import { ssrRenderAttrs } from 'vue/server-renderer';
-import { K as withLeadingSlash, G as withTrailingSlash, j as joinURL } from '../runtime.mjs';
+import { J as withLeadingSlash, F as withTrailingSlash, j as joinURL } from '../runtime.mjs';
 import 'unhead';
 import '@unhead/shared';
 import 'vue-router';

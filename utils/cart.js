@@ -34,25 +34,38 @@ query MyQuery ($productId: ID!){
 }`;
 
 export const cartItem = gql`
-query NewQuery {
-  cart {
+query cartitem {
+cart(recalculateTotals: true) {
     total
     isEmpty
     contents {
       nodes {
-        product {
+        quantity
+        subtotal
+        variation {
           node {
+            id
             image {
               link
+              parentDatabaseId
             }
             name
+            regularPrice
+            price
+            databaseId
+            stockQuantity
+            stockStatus
           }
         }
       }
     }
+    shippingTotal
+    appliedCoupons {
+      code
+    }
   }
-}`
-export const signup= gql`
+}`;
+export const signup = gql`
 mutation signup {
     createUser(
     input: {username: "", lastName: "", firstName: "", email: "", password: ""}
@@ -65,4 +78,4 @@ mutation signup {
     }
   }
 }
-`
+`;

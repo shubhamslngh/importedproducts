@@ -10,6 +10,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     }
   })
   nuxtApp.hook('apollo:error', (error) => {
-    console.error(error)
+    console.error(error,"not able hit")
   })
 })

@@ -3,82 +3,82 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "<template>\n  <div v-if=\"products.length > 0\">\n    <swiper\n      :effect=\"'cards'\"\n      :grabCursor=\"true\"\n      :slideShadows=\"false\"\n      :modules=\"modules\"\n      class=\"mySwiper dark:bg-none\"\n    >\n      <!-- {{ console.log(products, \"products for cards in template\") }} -->\n      <swiper-slide\n        class=\"dark:bg-none \"\n        v-for=\"(product, index) in products\"\n        :key=\"index\"\n        :slideShadow=\"false\"\n        :style=\"{ 'background-image': `url(${product.img})` }\"\n      >\n        <div @click=\"handleClick(product.variationId)\">\n          <img\n            :src=\"product.img ? product.img : ''\"\n            alt=\"Product Image\"\n            class=\"transition-all ease-in-out\"\n          />\n        </div>\n      </swiper-slide>\n    </swiper>\n    <div>\n      <AddToCart\n        :productId=\"selectedProductId\"\n        :variationId=\"selectedVariationId\"\n      />\n    </div>\n  </div>\n  <div v-else>Loading products...</div>\n</template>\n\n<script>\nimport { ref, onMounted, defineProps } from \"vue\";\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport { getVariation } from \"../../utils/cart\"; // Assuming getVariation is correctly imported\nimport \"swiper/css/effect-cards\";\nimport \"swiper/css/bundle\";\nimport { EffectCards } from \"swiper/modules\";\nimport AddToCart from \"../awesome/AddtoCart.vue\";\nimport \"swiper/scss/effect-cards\";\n\nexport default {\n  components: {\n    AddToCart,\n    Swiper,\n    SwiperSlide,\n  },\n  props: {\n    productId: {\n      type: Number,\n      required: true,\n    },\n    variationId: {\n      type: Number,\n      default: 0,\n    },\n  },\n  setup(props) {\n    const updateShadowStyles = () => {\n      const shadowElements = document.querySelectorAll(\".swiper-slide-shadow\");\n      shadowElements.forEach((shadowElement) => {\n        shadowElement.style.opacity = \"0\";\n      });\n    };\n\n    const selectedProductId = ref(props.productId);\n    const selectedVariationId = ref(props.variationId);\n    const products = ref([]);\n    let data = ref([]);\n    const { mutate: getProducts, loading } = useMutation(getVariation);\n\n    onMounted(async () => {\n      try {\n        data = await getProducts({ productId: props.productId });\n        if (data) {\n          console.log(data, \"data inside try\");\n          products.value = data.data.variableProduct.variations.nodes.map(\n            (nodes) => ({\n              name: nodes.name,\n              img: nodes.image.link,\n              variationId: nodes.databaseId,\n            })\n          );\n          console.log(products.value, \"products object created\");\n        }\n      } catch (error) {\n        console.error(\"Error fetching product:\", error);\n      }\n    });\n    setTimeout(() => {\n      // Initial application of styles\n      updateShadowStyles();\n\n      // Set up an observer to monitor changes to Swiper component\n      const observer = new MutationObserver(updateShadowStyles);\n\n      // Attach the observer to the Swiper container\n      const swiperContainer = document.querySelector(\".swiper-container\");\n      if (swiperContainer) {\n        observer.observe(swiperContainer, {\n          attributes: true,\n          childList: true,\n          subtree: true,\n        });\n      }\n    }, 1000);\n\n    const handleClick = (variationId) => {\n      selectedVariationId.value = variationId;\n      selectedProductId.value = props.productId;\n      console.log(selectedProductId.value, \"here is Product id\");\n      console.log(selectedVariationId.value, \"here is Variation id\");\n      // console.log(apollo, \"here is appoloo id\");\n    };\n\n    return {\n      modules: [EffectCards],\n      spaceBetween: 400,\n      selectedProductId,\n      selectedVariationId,\n      products,\n      handleClick,\n    };\n  },\n};\n</script>\n\n<style scoped>\n.img {\n  width: auto;\n  height: auto;\n}\n.mySwiper * {\n  background-color: none;\n}\n.swiper {\n  width: 280px;\n  height: auto;\n}\n\n.swiper-slide {\n  background: none !important;\n  display: flex;\n  opacity: 1;\n  align-items: center;\n  justify-content: center;\n  font-size: 12px;\n  font-weight: bold;\n}\n</style>\n",
-      "start": 1712968597033,
-      "end": 1712968597069,
+      "result": "<template>\n  <div v-if=\"products.length > 0\">\n    <swiper\n      :effect=\"'cards'\"\n      :grabCursor=\"true\"\n      :slideShadows=\"false\"\n      :modules=\"modules\"\n      class=\"mySwiper dark:bg-none\"\n    >\n      <!-- {{ console.log(products, \"products for cards in template\") }} -->\n      <swiper-slide\n        class=\"dark:bg-none \"\n        v-for=\"(product, index) in products\"\n        :key=\"index\"\n        :slideShadow=\"false\"\n        :style=\"{ 'background-image': `url(${product.img})` }\"\n      >\n        <div @click=\"handleClick(product.variationId)\">\n          <img\n            :src=\"product.img ? product.img : ''\"\n            alt=\"Product Image\"\n            class=\"transition-all ease-in-out\"\n          />\n        </div>\n      </swiper-slide>\n    </swiper>\n    <div>\n      <AddToCart\n        :productId=\"selectedProductId\"\n        :variationId=\"selectedVariationId\"\n      />\n    </div>\n  </div>\n  <div v-else>Loading products...</div>\n</template>\n\n<script>\nimport { ref, onMounted, defineProps } from \"vue\";\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport { getVariation } from \"../../utils/cart\"; // Assuming getVariation is correctly imported\nimport \"swiper/css/effect-cards\";\nimport \"swiper/css/bundle\";\nimport { EffectCards } from \"swiper/modules\";\nimport AddToCart from \"../awesome/AddtoCart.vue\";\nimport \"swiper/scss/effect-cards\";\n\nexport default {\n  components: {\n    AddToCart,\n    Swiper,\n    SwiperSlide,\n  },\n  props: {\n    productId: {\n      type: Number,\n      required: true,\n    },\n    variationId: {\n      type: Number,\n      default: 0,\n    },\n  },\n  setup(props) {\n    const updateShadowStyles = () => {\n      const shadowElements = document.querySelectorAll(\".swiper-slide-shadow\");\n      shadowElements.forEach((shadowElement) => {\n        shadowElement.style.opacity = \"0\";\n      });\n    };\n\n    const selectedProductId = ref(props.productId);\n    const selectedVariationId = ref(props.variationId);\n    const products = ref([]);\n    let data = ref([]);\n    const { mutate: getProducts, loading } = useMutation(getVariation);\n\n    onMounted(async () => {\n      try {\n        data = await getProducts({ productId: props.productId });\n        if (data) {\n          console.log(data, \"data inside try\");\n          products.value = data.data.variableProduct.variations.nodes.map(\n            (nodes) => ({\n              name: nodes.name,\n              img: nodes.image.link,\n              variationId: nodes.databaseId,\n            })\n          );\n          console.log(products.value, \"products object created\");\n        }\n      } catch (error) {\n        console.error(\"Error fetching product:\", error);\n      }\n    });\n    setTimeout(() => {\n      updateShadowStyles();\n\n      const observer = new MutationObserver(updateShadowStyles);\n\n      const swiperContainer = document.querySelector(\".swiper-container\");\n      if (swiperContainer) {\n        observer.observe(swiperContainer, {\n          attributes: true,\n          childList: true,\n          subtree: true,\n        });\n      }\n    }, 1000);\n\n    const handleClick = (variationId) => {\n      selectedVariationId.value = variationId;\n      selectedProductId.value = props.productId;\n      console.log(selectedProductId.value, \"here is Product id\");\n      console.log(selectedVariationId.value, \"here is Variation id\");\n      // console.log(apollo, \"here is appoloo id\");\n    };\n\n    return {\n      modules: [EffectCards],\n      spaceBetween: 400,\n      selectedProductId,\n      selectedVariationId,\n      products,\n      handleClick,\n    };\n  },\n};\n</script>\n\n<style scoped>\n.img {\n  width: auto;\n  height: auto;\n}\n.mySwiper * {\n  background-color: none;\n}\n.swiper {\n  width: 280px;\n  height: auto;\n}\n\n.swiper-slide {\n  background: none !important;\n  display: flex;\n  opacity: 1;\n  align-items: center;\n  justify-content: center;\n  font-size: 12px;\n  font-weight: bold;\n}\n</style>\n",
+      "start": 1713269988278,
+      "end": 1713269988316,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968597069,
-      "end": 1712968597069,
+      "start": 1713269988316,
+      "end": 1713269988316,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968597069,
-      "end": 1712968597069,
+      "start": 1713269988316,
+      "end": 1713269988316,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968597069,
-      "end": 1712968597069,
+      "start": 1713269988316,
+      "end": 1713269988316,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968597069,
-      "end": 1712968597069,
+      "start": 1713269988316,
+      "end": 1713269988316,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968597069,
-      "end": 1712968597069,
+      "start": 1713269988316,
+      "end": 1713269988316,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968597069,
-      "end": 1712968597069,
+      "start": 1713269988316,
+      "end": 1713269988316,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1712968597069,
-      "end": 1712968597069,
+      "start": 1713269988316,
+      "end": 1713269988316,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1712968597069,
-      "end": 1712968597069,
+      "start": 1713269988316,
+      "end": 1713269988316,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1712968597069,
-      "end": 1712968597069,
+      "start": 1713269988316,
+      "end": 1713269988316,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1712968597069,
-      "end": 1712968597069,
+      "start": 1713269988316,
+      "end": 1713269988316,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1712968597069,
-      "end": 1712968597069,
+      "start": 1713269988316,
+      "end": 1713269988316,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "result": "\nimport { ref, onMounted, defineProps } from \"vue\";\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport { getVariation } from \"../../utils/cart\"; // Assuming getVariation is correctly imported\nimport \"swiper/css/effect-cards\";\nimport \"swiper/css/bundle\";\nimport { EffectCards } from \"swiper/modules\";\nimport AddToCart from \"../awesome/AddtoCart.vue\";\nimport \"swiper/scss/effect-cards\";\n\nconst _sfc_main = {\n  components: {\n    AddToCart,\n    Swiper,\n    SwiperSlide,\n  },\n  props: {\n    productId: {\n      type: Number,\n      required: true,\n    },\n    variationId: {\n      type: Number,\n      default: 0,\n    },\n  },\n  setup(props) {\n    const updateShadowStyles = () => {\n      const shadowElements = document.querySelectorAll(\".swiper-slide-shadow\");\n      shadowElements.forEach((shadowElement) => {\n        shadowElement.style.opacity = \"0\";\n      });\n    };\n\n    const selectedProductId = ref(props.productId);\n    const selectedVariationId = ref(props.variationId);\n    const products = ref([]);\n    let data = ref([]);\n    const { mutate: getProducts, loading } = useMutation(getVariation);\n\n    onMounted(async () => {\n      try {\n        data = await getProducts({ productId: props.productId });\n        if (data) {\n          console.log(data, \"data inside try\");\n          products.value = data.data.variableProduct.variations.nodes.map(\n            (nodes) => ({\n              name: nodes.name,\n              img: nodes.image.link,\n              variationId: nodes.databaseId,\n            })\n          );\n          console.log(products.value, \"products object created\");\n        }\n      } catch (error) {\n        console.error(\"Error fetching product:\", error);\n      }\n    });\n    setTimeout(() => {\n      // Initial application of styles\n      updateShadowStyles();\n\n      // Set up an observer to monitor changes to Swiper component\n      const observer = new MutationObserver(updateShadowStyles);\n\n      // Attach the observer to the Swiper container\n      const swiperContainer = document.querySelector(\".swiper-container\");\n      if (swiperContainer) {\n        observer.observe(swiperContainer, {\n          attributes: true,\n          childList: true,\n          subtree: true,\n        });\n      }\n    }, 1000);\n\n    const handleClick = (variationId) => {\n      selectedVariationId.value = variationId;\n      selectedProductId.value = props.productId;\n      console.log(selectedProductId.value, \"here is Product id\");\n      console.log(selectedVariationId.value, \"here is Variation id\");\n      // console.log(apollo, \"here is appoloo id\");\n    };\n\n    return {\n      modules: [EffectCards],\n      spaceBetween: 400,\n      selectedProductId,\n      selectedVariationId,\n      products,\n      handleClick,\n    };\n  },\n};\n\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\"\n\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  const _component_swiper = _resolveComponent(\"swiper\")\n  const _component_swiper_slide = _resolveComponent(\"swiper-slide\")\n  const _component_AddToCart = _resolveComponent(\"AddToCart\")\n\n  if ($setup.products.length > 0) {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-2190228e>`)\n    _push(_ssrRenderComponent(_component_swiper, {\n      effect: 'cards',\n      grabCursor: true,\n      slideShadows: false,\n      modules: $setup.modules,\n      class: \"mySwiper dark:bg-none\"\n    }, {\n      default: _withCtx((_, _push, _parent, _scopeId) => {\n        if (_push) {\n          _push(`<!--[-->`)\n          _ssrRenderList($setup.products, (product, index) => {\n            _push(_ssrRenderComponent(_component_swiper_slide, {\n              class: \"dark:bg-none\",\n              key: index,\n              slideShadow: false,\n              style: { 'background-image': `url(${product.img})` }\n            }, {\n              default: _withCtx((_, _push, _parent, _scopeId) => {\n                if (_push) {\n                  _push(`<div data-v-2190228e${\n                    _scopeId\n                  }><img${\n                    _ssrRenderAttr(\"src\", product.img ? product.img : '')\n                  } alt=\"Product Image\" class=\"transition-all ease-in-out\" data-v-2190228e${\n                    _scopeId\n                  }></div>`)\n                } else {\n                  return [\n                    _createVNode(\"div\", {\n                      onClick: $event => ($setup.handleClick(product.variationId))\n                    }, [\n                      _createVNode(\"img\", {\n                        src: product.img ? product.img : '',\n                        alt: \"Product Image\",\n                        class: \"transition-all ease-in-out\"\n                      }, null, 8, [\"src\"])\n                    ], 8, [\"onClick\"])\n                  ]\n                }\n              }),\n              _: 2\n            }, _parent, _scopeId))\n          })\n          _push(`<!--]-->`)\n        } else {\n          return [\n            (_openBlock(true), _createBlock(_Fragment, null, _renderList($setup.products, (product, index) => {\n              return (_openBlock(), _createBlock(_component_swiper_slide, {\n                class: \"dark:bg-none\",\n                key: index,\n                slideShadow: false,\n                style: { 'background-image': `url(${product.img})` }\n              }, {\n                default: _withCtx(() => [\n                  _createVNode(\"div\", {\n                    onClick: $event => ($setup.handleClick(product.variationId))\n                  }, [\n                    _createVNode(\"img\", {\n                      src: product.img ? product.img : '',\n                      alt: \"Product Image\",\n                      class: \"transition-all ease-in-out\"\n                    }, null, 8, [\"src\"])\n                  ], 8, [\"onClick\"])\n                ]),\n                _: 2\n              }, 1032, [\"style\"]))\n            }), 128))\n          ]\n        }\n      }),\n      _: 1\n    }, _parent))\n    _push(`<div data-v-2190228e>`)\n    _push(_ssrRenderComponent(_component_AddToCart, {\n      productId: $setup.selectedProductId,\n      variationId: $setup.selectedVariationId\n    }, null, _parent))\n    _push(`</div></div>`)\n  } else {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-2190228e>Loading products...</div>`)\n  }\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue?vue&type=style&index=0&scoped=2190228e&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"../components/awesome/Variations.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['ssrRender',_sfc_ssrRender],['__scopeId',\"data-v-2190228e\"]])",
-      "start": 1712968597069,
-      "end": 1712968597071,
+      "result": "\nimport { ref, onMounted, defineProps } from \"vue\";\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport { getVariation } from \"../../utils/cart\"; // Assuming getVariation is correctly imported\nimport \"swiper/css/effect-cards\";\nimport \"swiper/css/bundle\";\nimport { EffectCards } from \"swiper/modules\";\nimport AddToCart from \"../awesome/AddtoCart.vue\";\nimport \"swiper/scss/effect-cards\";\n\nconst _sfc_main = {\n  components: {\n    AddToCart,\n    Swiper,\n    SwiperSlide,\n  },\n  props: {\n    productId: {\n      type: Number,\n      required: true,\n    },\n    variationId: {\n      type: Number,\n      default: 0,\n    },\n  },\n  setup(props) {\n    const updateShadowStyles = () => {\n      const shadowElements = document.querySelectorAll(\".swiper-slide-shadow\");\n      shadowElements.forEach((shadowElement) => {\n        shadowElement.style.opacity = \"0\";\n      });\n    };\n\n    const selectedProductId = ref(props.productId);\n    const selectedVariationId = ref(props.variationId);\n    const products = ref([]);\n    let data = ref([]);\n    const { mutate: getProducts, loading } = useMutation(getVariation);\n\n    onMounted(async () => {\n      try {\n        data = await getProducts({ productId: props.productId });\n        if (data) {\n          console.log(data, \"data inside try\");\n          products.value = data.data.variableProduct.variations.nodes.map(\n            (nodes) => ({\n              name: nodes.name,\n              img: nodes.image.link,\n              variationId: nodes.databaseId,\n            })\n          );\n          console.log(products.value, \"products object created\");\n        }\n      } catch (error) {\n        console.error(\"Error fetching product:\", error);\n      }\n    });\n    setTimeout(() => {\n      updateShadowStyles();\n\n      const observer = new MutationObserver(updateShadowStyles);\n\n      const swiperContainer = document.querySelector(\".swiper-container\");\n      if (swiperContainer) {\n        observer.observe(swiperContainer, {\n          attributes: true,\n          childList: true,\n          subtree: true,\n        });\n      }\n    }, 1000);\n\n    const handleClick = (variationId) => {\n      selectedVariationId.value = variationId;\n      selectedProductId.value = props.productId;\n      console.log(selectedProductId.value, \"here is Product id\");\n      console.log(selectedVariationId.value, \"here is Variation id\");\n      // console.log(apollo, \"here is appoloo id\");\n    };\n\n    return {\n      modules: [EffectCards],\n      spaceBetween: 400,\n      selectedProductId,\n      selectedVariationId,\n      products,\n      handleClick,\n    };\n  },\n};\n\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\"\n\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  const _component_swiper = _resolveComponent(\"swiper\")\n  const _component_swiper_slide = _resolveComponent(\"swiper-slide\")\n  const _component_AddToCart = _resolveComponent(\"AddToCart\")\n\n  if ($setup.products.length > 0) {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>`)\n    _push(_ssrRenderComponent(_component_swiper, {\n      effect: 'cards',\n      grabCursor: true,\n      slideShadows: false,\n      modules: $setup.modules,\n      class: \"mySwiper dark:bg-none\"\n    }, {\n      default: _withCtx((_, _push, _parent, _scopeId) => {\n        if (_push) {\n          _push(`<!--[-->`)\n          _ssrRenderList($setup.products, (product, index) => {\n            _push(_ssrRenderComponent(_component_swiper_slide, {\n              class: \"dark:bg-none\",\n              key: index,\n              slideShadow: false,\n              style: { 'background-image': `url(${product.img})` }\n            }, {\n              default: _withCtx((_, _push, _parent, _scopeId) => {\n                if (_push) {\n                  _push(`<div data-v-c6873c6d${\n                    _scopeId\n                  }><img${\n                    _ssrRenderAttr(\"src\", product.img ? product.img : '')\n                  } alt=\"Product Image\" class=\"transition-all ease-in-out\" data-v-c6873c6d${\n                    _scopeId\n                  }></div>`)\n                } else {\n                  return [\n                    _createVNode(\"div\", {\n                      onClick: $event => ($setup.handleClick(product.variationId))\n                    }, [\n                      _createVNode(\"img\", {\n                        src: product.img ? product.img : '',\n                        alt: \"Product Image\",\n                        class: \"transition-all ease-in-out\"\n                      }, null, 8, [\"src\"])\n                    ], 8, [\"onClick\"])\n                  ]\n                }\n              }),\n              _: 2\n            }, _parent, _scopeId))\n          })\n          _push(`<!--]-->`)\n        } else {\n          return [\n            (_openBlock(true), _createBlock(_Fragment, null, _renderList($setup.products, (product, index) => {\n              return (_openBlock(), _createBlock(_component_swiper_slide, {\n                class: \"dark:bg-none\",\n                key: index,\n                slideShadow: false,\n                style: { 'background-image': `url(${product.img})` }\n              }, {\n                default: _withCtx(() => [\n                  _createVNode(\"div\", {\n                    onClick: $event => ($setup.handleClick(product.variationId))\n                  }, [\n                    _createVNode(\"img\", {\n                      src: product.img ? product.img : '',\n                      alt: \"Product Image\",\n                      class: \"transition-all ease-in-out\"\n                    }, null, 8, [\"src\"])\n                  ], 8, [\"onClick\"])\n                ]),\n                _: 2\n              }, 1032, [\"style\"]))\n            }), 128))\n          ]\n        }\n      }),\n      _: 1\n    }, _parent))\n    _push(`<div data-v-c6873c6d>`)\n    _push(_ssrRenderComponent(_component_AddToCart, {\n      productId: $setup.selectedProductId,\n      variationId: $setup.selectedVariationId\n    }, null, _parent))\n    _push(`</div></div>`)\n  } else {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>Loading products...</div>`)\n  }\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue?vue&type=style&index=0&scoped=c6873c6d&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"../components/awesome/Variations.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['ssrRender',_sfc_ssrRender],['__scopeId',\"data-v-c6873c6d\"]])",
+      "start": 1713269988316,
+      "end": 1713269988318,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -88,191 +88,191 @@
           "/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue"
         ],
         "sourcesContent": [
-          "<template>\n  <div v-if=\"products.length > 0\">\n    <swiper\n      :effect=\"'cards'\"\n      :grabCursor=\"true\"\n      :slideShadows=\"false\"\n      :modules=\"modules\"\n      class=\"mySwiper dark:bg-none\"\n    >\n      <!-- {{ console.log(products, \"products for cards in template\") }} -->\n      <swiper-slide\n        class=\"dark:bg-none \"\n        v-for=\"(product, index) in products\"\n        :key=\"index\"\n        :slideShadow=\"false\"\n        :style=\"{ 'background-image': `url(${product.img})` }\"\n      >\n        <div @click=\"handleClick(product.variationId)\">\n          <img\n            :src=\"product.img ? product.img : ''\"\n            alt=\"Product Image\"\n            class=\"transition-all ease-in-out\"\n          />\n        </div>\n      </swiper-slide>\n    </swiper>\n    <div>\n      <AddToCart\n        :productId=\"selectedProductId\"\n        :variationId=\"selectedVariationId\"\n      />\n    </div>\n  </div>\n  <div v-else>Loading products...</div>\n</template>\n\n<script>\nimport { ref, onMounted, defineProps } from \"vue\";\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport { getVariation } from \"../../utils/cart\"; // Assuming getVariation is correctly imported\nimport \"swiper/css/effect-cards\";\nimport \"swiper/css/bundle\";\nimport { EffectCards } from \"swiper/modules\";\nimport AddToCart from \"../awesome/AddtoCart.vue\";\nimport \"swiper/scss/effect-cards\";\n\nexport default {\n  components: {\n    AddToCart,\n    Swiper,\n    SwiperSlide,\n  },\n  props: {\n    productId: {\n      type: Number,\n      required: true,\n    },\n    variationId: {\n      type: Number,\n      default: 0,\n    },\n  },\n  setup(props) {\n    const updateShadowStyles = () => {\n      const shadowElements = document.querySelectorAll(\".swiper-slide-shadow\");\n      shadowElements.forEach((shadowElement) => {\n        shadowElement.style.opacity = \"0\";\n      });\n    };\n\n    const selectedProductId = ref(props.productId);\n    const selectedVariationId = ref(props.variationId);\n    const products = ref([]);\n    let data = ref([]);\n    const { mutate: getProducts, loading } = useMutation(getVariation);\n\n    onMounted(async () => {\n      try {\n        data = await getProducts({ productId: props.productId });\n        if (data) {\n          console.log(data, \"data inside try\");\n          products.value = data.data.variableProduct.variations.nodes.map(\n            (nodes) => ({\n              name: nodes.name,\n              img: nodes.image.link,\n              variationId: nodes.databaseId,\n            })\n          );\n          console.log(products.value, \"products object created\");\n        }\n      } catch (error) {\n        console.error(\"Error fetching product:\", error);\n      }\n    });\n    setTimeout(() => {\n      // Initial application of styles\n      updateShadowStyles();\n\n      // Set up an observer to monitor changes to Swiper component\n      const observer = new MutationObserver(updateShadowStyles);\n\n      // Attach the observer to the Swiper container\n      const swiperContainer = document.querySelector(\".swiper-container\");\n      if (swiperContainer) {\n        observer.observe(swiperContainer, {\n          attributes: true,\n          childList: true,\n          subtree: true,\n        });\n      }\n    }, 1000);\n\n    const handleClick = (variationId) => {\n      selectedVariationId.value = variationId;\n      selectedProductId.value = props.productId;\n      console.log(selectedProductId.value, \"here is Product id\");\n      console.log(selectedVariationId.value, \"here is Variation id\");\n      // console.log(apollo, \"here is appoloo id\");\n    };\n\n    return {\n      modules: [EffectCards],\n      spaceBetween: 400,\n      selectedProductId,\n      selectedVariationId,\n      products,\n      handleClick,\n    };\n  },\n};\n</script>\n\n<style scoped>\n.img {\n  width: auto;\n  height: auto;\n}\n.mySwiper * {\n  background-color: none;\n}\n.swiper {\n  width: 280px;\n  height: auto;\n}\n\n.swiper-slide {\n  background: none !important;\n  display: flex;\n  opacity: 1;\n  align-items: center;\n  justify-content: center;\n  font-size: 12px;\n  font-weight: bold;\n}\n</style>\n"
+          "<template>\n  <div v-if=\"products.length > 0\">\n    <swiper\n      :effect=\"'cards'\"\n      :grabCursor=\"true\"\n      :slideShadows=\"false\"\n      :modules=\"modules\"\n      class=\"mySwiper dark:bg-none\"\n    >\n      <!-- {{ console.log(products, \"products for cards in template\") }} -->\n      <swiper-slide\n        class=\"dark:bg-none \"\n        v-for=\"(product, index) in products\"\n        :key=\"index\"\n        :slideShadow=\"false\"\n        :style=\"{ 'background-image': `url(${product.img})` }\"\n      >\n        <div @click=\"handleClick(product.variationId)\">\n          <img\n            :src=\"product.img ? product.img : ''\"\n            alt=\"Product Image\"\n            class=\"transition-all ease-in-out\"\n          />\n        </div>\n      </swiper-slide>\n    </swiper>\n    <div>\n      <AddToCart\n        :productId=\"selectedProductId\"\n        :variationId=\"selectedVariationId\"\n      />\n    </div>\n  </div>\n  <div v-else>Loading products...</div>\n</template>\n\n<script>\nimport { ref, onMounted, defineProps } from \"vue\";\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport { getVariation } from \"../../utils/cart\"; // Assuming getVariation is correctly imported\nimport \"swiper/css/effect-cards\";\nimport \"swiper/css/bundle\";\nimport { EffectCards } from \"swiper/modules\";\nimport AddToCart from \"../awesome/AddtoCart.vue\";\nimport \"swiper/scss/effect-cards\";\n\nexport default {\n  components: {\n    AddToCart,\n    Swiper,\n    SwiperSlide,\n  },\n  props: {\n    productId: {\n      type: Number,\n      required: true,\n    },\n    variationId: {\n      type: Number,\n      default: 0,\n    },\n  },\n  setup(props) {\n    const updateShadowStyles = () => {\n      const shadowElements = document.querySelectorAll(\".swiper-slide-shadow\");\n      shadowElements.forEach((shadowElement) => {\n        shadowElement.style.opacity = \"0\";\n      });\n    };\n\n    const selectedProductId = ref(props.productId);\n    const selectedVariationId = ref(props.variationId);\n    const products = ref([]);\n    let data = ref([]);\n    const { mutate: getProducts, loading } = useMutation(getVariation);\n\n    onMounted(async () => {\n      try {\n        data = await getProducts({ productId: props.productId });\n        if (data) {\n          console.log(data, \"data inside try\");\n          products.value = data.data.variableProduct.variations.nodes.map(\n            (nodes) => ({\n              name: nodes.name,\n              img: nodes.image.link,\n              variationId: nodes.databaseId,\n            })\n          );\n          console.log(products.value, \"products object created\");\n        }\n      } catch (error) {\n        console.error(\"Error fetching product:\", error);\n      }\n    });\n    setTimeout(() => {\n      updateShadowStyles();\n\n      const observer = new MutationObserver(updateShadowStyles);\n\n      const swiperContainer = document.querySelector(\".swiper-container\");\n      if (swiperContainer) {\n        observer.observe(swiperContainer, {\n          attributes: true,\n          childList: true,\n          subtree: true,\n        });\n      }\n    }, 1000);\n\n    const handleClick = (variationId) => {\n      selectedVariationId.value = variationId;\n      selectedProductId.value = props.productId;\n      console.log(selectedProductId.value, \"here is Product id\");\n      console.log(selectedVariationId.value, \"here is Variation id\");\n      // console.log(apollo, \"here is appoloo id\");\n    };\n\n    return {\n      modules: [EffectCards],\n      spaceBetween: 400,\n      selectedProductId,\n      selectedVariationId,\n      products,\n      handleClick,\n    };\n  },\n};\n</script>\n\n<style scoped>\n.img {\n  width: auto;\n  height: auto;\n}\n.mySwiper * {\n  background-color: none;\n}\n.swiper {\n  width: 280px;\n  height: auto;\n}\n\n.swiper-slide {\n  background: none !important;\n  display: flex;\n  opacity: 1;\n  align-items: center;\n  justify-content: center;\n  font-size: 12px;\n  font-weight: bold;\n}\n</style>\n"
         ],
-        "mappings": ";AAqCA,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;AACjD,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChD,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9F,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAA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CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;MACvC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;MACzC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;MAC1D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;MAC9D,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;IAC9C,CAAC;;IAED,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;MACL,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;MACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC;MACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;MACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;MACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;MACR,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;IACb,CAAC;EACH,CAAC;AACH,CAAC;;;;;;;;;;MAhIY,eAAQ,CAAC,MAAM;IAD5B,aAAA,gBAAA;IAAA,MAAA;MAGO,MAAM,EAAE,OAAO;MACf,UAAU,EAAE,IAAI;MAChB,YAAY,EAAE,KAAK;MACnB,OAAO,EAAE,cAAO;MACjB,KAAK,EAAC,uBAAuB;;MAPnC,kBAEI,CAuBS;YAzBb;UAAA;UAAA,eAYmC,eAAQ,EAZ3C,CAYgB,OAAO,EAAE,KAAK;YAZ9B,MAAA;cAWQ,KAAK,EAAC,cAAe;cAEpB,GAAG,EAAE,KAAK;cACV,WAAW,EAAE,KAAK;cAClB,KAAK,+BAA+B,OAAO,CAAC,GAAG;;cAfxD,kBAUM,CAce;oBAxBrB;kBAAA;oBAAA;;oBAAA,eAmBa,KAAG,EAAE,OAAO,CAAC,GAAG,GAAG,OAAO,CAAC,GAAG;;oBAnB3C;;;;oBAiBQ,aAMM;sBANA,OAAK,aAAE,kBAAW,CAAC,OAAO,CAAC,WAAW;;sBAC1C,aAIE;wBAHC,GAAG,EAAE,OAAO,CAAC,GAAG,GAAG,OAAO,CAAC,GAAG;wBAC/B,GAAG,EAAC,eAAe;wBACnB,KAAK,EAAC,4BAA4B;;;;;;cArB9C,GAAA;;;UAAA;;;+BAUM,aAce,iBAxBrB,YAYmC,eAAQ,EAZ3C,CAYgB,OAAO,EAAE,KAAK;oCAFxB,aAce;gBAbb,KAAK,EAAC,cAAe;gBAEpB,GAAG,EAAE,KAAK;gBACV,WAAW,EAAE,KAAK;gBAClB,KAAK,+BAA+B,OAAO,CAAC,GAAG;;gBAfxD,kBAiBQ,CAMM;kBANN,aAMM;oBANA,OAAK,aAAE,kBAAW,CAAC,OAAO,CAAC,WAAW;;oBAC1C,aAIE;sBAHC,GAAG,EAAE,OAAO,CAAC,GAAG,GAAG,OAAO,CAAC,GAAG;sBAC/B,GAAG,EAAC,eAAe;sBACnB,KAAK,EAAC,4BAA4B;;;;gBArB9C,GAAA;;;;;;MAAA,GAAA;;IAAA;IAAA,MAAA;MA4BS,SAAS,EAAE,wBAAiB;MAC5B,WAAW,EAAE,0BAAmB;;IA7BzC;;IAAA,aAAA,gBAAA"
+        "mappings": ";AAqCA,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;AACjD,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChD,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9F,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAA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"
       }
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue\").then(r => r.default))",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988318,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988318,
+      "end": 1713269988319,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988319,
+      "end": 1713269988319,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1712968597071,
-      "end": 1712968597071,
+      "start": 1713269988319,
+      "end": 1713269988319,
       "order": "normal"
     }
   ]

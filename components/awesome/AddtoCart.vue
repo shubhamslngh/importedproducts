@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { AddCart } from "../../utils/cart";
 
-let props = defineProps({
+var props = defineProps({
   productId: Number,
   variationId: Number,
   qty: Number,
@@ -57,9 +57,10 @@ async function addToCartHandler() {
       quantity: counter.count,
      
     }).then(() => {
-      props.productId = "";
-      props.variationId = "";
-      (props.qty = ""), (loading.value = false);
+      // props.productId = "";
+      // props.variationId = "";
+      // (props.qty = ""), 
+      (loading.value = false);
       console.log("added to cart!");
     });
   } catch (error) {

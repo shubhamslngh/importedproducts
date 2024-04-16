@@ -4,63 +4,63 @@
     {
       "name": "vite:load-fallback",
       "result": "export interface ICounterState {\n  count: number\n}\n\nexport const useCounter = defineStore('counter', {\n  state: (): ICounterState => ({\n    count: 0,\n  }),\n  actions: {\n    increment() {\n      this.count++\n    },\n    decrement() {\n      this.count--\n    },\n    reset() {\n      this.count = 0\n    },\n    increment2x() {\n      this.count *= 2\n    },\n  },\n})\n",
-      "start": 1712968598079,
-      "end": 1712968598082,
+      "start": 1713269989329,
+      "end": 1713269989333,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968598082,
-      "end": 1712968598082,
+      "start": 1713269989333,
+      "end": 1713269989333,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968598082,
-      "end": 1712968598082,
+      "start": 1713269989333,
+      "end": 1713269989333,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968598082,
-      "end": 1712968598082,
+      "start": 1713269989333,
+      "end": 1713269989333,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968598082,
-      "end": 1712968598082,
+      "start": 1713269989333,
+      "end": 1713269989333,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968598082,
-      "end": 1712968598082,
+      "start": 1713269989333,
+      "end": 1713269989333,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968598082,
-      "end": 1712968598082,
+      "start": 1713269989333,
+      "end": 1713269989333,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1712968598082,
-      "end": 1712968598082,
+      "start": 1713269989333,
+      "end": 1713269989333,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1712968598082,
-      "end": 1712968598082,
+      "start": 1713269989333,
+      "end": 1713269989333,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "export const useCounter = defineStore(\"counter\", {\n  state: () => ({\n    count: 0\n  }),\n  actions: {\n    increment() {\n      this.count++;\n    },\n    decrement() {\n      this.count--;\n    },\n    reset() {\n      this.count = 0;\n    },\n    increment2x() {\n      this.count *= 2;\n    }\n  }\n});\n",
-      "start": 1712968598082,
-      "end": 1712968598315,
+      "start": 1713269989333,
+      "end": 1713269989577,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -76,141 +76,141 @@
     },
     {
       "name": "vite:json",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968598315,
-      "end": 1712968598315,
+      "start": 1713269989577,
+      "end": 1713269989577,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { defineStore } from '/Users/shubhamsingh/namma/importedProds/node_modules/@pinia/nuxt/dist/runtime/composables';\nexport const useCounter = defineStore(\"counter\", {\n  state: () => ({\n    count: 0\n  }),\n  actions: {\n    increment() {\n      this.count++;\n    },\n    decrement() {\n      this.count--;\n    },\n    reset() {\n      this.count = 0;\n    },\n    increment2x() {\n      this.count *= 2;\n    }\n  }\n});\n",
-      "start": 1712968598315,
-      "end": 1712968598316,
+      "start": 1713269989577,
+      "end": 1713269989578,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -224,8 +224,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { defineStore } from '/Users/shubhamsingh/namma/importedProds/node_modules/@pinia/nuxt/dist/runtime/composables';\nexport const useCounter = defineStore(\"counter\", {\n  state: () => ({\n    count: 0\n  }),\n  actions: {\n    increment() {\n      this.count++;\n    },\n    decrement() {\n      this.count--;\n    },\n    reset() {\n      this.count = 0;\n    },\n    increment2x() {\n      this.count *= 2;\n    }\n  }\n});\n",
-      "start": 1712968598315,
-      "end": 1712968598316,
+      "start": 1713269989577,
+      "end": 1713269989578,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -238,56 +238,56 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1712968598316,
-      "end": 1712968598316,
+      "start": 1713269989578,
+      "end": 1713269989578,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1712968598316,
-      "end": 1712968598316,
+      "start": 1713269989578,
+      "end": 1713269989578,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968598316,
-      "end": 1712968598316,
+      "start": 1713269989578,
+      "end": 1713269989578,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968598316,
-      "end": 1712968598316,
+      "start": 1713269989578,
+      "end": 1713269989578,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1712968598316,
-      "end": 1712968598316,
+      "start": 1713269989578,
+      "end": 1713269989578,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1712968598316,
-      "end": 1712968598316,
+      "start": 1713269989578,
+      "end": 1713269989578,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1712968598316,
-      "end": 1712968598316,
+      "start": 1713269989578,
+      "end": 1713269989578,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1712968598316,
-      "end": 1712968598316,
+      "start": 1713269989578,
+      "end": 1713269989578,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1712968598316,
-      "end": 1712968598316,
+      "start": 1713269989578,
+      "end": 1713269989578,
       "order": "normal"
     }
   ]

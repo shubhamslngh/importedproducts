@@ -4,63 +4,63 @@
     {
       "name": "vite:load-fallback",
       "result": "<script lang=\"ts\" setup>\nconst props = defineProps({\n  type: {\n    type: String,\n    default: 'dropdown-right-top',\n  },\n})\nconst currentStyle = toRef(props, 'type')\n\nconst availableThemes = [\n  {\n    key: 'light',\n    text: 'Light',\n  },\n  {\n    key: 'dark',\n    text: 'Dark',\n  },\n  {\n    key: 'system',\n    text: 'System',\n  },\n]\n</script>\n\n<template>\n  <div class=\"flex items-center\">\n    <HeadlessListbox\n      v-if=\"currentStyle === 'dropdown-right-top'\"\n      v-model=\"$colorMode.preference\"\n      as=\"div\"\n      class=\"relative flex items-center\"\n    >\n      <HeadlessListboxLabel class=\"sr-only\">Theme</HeadlessListboxLabel>\n      <HeadlessListboxButton type=\"template\">\n        <AwesomeLink class=\"dark:text-gray-400 text-gray-600\">\n          <span class=\"flex justify-center items-center dark:hidden\">\n            <Icon name=\"uil:sun\" />\n          </span>\n          <span class=\"justify-center items-center hidden dark:flex\">\n            <Icon name=\"uil:moon\" />\n          </span>\n        </AwesomeLink>\n      </HeadlessListboxButton>\n      <HeadlessListboxOptions\n        class=\"p-1 absolute z-50 origin-top-right top-full right-0 outline-none bg-white rounded-lg ring-1 ring-gray-900/10 shadow-lg overflow-hidden w-36 py-1 text-sm text-gray-700 font-semibold dark:bg-gray-800 dark:ring-0 dark:highlight-white/5 dark:text-gray-300\"\n      >\n        <HeadlessListboxOption\n          v-for=\"theme in availableThemes\"\n          :key=\"theme.key\"\n          :value=\"theme.key\"\n          :class=\"{\n            'py-2 px-2 flex items-center cursor-pointer': true,\n            'text-sky-500 bg-gray-100 dark:bg-gray-600/30':\n              $colorMode.preference === theme.key,\n            'hover:bg-gray-50 dark:hover:bg-gray-700/30':\n              $colorMode.preference !== theme.key,\n          }\"\n        >\n          <span class=\"text-sm mr-2 flex items-center\">\n            <Icon v-if=\"theme.key === 'light'\" name=\"uil:sun\" />\n            <Icon v-else-if=\"theme.key === 'dark'\" name=\"uil:moon\" />\n            <Icon v-else-if=\"theme.key === 'system'\" name=\"uil:laptop\" />\n          </span>\n          {{ theme.text }}\n        </HeadlessListboxOption>\n      </HeadlessListboxOptions>\n    </HeadlessListbox>\n    <select\n      v-if=\"currentStyle === 'select-box'\"\n      v-model=\"$colorMode.preference\"\n      class=\"w-full px-2 pr-3 py-1 outline-none rounded border bg-transparent text-gray-700 dark:text-gray-300 border-gray-900/10 dark:border-gray-50/[0.2]\"\n    >\n      <option\n        v-for=\"theme in availableThemes\"\n        :key=\"theme.key\"\n        :value=\"theme.key\"\n      >\n        {{ theme.text }}\n      </option>\n    </select>\n  </div>\n</template>\n",
-      "start": 1712968593527,
-      "end": 1712968593681,
+      "start": 1713269984895,
+      "end": 1713269985174,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1712968593681,
-      "end": 1712968593681,
+      "start": 1713269985174,
+      "end": 1713269985174,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1712968593681,
-      "end": 1712968593681,
+      "start": 1713269985174,
+      "end": 1713269985174,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1712968593681,
-      "end": 1712968593681,
+      "start": 1713269985174,
+      "end": 1713269985174,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1712968593681,
-      "end": 1712968593681,
+      "start": 1713269985174,
+      "end": 1713269985174,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1712968593681,
-      "end": 1712968593681,
+      "start": 1713269985174,
+      "end": 1713269985174,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1712968593681,
-      "end": 1712968593681,
+      "start": 1713269985174,
+      "end": 1713269985174,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1712968593681,
-      "end": 1712968593681,
+      "start": 1713269985174,
+      "end": 1713269985174,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1712968593681,
-      "end": 1712968593681,
+      "start": 1713269985174,
+      "end": 1713269985174,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "import _sfc_main from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/NavbarDropdown/ThemeSwitcher.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/NavbarDropdown/ThemeSwitcher.vue?vue&type=script&setup=true&lang.ts\";\nexport default _sfc_main;\n",
-      "start": 1712968593681,
-      "end": 1712968594201,
+      "start": 1713269985174,
+      "end": 1713269985437,
       "order": "normal",
       "sourcemaps": {
         "mappings": ""
@@ -68,162 +68,162 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1712968594201,
-      "end": 1712968594201,
+      "start": 1713269985437,
+      "end": 1713269985437,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1712968594201,
-      "end": 1712968594201,
+      "start": 1713269985437,
+      "end": 1713269985437,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1712968594201,
-      "end": 1712968594201,
+      "start": 1713269985437,
+      "end": 1713269985437,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1712968594201,
-      "end": 1712968594201,
+      "start": 1713269985437,
+      "end": 1713269985437,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1712968594201,
-      "end": 1712968594201,
+      "start": 1713269985437,
+      "end": 1713269985437,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/NavbarDropdown/ThemeSwitcher.vue\").then(r => r.default))",
-      "start": 1712968594201,
-      "end": 1712968594201,
+      "start": 1713269985438,
+      "end": 1713269985438,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1712968594201,
-      "end": 1712968594201,
+      "start": 1713269985438,
+      "end": 1713269985438,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1712968594201,
-      "end": 1712968594201,
+      "start": 1713269985438,
+      "end": 1713269985438,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1712968594201,
-      "end": 1712968594201,
+      "start": 1713269985438,
+      "end": 1713269985438,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1712968594201,
-      "end": 1712968594201,
+      "start": 1713269985438,
+      "end": 1713269985438,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1712968594201,
-      "end": 1712968594201,
+      "start": 1713269985438,
+      "end": 1713269985438,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1712968594201,
-      "end": 1712968594201,
+      "start": 1713269985438,
+      "end": 1713269985438,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1712968594202,
-      "end": 1712968594202,
+      "start": 1713269985438,
+      "end": 1713269985438,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1712968594202,
-      "end": 1712968594202,
+      "start": 1713269985438,
+      "end": 1713269985438,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1712968594202,
-      "end": 1712968594202,
+      "start": 1713269985438,
+      "end": 1713269985438,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1712968594202,
-      "end": 1712968594202,
+      "start": 1713269985438,
+      "end": 1713269985438,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1712968594202,
-      "end": 1712968594202,
+      "start": 1713269985438,
+      "end": 1713269985438,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1712968594202,
-      "end": 1712968594202,
+      "start": 1713269985439,
+      "end": 1713269985439,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1712968594202,
-      "end": 1712968594202,
+      "start": 1713269985439,
+      "end": 1713269985439,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1712968594202,
-      "end": 1712968594202,
+      "start": 1713269985439,
+      "end": 1713269985439,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1712968594202,
-      "end": 1712968594202,
+      "start": 1713269985439,
+      "end": 1713269985439,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1712968594203,
-      "end": 1712968594203,
+      "start": 1713269985439,
+      "end": 1713269985439,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1712968594203,
-      "end": 1712968594203,
+      "start": 1713269985439,
+      "end": 1713269985439,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1712968594203,
-      "end": 1712968594203,
+      "start": 1713269985439,
+      "end": 1713269985439,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
       "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/NavbarDropdown/ThemeSwitcher.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(r => r.default))",
-      "start": 1712968594203,
-      "end": 1712968594203,
+      "start": 1713269985439,
+      "end": 1713269985440,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "vite:reporter",
-      "start": 1712968594203,
-      "end": 1712968594203,
+      "start": 1713269985440,
+      "end": 1713269985440,
       "order": "normal"
     }
   ]
