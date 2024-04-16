@@ -4,63 +4,63 @@
     {
       "name": "vite:load-fallback",
       "result": "<template>\n  <div class=\"max-w-md mx-auto\">\n    <form\n      @submit.prevent=\"submitForm\"\n      class=\"bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4\"\n    >\n      <div class=\"mb-4\" step 1>\n        <label class=\"block text-gray-700 text-sm font-bold mb-2\" for=\"name\">\n          Name\n        </label>\n        <input\n          v-model=\"name\"\n          class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\"\n          id=\"name\"\n          type=\"text\"\n          placeholder=\"Enter your name\"\n        />\n      </div>\n      <div class=\"mb-4\">\n        <label class=\"block text-gray-700 text-sm font-bold mb-2\" for=\"email\">\n          Email\n        </label>\n        <input\n          v-model=\"email\"\n          class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\"\n          id=\"email\"\n          type=\"email\"\n          placeholder=\"Enter your email\"\n        />\n      </div>\n      <div class=\"mb-6\">\n        <label class=\"block text-gray-700 text-sm font-bold mb-2\" for=\"phone\">\n          Phone\n        </label>\n        <input\n          v-model=\"phone\"\n          class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\"\n          id=\"phone\"\n          type=\"tel\"\n          placeholder=\"Enter your phone number\"\n        />\n      </div>\n      <div class=\"flex items-center justify-between\">\n        <button\n          class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline\"\n          type=\"submit\"\n        >\n          Submit\n        </button>\n      </div>\n    </form>\n  </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      name: \"\",\n      email: \"\",\n      phone: \"\",\n    };\n  },\n  methods: {\n    submitForm() {\n      // Handle form submission\n      console.log(\"Form submitted!\");\n    },\n  },\n};\n</script>\n\n<style>\n/* Add any additional styling here */\n</style>\n",
-      "start": 1713269985197,
-      "end": 1713269985389,
+      "start": 1713304782746,
+      "end": 1713304782994,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269985389,
-      "end": 1713269985389,
+      "start": 1713304782994,
+      "end": 1713304782994,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269985389,
-      "end": 1713269985389,
+      "start": 1713304782994,
+      "end": 1713304782994,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269985389,
-      "end": 1713269985389,
+      "start": 1713304782994,
+      "end": 1713304782994,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269985389,
-      "end": 1713269985389,
+      "start": 1713304782994,
+      "end": 1713304782994,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269985389,
-      "end": 1713269985389,
+      "start": 1713304782994,
+      "end": 1713304782994,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1713269985389,
-      "end": 1713269985389,
+      "start": 1713304782994,
+      "end": 1713304782994,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1713269985389,
-      "end": 1713269985389,
+      "start": 1713304782994,
+      "end": 1713304782994,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269985389,
-      "end": 1713269985389,
+      "start": 1713304782994,
+      "end": 1713304782994,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "\nconst _sfc_main = {\n  data() {\n    return {\n      name: \"\",\n      email: \"\",\n      phone: \"\",\n    };\n  },\n  methods: {\n    submitForm() {\n      // Handle form submission\n      console.log(\"Form submitted!\");\n    },\n  },\n};\n\nimport { createElementVNode as _createElementVNode, vModelText as _vModelText, withDirectives as _withDirectives, withModifiers as _withModifiers, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"max-w-md mx-auto\" }\nconst _hoisted_2 = {\n  class: \"mb-4\",\n  step: \"\",\n  \"1\": \"\"\n}\nconst _hoisted_3 = /*#__PURE__*/_createElementVNode(\"label\", {\n  class: \"block text-gray-700 text-sm font-bold mb-2\",\n  for: \"name\"\n}, \" Name \", -1)\nconst _hoisted_4 = { class: \"mb-4\" }\nconst _hoisted_5 = /*#__PURE__*/_createElementVNode(\"label\", {\n  class: \"block text-gray-700 text-sm font-bold mb-2\",\n  for: \"email\"\n}, \" Email \", -1)\nconst _hoisted_6 = { class: \"mb-6\" }\nconst _hoisted_7 = /*#__PURE__*/_createElementVNode(\"label\", {\n  class: \"block text-gray-700 text-sm font-bold mb-2\",\n  for: \"phone\"\n}, \" Phone \", -1)\nconst _hoisted_8 = /*#__PURE__*/_createElementVNode(\"div\", { class: \"flex items-center justify-between\" }, [\n  /*#__PURE__*/_createElementVNode(\"button\", {\n    class: \"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline\",\n    type: \"submit\"\n  }, \" Submit \")\n], -1)\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"form\", {\n      onSubmit: _cache[3] || (_cache[3] = _withModifiers((...args) => ($options.submitForm && $options.submitForm(...args)), [\"prevent\"])),\n      class: \"bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4\"\n    }, [\n      _createElementVNode(\"div\", _hoisted_2, [\n        _hoisted_3,\n        _withDirectives(_createElementVNode(\"input\", {\n          \"onUpdate:modelValue\": _cache[0] || (_cache[0] = $event => (($data.name) = $event)),\n          class: \"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\",\n          id: \"name\",\n          type: \"text\",\n          placeholder: \"Enter your name\"\n        }, null, 512), [\n          [_vModelText, $data.name]\n        ])\n      ]),\n      _createElementVNode(\"div\", _hoisted_4, [\n        _hoisted_5,\n        _withDirectives(_createElementVNode(\"input\", {\n          \"onUpdate:modelValue\": _cache[1] || (_cache[1] = $event => (($data.email) = $event)),\n          class: \"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\",\n          id: \"email\",\n          type: \"email\",\n          placeholder: \"Enter your email\"\n        }, null, 512), [\n          [_vModelText, $data.email]\n        ])\n      ]),\n      _createElementVNode(\"div\", _hoisted_6, [\n        _hoisted_7,\n        _withDirectives(_createElementVNode(\"input\", {\n          \"onUpdate:modelValue\": _cache[2] || (_cache[2] = $event => (($data.phone) = $event)),\n          class: \"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\",\n          id: \"phone\",\n          type: \"tel\",\n          placeholder: \"Enter your phone number\"\n        }, null, 512), [\n          [_vModelText, $data.phone]\n        ])\n      ]),\n      _hoisted_8\n    ], 32)\n  ]))\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Form.vue?vue&type=style&index=0&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])",
-      "start": 1713269985389,
-      "end": 1713269985390,
+      "start": 1713304782994,
+      "end": 1713304782995,
       "order": "normal",
       "sourcemaps": {
         "mappings": ""
@@ -68,162 +68,162 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Form.vue\").then(r => r.default))",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
       "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Form.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(r => r.default))",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "vite:reporter",
-      "start": 1713269985390,
-      "end": 1713269985390,
+      "start": 1713304782995,
+      "end": 1713304782995,
       "order": "normal"
     }
   ]

@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "import devAssert from \"../jsutils/devAssert.mjs\";\nimport { GraphQLError } from \"../error/GraphQLError.mjs\";\nimport { visit, visitInParallel } from \"../language/visitor.mjs\";\nimport { assertValidSchema } from \"../type/validate.mjs\";\nimport { TypeInfo, visitWithTypeInfo } from \"../utilities/TypeInfo.mjs\";\nimport { specifiedRules, specifiedSDLRules } from \"./specifiedRules.mjs\";\nimport { SDLValidationContext, ValidationContext } from \"./ValidationContext.mjs\";\n/**\n * Implements the \"Validation\" section of the spec.\n *\n * Validation runs synchronously, returning an array of encountered errors, or\n * an empty array if no errors were encountered and the document is valid.\n *\n * A list of specific validation rules may be provided. If not provided, the\n * default list of rules defined by the GraphQL specification will be used.\n *\n * Each validation rules is a function which returns a visitor\n * (see the language/visitor API). Visitor methods are expected to return\n * GraphQLErrors, or Arrays of GraphQLErrors when invalid.\n *\n * Optionally a custom TypeInfo instance may be provided. If not provided, one\n * will be created from the provided schema.\n */\n\nexport function validate(schema, documentAST) {\n  var rules = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : specifiedRules;\n  var typeInfo = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : new TypeInfo(schema);\n  var options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {\n    maxErrors: undefined\n  };\n  documentAST || devAssert(0, 'Must provide document.'); // If the schema used for validation is invalid, throw an error.\n\n  assertValidSchema(schema);\n  var abortObj = Object.freeze({});\n  var errors = [];\n  var context = new ValidationContext(schema, documentAST, typeInfo, function (error) {\n    if (options.maxErrors != null && errors.length >= options.maxErrors) {\n      errors.push(new GraphQLError('Too many validation errors, error limit reached. Validation aborted.'));\n      throw abortObj;\n    }\n\n    errors.push(error);\n  }); // This uses a specialized visitor which runs multiple visitors in parallel,\n  // while maintaining the visitor skip and break API.\n\n  var visitor = visitInParallel(rules.map(function (rule) {\n    return rule(context);\n  })); // Visit the whole document with each instance of all provided rules.\n\n  try {\n    visit(documentAST, visitWithTypeInfo(typeInfo, visitor));\n  } catch (e) {\n    if (e !== abortObj) {\n      throw e;\n    }\n  }\n\n  return errors;\n}\n/**\n * @internal\n */\n\nexport function validateSDL(documentAST, schemaToExtend) {\n  var rules = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : specifiedSDLRules;\n  var errors = [];\n  var context = new SDLValidationContext(documentAST, schemaToExtend, function (error) {\n    errors.push(error);\n  });\n  var visitors = rules.map(function (rule) {\n    return rule(context);\n  });\n  visit(documentAST, visitInParallel(visitors));\n  return errors;\n}\n/**\n * Utility function which asserts a SDL document is valid by throwing an error\n * if it is invalid.\n *\n * @internal\n */\n\nexport function assertValidSDL(documentAST) {\n  var errors = validateSDL(documentAST);\n\n  if (errors.length !== 0) {\n    throw new Error(errors.map(function (error) {\n      return error.message;\n    }).join('\\n\\n'));\n  }\n}\n/**\n * Utility function which asserts a SDL document is valid by throwing an error\n * if it is invalid.\n *\n * @internal\n */\n\nexport function assertValidSDLExtension(documentAST, schema) {\n  var errors = validateSDL(documentAST, schema);\n\n  if (errors.length !== 0) {\n    throw new Error(errors.map(function (error) {\n      return error.message;\n    }).join('\\n\\n'));\n  }\n}\n",
-      "start": 1713269986210,
-      "end": 1713269986224,
+      "start": 1713304784078,
+      "end": 1713304784090,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269986224,
-      "end": 1713269986224,
+      "start": 1713304784090,
+      "end": 1713304784090,
       "order": "normal"
     }
   ]

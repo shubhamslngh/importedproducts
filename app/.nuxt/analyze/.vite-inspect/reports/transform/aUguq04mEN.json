@@ -4,44 +4,44 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, renderList as _renderList, Fragment as _Fragment, toDisplayString as _toDisplayString, withModifiers as _withModifiers } from \"vue\"\n\nconst _hoisted_1 = { key: 0 }\nconst _hoisted_2 = { class: \"h-screen pt-20\" }\nconst _hoisted_3 = /*#__PURE__*/_createElementVNode(\"h1\", { class: \"mb-10 text-center text-3xl font-bold\" }, \"Cart Items\", -1)\nconst _hoisted_4 = { class: \"mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0\" }\nconst _hoisted_5 = { class: \"rounded-lg md:w-2/3\" }\nconst _hoisted_6 = {\n  key: 0,\n  class: \"grid place-items-start\"\n}\nconst _hoisted_7 = /*#__PURE__*/_createElementVNode(\"div\", { class: \"sm:ml-4 sm:flex sm:w-full sm:justify-between\" }, [\n  /*#__PURE__*/_createElementVNode(\"h1\", { class: \"mb-10 text-center text-xl font-bold\" }, \"No item added \"),\n  /*#__PURE__*/_createElementVNode(\"img\", {\n    alt: \"product-image\",\n    src: \"https://importedproducts.in/wp-content/uploads/2024/04/shopping-cart-buy-shopping-297750.png\",\n    class: \"mb-10 blur-sm flex mr-20 items-center sm:w-40\"\n  })\n], -1)\nconst _hoisted_8 = [\n  _hoisted_7\n]\nconst _hoisted_9 = {\n  key: 0,\n  class: \"sm:ml-4 sm:flex sm:w-full sm:justify-between\"\n}\nconst _hoisted_10 = [\"src\"]\nconst _hoisted_11 = { class: \"sm:ml-4 sm:flex sm:w-full sm:justify-between\" }\nconst _hoisted_12 = { class: \"mt-5 sm:mt-0\" }\nconst _hoisted_13 = { class: \"text-lg font-bold text-gray-900\" }\nconst _hoisted_14 = /*#__PURE__*/_createElementVNode(\"p\", { class: \"mt-1 text-xs text-gray-700\" }, null, -1)\nconst _hoisted_15 = { class: \"mt-1 text-xs text-gray-700\" }\nconst _hoisted_16 = { class: \"mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6\" }\nconst _hoisted_17 = { class: \"flex items-center border-gray-100\" }\nconst _hoisted_18 = { class: \"relative\" }\nconst _hoisted_19 = { class: \"flex items-center space-x-4\" }\nconst _hoisted_20 = { class: \"text-sm\" }\nconst _hoisted_21 = /*#__PURE__*/_createElementVNode(\"svg\", {\n  xmlns: \"http://www.w3.org/2000/svg\",\n  fill: \"none\",\n  viewBox: \"0 0 24 24\",\n  \"stroke-width\": \"1.5\",\n  stroke: \"currentColor\",\n  class: \"h-5 w-5 cursor-pointer duration-150 hover:text-red-500\"\n}, [\n  /*#__PURE__*/_createElementVNode(\"path\", {\n    \"stroke-linecap\": \"round\",\n    \"stroke-linejoin\": \"round\",\n    d: \"M6 18L18 6M6 6l12 12\"\n  })\n], -1)\nconst _hoisted_22 = { class: \"mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3\" }\nconst _hoisted_23 = { class: \"mb-2 flex justify-between\" }\nconst _hoisted_24 = /*#__PURE__*/_createElementVNode(\"p\", { class: \"text-gray-700\" }, \"Subtotal\", -1)\nconst _hoisted_25 = { class: \"text-gray-700\" }\nconst _hoisted_26 = { class: \"flex justify-between\" }\nconst _hoisted_27 = /*#__PURE__*/_createElementVNode(\"p\", { class: \"text-gray-700\" }, \"Shipping\", -1)\nconst _hoisted_28 = { class: \"text-gray-700\" }\nconst _hoisted_29 = /*#__PURE__*/_createElementVNode(\"hr\", { class: \"my-4\" }, null, -1)\nconst _hoisted_30 = { class: \"flex justify-between\" }\nconst _hoisted_31 = /*#__PURE__*/_createElementVNode(\"p\", { class: \"text-lg text-black font-bold\" }, \"Total\", -1)\nconst _hoisted_32 = { class: \"\" }\nconst _hoisted_33 = { class: \"mb-1 text-lg text-black font-bold\" }\nconst _hoisted_34 = /*#__PURE__*/_createElementVNode(\"p\", { class: \"text-sm text-black\" }, \"including VAT\", -1)\nconst _hoisted_35 = /*#__PURE__*/_createElementVNode(\"button\", { class: \"mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600\" }, \"Check out\", -1)\nconst _hoisted_36 = { key: 1 }\nconst _hoisted_37 = /*#__PURE__*/_createElementVNode(\"h1\", { class: \"mb-10 text-center text-2xl font-bold\" }, \"Loading...\", -1)\nconst _hoisted_38 = [\n  _hoisted_37\n]\n\nimport { cartItem } from \"../../utils/cart\";\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'Cart',\n  setup(__props) {\n\nconst counter = useCounter();\nconst data = ref(null);\nlet error = null;\n\n\nconst loadData = async () => {\n  try {\n    const { data: newData } = await useAsyncQuery(cartItem);\n    data.value = newData;\n  }\n  catch (err) {\n    error = err;\n  }\n};\nonMounted(loadData);\n\nwatch(data, (newVal, oldVal) => {\n  console.log(\"Data changed:\", newVal);\n});\nconsole.log(\"data here\", data);\n\nreturn (_ctx: any,_cache: any) => {\n  return (_unref(data))\n    ? (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createElementVNode(\"div\", _hoisted_2, [\n          _hoisted_3,\n          _createElementVNode(\"div\", _hoisted_4, [\n            _createElementVNode(\"div\", _hoisted_5, [\n              (_unref(data)._value.cart.contents.nodes.length===0)\n                ? (_openBlock(), _createElementBlock(\"div\", _hoisted_6, _hoisted_8))\n                : _createCommentVNode(\"\", true),\n              (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(_unref(data)._value.cart.contents.nodes, (product, index) => {\n                return (_openBlock(), _createElementBlock(\"div\", {\n                  key: index,\n                  class: \"justify-between mb-6 dark:bg-white rounded-lg light: bg-slate-300 p-6 shadow-md sm:flex sm:justify-start\"\n                }, [\n                  (product.variation)\n                    ? (_openBlock(), _createElementBlock(\"div\", _hoisted_9, [\n                        _createElementVNode(\"img\", {\n                          alt: \"product-image\",\n                          src: product.variation.node.image.link,\n                          class: \"w-full rounded-lg sm:w-40\"\n                        }, null, 8, _hoisted_10),\n                        _createElementVNode(\"div\", _hoisted_11, [\n                          _createElementVNode(\"div\", _hoisted_12, [\n                            _createElementVNode(\"h2\", _hoisted_13, _toDisplayString(product.variation.node.name), 1),\n                            _hoisted_14,\n                            _createElementVNode(\"p\", _hoisted_15, \"QTY:\" + _toDisplayString(product.quantity), 1)\n                          ])\n                        ]),\n                        _createElementVNode(\"div\", _hoisted_16, [\n                          _createElementVNode(\"div\", _hoisted_17, [\n                            _createElementVNode(\"button\", {\n                              onClick: _cache[0] || (_cache[0] = _withModifiers(\n//@ts-ignore\n(...args) => (_unref(counter).decrement && _unref(counter).decrement(...args)), [\"prevent\"])),\n                              class: \"counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600\"\n                            }, _toDisplayString(product.variation.node.databaseId) + \" - \", 1),\n                            _createElementVNode(\"div\", _hoisted_18, [\n                              (_openBlock(), _createElementBlock(\"span\", {\n                                key: _unref(counter).count,\n                                class: \"counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg\"\n                              }, _toDisplayString(_unref(counter).count=product.quantity), 1))\n                            ]),\n                            _createElementVNode(\"button\", {\n                              onClick: _cache[1] || (_cache[1] = _withModifiers(\n//@ts-ignore\n(...args) => (_unref(counter).increment && _unref(counter).increment(...args)), [\"prevent\"])),\n                              class: \"counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600\"\n                            }, _toDisplayString(product.variation.node.image.parentDatabaseId) + \" + \", 1)\n                          ]),\n                          _createElementVNode(\"div\", _hoisted_19, [\n                            _createElementVNode(\"p\", _hoisted_20, _toDisplayString(product.subtotal), 1),\n                            _hoisted_21\n                          ])\n                        ])\n                      ]))\n                    : _createCommentVNode(\"\", true)\n                ]))\n              }), 128))\n            ]),\n            _createElementVNode(\"div\", _hoisted_22, [\n              _createElementVNode(\"div\", _hoisted_23, [\n                _hoisted_24,\n                _createElementVNode(\"p\", _hoisted_25, _toDisplayString(_unref(data)._value.cart.total), 1)\n              ]),\n              _createElementVNode(\"div\", _hoisted_26, [\n                _hoisted_27,\n                _createElementVNode(\"p\", _hoisted_28, _toDisplayString(_unref(data)._value.cart.shippingTotal), 1)\n              ]),\n              _hoisted_29,\n              _createElementVNode(\"div\", _hoisted_30, [\n                _hoisted_31,\n                _createElementVNode(\"div\", _hoisted_32, [\n                  _createElementVNode(\"p\", _hoisted_33, _toDisplayString(_unref(data)._value.cart.total), 1),\n                  _hoisted_34\n                ])\n              ]),\n              _hoisted_35\n            ])\n          ])\n        ])\n      ]))\n    : (_openBlock(), _createElementBlock(\"div\", _hoisted_36, _hoisted_38))\n}\n}\n\n})",
-      "start": 1713269985973,
-      "end": 1713269985973
+      "start": 1713304783740,
+      "end": 1713304783740
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269985973,
-      "end": 1713269985973,
+      "start": 1713304783740,
+      "end": 1713304783740,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269985973,
-      "end": 1713269985973,
+      "start": 1713304783740,
+      "end": 1713304783740,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269985973,
-      "end": 1713269985973,
+      "start": 1713304783740,
+      "end": 1713304783740,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269985973,
-      "end": 1713269985973,
+      "start": 1713304783740,
+      "end": 1713304783740,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269985973,
-      "end": 1713269985973,
+      "start": 1713304783740,
+      "end": 1713304783740,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, renderList as _renderList, Fragment as _Fragment, toDisplayString as _toDisplayString, withModifiers as _withModifiers } from \"vue\";\nconst _hoisted_1 = { key: 0 };\nconst _hoisted_2 = { class: \"h-screen pt-20\" };\nconst _hoisted_3 = /* @__PURE__ */ _createElementVNode(\"h1\", { class: \"mb-10 text-center text-3xl font-bold\" }, \"Cart Items\", -1);\nconst _hoisted_4 = { class: \"mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0\" };\nconst _hoisted_5 = { class: \"rounded-lg md:w-2/3\" };\nconst _hoisted_6 = {\n  key: 0,\n  class: \"grid place-items-start\"\n};\nconst _hoisted_7 = /* @__PURE__ */ _createElementVNode(\"div\", { class: \"sm:ml-4 sm:flex sm:w-full sm:justify-between\" }, [\n  /* @__PURE__ */ _createElementVNode(\"h1\", { class: \"mb-10 text-center text-xl font-bold\" }, \"No item added \"),\n  /* @__PURE__ */ _createElementVNode(\"img\", {\n    alt: \"product-image\",\n    src: \"https://importedproducts.in/wp-content/uploads/2024/04/shopping-cart-buy-shopping-297750.png\",\n    class: \"mb-10 blur-sm flex mr-20 items-center sm:w-40\"\n  })\n], -1);\nconst _hoisted_8 = [\n  _hoisted_7\n];\nconst _hoisted_9 = {\n  key: 0,\n  class: \"sm:ml-4 sm:flex sm:w-full sm:justify-between\"\n};\nconst _hoisted_10 = [\"src\"];\nconst _hoisted_11 = { class: \"sm:ml-4 sm:flex sm:w-full sm:justify-between\" };\nconst _hoisted_12 = { class: \"mt-5 sm:mt-0\" };\nconst _hoisted_13 = { class: \"text-lg font-bold text-gray-900\" };\nconst _hoisted_14 = /* @__PURE__ */ _createElementVNode(\"p\", { class: \"mt-1 text-xs text-gray-700\" }, null, -1);\nconst _hoisted_15 = { class: \"mt-1 text-xs text-gray-700\" };\nconst _hoisted_16 = { class: \"mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6\" };\nconst _hoisted_17 = { class: \"flex items-center border-gray-100\" };\nconst _hoisted_18 = { class: \"relative\" };\nconst _hoisted_19 = { class: \"flex items-center space-x-4\" };\nconst _hoisted_20 = { class: \"text-sm\" };\nconst _hoisted_21 = /* @__PURE__ */ _createElementVNode(\"svg\", {\n  xmlns: \"http://www.w3.org/2000/svg\",\n  fill: \"none\",\n  viewBox: \"0 0 24 24\",\n  \"stroke-width\": \"1.5\",\n  stroke: \"currentColor\",\n  class: \"h-5 w-5 cursor-pointer duration-150 hover:text-red-500\"\n}, [\n  /* @__PURE__ */ _createElementVNode(\"path\", {\n    \"stroke-linecap\": \"round\",\n    \"stroke-linejoin\": \"round\",\n    d: \"M6 18L18 6M6 6l12 12\"\n  })\n], -1);\nconst _hoisted_22 = { class: \"mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3\" };\nconst _hoisted_23 = { class: \"mb-2 flex justify-between\" };\nconst _hoisted_24 = /* @__PURE__ */ _createElementVNode(\"p\", { class: \"text-gray-700\" }, \"Subtotal\", -1);\nconst _hoisted_25 = { class: \"text-gray-700\" };\nconst _hoisted_26 = { class: \"flex justify-between\" };\nconst _hoisted_27 = /* @__PURE__ */ _createElementVNode(\"p\", { class: \"text-gray-700\" }, \"Shipping\", -1);\nconst _hoisted_28 = { class: \"text-gray-700\" };\nconst _hoisted_29 = /* @__PURE__ */ _createElementVNode(\"hr\", { class: \"my-4\" }, null, -1);\nconst _hoisted_30 = { class: \"flex justify-between\" };\nconst _hoisted_31 = /* @__PURE__ */ _createElementVNode(\"p\", { class: \"text-lg text-black font-bold\" }, \"Total\", -1);\nconst _hoisted_32 = { class: \"\" };\nconst _hoisted_33 = { class: \"mb-1 text-lg text-black font-bold\" };\nconst _hoisted_34 = /* @__PURE__ */ _createElementVNode(\"p\", { class: \"text-sm text-black\" }, \"including VAT\", -1);\nconst _hoisted_35 = /* @__PURE__ */ _createElementVNode(\"button\", { class: \"mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600\" }, \"Check out\", -1);\nconst _hoisted_36 = { key: 1 };\nconst _hoisted_37 = /* @__PURE__ */ _createElementVNode(\"h1\", { class: \"mb-10 text-center text-2xl font-bold\" }, \"Loading...\", -1);\nconst _hoisted_38 = [\n  _hoisted_37\n];\nimport { cartItem } from \"../../utils/cart\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Cart\",\n  setup(__props) {\n    const counter = useCounter();\n    const data = ref(null);\n    let error = null;\n    const loadData = async () => {\n      try {\n        const { data: newData } = await useAsyncQuery(cartItem);\n        data.value = newData;\n      } catch (err) {\n        error = err;\n      }\n    };\n    onMounted(loadData);\n    watch(data, (newVal, oldVal) => {\n      console.log(\"Data changed:\", newVal);\n    });\n    console.log(\"data here\", data);\n    return (_ctx, _cache) => {\n      return _unref(data) ? (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createElementVNode(\"div\", _hoisted_2, [\n          _hoisted_3,\n          _createElementVNode(\"div\", _hoisted_4, [\n            _createElementVNode(\"div\", _hoisted_5, [\n              _unref(data)._value.cart.contents.nodes.length === 0 ? (_openBlock(), _createElementBlock(\"div\", _hoisted_6, _hoisted_8)) : _createCommentVNode(\"\", true),\n              (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(_unref(data)._value.cart.contents.nodes, (product, index) => {\n                return _openBlock(), _createElementBlock(\"div\", {\n                  key: index,\n                  class: \"justify-between mb-6 dark:bg-white rounded-lg light: bg-slate-300 p-6 shadow-md sm:flex sm:justify-start\"\n                }, [\n                  product.variation ? (_openBlock(), _createElementBlock(\"div\", _hoisted_9, [\n                    _createElementVNode(\"img\", {\n                      alt: \"product-image\",\n                      src: product.variation.node.image.link,\n                      class: \"w-full rounded-lg sm:w-40\"\n                    }, null, 8, _hoisted_10),\n                    _createElementVNode(\"div\", _hoisted_11, [\n                      _createElementVNode(\"div\", _hoisted_12, [\n                        _createElementVNode(\"h2\", _hoisted_13, _toDisplayString(product.variation.node.name), 1),\n                        _hoisted_14,\n                        _createElementVNode(\"p\", _hoisted_15, \"QTY:\" + _toDisplayString(product.quantity), 1)\n                      ])\n                    ]),\n                    _createElementVNode(\"div\", _hoisted_16, [\n                      _createElementVNode(\"div\", _hoisted_17, [\n                        _createElementVNode(\"button\", {\n                          onClick: _cache[0] || (_cache[0] = _withModifiers(\n                            //@ts-ignore\n                            (...args) => _unref(counter).decrement && _unref(counter).decrement(...args),\n                            [\"prevent\"]\n                          )),\n                          class: \"counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600\"\n                        }, _toDisplayString(product.variation.node.databaseId) + \" - \", 1),\n                        _createElementVNode(\"div\", _hoisted_18, [\n                          (_openBlock(), _createElementBlock(\"span\", {\n                            key: _unref(counter).count,\n                            class: \"counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg\"\n                          }, _toDisplayString(_unref(counter).count = product.quantity), 1))\n                        ]),\n                        _createElementVNode(\"button\", {\n                          onClick: _cache[1] || (_cache[1] = _withModifiers(\n                            //@ts-ignore\n                            (...args) => _unref(counter).increment && _unref(counter).increment(...args),\n                            [\"prevent\"]\n                          )),\n                          class: \"counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600\"\n                        }, _toDisplayString(product.variation.node.image.parentDatabaseId) + \" + \", 1)\n                      ]),\n                      _createElementVNode(\"div\", _hoisted_19, [\n                        _createElementVNode(\"p\", _hoisted_20, _toDisplayString(product.subtotal), 1),\n                        _hoisted_21\n                      ])\n                    ])\n                  ])) : _createCommentVNode(\"\", true)\n                ]);\n              }), 128))\n            ]),\n            _createElementVNode(\"div\", _hoisted_22, [\n              _createElementVNode(\"div\", _hoisted_23, [\n                _hoisted_24,\n                _createElementVNode(\"p\", _hoisted_25, _toDisplayString(_unref(data)._value.cart.total), 1)\n              ]),\n              _createElementVNode(\"div\", _hoisted_26, [\n                _hoisted_27,\n                _createElementVNode(\"p\", _hoisted_28, _toDisplayString(_unref(data)._value.cart.shippingTotal), 1)\n              ]),\n              _hoisted_29,\n              _createElementVNode(\"div\", _hoisted_30, [\n                _hoisted_31,\n                _createElementVNode(\"div\", _hoisted_32, [\n                  _createElementVNode(\"p\", _hoisted_33, _toDisplayString(_unref(data)._value.cart.total), 1),\n                  _hoisted_34\n                ])\n              ]),\n              _hoisted_35\n            ])\n          ])\n        ])\n      ])) : (_openBlock(), _createElementBlock(\"div\", _hoisted_36, _hoisted_38));\n    };\n  }\n});\n",
-      "start": 1713269985973,
-      "end": 1713269986491,
+      "start": 1713304783740,
+      "end": 1713304784275,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -57,129 +57,129 @@
     },
     {
       "name": "vite:json",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269986491,
-      "end": 1713269986491,
+      "start": 1713304784275,
+      "end": 1713304784275,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { useCounter } from '/Users/shubhamsingh/namma/importedProds/app/stores/use-counter.ts';\nimport { ref, onMounted, watch } from 'vue';\nimport { useAsyncQuery } from '/Users/shubhamsingh/namma/importedProds/node_modules/@nuxtjs/apollo/dist/runtime/composables';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, renderList as _renderList, Fragment as _Fragment, toDisplayString as _toDisplayString, withModifiers as _withModifiers } from \"vue\";\nconst _hoisted_1 = { key: 0 };\nconst _hoisted_2 = { class: \"h-screen pt-20\" };\nconst _hoisted_3 = /* @__PURE__ */ _createElementVNode(\"h1\", { class: \"mb-10 text-center text-3xl font-bold\" }, \"Cart Items\", -1);\nconst _hoisted_4 = { class: \"mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0\" };\nconst _hoisted_5 = { class: \"rounded-lg md:w-2/3\" };\nconst _hoisted_6 = {\n  key: 0,\n  class: \"grid place-items-start\"\n};\nconst _hoisted_7 = /* @__PURE__ */ _createElementVNode(\"div\", { class: \"sm:ml-4 sm:flex sm:w-full sm:justify-between\" }, [\n  /* @__PURE__ */ _createElementVNode(\"h1\", { class: \"mb-10 text-center text-xl font-bold\" }, \"No item added \"),\n  /* @__PURE__ */ _createElementVNode(\"img\", {\n    alt: \"product-image\",\n    src: \"https://importedproducts.in/wp-content/uploads/2024/04/shopping-cart-buy-shopping-297750.png\",\n    class: \"mb-10 blur-sm flex mr-20 items-center sm:w-40\"\n  })\n], -1);\nconst _hoisted_8 = [\n  _hoisted_7\n];\nconst _hoisted_9 = {\n  key: 0,\n  class: \"sm:ml-4 sm:flex sm:w-full sm:justify-between\"\n};\nconst _hoisted_10 = [\"src\"];\nconst _hoisted_11 = { class: \"sm:ml-4 sm:flex sm:w-full sm:justify-between\" };\nconst _hoisted_12 = { class: \"mt-5 sm:mt-0\" };\nconst _hoisted_13 = { class: \"text-lg font-bold text-gray-900\" };\nconst _hoisted_14 = /* @__PURE__ */ _createElementVNode(\"p\", { class: \"mt-1 text-xs text-gray-700\" }, null, -1);\nconst _hoisted_15 = { class: \"mt-1 text-xs text-gray-700\" };\nconst _hoisted_16 = { class: \"mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6\" };\nconst _hoisted_17 = { class: \"flex items-center border-gray-100\" };\nconst _hoisted_18 = { class: \"relative\" };\nconst _hoisted_19 = { class: \"flex items-center space-x-4\" };\nconst _hoisted_20 = { class: \"text-sm\" };\nconst _hoisted_21 = /* @__PURE__ */ _createElementVNode(\"svg\", {\n  xmlns: \"http://www.w3.org/2000/svg\",\n  fill: \"none\",\n  viewBox: \"0 0 24 24\",\n  \"stroke-width\": \"1.5\",\n  stroke: \"currentColor\",\n  class: \"h-5 w-5 cursor-pointer duration-150 hover:text-red-500\"\n}, [\n  /* @__PURE__ */ _createElementVNode(\"path\", {\n    \"stroke-linecap\": \"round\",\n    \"stroke-linejoin\": \"round\",\n    d: \"M6 18L18 6M6 6l12 12\"\n  })\n], -1);\nconst _hoisted_22 = { class: \"mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3\" };\nconst _hoisted_23 = { class: \"mb-2 flex justify-between\" };\nconst _hoisted_24 = /* @__PURE__ */ _createElementVNode(\"p\", { class: \"text-gray-700\" }, \"Subtotal\", -1);\nconst _hoisted_25 = { class: \"text-gray-700\" };\nconst _hoisted_26 = { class: \"flex justify-between\" };\nconst _hoisted_27 = /* @__PURE__ */ _createElementVNode(\"p\", { class: \"text-gray-700\" }, \"Shipping\", -1);\nconst _hoisted_28 = { class: \"text-gray-700\" };\nconst _hoisted_29 = /* @__PURE__ */ _createElementVNode(\"hr\", { class: \"my-4\" }, null, -1);\nconst _hoisted_30 = { class: \"flex justify-between\" };\nconst _hoisted_31 = /* @__PURE__ */ _createElementVNode(\"p\", { class: \"text-lg text-black font-bold\" }, \"Total\", -1);\nconst _hoisted_32 = { class: \"\" };\nconst _hoisted_33 = { class: \"mb-1 text-lg text-black font-bold\" };\nconst _hoisted_34 = /* @__PURE__ */ _createElementVNode(\"p\", { class: \"text-sm text-black\" }, \"including VAT\", -1);\nconst _hoisted_35 = /* @__PURE__ */ _createElementVNode(\"button\", { class: \"mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600\" }, \"Check out\", -1);\nconst _hoisted_36 = { key: 1 };\nconst _hoisted_37 = /* @__PURE__ */ _createElementVNode(\"h1\", { class: \"mb-10 text-center text-2xl font-bold\" }, \"Loading...\", -1);\nconst _hoisted_38 = [\n  _hoisted_37\n];\nimport { cartItem } from \"../../utils/cart\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Cart\",\n  setup(__props) {\n    const counter = useCounter();\n    const data = ref(null);\n    let error = null;\n    const loadData = async () => {\n      try {\n        const { data: newData } = await useAsyncQuery(cartItem);\n        data.value = newData;\n      } catch (err) {\n        error = err;\n      }\n    };\n    onMounted(loadData);\n    watch(data, (newVal, oldVal) => {\n      console.log(\"Data changed:\", newVal);\n    });\n    console.log(\"data here\", data);\n    return (_ctx, _cache) => {\n      return _unref(data) ? (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createElementVNode(\"div\", _hoisted_2, [\n          _hoisted_3,\n          _createElementVNode(\"div\", _hoisted_4, [\n            _createElementVNode(\"div\", _hoisted_5, [\n              _unref(data)._value.cart.contents.nodes.length === 0 ? (_openBlock(), _createElementBlock(\"div\", _hoisted_6, _hoisted_8)) : _createCommentVNode(\"\", true),\n              (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(_unref(data)._value.cart.contents.nodes, (product, index) => {\n                return _openBlock(), _createElementBlock(\"div\", {\n                  key: index,\n                  class: \"justify-between mb-6 dark:bg-white rounded-lg light: bg-slate-300 p-6 shadow-md sm:flex sm:justify-start\"\n                }, [\n                  product.variation ? (_openBlock(), _createElementBlock(\"div\", _hoisted_9, [\n                    _createElementVNode(\"img\", {\n                      alt: \"product-image\",\n                      src: product.variation.node.image.link,\n                      class: \"w-full rounded-lg sm:w-40\"\n                    }, null, 8, _hoisted_10),\n                    _createElementVNode(\"div\", _hoisted_11, [\n                      _createElementVNode(\"div\", _hoisted_12, [\n                        _createElementVNode(\"h2\", _hoisted_13, _toDisplayString(product.variation.node.name), 1),\n                        _hoisted_14,\n                        _createElementVNode(\"p\", _hoisted_15, \"QTY:\" + _toDisplayString(product.quantity), 1)\n                      ])\n                    ]),\n                    _createElementVNode(\"div\", _hoisted_16, [\n                      _createElementVNode(\"div\", _hoisted_17, [\n                        _createElementVNode(\"button\", {\n                          onClick: _cache[0] || (_cache[0] = _withModifiers(\n                            //@ts-ignore\n                            (...args) => _unref(counter).decrement && _unref(counter).decrement(...args),\n                            [\"prevent\"]\n                          )),\n                          class: \"counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600\"\n                        }, _toDisplayString(product.variation.node.databaseId) + \" - \", 1),\n                        _createElementVNode(\"div\", _hoisted_18, [\n                          (_openBlock(), _createElementBlock(\"span\", {\n                            key: _unref(counter).count,\n                            class: \"counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg\"\n                          }, _toDisplayString(_unref(counter).count = product.quantity), 1))\n                        ]),\n                        _createElementVNode(\"button\", {\n                          onClick: _cache[1] || (_cache[1] = _withModifiers(\n                            //@ts-ignore\n                            (...args) => _unref(counter).increment && _unref(counter).increment(...args),\n                            [\"prevent\"]\n                          )),\n                          class: \"counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600\"\n                        }, _toDisplayString(product.variation.node.image.parentDatabaseId) + \" + \", 1)\n                      ]),\n                      _createElementVNode(\"div\", _hoisted_19, [\n                        _createElementVNode(\"p\", _hoisted_20, _toDisplayString(product.subtotal), 1),\n                        _hoisted_21\n                      ])\n                    ])\n                  ])) : _createCommentVNode(\"\", true)\n                ]);\n              }), 128))\n            ]),\n            _createElementVNode(\"div\", _hoisted_22, [\n              _createElementVNode(\"div\", _hoisted_23, [\n                _hoisted_24,\n                _createElementVNode(\"p\", _hoisted_25, _toDisplayString(_unref(data)._value.cart.total), 1)\n              ]),\n              _createElementVNode(\"div\", _hoisted_26, [\n                _hoisted_27,\n                _createElementVNode(\"p\", _hoisted_28, _toDisplayString(_unref(data)._value.cart.shippingTotal), 1)\n              ]),\n              _hoisted_29,\n              _createElementVNode(\"div\", _hoisted_30, [\n                _hoisted_31,\n                _createElementVNode(\"div\", _hoisted_32, [\n                  _createElementVNode(\"p\", _hoisted_33, _toDisplayString(_unref(data)._value.cart.total), 1),\n                  _hoisted_34\n                ])\n              ]),\n              _hoisted_35\n            ])\n          ])\n        ])\n      ])) : (_openBlock(), _createElementBlock(\"div\", _hoisted_36, _hoisted_38));\n    };\n  }\n});\n",
-      "start": 1713269986491,
-      "end": 1713269986492,
+      "start": 1713304784275,
+      "end": 1713304784277,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -192,50 +192,50 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1713269986492,
-      "end": 1713269986492,
+      "start": 1713304784277,
+      "end": 1713304784277,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269986492,
-      "end": 1713269986492,
+      "start": 1713304784277,
+      "end": 1713304784277,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1713269986492,
-      "end": 1713269986492,
+      "start": 1713304784277,
+      "end": 1713304784277,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1713269986492,
-      "end": 1713269986492,
+      "start": 1713304784277,
+      "end": 1713304784277,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269986492,
-      "end": 1713269986492,
+      "start": 1713304784277,
+      "end": 1713304784277,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269986492,
-      "end": 1713269986492,
+      "start": 1713304784277,
+      "end": 1713304784277,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269986492,
-      "end": 1713269986493,
+      "start": 1713304784277,
+      "end": 1713304784277,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269986493,
-      "end": 1713269986493,
+      "start": 1713304784277,
+      "end": 1713304784277,
       "order": "normal"
     }
   ]

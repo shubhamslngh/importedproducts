@@ -4,44 +4,44 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, withModifiers as _withModifiers, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode } from \"vue\"\n\nconst _hoisted_1 = { class: \"flex ml-4 space-x-2\" }\nconst _hoisted_2 = { class: \"mb-7 flex items-center\" }\nconst _hoisted_3 = { class: \"relative\" }\nconst _hoisted_4 = { class: \"mr-4\" }\n\nimport { AddCart } from \"../../utils/cart\";\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'AddtoCart',\n  props: {\n  productId: Number,\n  variationId: Number,\n  qty: Number,\n},\n  setup(__props) {\n\nvar props = __props;\n// console.log(props.productId, \"this is ProducId\");\n// console.log(props.variationId, \"this is VariationID\");\n\nconst { mutate: addToCart, loading } = useMutation(AddCart);\nconst counter = useCounter();\nasync function addToCartHandler() {\n  console.log(props.productId);\n  try {\n    // const token = localStorage.getItem(\"authToken\");\n    loading.value = true;\n\n    await addToCart({\n      productId: props.productId,\n      variationId: props.variationId,\n      quantity: counter.count,\n     \n    }).then(() => {\n      // props.productId = \"\";\n      // props.variationId = \"\";\n      // (props.qty = \"\"), \n      (loading.value = false);\n      console.log(\"added to cart!\");\n    });\n  } catch (error) {\n    loading.value = false;\n    console.error(\"Error adding product to cart:\", error);\n  }\n}\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_AwesomeButton = _resolveComponent(\"AwesomeButton\")!\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createElementVNode(\"div\", _hoisted_2, [\n      _createElementVNode(\"button\", {\n        onClick: _cache[0] || (_cache[0] = _withModifiers(\n//@ts-ignore\n(...args) => (_unref(counter).decrement && _unref(counter).decrement(...args)), [\"prevent\"])),\n        class: \"counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600\"\n      }, \" - \"),\n      _createElementVNode(\"div\", _hoisted_3, [\n        (_openBlock(), _createElementBlock(\"span\", {\n          key: _unref(counter).count,\n          class: \"counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg\"\n        }, _toDisplayString(_unref(counter).count), 1))\n      ]),\n      _createElementVNode(\"button\", {\n        onClick: _cache[1] || (_cache[1] = _withModifiers(\n//@ts-ignore\n(...args) => (_unref(counter).increment && _unref(counter).increment(...args)), [\"prevent\"])),\n        class: \"counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600\"\n      }, \" + \")\n    ]),\n    _createElementVNode(\"div\", _hoisted_4, [\n      _createVNode(_component_AwesomeButton, {\n        onClick: addToCartHandler,\n        disabled: _unref(loading),\n        class: \"bg-red-800\"\n      }, {\n        default: _withCtx(() => [\n          _createTextVNode(\" Add to Cart \")\n        ]),\n        _: 1\n      }, 8, [\"disabled\"])\n    ])\n  ]))\n}\n}\n\n})",
-      "start": 1713269985974,
-      "end": 1713269985974
+      "start": 1713304783730,
+      "end": 1713304783730
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269985974,
-      "end": 1713269985974,
+      "start": 1713304783730,
+      "end": 1713304783730,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269985974,
-      "end": 1713269985974,
+      "start": 1713304783730,
+      "end": 1713304783730,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269985974,
-      "end": 1713269985974,
+      "start": 1713304783730,
+      "end": 1713304783730,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269985974,
-      "end": 1713269985974,
+      "start": 1713304783730,
+      "end": 1713304783730,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269985974,
-      "end": 1713269985974,
+      "start": 1713304783730,
+      "end": 1713304783730,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, withModifiers as _withModifiers, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode } from \"vue\";\nconst _hoisted_1 = { class: \"flex ml-4 space-x-2\" };\nconst _hoisted_2 = { class: \"mb-7 flex items-center\" };\nconst _hoisted_3 = { class: \"relative\" };\nconst _hoisted_4 = { class: \"mr-4\" };\nimport { AddCart } from \"../../utils/cart\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"AddtoCart\",\n  props: {\n    productId: Number,\n    variationId: Number,\n    qty: Number\n  },\n  setup(__props) {\n    var props = __props;\n    const { mutate: addToCart, loading } = useMutation(AddCart);\n    const counter = useCounter();\n    async function addToCartHandler() {\n      console.log(props.productId);\n      try {\n        loading.value = true;\n        await addToCart({\n          productId: props.productId,\n          variationId: props.variationId,\n          quantity: counter.count\n        }).then(() => {\n          loading.value = false;\n          console.log(\"added to cart!\");\n        });\n      } catch (error) {\n        loading.value = false;\n        console.error(\"Error adding product to cart:\", error);\n      }\n    }\n    return (_ctx, _cache) => {\n      const _component_AwesomeButton = _resolveComponent(\"AwesomeButton\");\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createElementVNode(\"div\", _hoisted_2, [\n          _createElementVNode(\"button\", {\n            onClick: _cache[0] || (_cache[0] = _withModifiers(\n              //@ts-ignore\n              (...args) => _unref(counter).decrement && _unref(counter).decrement(...args),\n              [\"prevent\"]\n            )),\n            class: \"counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600\"\n          }, \" - \"),\n          _createElementVNode(\"div\", _hoisted_3, [\n            (_openBlock(), _createElementBlock(\"span\", {\n              key: _unref(counter).count,\n              class: \"counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg\"\n            }, _toDisplayString(_unref(counter).count), 1))\n          ]),\n          _createElementVNode(\"button\", {\n            onClick: _cache[1] || (_cache[1] = _withModifiers(\n              //@ts-ignore\n              (...args) => _unref(counter).increment && _unref(counter).increment(...args),\n              [\"prevent\"]\n            )),\n            class: \"counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600\"\n          }, \" + \")\n        ]),\n        _createElementVNode(\"div\", _hoisted_4, [\n          _createVNode(_component_AwesomeButton, {\n            onClick: addToCartHandler,\n            disabled: _unref(loading),\n            class: \"bg-red-800\"\n          }, {\n            default: _withCtx(() => [\n              _createTextVNode(\" Add to Cart \")\n            ]),\n            _: 1\n          }, 8, [\"disabled\"])\n        ])\n      ]);\n    };\n  }\n});\n",
-      "start": 1713269985974,
-      "end": 1713269986533,
+      "start": 1713304783730,
+      "end": 1713304784211,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -57,129 +57,129 @@
     },
     {
       "name": "vite:json",
-      "start": 1713269986533,
-      "end": 1713269986533,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269986533,
-      "end": 1713269986533,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269986533,
-      "end": 1713269986533,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269986533,
-      "end": 1713269986533,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986533,
-      "end": 1713269986533,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269986533,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784211,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { useMutation } from '@vue/apollo-composable';\nimport { useCounter } from '/Users/shubhamsingh/namma/importedProds/app/stores/use-counter.ts';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, withModifiers as _withModifiers, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode } from \"vue\";\nconst _hoisted_1 = { class: \"flex ml-4 space-x-2\" };\nconst _hoisted_2 = { class: \"mb-7 flex items-center\" };\nconst _hoisted_3 = { class: \"relative\" };\nconst _hoisted_4 = { class: \"mr-4\" };\nimport { AddCart } from \"../../utils/cart\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"AddtoCart\",\n  props: {\n    productId: Number,\n    variationId: Number,\n    qty: Number\n  },\n  setup(__props) {\n    var props = __props;\n    const { mutate: addToCart, loading } = useMutation(AddCart);\n    const counter = useCounter();\n    async function addToCartHandler() {\n      console.log(props.productId);\n      try {\n        loading.value = true;\n        await addToCart({\n          productId: props.productId,\n          variationId: props.variationId,\n          quantity: counter.count\n        }).then(() => {\n          loading.value = false;\n          console.log(\"added to cart!\");\n        });\n      } catch (error) {\n        loading.value = false;\n        console.error(\"Error adding product to cart:\", error);\n      }\n    }\n    return (_ctx, _cache) => {\n      const _component_AwesomeButton = _resolveComponent(\"AwesomeButton\");\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createElementVNode(\"div\", _hoisted_2, [\n          _createElementVNode(\"button\", {\n            onClick: _cache[0] || (_cache[0] = _withModifiers(\n              //@ts-ignore\n              (...args) => _unref(counter).decrement && _unref(counter).decrement(...args),\n              [\"prevent\"]\n            )),\n            class: \"counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600\"\n          }, \" - \"),\n          _createElementVNode(\"div\", _hoisted_3, [\n            (_openBlock(), _createElementBlock(\"span\", {\n              key: _unref(counter).count,\n              class: \"counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg\"\n            }, _toDisplayString(_unref(counter).count), 1))\n          ]),\n          _createElementVNode(\"button\", {\n            onClick: _cache[1] || (_cache[1] = _withModifiers(\n              //@ts-ignore\n              (...args) => _unref(counter).increment && _unref(counter).increment(...args),\n              [\"prevent\"]\n            )),\n            class: \"counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600\"\n          }, \" + \")\n        ]),\n        _createElementVNode(\"div\", _hoisted_4, [\n          _createVNode(_component_AwesomeButton, {\n            onClick: addToCartHandler,\n            disabled: _unref(loading),\n            class: \"bg-red-800\"\n          }, {\n            default: _withCtx(() => [\n              _createTextVNode(\" Add to Cart \")\n            ]),\n            _: 1\n          }, 8, [\"disabled\"])\n        ])\n      ]);\n    };\n  }\n});\n",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784211,
+      "end": 1713304784212,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -192,51 +192,51 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784212,
+      "end": 1713304784212,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269986534,
-      "end": 1713269986534,
+      "start": 1713304784212,
+      "end": 1713304784212,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1713269986535,
-      "end": 1713269986535,
+      "start": 1713304784212,
+      "end": 1713304784212,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1713269986535,
-      "end": 1713269986535,
+      "start": 1713304784212,
+      "end": 1713304784212,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/components/awesome/Button/index.vue\";\nimport { useMutation } from '@vue/apollo-composable';\nimport { useCounter } from '/Users/shubhamsingh/namma/importedProds/app/stores/use-counter.ts';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, withModifiers as _withModifiers, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode } from \"vue\";\nconst _hoisted_1 = { class: \"flex ml-4 space-x-2\" };\nconst _hoisted_2 = { class: \"mb-7 flex items-center\" };\nconst _hoisted_3 = { class: \"relative\" };\nconst _hoisted_4 = { class: \"mr-4\" };\nimport { AddCart } from \"../../utils/cart\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"AddtoCart\",\n  props: {\n    productId: Number,\n    variationId: Number,\n    qty: Number\n  },\n  setup(__props) {\n    var props = __props;\n    const { mutate: addToCart, loading } = useMutation(AddCart);\n    const counter = useCounter();\n    async function addToCartHandler() {\n      console.log(props.productId);\n      try {\n        loading.value = true;\n        await addToCart({\n          productId: props.productId,\n          variationId: props.variationId,\n          quantity: counter.count\n        }).then(() => {\n          loading.value = false;\n          console.log(\"added to cart!\");\n        });\n      } catch (error) {\n        loading.value = false;\n        console.error(\"Error adding product to cart:\", error);\n      }\n    }\n    return (_ctx, _cache) => {\n      const _component_AwesomeButton = __nuxt_component_0;\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createElementVNode(\"div\", _hoisted_2, [\n          _createElementVNode(\"button\", {\n            onClick: _cache[0] || (_cache[0] = _withModifiers(\n              //@ts-ignore\n              (...args) => _unref(counter).decrement && _unref(counter).decrement(...args),\n              [\"prevent\"]\n            )),\n            class: \"counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600\"\n          }, \" - \"),\n          _createElementVNode(\"div\", _hoisted_3, [\n            (_openBlock(), _createElementBlock(\"span\", {\n              key: _unref(counter).count,\n              class: \"counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg\"\n            }, _toDisplayString(_unref(counter).count), 1))\n          ]),\n          _createElementVNode(\"button\", {\n            onClick: _cache[1] || (_cache[1] = _withModifiers(\n              //@ts-ignore\n              (...args) => _unref(counter).increment && _unref(counter).increment(...args),\n              [\"prevent\"]\n            )),\n            class: \"counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600\"\n          }, \" + \")\n        ]),\n        _createElementVNode(\"div\", _hoisted_4, [\n          _createVNode(_component_AwesomeButton, {\n            onClick: addToCartHandler,\n            disabled: _unref(loading),\n            class: \"bg-red-800\"\n          }, {\n            default: _withCtx(() => [\n              _createTextVNode(\" Add to Cart \")\n            ]),\n            _: 1\n          }, 8, [\"disabled\"])\n        ])\n      ]);\n    };\n  }\n});\n",
-      "start": 1713269986535,
-      "end": 1713269986535,
+      "start": 1713304784212,
+      "end": 1713304784212,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269986535,
-      "end": 1713269986535,
+      "start": 1713304784212,
+      "end": 1713304784212,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269986535,
-      "end": 1713269986535,
+      "start": 1713304784212,
+      "end": 1713304784212,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269986535,
-      "end": 1713269986535,
+      "start": 1713304784212,
+      "end": 1713304784212,
       "order": "normal"
     }
   ]

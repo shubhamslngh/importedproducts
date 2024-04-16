@@ -4,63 +4,63 @@
     {
       "name": "vite:load-fallback",
       "result": "import { defineNuxtConfig } from 'nuxt/config'\nimport type { AppConfigInput } from 'nuxt/schema'\nexport default defineAppConfig({\n  awesome: {\n    name: 'Imported Products',\n    description:\n      'Headless E-commerce website.',\n    project: {\n      links: {\n        github: 'https://github.com/shubhamslngh/importedproducts.git',\n      },\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: [\n            { type: 'link', title: 'Cases', to: { name: 'products' } },\n            { type: 'link', title: 'Post', to: { name: 'post' } },\n            { type: 'link', title: 'Travel', to: { name: 'travel' } },\n            { type: 'link', title: 'Login', to: { name: 'login' } },\n\n            {\n              type: 'dropdown',\n              title: 'Cart',\n              children: [\n                {\n                  type: 'link',\n                  title: 'my Cart',\n                  to: { name: 'cart' },\n                },\n              ],\n            },\n            { type: 'button', title: 'Setting', to: { name: 'setting' } },\n            // dynamic title\n            // {\n            //   type: 'button',\n            //   title: (nuxt) =>\n            //     (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',\n            //   to: (nuxt) => (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',\n            // },\n          ],\n        },\n      },\n      footer: {\n        year: new Date().getFullYear(),\n      },\n      welcome: {\n        title: 'Nuxt&nbsp;3 Awesome Starter',\n        disableInfoReplaceIndexInWelcomePage: true,\n      },\n    },\n    author: {\n      name: 'shubhamslngh',\n      links: {\n        github: 'https://github.com/shubhamslngh/importedproducts.git',\n        website: 'www.importedproducts.in',\n      },\n    },\n  },\n})\n",
-      "start": 1713269989547,
-      "end": 1713269989552,
+      "start": 1713304787346,
+      "end": 1713304787352,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269989553,
-      "end": 1713269989553,
+      "start": 1713304787352,
+      "end": 1713304787352,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269989553,
-      "end": 1713269989553,
+      "start": 1713304787352,
+      "end": 1713304787352,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269989553,
-      "end": 1713269989553,
+      "start": 1713304787352,
+      "end": 1713304787352,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269989553,
-      "end": 1713269989553,
+      "start": 1713304787352,
+      "end": 1713304787352,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269989553,
-      "end": 1713269989553,
+      "start": 1713304787352,
+      "end": 1713304787352,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269989553,
-      "end": 1713269989553,
+      "start": 1713304787352,
+      "end": 1713304787352,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269989553,
-      "end": 1713269989553,
+      "start": 1713304787352,
+      "end": 1713304787352,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269989553,
-      "end": 1713269989553,
+      "start": 1713304787352,
+      "end": 1713304787352,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "export default defineAppConfig({\n  awesome: {\n    name: \"Imported Products\",\n    description: \"Headless E-commerce website.\",\n    project: {\n      links: {\n        github: \"https://github.com/shubhamslngh/importedproducts.git\"\n      }\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: [\n            { type: \"link\", title: \"Cases\", to: { name: \"products\" } },\n            { type: \"link\", title: \"Post\", to: { name: \"post\" } },\n            { type: \"link\", title: \"Travel\", to: { name: \"travel\" } },\n            { type: \"link\", title: \"Login\", to: { name: \"login\" } },\n            {\n              type: \"dropdown\",\n              title: \"Cart\",\n              children: [\n                {\n                  type: \"link\",\n                  title: \"my Cart\",\n                  to: { name: \"cart\" }\n                }\n              ]\n            },\n            { type: \"button\", title: \"Setting\", to: { name: \"setting\" } }\n            // dynamic title\n            // {\n            //   type: 'button',\n            //   title: (nuxt) =>\n            //     (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',\n            //   to: (nuxt) => (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',\n            // },\n          ]\n        }\n      },\n      footer: {\n        year: (/* @__PURE__ */ new Date()).getFullYear()\n      },\n      welcome: {\n        title: \"Nuxt&nbsp;3 Awesome Starter\",\n        disableInfoReplaceIndexInWelcomePage: true\n      }\n    },\n    author: {\n      name: \"shubhamslngh\",\n      links: {\n        github: \"https://github.com/shubhamslngh/importedproducts.git\",\n        website: \"www.importedproducts.in\"\n      }\n    }\n  }\n});\n",
-      "start": 1713269989553,
-      "end": 1713269989598,
+      "start": 1713304787352,
+      "end": 1713304787383,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -76,141 +76,141 @@
     },
     {
       "name": "vite:json",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787383,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { defineAppConfig } from '#app/nuxt';\nexport default defineAppConfig({\n  awesome: {\n    name: \"Imported Products\",\n    description: \"Headless E-commerce website.\",\n    project: {\n      links: {\n        github: \"https://github.com/shubhamslngh/importedproducts.git\"\n      }\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: [\n            { type: \"link\", title: \"Cases\", to: { name: \"products\" } },\n            { type: \"link\", title: \"Post\", to: { name: \"post\" } },\n            { type: \"link\", title: \"Travel\", to: { name: \"travel\" } },\n            { type: \"link\", title: \"Login\", to: { name: \"login\" } },\n            {\n              type: \"dropdown\",\n              title: \"Cart\",\n              children: [\n                {\n                  type: \"link\",\n                  title: \"my Cart\",\n                  to: { name: \"cart\" }\n                }\n              ]\n            },\n            { type: \"button\", title: \"Setting\", to: { name: \"setting\" } }\n            // dynamic title\n            // {\n            //   type: 'button',\n            //   title: (nuxt) =>\n            //     (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',\n            //   to: (nuxt) => (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',\n            // },\n          ]\n        }\n      },\n      footer: {\n        year: (/* @__PURE__ */ new Date()).getFullYear()\n      },\n      welcome: {\n        title: \"Nuxt&nbsp;3 Awesome Starter\",\n        disableInfoReplaceIndexInWelcomePage: true\n      }\n    },\n    author: {\n      name: \"shubhamslngh\",\n      links: {\n        github: \"https://github.com/shubhamslngh/importedproducts.git\",\n        website: \"www.importedproducts.in\"\n      }\n    }\n  }\n});\n",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787384,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -224,8 +224,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { defineAppConfig } from '#app/nuxt';\nexport default defineAppConfig({\n  awesome: {\n    name: \"Imported Products\",\n    description: \"Headless E-commerce website.\",\n    project: {\n      links: {\n        github: \"https://github.com/shubhamslngh/importedproducts.git\"\n      }\n    },\n    layout: {\n      page: {\n        navbar: {\n          menus: [\n            { type: \"link\", title: \"Cases\", to: { name: \"products\" } },\n            { type: \"link\", title: \"Post\", to: { name: \"post\" } },\n            { type: \"link\", title: \"Travel\", to: { name: \"travel\" } },\n            { type: \"link\", title: \"Login\", to: { name: \"login\" } },\n            {\n              type: \"dropdown\",\n              title: \"Cart\",\n              children: [\n                {\n                  type: \"link\",\n                  title: \"my Cart\",\n                  to: { name: \"cart\" }\n                }\n              ]\n            },\n            { type: \"button\", title: \"Setting\", to: { name: \"setting\" } }\n            // dynamic title\n            // {\n            //   type: 'button',\n            //   title: (nuxt) =>\n            //     (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',\n            //   to: (nuxt) => (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',\n            // },\n          ]\n        }\n      },\n      footer: {\n        year: (/* @__PURE__ */ new Date()).getFullYear()\n      },\n      welcome: {\n        title: \"Nuxt&nbsp;3 Awesome Starter\",\n        disableInfoReplaceIndexInWelcomePage: true\n      }\n    },\n    author: {\n      name: \"shubhamslngh\",\n      links: {\n        github: \"https://github.com/shubhamslngh/importedproducts.git\",\n        website: \"www.importedproducts.in\"\n      }\n    }\n  }\n});\n",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787383,
+      "end": 1713304787384,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -238,56 +238,56 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787384,
+      "end": 1713304787384,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787384,
+      "end": 1713304787384,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787384,
+      "end": 1713304787384,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787384,
+      "end": 1713304787384,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787384,
+      "end": 1713304787384,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787384,
+      "end": 1713304787384,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787384,
+      "end": 1713304787384,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787384,
+      "end": 1713304787384,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269989598,
-      "end": 1713269989598,
+      "start": 1713304787384,
+      "end": 1713304787384,
       "order": "normal"
     }
   ]

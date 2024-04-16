@@ -4,44 +4,44 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, renderSlot as _renderSlot, normalizeClass as _normalizeClass, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, isRef as _isRef, vModelDynamic as _vModelDynamic, createElementVNode as _createElementVNode, withDirectives as _withDirectives } from \"vue\"\n\nconst _hoisted_1 = {\n  class: /*#__PURE__*/_normalizeClass(`text-input-container relative flex`)\n}\nconst _hoisted_2 = { class: \"text-input-wrapper relative flex flex-1\" }\nconst _hoisted_3 = [\"type\", \"placeholder\"]\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'TextInput',\n  props: {\n  modelValue: {\n    type: String,\n    default: '',\n  },\n  placeholder: {\n    type: String,\n    default: '',\n  },\n  size: {\n    type: String,\n    default: 'md',\n  },\n  type: {\n    type: String,\n    default: 'default',\n  },\n},\n  emits: ['update:modelValue'],\n  setup(__props, { emit: __emit }) {\n\n// compiler macro\nconst props = __props\nconst emit = __emit\nconst slots = useSlots()\n// list styles\nconst paddingStyles = reactive<{\n  [key: string]: string\n}>({\n  xs: 'px-1 py-0.5',\n  sm: 'px-2 py-1.5',\n  md: 'px-4 py-2',\n  lg: 'px-5 py-3',\n})\nconst fontSizeStyles = reactive<{\n  [key: string]: string\n}>({\n  xs: 'text-xs',\n  sm: 'text-sm',\n  md: 'text-base',\n  lg: 'text-lg',\n})\n// states\nconst modelValue = useSyncProps<string>(props, 'modelValue', emit)\nconst havePreEl = computed(\n  () =>\n    typeof slots.prefix !== 'undefined' ||\n    typeof slots['prefix-disabled'] !== 'undefined',\n)\nconst haveSuEl = computed(() => typeof slots.suffix !== 'undefined')\nconst selectedBorderStyle = computed(\n  () => 'border-gray-900/10 dark:border-gray-50/[0.2]',\n)\nconst selectedOnHoverBorderStyle = computed(\n  () => 'dark:focus:border-white focus:border-gray-900',\n)\nconst selectedPaddingStyle = computed(\n  () => paddingStyles[props.size] || paddingStyles.md,\n)\nconst selectedFontSizeStyle = computed(\n  () => fontSizeStyles[props.size] || fontSizeStyles.md,\n)\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    (_unref(slots)['prefix-disabled'])\n      ? (_openBlock(), _createElementBlock(\"div\", {\n          key: 0,\n          class: _normalizeClass(`duration-300 transition-colors flex rounded-l bg-gray-100 dark:bg-gray-800 text-gray-500 border ${_unref(selectedBorderStyle)}`)\n        }, [\n          _renderSlot(_ctx.$slots, \"prefix-disabled\")\n        ], 2))\n      : _createCommentVNode(\"\", true),\n    (_unref(slots).prefix)\n      ? (_openBlock(), _createElementBlock(\"div\", {\n          key: 1,\n          class: _normalizeClass(`flex rounded-l border ${_unref(selectedBorderStyle)}`)\n        }, [\n          _renderSlot(_ctx.$slots, \"prefix\")\n        ], 2))\n      : _createCommentVNode(\"\", true),\n    _createElementVNode(\"div\", _hoisted_2, [\n      _withDirectives(_createElementVNode(\"input\", {\n        \"onUpdate:modelValue\": _cache[0] || (_cache[0] = ($event: any) => (_isRef(modelValue) ? (modelValue).value = $event : null)),\n        class: _normalizeClass(`duration-300 transition-colors text-input w-full flex-1 bg-transparent outline-none border ${\n          _unref(havePreEl) ? '' : 'rounded-l'\n        } ${\n          _unref(haveSuEl) ? '' : 'rounded-r'\n        } ${_unref(selectedBorderStyle)} ${_unref(selectedOnHoverBorderStyle)} ${_unref(selectedPaddingStyle)} ${_unref(selectedFontSizeStyle)}`),\n        type: __props.type,\n        placeholder: __props.placeholder\n      }, null, 10, _hoisted_3), [\n        [_vModelDynamic, _unref(modelValue)]\n      ])\n    ]),\n    (_unref(slots).suffix)\n      ? (_openBlock(), _createElementBlock(\"div\", {\n          key: 2,\n          class: _normalizeClass(`flex rounded-r border ${_unref(selectedBorderStyle)}`)\n        }, [\n          _renderSlot(_ctx.$slots, \"suffix\")\n        ], 2))\n      : _createCommentVNode(\"\", true)\n  ]))\n}\n}\n\n})",
-      "start": 1713269985959,
-      "end": 1713269985959
+      "start": 1713304783762,
+      "end": 1713304783762
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269985959,
-      "end": 1713269985959,
+      "start": 1713304783762,
+      "end": 1713304783762,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269985959,
-      "end": 1713269985959,
+      "start": 1713304783762,
+      "end": 1713304783762,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269985959,
-      "end": 1713269985959,
+      "start": 1713304783762,
+      "end": 1713304783762,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269985959,
-      "end": 1713269985959,
+      "start": 1713304783762,
+      "end": 1713304783762,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269985959,
-      "end": 1713269985959,
+      "start": 1713304783762,
+      "end": 1713304783762,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderSlot as _renderSlot, normalizeClass as _normalizeClass, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, isRef as _isRef, vModelDynamic as _vModelDynamic, createElementVNode as _createElementVNode, withDirectives as _withDirectives } from \"vue\";\nconst _hoisted_1 = {\n  class: /* @__PURE__ */ _normalizeClass(`text-input-container relative flex`)\n};\nconst _hoisted_2 = { class: \"text-input-wrapper relative flex flex-1\" };\nconst _hoisted_3 = [\"type\", \"placeholder\"];\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"TextInput\",\n  props: {\n    modelValue: {\n      type: String,\n      default: \"\"\n    },\n    placeholder: {\n      type: String,\n      default: \"\"\n    },\n    size: {\n      type: String,\n      default: \"md\"\n    },\n    type: {\n      type: String,\n      default: \"default\"\n    }\n  },\n  emits: [\"update:modelValue\"],\n  setup(__props, { emit: __emit }) {\n    const props = __props;\n    const emit = __emit;\n    const slots = useSlots();\n    const paddingStyles = reactive({\n      xs: \"px-1 py-0.5\",\n      sm: \"px-2 py-1.5\",\n      md: \"px-4 py-2\",\n      lg: \"px-5 py-3\"\n    });\n    const fontSizeStyles = reactive({\n      xs: \"text-xs\",\n      sm: \"text-sm\",\n      md: \"text-base\",\n      lg: \"text-lg\"\n    });\n    const modelValue = useSyncProps(props, \"modelValue\", emit);\n    const havePreEl = computed(\n      () => typeof slots.prefix !== \"undefined\" || typeof slots[\"prefix-disabled\"] !== \"undefined\"\n    );\n    const haveSuEl = computed(() => typeof slots.suffix !== \"undefined\");\n    const selectedBorderStyle = computed(\n      () => \"border-gray-900/10 dark:border-gray-50/[0.2]\"\n    );\n    const selectedOnHoverBorderStyle = computed(\n      () => \"dark:focus:border-white focus:border-gray-900\"\n    );\n    const selectedPaddingStyle = computed(\n      () => paddingStyles[props.size] || paddingStyles.md\n    );\n    const selectedFontSizeStyle = computed(\n      () => fontSizeStyles[props.size] || fontSizeStyles.md\n    );\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _unref(slots)[\"prefix-disabled\"] ? (_openBlock(), _createElementBlock(\"div\", {\n          key: 0,\n          class: _normalizeClass(`duration-300 transition-colors flex rounded-l bg-gray-100 dark:bg-gray-800 text-gray-500 border ${_unref(selectedBorderStyle)}`)\n        }, [\n          _renderSlot(_ctx.$slots, \"prefix-disabled\")\n        ], 2)) : _createCommentVNode(\"\", true),\n        _unref(slots).prefix ? (_openBlock(), _createElementBlock(\"div\", {\n          key: 1,\n          class: _normalizeClass(`flex rounded-l border ${_unref(selectedBorderStyle)}`)\n        }, [\n          _renderSlot(_ctx.$slots, \"prefix\")\n        ], 2)) : _createCommentVNode(\"\", true),\n        _createElementVNode(\"div\", _hoisted_2, [\n          _withDirectives(_createElementVNode(\"input\", {\n            \"onUpdate:modelValue\": _cache[0] || (_cache[0] = ($event) => _isRef(modelValue) ? modelValue.value = $event : null),\n            class: _normalizeClass(`duration-300 transition-colors text-input w-full flex-1 bg-transparent outline-none border ${_unref(havePreEl) ? \"\" : \"rounded-l\"} ${_unref(haveSuEl) ? \"\" : \"rounded-r\"} ${_unref(selectedBorderStyle)} ${_unref(selectedOnHoverBorderStyle)} ${_unref(selectedPaddingStyle)} ${_unref(selectedFontSizeStyle)}`),\n            type: __props.type,\n            placeholder: __props.placeholder\n          }, null, 10, _hoisted_3), [\n            [_vModelDynamic, _unref(modelValue)]\n          ])\n        ]),\n        _unref(slots).suffix ? (_openBlock(), _createElementBlock(\"div\", {\n          key: 2,\n          class: _normalizeClass(`flex rounded-r border ${_unref(selectedBorderStyle)}`)\n        }, [\n          _renderSlot(_ctx.$slots, \"suffix\")\n        ], 2)) : _createCommentVNode(\"\", true)\n      ]);\n    };\n  }\n});\n",
-      "start": 1713269985959,
-      "end": 1713269986505,
+      "start": 1713304783762,
+      "end": 1713304784289,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -57,129 +57,129 @@
     },
     {
       "name": "vite:json",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269986505,
-      "end": 1713269986505,
+      "start": 1713304784289,
+      "end": 1713304784289,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { useSlots, reactive, computed } from 'vue';\nimport { useSyncProps } from '/Users/shubhamsingh/namma/importedProds/composables/use-sync-props.ts';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderSlot as _renderSlot, normalizeClass as _normalizeClass, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, isRef as _isRef, vModelDynamic as _vModelDynamic, createElementVNode as _createElementVNode, withDirectives as _withDirectives } from \"vue\";\nconst _hoisted_1 = {\n  class: /* @__PURE__ */ _normalizeClass(`text-input-container relative flex`)\n};\nconst _hoisted_2 = { class: \"text-input-wrapper relative flex flex-1\" };\nconst _hoisted_3 = [\"type\", \"placeholder\"];\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"TextInput\",\n  props: {\n    modelValue: {\n      type: String,\n      default: \"\"\n    },\n    placeholder: {\n      type: String,\n      default: \"\"\n    },\n    size: {\n      type: String,\n      default: \"md\"\n    },\n    type: {\n      type: String,\n      default: \"default\"\n    }\n  },\n  emits: [\"update:modelValue\"],\n  setup(__props, { emit: __emit }) {\n    const props = __props;\n    const emit = __emit;\n    const slots = useSlots();\n    const paddingStyles = reactive({\n      xs: \"px-1 py-0.5\",\n      sm: \"px-2 py-1.5\",\n      md: \"px-4 py-2\",\n      lg: \"px-5 py-3\"\n    });\n    const fontSizeStyles = reactive({\n      xs: \"text-xs\",\n      sm: \"text-sm\",\n      md: \"text-base\",\n      lg: \"text-lg\"\n    });\n    const modelValue = useSyncProps(props, \"modelValue\", emit);\n    const havePreEl = computed(\n      () => typeof slots.prefix !== \"undefined\" || typeof slots[\"prefix-disabled\"] !== \"undefined\"\n    );\n    const haveSuEl = computed(() => typeof slots.suffix !== \"undefined\");\n    const selectedBorderStyle = computed(\n      () => \"border-gray-900/10 dark:border-gray-50/[0.2]\"\n    );\n    const selectedOnHoverBorderStyle = computed(\n      () => \"dark:focus:border-white focus:border-gray-900\"\n    );\n    const selectedPaddingStyle = computed(\n      () => paddingStyles[props.size] || paddingStyles.md\n    );\n    const selectedFontSizeStyle = computed(\n      () => fontSizeStyles[props.size] || fontSizeStyles.md\n    );\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _unref(slots)[\"prefix-disabled\"] ? (_openBlock(), _createElementBlock(\"div\", {\n          key: 0,\n          class: _normalizeClass(`duration-300 transition-colors flex rounded-l bg-gray-100 dark:bg-gray-800 text-gray-500 border ${_unref(selectedBorderStyle)}`)\n        }, [\n          _renderSlot(_ctx.$slots, \"prefix-disabled\")\n        ], 2)) : _createCommentVNode(\"\", true),\n        _unref(slots).prefix ? (_openBlock(), _createElementBlock(\"div\", {\n          key: 1,\n          class: _normalizeClass(`flex rounded-l border ${_unref(selectedBorderStyle)}`)\n        }, [\n          _renderSlot(_ctx.$slots, \"prefix\")\n        ], 2)) : _createCommentVNode(\"\", true),\n        _createElementVNode(\"div\", _hoisted_2, [\n          _withDirectives(_createElementVNode(\"input\", {\n            \"onUpdate:modelValue\": _cache[0] || (_cache[0] = ($event) => _isRef(modelValue) ? modelValue.value = $event : null),\n            class: _normalizeClass(`duration-300 transition-colors text-input w-full flex-1 bg-transparent outline-none border ${_unref(havePreEl) ? \"\" : \"rounded-l\"} ${_unref(haveSuEl) ? \"\" : \"rounded-r\"} ${_unref(selectedBorderStyle)} ${_unref(selectedOnHoverBorderStyle)} ${_unref(selectedPaddingStyle)} ${_unref(selectedFontSizeStyle)}`),\n            type: __props.type,\n            placeholder: __props.placeholder\n          }, null, 10, _hoisted_3), [\n            [_vModelDynamic, _unref(modelValue)]\n          ])\n        ]),\n        _unref(slots).suffix ? (_openBlock(), _createElementBlock(\"div\", {\n          key: 2,\n          class: _normalizeClass(`flex rounded-r border ${_unref(selectedBorderStyle)}`)\n        }, [\n          _renderSlot(_ctx.$slots, \"suffix\")\n        ], 2)) : _createCommentVNode(\"\", true)\n      ]);\n    };\n  }\n});\n",
-      "start": 1713269986505,
-      "end": 1713269986506,
+      "start": 1713304784289,
+      "end": 1713304784290,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -192,50 +192,50 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1713269986506,
-      "end": 1713269986506,
+      "start": 1713304784290,
+      "end": 1713304784290,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269986506,
-      "end": 1713269986506,
+      "start": 1713304784290,
+      "end": 1713304784290,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1713269986506,
-      "end": 1713269986506,
+      "start": 1713304784290,
+      "end": 1713304784290,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1713269986506,
-      "end": 1713269986506,
+      "start": 1713304784290,
+      "end": 1713304784290,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269986506,
-      "end": 1713269986506,
+      "start": 1713304784290,
+      "end": 1713304784290,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269986506,
-      "end": 1713269986506,
+      "start": 1713304784290,
+      "end": 1713304784290,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269986506,
-      "end": 1713269986506,
+      "start": 1713304784290,
+      "end": 1713304784290,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269986506,
-      "end": 1713269986506,
+      "start": 1713304784290,
+      "end": 1713304784290,
       "order": "normal"
     }
   ]

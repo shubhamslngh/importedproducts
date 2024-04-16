@@ -4,45 +4,45 @@
     {
       "name": "vite:load-fallback",
       "result": "export type ScreenSize = 'sm' | 'md' | 'lg' | 'xl'\n\n// { sm: '640px', md: '768px', lg: '1024px', xl: '1280px', '2xl': '1536px' }\nexport const defaultScreenConfig: {\n  [key in ScreenSize]: number\n} = {\n  sm: 640,\n  md: 768,\n  lg: 1024,\n  xl: 1280,\n}\n\nexport const useAwesomeScreen = () => {\n  const screenSize = reactive({\n    width: 0,\n    height: 0,\n  })\n\n  const current = ref<ScreenSize>('sm')\n\n  const getSize = (width?: number) => {\n    if (width === undefined) width = screenSize.width\n    const { sm, md, lg, xl } = defaultScreenConfig\n    if (width < Number(sm)) return 'sm'\n    if (width < Number(md)) return 'md'\n    if (width < Number(lg)) return 'lg'\n    if (width < Number(xl)) return 'xl'\n    return 'xl'\n  }\n\n  const onWindowResize = () => {\n    const { innerWidth, innerHeight } = window\n    screenSize.width = innerWidth\n    screenSize.height = innerHeight\n    current.value = getSize()\n  }\n\n  const higherThan = (size: ScreenSize, defScreenSize?: ScreenSize) => {\n    const { sm, md, lg, xl } = defaultScreenConfig\n    const width = defaultScreenConfig[defScreenSize || current.value]\n    if (size === 'sm') return width >= Number(sm)\n    if (size === 'md') return width >= Number(md)\n    if (size === 'lg') return width >= Number(lg)\n    if (size === 'xl') return width >= Number(xl)\n    return false\n  }\n\n  onMounted(() => {\n    if (typeof window === 'undefined') return\n    window.addEventListener('resize', onWindowResize)\n    current.value = getSize(window.innerWidth)\n  })\n\n  onUnmounted(() => {\n    if (typeof window === 'undefined') return\n    window.removeEventListener('resize', onWindowResize)\n  })\n\n  return {\n    getSize,\n    screenSize,\n    current,\n    higherThan,\n  }\n}\n",
-      "start": 1713269986475,
-      "end": 1713269986487,
+      "start": 1713304784237,
+      "end": 1713304784239,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269986487,
-      "end": 1713269986487,
+      "start": 1713304784239,
+      "end": 1713304784239,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269986487,
-      "end": 1713269986487,
+      "start": 1713304784239,
+      "end": 1713304784239,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269986487,
-      "end": 1713269986487,
+      "start": 1713304784239,
+      "end": 1713304784239,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269986487,
-      "end": 1713269986487,
+      "start": 1713304784239,
+      "end": 1713304784239,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269986487,
-      "end": 1713269986487,
+      "start": 1713304784239,
+      "end": 1713304784239,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "export const defaultScreenConfig = {\n  sm: 640,\n  md: 768,\n  lg: 1024,\n  xl: 1280\n};\nexport const useAwesomeScreen = () => {\n  const screenSize = reactive({\n    width: 0,\n    height: 0\n  });\n  const current = ref(\"sm\");\n  const getSize = (width) => {\n    if (width === void 0)\n      width = screenSize.width;\n    const { sm, md, lg, xl } = defaultScreenConfig;\n    if (width < Number(sm))\n      return \"sm\";\n    if (width < Number(md))\n      return \"md\";\n    if (width < Number(lg))\n      return \"lg\";\n    if (width < Number(xl))\n      return \"xl\";\n    return \"xl\";\n  };\n  const onWindowResize = () => {\n    const { innerWidth, innerHeight } = window;\n    screenSize.width = innerWidth;\n    screenSize.height = innerHeight;\n    current.value = getSize();\n  };\n  const higherThan = (size, defScreenSize) => {\n    const { sm, md, lg, xl } = defaultScreenConfig;\n    const width = defaultScreenConfig[defScreenSize || current.value];\n    if (size === \"sm\")\n      return width >= Number(sm);\n    if (size === \"md\")\n      return width >= Number(md);\n    if (size === \"lg\")\n      return width >= Number(lg);\n    if (size === \"xl\")\n      return width >= Number(xl);\n    return false;\n  };\n  onMounted(() => {\n    if (typeof window === \"undefined\")\n      return;\n    window.addEventListener(\"resize\", onWindowResize);\n    current.value = getSize(window.innerWidth);\n  });\n  onUnmounted(() => {\n    if (typeof window === \"undefined\")\n      return;\n    window.removeEventListener(\"resize\", onWindowResize);\n  });\n  return {\n    getSize,\n    screenSize,\n    current,\n    higherThan\n  };\n};\n",
-      "start": 1713269986487,
-      "end": 1713269986612,
+      "start": 1713304784239,
+      "end": 1713304784410,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -58,129 +58,129 @@
     },
     {
       "name": "vite:json",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { reactive, ref, onMounted, onUnmounted } from 'vue';\nexport const defaultScreenConfig = {\n  sm: 640,\n  md: 768,\n  lg: 1024,\n  xl: 1280\n};\nexport const useAwesomeScreen = () => {\n  const screenSize = reactive({\n    width: 0,\n    height: 0\n  });\n  const current = ref(\"sm\");\n  const getSize = (width) => {\n    if (width === void 0)\n      width = screenSize.width;\n    const { sm, md, lg, xl } = defaultScreenConfig;\n    if (width < Number(sm))\n      return \"sm\";\n    if (width < Number(md))\n      return \"md\";\n    if (width < Number(lg))\n      return \"lg\";\n    if (width < Number(xl))\n      return \"xl\";\n    return \"xl\";\n  };\n  const onWindowResize = () => {\n    const { innerWidth, innerHeight } = window;\n    screenSize.width = innerWidth;\n    screenSize.height = innerHeight;\n    current.value = getSize();\n  };\n  const higherThan = (size, defScreenSize) => {\n    const { sm, md, lg, xl } = defaultScreenConfig;\n    const width = defaultScreenConfig[defScreenSize || current.value];\n    if (size === \"sm\")\n      return width >= Number(sm);\n    if (size === \"md\")\n      return width >= Number(md);\n    if (size === \"lg\")\n      return width >= Number(lg);\n    if (size === \"xl\")\n      return width >= Number(xl);\n    return false;\n  };\n  onMounted(() => {\n    if (typeof window === \"undefined\")\n      return;\n    window.addEventListener(\"resize\", onWindowResize);\n    current.value = getSize(window.innerWidth);\n  });\n  onUnmounted(() => {\n    if (typeof window === \"undefined\")\n      return;\n    window.removeEventListener(\"resize\", onWindowResize);\n  });\n  return {\n    getSize,\n    screenSize,\n    current,\n    higherThan\n  };\n};\n",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -193,50 +193,50 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784410,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784410,
+      "end": 1713304784411,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269986612,
-      "end": 1713269986612,
+      "start": 1713304784411,
+      "end": 1713304784411,
       "order": "normal"
     }
   ]

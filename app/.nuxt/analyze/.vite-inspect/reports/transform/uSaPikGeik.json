@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "/**\n * Swiper Vue 11.1.0\n * Most modern mobile touch slider and framework with hardware accelerated transitions\n * https://swiperjs.com\n *\n * Copyright 2014-2024 Vladimir Kharlampidi\n *\n * Released under the MIT License\n *\n * Released on: March 28, 2024\n */\n\nimport { h, ref, onUpdated, provide, watch, nextTick, onMounted, onBeforeUnmount, onBeforeUpdate, computed, inject } from 'vue';\nimport { S as Swiper$1 } from './shared/swiper-core.mjs';\nimport { g as getParams, a as getChangedParams, u as updateOnVirtualData, m as mountSwiper } from './shared/update-on-virtual-data.mjs';\nimport { e as extend, u as updateSwiper, d as uniqueClasses, w as wrapperClass, n as needsNavigation, b as needsScrollbar, a as needsPagination } from './shared/update-swiper.mjs';\n\nfunction getChildren(originalSlots, slidesRef, oldSlidesRef) {\n  if (originalSlots === void 0) {\n    originalSlots = {};\n  }\n  const slides = [];\n  const slots = {\n    'container-start': [],\n    'container-end': [],\n    'wrapper-start': [],\n    'wrapper-end': []\n  };\n  const getSlidesFromElements = (els, slotName) => {\n    if (!Array.isArray(els)) {\n      return;\n    }\n    els.forEach(vnode => {\n      const isFragment = typeof vnode.type === 'symbol';\n      if (slotName === 'default') slotName = 'container-end';\n      if (isFragment && vnode.children) {\n        getSlidesFromElements(vnode.children, slotName);\n      } else if (vnode.type && (vnode.type.name === 'SwiperSlide' || vnode.type.name === 'AsyncComponentWrapper')) {\n        slides.push(vnode);\n      } else if (slots[slotName]) {\n        slots[slotName].push(vnode);\n      }\n    });\n  };\n  Object.keys(originalSlots).forEach(slotName => {\n    if (typeof originalSlots[slotName] !== 'function') return;\n    const els = originalSlots[slotName]();\n    getSlidesFromElements(els, slotName);\n  });\n  oldSlidesRef.value = slidesRef.value;\n  slidesRef.value = slides;\n  return {\n    slides,\n    slots\n  };\n}\n\nfunction renderVirtual(swiperRef, slides, virtualData) {\n  if (!virtualData) return null;\n  const getSlideIndex = index => {\n    let slideIndex = index;\n    if (index < 0) {\n      slideIndex = slides.length + index;\n    } else if (slideIndex >= slides.length) {\n      // eslint-disable-next-line\n      slideIndex = slideIndex - slides.length;\n    }\n    return slideIndex;\n  };\n  const style = swiperRef.value.isHorizontal() ? {\n    [swiperRef.value.rtlTranslate ? 'right' : 'left']: `${virtualData.offset}px`\n  } : {\n    top: `${virtualData.offset}px`\n  };\n  const {\n    from,\n    to\n  } = virtualData;\n  const loopFrom = swiperRef.value.params.loop ? -slides.length : 0;\n  const loopTo = swiperRef.value.params.loop ? slides.length * 2 : slides.length;\n  const slidesToRender = [];\n  for (let i = loopFrom; i < loopTo; i += 1) {\n    if (i >= from && i <= to) {\n      slidesToRender.push(slides[getSlideIndex(i)]);\n    }\n  }\n  return slidesToRender.map(slide => {\n    if (!slide.props) slide.props = {};\n    if (!slide.props.style) slide.props.style = {};\n    slide.props.swiperRef = swiperRef;\n    slide.props.style = style;\n    return h(slide.type, {\n      ...slide.props\n    }, slide.children);\n  });\n}\n\nconst Swiper = {\n  name: 'Swiper',\n  props: {\n    tag: {\n      type: String,\n      default: 'div'\n    },\n    wrapperTag: {\n      type: String,\n      default: 'div'\n    },\n    modules: {\n      type: Array,\n      default: undefined\n    },\n    init: {\n      type: Boolean,\n      default: undefined\n    },\n    direction: {\n      type: String,\n      default: undefined\n    },\n    oneWayMovement: {\n      type: Boolean,\n      default: undefined\n    },\n    swiperElementNodeName: {\n      type: String,\n      default: 'SWIPER-CONTAINER'\n    },\n    touchEventsTarget: {\n      type: String,\n      default: undefined\n    },\n    initialSlide: {\n      type: Number,\n      default: undefined\n    },\n    speed: {\n      type: Number,\n      default: undefined\n    },\n    cssMode: {\n      type: Boolean,\n      default: undefined\n    },\n    updateOnWindowResize: {\n      type: Boolean,\n      default: undefined\n    },\n    resizeObserver: {\n      type: Boolean,\n      default: undefined\n    },\n    nested: {\n      type: Boolean,\n      default: undefined\n    },\n    focusableElements: {\n      type: String,\n      default: undefined\n    },\n    width: {\n      type: Number,\n      default: undefined\n    },\n    height: {\n      type: Number,\n      default: undefined\n    },\n    preventInteractionOnTransition: {\n      type: Boolean,\n      default: undefined\n    },\n    userAgent: {\n      type: String,\n      default: undefined\n    },\n    url: {\n      type: String,\n      default: undefined\n    },\n    edgeSwipeDetection: {\n      type: [Boolean, String],\n      default: undefined\n    },\n    edgeSwipeThreshold: {\n      type: Number,\n      default: undefined\n    },\n    autoHeight: {\n      type: Boolean,\n      default: undefined\n    },\n    setWrapperSize: {\n      type: Boolean,\n      default: undefined\n    },\n    virtualTranslate: {\n      type: Boolean,\n      default: undefined\n    },\n    effect: {\n      type: String,\n      default: undefined\n    },\n    breakpoints: {\n      type: Object,\n      default: undefined\n    },\n    spaceBetween: {\n      type: [Number, String],\n      default: undefined\n    },\n    slidesPerView: {\n      type: [Number, String],\n      default: undefined\n    },\n    maxBackfaceHiddenSlides: {\n      type: Number,\n      default: undefined\n    },\n    slidesPerGroup: {\n      type: Number,\n      default: undefined\n    },\n    slidesPerGroupSkip: {\n      type: Number,\n      default: undefined\n    },\n    slidesPerGroupAuto: {\n      type: Boolean,\n      default: undefined\n    },\n    centeredSlides: {\n      type: Boolean,\n      default: undefined\n    },\n    centeredSlidesBounds: {\n      type: Boolean,\n      default: undefined\n    },\n    slidesOffsetBefore: {\n      type: Number,\n      default: undefined\n    },\n    slidesOffsetAfter: {\n      type: Number,\n      default: undefined\n    },\n    normalizeSlideIndex: {\n      type: Boolean,\n      default: undefined\n    },\n    centerInsufficientSlides: {\n      type: Boolean,\n      default: undefined\n    },\n    watchOverflow: {\n      type: Boolean,\n      default: undefined\n    },\n    roundLengths: {\n      type: Boolean,\n      default: undefined\n    },\n    touchRatio: {\n      type: Number,\n      default: undefined\n    },\n    touchAngle: {\n      type: Number,\n      default: undefined\n    },\n    simulateTouch: {\n      type: Boolean,\n      default: undefined\n    },\n    shortSwipes: {\n      type: Boolean,\n      default: undefined\n    },\n    longSwipes: {\n      type: Boolean,\n      default: undefined\n    },\n    longSwipesRatio: {\n      type: Number,\n      default: undefined\n    },\n    longSwipesMs: {\n      type: Number,\n      default: undefined\n    },\n    followFinger: {\n      type: Boolean,\n      default: undefined\n    },\n    allowTouchMove: {\n      type: Boolean,\n      default: undefined\n    },\n    threshold: {\n      type: Number,\n      default: undefined\n    },\n    touchMoveStopPropagation: {\n      type: Boolean,\n      default: undefined\n    },\n    touchStartPreventDefault: {\n      type: Boolean,\n      default: undefined\n    },\n    touchStartForcePreventDefault: {\n      type: Boolean,\n      default: undefined\n    },\n    touchReleaseOnEdges: {\n      type: Boolean,\n      default: undefined\n    },\n    uniqueNavElements: {\n      type: Boolean,\n      default: undefined\n    },\n    resistance: {\n      type: Boolean,\n      default: undefined\n    },\n    resistanceRatio: {\n      type: Number,\n      default: undefined\n    },\n    watchSlidesProgress: {\n      type: Boolean,\n      default: undefined\n    },\n    grabCursor: {\n      type: Boolean,\n      default: undefined\n    },\n    preventClicks: {\n      type: Boolean,\n      default: undefined\n    },\n    preventClicksPropagation: {\n      type: Boolean,\n      default: undefined\n    },\n    slideToClickedSlide: {\n      type: Boolean,\n      default: undefined\n    },\n    loop: {\n      type: Boolean,\n      default: undefined\n    },\n    loopedSlides: {\n      type: Number,\n      default: undefined\n    },\n    loopPreventsSliding: {\n      type: Boolean,\n      default: undefined\n    },\n    rewind: {\n      type: Boolean,\n      default: undefined\n    },\n    allowSlidePrev: {\n      type: Boolean,\n      default: undefined\n    },\n    allowSlideNext: {\n      type: Boolean,\n      default: undefined\n    },\n    swipeHandler: {\n      type: Boolean,\n      default: undefined\n    },\n    noSwiping: {\n      type: Boolean,\n      default: undefined\n    },\n    noSwipingClass: {\n      type: String,\n      default: undefined\n    },\n    noSwipingSelector: {\n      type: String,\n      default: undefined\n    },\n    passiveListeners: {\n      type: Boolean,\n      default: undefined\n    },\n    containerModifierClass: {\n      type: String,\n      default: undefined\n    },\n    slideClass: {\n      type: String,\n      default: undefined\n    },\n    slideActiveClass: {\n      type: String,\n      default: undefined\n    },\n    slideVisibleClass: {\n      type: String,\n      default: undefined\n    },\n    slideFullyVisibleClass: {\n      type: String,\n      default: undefined\n    },\n    slideBlankClass: {\n      type: String,\n      default: undefined\n    },\n    slideNextClass: {\n      type: String,\n      default: undefined\n    },\n    slidePrevClass: {\n      type: String,\n      default: undefined\n    },\n    wrapperClass: {\n      type: String,\n      default: undefined\n    },\n    lazyPreloaderClass: {\n      type: String,\n      default: undefined\n    },\n    lazyPreloadPrevNext: {\n      type: Number,\n      default: undefined\n    },\n    runCallbacksOnInit: {\n      type: Boolean,\n      default: undefined\n    },\n    observer: {\n      type: Boolean,\n      default: undefined\n    },\n    observeParents: {\n      type: Boolean,\n      default: undefined\n    },\n    observeSlideChildren: {\n      type: Boolean,\n      default: undefined\n    },\n    a11y: {\n      type: [Boolean, Object],\n      default: undefined\n    },\n    autoplay: {\n      type: [Boolean, Object],\n      default: undefined\n    },\n    controller: {\n      type: Object,\n      default: undefined\n    },\n    coverflowEffect: {\n      type: Object,\n      default: undefined\n    },\n    cubeEffect: {\n      type: Object,\n      default: undefined\n    },\n    fadeEffect: {\n      type: Object,\n      default: undefined\n    },\n    flipEffect: {\n      type: Object,\n      default: undefined\n    },\n    creativeEffect: {\n      type: Object,\n      default: undefined\n    },\n    cardsEffect: {\n      type: Object,\n      default: undefined\n    },\n    hashNavigation: {\n      type: [Boolean, Object],\n      default: undefined\n    },\n    history: {\n      type: [Boolean, Object],\n      default: undefined\n    },\n    keyboard: {\n      type: [Boolean, Object],\n      default: undefined\n    },\n    mousewheel: {\n      type: [Boolean, Object],\n      default: undefined\n    },\n    navigation: {\n      type: [Boolean, Object],\n      default: undefined\n    },\n    pagination: {\n      type: [Boolean, Object],\n      default: undefined\n    },\n    parallax: {\n      type: [Boolean, Object],\n      default: undefined\n    },\n    scrollbar: {\n      type: [Boolean, Object],\n      default: undefined\n    },\n    thumbs: {\n      type: Object,\n      default: undefined\n    },\n    virtual: {\n      type: [Boolean, Object],\n      default: undefined\n    },\n    zoom: {\n      type: [Boolean, Object],\n      default: undefined\n    },\n    grid: {\n      type: [Object],\n      default: undefined\n    },\n    freeMode: {\n      type: [Boolean, Object],\n      default: undefined\n    },\n    enabled: {\n      type: Boolean,\n      default: undefined\n    }\n  },\n  emits: ['_beforeBreakpoint', '_containerClasses', '_slideClass', '_slideClasses', '_swiper', '_freeModeNoMomentumRelease', 'activeIndexChange', 'afterInit', 'autoplay', 'autoplayStart', 'autoplayStop', 'autoplayPause', 'autoplayResume', 'autoplayTimeLeft', 'beforeDestroy', 'beforeInit', 'beforeLoopFix', 'beforeResize', 'beforeSlideChangeStart', 'beforeTransitionStart', 'breakpoint', 'breakpointsBase', 'changeDirection', 'click', 'disable', 'doubleTap', 'doubleClick', 'destroy', 'enable', 'fromEdge', 'hashChange', 'hashSet', 'init', 'keyPress', 'lock', 'loopFix', 'momentumBounce', 'navigationHide', 'navigationShow', 'navigationPrev', 'navigationNext', 'observerUpdate', 'orientationchange', 'paginationHide', 'paginationRender', 'paginationShow', 'paginationUpdate', 'progress', 'reachBeginning', 'reachEnd', 'realIndexChange', 'resize', 'scroll', 'scrollbarDragEnd', 'scrollbarDragMove', 'scrollbarDragStart', 'setTransition', 'setTranslate', 'slidesUpdated', 'slideChange', 'slideChangeTransitionEnd', 'slideChangeTransitionStart', 'slideNextTransitionEnd', 'slideNextTransitionStart', 'slidePrevTransitionEnd', 'slidePrevTransitionStart', 'slideResetTransitionStart', 'slideResetTransitionEnd', 'sliderMove', 'sliderFirstMove', 'slidesLengthChange', 'slidesGridLengthChange', 'snapGridLengthChange', 'snapIndexChange', 'swiper', 'tap', 'toEdge', 'touchEnd', 'touchMove', 'touchMoveOpposite', 'touchStart', 'transitionEnd', 'transitionStart', 'unlock', 'update', 'virtualUpdate', 'zoomChange'],\n  setup(props, _ref) {\n    let {\n      slots: originalSlots,\n      emit\n    } = _ref;\n    const {\n      tag: Tag,\n      wrapperTag: WrapperTag\n    } = props;\n    const containerClasses = ref('swiper');\n    const virtualData = ref(null);\n    const breakpointChanged = ref(false);\n    const initializedRef = ref(false);\n    const swiperElRef = ref(null);\n    const swiperRef = ref(null);\n    const oldPassedParamsRef = ref(null);\n    const slidesRef = {\n      value: []\n    };\n    const oldSlidesRef = {\n      value: []\n    };\n    const nextElRef = ref(null);\n    const prevElRef = ref(null);\n    const paginationElRef = ref(null);\n    const scrollbarElRef = ref(null);\n    const {\n      params: swiperParams,\n      passedParams\n    } = getParams(props, false);\n    getChildren(originalSlots, slidesRef, oldSlidesRef);\n    oldPassedParamsRef.value = passedParams;\n    oldSlidesRef.value = slidesRef.value;\n    const onBeforeBreakpoint = () => {\n      getChildren(originalSlots, slidesRef, oldSlidesRef);\n      breakpointChanged.value = true;\n    };\n    swiperParams.onAny = function (event) {\n      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {\n        args[_key - 1] = arguments[_key];\n      }\n      emit(event, ...args);\n    };\n    Object.assign(swiperParams.on, {\n      _beforeBreakpoint: onBeforeBreakpoint,\n      _containerClasses(swiper, classes) {\n        containerClasses.value = classes;\n      }\n    });\n\n    // init Swiper\n    const passParams = {\n      ...swiperParams\n    };\n    delete passParams.wrapperClass;\n    swiperRef.value = new Swiper$1(passParams);\n    if (swiperRef.value.virtual && swiperRef.value.params.virtual.enabled) {\n      swiperRef.value.virtual.slides = slidesRef.value;\n      const extendWith = {\n        cache: false,\n        slides: slidesRef.value,\n        renderExternal: data => {\n          virtualData.value = data;\n        },\n        renderExternalUpdate: false\n      };\n      extend(swiperRef.value.params.virtual, extendWith);\n      extend(swiperRef.value.originalParams.virtual, extendWith);\n    }\n    onUpdated(() => {\n      // set initialized flag\n      if (!initializedRef.value && swiperRef.value) {\n        swiperRef.value.emitSlidesClasses();\n        initializedRef.value = true;\n      }\n      // watch for params change\n      const {\n        passedParams: newPassedParams\n      } = getParams(props, false);\n      const changedParams = getChangedParams(newPassedParams, oldPassedParamsRef.value, slidesRef.value, oldSlidesRef.value, c => c.props && c.props.key);\n      oldPassedParamsRef.value = newPassedParams;\n      if ((changedParams.length || breakpointChanged.value) && swiperRef.value && !swiperRef.value.destroyed) {\n        updateSwiper({\n          swiper: swiperRef.value,\n          slides: slidesRef.value,\n          passedParams: newPassedParams,\n          changedParams,\n          nextEl: nextElRef.value,\n          prevEl: prevElRef.value,\n          scrollbarEl: scrollbarElRef.value,\n          paginationEl: paginationElRef.value\n        });\n      }\n      breakpointChanged.value = false;\n    });\n    provide('swiper', swiperRef);\n\n    // update on virtual update\n    watch(virtualData, () => {\n      nextTick(() => {\n        updateOnVirtualData(swiperRef.value);\n      });\n    });\n\n    // mount swiper\n    onMounted(() => {\n      if (!swiperElRef.value) return;\n      mountSwiper({\n        el: swiperElRef.value,\n        nextEl: nextElRef.value,\n        prevEl: prevElRef.value,\n        paginationEl: paginationElRef.value,\n        scrollbarEl: scrollbarElRef.value,\n        swiper: swiperRef.value\n      }, swiperParams);\n      emit('swiper', swiperRef.value);\n    });\n    onBeforeUnmount(() => {\n      if (swiperRef.value && !swiperRef.value.destroyed) {\n        swiperRef.value.destroy(true, false);\n      }\n    });\n\n    // bypass swiper instance to slides\n    function renderSlides(slides) {\n      if (swiperParams.virtual) {\n        return renderVirtual(swiperRef, slides, virtualData.value);\n      }\n      slides.forEach((slide, index) => {\n        if (!slide.props) slide.props = {};\n        slide.props.swiperRef = swiperRef;\n        slide.props.swiperSlideIndex = index;\n      });\n      return slides;\n    }\n    return () => {\n      const {\n        slides,\n        slots\n      } = getChildren(originalSlots, slidesRef, oldSlidesRef);\n      return h(Tag, {\n        ref: swiperElRef,\n        class: uniqueClasses(containerClasses.value)\n      }, [slots['container-start'], h(WrapperTag, {\n        class: wrapperClass(swiperParams.wrapperClass)\n      }, [slots['wrapper-start'], renderSlides(slides), slots['wrapper-end']]), needsNavigation(props) && [h('div', {\n        ref: prevElRef,\n        class: 'swiper-button-prev'\n      }), h('div', {\n        ref: nextElRef,\n        class: 'swiper-button-next'\n      })], needsScrollbar(props) && h('div', {\n        ref: scrollbarElRef,\n        class: 'swiper-scrollbar'\n      }), needsPagination(props) && h('div', {\n        ref: paginationElRef,\n        class: 'swiper-pagination'\n      }), slots['container-end']]);\n    };\n  }\n};\n\nconst SwiperSlide = {\n  name: 'SwiperSlide',\n  props: {\n    tag: {\n      type: String,\n      default: 'div'\n    },\n    swiperRef: {\n      type: Object,\n      required: false\n    },\n    swiperSlideIndex: {\n      type: Number,\n      default: undefined,\n      required: false\n    },\n    zoom: {\n      type: Boolean,\n      default: undefined,\n      required: false\n    },\n    lazy: {\n      type: Boolean,\n      default: false,\n      required: false\n    },\n    virtualIndex: {\n      type: [String, Number],\n      default: undefined\n    }\n  },\n  setup(props, _ref) {\n    let {\n      slots\n    } = _ref;\n    let eventAttached = false;\n    const {\n      swiperRef\n    } = props;\n    const slideElRef = ref(null);\n    const slideClasses = ref('swiper-slide');\n    const lazyLoaded = ref(false);\n    function updateClasses(swiper, el, classNames) {\n      if (el === slideElRef.value) {\n        slideClasses.value = classNames;\n      }\n    }\n    onMounted(() => {\n      if (!swiperRef || !swiperRef.value) return;\n      swiperRef.value.on('_slideClass', updateClasses);\n      eventAttached = true;\n    });\n    onBeforeUpdate(() => {\n      if (eventAttached || !swiperRef || !swiperRef.value) return;\n      swiperRef.value.on('_slideClass', updateClasses);\n      eventAttached = true;\n    });\n    onUpdated(() => {\n      if (!slideElRef.value || !swiperRef || !swiperRef.value) return;\n      if (typeof props.swiperSlideIndex !== 'undefined') {\n        slideElRef.value.swiperSlideIndex = props.swiperSlideIndex;\n      }\n      if (swiperRef.value.destroyed) {\n        if (slideClasses.value !== 'swiper-slide') {\n          slideClasses.value = 'swiper-slide';\n        }\n      }\n    });\n    onBeforeUnmount(() => {\n      if (!swiperRef || !swiperRef.value) return;\n      swiperRef.value.off('_slideClass', updateClasses);\n    });\n    const slideData = computed(() => ({\n      isActive: slideClasses.value.indexOf('swiper-slide-active') >= 0,\n      isVisible: slideClasses.value.indexOf('swiper-slide-visible') >= 0,\n      isPrev: slideClasses.value.indexOf('swiper-slide-prev') >= 0,\n      isNext: slideClasses.value.indexOf('swiper-slide-next') >= 0\n    }));\n    provide('swiperSlide', slideData);\n    const onLoad = () => {\n      lazyLoaded.value = true;\n    };\n    return () => {\n      return h(props.tag, {\n        class: uniqueClasses(`${slideClasses.value}`),\n        ref: slideElRef,\n        'data-swiper-slide-index': typeof props.virtualIndex === 'undefined' && swiperRef && swiperRef.value && swiperRef.value.params.loop ? props.swiperSlideIndex : props.virtualIndex,\n        onLoadCapture: onLoad\n      }, props.zoom ? h('div', {\n        class: 'swiper-zoom-container',\n        'data-swiper-zoom': typeof props.zoom === 'number' ? props.zoom : undefined\n      }, [slots.default && slots.default(slideData.value), props.lazy && !lazyLoaded.value && h('div', {\n        class: 'swiper-lazy-preloader'\n      })]) : [slots.default && slots.default(slideData.value), props.lazy && !lazyLoaded.value && h('div', {\n        class: 'swiper-lazy-preloader'\n      })]);\n    };\n  }\n};\n\nconst useSwiperSlide = () => {\n  return inject('swiperSlide');\n};\nconst useSwiper = () => {\n  return inject('swiper');\n};\n\nexport { Swiper, SwiperSlide, useSwiper, useSwiperSlide };\n",
-      "start": 1713269985653,
-      "end": 1713269985800,
+      "start": 1713304783451,
+      "end": 1713304783609,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783609,
+      "end": 1713304783609,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783609,
+      "end": 1713304783609,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783609,
+      "end": 1713304783609,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783609,
+      "end": 1713304783609,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783609,
+      "end": 1713304783609,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783609,
+      "end": 1713304783609,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783609,
+      "end": 1713304783609,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783609,
+      "end": 1713304783609,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783609,
+      "end": 1713304783609,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783609,
+      "end": 1713304783609,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783609,
+      "end": 1713304783609,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783609,
+      "end": 1713304783609,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783609,
+      "end": 1713304783609,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783609,
+      "end": 1713304783609,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783609,
+      "end": 1713304783610,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269985800,
-      "end": 1713269985800,
+      "start": 1713304783610,
+      "end": 1713304783610,
       "order": "normal"
     }
   ]

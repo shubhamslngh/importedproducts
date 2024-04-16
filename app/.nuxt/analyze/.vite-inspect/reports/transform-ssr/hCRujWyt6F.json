@@ -4,81 +4,81 @@
     {
       "name": "vite:load-fallback",
       "result": "<template>\n  <div v-if=\"products.length > 0\">\n    <swiper\n      :effect=\"'cards'\"\n      :grabCursor=\"true\"\n      :slideShadows=\"false\"\n      :modules=\"modules\"\n      class=\"mySwiper dark:bg-none\"\n    >\n      <!-- {{ console.log(products, \"products for cards in template\") }} -->\n      <swiper-slide\n        class=\"dark:bg-none \"\n        v-for=\"(product, index) in products\"\n        :key=\"index\"\n        :slideShadow=\"false\"\n        :style=\"{ 'background-image': `url(${product.img})` }\"\n      >\n        <div @click=\"handleClick(product.variationId)\">\n          <img\n            :src=\"product.img ? product.img : ''\"\n            alt=\"Product Image\"\n            class=\"transition-all ease-in-out\"\n          />\n        </div>\n      </swiper-slide>\n    </swiper>\n    <div>\n      <AddToCart\n        :productId=\"selectedProductId\"\n        :variationId=\"selectedVariationId\"\n      />\n    </div>\n  </div>\n  <div v-else>Loading products...</div>\n</template>\n\n<script>\nimport { ref, onMounted, defineProps } from \"vue\";\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport { getVariation } from \"../../utils/cart\"; // Assuming getVariation is correctly imported\nimport \"swiper/css/effect-cards\";\nimport \"swiper/css/bundle\";\nimport { EffectCards } from \"swiper/modules\";\nimport AddToCart from \"../awesome/AddtoCart.vue\";\nimport \"swiper/scss/effect-cards\";\n\nexport default {\n  components: {\n    AddToCart,\n    Swiper,\n    SwiperSlide,\n  },\n  props: {\n    productId: {\n      type: Number,\n      required: true,\n    },\n    variationId: {\n      type: Number,\n      default: 0,\n    },\n  },\n  setup(props) {\n    const updateShadowStyles = () => {\n      const shadowElements = document.querySelectorAll(\".swiper-slide-shadow\");\n      shadowElements.forEach((shadowElement) => {\n        shadowElement.style.opacity = \"0\";\n      });\n    };\n\n    const selectedProductId = ref(props.productId);\n    const selectedVariationId = ref(props.variationId);\n    const products = ref([]);\n    let data = ref([]);\n    const { mutate: getProducts, loading } = useMutation(getVariation);\n\n    onMounted(async () => {\n      try {\n        data = await getProducts({ productId: props.productId });\n        if (data) {\n          console.log(data, \"data inside try\");\n          products.value = data.data.variableProduct.variations.nodes.map(\n            (nodes) => ({\n              name: nodes.name,\n              img: nodes.image.link,\n              variationId: nodes.databaseId,\n            })\n          );\n          console.log(products.value, \"products object created\");\n        }\n      } catch (error) {\n        console.error(\"Error fetching product:\", error);\n      }\n    });\n    setTimeout(() => {\n      updateShadowStyles();\n\n      const observer = new MutationObserver(updateShadowStyles);\n\n      const swiperContainer = document.querySelector(\".swiper-container\");\n      if (swiperContainer) {\n        observer.observe(swiperContainer, {\n          attributes: true,\n          childList: true,\n          subtree: true,\n        });\n      }\n    }, 1000);\n\n    const handleClick = (variationId) => {\n      selectedVariationId.value = variationId;\n      selectedProductId.value = props.productId;\n      console.log(selectedProductId.value, \"here is Product id\");\n      console.log(selectedVariationId.value, \"here is Variation id\");\n      // console.log(apollo, \"here is appoloo id\");\n    };\n\n    return {\n      modules: [EffectCards],\n      spaceBetween: 400,\n      selectedProductId,\n      selectedVariationId,\n      products,\n      handleClick,\n    };\n  },\n};\n</script>\n\n<style scoped>\n.img {\n  width: auto;\n  height: auto;\n}\n.mySwiper * {\n  background-color: none;\n}\n.swiper {\n  width: 280px;\n  height: auto;\n}\n\n.swiper-slide {\n  background: none !important;\n  display: flex;\n  opacity: 1;\n  align-items: center;\n  justify-content: center;\n  font-size: 12px;\n  font-weight: bold;\n}\n</style>\n",
-      "start": 1713269988404,
-      "end": 1713269988412,
+      "start": 1713304786209,
+      "end": 1713304786219,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269988412,
-      "end": 1713269988412,
+      "start": 1713304786219,
+      "end": 1713304786219,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269988412,
-      "end": 1713269988412,
+      "start": 1713304786219,
+      "end": 1713304786219,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269988412,
-      "end": 1713269988412,
+      "start": 1713304786219,
+      "end": 1713304786219,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269988412,
-      "end": 1713269988412,
+      "start": 1713304786219,
+      "end": 1713304786219,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269988412,
-      "end": 1713269988412,
+      "start": 1713304786219,
+      "end": 1713304786219,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269988412,
-      "end": 1713269988412,
+      "start": 1713304786219,
+      "end": 1713304786219,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269988412,
-      "end": 1713269988412,
+      "start": 1713304786219,
+      "end": 1713304786219,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269988412,
-      "end": 1713269988412,
+      "start": 1713304786219,
+      "end": 1713304786219,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1713269988412,
-      "end": 1713269988412,
+      "start": 1713304786219,
+      "end": 1713304786219,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1713269988412,
-      "end": 1713269988412,
+      "start": 1713304786219,
+      "end": 1713304786219,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269988412,
-      "end": 1713269988412,
+      "start": 1713304786219,
+      "end": 1713304786219,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "\nimport { ref, onMounted, defineProps } from \"vue\";\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport { getVariation } from \"../../utils/cart\"; // Assuming getVariation is correctly imported\nimport \"swiper/css/effect-cards\";\nimport \"swiper/css/bundle\";\nimport { EffectCards } from \"swiper/modules\";\nimport AddToCart from \"../awesome/AddtoCart.vue\";\nimport \"swiper/scss/effect-cards\";\n\nconst _sfc_main = {\n  components: {\n    AddToCart,\n    Swiper,\n    SwiperSlide,\n  },\n  props: {\n    productId: {\n      type: Number,\n      required: true,\n    },\n    variationId: {\n      type: Number,\n      default: 0,\n    },\n  },\n  setup(props) {\n    const updateShadowStyles = () => {\n      const shadowElements = document.querySelectorAll(\".swiper-slide-shadow\");\n      shadowElements.forEach((shadowElement) => {\n        shadowElement.style.opacity = \"0\";\n      });\n    };\n\n    const selectedProductId = ref(props.productId);\n    const selectedVariationId = ref(props.variationId);\n    const products = ref([]);\n    let data = ref([]);\n    const { mutate: getProducts, loading } = useMutation(getVariation);\n\n    onMounted(async () => {\n      try {\n        data = await getProducts({ productId: props.productId });\n        if (data) {\n          console.log(data, \"data inside try\");\n          products.value = data.data.variableProduct.variations.nodes.map(\n            (nodes) => ({\n              name: nodes.name,\n              img: nodes.image.link,\n              variationId: nodes.databaseId,\n            })\n          );\n          console.log(products.value, \"products object created\");\n        }\n      } catch (error) {\n        console.error(\"Error fetching product:\", error);\n      }\n    });\n    setTimeout(() => {\n      updateShadowStyles();\n\n      const observer = new MutationObserver(updateShadowStyles);\n\n      const swiperContainer = document.querySelector(\".swiper-container\");\n      if (swiperContainer) {\n        observer.observe(swiperContainer, {\n          attributes: true,\n          childList: true,\n          subtree: true,\n        });\n      }\n    }, 1000);\n\n    const handleClick = (variationId) => {\n      selectedVariationId.value = variationId;\n      selectedProductId.value = props.productId;\n      console.log(selectedProductId.value, \"here is Product id\");\n      console.log(selectedVariationId.value, \"here is Variation id\");\n      // console.log(apollo, \"here is appoloo id\");\n    };\n\n    return {\n      modules: [EffectCards],\n      spaceBetween: 400,\n      selectedProductId,\n      selectedVariationId,\n      products,\n      handleClick,\n    };\n  },\n};\n\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\"\n\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  const _component_swiper = _resolveComponent(\"swiper\")\n  const _component_swiper_slide = _resolveComponent(\"swiper-slide\")\n  const _component_AddToCart = _resolveComponent(\"AddToCart\")\n\n  if ($setup.products.length > 0) {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>`)\n    _push(_ssrRenderComponent(_component_swiper, {\n      effect: 'cards',\n      grabCursor: true,\n      slideShadows: false,\n      modules: $setup.modules,\n      class: \"mySwiper dark:bg-none\"\n    }, {\n      default: _withCtx((_, _push, _parent, _scopeId) => {\n        if (_push) {\n          _push(`<!--[-->`)\n          _ssrRenderList($setup.products, (product, index) => {\n            _push(_ssrRenderComponent(_component_swiper_slide, {\n              class: \"dark:bg-none\",\n              key: index,\n              slideShadow: false,\n              style: { 'background-image': `url(${product.img})` }\n            }, {\n              default: _withCtx((_, _push, _parent, _scopeId) => {\n                if (_push) {\n                  _push(`<div data-v-c6873c6d${\n                    _scopeId\n                  }><img${\n                    _ssrRenderAttr(\"src\", product.img ? product.img : '')\n                  } alt=\"Product Image\" class=\"transition-all ease-in-out\" data-v-c6873c6d${\n                    _scopeId\n                  }></div>`)\n                } else {\n                  return [\n                    _createVNode(\"div\", {\n                      onClick: $event => ($setup.handleClick(product.variationId))\n                    }, [\n                      _createVNode(\"img\", {\n                        src: product.img ? product.img : '',\n                        alt: \"Product Image\",\n                        class: \"transition-all ease-in-out\"\n                      }, null, 8, [\"src\"])\n                    ], 8, [\"onClick\"])\n                  ]\n                }\n              }),\n              _: 2\n            }, _parent, _scopeId))\n          })\n          _push(`<!--]-->`)\n        } else {\n          return [\n            (_openBlock(true), _createBlock(_Fragment, null, _renderList($setup.products, (product, index) => {\n              return (_openBlock(), _createBlock(_component_swiper_slide, {\n                class: \"dark:bg-none\",\n                key: index,\n                slideShadow: false,\n                style: { 'background-image': `url(${product.img})` }\n              }, {\n                default: _withCtx(() => [\n                  _createVNode(\"div\", {\n                    onClick: $event => ($setup.handleClick(product.variationId))\n                  }, [\n                    _createVNode(\"img\", {\n                      src: product.img ? product.img : '',\n                      alt: \"Product Image\",\n                      class: \"transition-all ease-in-out\"\n                    }, null, 8, [\"src\"])\n                  ], 8, [\"onClick\"])\n                ]),\n                _: 2\n              }, 1032, [\"style\"]))\n            }), 128))\n          ]\n        }\n      }),\n      _: 1\n    }, _parent))\n    _push(`<div data-v-c6873c6d>`)\n    _push(_ssrRenderComponent(_component_AddToCart, {\n      productId: $setup.selectedProductId,\n      variationId: $setup.selectedVariationId\n    }, null, _parent))\n    _push(`</div></div>`)\n  } else {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>Loading products...</div>`)\n  }\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue?vue&type=style&index=0&scoped=c6873c6d&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"../components/awesome/Variations.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['ssrRender',_sfc_ssrRender],['__scopeId',\"data-v-c6873c6d\"]])",
-      "start": 1713269988412,
-      "end": 1713269988413,
+      "start": 1713304786219,
+      "end": 1713304786220,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -95,125 +95,125 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269988413,
-      "end": 1713269988413,
+      "start": 1713304786220,
+      "end": 1713304786220,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269988413,
-      "end": 1713269988413,
+      "start": 1713304786220,
+      "end": 1713304786220,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269988413,
-      "end": 1713269988413,
+      "start": 1713304786220,
+      "end": 1713304786220,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269988413,
-      "end": 1713269988413,
+      "start": 1713304786220,
+      "end": 1713304786220,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269988413,
-      "end": 1713269988413,
+      "start": 1713304786220,
+      "end": 1713304786220,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269988413,
-      "end": 1713269988413,
+      "start": 1713304786220,
+      "end": 1713304786220,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269988413,
-      "end": 1713269988413,
+      "start": 1713304786220,
+      "end": 1713304786220,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269988413,
-      "end": 1713269988413,
+      "start": 1713304786220,
+      "end": 1713304786220,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269988413,
-      "end": 1713269988414,
+      "start": 1713304786220,
+      "end": 1713304786221,
       "order": "normal"
     },
     {
       "name": "vite:define",
       "result": "import { ref, onMounted, defineProps } from \"vue\";\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport { getVariation } from \"../../utils/cart\";\nimport \"swiper/css/effect-cards\";\nimport \"swiper/css/bundle\";\nimport { EffectCards } from \"swiper/modules\";\nimport AddToCart from \"../awesome/AddtoCart.vue\";\nimport \"swiper/scss/effect-cards\";\nconst _sfc_main = {\n  components: {\n    AddToCart,\n    Swiper,\n    SwiperSlide\n  },\n  props: {\n    productId: {\n      type: Number,\n      required: true\n    },\n    variationId: {\n      type: Number,\n      default: 0\n    }\n  },\n  setup(props) {\n    const updateShadowStyles = () => {\n      const shadowElements = (void 0).querySelectorAll(\".swiper-slide-shadow\");\n      shadowElements.forEach((shadowElement) => {\n        shadowElement.style.opacity = \"0\";\n      });\n    };\n    const selectedProductId = ref(props.productId);\n    const selectedVariationId = ref(props.variationId);\n    const products = ref([]);\n    let data = ref([]);\n    const { mutate: getProducts, loading } = useMutation(getVariation);\n    onMounted(async () => {\n      try {\n        data = await getProducts({ productId: props.productId });\n        if (data) {\n          console.log(data, \"data inside try\");\n          products.value = data.data.variableProduct.variations.nodes.map(\n            (nodes) => ({\n              name: nodes.name,\n              img: nodes.image.link,\n              variationId: nodes.databaseId\n            })\n          );\n          console.log(products.value, \"products object created\");\n        }\n      } catch (error) {\n        console.error(\"Error fetching product:\", error);\n      }\n    });\n    setTimeout(() => {\n      updateShadowStyles();\n      const observer = new MutationObserver(updateShadowStyles);\n      const swiperContainer = (void 0).querySelector(\".swiper-container\");\n      if (swiperContainer) {\n        observer.observe(swiperContainer, {\n          attributes: true,\n          childList: true,\n          subtree: true\n        });\n      }\n    }, 1e3);\n    const handleClick = (variationId) => {\n      selectedVariationId.value = variationId;\n      selectedProductId.value = props.productId;\n      console.log(selectedProductId.value, \"here is Product id\");\n      console.log(selectedVariationId.value, \"here is Variation id\");\n    };\n    return {\n      modules: [EffectCards],\n      spaceBetween: 400,\n      selectedProductId,\n      selectedVariationId,\n      products,\n      handleClick\n    };\n  }\n};\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  const _component_swiper = _resolveComponent(\"swiper\");\n  const _component_swiper_slide = _resolveComponent(\"swiper-slide\");\n  const _component_AddToCart = _resolveComponent(\"AddToCart\");\n  if ($setup.products.length > 0) {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>`);\n    _push(_ssrRenderComponent(_component_swiper, {\n      effect: \"cards\",\n      grabCursor: true,\n      slideShadows: false,\n      modules: $setup.modules,\n      class: \"mySwiper dark:bg-none\"\n    }, {\n      default: _withCtx((_, _push2, _parent2, _scopeId) => {\n        if (_push2) {\n          _push2(`<!--[-->`);\n          _ssrRenderList($setup.products, (product, index) => {\n            _push2(_ssrRenderComponent(_component_swiper_slide, {\n              class: \"dark:bg-none\",\n              key: index,\n              slideShadow: false,\n              style: { \"background-image\": `url(${product.img})` }\n            }, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(`<div data-v-c6873c6d${_scopeId2}><img${_ssrRenderAttr(\"src\", product.img ? product.img : \"\")} alt=\"Product Image\" class=\"transition-all ease-in-out\" data-v-c6873c6d${_scopeId2}></div>`);\n                } else {\n                  return [\n                    _createVNode(\"div\", {\n                      onClick: ($event) => $setup.handleClick(product.variationId)\n                    }, [\n                      _createVNode(\"img\", {\n                        src: product.img ? product.img : \"\",\n                        alt: \"Product Image\",\n                        class: \"transition-all ease-in-out\"\n                      }, null, 8, [\"src\"])\n                    ], 8, [\"onClick\"])\n                  ];\n                }\n              }),\n              _: 2\n            }, _parent2, _scopeId));\n          });\n          _push2(`<!--]-->`);\n        } else {\n          return [\n            (_openBlock(true), _createBlock(_Fragment, null, _renderList($setup.products, (product, index) => {\n              return _openBlock(), _createBlock(_component_swiper_slide, {\n                class: \"dark:bg-none\",\n                key: index,\n                slideShadow: false,\n                style: { \"background-image\": `url(${product.img})` }\n              }, {\n                default: _withCtx(() => [\n                  _createVNode(\"div\", {\n                    onClick: ($event) => $setup.handleClick(product.variationId)\n                  }, [\n                    _createVNode(\"img\", {\n                      src: product.img ? product.img : \"\",\n                      alt: \"Product Image\",\n                      class: \"transition-all ease-in-out\"\n                    }, null, 8, [\"src\"])\n                  ], 8, [\"onClick\"])\n                ]),\n                _: 2\n              }, 1032, [\"style\"]);\n            }), 128))\n          ];\n        }\n      }),\n      _: 1\n    }, _parent));\n    _push(`<div data-v-c6873c6d>`);\n    _push(_ssrRenderComponent(_component_AddToCart, {\n      productId: $setup.selectedProductId,\n      variationId: $setup.selectedVariationId\n    }, null, _parent));\n    _push(`</div></div>`);\n  } else {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>Loading products...</div>`);\n  }\n}\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue?vue&type=style&index=0&scoped=c6873c6d&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"../components/awesome/Variations.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"ssrRender\", _sfc_ssrRender], [\"__scopeId\", \"data-v-c6873c6d\"]]);\n",
-      "start": 1713269988414,
-      "end": 1713269989015,
+      "start": 1713304786221,
+      "end": 1713304786833,
       "order": "normal",
       "sourcemaps": "{\n  \"version\": 3,\n  \"sources\": [\"/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue\"],\n  \"sourcesContent\": [\"\\nimport { ref, onMounted, defineProps } from \\\"vue\\\";\\nimport { Swiper, SwiperSlide } from \\\"swiper/vue\\\";\\nimport { getVariation } from \\\"../../utils/cart\\\"; // Assuming getVariation is correctly imported\\nimport \\\"swiper/css/effect-cards\\\";\\nimport \\\"swiper/css/bundle\\\";\\nimport { EffectCards } from \\\"swiper/modules\\\";\\nimport AddToCart from \\\"../awesome/AddtoCart.vue\\\";\\nimport \\\"swiper/scss/effect-cards\\\";\\n\\nconst _sfc_main = {\\n  components: {\\n    AddToCart,\\n    Swiper,\\n    SwiperSlide,\\n  },\\n  props: {\\n    productId: {\\n      type: Number,\\n      required: true,\\n    },\\n    variationId: {\\n      type: Number,\\n      default: 0,\\n    },\\n  },\\n  setup(props) {\\n    const updateShadowStyles = () => {\\n      const shadowElements = document.querySelectorAll(\\\".swiper-slide-shadow\\\");\\n      shadowElements.forEach((shadowElement) => {\\n        shadowElement.style.opacity = \\\"0\\\";\\n      });\\n    };\\n\\n    const selectedProductId = ref(props.productId);\\n    const selectedVariationId = ref(props.variationId);\\n    const products = ref([]);\\n    let data = ref([]);\\n    const { mutate: getProducts, loading } = useMutation(getVariation);\\n\\n    onMounted(async () => {\\n      try {\\n        data = await getProducts({ productId: props.productId });\\n        if (data) {\\n          console.log(data, \\\"data inside try\\\");\\n          products.value = data.data.variableProduct.variations.nodes.map(\\n            (nodes) => ({\\n              name: nodes.name,\\n              img: nodes.image.link,\\n              variationId: nodes.databaseId,\\n            })\\n          );\\n          console.log(products.value, \\\"products object created\\\");\\n        }\\n      } catch (error) {\\n        console.error(\\\"Error fetching product:\\\", error);\\n      }\\n    });\\n    setTimeout(() => {\\n      updateShadowStyles();\\n\\n      const observer = new MutationObserver(updateShadowStyles);\\n\\n      const swiperContainer = document.querySelector(\\\".swiper-container\\\");\\n      if (swiperContainer) {\\n        observer.observe(swiperContainer, {\\n          attributes: true,\\n          childList: true,\\n          subtree: true,\\n        });\\n      }\\n    }, 1000);\\n\\n    const handleClick = (variationId) => {\\n      selectedVariationId.value = variationId;\\n      selectedProductId.value = props.productId;\\n      console.log(selectedProductId.value, \\\"here is Product id\\\");\\n      console.log(selectedVariationId.value, \\\"here is Variation id\\\");\\n      // console.log(apollo, \\\"here is appoloo id\\\");\\n    };\\n\\n    return {\\n      modules: [EffectCards],\\n      spaceBetween: 400,\\n      selectedProductId,\\n      selectedVariationId,\\n      products,\\n      handleClick,\\n    };\\n  },\\n};\\n\\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock } from \\\"vue\\\"\\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrRenderList as _ssrRenderList } from \\\"vue/server-renderer\\\"\\n\\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\\n  const _component_swiper = _resolveComponent(\\\"swiper\\\")\\n  const _component_swiper_slide = _resolveComponent(\\\"swiper-slide\\\")\\n  const _component_AddToCart = _resolveComponent(\\\"AddToCart\\\")\\n\\n  if ($setup.products.length > 0) {\\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>`)\\n    _push(_ssrRenderComponent(_component_swiper, {\\n      effect: 'cards',\\n      grabCursor: true,\\n      slideShadows: false,\\n      modules: $setup.modules,\\n      class: \\\"mySwiper dark:bg-none\\\"\\n    }, {\\n      default: _withCtx((_, _push, _parent, _scopeId) => {\\n        if (_push) {\\n          _push(`<!--[-->`)\\n          _ssrRenderList($setup.products, (product, index) => {\\n            _push(_ssrRenderComponent(_component_swiper_slide, {\\n              class: \\\"dark:bg-none\\\",\\n              key: index,\\n              slideShadow: false,\\n              style: { 'background-image': `url(${product.img})` }\\n            }, {\\n              default: _withCtx((_, _push, _parent, _scopeId) => {\\n                if (_push) {\\n                  _push(`<div data-v-c6873c6d${\\n                    _scopeId\\n                  }><img${\\n                    _ssrRenderAttr(\\\"src\\\", product.img ? product.img : '')\\n                  } alt=\\\"Product Image\\\" class=\\\"transition-all ease-in-out\\\" data-v-c6873c6d${\\n                    _scopeId\\n                  }></div>`)\\n                } else {\\n                  return [\\n                    _createVNode(\\\"div\\\", {\\n                      onClick: $event => ($setup.handleClick(product.variationId))\\n                    }, [\\n                      _createVNode(\\\"img\\\", {\\n                        src: product.img ? product.img : '',\\n                        alt: \\\"Product Image\\\",\\n                        class: \\\"transition-all ease-in-out\\\"\\n                      }, null, 8, [\\\"src\\\"])\\n                    ], 8, [\\\"onClick\\\"])\\n                  ]\\n                }\\n              }),\\n              _: 2\\n            }, _parent, _scopeId))\\n          })\\n          _push(`<!--]-->`)\\n        } else {\\n          return [\\n            (_openBlock(true), _createBlock(_Fragment, null, _renderList($setup.products, (product, index) => {\\n              return (_openBlock(), _createBlock(_component_swiper_slide, {\\n                class: \\\"dark:bg-none\\\",\\n                key: index,\\n                slideShadow: false,\\n                style: { 'background-image': `url(${product.img})` }\\n              }, {\\n                default: _withCtx(() => [\\n                  _createVNode(\\\"div\\\", {\\n                    onClick: $event => ($setup.handleClick(product.variationId))\\n                  }, [\\n                    _createVNode(\\\"img\\\", {\\n                      src: product.img ? product.img : '',\\n                      alt: \\\"Product Image\\\",\\n                      class: \\\"transition-all ease-in-out\\\"\\n                    }, null, 8, [\\\"src\\\"])\\n                  ], 8, [\\\"onClick\\\"])\\n                ]),\\n                _: 2\\n              }, 1032, [\\\"style\\\"]))\\n            }), 128))\\n          ]\\n        }\\n      }),\\n      _: 1\\n    }, _parent))\\n    _push(`<div data-v-c6873c6d>`)\\n    _push(_ssrRenderComponent(_component_AddToCart, {\\n      productId: $setup.selectedProductId,\\n      variationId: $setup.selectedVariationId\\n    }, null, _parent))\\n    _push(`</div></div>`)\\n  } else {\\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>Loading products...</div>`)\\n  }\\n}\\n\\nimport \\\"/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue?vue&type=style&index=0&scoped=c6873c6d&lang.css\\\"\\n\\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\\nconst _sfc_setup = _sfc_main.setup\\n_sfc_main.setup = (props, ctx) => {\\n  const ssrContext = __vite_useSSRContext()\\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\\\"../components/awesome/Variations.vue\\\")\\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\\n}\\nimport _export_sfc from '\\u0000plugin-vue:export-helper'\\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['ssrRender',_sfc_ssrRender],['__scopeId',\\\"data-v-c6873c6d\\\"]])\"],\n  \"mappings\": \"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\",\n  \"names\": [\"_push\", \"_parent\", \"_\", \"_scopeId\"]\n}\n"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269989015,
-      "end": 1713269989015,
+      "start": 1713304786833,
+      "end": 1713304786833,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269989015,
-      "end": 1713269989015,
+      "start": 1713304786833,
+      "end": 1713304786833,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269989015,
-      "end": 1713269989015,
+      "start": 1713304786833,
+      "end": 1713304786833,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269989015,
-      "end": 1713269989015,
+      "start": 1713304786833,
+      "end": 1713304786833,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269989015,
-      "end": 1713269989015,
+      "start": 1713304786833,
+      "end": 1713304786833,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269989015,
-      "end": 1713269989015,
+      "start": 1713304786833,
+      "end": 1713304786833,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269989015,
-      "end": 1713269989015,
+      "start": 1713304786833,
+      "end": 1713304786833,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269989015,
-      "end": 1713269989015,
+      "start": 1713304786833,
+      "end": 1713304786833,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269989015,
-      "end": 1713269989015,
+      "start": 1713304786833,
+      "end": 1713304786833,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { useMutation } from '@vue/apollo-composable';\nimport { ref, onMounted, defineProps } from \"vue\";\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport { getVariation } from \"../../utils/cart\";\nimport \"swiper/css/effect-cards\";\nimport \"swiper/css/bundle\";\nimport { EffectCards } from \"swiper/modules\";\nimport AddToCart from \"../awesome/AddtoCart.vue\";\nimport \"swiper/scss/effect-cards\";\nconst _sfc_main = {\n  components: {\n    AddToCart,\n    Swiper,\n    SwiperSlide\n  },\n  props: {\n    productId: {\n      type: Number,\n      required: true\n    },\n    variationId: {\n      type: Number,\n      default: 0\n    }\n  },\n  setup(props) {\n    const updateShadowStyles = () => {\n      const shadowElements = (void 0).querySelectorAll(\".swiper-slide-shadow\");\n      shadowElements.forEach((shadowElement) => {\n        shadowElement.style.opacity = \"0\";\n      });\n    };\n    const selectedProductId = ref(props.productId);\n    const selectedVariationId = ref(props.variationId);\n    const products = ref([]);\n    let data = ref([]);\n    const { mutate: getProducts, loading } = useMutation(getVariation);\n    onMounted(async () => {\n      try {\n        data = await getProducts({ productId: props.productId });\n        if (data) {\n          console.log(data, \"data inside try\");\n          products.value = data.data.variableProduct.variations.nodes.map(\n            (nodes) => ({\n              name: nodes.name,\n              img: nodes.image.link,\n              variationId: nodes.databaseId\n            })\n          );\n          console.log(products.value, \"products object created\");\n        }\n      } catch (error) {\n        console.error(\"Error fetching product:\", error);\n      }\n    });\n    setTimeout(() => {\n      updateShadowStyles();\n      const observer = new MutationObserver(updateShadowStyles);\n      const swiperContainer = (void 0).querySelector(\".swiper-container\");\n      if (swiperContainer) {\n        observer.observe(swiperContainer, {\n          attributes: true,\n          childList: true,\n          subtree: true\n        });\n      }\n    }, 1e3);\n    const handleClick = (variationId) => {\n      selectedVariationId.value = variationId;\n      selectedProductId.value = props.productId;\n      console.log(selectedProductId.value, \"here is Product id\");\n      console.log(selectedVariationId.value, \"here is Variation id\");\n    };\n    return {\n      modules: [EffectCards],\n      spaceBetween: 400,\n      selectedProductId,\n      selectedVariationId,\n      products,\n      handleClick\n    };\n  }\n};\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  const _component_swiper = _resolveComponent(\"swiper\");\n  const _component_swiper_slide = _resolveComponent(\"swiper-slide\");\n  const _component_AddToCart = _resolveComponent(\"AddToCart\");\n  if ($setup.products.length > 0) {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>`);\n    _push(_ssrRenderComponent(_component_swiper, {\n      effect: \"cards\",\n      grabCursor: true,\n      slideShadows: false,\n      modules: $setup.modules,\n      class: \"mySwiper dark:bg-none\"\n    }, {\n      default: _withCtx((_, _push2, _parent2, _scopeId) => {\n        if (_push2) {\n          _push2(`<!--[-->`);\n          _ssrRenderList($setup.products, (product, index) => {\n            _push2(_ssrRenderComponent(_component_swiper_slide, {\n              class: \"dark:bg-none\",\n              key: index,\n              slideShadow: false,\n              style: { \"background-image\": `url(${product.img})` }\n            }, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(`<div data-v-c6873c6d${_scopeId2}><img${_ssrRenderAttr(\"src\", product.img ? product.img : \"\")} alt=\"Product Image\" class=\"transition-all ease-in-out\" data-v-c6873c6d${_scopeId2}></div>`);\n                } else {\n                  return [\n                    _createVNode(\"div\", {\n                      onClick: ($event) => $setup.handleClick(product.variationId)\n                    }, [\n                      _createVNode(\"img\", {\n                        src: product.img ? product.img : \"\",\n                        alt: \"Product Image\",\n                        class: \"transition-all ease-in-out\"\n                      }, null, 8, [\"src\"])\n                    ], 8, [\"onClick\"])\n                  ];\n                }\n              }),\n              _: 2\n            }, _parent2, _scopeId));\n          });\n          _push2(`<!--]-->`);\n        } else {\n          return [\n            (_openBlock(true), _createBlock(_Fragment, null, _renderList($setup.products, (product, index) => {\n              return _openBlock(), _createBlock(_component_swiper_slide, {\n                class: \"dark:bg-none\",\n                key: index,\n                slideShadow: false,\n                style: { \"background-image\": `url(${product.img})` }\n              }, {\n                default: _withCtx(() => [\n                  _createVNode(\"div\", {\n                    onClick: ($event) => $setup.handleClick(product.variationId)\n                  }, [\n                    _createVNode(\"img\", {\n                      src: product.img ? product.img : \"\",\n                      alt: \"Product Image\",\n                      class: \"transition-all ease-in-out\"\n                    }, null, 8, [\"src\"])\n                  ], 8, [\"onClick\"])\n                ]),\n                _: 2\n              }, 1032, [\"style\"]);\n            }), 128))\n          ];\n        }\n      }),\n      _: 1\n    }, _parent));\n    _push(`<div data-v-c6873c6d>`);\n    _push(_ssrRenderComponent(_component_AddToCart, {\n      productId: $setup.selectedProductId,\n      variationId: $setup.selectedVariationId\n    }, null, _parent));\n    _push(`</div></div>`);\n  } else {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>Loading products...</div>`);\n  }\n}\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue?vue&type=style&index=0&scoped=c6873c6d&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"../components/awesome/Variations.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"ssrRender\", _sfc_ssrRender], [\"__scopeId\", \"data-v-c6873c6d\"]]);\n",
-      "start": 1713269989015,
-      "end": 1713269989016,
+      "start": 1713304786833,
+      "end": 1713304786834,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -227,8 +227,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { useMutation } from '@vue/apollo-composable';\nimport { ref, onMounted, defineProps } from \"vue\";\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport { getVariation } from \"../../utils/cart\";\nimport \"swiper/css/effect-cards\";\nimport \"swiper/css/bundle\";\nimport { EffectCards } from \"swiper/modules\";\nimport AddToCart from \"../awesome/AddtoCart.vue\";\nimport \"swiper/scss/effect-cards\";\nconst _sfc_main = {\n  components: {\n    AddToCart,\n    Swiper,\n    SwiperSlide\n  },\n  props: {\n    productId: {\n      type: Number,\n      required: true\n    },\n    variationId: {\n      type: Number,\n      default: 0\n    }\n  },\n  setup(props) {\n    const updateShadowStyles = () => {\n      const shadowElements = (void 0).querySelectorAll(\".swiper-slide-shadow\");\n      shadowElements.forEach((shadowElement) => {\n        shadowElement.style.opacity = \"0\";\n      });\n    };\n    const selectedProductId = ref(props.productId);\n    const selectedVariationId = ref(props.variationId);\n    const products = ref([]);\n    let data = ref([]);\n    const { mutate: getProducts, loading } = useMutation(getVariation);\n    onMounted(async () => {\n      try {\n        data = await getProducts({ productId: props.productId });\n        if (data) {\n          console.log(data, \"data inside try\");\n          products.value = data.data.variableProduct.variations.nodes.map(\n            (nodes) => ({\n              name: nodes.name,\n              img: nodes.image.link,\n              variationId: nodes.databaseId\n            })\n          );\n          console.log(products.value, \"products object created\");\n        }\n      } catch (error) {\n        console.error(\"Error fetching product:\", error);\n      }\n    });\n    setTimeout(() => {\n      updateShadowStyles();\n      const observer = new MutationObserver(updateShadowStyles);\n      const swiperContainer = (void 0).querySelector(\".swiper-container\");\n      if (swiperContainer) {\n        observer.observe(swiperContainer, {\n          attributes: true,\n          childList: true,\n          subtree: true\n        });\n      }\n    }, 1e3);\n    const handleClick = (variationId) => {\n      selectedVariationId.value = variationId;\n      selectedProductId.value = props.productId;\n      console.log(selectedProductId.value, \"here is Product id\");\n      console.log(selectedVariationId.value, \"here is Variation id\");\n    };\n    return {\n      modules: [EffectCards],\n      spaceBetween: 400,\n      selectedProductId,\n      selectedVariationId,\n      products,\n      handleClick\n    };\n  }\n};\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  const _component_swiper = _resolveComponent(\"swiper\");\n  const _component_swiper_slide = _resolveComponent(\"swiper-slide\");\n  const _component_AddToCart = _resolveComponent(\"AddToCart\");\n  if ($setup.products.length > 0) {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>`);\n    _push(_ssrRenderComponent(_component_swiper, {\n      effect: \"cards\",\n      grabCursor: true,\n      slideShadows: false,\n      modules: $setup.modules,\n      class: \"mySwiper dark:bg-none\"\n    }, {\n      default: _withCtx((_, _push2, _parent2, _scopeId) => {\n        if (_push2) {\n          _push2(`<!--[-->`);\n          _ssrRenderList($setup.products, (product, index) => {\n            _push2(_ssrRenderComponent(_component_swiper_slide, {\n              class: \"dark:bg-none\",\n              key: index,\n              slideShadow: false,\n              style: { \"background-image\": `url(${product.img})` }\n            }, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(`<div data-v-c6873c6d${_scopeId2}><img${_ssrRenderAttr(\"src\", product.img ? product.img : \"\")} alt=\"Product Image\" class=\"transition-all ease-in-out\" data-v-c6873c6d${_scopeId2}></div>`);\n                } else {\n                  return [\n                    _createVNode(\"div\", {\n                      onClick: ($event) => $setup.handleClick(product.variationId)\n                    }, [\n                      _createVNode(\"img\", {\n                        src: product.img ? product.img : \"\",\n                        alt: \"Product Image\",\n                        class: \"transition-all ease-in-out\"\n                      }, null, 8, [\"src\"])\n                    ], 8, [\"onClick\"])\n                  ];\n                }\n              }),\n              _: 2\n            }, _parent2, _scopeId));\n          });\n          _push2(`<!--]-->`);\n        } else {\n          return [\n            (_openBlock(true), _createBlock(_Fragment, null, _renderList($setup.products, (product, index) => {\n              return _openBlock(), _createBlock(_component_swiper_slide, {\n                class: \"dark:bg-none\",\n                key: index,\n                slideShadow: false,\n                style: { \"background-image\": `url(${product.img})` }\n              }, {\n                default: _withCtx(() => [\n                  _createVNode(\"div\", {\n                    onClick: ($event) => $setup.handleClick(product.variationId)\n                  }, [\n                    _createVNode(\"img\", {\n                      src: product.img ? product.img : \"\",\n                      alt: \"Product Image\",\n                      class: \"transition-all ease-in-out\"\n                    }, null, 8, [\"src\"])\n                  ], 8, [\"onClick\"])\n                ]),\n                _: 2\n              }, 1032, [\"style\"]);\n            }), 128))\n          ];\n        }\n      }),\n      _: 1\n    }, _parent));\n    _push(`<div data-v-c6873c6d>`);\n    _push(_ssrRenderComponent(_component_AddToCart, {\n      productId: $setup.selectedProductId,\n      variationId: $setup.selectedVariationId\n    }, null, _parent));\n    _push(`</div></div>`);\n  } else {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>Loading products...</div>`);\n  }\n}\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue?vue&type=style&index=0&scoped=c6873c6d&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"../components/awesome/Variations.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"ssrRender\", _sfc_ssrRender], [\"__scopeId\", \"data-v-c6873c6d\"]]);\n",
-      "start": 1713269989015,
-      "end": 1713269989016,
+      "start": 1713304786833,
+      "end": 1713304786834,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -241,39 +241,39 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1713269989016,
-      "end": 1713269989016,
+      "start": 1713304786834,
+      "end": 1713304786834,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269989016,
-      "end": 1713269989016,
+      "start": 1713304786834,
+      "end": 1713304786834,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269989016,
-      "end": 1713269989016,
+      "start": 1713304786834,
+      "end": 1713304786834,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269989016,
-      "end": 1713269989016,
+      "start": 1713304786834,
+      "end": 1713304786834,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1713269989016,
-      "end": 1713269989016,
+      "start": 1713304786834,
+      "end": 1713304786834,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
       "result": "import { Swiper as __nuxt_component_0 } from \"swiper/vue\";\nimport { SwiperSlide as __nuxt_component_1 } from \"swiper/vue\";\nimport { useMutation } from '@vue/apollo-composable';\nimport { ref, onMounted, defineProps } from \"vue\";\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport { getVariation } from \"../../utils/cart\";\nimport \"swiper/css/effect-cards\";\nimport \"swiper/css/bundle\";\nimport { EffectCards } from \"swiper/modules\";\nimport AddToCart from \"../awesome/AddtoCart.vue\";\nimport \"swiper/scss/effect-cards\";\nconst _sfc_main = {\n  components: {\n    AddToCart,\n    Swiper,\n    SwiperSlide\n  },\n  props: {\n    productId: {\n      type: Number,\n      required: true\n    },\n    variationId: {\n      type: Number,\n      default: 0\n    }\n  },\n  setup(props) {\n    const updateShadowStyles = () => {\n      const shadowElements = (void 0).querySelectorAll(\".swiper-slide-shadow\");\n      shadowElements.forEach((shadowElement) => {\n        shadowElement.style.opacity = \"0\";\n      });\n    };\n    const selectedProductId = ref(props.productId);\n    const selectedVariationId = ref(props.variationId);\n    const products = ref([]);\n    let data = ref([]);\n    const { mutate: getProducts, loading } = useMutation(getVariation);\n    onMounted(async () => {\n      try {\n        data = await getProducts({ productId: props.productId });\n        if (data) {\n          console.log(data, \"data inside try\");\n          products.value = data.data.variableProduct.variations.nodes.map(\n            (nodes) => ({\n              name: nodes.name,\n              img: nodes.image.link,\n              variationId: nodes.databaseId\n            })\n          );\n          console.log(products.value, \"products object created\");\n        }\n      } catch (error) {\n        console.error(\"Error fetching product:\", error);\n      }\n    });\n    setTimeout(() => {\n      updateShadowStyles();\n      const observer = new MutationObserver(updateShadowStyles);\n      const swiperContainer = (void 0).querySelector(\".swiper-container\");\n      if (swiperContainer) {\n        observer.observe(swiperContainer, {\n          attributes: true,\n          childList: true,\n          subtree: true\n        });\n      }\n    }, 1e3);\n    const handleClick = (variationId) => {\n      selectedVariationId.value = variationId;\n      selectedProductId.value = props.productId;\n      console.log(selectedProductId.value, \"here is Product id\");\n      console.log(selectedVariationId.value, \"here is Variation id\");\n    };\n    return {\n      modules: [EffectCards],\n      spaceBetween: 400,\n      selectedProductId,\n      selectedVariationId,\n      products,\n      handleClick\n    };\n  }\n};\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  const _component_swiper = __nuxt_component_0;\n  const _component_swiper_slide = __nuxt_component_1;\n  const _component_AddToCart = _resolveComponent(\"AddToCart\");\n  if ($setup.products.length > 0) {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>`);\n    _push(_ssrRenderComponent(_component_swiper, {\n      effect: \"cards\",\n      grabCursor: true,\n      slideShadows: false,\n      modules: $setup.modules,\n      class: \"mySwiper dark:bg-none\"\n    }, {\n      default: _withCtx((_, _push2, _parent2, _scopeId) => {\n        if (_push2) {\n          _push2(`<!--[-->`);\n          _ssrRenderList($setup.products, (product, index) => {\n            _push2(_ssrRenderComponent(_component_swiper_slide, {\n              class: \"dark:bg-none\",\n              key: index,\n              slideShadow: false,\n              style: { \"background-image\": `url(${product.img})` }\n            }, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(`<div data-v-c6873c6d${_scopeId2}><img${_ssrRenderAttr(\"src\", product.img ? product.img : \"\")} alt=\"Product Image\" class=\"transition-all ease-in-out\" data-v-c6873c6d${_scopeId2}></div>`);\n                } else {\n                  return [\n                    _createVNode(\"div\", {\n                      onClick: ($event) => $setup.handleClick(product.variationId)\n                    }, [\n                      _createVNode(\"img\", {\n                        src: product.img ? product.img : \"\",\n                        alt: \"Product Image\",\n                        class: \"transition-all ease-in-out\"\n                      }, null, 8, [\"src\"])\n                    ], 8, [\"onClick\"])\n                  ];\n                }\n              }),\n              _: 2\n            }, _parent2, _scopeId));\n          });\n          _push2(`<!--]-->`);\n        } else {\n          return [\n            (_openBlock(true), _createBlock(_Fragment, null, _renderList($setup.products, (product, index) => {\n              return _openBlock(), _createBlock(_component_swiper_slide, {\n                class: \"dark:bg-none\",\n                key: index,\n                slideShadow: false,\n                style: { \"background-image\": `url(${product.img})` }\n              }, {\n                default: _withCtx(() => [\n                  _createVNode(\"div\", {\n                    onClick: ($event) => $setup.handleClick(product.variationId)\n                  }, [\n                    _createVNode(\"img\", {\n                      src: product.img ? product.img : \"\",\n                      alt: \"Product Image\",\n                      class: \"transition-all ease-in-out\"\n                    }, null, 8, [\"src\"])\n                  ], 8, [\"onClick\"])\n                ]),\n                _: 2\n              }, 1032, [\"style\"]);\n            }), 128))\n          ];\n        }\n      }),\n      _: 1\n    }, _parent));\n    _push(`<div data-v-c6873c6d>`);\n    _push(_ssrRenderComponent(_component_AddToCart, {\n      productId: $setup.selectedProductId,\n      variationId: $setup.selectedVariationId\n    }, null, _parent));\n    _push(`</div></div>`);\n  } else {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>Loading products...</div>`);\n  }\n}\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue?vue&type=style&index=0&scoped=c6873c6d&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"../components/awesome/Variations.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"ssrRender\", _sfc_ssrRender], [\"__scopeId\", \"data-v-c6873c6d\"]]);\n",
-      "start": 1713269989016,
-      "end": 1713269989016,
+      "start": 1713304786834,
+      "end": 1713304786835,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -287,8 +287,8 @@
     {
       "name": "nuxt:tree-shake-composables:transform",
       "result": "import { Swiper as __nuxt_component_0 } from \"swiper/vue\";\nimport { SwiperSlide as __nuxt_component_1 } from \"swiper/vue\";\nimport { useMutation } from '@vue/apollo-composable';\nimport { ref, onMounted, defineProps } from \"vue\";\nimport { Swiper, SwiperSlide } from \"swiper/vue\";\nimport { getVariation } from \"../../utils/cart\";\nimport \"swiper/css/effect-cards\";\nimport \"swiper/css/bundle\";\nimport { EffectCards } from \"swiper/modules\";\nimport AddToCart from \"../awesome/AddtoCart.vue\";\nimport \"swiper/scss/effect-cards\";\nconst _sfc_main = {\n  components: {\n    AddToCart,\n    Swiper,\n    SwiperSlide\n  },\n  props: {\n    productId: {\n      type: Number,\n      required: true\n    },\n    variationId: {\n      type: Number,\n      default: 0\n    }\n  },\n  setup(props) {\n    const updateShadowStyles = () => {\n      const shadowElements = (void 0).querySelectorAll(\".swiper-slide-shadow\");\n      shadowElements.forEach((shadowElement) => {\n        shadowElement.style.opacity = \"0\";\n      });\n    };\n    const selectedProductId = ref(props.productId);\n    const selectedVariationId = ref(props.variationId);\n    const products = ref([]);\n    let data = ref([]);\n    const { mutate: getProducts, loading } = useMutation(getVariation);\n     false && /*@__PURE__*/ onMounted(async () => {\n      try {\n        data = await getProducts({ productId: props.productId });\n        if (data) {\n          console.log(data, \"data inside try\");\n          products.value = data.data.variableProduct.variations.nodes.map(\n            (nodes) => ({\n              name: nodes.name,\n              img: nodes.image.link,\n              variationId: nodes.databaseId\n            })\n          );\n          console.log(products.value, \"products object created\");\n        }\n      } catch (error) {\n        console.error(\"Error fetching product:\", error);\n      }\n    });\n    setTimeout(() => {\n      updateShadowStyles();\n      const observer = new MutationObserver(updateShadowStyles);\n      const swiperContainer = (void 0).querySelector(\".swiper-container\");\n      if (swiperContainer) {\n        observer.observe(swiperContainer, {\n          attributes: true,\n          childList: true,\n          subtree: true\n        });\n      }\n    }, 1e3);\n    const handleClick = (variationId) => {\n      selectedVariationId.value = variationId;\n      selectedProductId.value = props.productId;\n      console.log(selectedProductId.value, \"here is Product id\");\n      console.log(selectedVariationId.value, \"here is Variation id\");\n    };\n    return {\n      modules: [EffectCards],\n      spaceBetween: 400,\n      selectedProductId,\n      selectedVariationId,\n      products,\n      handleClick\n    };\n  }\n};\nimport { resolveComponent as _resolveComponent, withCtx as _withCtx, createVNode as _createVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  const _component_swiper = __nuxt_component_0;\n  const _component_swiper_slide = __nuxt_component_1;\n  const _component_AddToCart = _resolveComponent(\"AddToCart\");\n  if ($setup.products.length > 0) {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>`);\n    _push(_ssrRenderComponent(_component_swiper, {\n      effect: \"cards\",\n      grabCursor: true,\n      slideShadows: false,\n      modules: $setup.modules,\n      class: \"mySwiper dark:bg-none\"\n    }, {\n      default: _withCtx((_, _push2, _parent2, _scopeId) => {\n        if (_push2) {\n          _push2(`<!--[-->`);\n          _ssrRenderList($setup.products, (product, index) => {\n            _push2(_ssrRenderComponent(_component_swiper_slide, {\n              class: \"dark:bg-none\",\n              key: index,\n              slideShadow: false,\n              style: { \"background-image\": `url(${product.img})` }\n            }, {\n              default: _withCtx((_2, _push3, _parent3, _scopeId2) => {\n                if (_push3) {\n                  _push3(`<div data-v-c6873c6d${_scopeId2}><img${_ssrRenderAttr(\"src\", product.img ? product.img : \"\")} alt=\"Product Image\" class=\"transition-all ease-in-out\" data-v-c6873c6d${_scopeId2}></div>`);\n                } else {\n                  return [\n                    _createVNode(\"div\", {\n                      onClick: ($event) => $setup.handleClick(product.variationId)\n                    }, [\n                      _createVNode(\"img\", {\n                        src: product.img ? product.img : \"\",\n                        alt: \"Product Image\",\n                        class: \"transition-all ease-in-out\"\n                      }, null, 8, [\"src\"])\n                    ], 8, [\"onClick\"])\n                  ];\n                }\n              }),\n              _: 2\n            }, _parent2, _scopeId));\n          });\n          _push2(`<!--]-->`);\n        } else {\n          return [\n            (_openBlock(true), _createBlock(_Fragment, null, _renderList($setup.products, (product, index) => {\n              return _openBlock(), _createBlock(_component_swiper_slide, {\n                class: \"dark:bg-none\",\n                key: index,\n                slideShadow: false,\n                style: { \"background-image\": `url(${product.img})` }\n              }, {\n                default: _withCtx(() => [\n                  _createVNode(\"div\", {\n                    onClick: ($event) => $setup.handleClick(product.variationId)\n                  }, [\n                    _createVNode(\"img\", {\n                      src: product.img ? product.img : \"\",\n                      alt: \"Product Image\",\n                      class: \"transition-all ease-in-out\"\n                    }, null, 8, [\"src\"])\n                  ], 8, [\"onClick\"])\n                ]),\n                _: 2\n              }, 1032, [\"style\"]);\n            }), 128))\n          ];\n        }\n      }),\n      _: 1\n    }, _parent));\n    _push(`<div data-v-c6873c6d>`);\n    _push(_ssrRenderComponent(_component_AddToCart, {\n      productId: $setup.selectedProductId,\n      variationId: $setup.selectedVariationId\n    }, null, _parent));\n    _push(`</div></div>`);\n  } else {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-c6873c6d>Loading products...</div>`);\n  }\n}\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Variations.vue?vue&type=style&index=0&scoped=c6873c6d&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"../components/awesome/Variations.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"ssrRender\", _sfc_ssrRender], [\"__scopeId\", \"data-v-c6873c6d\"]]);\n",
-      "start": 1713269989016,
-      "end": 1713269989017,
+      "start": 1713304786835,
+      "end": 1713304786835,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -301,14 +301,14 @@
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269989017,
-      "end": 1713269989017,
+      "start": 1713304786835,
+      "end": 1713304786835,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269989017,
-      "end": 1713269989017,
+      "start": 1713304786836,
+      "end": 1713304786836,
       "order": "normal"
     }
   ]

@@ -4,81 +4,81 @@
     {
       "name": "vite:load-fallback",
       "result": "<template>\n  <div class=\"max-w-md mx-auto\">\n    <form\n      @submit.prevent=\"submitForm\"\n      class=\"bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4\"\n    >\n      <div class=\"mb-4\" step 1>\n        <label class=\"block text-gray-700 text-sm font-bold mb-2\" for=\"name\">\n          Name\n        </label>\n        <input\n          v-model=\"name\"\n          class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\"\n          id=\"name\"\n          type=\"text\"\n          placeholder=\"Enter your name\"\n        />\n      </div>\n      <div class=\"mb-4\">\n        <label class=\"block text-gray-700 text-sm font-bold mb-2\" for=\"email\">\n          Email\n        </label>\n        <input\n          v-model=\"email\"\n          class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\"\n          id=\"email\"\n          type=\"email\"\n          placeholder=\"Enter your email\"\n        />\n      </div>\n      <div class=\"mb-6\">\n        <label class=\"block text-gray-700 text-sm font-bold mb-2\" for=\"phone\">\n          Phone\n        </label>\n        <input\n          v-model=\"phone\"\n          class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\"\n          id=\"phone\"\n          type=\"tel\"\n          placeholder=\"Enter your phone number\"\n        />\n      </div>\n      <div class=\"flex items-center justify-between\">\n        <button\n          class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline\"\n          type=\"submit\"\n        >\n          Submit\n        </button>\n      </div>\n    </form>\n  </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      name: \"\",\n      email: \"\",\n      phone: \"\",\n    };\n  },\n  methods: {\n    submitForm() {\n      // Handle form submission\n      console.log(\"Form submitted!\");\n    },\n  },\n};\n</script>\n\n<style>\n/* Add any additional styling here */\n</style>\n",
-      "start": 1713269988362,
-      "end": 1713269988390,
+      "start": 1713304786166,
+      "end": 1713304786195,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "\nconst _sfc_main = {\n  data() {\n    return {\n      name: \"\",\n      email: \"\",\n      phone: \"\",\n    };\n  },\n  methods: {\n    submitForm() {\n      // Handle form submission\n      console.log(\"Form submitted!\");\n    },\n  },\n};\n\nimport { mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderAttrs as _ssrRenderAttrs } from \"vue/server-renderer\"\n\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  _push(`<div${\n    _ssrRenderAttrs(_mergeProps({ class: \"max-w-md mx-auto\" }, _attrs))\n  }><form class=\"bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4\"><div class=\"mb-4\" step 1><label class=\"block text-gray-700 text-sm font-bold mb-2\" for=\"name\"> Name </label><input${\n    _ssrRenderAttr(\"value\", $data.name)\n  } class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\" id=\"name\" type=\"text\" placeholder=\"Enter your name\"></div><div class=\"mb-4\"><label class=\"block text-gray-700 text-sm font-bold mb-2\" for=\"email\"> Email </label><input${\n    _ssrRenderAttr(\"value\", $data.email)\n  } class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\" id=\"email\" type=\"email\" placeholder=\"Enter your email\"></div><div class=\"mb-6\"><label class=\"block text-gray-700 text-sm font-bold mb-2\" for=\"phone\"> Phone </label><input${\n    _ssrRenderAttr(\"value\", $data.phone)\n  } class=\"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline\" id=\"phone\" type=\"tel\" placeholder=\"Enter your phone number\"></div><div class=\"flex items-center justify-between\"><button class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline\" type=\"submit\"> Submit </button></div></form></div>`)\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Form.vue?vue&type=style&index=0&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"../components/awesome/Form.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['ssrRender',_sfc_ssrRender]])",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -95,182 +95,182 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269988390,
-      "end": 1713269988390,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269988390,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786195,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786195,
+      "end": 1713304786196,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786196,
+      "end": 1713304786196,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786196,
+      "end": 1713304786196,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269988391,
-      "end": 1713269988391,
+      "start": 1713304786196,
+      "end": 1713304786196,
       "order": "normal"
     }
   ]

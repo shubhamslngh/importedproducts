@@ -4,81 +4,81 @@
     {
       "name": "vite:load-fallback",
       "result": "<template>\n  <div class=\"login-container\">\n    <form @submit.prevent=\"handleSignup\" class=\"login-form\">\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"firstName\"\n          placeholder=\"First Name\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"lastName\"\n          placeholder=\"Last Name\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"username\"\n          placeholder=\"Username\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"email\"\n          v-model=\"email\"\n          placeholder=\"Email\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"password\"\n          v-model=\"password\"\n          placeholder=\"Password\"\n          class=\"form-control\"\n        />\n      </div>\n\n      <div class=\"grid gap-4\">\n        <button type=\"submit\" :disabled=\"isLoading\" class=\"btn btn-primary\">\n          Sign Up\n        </button>\n\n        <div v-if=\"errors\" class=\"error-message\">{{ errors }}</div>\n      </div>\n    </form>\n  </div>\n</template>\n\n<script>\nimport { useAuthStore } from \"../../stores/auth\";\nimport { signup } from \"~/../utils/cart\";\nexport default {\n  data() {\n    return {\n      firstName: \"\",\n      lastName: \"\",\n      username: \"\",\n      email: \"\",\n      password: \"\",\n      isLoading: false,\n      errors: null,\n    };\n  },\n  methods: {\n    async handleSignup() {\n      let data = ref([]);\n      let { mutate: sign, loading } = useMutation(signup);\n      try {\n        loading = true;\n        data = await sign({\n          username: this.username,\n          lastName: this.lastName,\n          firstName: this.firstName,\n          email: this.eamil,\n          password: this.password,\n        });\n      } catch (error) {\n        console.error(\"Error Signing Up User :\", error);\n        loading = false;\n      }\n      console.log(\"Sign up form submitted\");\n      this.firstName = \"\";\n      this.lastName = \"\";\n      this.username = \"\";\n      this.email = \"\";\n      this.password = \"\";\n    },\n  },\n};\n</script>\n\n<style scoped>\n/* Add your CSS styles here */\n</style>\n",
-      "start": 1713269988276,
-      "end": 1713269988311,
+      "start": 1713304786081,
+      "end": 1713304786114,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1713304786114,
+      "end": 1713304786114,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1713304786114,
+      "end": 1713304786114,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1713304786114,
+      "end": 1713304786114,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1713304786114,
+      "end": 1713304786114,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1713304786114,
+      "end": 1713304786114,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1713304786114,
+      "end": 1713304786114,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1713304786114,
+      "end": 1713304786114,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1713304786114,
+      "end": 1713304786114,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1713304786114,
+      "end": 1713304786114,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1713304786114,
+      "end": 1713304786114,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1713304786114,
+      "end": 1713304786114,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "\nimport { useAuthStore } from \"../../stores/auth\";\nimport { signup } from \"~/../utils/cart\";\nconst _sfc_main = {\n  data() {\n    return {\n      firstName: \"\",\n      lastName: \"\",\n      username: \"\",\n      email: \"\",\n      password: \"\",\n      isLoading: false,\n      errors: null,\n    };\n  },\n  methods: {\n    async handleSignup() {\n      let data = ref([]);\n      let { mutate: sign, loading } = useMutation(signup);\n      try {\n        loading = true;\n        data = await sign({\n          username: this.username,\n          lastName: this.lastName,\n          firstName: this.firstName,\n          email: this.eamil,\n          password: this.password,\n        });\n      } catch (error) {\n        console.error(\"Error Signing Up User :\", error);\n        loading = false;\n      }\n      console.log(\"Sign up form submitted\");\n      this.firstName = \"\";\n      this.lastName = \"\";\n      this.username = \"\";\n      this.email = \"\";\n      this.password = \"\";\n    },\n  },\n};\n\nimport { mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderAttr as _ssrRenderAttr, ssrIncludeBooleanAttr as _ssrIncludeBooleanAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\"\n\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  _push(`<div${\n    _ssrRenderAttrs(_mergeProps({ class: \"login-container\" }, _attrs))\n  } data-v-a2a5022e><form class=\"login-form\" data-v-a2a5022e><div class=\"form-group\" data-v-a2a5022e><input type=\"text\"${\n    _ssrRenderAttr(\"value\", $data.firstName)\n  } placeholder=\"First Name\" class=\"form-control\" data-v-a2a5022e></div><div class=\"form-group\" data-v-a2a5022e><input type=\"text\"${\n    _ssrRenderAttr(\"value\", $data.lastName)\n  } placeholder=\"Last Name\" class=\"form-control\" data-v-a2a5022e></div><div class=\"form-group\" data-v-a2a5022e><input type=\"text\"${\n    _ssrRenderAttr(\"value\", $data.username)\n  } placeholder=\"Username\" class=\"form-control\" data-v-a2a5022e></div><div class=\"form-group\" data-v-a2a5022e><input type=\"email\"${\n    _ssrRenderAttr(\"value\", $data.email)\n  } placeholder=\"Email\" class=\"form-control\" data-v-a2a5022e></div><div class=\"form-group\" data-v-a2a5022e><input type=\"password\"${\n    _ssrRenderAttr(\"value\", $data.password)\n  } placeholder=\"Password\" class=\"form-control\" data-v-a2a5022e></div><div class=\"grid gap-4\" data-v-a2a5022e><button type=\"submit\"${\n    (_ssrIncludeBooleanAttr($data.isLoading)) ? \" disabled\" : \"\"\n  } class=\"btn btn-primary\" data-v-a2a5022e> Sign Up </button>`)\n  if ($data.errors) {\n    _push(`<div class=\"error-message\" data-v-a2a5022e>${_ssrInterpolate($data.errors)}</div>`)\n  } else {\n    _push(`<!---->`)\n  }\n  _push(`</div></form></div>`)\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Signup.vue?vue&type=style&index=0&scoped=a2a5022e&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"../components/awesome/Signup.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['ssrRender',_sfc_ssrRender],['__scopeId',\"data-v-a2a5022e\"]])",
-      "start": 1713269988311,
-      "end": 1713269988312,
+      "start": 1713304786114,
+      "end": 1713304786115,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -95,184 +95,184 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Signup.vue\").then(r => r.default))",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1713304786115,
+      "end": 1713304786115,
       "order": "normal"
     }
   ]

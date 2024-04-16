@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "import { devAssert } from '../jsutils/devAssert.mjs';\nimport { inspect } from '../jsutils/inspect.mjs';\nimport { isAsyncIterable } from '../jsutils/isAsyncIterable.mjs';\nimport { addPath, pathToArray } from '../jsutils/Path.mjs';\nimport { GraphQLError } from '../error/GraphQLError.mjs';\nimport { locatedError } from '../error/locatedError.mjs';\nimport { collectFields } from './collectFields.mjs';\nimport {\n  assertValidExecutionArguments,\n  buildExecutionContext,\n  buildResolveInfo,\n  execute,\n  getFieldDef,\n} from './execute.mjs';\nimport { mapAsyncIterator } from './mapAsyncIterator.mjs';\nimport { getArgumentValues } from './values.mjs';\n/**\n * Implements the \"Subscribe\" algorithm described in the GraphQL specification.\n *\n * Returns a Promise which resolves to either an AsyncIterator (if successful)\n * or an ExecutionResult (error). The promise will be rejected if the schema or\n * other arguments to this function are invalid, or if the resolved event stream\n * is not an async iterable.\n *\n * If the client-provided arguments to this function do not result in a\n * compliant subscription, a GraphQL Response (ExecutionResult) with\n * descriptive errors and no data will be returned.\n *\n * If the source stream could not be created due to faulty subscription\n * resolver logic or underlying systems, the promise will resolve to a single\n * ExecutionResult containing `errors` and no `data`.\n *\n * If the operation succeeded, the promise resolves to an AsyncIterator, which\n * yields a stream of ExecutionResults representing the response stream.\n *\n * Accepts either an object with named arguments, or individual arguments.\n */\n\nexport async function subscribe(args) {\n  // Temporary for v15 to v16 migration. Remove in v17\n  arguments.length < 2 ||\n    devAssert(\n      false,\n      'graphql@16 dropped long-deprecated support for positional arguments, please pass an object instead.',\n    );\n  const resultOrStream = await createSourceEventStream(args);\n\n  if (!isAsyncIterable(resultOrStream)) {\n    return resultOrStream;\n  } // For each payload yielded from a subscription, map it over the normal\n  // GraphQL `execute` function, with `payload` as the rootValue.\n  // This implements the \"MapSourceToResponseEvent\" algorithm described in\n  // the GraphQL specification. The `execute` function provides the\n  // \"ExecuteSubscriptionEvent\" algorithm, as it is nearly identical to the\n  // \"ExecuteQuery\" algorithm, for which `execute` is also used.\n\n  const mapSourceToResponse = (payload) =>\n    execute({ ...args, rootValue: payload }); // Map every source value to a ExecutionResult value as described above.\n\n  return mapAsyncIterator(resultOrStream, mapSourceToResponse);\n}\n\nfunction toNormalizedArgs(args) {\n  const firstArg = args[0];\n\n  if (firstArg && 'document' in firstArg) {\n    return firstArg;\n  }\n\n  return {\n    schema: firstArg,\n    // FIXME: when underlying TS bug fixed, see https://github.com/microsoft/TypeScript/issues/31613\n    document: args[1],\n    rootValue: args[2],\n    contextValue: args[3],\n    variableValues: args[4],\n    operationName: args[5],\n    subscribeFieldResolver: args[6],\n  };\n}\n/**\n * Implements the \"CreateSourceEventStream\" algorithm described in the\n * GraphQL specification, resolving the subscription source event stream.\n *\n * Returns a Promise which resolves to either an AsyncIterable (if successful)\n * or an ExecutionResult (error). The promise will be rejected if the schema or\n * other arguments to this function are invalid, or if the resolved event stream\n * is not an async iterable.\n *\n * If the client-provided arguments to this function do not result in a\n * compliant subscription, a GraphQL Response (ExecutionResult) with\n * descriptive errors and no data will be returned.\n *\n * If the the source stream could not be created due to faulty subscription\n * resolver logic or underlying systems, the promise will resolve to a single\n * ExecutionResult containing `errors` and no `data`.\n *\n * If the operation succeeded, the promise resolves to the AsyncIterable for the\n * event stream returned by the resolver.\n *\n * A Source Event Stream represents a sequence of events, each of which triggers\n * a GraphQL execution for that event.\n *\n * This may be useful when hosting the stateful subscription service in a\n * different process or machine than the stateless GraphQL execution engine,\n * or otherwise separating these two steps. For more on this, see the\n * \"Supporting Subscriptions at Scale\" information in the GraphQL specification.\n */\n\nexport async function createSourceEventStream(...rawArgs) {\n  const args = toNormalizedArgs(rawArgs);\n  const { schema, document, variableValues } = args; // If arguments are missing or incorrectly typed, this is an internal\n  // developer mistake which should throw an early error.\n\n  assertValidExecutionArguments(schema, document, variableValues); // If a valid execution context cannot be created due to incorrect arguments,\n  // a \"Response\" with only errors is returned.\n\n  const exeContext = buildExecutionContext(args); // Return early errors if execution context failed.\n\n  if (!('schema' in exeContext)) {\n    return {\n      errors: exeContext,\n    };\n  }\n\n  try {\n    const eventStream = await executeSubscription(exeContext); // Assert field returned an event stream, otherwise yield an error.\n\n    if (!isAsyncIterable(eventStream)) {\n      throw new Error(\n        'Subscription field must return Async Iterable. ' +\n          `Received: ${inspect(eventStream)}.`,\n      );\n    }\n\n    return eventStream;\n  } catch (error) {\n    // If it GraphQLError, report it as an ExecutionResult, containing only errors and no data.\n    // Otherwise treat the error as a system-class error and re-throw it.\n    if (error instanceof GraphQLError) {\n      return {\n        errors: [error],\n      };\n    }\n\n    throw error;\n  }\n}\n\nasync function executeSubscription(exeContext) {\n  const { schema, fragments, operation, variableValues, rootValue } =\n    exeContext;\n  const rootType = schema.getSubscriptionType();\n\n  if (rootType == null) {\n    throw new GraphQLError(\n      'Schema is not configured to execute subscription operation.',\n      {\n        nodes: operation,\n      },\n    );\n  }\n\n  const rootFields = collectFields(\n    schema,\n    fragments,\n    variableValues,\n    rootType,\n    operation.selectionSet,\n  );\n  const [responseName, fieldNodes] = [...rootFields.entries()][0];\n  const fieldDef = getFieldDef(schema, rootType, fieldNodes[0]);\n\n  if (!fieldDef) {\n    const fieldName = fieldNodes[0].name.value;\n    throw new GraphQLError(\n      `The subscription field \"${fieldName}\" is not defined.`,\n      {\n        nodes: fieldNodes,\n      },\n    );\n  }\n\n  const path = addPath(undefined, responseName, rootType.name);\n  const info = buildResolveInfo(\n    exeContext,\n    fieldDef,\n    fieldNodes,\n    rootType,\n    path,\n  );\n\n  try {\n    var _fieldDef$subscribe;\n\n    // Implements the \"ResolveFieldEventStream\" algorithm from GraphQL specification.\n    // It differs from \"ResolveFieldValue\" due to providing a different `resolveFn`.\n    // Build a JS object of arguments from the field.arguments AST, using the\n    // variables scope to fulfill any variable references.\n    const args = getArgumentValues(fieldDef, fieldNodes[0], variableValues); // The resolve function's optional third argument is a context value that\n    // is provided to every resolve function within an execution. It is commonly\n    // used to represent an authenticated user, or request-specific caches.\n\n    const contextValue = exeContext.contextValue; // Call the `subscribe()` resolver or the default resolver to produce an\n    // AsyncIterable yielding raw payloads.\n\n    const resolveFn =\n      (_fieldDef$subscribe = fieldDef.subscribe) !== null &&\n      _fieldDef$subscribe !== void 0\n        ? _fieldDef$subscribe\n        : exeContext.subscribeFieldResolver;\n    const eventStream = await resolveFn(rootValue, args, contextValue, info);\n\n    if (eventStream instanceof Error) {\n      throw eventStream;\n    }\n\n    return eventStream;\n  } catch (error) {\n    throw locatedError(error, fieldNodes, pathToArray(path));\n  }\n}\n",
-      "start": 1713269986304,
-      "end": 1713269986322,
+      "start": 1713304784016,
+      "end": 1713304784041,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269986322,
-      "end": 1713269986322,
+      "start": 1713304784041,
+      "end": 1713304784041,
       "order": "normal"
     }
   ]

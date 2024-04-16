@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "import { GraphQLError } from '../../error/GraphQLError.mjs';\n\n/**\n * No fragment cycles\n *\n * The graph of fragment spreads must not form any cycles including spreading itself.\n * Otherwise an operation could infinitely spread or infinitely execute on cycles in the underlying data.\n *\n * See https://spec.graphql.org/draft/#sec-Fragment-spreads-must-not-form-cycles\n */\nexport function NoFragmentCyclesRule(context) {\n  // Tracks already visited fragments to maintain O(N) and to ensure that cycles\n  // are not redundantly reported.\n  const visitedFrags = Object.create(null); // Array of AST nodes used to produce meaningful errors\n\n  const spreadPath = []; // Position in the spread path\n\n  const spreadPathIndexByName = Object.create(null);\n  return {\n    OperationDefinition: () => false,\n\n    FragmentDefinition(node) {\n      detectCycleRecursive(node);\n      return false;\n    },\n  }; // This does a straight-forward DFS to find cycles.\n  // It does not terminate when a cycle was found but continues to explore\n  // the graph to find all possible cycles.\n\n  function detectCycleRecursive(fragment) {\n    if (visitedFrags[fragment.name.value]) {\n      return;\n    }\n\n    const fragmentName = fragment.name.value;\n    visitedFrags[fragmentName] = true;\n    const spreadNodes = context.getFragmentSpreads(fragment.selectionSet);\n\n    if (spreadNodes.length === 0) {\n      return;\n    }\n\n    spreadPathIndexByName[fragmentName] = spreadPath.length;\n\n    for (const spreadNode of spreadNodes) {\n      const spreadName = spreadNode.name.value;\n      const cycleIndex = spreadPathIndexByName[spreadName];\n      spreadPath.push(spreadNode);\n\n      if (cycleIndex === undefined) {\n        const spreadFragment = context.getFragment(spreadName);\n\n        if (spreadFragment) {\n          detectCycleRecursive(spreadFragment);\n        }\n      } else {\n        const cyclePath = spreadPath.slice(cycleIndex);\n        const viaPath = cyclePath\n          .slice(0, -1)\n          .map((s) => '\"' + s.name.value + '\"')\n          .join(', ');\n        context.reportError(\n          new GraphQLError(\n            `Cannot spread fragment \"${spreadName}\" within itself` +\n              (viaPath !== '' ? ` via ${viaPath}.` : '.'),\n            {\n              nodes: cyclePath,\n            },\n          ),\n        );\n      }\n\n      spreadPath.pop();\n    }\n\n    spreadPathIndexByName[fragmentName] = undefined;\n  }\n}\n",
-      "start": 1713269986327,
-      "end": 1713269986339,
+      "start": 1713304784037,
+      "end": 1713304784051,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269986339,
-      "end": 1713269986339,
+      "start": 1713304784051,
+      "end": 1713304784051,
       "order": "normal"
     }
   ]
