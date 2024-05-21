@@ -16,7 +16,7 @@ onMounted(async () => {
 </script>
 <template>
   <LayoutPageWrapper>
-    <AwesomeLamp />
+    <!-- <AwesomeLamp /> -->
     <AwesomeSubscription :subscriptions="$wordpressStore.productBg" />
   </LayoutPageWrapper>
 </template>

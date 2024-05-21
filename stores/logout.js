@@ -1,4 +1,4 @@
-import { useAuthStore } from '@/store/auth';
+import { useAuthStore } from '~/stores/auth';
 
 async function logoutHandler(req, res) {
   // Call the logout method from the auth store to clear authentication state

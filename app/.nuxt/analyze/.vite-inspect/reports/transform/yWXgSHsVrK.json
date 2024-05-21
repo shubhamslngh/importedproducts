@@ -4,173 +4,173 @@
     {
       "name": "vite:load-fallback",
       "result": "import { hash } from \"ohash\";\nimport { print } from \"graphql\";\nimport { ref, isRef, reactive, useCookie, useNuxtApp, useAsyncData } from \"#imports\";\nimport { NuxtApollo } from \"#apollo\";\nexport function useAsyncQuery(...args) {\n  const { key, fn, options } = prep(...args);\n  return useAsyncData(key, fn, options);\n}\nexport function useLazyAsyncQuery(...args) {\n  const { key, fn, options } = prep(...args);\n  return useAsyncData(key, fn, { ...options, lazy: true });\n}\nconst prep = (...args) => {\n  const { clients } = useApollo();\n  let query;\n  let variables;\n  let cache;\n  let clientId;\n  let context;\n  let options = {};\n  if (typeof args?.[0] === \"object\" && \"query\" in args[0]) {\n    query = args?.[0]?.query;\n    variables = args?.[0]?.variables;\n    cache = args?.[0]?.cache;\n    context = args?.[0]?.context;\n    clientId = args?.[0]?.clientId;\n    if (typeof args?.[1] === \"object\") {\n      options = args?.[1];\n    }\n  } else {\n    query = args?.[0];\n    variables = args?.[1];\n    clientId = args?.[2];\n    context = args?.[3];\n    if (typeof args?.[4] === \"object\") {\n      options = args?.[4];\n    }\n  }\n  if (!query) {\n    throw new Error(\"@nuxtjs/apollo: no query provided\");\n  }\n  if (!clientId || !clients?.[clientId]) {\n    clientId = clients?.default ? \"default\" : Object.keys(clients)?.[0];\n    if (!clientId) {\n      throw new Error(\"@nuxtjs/apollo: no client found\");\n    }\n  }\n  if (variables) {\n    variables = isRef(variables) ? variables : reactive(variables);\n    options.watch = options.watch || [];\n    options.watch.push(variables);\n  }\n  const key = args?.[0]?.key || hash({ query: print(query), variables, clientId });\n  const fn = () => clients[clientId]?.query({\n    query,\n    variables: variables || void 0,\n    ...cache && { fetchPolicy: \"cache-first\" },\n    context\n  }).then((r) => r.data);\n  return { key, query, clientId, variables, fn, options };\n};\nexport function useApollo() {\n  const nuxtApp = useNuxtApp();\n  const getToken = async (client) => {\n    client = client || \"default\";\n    const conf = NuxtApollo?.clients?.[client];\n    if (!conf) {\n      return;\n    }\n    const token = ref(null);\n    await nuxtApp.callHook(\"apollo:auth\", { token, client });\n    if (token.value) {\n      return token.value;\n    }\n    const tokenName = conf.tokenName;\n    return conf?.tokenStorage === \"cookie\" ? nuxtApp.runWithContext(() => useCookie(tokenName).value) : process.client && localStorage.getItem(tokenName) || null;\n  };\n  const updateAuth = async ({ token, client, mode, skipResetStore }) => {\n    client = client || \"default\";\n    const conf = NuxtApollo?.clients?.[client];\n    if (!conf) {\n      return;\n    }\n    const tokenName = client && conf.tokenName;\n    if (conf?.tokenStorage === \"cookie\") {\n      const cookieOpts = client && conf?.cookieAttributes || NuxtApollo?.cookieAttributes;\n      const cookie = useCookie(tokenName, cookieOpts);\n      if (!cookie.value && mode === \"logout\") {\n        return;\n      }\n      cookie.value = mode === \"login\" && token || null;\n    } else if (process.client && conf?.tokenStorage === \"localStorage\") {\n      if (mode === \"login\" && token) {\n        localStorage.setItem(tokenName, token);\n      } else if (mode === \"logout\") {\n        localStorage.removeItem(tokenName);\n      }\n    }\n    if (nuxtApp?._apolloWsClients?.[client]) {\n      nuxtApp._apolloWsClients[client].restart();\n    }\n    if (skipResetStore) {\n      return;\n    }\n    await nuxtApp?._apolloClients?.[client].resetStore().catch((e) => console.log(\"%cError on cache reset\", \"color: orange;\", e.message));\n  };\n  return {\n    getToken,\n    clients: nuxtApp?._apolloClients,\n    onLogin: (token, client, skipResetStore) => updateAuth({ token, client, skipResetStore, mode: \"login\" }),\n    onLogout: (client, skipResetStore) => updateAuth({ client, skipResetStore, mode: \"logout\" })\n  };\n}\n",
-      "start": 1713269985471,
-      "end": 1713269985490,
+      "start": 1716304639234,
+      "end": 1716304639259,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269985490,
-      "end": 1713269985490,
+      "start": 1716304639259,
+      "end": 1716304639259,
       "order": "normal"
     },
     {
       "name": "vite:define",
       "result": "import { hash } from \"ohash\";\nimport { print } from \"graphql\";\nimport { ref, isRef, reactive, useCookie, useNuxtApp, useAsyncData } from \"#imports\";\nimport { NuxtApollo } from \"#apollo\";\nexport function useAsyncQuery(...args) {\n  const { key, fn, options } = prep(...args);\n  return useAsyncData(key, fn, options);\n}\nexport function useLazyAsyncQuery(...args) {\n  const { key, fn, options } = prep(...args);\n  return useAsyncData(key, fn, { ...options, lazy: true });\n}\nconst prep = (...args) => {\n  const { clients } = useApollo();\n  let query;\n  let variables;\n  let cache;\n  let clientId;\n  let context;\n  let options = {};\n  if (typeof args?.[0] === \"object\" && \"query\" in args[0]) {\n    query = args?.[0]?.query;\n    variables = args?.[0]?.variables;\n    cache = args?.[0]?.cache;\n    context = args?.[0]?.context;\n    clientId = args?.[0]?.clientId;\n    if (typeof args?.[1] === \"object\") {\n      options = args?.[1];\n    }\n  } else {\n    query = args?.[0];\n    variables = args?.[1];\n    clientId = args?.[2];\n    context = args?.[3];\n    if (typeof args?.[4] === \"object\") {\n      options = args?.[4];\n    }\n  }\n  if (!query) {\n    throw new Error(\"@nuxtjs/apollo: no query provided\");\n  }\n  if (!clientId || !clients?.[clientId]) {\n    clientId = clients?.default ? \"default\" : Object.keys(clients)?.[0];\n    if (!clientId) {\n      throw new Error(\"@nuxtjs/apollo: no client found\");\n    }\n  }\n  if (variables) {\n    variables = isRef(variables) ? variables : reactive(variables);\n    options.watch = options.watch || [];\n    options.watch.push(variables);\n  }\n  const key = args?.[0]?.key || hash({ query: print(query), variables, clientId });\n  const fn = () => clients[clientId]?.query({\n    query,\n    variables: variables || void 0,\n    ...cache && { fetchPolicy: \"cache-first\" },\n    context\n  }).then((r) => r.data);\n  return { key, query, clientId, variables, fn, options };\n};\nexport function useApollo() {\n  const nuxtApp = useNuxtApp();\n  const getToken = async (client) => {\n    client = client || \"default\";\n    const conf = NuxtApollo?.clients?.[client];\n    if (!conf) {\n      return;\n    }\n    const token = ref(null);\n    await nuxtApp.callHook(\"apollo:auth\", { token, client });\n    if (token.value) {\n      return token.value;\n    }\n    const tokenName = conf.tokenName;\n    return conf?.tokenStorage === \"cookie\" ? nuxtApp.runWithContext(() => useCookie(tokenName).value) : localStorage.getItem(tokenName) || null;\n  };\n  const updateAuth = async ({ token, client, mode, skipResetStore }) => {\n    client = client || \"default\";\n    const conf = NuxtApollo?.clients?.[client];\n    if (!conf) {\n      return;\n    }\n    const tokenName = client && conf.tokenName;\n    if (conf?.tokenStorage === \"cookie\") {\n      const cookieOpts = client && conf?.cookieAttributes || NuxtApollo?.cookieAttributes;\n      const cookie = useCookie(tokenName, cookieOpts);\n      if (!cookie.value && mode === \"logout\") {\n        return;\n      }\n      cookie.value = mode === \"login\" && token || null;\n    } else if (conf?.tokenStorage === \"localStorage\") {\n      if (mode === \"login\" && token) {\n        localStorage.setItem(tokenName, token);\n      } else if (mode === \"logout\") {\n        localStorage.removeItem(tokenName);\n      }\n    }\n    if (nuxtApp?._apolloWsClients?.[client]) {\n      nuxtApp._apolloWsClients[client].restart();\n    }\n    if (skipResetStore) {\n      return;\n    }\n    await nuxtApp?._apolloClients?.[client].resetStore().catch((e) => console.log(\"%cError on cache reset\", \"color: orange;\", e.message));\n  };\n  return {\n    getToken,\n    clients: nuxtApp?._apolloClients,\n    onLogin: (token, client, skipResetStore) => updateAuth({ token, client, skipResetStore, mode: \"login\" }),\n    onLogout: (client, skipResetStore) => updateAuth({ client, skipResetStore, mode: \"logout\" })\n  };\n}\n",
-      "start": 1713269985490,
-      "end": 1713269985625,
+      "start": 1716304639259,
+      "end": 1716304639366,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "vite:css-post",
-      "start": 1713269985625,
-      "end": 1713269985625,
+      "start": 1716304639366,
+      "end": 1716304639366,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269985625,
-      "end": 1713269985625,
+      "start": 1716304639366,
+      "end": 1716304639366,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269985625,
-      "end": 1713269985625,
+      "start": 1716304639366,
+      "end": 1716304639366,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269985625,
-      "end": 1713269985625,
+      "start": 1716304639366,
+      "end": 1716304639366,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269985625,
-      "end": 1713269985625,
+      "start": 1716304639366,
+      "end": 1716304639366,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269985625,
-      "end": 1713269985625,
+      "start": 1716304639366,
+      "end": 1716304639366,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269985625,
-      "end": 1713269985625,
+      "start": 1716304639366,
+      "end": 1716304639366,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269985625,
-      "end": 1713269985625,
+      "start": 1716304639366,
+      "end": 1716304639367,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { ref, isRef, reactive } from 'vue';\nimport { useCookie } from '#app/composables/cookie';\nimport { useNuxtApp } from '#app/nuxt';\nimport { useAsyncData } from '#app/composables/asyncData';\nimport { hash } from \"ohash\";\nimport { print } from \"graphql\";\nimport { NuxtApollo } from \"#apollo\";\nexport function useAsyncQuery(...args) {\n  const { key, fn, options } = prep(...args);\n  return useAsyncData(key, fn, options);\n}\nexport function useLazyAsyncQuery(...args) {\n  const { key, fn, options } = prep(...args);\n  return useAsyncData(key, fn, { ...options, lazy: true });\n}\nconst prep = (...args) => {\n  const { clients } = useApollo();\n  let query;\n  let variables;\n  let cache;\n  let clientId;\n  let context;\n  let options = {};\n  if (typeof args?.[0] === \"object\" && \"query\" in args[0]) {\n    query = args?.[0]?.query;\n    variables = args?.[0]?.variables;\n    cache = args?.[0]?.cache;\n    context = args?.[0]?.context;\n    clientId = args?.[0]?.clientId;\n    if (typeof args?.[1] === \"object\") {\n      options = args?.[1];\n    }\n  } else {\n    query = args?.[0];\n    variables = args?.[1];\n    clientId = args?.[2];\n    context = args?.[3];\n    if (typeof args?.[4] === \"object\") {\n      options = args?.[4];\n    }\n  }\n  if (!query) {\n    throw new Error(\"@nuxtjs/apollo: no query provided\");\n  }\n  if (!clientId || !clients?.[clientId]) {\n    clientId = clients?.default ? \"default\" : Object.keys(clients)?.[0];\n    if (!clientId) {\n      throw new Error(\"@nuxtjs/apollo: no client found\");\n    }\n  }\n  if (variables) {\n    variables = isRef(variables) ? variables : reactive(variables);\n    options.watch = options.watch || [];\n    options.watch.push(variables);\n  }\n  const key = args?.[0]?.key || hash({ query: print(query), variables, clientId });\n  const fn = () => clients[clientId]?.query({\n    query,\n    variables: variables || void 0,\n    ...cache && { fetchPolicy: \"cache-first\" },\n    context\n  }).then((r) => r.data);\n  return { key, query, clientId, variables, fn, options };\n};\nexport function useApollo() {\n  const nuxtApp = useNuxtApp();\n  const getToken = async (client) => {\n    client = client || \"default\";\n    const conf = NuxtApollo?.clients?.[client];\n    if (!conf) {\n      return;\n    }\n    const token = ref(null);\n    await nuxtApp.callHook(\"apollo:auth\", { token, client });\n    if (token.value) {\n      return token.value;\n    }\n    const tokenName = conf.tokenName;\n    return conf?.tokenStorage === \"cookie\" ? nuxtApp.runWithContext(() => useCookie(tokenName).value) : localStorage.getItem(tokenName) || null;\n  };\n  const updateAuth = async ({ token, client, mode, skipResetStore }) => {\n    client = client || \"default\";\n    const conf = NuxtApollo?.clients?.[client];\n    if (!conf) {\n      return;\n    }\n    const tokenName = client && conf.tokenName;\n    if (conf?.tokenStorage === \"cookie\") {\n      const cookieOpts = client && conf?.cookieAttributes || NuxtApollo?.cookieAttributes;\n      const cookie = useCookie(tokenName, cookieOpts);\n      if (!cookie.value && mode === \"logout\") {\n        return;\n      }\n      cookie.value = mode === \"login\" && token || null;\n    } else if (conf?.tokenStorage === \"localStorage\") {\n      if (mode === \"login\" && token) {\n        localStorage.setItem(tokenName, token);\n      } else if (mode === \"logout\") {\n        localStorage.removeItem(tokenName);\n      }\n    }\n    if (nuxtApp?._apolloWsClients?.[client]) {\n      nuxtApp._apolloWsClients[client].restart();\n    }\n    if (skipResetStore) {\n      return;\n    }\n    await nuxtApp?._apolloClients?.[client].resetStore().catch((e) => console.log(\"%cError on cache reset\", \"color: orange;\", e.message));\n  };\n  return {\n    getToken,\n    clients: nuxtApp?._apolloClients,\n    onLogin: (token, client, skipResetStore) => updateAuth({ token, client, skipResetStore, mode: \"login\" }),\n    onLogout: (client, skipResetStore) => updateAuth({ client, skipResetStore, mode: \"logout\" })\n  };\n}\n",
-      "start": 1713269985625,
-      "end": 1713269985626,
+      "start": 1716304639367,
+      "end": 1716304639367,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -183,50 +183,50 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1713269985626,
-      "end": 1713269985626,
+      "start": 1716304639367,
+      "end": 1716304639367,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269985626,
-      "end": 1713269985626,
+      "start": 1716304639367,
+      "end": 1716304639367,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1713269985626,
-      "end": 1713269985626,
+      "start": 1716304639367,
+      "end": 1716304639367,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1713269985626,
-      "end": 1713269985626,
+      "start": 1716304639367,
+      "end": 1716304639367,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269985626,
-      "end": 1713269985626,
+      "start": 1716304639367,
+      "end": 1716304639367,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269985626,
-      "end": 1713269985626,
+      "start": 1716304639367,
+      "end": 1716304639367,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269985626,
-      "end": 1713269985626,
+      "start": 1716304639367,
+      "end": 1716304639367,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269985626,
-      "end": 1713269985626,
+      "start": 1716304639367,
+      "end": 1716304639367,
       "order": "normal"
     }
   ]

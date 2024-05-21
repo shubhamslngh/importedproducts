@@ -4,8 +4,8 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref } from \"vue\"\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\"\n\nimport { cartItem } from \"../../utils/cart\";\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'Cart',\n  __ssrInlineRender: true,\n  setup(__props) {\n\nconst counter = useCounter();\nconst data = ref(null);\nlet error = null;\n\n\nconst loadData = async () => {\n  try {\n    const { data: newData } = await useAsyncQuery(cartItem);\n    data.value = newData;\n  }\n  catch (err) {\n    error = err;\n  }\n};\nonMounted(loadData);\n\nwatch(data, (newVal, oldVal) => {\n  console.log(\"Data changed:\", newVal);\n});\nconsole.log(\"data here\", data);\n\nreturn (_ctx: any,_push: any,_parent: any,_attrs: any) => {\n  if (_unref(data)) {\n    _push(`<div${_ssrRenderAttrs(_attrs)}><div class=\"h-screen pt-20\"><h1 class=\"mb-10 text-center text-3xl font-bold\">Cart Items</h1><div class=\"mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0\"><div class=\"rounded-lg md:w-2/3\">`)\n    if (_unref(data)._value.cart.contents.nodes.length===0) {\n      _push(`<div class=\"grid place-items-start\"><div class=\"sm:ml-4 sm:flex sm:w-full sm:justify-between\"><h1 class=\"mb-10 text-center text-xl font-bold\">No item added </h1><img alt=\"product-image\" src=\"https://importedproducts.in/wp-content/uploads/2024/04/shopping-cart-buy-shopping-297750.png\" class=\"mb-10 blur-sm flex mr-20 items-center sm:w-40\"></div></div>`)\n    } else {\n      _push(`<!---->`)\n    }\n    _push(`<!--[-->`)\n    _ssrRenderList(_unref(data)._value.cart.contents.nodes, (product, index) => {\n      _push(`<div class=\"justify-between mb-6 dark:bg-white rounded-lg light: bg-slate-300 p-6 shadow-md sm:flex sm:justify-start\">`)\n      if (product.variation) {\n        _push(`<div class=\"sm:ml-4 sm:flex sm:w-full sm:justify-between\"><img alt=\"product-image\"${\n          _ssrRenderAttr(\"src\", product.variation.node.image.link)\n        } class=\"w-full rounded-lg sm:w-40\"><div class=\"sm:ml-4 sm:flex sm:w-full sm:justify-between\"><div class=\"mt-5 sm:mt-0\"><h2 class=\"text-lg font-bold text-gray-900\">${\n          _ssrInterpolate(product.variation.node.name)\n        }</h2><p class=\"mt-1 text-xs text-gray-700\"></p><p class=\"mt-1 text-xs text-gray-700\">QTY:${\n          _ssrInterpolate(product.quantity)\n        }</p></div></div><div class=\"mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6\"><div class=\"flex items-center border-gray-100\"><button class=\"counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600\">${\n          _ssrInterpolate(product.variation.node.databaseId)\n        } - </button><div class=\"relative\"><span class=\"counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg\">${\n          _ssrInterpolate(_unref(counter).count=product.quantity)\n        }</span></div><button class=\"counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600\">${\n          _ssrInterpolate(product.variation.node.image.parentDatabaseId)\n        } + </button></div><div class=\"flex items-center space-x-4\"><p class=\"text-sm\">${\n          _ssrInterpolate(product.subtotal)\n        }</p><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"h-5 w-5 cursor-pointer duration-150 hover:text-red-500\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"></path></svg></div></div></div>`)\n      } else {\n        _push(`<!---->`)\n      }\n      _push(`</div>`)\n    })\n    _push(`<!--]--></div><div class=\"mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3\"><div class=\"mb-2 flex justify-between\"><p class=\"text-gray-700\">Subtotal</p><p class=\"text-gray-700\">${\n      _ssrInterpolate(_unref(data)._value.cart.total)\n    }</p></div><div class=\"flex justify-between\"><p class=\"text-gray-700\">Shipping</p><p class=\"text-gray-700\">${\n      _ssrInterpolate(_unref(data)._value.cart.shippingTotal)\n    }</p></div><hr class=\"my-4\"><div class=\"flex justify-between\"><p class=\"text-lg text-black font-bold\">Total</p><div class=\"\"><p class=\"mb-1 text-lg text-black font-bold\">${\n      _ssrInterpolate(_unref(data)._value.cart.total)\n    }</p><p class=\"text-sm text-black\">including VAT</p></div></div><button class=\"mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600\">Check out</button></div></div></div></div>`)\n  } else {\n    _push(`<div${_ssrRenderAttrs(_attrs)}><h1 class=\"mb-10 text-center text-2xl font-bold\">Loading...</h1></div>`)\n  }\n}\n}\n\n})",
-      "start": 1713269989035,
-      "end": 1713269989035,
+      "start": 1716304642938,
+      "end": 1716304642938,
       "sourcemaps": {
         "version": 3,
         "sources": [
@@ -20,57 +20,57 @@
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269989035,
-      "end": 1713269989035,
+      "start": 1716304642938,
+      "end": 1716304642938,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269989035,
-      "end": 1713269989035,
+      "start": 1716304642938,
+      "end": 1716304642938,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269989035,
-      "end": 1713269989035,
+      "start": 1716304642939,
+      "end": 1716304642939,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269989035,
-      "end": 1713269989035,
+      "start": 1716304642939,
+      "end": 1716304642939,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269989035,
-      "end": 1713269989035,
+      "start": 1716304642939,
+      "end": 1716304642939,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269989035,
-      "end": 1713269989035,
+      "start": 1716304642939,
+      "end": 1716304642939,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269989035,
-      "end": 1713269989035,
+      "start": 1716304642939,
+      "end": 1716304642939,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269989035,
-      "end": 1713269989035,
+      "start": 1716304642939,
+      "end": 1716304642939,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nimport { cartItem } from \"../../utils/cart\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Cart\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    const counter = useCounter();\n    const data = ref(null);\n    let error = null;\n    const loadData = async () => {\n      try {\n        const { data: newData } = await useAsyncQuery(cartItem);\n        data.value = newData;\n      } catch (err) {\n        error = err;\n      }\n    };\n    onMounted(loadData);\n    watch(data, (newVal, oldVal) => {\n      console.log(\"Data changed:\", newVal);\n    });\n    console.log(\"data here\", data);\n    return (_ctx, _push, _parent, _attrs) => {\n      if (_unref(data)) {\n        _push(`<div${_ssrRenderAttrs(_attrs)}><div class=\"h-screen pt-20\"><h1 class=\"mb-10 text-center text-3xl font-bold\">Cart Items</h1><div class=\"mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0\"><div class=\"rounded-lg md:w-2/3\">`);\n        if (_unref(data)._value.cart.contents.nodes.length === 0) {\n          _push(`<div class=\"grid place-items-start\"><div class=\"sm:ml-4 sm:flex sm:w-full sm:justify-between\"><h1 class=\"mb-10 text-center text-xl font-bold\">No item added </h1><img alt=\"product-image\" src=\"https://importedproducts.in/wp-content/uploads/2024/04/shopping-cart-buy-shopping-297750.png\" class=\"mb-10 blur-sm flex mr-20 items-center sm:w-40\"></div></div>`);\n        } else {\n          _push(`<!---->`);\n        }\n        _push(`<!--[-->`);\n        _ssrRenderList(_unref(data)._value.cart.contents.nodes, (product, index) => {\n          _push(`<div class=\"justify-between mb-6 dark:bg-white rounded-lg light: bg-slate-300 p-6 shadow-md sm:flex sm:justify-start\">`);\n          if (product.variation) {\n            _push(`<div class=\"sm:ml-4 sm:flex sm:w-full sm:justify-between\"><img alt=\"product-image\"${_ssrRenderAttr(\"src\", product.variation.node.image.link)} class=\"w-full rounded-lg sm:w-40\"><div class=\"sm:ml-4 sm:flex sm:w-full sm:justify-between\"><div class=\"mt-5 sm:mt-0\"><h2 class=\"text-lg font-bold text-gray-900\">${_ssrInterpolate(product.variation.node.name)}</h2><p class=\"mt-1 text-xs text-gray-700\"></p><p class=\"mt-1 text-xs text-gray-700\">QTY:${_ssrInterpolate(product.quantity)}</p></div></div><div class=\"mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6\"><div class=\"flex items-center border-gray-100\"><button class=\"counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600\">${_ssrInterpolate(product.variation.node.databaseId)} - </button><div class=\"relative\"><span class=\"counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg\">${_ssrInterpolate(_unref(counter).count = product.quantity)}</span></div><button class=\"counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600\">${_ssrInterpolate(product.variation.node.image.parentDatabaseId)} + </button></div><div class=\"flex items-center space-x-4\"><p class=\"text-sm\">${_ssrInterpolate(product.subtotal)}</p><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"h-5 w-5 cursor-pointer duration-150 hover:text-red-500\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"></path></svg></div></div></div>`);\n          } else {\n            _push(`<!---->`);\n          }\n          _push(`</div>`);\n        });\n        _push(`<!--]--></div><div class=\"mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3\"><div class=\"mb-2 flex justify-between\"><p class=\"text-gray-700\">Subtotal</p><p class=\"text-gray-700\">${_ssrInterpolate(_unref(data)._value.cart.total)}</p></div><div class=\"flex justify-between\"><p class=\"text-gray-700\">Shipping</p><p class=\"text-gray-700\">${_ssrInterpolate(_unref(data)._value.cart.shippingTotal)}</p></div><hr class=\"my-4\"><div class=\"flex justify-between\"><p class=\"text-lg text-black font-bold\">Total</p><div class=\"\"><p class=\"mb-1 text-lg text-black font-bold\">${_ssrInterpolate(_unref(data)._value.cart.total)}</p><p class=\"text-sm text-black\">including VAT</p></div></div><button class=\"mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600\">Check out</button></div></div></div></div>`);\n      } else {\n        _push(`<div${_ssrRenderAttrs(_attrs)}><h1 class=\"mb-10 text-center text-2xl font-bold\">Loading...</h1></div>`);\n      }\n    };\n  }\n});\n",
-      "start": 1713269989035,
-      "end": 1713269989330,
+      "start": 1716304642939,
+      "end": 1716304643286,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -86,141 +86,141 @@
     },
     {
       "name": "vite:json",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269989330,
-      "end": 1713269989330,
+      "start": 1716304643286,
+      "end": 1716304643286,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { useCounter } from '/Users/shubhamsingh/namma/importedProds/app/stores/use-counter.ts';\nimport { ref, onMounted, watch } from 'vue';\nimport { useAsyncQuery } from '/Users/shubhamsingh/namma/importedProds/node_modules/@nuxtjs/apollo/dist/runtime/composables';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nimport { cartItem } from \"../../utils/cart\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Cart\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    const counter = useCounter();\n    const data = ref(null);\n    let error = null;\n    const loadData = async () => {\n      try {\n        const { data: newData } = await useAsyncQuery(cartItem);\n        data.value = newData;\n      } catch (err) {\n        error = err;\n      }\n    };\n    onMounted(loadData);\n    watch(data, (newVal, oldVal) => {\n      console.log(\"Data changed:\", newVal);\n    });\n    console.log(\"data here\", data);\n    return (_ctx, _push, _parent, _attrs) => {\n      if (_unref(data)) {\n        _push(`<div${_ssrRenderAttrs(_attrs)}><div class=\"h-screen pt-20\"><h1 class=\"mb-10 text-center text-3xl font-bold\">Cart Items</h1><div class=\"mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0\"><div class=\"rounded-lg md:w-2/3\">`);\n        if (_unref(data)._value.cart.contents.nodes.length === 0) {\n          _push(`<div class=\"grid place-items-start\"><div class=\"sm:ml-4 sm:flex sm:w-full sm:justify-between\"><h1 class=\"mb-10 text-center text-xl font-bold\">No item added </h1><img alt=\"product-image\" src=\"https://importedproducts.in/wp-content/uploads/2024/04/shopping-cart-buy-shopping-297750.png\" class=\"mb-10 blur-sm flex mr-20 items-center sm:w-40\"></div></div>`);\n        } else {\n          _push(`<!---->`);\n        }\n        _push(`<!--[-->`);\n        _ssrRenderList(_unref(data)._value.cart.contents.nodes, (product, index) => {\n          _push(`<div class=\"justify-between mb-6 dark:bg-white rounded-lg light: bg-slate-300 p-6 shadow-md sm:flex sm:justify-start\">`);\n          if (product.variation) {\n            _push(`<div class=\"sm:ml-4 sm:flex sm:w-full sm:justify-between\"><img alt=\"product-image\"${_ssrRenderAttr(\"src\", product.variation.node.image.link)} class=\"w-full rounded-lg sm:w-40\"><div class=\"sm:ml-4 sm:flex sm:w-full sm:justify-between\"><div class=\"mt-5 sm:mt-0\"><h2 class=\"text-lg font-bold text-gray-900\">${_ssrInterpolate(product.variation.node.name)}</h2><p class=\"mt-1 text-xs text-gray-700\"></p><p class=\"mt-1 text-xs text-gray-700\">QTY:${_ssrInterpolate(product.quantity)}</p></div></div><div class=\"mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6\"><div class=\"flex items-center border-gray-100\"><button class=\"counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600\">${_ssrInterpolate(product.variation.node.databaseId)} - </button><div class=\"relative\"><span class=\"counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg\">${_ssrInterpolate(_unref(counter).count = product.quantity)}</span></div><button class=\"counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600\">${_ssrInterpolate(product.variation.node.image.parentDatabaseId)} + </button></div><div class=\"flex items-center space-x-4\"><p class=\"text-sm\">${_ssrInterpolate(product.subtotal)}</p><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"h-5 w-5 cursor-pointer duration-150 hover:text-red-500\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"></path></svg></div></div></div>`);\n          } else {\n            _push(`<!---->`);\n          }\n          _push(`</div>`);\n        });\n        _push(`<!--]--></div><div class=\"mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3\"><div class=\"mb-2 flex justify-between\"><p class=\"text-gray-700\">Subtotal</p><p class=\"text-gray-700\">${_ssrInterpolate(_unref(data)._value.cart.total)}</p></div><div class=\"flex justify-between\"><p class=\"text-gray-700\">Shipping</p><p class=\"text-gray-700\">${_ssrInterpolate(_unref(data)._value.cart.shippingTotal)}</p></div><hr class=\"my-4\"><div class=\"flex justify-between\"><p class=\"text-lg text-black font-bold\">Total</p><div class=\"\"><p class=\"mb-1 text-lg text-black font-bold\">${_ssrInterpolate(_unref(data)._value.cart.total)}</p><p class=\"text-sm text-black\">including VAT</p></div></div><button class=\"mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600\">Check out</button></div></div></div></div>`);\n      } else {\n        _push(`<div${_ssrRenderAttrs(_attrs)}><h1 class=\"mb-10 text-center text-2xl font-bold\">Loading...</h1></div>`);\n      }\n    };\n  }\n});\n",
-      "start": 1713269989330,
-      "end": 1713269989331,
+      "start": 1716304643286,
+      "end": 1716304643287,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -234,8 +234,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { useCounter } from '/Users/shubhamsingh/namma/importedProds/app/stores/use-counter.ts';\nimport { ref, onMounted, watch } from 'vue';\nimport { useAsyncQuery } from '/Users/shubhamsingh/namma/importedProds/node_modules/@nuxtjs/apollo/dist/runtime/composables';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nimport { cartItem } from \"../../utils/cart\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Cart\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    const counter = useCounter();\n    const data = ref(null);\n    let error = null;\n    const loadData = async () => {\n      try {\n        const { data: newData } = await useAsyncQuery(cartItem);\n        data.value = newData;\n      } catch (err) {\n        error = err;\n      }\n    };\n    onMounted(loadData);\n    watch(data, (newVal, oldVal) => {\n      console.log(\"Data changed:\", newVal);\n    });\n    console.log(\"data here\", data);\n    return (_ctx, _push, _parent, _attrs) => {\n      if (_unref(data)) {\n        _push(`<div${_ssrRenderAttrs(_attrs)}><div class=\"h-screen pt-20\"><h1 class=\"mb-10 text-center text-3xl font-bold\">Cart Items</h1><div class=\"mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0\"><div class=\"rounded-lg md:w-2/3\">`);\n        if (_unref(data)._value.cart.contents.nodes.length === 0) {\n          _push(`<div class=\"grid place-items-start\"><div class=\"sm:ml-4 sm:flex sm:w-full sm:justify-between\"><h1 class=\"mb-10 text-center text-xl font-bold\">No item added </h1><img alt=\"product-image\" src=\"https://importedproducts.in/wp-content/uploads/2024/04/shopping-cart-buy-shopping-297750.png\" class=\"mb-10 blur-sm flex mr-20 items-center sm:w-40\"></div></div>`);\n        } else {\n          _push(`<!---->`);\n        }\n        _push(`<!--[-->`);\n        _ssrRenderList(_unref(data)._value.cart.contents.nodes, (product, index) => {\n          _push(`<div class=\"justify-between mb-6 dark:bg-white rounded-lg light: bg-slate-300 p-6 shadow-md sm:flex sm:justify-start\">`);\n          if (product.variation) {\n            _push(`<div class=\"sm:ml-4 sm:flex sm:w-full sm:justify-between\"><img alt=\"product-image\"${_ssrRenderAttr(\"src\", product.variation.node.image.link)} class=\"w-full rounded-lg sm:w-40\"><div class=\"sm:ml-4 sm:flex sm:w-full sm:justify-between\"><div class=\"mt-5 sm:mt-0\"><h2 class=\"text-lg font-bold text-gray-900\">${_ssrInterpolate(product.variation.node.name)}</h2><p class=\"mt-1 text-xs text-gray-700\"></p><p class=\"mt-1 text-xs text-gray-700\">QTY:${_ssrInterpolate(product.quantity)}</p></div></div><div class=\"mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6\"><div class=\"flex items-center border-gray-100\"><button class=\"counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600\">${_ssrInterpolate(product.variation.node.databaseId)} - </button><div class=\"relative\"><span class=\"counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg\">${_ssrInterpolate(_unref(counter).count = product.quantity)}</span></div><button class=\"counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600\">${_ssrInterpolate(product.variation.node.image.parentDatabaseId)} + </button></div><div class=\"flex items-center space-x-4\"><p class=\"text-sm\">${_ssrInterpolate(product.subtotal)}</p><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"h-5 w-5 cursor-pointer duration-150 hover:text-red-500\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"></path></svg></div></div></div>`);\n          } else {\n            _push(`<!---->`);\n          }\n          _push(`</div>`);\n        });\n        _push(`<!--]--></div><div class=\"mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3\"><div class=\"mb-2 flex justify-between\"><p class=\"text-gray-700\">Subtotal</p><p class=\"text-gray-700\">${_ssrInterpolate(_unref(data)._value.cart.total)}</p></div><div class=\"flex justify-between\"><p class=\"text-gray-700\">Shipping</p><p class=\"text-gray-700\">${_ssrInterpolate(_unref(data)._value.cart.shippingTotal)}</p></div><hr class=\"my-4\"><div class=\"flex justify-between\"><p class=\"text-lg text-black font-bold\">Total</p><div class=\"\"><p class=\"mb-1 text-lg text-black font-bold\">${_ssrInterpolate(_unref(data)._value.cart.total)}</p><p class=\"text-sm text-black\">including VAT</p></div></div><button class=\"mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600\">Check out</button></div></div></div></div>`);\n      } else {\n        _push(`<div${_ssrRenderAttrs(_attrs)}><h1 class=\"mb-10 text-center text-2xl font-bold\">Loading...</h1></div>`);\n      }\n    };\n  }\n});\n",
-      "start": 1713269989330,
-      "end": 1713269989331,
+      "start": 1716304643286,
+      "end": 1716304643287,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -248,45 +248,45 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1713269989331,
-      "end": 1713269989331,
+      "start": 1716304643287,
+      "end": 1716304643287,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269989331,
-      "end": 1713269989331,
+      "start": 1716304643287,
+      "end": 1716304643287,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269989331,
-      "end": 1713269989331,
+      "start": 1716304643287,
+      "end": 1716304643287,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269989331,
-      "end": 1713269989331,
+      "start": 1716304643287,
+      "end": 1716304643287,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1713269989331,
-      "end": 1713269989331,
+      "start": 1716304643287,
+      "end": 1716304643287,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269989331,
-      "end": 1713269989331,
+      "start": 1716304643287,
+      "end": 1716304643287,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
       "result": "import { useCounter } from '/Users/shubhamsingh/namma/importedProds/app/stores/use-counter.ts';\nimport { ref, onMounted, watch } from 'vue';\nimport { useAsyncQuery } from '/Users/shubhamsingh/namma/importedProds/node_modules/@nuxtjs/apollo/dist/runtime/composables';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nimport { cartItem } from \"../../utils/cart\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Cart\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    const counter = useCounter();\n    const data = ref(null);\n    let error = null;\n    const loadData = async () => {\n      try {\n        const { data: newData } = await useAsyncQuery(cartItem);\n        data.value = newData;\n      } catch (err) {\n        error = err;\n      }\n    };\n     false && /*@__PURE__*/ onMounted(loadData);\n    watch(data, (newVal, oldVal) => {\n      console.log(\"Data changed:\", newVal);\n    });\n    console.log(\"data here\", data);\n    return (_ctx, _push, _parent, _attrs) => {\n      if (_unref(data)) {\n        _push(`<div${_ssrRenderAttrs(_attrs)}><div class=\"h-screen pt-20\"><h1 class=\"mb-10 text-center text-3xl font-bold\">Cart Items</h1><div class=\"mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0\"><div class=\"rounded-lg md:w-2/3\">`);\n        if (_unref(data)._value.cart.contents.nodes.length === 0) {\n          _push(`<div class=\"grid place-items-start\"><div class=\"sm:ml-4 sm:flex sm:w-full sm:justify-between\"><h1 class=\"mb-10 text-center text-xl font-bold\">No item added </h1><img alt=\"product-image\" src=\"https://importedproducts.in/wp-content/uploads/2024/04/shopping-cart-buy-shopping-297750.png\" class=\"mb-10 blur-sm flex mr-20 items-center sm:w-40\"></div></div>`);\n        } else {\n          _push(`<!---->`);\n        }\n        _push(`<!--[-->`);\n        _ssrRenderList(_unref(data)._value.cart.contents.nodes, (product, index) => {\n          _push(`<div class=\"justify-between mb-6 dark:bg-white rounded-lg light: bg-slate-300 p-6 shadow-md sm:flex sm:justify-start\">`);\n          if (product.variation) {\n            _push(`<div class=\"sm:ml-4 sm:flex sm:w-full sm:justify-between\"><img alt=\"product-image\"${_ssrRenderAttr(\"src\", product.variation.node.image.link)} class=\"w-full rounded-lg sm:w-40\"><div class=\"sm:ml-4 sm:flex sm:w-full sm:justify-between\"><div class=\"mt-5 sm:mt-0\"><h2 class=\"text-lg font-bold text-gray-900\">${_ssrInterpolate(product.variation.node.name)}</h2><p class=\"mt-1 text-xs text-gray-700\"></p><p class=\"mt-1 text-xs text-gray-700\">QTY:${_ssrInterpolate(product.quantity)}</p></div></div><div class=\"mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6\"><div class=\"flex items-center border-gray-100\"><button class=\"counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600\">${_ssrInterpolate(product.variation.node.databaseId)} - </button><div class=\"relative\"><span class=\"counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg\">${_ssrInterpolate(_unref(counter).count = product.quantity)}</span></div><button class=\"counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600\">${_ssrInterpolate(product.variation.node.image.parentDatabaseId)} + </button></div><div class=\"flex items-center space-x-4\"><p class=\"text-sm\">${_ssrInterpolate(product.subtotal)}</p><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"h-5 w-5 cursor-pointer duration-150 hover:text-red-500\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M6 18L18 6M6 6l12 12\"></path></svg></div></div></div>`);\n          } else {\n            _push(`<!---->`);\n          }\n          _push(`</div>`);\n        });\n        _push(`<!--]--></div><div class=\"mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3\"><div class=\"mb-2 flex justify-between\"><p class=\"text-gray-700\">Subtotal</p><p class=\"text-gray-700\">${_ssrInterpolate(_unref(data)._value.cart.total)}</p></div><div class=\"flex justify-between\"><p class=\"text-gray-700\">Shipping</p><p class=\"text-gray-700\">${_ssrInterpolate(_unref(data)._value.cart.shippingTotal)}</p></div><hr class=\"my-4\"><div class=\"flex justify-between\"><p class=\"text-lg text-black font-bold\">Total</p><div class=\"\"><p class=\"mb-1 text-lg text-black font-bold\">${_ssrInterpolate(_unref(data)._value.cart.total)}</p><p class=\"text-sm text-black\">including VAT</p></div></div><button class=\"mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600\">Check out</button></div></div></div></div>`);\n      } else {\n        _push(`<div${_ssrRenderAttrs(_attrs)}><h1 class=\"mb-10 text-center text-2xl font-bold\">Loading...</h1></div>`);\n      }\n    };\n  }\n});\n",
-      "start": 1713269989331,
-      "end": 1713269989332,
+      "start": 1716304643287,
+      "end": 1716304643287,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -299,14 +299,14 @@
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269989332,
-      "end": 1713269989332,
+      "start": 1716304643287,
+      "end": 1716304643287,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269989332,
-      "end": 1713269989332,
+      "start": 1716304643287,
+      "end": 1716304643287,
       "order": "normal"
     }
   ]

@@ -1,6 +1,6 @@
 <script setup>
 definePageMeta({ layout: "page" });
-useHead({ title: "Cases" });
+useHead({ title: "login" });
 const { $wordpressStore } = useNuxtApp();
 </script>
 

@@ -1,6 +1,7 @@
 import { defineNuxtConfig } from 'nuxt/config'
 import type { AppConfigInput } from 'nuxt/schema'
 export default defineAppConfig({
+
   awesome: {
     name: 'Imported Products',
     description:
@@ -19,25 +20,21 @@ export default defineAppConfig({
             { type: 'link', title: 'Travel', to: { name: 'travel' } },
             { type: 'link', title: 'Login', to: { name: 'login' } },
 
+
+
             {
               type: 'dropdown',
               title: 'Cart',
               children: [
                 {
                   type: 'link',
-                  title: 'my Cart',
+                  title: 'My Cart',
                   to: { name: 'cart' },
                 },
+               
               ],
             },
             { type: 'button', title: 'Setting', to: { name: 'setting' } },
-            // dynamic title
-            // {
-            //   type: 'button',
-            //   title: (nuxt) =>
-            //     (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',
-            //   to: (nuxt) => (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',
-            // },
           ],
         },
       },

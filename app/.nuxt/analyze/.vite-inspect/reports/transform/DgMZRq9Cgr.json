@@ -1,0 +1,222 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/node_modules/@apollo/client/react/hooks/useLoadableQuery.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { __assign, __spreadArray } from \"tslib\";\nimport * as React from \"rehackt\";\nimport { useApolloClient } from \"./useApolloClient.js\";\nimport { getSuspenseCache, unwrapQueryRef, updateWrappedQueryRef, wrapQueryRef, } from \"../internal/index.js\";\nimport { useRenderGuard } from \"./internal/index.js\";\nimport { useWatchQueryOptions } from \"./useSuspenseQuery.js\";\nimport { canonicalStringify } from \"../../cache/index.js\";\nimport { invariant } from \"../../utilities/globals/index.js\";\nexport function useLoadableQuery(query, options) {\n    if (options === void 0) { options = Object.create(null); }\n    var client = useApolloClient(options.client);\n    var suspenseCache = getSuspenseCache(client);\n    var watchQueryOptions = useWatchQueryOptions({ client: client, query: query, options: options });\n    var _a = options.queryKey, queryKey = _a === void 0 ? [] : _a;\n    var _b = React.useState(null), queryRef = _b[0], setQueryRef = _b[1];\n    var internalQueryRef = queryRef && unwrapQueryRef(queryRef);\n    if (queryRef && (internalQueryRef === null || internalQueryRef === void 0 ? void 0 : internalQueryRef.didChangeOptions(watchQueryOptions))) {\n        var promise = internalQueryRef.applyOptions(watchQueryOptions);\n        updateWrappedQueryRef(queryRef, promise);\n    }\n    var calledDuringRender = useRenderGuard();\n    var fetchMore = React.useCallback(function (options) {\n        if (!internalQueryRef) {\n            throw new Error(\"The query has not been loaded. Please load the query.\");\n        }\n        var promise = internalQueryRef.fetchMore(options);\n        setQueryRef(wrapQueryRef(internalQueryRef));\n        return promise;\n    }, [internalQueryRef]);\n    var refetch = React.useCallback(function (options) {\n        if (!internalQueryRef) {\n            throw new Error(\"The query has not been loaded. Please load the query.\");\n        }\n        var promise = internalQueryRef.refetch(options);\n        setQueryRef(wrapQueryRef(internalQueryRef));\n        return promise;\n    }, [internalQueryRef]);\n    var loadQuery = React.useCallback(function () {\n        var args = [];\n        for (var _i = 0; _i < arguments.length; _i++) {\n            args[_i] = arguments[_i];\n        }\n        invariant(!calledDuringRender(), 50);\n        var variables = args[0];\n        var cacheKey = __spreadArray([\n            query,\n            canonicalStringify(variables)\n        ], [].concat(queryKey), true);\n        var queryRef = suspenseCache.getQueryRef(cacheKey, function () {\n            return client.watchQuery(__assign(__assign({}, watchQueryOptions), { variables: variables }));\n        });\n        setQueryRef(wrapQueryRef(queryRef));\n    }, [query, queryKey, suspenseCache, watchQueryOptions, calledDuringRender]);\n    var reset = React.useCallback(function () {\n        setQueryRef(null);\n    }, [queryRef]);\n    return [loadQuery, queryRef, { fetchMore: fetchMore, refetch: refetch, reset: reset }];\n}\n//# sourceMappingURL=useLoadableQuery.js.map",
+      "start": 1716304640251,
+      "end": 1716304640263,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1716304640263,
+      "end": 1716304640263,
+      "order": "normal"
+    }
+  ]
+}

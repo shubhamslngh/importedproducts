@@ -4,8 +4,8 @@
     {
       "name": "vite:vue",
       "result": "\n.swiper {\n  width: 600px;\n  height: 300px;\n}\n.color-swatch {\n  width: 4rem;\n  height: 4rem;\n  display: block;\n  cursor: pointer;\n  background-size: contain;\n}\n/* Product Card Styling */\n.product-card {\n  background-color: #8dd1d1;\n  max-width: auto;\n  min-height: aito;\n  margin: 0 auto;\n  margin-top: 50px;\n  margin-bottom: 150px;\n  box-shadow: 8px 12px 30px var(--shadow-color);\n  color: #919495;\n  font-weight: normal;\n  text-align: left;\n  font-size: var(--font-size);\n  position: relative;\n}\n\n/* Product Details Styling */\n.product-details {\n  width: 100%;\n  float: left;\n  height: 100%;\n  padding: 30px;\n}\n\n.product-details h1 {\n  color: #333;\n  font-family: var(--cursive-font);\n  margin-bottom: 35px;\n}\n\n.product-details button {\n  width: 150px;\n  height: 50px;\n  margin-top: 20px;\n  background-color: var(--button-color);\n  border-radius: 0;\n  color: rgb(0, 0, 0);\n  box-shadow: 2px 2px 7px var(--button-shadow-color);\n}\n\n/* .product-details button:hover,\n.product-details button:active,\n.product-details button:focus {\n  color: black;\n\n  background-color: lightblue;\n} */\n\n/* Responsive Styling */\n@media (max-width: 700px) {\n  .product-card {\n    margin-left: 20px;\n    margin-right: 20px;\n  }\n}\n\n@media (max-width: 540px) {\n  .product-card {\n    overflow: hidden;\n    margin-bottom: 50px;\n  }\n\n  .product-details {\n    width: 60%;\n    z-index: 1;\n  }\n\n  .product-image {\n    width: 100%;\n    left: 40%;\n    top: -50px;\n  }\n}\n\n@media (max-width: 440px) {\n  .product-details {\n    width: 65%;\n  }\n}\n\n@media (max-width: 365px) {\n  .product-details {\n    width: 80%;\n    position: relative;\n    color: #333;\n    background-color: rgba(255, 255, 255, 0.7);\n  }\n}\n.box {\n  width: 100%;\n  height: 50%;\n}\n.swiper {\n  width: 100%;\n  height: 100%;\n}\n\n.swiper-slide {\n  text-align: center;\n  font-size: 18px;\n  background: #fff;\n\n  /* Center slide text vertically */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.swiper-slide img {\n  display: block;\n  width: 100%;\n  height: 100%;\n  object-fit: contain;\n}\n\n.swiper {\n  width: 100%;\n  height: 80%;\n}\n\n.swiper-slide {\n  text-align: center;\n  font-size: 18px;\n  background: rgba(236, 0, 0, 0);\n  display: block;\n  justify-content: contain;\n  align-items: center;\n}\n\n.product-info {\n  padding: 10px;\n}\n\n@media (max-width: 760px) {\n  .swiper-button-next {\n    right: 20px;\n    transform: rotate(180deg);\n  }\n\n  .swiper-button-prev {\n    left: 20px;\n    transform: rotate(90deg);\n  }\n}\n.swiper-wrapper {\n  background-color: transparent;\n}\n",
-      "start": 1713269988521,
-      "end": 1713269988521,
+      "start": 1716304642465,
+      "end": 1716304642465,
       "sourcemaps": {
         "version": 3,
         "sources": [
@@ -22,51 +22,51 @@
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269988522,
-      "end": 1713269988522,
+      "start": 1716304642466,
+      "end": 1716304642466,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269988522,
-      "end": 1713269988522,
+      "start": 1716304642466,
+      "end": 1716304642466,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269988522,
-      "end": 1713269988522,
+      "start": 1716304642466,
+      "end": 1716304642466,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269988522,
-      "end": 1713269988522,
+      "start": 1716304642466,
+      "end": 1716304642466,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269988522,
-      "end": 1713269988522,
+      "start": 1716304642466,
+      "end": 1716304642466,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269988522,
-      "end": 1713269988522,
+      "start": 1716304642466,
+      "end": 1716304642466,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269988522,
-      "end": 1713269988522,
+      "start": 1716304642466,
+      "end": 1716304642466,
       "order": "pre"
     },
     {
       "name": "vite:css",
       "result": ".swiper{height:300px;width:600px}.color-swatch{background-size:contain;cursor:pointer;display:block;height:4rem;width:4rem}.product-card{background-color:#8dd1d1;box-shadow:8px 12px 30px var(--shadow-color);color:#919495;font-size:var(--font-size);font-weight:400;margin:50px auto 150px;max-width:auto;min-height:aito;position:relative;text-align:left}.product-details{float:left;height:100%;padding:30px;width:100%}.product-details h1{color:#333;font-family:var(--cursive-font);margin-bottom:35px}.product-details button{background-color:var(--button-color);border-radius:0;box-shadow:2px 2px 7px var(--button-shadow-color);color:#000;height:50px;margin-top:20px;width:150px}@media (max-width:700px){.product-card{margin-left:20px;margin-right:20px}}@media (max-width:540px){.product-card{margin-bottom:50px;overflow:hidden}.product-details{width:60%;z-index:1}.product-image{left:40%;top:-50px;width:100%}}@media (max-width:440px){.product-details{width:65%}}@media (max-width:365px){.product-details{background-color:hsla(0,0%,100%,.7);color:#333;position:relative;width:80%}}.box{height:50%;width:100%}.swiper{height:100%}.swiper-slide{background:#fff;display:flex;justify-content:center}.swiper-slide img{display:block;height:100%;-o-object-fit:contain;object-fit:contain;width:100%}.swiper{height:80%;width:100%}.swiper-slide{align-items:center;background:rgba(236,0,0,0);display:block;font-size:18px;justify-content:contain;text-align:center}.product-info{padding:10px}@media (max-width:760px){.swiper-button-next{right:20px;transform:rotate(180deg)}.swiper-button-prev{left:20px;transform:rotate(90deg)}}.swiper-wrapper{background-color:transparent}",
-      "start": 1713269988522,
-      "end": 1713269988534,
+      "start": 1716304642466,
+      "end": 1716304642478,
       "order": "normal",
       "sourcemaps": {
         "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue",
@@ -83,27 +83,27 @@
     },
     {
       "name": "vite:esbuild",
-      "start": 1713269988534,
-      "end": 1713269988534,
+      "start": 1716304642478,
+      "end": 1716304642478,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1713269988534,
-      "end": 1713269988534,
+      "start": 1716304642478,
+      "end": 1716304642478,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642488,
+      "end": 1716304642488,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": ".swiper{height:300px;width:600px}.color-swatch{background-size:contain;cursor:pointer;display:block;height:4rem;width:4rem}.product-card{background-color:#8dd1d1;box-shadow:8px 12px 30px var(--shadow-color);color:#919495;font-size:var(--font-size);font-weight:400;margin:50px auto 150px;max-width:auto;min-height:aito;position:relative;text-align:left}.product-details{float:left;height:100%;padding:30px;width:100%}.product-details h1{color:#333;font-family:var(--cursive-font);margin-bottom:35px}.product-details button{background-color:var(--button-color);border-radius:0;box-shadow:2px 2px 7px var(--button-shadow-color);color:#000;height:50px;margin-top:20px;width:150px}@media (max-width:700px){.product-card{margin-left:20px;margin-right:20px}}@media (max-width:540px){.product-card{margin-bottom:50px;overflow:hidden}.product-details{width:60%;z-index:1}.product-image{left:40%;top:-50px;width:100%}}@media (max-width:440px){.product-details{width:65%}}@media (max-width:365px){.product-details{background-color:hsla(0,0%,100%,.7);color:#333;position:relative;width:80%}}.box{height:50%;width:100%}.swiper{height:100%}.swiper-slide{background:#fff;display:flex;justify-content:center}.swiper-slide img{display:block;height:100%;-o-object-fit:contain;object-fit:contain;width:100%}.swiper{height:80%;width:100%}.swiper-slide{align-items:center;background:rgba(236,0,0,0);display:block;font-size:18px;justify-content:contain;text-align:center}.product-info{padding:10px}@media (max-width:760px){.swiper-button-next{right:20px;transform:rotate(180deg)}.swiper-button-prev{left:20px;transform:rotate(90deg)}}.swiper-wrapper{background-color:transparent}",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642489,
+      "end": 1716304642489,
       "order": "normal",
       "sourcemaps": {
         "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue",
@@ -120,69 +120,69 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642489,
+      "end": 1716304642489,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642490,
+      "end": 1716304642490,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642490,
+      "end": 1716304642490,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642490,
+      "end": 1716304642490,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642490,
+      "end": 1716304642490,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642490,
+      "end": 1716304642490,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642500,
+      "end": 1716304642500,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642501,
+      "end": 1716304642501,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642501,
+      "end": 1716304642502,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642502,
+      "end": 1716304642502,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
       "result": "export default \".swiper{height:300px;width:600px}.color-swatch{background-size:contain;cursor:pointer;display:block;height:4rem;width:4rem}.product-card{background-color:#8dd1d1;box-shadow:8px 12px 30px var(--shadow-color);color:#919495;font-size:var(--font-size);font-weight:400;margin:50px auto 150px;max-width:auto;min-height:aito;position:relative;text-align:left}.product-details{float:left;height:100%;padding:30px;width:100%}.product-details h1{color:#333;font-family:var(--cursive-font);margin-bottom:35px}.product-details button{background-color:var(--button-color);border-radius:0;box-shadow:2px 2px 7px var(--button-shadow-color);color:#000;height:50px;margin-top:20px;width:150px}@media (max-width:700px){.product-card{margin-left:20px;margin-right:20px}}@media (max-width:540px){.product-card{margin-bottom:50px;overflow:hidden}.product-details{width:60%;z-index:1}.product-image{left:40%;top:-50px;width:100%}}@media (max-width:440px){.product-details{width:65%}}@media (max-width:365px){.product-details{background-color:hsla(0,0%,100%,.7);color:#333;position:relative;width:80%}}.box{height:50%;width:100%}.swiper{height:100%}.swiper-slide{background:#fff;display:flex;justify-content:center}.swiper-slide img{display:block;height:100%;-o-object-fit:contain;object-fit:contain;width:100%}.swiper{height:80%;width:100%}.swiper-slide{align-items:center;background:rgba(236,0,0,0);display:block;font-size:18px;justify-content:contain;text-align:center}.product-info{padding:10px}@media (max-width:760px){.swiper-button-next{right:20px;transform:rotate(180deg)}.swiper-button-prev{left:20px;transform:rotate(90deg)}}.swiper-wrapper{background-color:transparent}\"",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642503,
+      "end": 1716304642504,
       "order": "normal",
       "sourcemaps": {
         "mappings": ""
@@ -190,116 +190,116 @@
     },
     {
       "name": "vite:build-html",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642504,
+      "end": 1716304642504,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642504,
+      "end": 1716304642504,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642504,
+      "end": 1716304642504,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642504,
+      "end": 1716304642504,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642504,
+      "end": 1716304642504,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642505,
+      "end": 1716304642505,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642505,
+      "end": 1716304642505,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642505,
+      "end": 1716304642505,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642505,
+      "end": 1716304642505,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642505,
+      "end": 1716304642505,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642505,
+      "end": 1716304642505,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642505,
+      "end": 1716304642505,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642505,
+      "end": 1716304642505,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642505,
+      "end": 1716304642505,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642505,
+      "end": 1716304642505,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642505,
+      "end": 1716304642505,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642505,
+      "end": 1716304642505,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642505,
+      "end": 1716304642505,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269988535,
-      "end": 1713269988535,
+      "start": 1716304642505,
+      "end": 1716304642505,
       "order": "normal"
     }
   ]

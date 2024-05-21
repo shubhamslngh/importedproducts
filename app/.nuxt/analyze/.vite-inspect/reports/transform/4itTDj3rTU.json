@@ -1,0 +1,222 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/utils/graphql.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { gql } from '@apollo/client';\n\nexport const ProductContentSlice = gql`\n  fragment ProductContentSlice on Product {\n    id\n    databaseId\n    name\n    slug\n    type\n    image {\n      id\n      sourceUrl(size: WOOCOMMERCE_THUMBNAIL)\n      altText\n    }\n    ... on SimpleProduct {\n      price\n      regularPrice\n      soldIndividually\n    }\n    ... on VariableProduct {\n      price\n      regularPrice\n      soldIndividually\n    }\n  }\n`;\n\nexport const ProductVariationContentSlice = gql`\n  fragment ProductVariationContentSlice on ProductVariation {\n    id\n    databaseId\n    name\n    slug\n    image {\n      id\n      sourceUrl(size: WOOCOMMERCE_THUMBNAIL)\n      altText\n    }\n    price\n    regularPrice\n  }\n`;\n\nexport const ProductContentFull = gql`\n  fragment ProductContentFull on Product {\n    id\n    databaseId\n    slug\n    name\n    type\n    description\n    shortDescription(format: RAW)\n    image {\n      id\n      sourceUrl\n      altText\n    }\n    galleryImages {\n      nodes {\n        id\n        sourceUrl(size: WOOCOMMERCE_THUMBNAIL)\n        altText\n      }\n    }\n    productTags(first: 20) {\n      nodes {\n        id\n        slug\n        name\n      }\n    }\n    attributes {\n      nodes {\n        id\n        attributeId\n        ... on LocalProductAttribute {\n          name\n          options\n          variation\n        }\n        ... on GlobalProductAttribute {\n          name\n          options\n          variation\n        }\n      }\n    }\n    ... on SimpleProduct {\n      onSale\n      stockStatus\n      price\n      rawPrice: price(format: RAW)\n      regularPrice\n      salePrice\n      stockStatus\n      stockQuantity\n      soldIndividually\n    }\n    ... on VariableProduct {\n      onSale\n      price\n      rawPrice: price(format: RAW)\n      regularPrice\n      salePrice\n      stockStatus\n      stockQuantity\n      soldIndividually\n      variations(first: 50) {\n        nodes {\n          id\n          databaseId\n          name\n          price\n          rawPrice: price(format: RAW)\n          regularPrice\n          salePrice\n          onSale\n          attributes {\n            nodes {\n              name\n              label\n              value\n            }\n          }\n        }\n      }\n    }\n  }\n`;\n\nexport const VariationContent = gql`\n  fragment VariationContent on ProductVariation {\n    id\n    name\n    slug\n    price\n    regularPrice\n    salePrice\n    stockStatus\n    stockQuantity\n    onSale\n    image {\n      id\n      sourceUrl\n      altText\n    }\n  }\n`;\n\nexport const CartItemContent = gql`\n  fragment CartItemContent on CartItem {\n    key\n    product {\n      node {\n        ...ProductContentSlice\n      }\n    }\n    variation {\n      node {\n        ...ProductVariationContentSlice\n      }\n    }\n    quantity\n    total\n    subtotal\n    subtotalTax\n    extraData {\n      key\n      value\n    }\n  }\n  ${ProductContentSlice}\n  ${ProductVariationContentSlice}\n`;\n\nexport const CartContent = gql`\n  fragment CartContent on Cart {\n    contents(first: 100) {\n      itemCount\n      nodes {\n        ...CartItemContent\n      }\n    }\n    appliedCoupons {\n      code\n      discountAmount\n      discountTax\n    }\n    needsShippingAddress\n    availableShippingMethods {\n      packageDetails\n      supportsShippingCalculator\n      rates {\n        id\n        instanceId\n        methodId\n        label\n        cost\n      }\n    }\n    subtotal\n    subtotalTax\n    shippingTax\n    shippingTotal\n    total\n    totalTax\n    feeTax\n    feeTotal\n    discountTax\n    discountTotal\n  }\n  ${CartItemContent}\n`;\n\nexport const AddressFields = gql`\n  fragment AddressFields on CustomerAddress {\n    firstName\n    lastName\n    company\n    address1\n    address2\n    city\n    state\n    country\n    postcode\n    phone\n  }\n`;\n\nexport const LineItemFields = gql`\n  fragment LineItemFields on LineItem {\n    databaseId\n    product {\n      node {\n        ...ProductContentSlice\n      }\n    }\n    orderId\n    quantity\n    subtotal\n    total\n    totalTax\n  }\n  ${ProductContentSlice}\n`;\n\nexport const OrderFields = gql`\n  fragment OrderFields on Order {\n    id\n    databaseId\n    orderNumber\n    orderVersion\n    status\n    needsProcessing\n    subtotal\n    paymentMethodTitle\n    total\n    totalTax\n    date\n    dateCompleted\n    datePaid\n    billing {\n      ...AddressFields\n    }\n    shipping {\n      ...AddressFields\n    }\n    lineItems(first: 100) {\n      nodes {\n          ...LineItemFields\n      }\n    }\n  }\n  ${AddressFields}\n  ${LineItemFields}\n`;\n\nexport const CustomerFields = gql`\n  fragment CustomerFields on Customer {\n    id\n    databaseId\n    firstName\n    lastName\n    displayName\n    billing {\n      ...AddressFields\n    }\n    shipping {\n      ...AddressFields\n    }\n    orders(first: 100) {\n      nodes {\n        ...OrderFields\n      } \n    }\n  }\n  ${AddressFields}\n  ${OrderFields}\n`;\n\nexport const CustomerContent = gql`\n  fragment CustomerContent on Customer {\n    id\n    sessionToken\n  }\n`;\n\n\n\nexport const GetProduct = gql`\n  query GetProduct($id: ID!, $idType: ProductIdTypeEnum) {\n    product(id: $id, idType: $idType) {\n      ...ProductContentFull\n    }\n  }\n  ${ProductContentFull}\n`;\n\nexport const GetProductVariation = gql`\n  query GetProductVariation($id: ID!) {\n    productVariation(id: $id, idType: DATABASE_ID) {\n      ...VariationContent\n    }\n  }\n  ${VariationContent}\n`;\n\nexport const GetCart = gql`\n  query GetCart($customerId: Int) {\n    cart {\n      ...CartContent\n    }\n    customer(customerId: $customerId) {\n      ...CustomerContent\n    }\n  }\n  ${CartContent}\n  ${CustomerContent}\n`;\n\nexport const AddToCart = gql`\n  mutation AddToCart($productId: Int!, $variationId: Int, $quantity: Int, $extraData: String) {\n    addToCart(\n      input: {productId: $productId, variationId: $variationId, quantity: $quantity, extraData: $extraData}\n    ) {\n      cart {\n        ...CartContent\n      }\n      cartItem {\n        ...CartItemContent\n      }\n    }\n  }\n  ${CartContent}\n  ${CartItemContent}\n`;\n\nexport const UpdateCartItemQuantities = gql`\n  mutation UpdateCartItemQuantities($items: [CartItemQuantityInput]) {\n    updateItemQuantities(input: {items: $items}) {\n      cart {\n        ...CartContent\n      }\n      items {\n        ...CartItemContent\n      }\n    }\n  }\n  ${CartContent}\n  ${CartItemContent}\n`;\n\nexport const RemoveItemsFromCart = gql`\n  mutation RemoveItemsFromCart($keys: [ID], $all: Boolean) {\n    removeItemsFromCart(input: {keys: $keys, all: $all}) {\n      cart {\n        ...CartContent\n      }\n      cartItems {\n        ...CartItemContent\n      }\n    }\n  }\n  ${CartContent}\n  ${CartItemContent}\n`;\nexport const Login = gql`\n  mutation Login($username: String!, $password: String!) {\n    login(input: { username: $username, password: $password }) {\n      authToken\n      refreshToken\n      customer {\n        ...CustomerFields\n      }\n    }\n  }\n  ${CustomerFields}\n`;\n\nexport const UpdateCustomer = gql`\n  mutation UpdateCustomer($input: UpdateCustomerInput!) {\n    updateCustomer(input: $input) {\n      customer {\n        ...CustomerFields\n      }\n    }\n  }\n  ${CustomerFields}\n`;",
+      "start": 1716304639448,
+      "end": 1716304639574,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1716304639574,
+      "end": 1716304639574,
+      "order": "normal"
+    }
+  ]
+}

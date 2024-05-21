@@ -4,44 +4,44 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'Doc',\n  props: {\n  emptyTip: {\n    type: String,\n    required: false,\n    default: 'This page is empty',\n  },\n},\n  setup(__props) {\n\nconst props = __props\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_LayoutPageTitle = _resolveComponent(\"LayoutPageTitle\")!\n  const _component_LayoutPageHeader = _resolveComponent(\"LayoutPageHeader\")!\n  const _component_ContentRenderer = _resolveComponent(\"ContentRenderer\")!\n  const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\")!\n  const _component_AwesomeError = _resolveComponent(\"AwesomeError\")!\n  const _component_ContentDoc = _resolveComponent(\"ContentDoc\")!\n\n  return (_openBlock(), _createBlock(_component_ContentDoc, null, {\n    default: _withCtx(({ doc }) => [\n      _createVNode(_component_LayoutPageHeader, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_LayoutPageTitle, {\n            text: doc.title\n          }, null, 8, [\"text\"])\n        ]),\n        _: 2\n      }, 1024),\n      _createVNode(_component_LayoutPageSection, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_ContentRenderer, { value: doc }, null, 8, [\"value\"])\n        ]),\n        _: 2\n      }, 1024)\n    ]),\n    empty: _withCtx(() => [\n      _createElementVNode(\"h1\", null, _toDisplayString(__props.emptyTip), 1)\n    ]),\n    \"not-found\": _withCtx(() => [\n      _createVNode(_component_AwesomeError, {\n        code: 404,\n        wrap: \"\"\n      })\n    ]),\n    _: 1\n  }))\n}\n}\n\n})",
-      "start": 1713269985944,
-      "end": 1713269985944
+      "start": 1716304640070,
+      "end": 1716304640070
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269985944,
-      "end": 1713269985944,
+      "start": 1716304640070,
+      "end": 1716304640070,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269985944,
-      "end": 1713269985944,
+      "start": 1716304640070,
+      "end": 1716304640070,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269985944,
-      "end": 1713269985944,
+      "start": 1716304640070,
+      "end": 1716304640070,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269985944,
-      "end": 1713269985944,
+      "start": 1716304640070,
+      "end": 1716304640070,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269985944,
-      "end": 1713269985944,
+      "start": 1716304640070,
+      "end": 1716304640070,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Doc\",\n  props: {\n    emptyTip: {\n      type: String,\n      required: false,\n      default: \"This page is empty\"\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    return (_ctx, _cache) => {\n      const _component_LayoutPageTitle = _resolveComponent(\"LayoutPageTitle\");\n      const _component_LayoutPageHeader = _resolveComponent(\"LayoutPageHeader\");\n      const _component_ContentRenderer = _resolveComponent(\"ContentRenderer\");\n      const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\");\n      const _component_AwesomeError = _resolveComponent(\"AwesomeError\");\n      const _component_ContentDoc = _resolveComponent(\"ContentDoc\");\n      return _openBlock(), _createBlock(_component_ContentDoc, null, {\n        default: _withCtx(({ doc }) => [\n          _createVNode(_component_LayoutPageHeader, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageTitle, {\n                text: doc.title\n              }, null, 8, [\"text\"])\n            ]),\n            _: 2\n          }, 1024),\n          _createVNode(_component_LayoutPageSection, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_ContentRenderer, { value: doc }, null, 8, [\"value\"])\n            ]),\n            _: 2\n          }, 1024)\n        ]),\n        empty: _withCtx(() => [\n          _createElementVNode(\"h1\", null, _toDisplayString(__props.emptyTip), 1)\n        ]),\n        \"not-found\": _withCtx(() => [\n          _createVNode(_component_AwesomeError, {\n            code: 404,\n            wrap: \"\"\n          })\n        ]),\n        _: 1\n      });\n    };\n  }\n});\n",
-      "start": 1713269985944,
-      "end": 1713269986484,
+      "start": 1716304640070,
+      "end": 1716304640426,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -57,177 +57,177 @@
     },
     {
       "name": "vite:json",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640426,
+      "end": 1716304640426,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640426,
+      "end": 1716304640426,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640426,
+      "end": 1716304640426,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640426,
+      "end": 1716304640426,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640426,
+      "end": 1716304640426,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640426,
+      "end": 1716304640426,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640426,
+      "end": 1716304640426,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640426,
+      "end": 1716304640426,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640426,
+      "end": 1716304640426,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640426,
+      "end": 1716304640427,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269986484,
-      "end": 1713269986484,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269986484,
-      "end": 1713269986485,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269986485,
-      "end": 1713269986485,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269986485,
-      "end": 1713269986485,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1713269986485,
-      "end": 1713269986485,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1713269986485,
-      "end": 1713269986485,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Title.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Header.vue\";\nimport { default as __nuxt_component_2 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/@nuxt/content/dist/runtime/components/ContentRenderer.vue\";\nimport { default as __nuxt_component_3 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Section/index.vue\";\nimport { default as __nuxt_component_4 } from \"/Users/shubhamsingh/namma/importedProds/components/awesome/Error.vue\";\nimport { default as __nuxt_component_5 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/@nuxt/content/dist/runtime/components/ContentDoc.vue\";\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Doc\",\n  props: {\n    emptyTip: {\n      type: String,\n      required: false,\n      default: \"This page is empty\"\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    return (_ctx, _cache) => {\n      const _component_LayoutPageTitle = __nuxt_component_0;\n      const _component_LayoutPageHeader = __nuxt_component_1;\n      const _component_ContentRenderer = __nuxt_component_2;\n      const _component_LayoutPageSection = __nuxt_component_3;\n      const _component_AwesomeError = __nuxt_component_4;\n      const _component_ContentDoc = __nuxt_component_5;\n      return _openBlock(), _createBlock(_component_ContentDoc, null, {\n        default: _withCtx(({ doc }) => [\n          _createVNode(_component_LayoutPageHeader, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageTitle, {\n                text: doc.title\n              }, null, 8, [\"text\"])\n            ]),\n            _: 2\n          }, 1024),\n          _createVNode(_component_LayoutPageSection, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_ContentRenderer, { value: doc }, null, 8, [\"value\"])\n            ]),\n            _: 2\n          }, 1024)\n        ]),\n        empty: _withCtx(() => [\n          _createElementVNode(\"h1\", null, _toDisplayString(__props.emptyTip), 1)\n        ]),\n        \"not-found\": _withCtx(() => [\n          _createVNode(_component_AwesomeError, {\n            code: 404,\n            wrap: \"\"\n          })\n        ]),\n        _: 1\n      });\n    };\n  }\n});\n",
-      "start": 1713269986485,
-      "end": 1713269986485,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269986485,
-      "end": 1713269986485,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269986485,
-      "end": 1713269986485,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269986485,
-      "end": 1713269986485,
+      "start": 1716304640427,
+      "end": 1716304640427,
       "order": "normal"
     }
   ]

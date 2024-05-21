@@ -13,6 +13,14 @@ const props = defineProps({
   name: {
     type: String,
   },
+ startColor: {
+    type: Array,
+    default: () => ['purple', 'red', 'green'], // Default colors if none provided
+  },
+  endColor: {
+    type: Array,
+    default: () => ['white', 'green', 'blue'], 
+  },
 });
 const showAlert = ref(
   awesome?.layout?.welcome?.disableInfoReplaceIndexInWelcomePage
@@ -33,20 +41,20 @@ const titlesText = computed(() => {
 const leadingsText = computed(() => [
   {
     text: titlesText.value[0],
-    startColor: "purple",
-    endColor: "white",
+    startColor: props.startColor[0],
+    endColor: props.endColor[0],
     delay: 0,
   },
   {
     text: titlesText.value[1],
-    startColor: "purple",
-    endColor: "yellow",
+    startColor: props.startColor[1],
+    endColor: props.endColor[1],
     delay: 2,
   },
   {
     text: titlesText.value[2],
-    startColor: "purple",
-    endColor: "yellow",
+    startColor: props.startColor[2],
+    endColor: props.endColor[2],
     delay: 4,
   },
 ]);

@@ -3,82 +3,82 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "<template>\n  <div class=\"login-container\">\n    <form @submit.prevent=\"handleSignup\" class=\"login-form\">\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"firstName\"\n          placeholder=\"First Name\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"lastName\"\n          placeholder=\"Last Name\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"username\"\n          placeholder=\"Username\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"email\"\n          v-model=\"email\"\n          placeholder=\"Email\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"password\"\n          v-model=\"password\"\n          placeholder=\"Password\"\n          class=\"form-control\"\n        />\n      </div>\n\n      <div class=\"grid gap-4\">\n        <button type=\"submit\" :disabled=\"isLoading\" class=\"btn btn-primary\">\n          Sign Up\n        </button>\n\n        <div v-if=\"errors\" class=\"error-message\">{{ errors }}</div>\n      </div>\n    </form>\n  </div>\n</template>\n\n<script>\nimport { useAuthStore } from \"../../stores/auth\";\nimport { signup } from \"~/../utils/cart\";\nexport default {\n  data() {\n    return {\n      firstName: \"\",\n      lastName: \"\",\n      username: \"\",\n      email: \"\",\n      password: \"\",\n      isLoading: false,\n      errors: null,\n    };\n  },\n  methods: {\n    async handleSignup() {\n      let data = ref([]);\n      let { mutate: sign, loading } = useMutation(signup);\n      try {\n        loading = true;\n        data = await sign({\n          username: this.username,\n          lastName: this.lastName,\n          firstName: this.firstName,\n          email: this.eamil,\n          password: this.password,\n        });\n      } catch (error) {\n        console.error(\"Error Signing Up User :\", error);\n        loading = false;\n      }\n      console.log(\"Sign up form submitted\");\n      this.firstName = \"\";\n      this.lastName = \"\";\n      this.username = \"\";\n      this.email = \"\";\n      this.password = \"\";\n    },\n  },\n};\n</script>\n\n<style scoped>\n/* Add your CSS styles here */\n</style>\n",
-      "start": 1713269988276,
-      "end": 1713269988311,
+      "result": "<template>\n  <AwesomeWelcome name=\"REGISTER  \" />\n  <div class=\"signup-container\">\n    <form @submit.prevent=\"handleSignup\" class=\"signup-form\">\n      <div class=\"form-group\">\n        <input\n          v-model=\"username\"\n          placeholder=\"Username\"\n          required\n          class=\"form-control\"\n          />\n      </div>\n      <div class=\"form-group\">\n        <input\n          v-model=\"password\"\n          type=\"password\"\n          placeholder=\"Password\"\n          class=\"form-control\"\n          required\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          v-model=\"firstName\"\n          placeholder=\"First Name\"\n          required\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          v-model=\"lastName\"\n          placeholder=\"Last Name\"\n          required\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          v-model=\"email\"\n          type=\"email\"\n          placeholder=\"Email\"\n          required\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"grid gap-4\">\n        <button type=\"submit\" class=\"btn btn-primary\" :disabled=\"isLoading\">\n          Sign Up\n        </button>\n      </div>\n    </form>\n  </div>\n</template>\n\n<script>\nimport { signup } from \"../../utils/cart\";\nexport default {\n  name: \"SignupForm\",\n  setup() {\n    const { mutate: createUser, loading, error } = useMutation(signup);\n\n    const state = reactive({\n      username: \"\",\n      password: \"\",\n      firstName: \"\",\n      lastName: \"\",\n      email: \"\",\n    });\n\n    const handleSignup = async () => {\n      try {\n        const response = await createUser({ variables: { ...state } });\n        console.log(\"Signup successful\", response);\n        // Handle post-signup logic (e.g., redirect or display success message)\n      } catch (err) {\n        console.error(\"Error signing up:\", err);\n        // Handle errors (e.g., display error message)\n      }\n    };\n\n    return { ...toRefs(state), handleSignup, loading, error };\n  },\n};\n</script>\n<style scoped>\n.signup-container {\n  max-width: 400px;\n  margin: auto;\n  padding: 20px;\n  border: 1px solid rgb(0, 0, 0);\n  border-radius: 5px;\n  background-color: #000000;\n  color: #ff0000;\n}\n\n.signup-form {\n  display: flex;\n  flex-direction: column;\n}\n\n.form-group {\n  margin-bottom: 20px;\n}\n\n.form-control {\n  width: 100%;\n  padding: 10px;\n  font-size: 16px;\n  border: 1px solid rgb(129, 0, 0);\n  border-radius: 5px;\n}\n\n.btn {\n  padding: 10px 20px;\n  font-size: 16px;\n  background-color: #4285f4;\n  color: #fff;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n}\n\n.btn:disabled {\n  background-color: rgb(161, 5, 5);\n  cursor: not-allowed;\n}\n\n.error-message {\n  margin-top: 10px;\n  color: #d50000;\n  font-size: 14px;\n}\n</style>\n",
+      "start": 1716304642119,
+      "end": 1716304642156,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1716304642156,
+      "end": 1716304642156,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1716304642156,
+      "end": 1716304642156,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1716304642156,
+      "end": 1716304642156,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1716304642156,
+      "end": 1716304642156,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1716304642156,
+      "end": 1716304642156,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1716304642156,
+      "end": 1716304642156,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1716304642156,
+      "end": 1716304642156,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1716304642156,
+      "end": 1716304642156,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1716304642156,
+      "end": 1716304642156,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1716304642156,
+      "end": 1716304642156,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269988311,
-      "end": 1713269988311,
+      "start": 1716304642156,
+      "end": 1716304642156,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "result": "\nimport { useAuthStore } from \"../../stores/auth\";\nimport { signup } from \"~/../utils/cart\";\nconst _sfc_main = {\n  data() {\n    return {\n      firstName: \"\",\n      lastName: \"\",\n      username: \"\",\n      email: \"\",\n      password: \"\",\n      isLoading: false,\n      errors: null,\n    };\n  },\n  methods: {\n    async handleSignup() {\n      let data = ref([]);\n      let { mutate: sign, loading } = useMutation(signup);\n      try {\n        loading = true;\n        data = await sign({\n          username: this.username,\n          lastName: this.lastName,\n          firstName: this.firstName,\n          email: this.eamil,\n          password: this.password,\n        });\n      } catch (error) {\n        console.error(\"Error Signing Up User :\", error);\n        loading = false;\n      }\n      console.log(\"Sign up form submitted\");\n      this.firstName = \"\";\n      this.lastName = \"\";\n      this.username = \"\";\n      this.email = \"\";\n      this.password = \"\";\n    },\n  },\n};\n\nimport { mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderAttr as _ssrRenderAttr, ssrIncludeBooleanAttr as _ssrIncludeBooleanAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\"\n\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  _push(`<div${\n    _ssrRenderAttrs(_mergeProps({ class: \"login-container\" }, _attrs))\n  } data-v-a2a5022e><form class=\"login-form\" data-v-a2a5022e><div class=\"form-group\" data-v-a2a5022e><input type=\"text\"${\n    _ssrRenderAttr(\"value\", $data.firstName)\n  } placeholder=\"First Name\" class=\"form-control\" data-v-a2a5022e></div><div class=\"form-group\" data-v-a2a5022e><input type=\"text\"${\n    _ssrRenderAttr(\"value\", $data.lastName)\n  } placeholder=\"Last Name\" class=\"form-control\" data-v-a2a5022e></div><div class=\"form-group\" data-v-a2a5022e><input type=\"text\"${\n    _ssrRenderAttr(\"value\", $data.username)\n  } placeholder=\"Username\" class=\"form-control\" data-v-a2a5022e></div><div class=\"form-group\" data-v-a2a5022e><input type=\"email\"${\n    _ssrRenderAttr(\"value\", $data.email)\n  } placeholder=\"Email\" class=\"form-control\" data-v-a2a5022e></div><div class=\"form-group\" data-v-a2a5022e><input type=\"password\"${\n    _ssrRenderAttr(\"value\", $data.password)\n  } placeholder=\"Password\" class=\"form-control\" data-v-a2a5022e></div><div class=\"grid gap-4\" data-v-a2a5022e><button type=\"submit\"${\n    (_ssrIncludeBooleanAttr($data.isLoading)) ? \" disabled\" : \"\"\n  } class=\"btn btn-primary\" data-v-a2a5022e> Sign Up </button>`)\n  if ($data.errors) {\n    _push(`<div class=\"error-message\" data-v-a2a5022e>${_ssrInterpolate($data.errors)}</div>`)\n  } else {\n    _push(`<!---->`)\n  }\n  _push(`</div></form></div>`)\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Signup.vue?vue&type=style&index=0&scoped=a2a5022e&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"../components/awesome/Signup.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['ssrRender',_sfc_ssrRender],['__scopeId',\"data-v-a2a5022e\"]])",
-      "start": 1713269988311,
-      "end": 1713269988312,
+      "result": "\nimport { signup } from \"../../utils/cart\";\nconst _sfc_main = {\n  name: \"SignupForm\",\n  setup() {\n    const { mutate: createUser, loading, error } = useMutation(signup);\n\n    const state = reactive({\n      username: \"\",\n      password: \"\",\n      firstName: \"\",\n      lastName: \"\",\n      email: \"\",\n    });\n\n    const handleSignup = async () => {\n      try {\n        const response = await createUser({ variables: { ...state } });\n        console.log(\"Signup successful\", response);\n        // Handle post-signup logic (e.g., redirect or display success message)\n      } catch (err) {\n        console.error(\"Error signing up:\", err);\n        // Handle errors (e.g., display error message)\n      }\n    };\n\n    return { ...toRefs(state), handleSignup, loading, error };\n  },\n};\n\nimport { resolveComponent as _resolveComponent } from \"vue\"\nimport { ssrRenderComponent as _ssrRenderComponent, ssrRenderAttr as _ssrRenderAttr, ssrIncludeBooleanAttr as _ssrIncludeBooleanAttr } from \"vue/server-renderer\"\n\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  const _component_AwesomeWelcome = _resolveComponent(\"AwesomeWelcome\")\n\n  _push(`<!--[-->`)\n  _push(_ssrRenderComponent(_component_AwesomeWelcome, { name: \"REGISTER  \" }, null, _parent))\n  _push(`<div class=\"signup-container\" data-v-18842e06><form class=\"signup-form\" data-v-18842e06><div class=\"form-group\" data-v-18842e06><input${\n    _ssrRenderAttr(\"value\", _ctx.username)\n  } placeholder=\"Username\" required class=\"form-control\" data-v-18842e06></div><div class=\"form-group\" data-v-18842e06><input${\n    _ssrRenderAttr(\"value\", _ctx.password)\n  } type=\"password\" placeholder=\"Password\" class=\"form-control\" required data-v-18842e06></div><div class=\"form-group\" data-v-18842e06><input${\n    _ssrRenderAttr(\"value\", _ctx.firstName)\n  } placeholder=\"First Name\" required class=\"form-control\" data-v-18842e06></div><div class=\"form-group\" data-v-18842e06><input${\n    _ssrRenderAttr(\"value\", _ctx.lastName)\n  } placeholder=\"Last Name\" required class=\"form-control\" data-v-18842e06></div><div class=\"form-group\" data-v-18842e06><input${\n    _ssrRenderAttr(\"value\", _ctx.email)\n  } type=\"email\" placeholder=\"Email\" required class=\"form-control\" data-v-18842e06></div><div class=\"grid gap-4\" data-v-18842e06><button type=\"submit\" class=\"btn btn-primary\"${\n    (_ssrIncludeBooleanAttr(_ctx.isLoading)) ? \" disabled\" : \"\"\n  } data-v-18842e06> Sign Up </button></div></form></div><!--]-->`)\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Signup.vue?vue&type=style&index=0&scoped=18842e06&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"../components/awesome/Signup.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['ssrRender',_sfc_ssrRender],['__scopeId',\"data-v-18842e06\"]])",
+      "start": 1716304642156,
+      "end": 1716304642157,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -88,191 +88,191 @@
           "/Users/shubhamsingh/namma/importedProds/components/awesome/Signup.vue"
         ],
         "sourcesContent": [
-          "<template>\n  <div class=\"login-container\">\n    <form @submit.prevent=\"handleSignup\" class=\"login-form\">\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"firstName\"\n          placeholder=\"First Name\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"lastName\"\n          placeholder=\"Last Name\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"username\"\n          placeholder=\"Username\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"email\"\n          v-model=\"email\"\n          placeholder=\"Email\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"password\"\n          v-model=\"password\"\n          placeholder=\"Password\"\n          class=\"form-control\"\n        />\n      </div>\n\n      <div class=\"grid gap-4\">\n        <button type=\"submit\" :disabled=\"isLoading\" class=\"btn btn-primary\">\n          Sign Up\n        </button>\n\n        <div v-if=\"errors\" class=\"error-message\">{{ errors }}</div>\n      </div>\n    </form>\n  </div>\n</template>\n\n<script>\nimport { useAuthStore } from \"../../stores/auth\";\nimport { signup } from \"~/../utils/cart\";\nexport default {\n  data() {\n    return {\n      firstName: \"\",\n      lastName: \"\",\n      username: \"\",\n      email: \"\",\n      password: \"\",\n      isLoading: false,\n      errors: null,\n    };\n  },\n  methods: {\n    async handleSignup() {\n      let data = ref([]);\n      let { mutate: sign, loading } = useMutation(signup);\n      try {\n        loading = true;\n        data = await sign({\n          username: this.username,\n          lastName: this.lastName,\n          firstName: this.firstName,\n          email: this.eamil,\n          password: this.password,\n        });\n      } catch (error) {\n        console.error(\"Error Signing Up User :\", error);\n        loading = false;\n      }\n      console.log(\"Sign up form submitted\");\n      this.firstName = \"\";\n      this.lastName = \"\";\n      this.username = \"\";\n      this.email = \"\";\n      this.password = \"\";\n    },\n  },\n};\n</script>\n\n<style scoped>\n/* Add your CSS styles here */\n</style>\n"
+          "<template>\n  <AwesomeWelcome name=\"REGISTER  \" />\n  <div class=\"signup-container\">\n    <form @submit.prevent=\"handleSignup\" class=\"signup-form\">\n      <div class=\"form-group\">\n        <input\n          v-model=\"username\"\n          placeholder=\"Username\"\n          required\n          class=\"form-control\"\n          />\n      </div>\n      <div class=\"form-group\">\n        <input\n          v-model=\"password\"\n          type=\"password\"\n          placeholder=\"Password\"\n          class=\"form-control\"\n          required\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          v-model=\"firstName\"\n          placeholder=\"First Name\"\n          required\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          v-model=\"lastName\"\n          placeholder=\"Last Name\"\n          required\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          v-model=\"email\"\n          type=\"email\"\n          placeholder=\"Email\"\n          required\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"grid gap-4\">\n        <button type=\"submit\" class=\"btn btn-primary\" :disabled=\"isLoading\">\n          Sign Up\n        </button>\n      </div>\n    </form>\n  </div>\n</template>\n\n<script>\nimport { signup } from \"../../utils/cart\";\nexport default {\n  name: \"SignupForm\",\n  setup() {\n    const { mutate: createUser, loading, error } = useMutation(signup);\n\n    const state = reactive({\n      username: \"\",\n      password: \"\",\n      firstName: \"\",\n      lastName: \"\",\n      email: \"\",\n    });\n\n    const handleSignup = async () => {\n      try {\n        const response = await createUser({ variables: { ...state } });\n        console.log(\"Signup successful\", response);\n        // Handle post-signup logic (e.g., redirect or display success message)\n      } catch (err) {\n        console.error(\"Error signing up:\", err);\n        // Handle errors (e.g., display error message)\n      }\n    };\n\n    return { ...toRefs(state), handleSignup, loading, error };\n  },\n};\n</script>\n<style scoped>\n.signup-container {\n  max-width: 400px;\n  margin: auto;\n  padding: 20px;\n  border: 1px solid rgb(0, 0, 0);\n  border-radius: 5px;\n  background-color: #000000;\n  color: #ff0000;\n}\n\n.signup-form {\n  display: flex;\n  flex-direction: column;\n}\n\n.form-group {\n  margin-bottom: 20px;\n}\n\n.form-control {\n  width: 100%;\n  padding: 10px;\n  font-size: 16px;\n  border: 1px solid rgb(129, 0, 0);\n  border-radius: 5px;\n}\n\n.btn {\n  padding: 10px 20px;\n  font-size: 16px;\n  background-color: #4285f4;\n  color: #fff;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n}\n\n.btn:disabled {\n  background-color: rgb(161, 5, 5);\n  cursor: not-allowed;\n}\n\n.error-message {\n  margin-top: 10px;\n  color: #d50000;\n  font-size: 14px;\n}\n</style>\n"
         ],
-        "mappings": "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"
+        "mappings": "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"
       }
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Signup.vue\").then(r => r.default))",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269988312,
-      "end": 1713269988312,
+      "start": 1716304642157,
+      "end": 1716304642157,
       "order": "normal"
     }
   ]

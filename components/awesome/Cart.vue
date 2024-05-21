@@ -3,25 +3,27 @@ import { cartItem } from "../../utils/cart";
 
 const counter = useCounter();
 const data = ref(null);
-let error = null;
-
+const error = ref(null);
 
 const loadData = async () => {
   try {
     const { data: newData } = await useAsyncQuery(cartItem);
     data.value = newData;
-  }
-  catch (err) {
-    error = err;
+  } catch (err) {
+    error.value = err;
   }
 };
+
 onMounted(loadData);
 
-watch(data, (newVal, oldVal) => {
-  console.log("Data changed:", newVal);
+watch(data, (newData) => {
+  if (newData.value && newData.value.cart && newData.value.cart.contents && newData.value.cart.contents.nodes.length > 0) {
+    counter.count = newData.value.cart.contents.nodes[0].quantity;
+  }
 });
-console.log("data here", data);
+
 </script>
+
 <style></style>
 <template>
   <div v-if="data">
@@ -29,7 +31,7 @@ console.log("data here", data);
     <h1 class="mb-10 text-center text-3xl font-bold">Cart Items</h1>
     <div class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
       <div class="rounded-lg md:w-2/3">
-        <div v-if="data._value.cart.contents.nodes.length===0" class="grid place-items-start">
+        <div v-if="data._value.cart.contents.nodes.length<1" class="grid place-items-start">
           <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between" >  
           <h1 class="mb-10 text-center text-xl font-bold">No item added
             </h1>
@@ -54,20 +56,19 @@ console.log("data here", data);
                 <button
                   @click.prevent="counter.decrement"
                   class="counter-button mr-2 bg-red-800 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-red-600"
-                >{{ product.variation.node.databaseId }}
+                >
+                <!-- {{ product.variation.node.databaseId }} -->
                   -
                 </button>
                 <div class="relative">
-                  <span
-                    :key="counter.count"
-                    class="counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg"
-                    >{{ counter.count=product.quantity }}</span
-                  >
+                              <span class="counter bg-gray-200 text-red px-4 py-2 rounded-lg font-bold text-lg">{{ product.quantity }}</span>
+
                 </div>
                 <button
                   @click.prevent="counter.increment"
                   class="counter-button ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-lg hover:bg-blue-600"
-                >{{ product.variation.node.image.parentDatabaseId }}
+                >
+                <!-- {{ product.variation.node.image.parentDatabaseId }} -->
                   +
                 </button> 
               </div>

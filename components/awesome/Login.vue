@@ -79,15 +79,16 @@ export default {
         const authStore = useAuthStore();
 
         const { authToken, refreshToken, user } = data.login;
-        localStorage.setItem("authToken", authToken);
-        localStorage.setItem("refreshToken", refreshToken);
+        sessionStorage.setItem("authToken", authToken);
+        sessionStorage.setItem("refreshToken", refreshToken);
+        sessionStorage.setItem("user", user.username);
         authStore.setUser(user.username);
         authStore.setToken(authToken);
         authStore.setRToken(refreshToken);
         console.log("Auth Token:", authToken);
         console.log("Refresh Token:", refreshToken);
         console.log(user.username, "user");
-        await this.$router.push("/cart");
+        await this.$router.push("/");
       } catch (error) {
         console.error("Login failed:", error.message);
         this.errors = error.message;

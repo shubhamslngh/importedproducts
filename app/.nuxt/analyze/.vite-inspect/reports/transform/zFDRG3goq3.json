@@ -1,0 +1,222 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/node_modules/@apollo/client/react/hooks/internal/wrapHook.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "var wrapperSymbol = Symbol.for(\"apollo.hook.wrappers\");\n/**\n * @internal\n *\n * Makes an Apollo Client hook \"wrappable\".\n * That means that the Apollo Client instance can expose a \"wrapper\" that will be\n * used to wrap the original hook implementation with additional logic.\n * @example\n * ```tsx\n * // this is already done in `@apollo/client` for all wrappable hooks (see `WrappableHooks`)\n * // following this pattern\n * function useQuery() {\n *   return wrapHook('useQuery', _useQuery, options.client)(query, options);\n * }\n * function _useQuery(query, options) {\n *   // original implementation\n * }\n *\n * // this is what a library like `@apollo/client-react-streaming` would do\n * class ApolloClientWithStreaming extends ApolloClient {\n *   constructor(options) {\n *     super(options);\n *     this.queryManager[Symbol.for(\"apollo.hook.wrappers\")] = {\n *       useQuery: (original) => (query, options) => {\n *         console.log(\"useQuery was called with options\", options);\n *         return original(query, options);\n *       }\n *     }\n *   }\n * }\n *\n * // this will now log the options and then call the original `useQuery`\n * const client = new ApolloClientWithStreaming({ ... });\n * useQuery(query, { client });\n * ```\n */\nexport function wrapHook(hookName, useHook, clientOrObsQuery) {\n    var queryManager = clientOrObsQuery[\"queryManager\"];\n    var wrappers = queryManager && queryManager[wrapperSymbol];\n    var wrapper = wrappers && wrappers[hookName];\n    return wrapper ? wrapper(useHook) : useHook;\n}\n//# sourceMappingURL=wrapHook.js.map",
+      "start": 1716304640282,
+      "end": 1716304640291,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1716304640291,
+      "end": 1716304640291,
+      "order": "normal"
+    }
+  ]
+}

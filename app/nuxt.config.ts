@@ -7,7 +7,6 @@ export default defineNuxtConfig(
     '@nuxtjs/apollo',
     '@nuxtjs/tailwindcss',
     'nuxt-swiper'
-    // 'nuxt-graphql-client',
     ],
  
    apollo: {

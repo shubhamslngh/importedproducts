@@ -1,0 +1,264 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/node_modules/@apollo/client/react/hooks/useFragment.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { __assign, __rest } from \"tslib\";\nimport * as React from \"rehackt\";\nimport { equal } from \"@wry/equality\";\nimport { mergeDeepArray } from \"../../utilities/index.js\";\nimport { useApolloClient } from \"./useApolloClient.js\";\nimport { useSyncExternalStore } from \"./useSyncExternalStore.js\";\nimport { useDeepMemo, useLazyRef, wrapHook } from \"./internal/index.js\";\nexport function useFragment(options) {\n    return wrapHook(\"useFragment\", _useFragment, useApolloClient(options.client))(options);\n}\nfunction _useFragment(options) {\n    var cache = useApolloClient(options.client).cache;\n    var diffOptions = useDeepMemo(function () {\n        var fragment = options.fragment, fragmentName = options.fragmentName, from = options.from, _a = options.optimistic, optimistic = _a === void 0 ? true : _a, rest = __rest(options, [\"fragment\", \"fragmentName\", \"from\", \"optimistic\"]);\n        return __assign(__assign({}, rest), { returnPartialData: true, id: typeof from === \"string\" ? from : cache.identify(from), query: cache[\"getFragmentDoc\"](fragment, fragmentName), optimistic: optimistic });\n    }, [options]);\n    var resultRef = useLazyRef(function () {\n        return diffToResult(cache.diff(diffOptions));\n    });\n    // Used for both getSnapshot and getServerSnapshot\n    var getSnapshot = React.useCallback(function () { return resultRef.current; }, []);\n    return useSyncExternalStore(React.useCallback(function (forceUpdate) {\n        var lastTimeout = 0;\n        var unsubscribe = cache.watch(__assign(__assign({}, diffOptions), { immediate: true, callback: function (diff) {\n                if (!equal(diff.result, resultRef.current.data)) {\n                    resultRef.current = diffToResult(diff);\n                    // If we get another update before we've re-rendered, bail out of\n                    // the update and try again. This ensures that the relative timing\n                    // between useQuery and useFragment stays roughly the same as\n                    // fixed in https://github.com/apollographql/apollo-client/pull/11083\n                    clearTimeout(lastTimeout);\n                    lastTimeout = setTimeout(forceUpdate);\n                }\n            } }));\n        return function () {\n            unsubscribe();\n            clearTimeout(lastTimeout);\n        };\n    }, [cache, diffOptions]), getSnapshot, getSnapshot);\n}\nfunction diffToResult(diff) {\n    var result = {\n        data: diff.result,\n        complete: !!diff.complete,\n    };\n    if (diff.missing) {\n        result.missing = mergeDeepArray(diff.missing.map(function (error) { return error.missing; }));\n    }\n    return result;\n}\n//# sourceMappingURL=useFragment.js.map",
+      "start": 1716304642815,
+      "end": 1716304642855,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1716304642855,
+      "end": 1716304642855,
+      "order": "normal"
+    }
+  ]
+}

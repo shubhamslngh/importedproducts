@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+import { ref, computed } from 'vue';
+import { useAuthStore } from '~/stores/auth';
+const authStore = useAuthStore();
+
 const { awesome } = useAppConfig();
 const { parseMenuRoute, parseMenuTitle } = useNavbarParser();
 const $screen = useAwesomeScreen();
@@ -12,6 +16,11 @@ const menus = computed(
 
 // drawer
 const showDrawer = ref(false);
+
+const handleLogout = () => {
+  authStore.logout();
+  window.location.href = '/login'; // Redirect to login page or any other page
+};
 </script>
 
 <template>
@@ -52,8 +61,20 @@ const showDrawer = ref(false);
           <!-- <AwesomeLink class="text-gray-400 hover:text-gray-100">
             <Icon name="la:language" />
           </AwesomeLink> -->
+         
+          <div v-if="authStore.isAuthenticated" class="flex items-center space-x-2">
+            <span class="text-gray-800 text-xs dark:text-gray-200">Welcome {{ authStore.user }}!</span>
+            <AwesomeButton
+              @click="handleLogout"
+              text="Logout"
+              size="xs" 
+              type="none" 
+              class="ml-4 p-2 bg-white hover:bg-blue  dark:text-red-800 hover:text-primary-500"
+            />
+          </div>
           <LayoutPageNavbarDropdownThemeSwitcher />
-          <AwesomeLink
+
+           <AwesomeLink
             v-if="awesome?.project?.links?.github"
             class="dark:text-gray-400 text-gray-600"
             :href="awesome?.project?.links?.github"
@@ -72,7 +93,7 @@ const showDrawer = ref(false);
           <AwesomeLink
             v-if="awesome?.project?.links?.github"
             class="text-gray-400 hover:text-gray-100"
-            @click.prevent="() => (showDrawer = !showDrawer)"
+            @click.prevent="() => (showDrawer.value = !showDrawer.value)"
           >
             <Icon name="heroicons:bars-3-bottom-right-20-solid" />
           </AwesomeLink>
@@ -83,7 +104,7 @@ const showDrawer = ref(false);
     <!-- drawer -->
     <AwesomeActionSheet
       v-if="!$screen.higherThan('md', $screen.current.value) && showDrawer"
-      @close="() => (showDrawer = false)"
+      @close="() => (showDrawer.value = false)"
     >
       <AwesomeActionSheetGroup>
         <AwesomeActionSheetHeader>

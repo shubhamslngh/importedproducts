@@ -4,262 +4,262 @@
     {
       "name": "vite:load-fallback",
       "result": "import { __assign } from \"tslib\";\nimport { equal } from \"@wry/equality\";\nimport { DeepMerger } from \"../utilities/index.js\";\nimport { mergeIncrementalData } from \"../utilities/index.js\";\nimport { reobserveCacheFirst } from \"./ObservableQuery.js\";\nimport { isNonEmptyArray, graphQLResultHasError, canUseWeakMap, } from \"../utilities/index.js\";\nimport { NetworkStatus, isNetworkRequestInFlight } from \"./networkStatus.js\";\nvar destructiveMethodCounts = new (canUseWeakMap ? WeakMap : Map)();\nfunction wrapDestructiveCacheMethod(cache, methodName) {\n    var original = cache[methodName];\n    if (typeof original === \"function\") {\n        // @ts-expect-error this is just too generic to be typed correctly\n        cache[methodName] = function () {\n            destructiveMethodCounts.set(cache, \n            // The %1e15 allows the count to wrap around to 0 safely every\n            // quadrillion evictions, so there's no risk of overflow. To be\n            // clear, this is more of a pedantic principle than something\n            // that matters in any conceivable practical scenario.\n            (destructiveMethodCounts.get(cache) + 1) % 1e15);\n            // @ts-expect-error this is just too generic to be typed correctly\n            return original.apply(this, arguments);\n        };\n    }\n}\nfunction cancelNotifyTimeout(info) {\n    if (info[\"notifyTimeout\"]) {\n        clearTimeout(info[\"notifyTimeout\"]);\n        info[\"notifyTimeout\"] = void 0;\n    }\n}\n// A QueryInfo object represents a single query managed by the\n// QueryManager, which tracks all QueryInfo objects by queryId in its\n// this.queries Map. QueryInfo objects store the latest results and errors\n// for the given query, and are responsible for reporting those results to\n// the corresponding ObservableQuery, via the QueryInfo.notify method.\n// Results are reported asynchronously whenever setDiff marks the\n// QueryInfo object as dirty, though a call to the QueryManager's\n// broadcastQueries method may trigger the notification before it happens\n// automatically. This class used to be a simple interface type without\n// any field privacy or meaningful methods, which is why it still has so\n// many public fields. The effort to lock down and simplify the QueryInfo\n// interface is ongoing, and further improvements are welcome.\nvar QueryInfo = /** @class */ (function () {\n    function QueryInfo(queryManager, queryId) {\n        if (queryId === void 0) { queryId = queryManager.generateQueryId(); }\n        this.queryId = queryId;\n        this.listeners = new Set();\n        this.document = null;\n        this.lastRequestId = 1;\n        this.stopped = false;\n        this.dirty = false;\n        this.observableQuery = null;\n        var cache = (this.cache = queryManager.cache);\n        // Track how often cache.evict is called, since we want eviction to\n        // override the feud-stopping logic in the markResult method, by\n        // causing shouldWrite to return true. Wrapping the cache.evict method\n        // is a bit of a hack, but it saves us from having to make eviction\n        // counting an official part of the ApolloCache API.\n        if (!destructiveMethodCounts.has(cache)) {\n            destructiveMethodCounts.set(cache, 0);\n            wrapDestructiveCacheMethod(cache, \"evict\");\n            wrapDestructiveCacheMethod(cache, \"modify\");\n            wrapDestructiveCacheMethod(cache, \"reset\");\n        }\n    }\n    QueryInfo.prototype.init = function (query) {\n        var networkStatus = query.networkStatus || NetworkStatus.loading;\n        if (this.variables &&\n            this.networkStatus !== NetworkStatus.loading &&\n            !equal(this.variables, query.variables)) {\n            networkStatus = NetworkStatus.setVariables;\n        }\n        if (!equal(query.variables, this.variables)) {\n            this.lastDiff = void 0;\n        }\n        Object.assign(this, {\n            document: query.document,\n            variables: query.variables,\n            networkError: null,\n            graphQLErrors: this.graphQLErrors || [],\n            networkStatus: networkStatus,\n        });\n        if (query.observableQuery) {\n            this.setObservableQuery(query.observableQuery);\n        }\n        if (query.lastRequestId) {\n            this.lastRequestId = query.lastRequestId;\n        }\n        return this;\n    };\n    QueryInfo.prototype.reset = function () {\n        cancelNotifyTimeout(this);\n        this.dirty = false;\n    };\n    QueryInfo.prototype.resetDiff = function () {\n        this.lastDiff = void 0;\n    };\n    QueryInfo.prototype.getDiff = function () {\n        var options = this.getDiffOptions();\n        if (this.lastDiff && equal(options, this.lastDiff.options)) {\n            return this.lastDiff.diff;\n        }\n        this.updateWatch(this.variables);\n        var oq = this.observableQuery;\n        if (oq && oq.options.fetchPolicy === \"no-cache\") {\n            return { complete: false };\n        }\n        var diff = this.cache.diff(options);\n        this.updateLastDiff(diff, options);\n        return diff;\n    };\n    QueryInfo.prototype.updateLastDiff = function (diff, options) {\n        this.lastDiff =\n            diff ?\n                {\n                    diff: diff,\n                    options: options || this.getDiffOptions(),\n                }\n                : void 0;\n    };\n    QueryInfo.prototype.getDiffOptions = function (variables) {\n        var _a;\n        if (variables === void 0) { variables = this.variables; }\n        return {\n            query: this.document,\n            variables: variables,\n            returnPartialData: true,\n            optimistic: true,\n            canonizeResults: (_a = this.observableQuery) === null || _a === void 0 ? void 0 : _a.options.canonizeResults,\n        };\n    };\n    QueryInfo.prototype.setDiff = function (diff) {\n        var _this = this;\n        var _a;\n        var oldDiff = this.lastDiff && this.lastDiff.diff;\n        // If we do not tolerate partial results, skip this update to prevent it\n        // from being reported. This prevents a situtuation where a query that\n        // errors and another succeeds with overlapping data does not report the\n        // partial data result to the errored query.\n        //\n        // See https://github.com/apollographql/apollo-client/issues/11400 for more\n        // information on this issue.\n        if (diff &&\n            !diff.complete &&\n            !((_a = this.observableQuery) === null || _a === void 0 ? void 0 : _a.options.returnPartialData) &&\n            // In the case of a cache eviction, the diff will become partial so we\n            // schedule a notification to send a network request (this.oqListener) to\n            // go and fetch the missing data.\n            !(oldDiff && oldDiff.complete)) {\n            return;\n        }\n        this.updateLastDiff(diff);\n        if (!this.dirty && !equal(oldDiff && oldDiff.result, diff && diff.result)) {\n            this.dirty = true;\n            if (!this.notifyTimeout) {\n                this.notifyTimeout = setTimeout(function () { return _this.notify(); }, 0);\n            }\n        }\n    };\n    QueryInfo.prototype.setObservableQuery = function (oq) {\n        var _this = this;\n        if (oq === this.observableQuery)\n            return;\n        if (this.oqListener) {\n            this.listeners.delete(this.oqListener);\n        }\n        this.observableQuery = oq;\n        if (oq) {\n            oq[\"queryInfo\"] = this;\n            this.listeners.add((this.oqListener = function () {\n                var diff = _this.getDiff();\n                if (diff.fromOptimisticTransaction) {\n                    // If this diff came from an optimistic transaction, deliver the\n                    // current cache data to the ObservableQuery, but don't perform a\n                    // reobservation, since oq.reobserveCacheFirst might make a network\n                    // request, and we never want to trigger network requests in the\n                    // middle of optimistic updates.\n                    oq[\"observe\"]();\n                }\n                else {\n                    // Otherwise, make the ObservableQuery \"reobserve\" the latest data\n                    // using a temporary fetch policy of \"cache-first\", so complete cache\n                    // results have a chance to be delivered without triggering additional\n                    // network requests, even when options.fetchPolicy is \"network-only\"\n                    // or \"cache-and-network\". All other fetch policies are preserved by\n                    // this method, and are handled by calling oq.reobserve(). If this\n                    // reobservation is spurious, isDifferentFromLastResult still has a\n                    // chance to catch it before delivery to ObservableQuery subscribers.\n                    reobserveCacheFirst(oq);\n                }\n            }));\n        }\n        else {\n            delete this.oqListener;\n        }\n    };\n    QueryInfo.prototype.notify = function () {\n        var _this = this;\n        cancelNotifyTimeout(this);\n        if (this.shouldNotify()) {\n            this.listeners.forEach(function (listener) { return listener(_this); });\n        }\n        this.dirty = false;\n    };\n    QueryInfo.prototype.shouldNotify = function () {\n        if (!this.dirty || !this.listeners.size) {\n            return false;\n        }\n        if (isNetworkRequestInFlight(this.networkStatus) && this.observableQuery) {\n            var fetchPolicy = this.observableQuery.options.fetchPolicy;\n            if (fetchPolicy !== \"cache-only\" && fetchPolicy !== \"cache-and-network\") {\n                return false;\n            }\n        }\n        return true;\n    };\n    QueryInfo.prototype.stop = function () {\n        if (!this.stopped) {\n            this.stopped = true;\n            // Cancel the pending notify timeout\n            this.reset();\n            this.cancel();\n            // Revert back to the no-op version of cancel inherited from\n            // QueryInfo.prototype.\n            this.cancel = QueryInfo.prototype.cancel;\n            var oq = this.observableQuery;\n            if (oq)\n                oq.stopPolling();\n        }\n    };\n    // This method is a no-op by default, until/unless overridden by the\n    // updateWatch method.\n    QueryInfo.prototype.cancel = function () { };\n    QueryInfo.prototype.updateWatch = function (variables) {\n        var _this = this;\n        if (variables === void 0) { variables = this.variables; }\n        var oq = this.observableQuery;\n        if (oq && oq.options.fetchPolicy === \"no-cache\") {\n            return;\n        }\n        var watchOptions = __assign(__assign({}, this.getDiffOptions(variables)), { watcher: this, callback: function (diff) { return _this.setDiff(diff); } });\n        if (!this.lastWatch || !equal(watchOptions, this.lastWatch)) {\n            this.cancel();\n            this.cancel = this.cache.watch((this.lastWatch = watchOptions));\n        }\n    };\n    QueryInfo.prototype.resetLastWrite = function () {\n        this.lastWrite = void 0;\n    };\n    QueryInfo.prototype.shouldWrite = function (result, variables) {\n        var lastWrite = this.lastWrite;\n        return !(lastWrite &&\n            // If cache.evict has been called since the last time we wrote this\n            // data into the cache, there's a chance writing this result into\n            // the cache will repair what was evicted.\n            lastWrite.dmCount === destructiveMethodCounts.get(this.cache) &&\n            equal(variables, lastWrite.variables) &&\n            equal(result.data, lastWrite.result.data));\n    };\n    QueryInfo.prototype.markResult = function (result, document, options, cacheWriteBehavior) {\n        var _this = this;\n        var merger = new DeepMerger();\n        var graphQLErrors = isNonEmptyArray(result.errors) ? result.errors.slice(0) : [];\n        // Cancel the pending notify timeout (if it exists) to prevent extraneous network\n        // requests. To allow future notify timeouts, diff and dirty are reset as well.\n        this.reset();\n        if (\"incremental\" in result && isNonEmptyArray(result.incremental)) {\n            var mergedData = mergeIncrementalData(this.getDiff().result, result);\n            result.data = mergedData;\n            // Detect the first chunk of a deferred query and merge it with existing\n            // cache data. This ensures a `cache-first` fetch policy that returns\n            // partial cache data or a `cache-and-network` fetch policy that already\n            // has full data in the cache does not complain when trying to merge the\n            // initial deferred server data with existing cache data.\n        }\n        else if (\"hasNext\" in result && result.hasNext) {\n            var diff = this.getDiff();\n            result.data = merger.merge(diff.result, result.data);\n        }\n        this.graphQLErrors = graphQLErrors;\n        if (options.fetchPolicy === \"no-cache\") {\n            this.updateLastDiff({ result: result.data, complete: true }, this.getDiffOptions(options.variables));\n        }\n        else if (cacheWriteBehavior !== 0 /* CacheWriteBehavior.FORBID */) {\n            if (shouldWriteResult(result, options.errorPolicy)) {\n                // Using a transaction here so we have a chance to read the result\n                // back from the cache before the watch callback fires as a result\n                // of writeQuery, so we can store the new diff quietly and ignore\n                // it when we receive it redundantly from the watch callback.\n                this.cache.performTransaction(function (cache) {\n                    if (_this.shouldWrite(result, options.variables)) {\n                        cache.writeQuery({\n                            query: document,\n                            data: result.data,\n                            variables: options.variables,\n                            overwrite: cacheWriteBehavior === 1 /* CacheWriteBehavior.OVERWRITE */,\n                        });\n                        _this.lastWrite = {\n                            result: result,\n                            variables: options.variables,\n                            dmCount: destructiveMethodCounts.get(_this.cache),\n                        };\n                    }\n                    else {\n                        // If result is the same as the last result we received from\n                        // the network (and the variables match too), avoid writing\n                        // result into the cache again. The wisdom of skipping this\n                        // cache write is far from obvious, since any cache write\n                        // could be the one that puts the cache back into a desired\n                        // state, fixing corruption or missing data. However, if we\n                        // always write every network result into the cache, we enable\n                        // feuds between queries competing to update the same data in\n                        // incompatible ways, which can lead to an endless cycle of\n                        // cache broadcasts and useless network requests. As with any\n                        // feud, eventually one side must step back from the brink,\n                        // letting the other side(s) have the last word(s). There may\n                        // be other points where we could break this cycle, such as\n                        // silencing the broadcast for cache.writeQuery (not a good\n                        // idea, since it just delays the feud a bit) or somehow\n                        // avoiding the network request that just happened (also bad,\n                        // because the server could return useful new data). All\n                        // options considered, skipping this cache write seems to be\n                        // the least damaging place to break the cycle, because it\n                        // reflects the intuition that we recently wrote this exact\n                        // result into the cache, so the cache *should* already/still\n                        // contain this data. If some other query has clobbered that\n                        // data in the meantime, that's too bad, but there will be no\n                        // winners if every query blindly reverts to its own version\n                        // of the data. This approach also gives the network a chance\n                        // to return new data, which will be written into the cache as\n                        // usual, notifying only those queries that are directly\n                        // affected by the cache updates, as usual. In the future, an\n                        // even more sophisticated cache could perhaps prevent or\n                        // mitigate the clobbering somehow, but that would make this\n                        // particular cache write even less important, and thus\n                        // skipping it would be even safer than it is today.\n                        if (_this.lastDiff && _this.lastDiff.diff.complete) {\n                            // Reuse data from the last good (complete) diff that we\n                            // received, when possible.\n                            result.data = _this.lastDiff.diff.result;\n                            return;\n                        }\n                        // If the previous this.diff was incomplete, fall through to\n                        // re-reading the latest data with cache.diff, below.\n                    }\n                    var diffOptions = _this.getDiffOptions(options.variables);\n                    var diff = cache.diff(diffOptions);\n                    // In case the QueryManager stops this QueryInfo before its\n                    // results are delivered, it's important to avoid restarting the\n                    // cache watch when markResult is called. We also avoid updating\n                    // the watch if we are writing a result that doesn't match the current\n                    // variables to avoid race conditions from broadcasting the wrong\n                    // result.\n                    if (!_this.stopped && equal(_this.variables, options.variables)) {\n                        // Any time we're about to update this.diff, we need to make\n                        // sure we've started watching the cache.\n                        _this.updateWatch(options.variables);\n                    }\n                    // If we're allowed to write to the cache, and we can read a\n                    // complete result from the cache, update result.data to be the\n                    // result from the cache, rather than the raw network result.\n                    // Set without setDiff to avoid triggering a notify call, since\n                    // we have other ways of notifying for this result.\n                    _this.updateLastDiff(diff, diffOptions);\n                    if (diff.complete) {\n                        result.data = diff.result;\n                    }\n                });\n            }\n            else {\n                this.lastWrite = void 0;\n            }\n        }\n    };\n    QueryInfo.prototype.markReady = function () {\n        this.networkError = null;\n        return (this.networkStatus = NetworkStatus.ready);\n    };\n    QueryInfo.prototype.markError = function (error) {\n        this.networkStatus = NetworkStatus.error;\n        this.lastWrite = void 0;\n        this.reset();\n        if (error.graphQLErrors) {\n            this.graphQLErrors = error.graphQLErrors;\n        }\n        if (error.networkError) {\n            this.networkError = error.networkError;\n        }\n        return error;\n    };\n    return QueryInfo;\n}());\nexport { QueryInfo };\nexport function shouldWriteResult(result, errorPolicy) {\n    if (errorPolicy === void 0) { errorPolicy = \"none\"; }\n    var ignoreErrors = errorPolicy === \"ignore\" || errorPolicy === \"all\";\n    var writeWithErrors = !graphQLResultHasError(result);\n    if (!writeWithErrors && ignoreErrors && result.data) {\n        writeWithErrors = true;\n    }\n    return writeWithErrors;\n}\n//# sourceMappingURL=QueryInfo.js.map",
-      "start": 1713269989580,
-      "end": 1713269989585,
+      "start": 1716304643478,
+      "end": 1716304643481,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643481,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269989585,
-      "end": 1713269989585,
+      "start": 1716304643481,
+      "end": 1716304643482,
       "order": "normal"
     },
     {
       "name": "vite:define",
       "result": "import { __assign } from \"tslib\";\nimport { equal } from \"@wry/equality\";\nimport { DeepMerger } from \"../utilities/index.js\";\nimport { mergeIncrementalData } from \"../utilities/index.js\";\nimport { reobserveCacheFirst } from \"./ObservableQuery.js\";\nimport { isNonEmptyArray, graphQLResultHasError, canUseWeakMap } from \"../utilities/index.js\";\nimport { NetworkStatus, isNetworkRequestInFlight } from \"./networkStatus.js\";\nvar destructiveMethodCounts = new (canUseWeakMap ? WeakMap : Map)();\nfunction wrapDestructiveCacheMethod(cache, methodName) {\n  var original = cache[methodName];\n  if (typeof original === \"function\") {\n    cache[methodName] = function() {\n      destructiveMethodCounts.set(\n        cache,\n        // The %1e15 allows the count to wrap around to 0 safely every\n        // quadrillion evictions, so there's no risk of overflow. To be\n        // clear, this is more of a pedantic principle than something\n        // that matters in any conceivable practical scenario.\n        (destructiveMethodCounts.get(cache) + 1) % 1e15\n      );\n      return original.apply(this, arguments);\n    };\n  }\n}\nfunction cancelNotifyTimeout(info) {\n  if (info[\"notifyTimeout\"]) {\n    clearTimeout(info[\"notifyTimeout\"]);\n    info[\"notifyTimeout\"] = void 0;\n  }\n}\nvar QueryInfo = (\n  /** @class */\n  function() {\n    function QueryInfo2(queryManager, queryId) {\n      if (queryId === void 0) {\n        queryId = queryManager.generateQueryId();\n      }\n      this.queryId = queryId;\n      this.listeners = /* @__PURE__ */ new Set();\n      this.document = null;\n      this.lastRequestId = 1;\n      this.stopped = false;\n      this.dirty = false;\n      this.observableQuery = null;\n      var cache = this.cache = queryManager.cache;\n      if (!destructiveMethodCounts.has(cache)) {\n        destructiveMethodCounts.set(cache, 0);\n        wrapDestructiveCacheMethod(cache, \"evict\");\n        wrapDestructiveCacheMethod(cache, \"modify\");\n        wrapDestructiveCacheMethod(cache, \"reset\");\n      }\n    }\n    QueryInfo2.prototype.init = function(query) {\n      var networkStatus = query.networkStatus || NetworkStatus.loading;\n      if (this.variables && this.networkStatus !== NetworkStatus.loading && !equal(this.variables, query.variables)) {\n        networkStatus = NetworkStatus.setVariables;\n      }\n      if (!equal(query.variables, this.variables)) {\n        this.lastDiff = void 0;\n      }\n      Object.assign(this, {\n        document: query.document,\n        variables: query.variables,\n        networkError: null,\n        graphQLErrors: this.graphQLErrors || [],\n        networkStatus\n      });\n      if (query.observableQuery) {\n        this.setObservableQuery(query.observableQuery);\n      }\n      if (query.lastRequestId) {\n        this.lastRequestId = query.lastRequestId;\n      }\n      return this;\n    };\n    QueryInfo2.prototype.reset = function() {\n      cancelNotifyTimeout(this);\n      this.dirty = false;\n    };\n    QueryInfo2.prototype.resetDiff = function() {\n      this.lastDiff = void 0;\n    };\n    QueryInfo2.prototype.getDiff = function() {\n      var options = this.getDiffOptions();\n      if (this.lastDiff && equal(options, this.lastDiff.options)) {\n        return this.lastDiff.diff;\n      }\n      this.updateWatch(this.variables);\n      var oq = this.observableQuery;\n      if (oq && oq.options.fetchPolicy === \"no-cache\") {\n        return { complete: false };\n      }\n      var diff = this.cache.diff(options);\n      this.updateLastDiff(diff, options);\n      return diff;\n    };\n    QueryInfo2.prototype.updateLastDiff = function(diff, options) {\n      this.lastDiff = diff ? {\n        diff,\n        options: options || this.getDiffOptions()\n      } : void 0;\n    };\n    QueryInfo2.prototype.getDiffOptions = function(variables) {\n      var _a;\n      if (variables === void 0) {\n        variables = this.variables;\n      }\n      return {\n        query: this.document,\n        variables,\n        returnPartialData: true,\n        optimistic: true,\n        canonizeResults: (_a = this.observableQuery) === null || _a === void 0 ? void 0 : _a.options.canonizeResults\n      };\n    };\n    QueryInfo2.prototype.setDiff = function(diff) {\n      var _this = this;\n      var _a;\n      var oldDiff = this.lastDiff && this.lastDiff.diff;\n      if (diff && !diff.complete && !((_a = this.observableQuery) === null || _a === void 0 ? void 0 : _a.options.returnPartialData) && // In the case of a cache eviction, the diff will become partial so we\n      // schedule a notification to send a network request (this.oqListener) to\n      // go and fetch the missing data.\n      !(oldDiff && oldDiff.complete)) {\n        return;\n      }\n      this.updateLastDiff(diff);\n      if (!this.dirty && !equal(oldDiff && oldDiff.result, diff && diff.result)) {\n        this.dirty = true;\n        if (!this.notifyTimeout) {\n          this.notifyTimeout = setTimeout(function() {\n            return _this.notify();\n          }, 0);\n        }\n      }\n    };\n    QueryInfo2.prototype.setObservableQuery = function(oq) {\n      var _this = this;\n      if (oq === this.observableQuery)\n        return;\n      if (this.oqListener) {\n        this.listeners.delete(this.oqListener);\n      }\n      this.observableQuery = oq;\n      if (oq) {\n        oq[\"queryInfo\"] = this;\n        this.listeners.add(this.oqListener = function() {\n          var diff = _this.getDiff();\n          if (diff.fromOptimisticTransaction) {\n            oq[\"observe\"]();\n          } else {\n            reobserveCacheFirst(oq);\n          }\n        });\n      } else {\n        delete this.oqListener;\n      }\n    };\n    QueryInfo2.prototype.notify = function() {\n      var _this = this;\n      cancelNotifyTimeout(this);\n      if (this.shouldNotify()) {\n        this.listeners.forEach(function(listener) {\n          return listener(_this);\n        });\n      }\n      this.dirty = false;\n    };\n    QueryInfo2.prototype.shouldNotify = function() {\n      if (!this.dirty || !this.listeners.size) {\n        return false;\n      }\n      if (isNetworkRequestInFlight(this.networkStatus) && this.observableQuery) {\n        var fetchPolicy = this.observableQuery.options.fetchPolicy;\n        if (fetchPolicy !== \"cache-only\" && fetchPolicy !== \"cache-and-network\") {\n          return false;\n        }\n      }\n      return true;\n    };\n    QueryInfo2.prototype.stop = function() {\n      if (!this.stopped) {\n        this.stopped = true;\n        this.reset();\n        this.cancel();\n        this.cancel = QueryInfo2.prototype.cancel;\n        var oq = this.observableQuery;\n        if (oq)\n          oq.stopPolling();\n      }\n    };\n    QueryInfo2.prototype.cancel = function() {\n    };\n    QueryInfo2.prototype.updateWatch = function(variables) {\n      var _this = this;\n      if (variables === void 0) {\n        variables = this.variables;\n      }\n      var oq = this.observableQuery;\n      if (oq && oq.options.fetchPolicy === \"no-cache\") {\n        return;\n      }\n      var watchOptions = __assign(__assign({}, this.getDiffOptions(variables)), { watcher: this, callback: function(diff) {\n        return _this.setDiff(diff);\n      } });\n      if (!this.lastWatch || !equal(watchOptions, this.lastWatch)) {\n        this.cancel();\n        this.cancel = this.cache.watch(this.lastWatch = watchOptions);\n      }\n    };\n    QueryInfo2.prototype.resetLastWrite = function() {\n      this.lastWrite = void 0;\n    };\n    QueryInfo2.prototype.shouldWrite = function(result, variables) {\n      var lastWrite = this.lastWrite;\n      return !(lastWrite && // If cache.evict has been called since the last time we wrote this\n      // data into the cache, there's a chance writing this result into\n      // the cache will repair what was evicted.\n      lastWrite.dmCount === destructiveMethodCounts.get(this.cache) && equal(variables, lastWrite.variables) && equal(result.data, lastWrite.result.data));\n    };\n    QueryInfo2.prototype.markResult = function(result, document, options, cacheWriteBehavior) {\n      var _this = this;\n      var merger = new DeepMerger();\n      var graphQLErrors = isNonEmptyArray(result.errors) ? result.errors.slice(0) : [];\n      this.reset();\n      if (\"incremental\" in result && isNonEmptyArray(result.incremental)) {\n        var mergedData = mergeIncrementalData(this.getDiff().result, result);\n        result.data = mergedData;\n      } else if (\"hasNext\" in result && result.hasNext) {\n        var diff = this.getDiff();\n        result.data = merger.merge(diff.result, result.data);\n      }\n      this.graphQLErrors = graphQLErrors;\n      if (options.fetchPolicy === \"no-cache\") {\n        this.updateLastDiff({ result: result.data, complete: true }, this.getDiffOptions(options.variables));\n      } else if (cacheWriteBehavior !== 0) {\n        if (shouldWriteResult(result, options.errorPolicy)) {\n          this.cache.performTransaction(function(cache) {\n            if (_this.shouldWrite(result, options.variables)) {\n              cache.writeQuery({\n                query: document,\n                data: result.data,\n                variables: options.variables,\n                overwrite: cacheWriteBehavior === 1\n              });\n              _this.lastWrite = {\n                result,\n                variables: options.variables,\n                dmCount: destructiveMethodCounts.get(_this.cache)\n              };\n            } else {\n              if (_this.lastDiff && _this.lastDiff.diff.complete) {\n                result.data = _this.lastDiff.diff.result;\n                return;\n              }\n            }\n            var diffOptions = _this.getDiffOptions(options.variables);\n            var diff2 = cache.diff(diffOptions);\n            if (!_this.stopped && equal(_this.variables, options.variables)) {\n              _this.updateWatch(options.variables);\n            }\n            _this.updateLastDiff(diff2, diffOptions);\n            if (diff2.complete) {\n              result.data = diff2.result;\n            }\n          });\n        } else {\n          this.lastWrite = void 0;\n        }\n      }\n    };\n    QueryInfo2.prototype.markReady = function() {\n      this.networkError = null;\n      return this.networkStatus = NetworkStatus.ready;\n    };\n    QueryInfo2.prototype.markError = function(error) {\n      this.networkStatus = NetworkStatus.error;\n      this.lastWrite = void 0;\n      this.reset();\n      if (error.graphQLErrors) {\n        this.graphQLErrors = error.graphQLErrors;\n      }\n      if (error.networkError) {\n        this.networkError = error.networkError;\n      }\n      return error;\n    };\n    return QueryInfo2;\n  }()\n);\nexport { QueryInfo };\nexport function shouldWriteResult(result, errorPolicy) {\n  if (errorPolicy === void 0) {\n    errorPolicy = \"none\";\n  }\n  var ignoreErrors = errorPolicy === \"ignore\" || errorPolicy === \"all\";\n  var writeWithErrors = !graphQLResultHasError(result);\n  if (!writeWithErrors && ignoreErrors && result.data) {\n    writeWithErrors = true;\n  }\n  return writeWithErrors;\n}\n",
-      "start": 1713269989585,
-      "end": 1713269989603,
+      "start": 1716304643482,
+      "end": 1716304643503,
       "order": "normal",
       "sourcemaps": "{\n  \"version\": 3,\n  \"sources\": [\"/Users/shubhamsingh/namma/importedProds/node_modules/@apollo/client/core/QueryInfo.js\"],\n  \"sourcesContent\": [\"import { __assign } from \\\"tslib\\\";\\nimport { equal } from \\\"@wry/equality\\\";\\nimport { DeepMerger } from \\\"../utilities/index.js\\\";\\nimport { mergeIncrementalData } from \\\"../utilities/index.js\\\";\\nimport { reobserveCacheFirst } from \\\"./ObservableQuery.js\\\";\\nimport { isNonEmptyArray, graphQLResultHasError, canUseWeakMap, } from \\\"../utilities/index.js\\\";\\nimport { NetworkStatus, isNetworkRequestInFlight } from \\\"./networkStatus.js\\\";\\nvar destructiveMethodCounts = new (canUseWeakMap ? WeakMap : Map)();\\nfunction wrapDestructiveCacheMethod(cache, methodName) {\\n    var original = cache[methodName];\\n    if (typeof original === \\\"function\\\") {\\n        // @ts-expect-error this is just too generic to be typed correctly\\n        cache[methodName] = function () {\\n            destructiveMethodCounts.set(cache, \\n            // The %1e15 allows the count to wrap around to 0 safely every\\n            // quadrillion evictions, so there's no risk of overflow. To be\\n            // clear, this is more of a pedantic principle than something\\n            // that matters in any conceivable practical scenario.\\n            (destructiveMethodCounts.get(cache) + 1) % 1e15);\\n            // @ts-expect-error this is just too generic to be typed correctly\\n            return original.apply(this, arguments);\\n        };\\n    }\\n}\\nfunction cancelNotifyTimeout(info) {\\n    if (info[\\\"notifyTimeout\\\"]) {\\n        clearTimeout(info[\\\"notifyTimeout\\\"]);\\n        info[\\\"notifyTimeout\\\"] = void 0;\\n    }\\n}\\n// A QueryInfo object represents a single query managed by the\\n// QueryManager, which tracks all QueryInfo objects by queryId in its\\n// this.queries Map. QueryInfo objects store the latest results and errors\\n// for the given query, and are responsible for reporting those results to\\n// the corresponding ObservableQuery, via the QueryInfo.notify method.\\n// Results are reported asynchronously whenever setDiff marks the\\n// QueryInfo object as dirty, though a call to the QueryManager's\\n// broadcastQueries method may trigger the notification before it happens\\n// automatically. This class used to be a simple interface type without\\n// any field privacy or meaningful methods, which is why it still has so\\n// many public fields. The effort to lock down and simplify the QueryInfo\\n// interface is ongoing, and further improvements are welcome.\\nvar QueryInfo = /** @class */ (function () {\\n    function QueryInfo(queryManager, queryId) {\\n        if (queryId === void 0) { queryId = queryManager.generateQueryId(); }\\n        this.queryId = queryId;\\n        this.listeners = new Set();\\n        this.document = null;\\n        this.lastRequestId = 1;\\n        this.stopped = false;\\n        this.dirty = false;\\n        this.observableQuery = null;\\n        var cache = (this.cache = queryManager.cache);\\n        // Track how often cache.evict is called, since we want eviction to\\n        // override the feud-stopping logic in the markResult method, by\\n        // causing shouldWrite to return true. Wrapping the cache.evict method\\n        // is a bit of a hack, but it saves us from having to make eviction\\n        // counting an official part of the ApolloCache API.\\n        if (!destructiveMethodCounts.has(cache)) {\\n            destructiveMethodCounts.set(cache, 0);\\n            wrapDestructiveCacheMethod(cache, \\\"evict\\\");\\n            wrapDestructiveCacheMethod(cache, \\\"modify\\\");\\n            wrapDestructiveCacheMethod(cache, \\\"reset\\\");\\n        }\\n    }\\n    QueryInfo.prototype.init = function (query) {\\n        var networkStatus = query.networkStatus || NetworkStatus.loading;\\n        if (this.variables &&\\n            this.networkStatus !== NetworkStatus.loading &&\\n            !equal(this.variables, query.variables)) {\\n            networkStatus = NetworkStatus.setVariables;\\n        }\\n        if (!equal(query.variables, this.variables)) {\\n            this.lastDiff = void 0;\\n        }\\n        Object.assign(this, {\\n            document: query.document,\\n            variables: query.variables,\\n            networkError: null,\\n            graphQLErrors: this.graphQLErrors || [],\\n            networkStatus: networkStatus,\\n        });\\n        if (query.observableQuery) {\\n            this.setObservableQuery(query.observableQuery);\\n        }\\n        if (query.lastRequestId) {\\n            this.lastRequestId = query.lastRequestId;\\n        }\\n        return this;\\n    };\\n    QueryInfo.prototype.reset = function () {\\n        cancelNotifyTimeout(this);\\n        this.dirty = false;\\n    };\\n    QueryInfo.prototype.resetDiff = function () {\\n        this.lastDiff = void 0;\\n    };\\n    QueryInfo.prototype.getDiff = function () {\\n        var options = this.getDiffOptions();\\n        if (this.lastDiff && equal(options, this.lastDiff.options)) {\\n            return this.lastDiff.diff;\\n        }\\n        this.updateWatch(this.variables);\\n        var oq = this.observableQuery;\\n        if (oq && oq.options.fetchPolicy === \\\"no-cache\\\") {\\n            return { complete: false };\\n        }\\n        var diff = this.cache.diff(options);\\n        this.updateLastDiff(diff, options);\\n        return diff;\\n    };\\n    QueryInfo.prototype.updateLastDiff = function (diff, options) {\\n        this.lastDiff =\\n            diff ?\\n                {\\n                    diff: diff,\\n                    options: options || this.getDiffOptions(),\\n                }\\n                : void 0;\\n    };\\n    QueryInfo.prototype.getDiffOptions = function (variables) {\\n        var _a;\\n        if (variables === void 0) { variables = this.variables; }\\n        return {\\n            query: this.document,\\n            variables: variables,\\n            returnPartialData: true,\\n            optimistic: true,\\n            canonizeResults: (_a = this.observableQuery) === null || _a === void 0 ? void 0 : _a.options.canonizeResults,\\n        };\\n    };\\n    QueryInfo.prototype.setDiff = function (diff) {\\n        var _this = this;\\n        var _a;\\n        var oldDiff = this.lastDiff && this.lastDiff.diff;\\n        // If we do not tolerate partial results, skip this update to prevent it\\n        // from being reported. This prevents a situtuation where a query that\\n        // errors and another succeeds with overlapping data does not report the\\n        // partial data result to the errored query.\\n        //\\n        // See https://github.com/apollographql/apollo-client/issues/11400 for more\\n        // information on this issue.\\n        if (diff &&\\n            !diff.complete &&\\n            !((_a = this.observableQuery) === null || _a === void 0 ? void 0 : _a.options.returnPartialData) &&\\n            // In the case of a cache eviction, the diff will become partial so we\\n            // schedule a notification to send a network request (this.oqListener) to\\n            // go and fetch the missing data.\\n            !(oldDiff && oldDiff.complete)) {\\n            return;\\n        }\\n        this.updateLastDiff(diff);\\n        if (!this.dirty && !equal(oldDiff && oldDiff.result, diff && diff.result)) {\\n            this.dirty = true;\\n            if (!this.notifyTimeout) {\\n                this.notifyTimeout = setTimeout(function () { return _this.notify(); }, 0);\\n            }\\n        }\\n    };\\n    QueryInfo.prototype.setObservableQuery = function (oq) {\\n        var _this = this;\\n        if (oq === this.observableQuery)\\n            return;\\n        if (this.oqListener) {\\n            this.listeners.delete(this.oqListener);\\n        }\\n        this.observableQuery = oq;\\n        if (oq) {\\n            oq[\\\"queryInfo\\\"] = this;\\n            this.listeners.add((this.oqListener = function () {\\n                var diff = _this.getDiff();\\n                if (diff.fromOptimisticTransaction) {\\n                    // If this diff came from an optimistic transaction, deliver the\\n                    // current cache data to the ObservableQuery, but don't perform a\\n                    // reobservation, since oq.reobserveCacheFirst might make a network\\n                    // request, and we never want to trigger network requests in the\\n                    // middle of optimistic updates.\\n                    oq[\\\"observe\\\"]();\\n                }\\n                else {\\n                    // Otherwise, make the ObservableQuery \\\"reobserve\\\" the latest data\\n                    // using a temporary fetch policy of \\\"cache-first\\\", so complete cache\\n                    // results have a chance to be delivered without triggering additional\\n                    // network requests, even when options.fetchPolicy is \\\"network-only\\\"\\n                    // or \\\"cache-and-network\\\". All other fetch policies are preserved by\\n                    // this method, and are handled by calling oq.reobserve(). If this\\n                    // reobservation is spurious, isDifferentFromLastResult still has a\\n                    // chance to catch it before delivery to ObservableQuery subscribers.\\n                    reobserveCacheFirst(oq);\\n                }\\n            }));\\n        }\\n        else {\\n            delete this.oqListener;\\n        }\\n    };\\n    QueryInfo.prototype.notify = function () {\\n        var _this = this;\\n        cancelNotifyTimeout(this);\\n        if (this.shouldNotify()) {\\n            this.listeners.forEach(function (listener) { return listener(_this); });\\n        }\\n        this.dirty = false;\\n    };\\n    QueryInfo.prototype.shouldNotify = function () {\\n        if (!this.dirty || !this.listeners.size) {\\n            return false;\\n        }\\n        if (isNetworkRequestInFlight(this.networkStatus) && this.observableQuery) {\\n            var fetchPolicy = this.observableQuery.options.fetchPolicy;\\n            if (fetchPolicy !== \\\"cache-only\\\" && fetchPolicy !== \\\"cache-and-network\\\") {\\n                return false;\\n            }\\n        }\\n        return true;\\n    };\\n    QueryInfo.prototype.stop = function () {\\n        if (!this.stopped) {\\n            this.stopped = true;\\n            // Cancel the pending notify timeout\\n            this.reset();\\n            this.cancel();\\n            // Revert back to the no-op version of cancel inherited from\\n            // QueryInfo.prototype.\\n            this.cancel = QueryInfo.prototype.cancel;\\n            var oq = this.observableQuery;\\n            if (oq)\\n                oq.stopPolling();\\n        }\\n    };\\n    // This method is a no-op by default, until/unless overridden by the\\n    // updateWatch method.\\n    QueryInfo.prototype.cancel = function () { };\\n    QueryInfo.prototype.updateWatch = function (variables) {\\n        var _this = this;\\n        if (variables === void 0) { variables = this.variables; }\\n        var oq = this.observableQuery;\\n        if (oq && oq.options.fetchPolicy === \\\"no-cache\\\") {\\n            return;\\n        }\\n        var watchOptions = __assign(__assign({}, this.getDiffOptions(variables)), { watcher: this, callback: function (diff) { return _this.setDiff(diff); } });\\n        if (!this.lastWatch || !equal(watchOptions, this.lastWatch)) {\\n            this.cancel();\\n            this.cancel = this.cache.watch((this.lastWatch = watchOptions));\\n        }\\n    };\\n    QueryInfo.prototype.resetLastWrite = function () {\\n        this.lastWrite = void 0;\\n    };\\n    QueryInfo.prototype.shouldWrite = function (result, variables) {\\n        var lastWrite = this.lastWrite;\\n        return !(lastWrite &&\\n            // If cache.evict has been called since the last time we wrote this\\n            // data into the cache, there's a chance writing this result into\\n            // the cache will repair what was evicted.\\n            lastWrite.dmCount === destructiveMethodCounts.get(this.cache) &&\\n            equal(variables, lastWrite.variables) &&\\n            equal(result.data, lastWrite.result.data));\\n    };\\n    QueryInfo.prototype.markResult = function (result, document, options, cacheWriteBehavior) {\\n        var _this = this;\\n        var merger = new DeepMerger();\\n        var graphQLErrors = isNonEmptyArray(result.errors) ? result.errors.slice(0) : [];\\n        // Cancel the pending notify timeout (if it exists) to prevent extraneous network\\n        // requests. To allow future notify timeouts, diff and dirty are reset as well.\\n        this.reset();\\n        if (\\\"incremental\\\" in result && isNonEmptyArray(result.incremental)) {\\n            var mergedData = mergeIncrementalData(this.getDiff().result, result);\\n            result.data = mergedData;\\n            // Detect the first chunk of a deferred query and merge it with existing\\n            // cache data. This ensures a `cache-first` fetch policy that returns\\n            // partial cache data or a `cache-and-network` fetch policy that already\\n            // has full data in the cache does not complain when trying to merge the\\n            // initial deferred server data with existing cache data.\\n        }\\n        else if (\\\"hasNext\\\" in result && result.hasNext) {\\n            var diff = this.getDiff();\\n            result.data = merger.merge(diff.result, result.data);\\n        }\\n        this.graphQLErrors = graphQLErrors;\\n        if (options.fetchPolicy === \\\"no-cache\\\") {\\n            this.updateLastDiff({ result: result.data, complete: true }, this.getDiffOptions(options.variables));\\n        }\\n        else if (cacheWriteBehavior !== 0 /* CacheWriteBehavior.FORBID */) {\\n            if (shouldWriteResult(result, options.errorPolicy)) {\\n                // Using a transaction here so we have a chance to read the result\\n                // back from the cache before the watch callback fires as a result\\n                // of writeQuery, so we can store the new diff quietly and ignore\\n                // it when we receive it redundantly from the watch callback.\\n                this.cache.performTransaction(function (cache) {\\n                    if (_this.shouldWrite(result, options.variables)) {\\n                        cache.writeQuery({\\n                            query: document,\\n                            data: result.data,\\n                            variables: options.variables,\\n                            overwrite: cacheWriteBehavior === 1 /* CacheWriteBehavior.OVERWRITE */,\\n                        });\\n                        _this.lastWrite = {\\n                            result: result,\\n                            variables: options.variables,\\n                            dmCount: destructiveMethodCounts.get(_this.cache),\\n                        };\\n                    }\\n                    else {\\n                        // If result is the same as the last result we received from\\n                        // the network (and the variables match too), avoid writing\\n                        // result into the cache again. The wisdom of skipping this\\n                        // cache write is far from obvious, since any cache write\\n                        // could be the one that puts the cache back into a desired\\n                        // state, fixing corruption or missing data. However, if we\\n                        // always write every network result into the cache, we enable\\n                        // feuds between queries competing to update the same data in\\n                        // incompatible ways, which can lead to an endless cycle of\\n                        // cache broadcasts and useless network requests. As with any\\n                        // feud, eventually one side must step back from the brink,\\n                        // letting the other side(s) have the last word(s). There may\\n                        // be other points where we could break this cycle, such as\\n                        // silencing the broadcast for cache.writeQuery (not a good\\n                        // idea, since it just delays the feud a bit) or somehow\\n                        // avoiding the network request that just happened (also bad,\\n                        // because the server could return useful new data). All\\n                        // options considered, skipping this cache write seems to be\\n                        // the least damaging place to break the cycle, because it\\n                        // reflects the intuition that we recently wrote this exact\\n                        // result into the cache, so the cache *should* already/still\\n                        // contain this data. If some other query has clobbered that\\n                        // data in the meantime, that's too bad, but there will be no\\n                        // winners if every query blindly reverts to its own version\\n                        // of the data. This approach also gives the network a chance\\n                        // to return new data, which will be written into the cache as\\n                        // usual, notifying only those queries that are directly\\n                        // affected by the cache updates, as usual. In the future, an\\n                        // even more sophisticated cache could perhaps prevent or\\n                        // mitigate the clobbering somehow, but that would make this\\n                        // particular cache write even less important, and thus\\n                        // skipping it would be even safer than it is today.\\n                        if (_this.lastDiff && _this.lastDiff.diff.complete) {\\n                            // Reuse data from the last good (complete) diff that we\\n                            // received, when possible.\\n                            result.data = _this.lastDiff.diff.result;\\n                            return;\\n                        }\\n                        // If the previous this.diff was incomplete, fall through to\\n                        // re-reading the latest data with cache.diff, below.\\n                    }\\n                    var diffOptions = _this.getDiffOptions(options.variables);\\n                    var diff = cache.diff(diffOptions);\\n                    // In case the QueryManager stops this QueryInfo before its\\n                    // results are delivered, it's important to avoid restarting the\\n                    // cache watch when markResult is called. We also avoid updating\\n                    // the watch if we are writing a result that doesn't match the current\\n                    // variables to avoid race conditions from broadcasting the wrong\\n                    // result.\\n                    if (!_this.stopped && equal(_this.variables, options.variables)) {\\n                        // Any time we're about to update this.diff, we need to make\\n                        // sure we've started watching the cache.\\n                        _this.updateWatch(options.variables);\\n                    }\\n                    // If we're allowed to write to the cache, and we can read a\\n                    // complete result from the cache, update result.data to be the\\n                    // result from the cache, rather than the raw network result.\\n                    // Set without setDiff to avoid triggering a notify call, since\\n                    // we have other ways of notifying for this result.\\n                    _this.updateLastDiff(diff, diffOptions);\\n                    if (diff.complete) {\\n                        result.data = diff.result;\\n                    }\\n                });\\n            }\\n            else {\\n                this.lastWrite = void 0;\\n            }\\n        }\\n    };\\n    QueryInfo.prototype.markReady = function () {\\n        this.networkError = null;\\n        return (this.networkStatus = NetworkStatus.ready);\\n    };\\n    QueryInfo.prototype.markError = function (error) {\\n        this.networkStatus = NetworkStatus.error;\\n        this.lastWrite = void 0;\\n        this.reset();\\n        if (error.graphQLErrors) {\\n            this.graphQLErrors = error.graphQLErrors;\\n        }\\n        if (error.networkError) {\\n            this.networkError = error.networkError;\\n        }\\n        return error;\\n    };\\n    return QueryInfo;\\n}());\\nexport { QueryInfo };\\nexport function shouldWriteResult(result, errorPolicy) {\\n    if (errorPolicy === void 0) { errorPolicy = \\\"none\\\"; }\\n    var ignoreErrors = errorPolicy === \\\"ignore\\\" || errorPolicy === \\\"all\\\";\\n    var writeWithErrors = !graphQLResultHasError(result);\\n    if (!writeWithErrors && ignoreErrors && result.data) {\\n        writeWithErrors = true;\\n    }\\n    return writeWithErrors;\\n}\\n//# sourceMappingURL=QueryInfo.js.map\"],\n  \"mappings\": \"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\",\n  \"names\": [\"QueryInfo\", \"diff\"]\n}\n"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269989603,
-      "end": 1713269989603,
+      "start": 1716304643503,
+      "end": 1716304643503,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269989603,
-      "end": 1713269989603,
+      "start": 1716304643503,
+      "end": 1716304643503,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269989603,
-      "end": 1713269989603,
+      "start": 1716304643503,
+      "end": 1716304643503,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269989603,
-      "end": 1713269989603,
+      "start": 1716304643503,
+      "end": 1716304643503,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269989603,
-      "end": 1713269989604,
+      "start": 1716304643503,
+      "end": 1716304643504,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269989604,
-      "end": 1713269989604,
+      "start": 1716304643504,
+      "end": 1716304643504,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269989604,
-      "end": 1713269989604,
+      "start": 1716304643504,
+      "end": 1716304643504,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269989604,
-      "end": 1713269989604,
+      "start": 1716304643504,
+      "end": 1716304643504,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269989604,
-      "end": 1713269989604,
+      "start": 1716304643504,
+      "end": 1716304643504,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269989604,
-      "end": 1713269989604,
+      "start": 1716304643504,
+      "end": 1716304643504,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269989604,
-      "end": 1713269989604,
+      "start": 1716304643504,
+      "end": 1716304643504,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269989604,
-      "end": 1713269989604,
+      "start": 1716304643504,
+      "end": 1716304643504,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269989604,
-      "end": 1713269989604,
+      "start": 1716304643504,
+      "end": 1716304643504,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269989604,
-      "end": 1713269989604,
+      "start": 1716304643504,
+      "end": 1716304643504,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269989604,
-      "end": 1713269989604,
+      "start": 1716304643504,
+      "end": 1716304643504,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1713269989604,
-      "end": 1713269989604,
+      "start": 1716304643504,
+      "end": 1716304643504,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269989604,
-      "end": 1713269989604,
+      "start": 1716304643504,
+      "end": 1716304643504,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269989604,
-      "end": 1713269989604,
+      "start": 1716304643504,
+      "end": 1716304643504,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269989604,
-      "end": 1713269989604,
+      "start": 1716304643504,
+      "end": 1716304643504,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269989604,
-      "end": 1713269989604,
+      "start": 1716304643504,
+      "end": 1716304643504,
       "order": "normal"
     }
   ]

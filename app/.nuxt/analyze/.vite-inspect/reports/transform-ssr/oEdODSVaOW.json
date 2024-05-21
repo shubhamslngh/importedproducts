@@ -1,0 +1,266 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/node_modules/@apollo/client/react/parser/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { invariant } from \"../../utilities/globals/index.js\";\nimport { AutoCleanedWeakCache, cacheSizes, } from \"../../utilities/index.js\";\nimport { registerGlobalCache } from \"../../utilities/caching/getMemoryInternals.js\";\nexport var DocumentType;\n(function (DocumentType) {\n    DocumentType[DocumentType[\"Query\"] = 0] = \"Query\";\n    DocumentType[DocumentType[\"Mutation\"] = 1] = \"Mutation\";\n    DocumentType[DocumentType[\"Subscription\"] = 2] = \"Subscription\";\n})(DocumentType || (DocumentType = {}));\nvar cache;\nexport function operationName(type) {\n    var name;\n    switch (type) {\n        case DocumentType.Query:\n            name = \"Query\";\n            break;\n        case DocumentType.Mutation:\n            name = \"Mutation\";\n            break;\n        case DocumentType.Subscription:\n            name = \"Subscription\";\n            break;\n    }\n    return name;\n}\n// This parser is mostly used to safety check incoming documents.\nexport function parser(document) {\n    if (!cache) {\n        cache = new AutoCleanedWeakCache(cacheSizes.parser || 1000 /* defaultCacheSizes.parser */);\n    }\n    var cached = cache.get(document);\n    if (cached)\n        return cached;\n    var variables, type, name;\n    invariant(!!document && !!document.kind, 59, document);\n    var fragments = [];\n    var queries = [];\n    var mutations = [];\n    var subscriptions = [];\n    for (var _i = 0, _a = document.definitions; _i < _a.length; _i++) {\n        var x = _a[_i];\n        if (x.kind === \"FragmentDefinition\") {\n            fragments.push(x);\n            continue;\n        }\n        if (x.kind === \"OperationDefinition\") {\n            switch (x.operation) {\n                case \"query\":\n                    queries.push(x);\n                    break;\n                case \"mutation\":\n                    mutations.push(x);\n                    break;\n                case \"subscription\":\n                    subscriptions.push(x);\n                    break;\n            }\n        }\n    }\n    invariant(!fragments.length ||\n        queries.length ||\n        mutations.length ||\n        subscriptions.length, 60);\n    invariant(\n        queries.length + mutations.length + subscriptions.length <= 1,\n        61,\n        document,\n        queries.length,\n        subscriptions.length,\n        mutations.length\n    );\n    type = queries.length ? DocumentType.Query : DocumentType.Mutation;\n    if (!queries.length && !mutations.length)\n        type = DocumentType.Subscription;\n    var definitions = queries.length ? queries\n        : mutations.length ? mutations\n            : subscriptions;\n    invariant(definitions.length === 1, 62, document, definitions.length);\n    var definition = definitions[0];\n    variables = definition.variableDefinitions || [];\n    if (definition.name && definition.name.kind === \"Name\") {\n        name = definition.name.value;\n    }\n    else {\n        name = \"data\"; // fallback to using data if no name\n    }\n    var payload = { name: name, type: type, variables: variables };\n    cache.set(document, payload);\n    return payload;\n}\nparser.resetCache = function () {\n    cache = undefined;\n};\nif (globalThis.__DEV__ !== false) {\n    registerGlobalCache(\"parser\", function () { return (cache ? cache.size : 0); });\n}\nexport function verifyDocumentType(document, type) {\n    var operation = parser(document);\n    var requiredOperationName = operationName(type);\n    var usedOperationName = operationName(operation.type);\n    invariant(\n        operation.type === type,\n        63,\n        requiredOperationName,\n        requiredOperationName,\n        usedOperationName\n    );\n}\n//# sourceMappingURL=index.js.map",
+      "start": 1716304642784,
+      "end": 1716304642811,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1716304642811,
+      "end": 1716304642811,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "import { invariant } from \"../../utilities/globals/index.js\";\nimport { AutoCleanedWeakCache, cacheSizes } from \"../../utilities/index.js\";\nimport { registerGlobalCache } from \"../../utilities/caching/getMemoryInternals.js\";\nexport var DocumentType;\n(function(DocumentType2) {\n  DocumentType2[DocumentType2[\"Query\"] = 0] = \"Query\";\n  DocumentType2[DocumentType2[\"Mutation\"] = 1] = \"Mutation\";\n  DocumentType2[DocumentType2[\"Subscription\"] = 2] = \"Subscription\";\n})(DocumentType || (DocumentType = {}));\nvar cache;\nexport function operationName(type) {\n  var name;\n  switch (type) {\n    case DocumentType.Query:\n      name = \"Query\";\n      break;\n    case DocumentType.Mutation:\n      name = \"Mutation\";\n      break;\n    case DocumentType.Subscription:\n      name = \"Subscription\";\n      break;\n  }\n  return name;\n}\nexport function parser(document) {\n  if (!cache) {\n    cache = new AutoCleanedWeakCache(\n      cacheSizes.parser || 1e3\n      /* defaultCacheSizes.parser */\n    );\n  }\n  var cached = cache.get(document);\n  if (cached)\n    return cached;\n  var variables, type, name;\n  invariant(!!document && !!document.kind, 59, document);\n  var fragments = [];\n  var queries = [];\n  var mutations = [];\n  var subscriptions = [];\n  for (var _i = 0, _a = document.definitions; _i < _a.length; _i++) {\n    var x = _a[_i];\n    if (x.kind === \"FragmentDefinition\") {\n      fragments.push(x);\n      continue;\n    }\n    if (x.kind === \"OperationDefinition\") {\n      switch (x.operation) {\n        case \"query\":\n          queries.push(x);\n          break;\n        case \"mutation\":\n          mutations.push(x);\n          break;\n        case \"subscription\":\n          subscriptions.push(x);\n          break;\n      }\n    }\n  }\n  invariant(!fragments.length || queries.length || mutations.length || subscriptions.length, 60);\n  invariant(\n    queries.length + mutations.length + subscriptions.length <= 1,\n    61,\n    document,\n    queries.length,\n    subscriptions.length,\n    mutations.length\n  );\n  type = queries.length ? DocumentType.Query : DocumentType.Mutation;\n  if (!queries.length && !mutations.length)\n    type = DocumentType.Subscription;\n  var definitions = queries.length ? queries : mutations.length ? mutations : subscriptions;\n  invariant(definitions.length === 1, 62, document, definitions.length);\n  var definition = definitions[0];\n  variables = definition.variableDefinitions || [];\n  if (definition.name && definition.name.kind === \"Name\") {\n    name = definition.name.value;\n  } else {\n    name = \"data\";\n  }\n  var payload = { name, type, variables };\n  cache.set(document, payload);\n  return payload;\n}\nparser.resetCache = function() {\n  cache = void 0;\n};\nif (globalThis.__DEV__ !== false) {\n  registerGlobalCache(\"parser\", function() {\n    return cache ? cache.size : 0;\n  });\n}\nexport function verifyDocumentType(document, type) {\n  var operation = parser(document);\n  var requiredOperationName = operationName(type);\n  var usedOperationName = operationName(operation.type);\n  invariant(\n    operation.type === type,\n    63,\n    requiredOperationName,\n    requiredOperationName,\n    usedOperationName\n  );\n}\n",
+      "start": 1716304642811,
+      "end": 1716304643202,
+      "order": "normal",
+      "sourcemaps": "{\n  \"version\": 3,\n  \"sources\": [\"/Users/shubhamsingh/namma/importedProds/node_modules/@apollo/client/react/parser/index.js\"],\n  \"sourcesContent\": [\"import { invariant } from \\\"../../utilities/globals/index.js\\\";\\nimport { AutoCleanedWeakCache, cacheSizes, } from \\\"../../utilities/index.js\\\";\\nimport { registerGlobalCache } from \\\"../../utilities/caching/getMemoryInternals.js\\\";\\nexport var DocumentType;\\n(function (DocumentType) {\\n    DocumentType[DocumentType[\\\"Query\\\"] = 0] = \\\"Query\\\";\\n    DocumentType[DocumentType[\\\"Mutation\\\"] = 1] = \\\"Mutation\\\";\\n    DocumentType[DocumentType[\\\"Subscription\\\"] = 2] = \\\"Subscription\\\";\\n})(DocumentType || (DocumentType = {}));\\nvar cache;\\nexport function operationName(type) {\\n    var name;\\n    switch (type) {\\n        case DocumentType.Query:\\n            name = \\\"Query\\\";\\n            break;\\n        case DocumentType.Mutation:\\n            name = \\\"Mutation\\\";\\n            break;\\n        case DocumentType.Subscription:\\n            name = \\\"Subscription\\\";\\n            break;\\n    }\\n    return name;\\n}\\n// This parser is mostly used to safety check incoming documents.\\nexport function parser(document) {\\n    if (!cache) {\\n        cache = new AutoCleanedWeakCache(cacheSizes.parser || 1000 /* defaultCacheSizes.parser */);\\n    }\\n    var cached = cache.get(document);\\n    if (cached)\\n        return cached;\\n    var variables, type, name;\\n    invariant(!!document && !!document.kind, 59, document);\\n    var fragments = [];\\n    var queries = [];\\n    var mutations = [];\\n    var subscriptions = [];\\n    for (var _i = 0, _a = document.definitions; _i < _a.length; _i++) {\\n        var x = _a[_i];\\n        if (x.kind === \\\"FragmentDefinition\\\") {\\n            fragments.push(x);\\n            continue;\\n        }\\n        if (x.kind === \\\"OperationDefinition\\\") {\\n            switch (x.operation) {\\n                case \\\"query\\\":\\n                    queries.push(x);\\n                    break;\\n                case \\\"mutation\\\":\\n                    mutations.push(x);\\n                    break;\\n                case \\\"subscription\\\":\\n                    subscriptions.push(x);\\n                    break;\\n            }\\n        }\\n    }\\n    invariant(!fragments.length ||\\n        queries.length ||\\n        mutations.length ||\\n        subscriptions.length, 60);\\n    invariant(\\n        queries.length + mutations.length + subscriptions.length <= 1,\\n        61,\\n        document,\\n        queries.length,\\n        subscriptions.length,\\n        mutations.length\\n    );\\n    type = queries.length ? DocumentType.Query : DocumentType.Mutation;\\n    if (!queries.length && !mutations.length)\\n        type = DocumentType.Subscription;\\n    var definitions = queries.length ? queries\\n        : mutations.length ? mutations\\n            : subscriptions;\\n    invariant(definitions.length === 1, 62, document, definitions.length);\\n    var definition = definitions[0];\\n    variables = definition.variableDefinitions || [];\\n    if (definition.name && definition.name.kind === \\\"Name\\\") {\\n        name = definition.name.value;\\n    }\\n    else {\\n        name = \\\"data\\\"; // fallback to using data if no name\\n    }\\n    var payload = { name: name, type: type, variables: variables };\\n    cache.set(document, payload);\\n    return payload;\\n}\\nparser.resetCache = function () {\\n    cache = undefined;\\n};\\nif (globalThis.__DEV__ !== false) {\\n    registerGlobalCache(\\\"parser\\\", function () { return (cache ? cache.size : 0); });\\n}\\nexport function verifyDocumentType(document, type) {\\n    var operation = parser(document);\\n    var requiredOperationName = operationName(type);\\n    var usedOperationName = operationName(operation.type);\\n    invariant(\\n        operation.type === type,\\n        63,\\n        requiredOperationName,\\n        requiredOperationName,\\n        usedOperationName\\n    );\\n}\\n//# sourceMappingURL=index.js.map\"],\n  \"mappings\": \"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\",\n  \"names\": [\"DocumentType\"]\n}\n"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1716304643202,
+      "end": 1716304643202,
+      "order": "normal"
+    }
+  ]
+}

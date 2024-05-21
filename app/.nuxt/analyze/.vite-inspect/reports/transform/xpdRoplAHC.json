@@ -1,0 +1,231 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/node_modules/rehackt/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "\"use strict\";\nmodule.exports = require(\"react\");\n",
+      "start": 1716304640266,
+      "end": 1716304640277,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1716304640277,
+      "end": 1716304640277,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "result": "import * as commonjsHelpers from \"\u0000commonjsHelpers.js\";\nimport require$$0 from \"\\u0000/Users/shubhamsingh/node_modules/react/index.js?commonjs-proxy\";\n\n\"use strict\";\nvar rehackt = require$$0;\n\nexport default /*@__PURE__*/commonjsHelpers.getDefaultExportFromCjs(rehackt);\nexport { rehackt as __moduleExports };",
+      "start": 1716304640277,
+      "end": 1716304640468,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";;;AAAA,YAAY,CAAC;IACb,OAAc,GAAG,UAAgB"
+      }
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1716304640468,
+      "end": 1716304640468,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1716304640468,
+      "end": 1716304640468,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1716304640468,
+      "end": 1716304640468,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1716304640468,
+      "end": 1716304640468,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1716304640468,
+      "end": 1716304640468,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1716304640468,
+      "end": 1716304640468,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1716304640468,
+      "end": 1716304640468,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1716304640468,
+      "end": 1716304640468,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1716304640468,
+      "end": 1716304640468,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1716304640468,
+      "end": 1716304640468,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1716304640468,
+      "end": 1716304640468,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1716304640468,
+      "end": 1716304640468,
+      "order": "normal"
+    }
+  ]
+}

@@ -3,13 +3,14 @@
     <swiper
       :effect="'cards'"
       :grabCursor="true"
+      :nested="true"
       :slideShadows="false"
       :modules="modules"
       class="mySwiper dark:bg-none"
     >
       <!-- {{ console.log(products, "products for cards in template") }} -->
       <swiper-slide
-        class="dark:bg-none "
+        class="dark:bg-none"
         v-for="(product, index) in products"
         :key="index"
         :slideShadow="false"
@@ -31,13 +32,13 @@
       />
     </div>
   </div>
-  <div v-else>Loading products...</div>
+  <div v-else><div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div></div>
 </template>
 
 <script>
 import { ref, onMounted, defineProps } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { getVariation } from "../../utils/cart"; // Assuming getVariation is correctly imported
+import { getVariation } from "../../utils/cart"; 
 import "swiper/css/effect-cards";
 import "swiper/css/bundle";
 import { EffectCards } from "swiper/modules";
@@ -105,7 +106,7 @@ export default {
           subtree: true,
         });
       }
-    }, 1000);
+    }, 10);
 
     const handleClick = (variationId) => {
       selectedVariationId.value = variationId;
@@ -118,6 +119,8 @@ export default {
     return {
       modules: [EffectCards],
       spaceBetween: 400,
+      resistanceRatio: 0,
+      rewind: true,
       selectedProductId,
       selectedVariationId,
       products,

@@ -1,160 +1,143 @@
-<script setup>
-import { onMounted, onBeforeUnmount } from "vue";
-
-/* eslint-disable */
-/* eslint-env es6 */
-
-const parallaxScroll = () => {
-  const gridRef = document.querySelector(".parallax-scroll");
-  const scrollYProgress =
-    window.scrollY /
-    (document.documentElement.scrollHeight - window.innerHeight);
-  const translateFirst = function (scrollYProgress) {
-    return `${scrollYProgress * -200}px`;
-  };
-  const translateSecond = function (scrollYProgress) {
-    return `${scrollYProgress * 200}px`;
-  };
-  const translateThird = function (scrollYProgress) {
-    return `${scrollYProgress * -200}px`;
-  };
-
-  const products = [
-    {
-      name: "Product 1",
-      image:
-        "https://importedproducts.in/wp-content/uploads/2024/02/MQUD3_AV4-fococlipping-HD.png",
-    },
-    {
-      name: "Product 2",
-      image:
-        "https://importedproducts.in/wp-content/uploads/2024/01/MT1J3-fococlipping-HD.png",
-    },
-    {
-      name: "Product 3",
-      image:
-        "https://importedproducts.in/wp-content/uploads/2023/08/iphone15-pro-Photoroom.png-Photoroom.png",
-    },
-    {
-      name: "Product 4",
-      image: "https://importedproducts.in/wp-content/uploads/2023/08/144.png",
-    },
-    {
-      name: "Product 5",
-      image:
-        "https://importedproducts.in/wp-content/uploads/2023/08/iphone-15_prev_ui.png",
-    },
-    {
-      name: "Product 6",
-      image:
-        "https://importedproducts.in/wp-content/uploads/2023/08/e4a419f578335e928ece69df89cf08fcb81b8ea2.png",
-    },
-  ];
-
-  const third = Math.ceil(products.length / 3);
-  const firstPart = products.slice(0, third);
-  const secondPart = products.slice(third, 2 * third);
-  const thirdPart = products.slice(2 * third);
-
-  const grid = document.createElement("div");
-  grid.className = "grid-container";
-
-  const createGridItems = (part, translateFunction) => {
-    const gridElement = document.createElement("div");
-    gridElement.className = "grid";
-    part.forEach((product, idx) => {
-      const motionDiv = document.createElement("div");
-      motionDiv.style.transform = `translateY(${translateFunction(
-        scrollYProgress
-      )})`;
-      motionDiv.className = "grid-item";
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <img src="${product.image}" alt="Product Image">
-        <h3>${product.name}</h3>
-      `;
-      motionDiv.appendChild(card);
-      gridElement.appendChild(motionDiv);
-    });
-    return gridElement;
-  };
-
-  grid.appendChild(createGridItems(firstPart, translateFirst));
-  grid.appendChild(createGridItems(secondPart, translateSecond));
-  grid.appendChild(createGridItems(thirdPart, translateThird));
-
-  gridRef.innerHTML = ""; // Clear previous content
-  gridRef.appendChild(grid);
-};
-
-onMounted(() => {
-  parallaxScroll();
-  window.addEventListener("scroll", parallaxScroll);
-});
-const updateCardBackground = () => {
-  const cards = document.querySelectorAll(".card");
-  cards.forEach((card) => {
-    card.style.backgroundColor = "transparent";
-    card.style.img = "cover";
-  });
-};
-
-onMounted(() => {
-  updateCardBackground();
-});
-onBeforeUnmount(() => {
-  window.removeEventListener("scroll", parallaxScroll);
-});
-const updateCardImage = () => {
-  const cards = document.querySelectorAll(".card img");
-  cards.forEach((img) => {
-    img.style.maxWidth = "100%"; // Ensure the image does not exceed the width of its container
-    img.style.maxHeight = "100%"; // Ensure the image does not exceed the height of its container
-    img.style.width = "auto"; // Allow the image to scale proportionally
-    img.style.height = "auto"; // Allow the image to scale proportionally
-    img.style.borderRadius = "10px"; // Apply rounded corners to the image
-    img.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)"; // Add a subtle shadow effect
-  });
-};
-
-onMounted(() => {
-  updateCardImage();
-});
-</script>
-
 <template>
-  <div id="parallaxScroll" class="parallax-scroll "></div>
+ 
+  <div class="flex-container" ref="flexContainer">
+    
+    <div
+      class="flex-item"
+      v-for="product in products"
+      :key="product.id"
+      :style="product.style"
+    >
+      <img :src="product.imageUrl" :alt="product.name" class="product-image " />
+       <div class="flex-item z-20">
+     <AwesomeWelcome
+      :style="{ width: '100px', height: '5px', fontSize: '12px',scale: .3 }"
+      :name="product.name"
+      :startColor="['green','grey','blue']"
+      :endColor="['black','red','white']"
+    />
+</div>
+    </div>
+    
+  </div>
+
 </template>
 
-<style lang="scss" scoped>
-.parallax-scroll {
-  height: 100vh; /* Fill the entire height of the viewport */
-  overflow-y: auto;
+<script>
+export default {
+  data() {
+    return {
+      products: [
+        {
+          id: 1,
+          name: "IPhone 14 ",
+          imageUrl:
+            "https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-7inch-product-red_AV1_GEO_EMEA-Photoroom.png-Photoroom.png",
+          initialOffsetY: 0,
+          style: {},
+        },
+        {
+          id: 2,
+          name: "IPhone 14 Plus ",
+          imageUrl:
+            "https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png",
+          initialOffsetY: 0,
+          style: {},
+        },
+        {
+          id: 3,
+          name: "IPhone 14 Pro ",
+          imageUrl:
+            "https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-pro-finish-select-202209-6-7inch_AV2_GEO_EMEA-Photoroom.png-Photoroom-2.png",
+          initialOffsetY: 0,
+          style: {},
+        },
+        {
+          id: 4,
+          name: "IPhone 15 ",
+          imageUrl:
+            "https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-finish-select-202309-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png",
+          initialOffsetY: 0,
+          style: {},
+        },
+        {
+          id: 5,
+          name: "IPhone 15 Pro ",
+          imageUrl:
+            "https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-pro-finish-select-202309-6-1inch_AV2_GEO_EMEA-Photoroom.png-Photoroom.png",
+          initialOffsetY: 0,
+          style: {},
+        },
+      ],
+    };
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+    this.handleScroll();
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.handleScroll);
+  },
+  methods: {
+    handleScroll() {
+      const scrollY = window.scrollY;
+      const flexContainerRect =
+        this.$refs.flexContainer.getBoundingClientRect();
+
+      // The point at which the scroll effect should start
+      const startEffectScrollY =
+        flexContainerRect.top - window.innerHeight + 100; // Adjust the offset to start the effect
+
+      // Determine how much the user has scrolled within the effect range
+      const scrollProgress = Math.min(
+        1,
+        Math.max(
+          0,
+          (scrollY - startEffectScrollY) /
+            (window.innerHeight + this.$refs.flexContainer.clientHeight)
+        )
+      );
+
+      // Apply a style transformation to align items into a single line
+      this.products.forEach((product, index) => {
+        const offsetY = (2 - scrollProgress) * (index * 100); // This will space out the items more as they move up
+        product.style = {
+          transform: `translateY(${offsetY}px)`,
+
+          // opacity: `${1 - 0.2 * index * scrollProgress}`,
+          zIndex: `${100 - index}`, // Ensure items stack correctly during transition
+        };
+      });
+    },
+  },
+};
+</script>
+
+<style scoped>
+
+.flex-container {
+  min-height: 100vh; 
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: 50px;
+  perspective: 1000px; 
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(
-    3,
-    1fr
-  ); /* Change to your desired number of columns */
-  gap: 10px;
-  max-width: 100vw; /* Fill the entire width of the viewport */
-  margin: auto;
-  padding: 40px 10px;
+.flex-item {
+  transition:
+    transform 1s,
+    opacity 1s;
+  will-change: transform, opacity;
 }
-.grid-container > .grid {
-  display: flex;
-  gap: 10px;
+
+.product-image {
+  width: auto;
+  height: auto;
+  max-width: 200px; /* Adjust to suit your needs */
+  max-height: 200px; /* Adjust to suit your needs */
+  scale: 4.3;
 }
-.grid-item {
-  height: 80px;
-  width: 100%;
-  object-fit: cover;
-  object-position: left top;
-  border-radius: 10px;
-  margin: 0;
-  padding: 0;
-}
+
 </style>

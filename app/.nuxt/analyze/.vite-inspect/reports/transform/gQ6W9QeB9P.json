@@ -1,0 +1,222 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/node_modules/@apollo/client/react/internal/cache/QueryReference.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { __assign } from \"tslib\";\nimport { equal } from \"@wry/equality\";\nimport { createFulfilledPromise, createRejectedPromise, } from \"../../../utilities/index.js\";\nimport { wrapPromiseWithState } from \"../../../utilities/index.js\";\nvar QUERY_REFERENCE_SYMBOL = Symbol();\nvar PROMISE_SYMBOL = Symbol();\nexport function wrapQueryRef(internalQueryRef) {\n    var _a;\n    var ref = (_a = {\n            toPromise: function () {\n                // We avoid resolving this promise with the query data because we want to\n                // discourage using the server data directly from the queryRef. Instead,\n                // the data should be accessed through `useReadQuery`. When the server\n                // data is needed, its better to use `client.query()` directly.\n                //\n                // Here we resolve with the ref itself to make using this in React Router\n                // or TanStack Router `loader` functions a bit more ergonomic e.g.\n                //\n                // function loader() {\n                //   return { queryRef: await preloadQuery(query).toPromise() }\n                // }\n                return getWrappedPromise(ref).then(function () { return ref; });\n            }\n        },\n        _a[QUERY_REFERENCE_SYMBOL] = internalQueryRef,\n        _a[PROMISE_SYMBOL] = internalQueryRef.promise,\n        _a);\n    return ref;\n}\nexport function getWrappedPromise(queryRef) {\n    var internalQueryRef = unwrapQueryRef(queryRef);\n    return internalQueryRef.promise.status === \"fulfilled\" ?\n        internalQueryRef.promise\n        : queryRef[PROMISE_SYMBOL];\n}\nexport function unwrapQueryRef(queryRef) {\n    return queryRef[QUERY_REFERENCE_SYMBOL];\n}\nexport function updateWrappedQueryRef(queryRef, promise) {\n    queryRef[PROMISE_SYMBOL] = promise;\n}\nvar OBSERVED_CHANGED_OPTIONS = [\n    \"canonizeResults\",\n    \"context\",\n    \"errorPolicy\",\n    \"fetchPolicy\",\n    \"refetchWritePolicy\",\n    \"returnPartialData\",\n];\nvar InternalQueryReference = /** @class */ (function () {\n    function InternalQueryReference(observable, options) {\n        var _this = this;\n        this.key = {};\n        this.listeners = new Set();\n        this.references = 0;\n        this.handleNext = this.handleNext.bind(this);\n        this.handleError = this.handleError.bind(this);\n        this.dispose = this.dispose.bind(this);\n        this.observable = observable;\n        if (options.onDispose) {\n            this.onDispose = options.onDispose;\n        }\n        this.setResult();\n        this.subscribeToQuery();\n        // Start a timer that will automatically dispose of the query if the\n        // suspended resource does not use this queryRef in the given time. This\n        // helps prevent memory leaks when a component has unmounted before the\n        // query has finished loading.\n        var startDisposeTimer = function () {\n            var _a;\n            if (!_this.references) {\n                _this.autoDisposeTimeoutId = setTimeout(_this.dispose, (_a = options.autoDisposeTimeoutMs) !== null && _a !== void 0 ? _a : 30000);\n            }\n        };\n        // We wait until the request has settled to ensure we don't dispose of the\n        // query ref before the request finishes, otherwise we would leave the\n        // promise in a pending state rendering the suspense boundary indefinitely.\n        this.promise.then(startDisposeTimer, startDisposeTimer);\n    }\n    Object.defineProperty(InternalQueryReference.prototype, \"disposed\", {\n        get: function () {\n            return this.subscription.closed;\n        },\n        enumerable: false,\n        configurable: true\n    });\n    Object.defineProperty(InternalQueryReference.prototype, \"watchQueryOptions\", {\n        get: function () {\n            return this.observable.options;\n        },\n        enumerable: false,\n        configurable: true\n    });\n    InternalQueryReference.prototype.reinitialize = function () {\n        var observable = this.observable;\n        var originalFetchPolicy = this.watchQueryOptions.fetchPolicy;\n        try {\n            if (originalFetchPolicy !== \"no-cache\") {\n                observable.resetLastResults();\n                observable.silentSetOptions({ fetchPolicy: \"cache-first\" });\n            }\n            else {\n                observable.silentSetOptions({ fetchPolicy: \"standby\" });\n            }\n            this.subscribeToQuery();\n            if (originalFetchPolicy === \"no-cache\") {\n                return;\n            }\n            observable.resetDiff();\n            this.setResult();\n        }\n        finally {\n            observable.silentSetOptions({ fetchPolicy: originalFetchPolicy });\n        }\n    };\n    InternalQueryReference.prototype.retain = function () {\n        var _this = this;\n        this.references++;\n        clearTimeout(this.autoDisposeTimeoutId);\n        var disposed = false;\n        return function () {\n            if (disposed) {\n                return;\n            }\n            disposed = true;\n            _this.references--;\n            // Wait before fully disposing in case the app is running in strict mode.\n            setTimeout(function () {\n                if (!_this.references) {\n                    _this.dispose();\n                }\n            });\n        };\n    };\n    InternalQueryReference.prototype.didChangeOptions = function (watchQueryOptions) {\n        var _this = this;\n        return OBSERVED_CHANGED_OPTIONS.some(function (option) {\n            return !equal(_this.watchQueryOptions[option], watchQueryOptions[option]);\n        });\n    };\n    InternalQueryReference.prototype.applyOptions = function (watchQueryOptions) {\n        var _a = this.watchQueryOptions, currentFetchPolicy = _a.fetchPolicy, currentCanonizeResults = _a.canonizeResults;\n        // \"standby\" is used when `skip` is set to `true`. Detect when we've\n        // enabled the query (i.e. `skip` is `false`) to execute a network request.\n        if (currentFetchPolicy === \"standby\" &&\n            currentFetchPolicy !== watchQueryOptions.fetchPolicy) {\n            this.initiateFetch(this.observable.reobserve(watchQueryOptions));\n        }\n        else {\n            this.observable.silentSetOptions(watchQueryOptions);\n            if (currentCanonizeResults !== watchQueryOptions.canonizeResults) {\n                this.result = __assign(__assign({}, this.result), this.observable.getCurrentResult());\n                this.promise = createFulfilledPromise(this.result);\n            }\n        }\n        return this.promise;\n    };\n    InternalQueryReference.prototype.listen = function (listener) {\n        var _this = this;\n        this.listeners.add(listener);\n        return function () {\n            _this.listeners.delete(listener);\n        };\n    };\n    InternalQueryReference.prototype.refetch = function (variables) {\n        return this.initiateFetch(this.observable.refetch(variables));\n    };\n    InternalQueryReference.prototype.fetchMore = function (options) {\n        return this.initiateFetch(this.observable.fetchMore(options));\n    };\n    InternalQueryReference.prototype.dispose = function () {\n        this.subscription.unsubscribe();\n        this.onDispose();\n    };\n    InternalQueryReference.prototype.onDispose = function () {\n        // noop. overridable by options\n    };\n    InternalQueryReference.prototype.handleNext = function (result) {\n        var _a;\n        switch (this.promise.status) {\n            case \"pending\": {\n                // Maintain the last successful `data` value if the next result does not\n                // have one.\n                if (result.data === void 0) {\n                    result.data = this.result.data;\n                }\n                this.result = result;\n                (_a = this.resolve) === null || _a === void 0 ? void 0 : _a.call(this, result);\n                break;\n            }\n            default: {\n                // This occurs when switching to a result that is fully cached when this\n                // class is instantiated. ObservableQuery will run reobserve when\n                // subscribing, which delivers a result from the cache.\n                if (result.data === this.result.data &&\n                    result.networkStatus === this.result.networkStatus) {\n                    return;\n                }\n                // Maintain the last successful `data` value if the next result does not\n                // have one.\n                if (result.data === void 0) {\n                    result.data = this.result.data;\n                }\n                this.result = result;\n                this.promise = createFulfilledPromise(result);\n                this.deliver(this.promise);\n                break;\n            }\n        }\n    };\n    InternalQueryReference.prototype.handleError = function (error) {\n        var _a;\n        this.subscription.unsubscribe();\n        this.subscription = this.observable.resubscribeAfterError(this.handleNext, this.handleError);\n        switch (this.promise.status) {\n            case \"pending\": {\n                (_a = this.reject) === null || _a === void 0 ? void 0 : _a.call(this, error);\n                break;\n            }\n            default: {\n                this.promise = createRejectedPromise(error);\n                this.deliver(this.promise);\n            }\n        }\n    };\n    InternalQueryReference.prototype.deliver = function (promise) {\n        this.listeners.forEach(function (listener) { return listener(promise); });\n    };\n    InternalQueryReference.prototype.initiateFetch = function (returnedPromise) {\n        var _this = this;\n        this.promise = this.createPendingPromise();\n        this.promise.catch(function () { });\n        // If the data returned from the fetch is deeply equal to the data already\n        // in the cache, `handleNext` will not be triggered leaving the promise we\n        // created in a pending state forever. To avoid this situtation, we attempt\n        // to resolve the promise if `handleNext` hasn't been run to ensure the\n        // promise is resolved correctly.\n        returnedPromise\n            .then(function (result) {\n            // In the case of `fetchMore`, this promise is resolved before a cache\n            // result is emitted due to the fact that `fetchMore` sets a `no-cache`\n            // fetch policy and runs `cache.batch` in its `.then` handler. Because\n            // the timing is different, we accidentally run this update twice\n            // causing an additional re-render with the `fetchMore` result by\n            // itself. By wrapping in `setTimeout`, this should provide a short\n            // delay to allow the `QueryInfo.notify` handler to run before this\n            // promise is checked.\n            // See https://github.com/apollographql/apollo-client/issues/11315 for\n            // more information\n            setTimeout(function () {\n                var _a;\n                if (_this.promise.status === \"pending\") {\n                    _this.result = result;\n                    (_a = _this.resolve) === null || _a === void 0 ? void 0 : _a.call(_this, result);\n                }\n            });\n        })\n            .catch(function () { });\n        return returnedPromise;\n    };\n    InternalQueryReference.prototype.subscribeToQuery = function () {\n        var _this = this;\n        this.subscription = this.observable\n            .filter(function (result) { return !equal(result.data, {}) && !equal(result, _this.result); })\n            .subscribe(this.handleNext, this.handleError);\n    };\n    InternalQueryReference.prototype.setResult = function () {\n        // Don't save this result as last result to prevent delivery of last result\n        // when first subscribing\n        var result = this.observable.getCurrentResult(false);\n        if (equal(result, this.result)) {\n            return;\n        }\n        this.result = result;\n        this.promise =\n            (result.data &&\n                (!result.partial || this.watchQueryOptions.returnPartialData)) ?\n                createFulfilledPromise(result)\n                : this.createPendingPromise();\n    };\n    InternalQueryReference.prototype.createPendingPromise = function () {\n        var _this = this;\n        return wrapPromiseWithState(new Promise(function (resolve, reject) {\n            _this.resolve = resolve;\n            _this.reject = reject;\n        }));\n    };\n    return InternalQueryReference;\n}());\nexport { InternalQueryReference };\n//# sourceMappingURL=QueryReference.js.map",
+      "start": 1716304640270,
+      "end": 1716304640281,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1716304640281,
+      "end": 1716304640281,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1716304640281,
+      "end": 1716304640282,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1716304640282,
+      "end": 1716304640282,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1716304640282,
+      "end": 1716304640282,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1716304640282,
+      "end": 1716304640282,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1716304640282,
+      "end": 1716304640282,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1716304640282,
+      "end": 1716304640282,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1716304640282,
+      "end": 1716304640282,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1716304640282,
+      "end": 1716304640282,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1716304640282,
+      "end": 1716304640282,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1716304640282,
+      "end": 1716304640282,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1716304640282,
+      "end": 1716304640282,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1716304640282,
+      "end": 1716304640282,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1716304640282,
+      "end": 1716304640282,
+      "order": "normal"
+    }
+  ]
+}

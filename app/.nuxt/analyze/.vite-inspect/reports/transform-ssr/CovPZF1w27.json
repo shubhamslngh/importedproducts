@@ -4,8 +4,8 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { resolveComponent as _resolveComponent, unref as _unref, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock, toDisplayString as _toDisplayString, withModifiers as _withModifiers, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderClass as _ssrRenderClass, ssrRenderStyle as _ssrRenderStyle, ssrRenderComponent as _ssrRenderComponent, ssrRenderSlot as _ssrRenderSlot, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\"\n\ninterface TabItem {\n  name: string\n  title: string\n}\n\n// composables\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'Tabs',\n  __ssrInlineRender: true,\n  emits: ['click'],\n  setup(__props) {\n\n// types\nconst slots = useSlots()\n\n\n// vars\nconst tabs = ref<HTMLDivElement>()\nconst tabHeaderIndicator = ref<HTMLDivElement>()\nconst tabItems = ref<TabItem[]>([])\nconst activeTab = ref<string>()\n\n// provides\nprovide('activeTab', activeTab)\n\n// methods\nconst updateIndicator = () => {\n  if (!tabs.value || !tabHeaderIndicator.value) return\n\n  // dom\n  const dom = tabHeaderIndicator.value\n  // get header tab item dom\n  const currentActiveIndex = tabItems.value.findIndex(\n    ({ name }) => name === activeTab.value,\n  )\n  const tabItem = tabs.value.querySelectorAll('.tabs-header-item')[\n    currentActiveIndex\n  ] as HTMLDivElement\n  if (!tabItem) return\n\n  // set dom position and size to tab item\n  const padding = 24\n  const diff = 30\n  dom.style.width = `${tabItem.offsetWidth + diff}px`\n  dom.style.left = `${tabItem.offsetLeft - padding - diff / 2}px`\n}\n\n// watchs\nwatch(tabItems, () => updateIndicator())\nwatch(activeTab, () => updateIndicator())\n\n// lifecycle\nonBeforeMount(() => {\n  if (slots.default) {\n    slots.default().forEach((element, i) => {\n      const tab = element.props as TabItem\n      tabItems.value.push(tab)\n      if (i === 0) activeTab.value = tab.name\n    })\n  }\n})\nonMounted(() => {\n  ;(async () => {\n    while (\n      typeof tabHeaderIndicator.value === 'undefined' ||\n      typeof tabs.value === 'undefined'\n    ) {\n      await new Promise((resolve) => setTimeout(resolve, 10))\n    }\n    setTimeout(() => {\n      updateIndicator()\n    }, 350)\n  })()\n})\n\nreturn (_ctx: any,_push: any,_parent: any,_attrs: any) => {\n  const _component_ClientOnly = _resolveComponent(\"ClientOnly\")!\n\n  _push(`<div${_ssrRenderAttrs(_mergeProps({\n    ref_key: \"tabs\",\n    ref: tabs,\n    class: \"tabs\"\n  }, _attrs))}>`)\n  _push(_ssrRenderComponent(_component_ClientOnly, null, {\n    default: _withCtx((_, _push, _parent, _scopeId) => {\n      if (_push) {\n        _push(`<div class=\"tabs-header relative overflow-hidden flex space-x-6 text-sm font-bold text-gray-300 bg-primary-700 rounded-t-lg px-5 py-3\"${_scopeId}><!--[-->`)\n        _ssrRenderList(_unref(tabItems), (item) => {\n          _push(`<div class=\"${\n            _ssrRenderClass({\n            'tabs-header-item': true,\n            'text-white': _unref(activeTab) === item.name,\n          })\n          }\" style=\"${\n            _ssrRenderStyle({\n            zIndex: 2,\n          })\n          }\"${\n            _scopeId\n          }><a href=\"#\"${\n            _scopeId\n          }>${\n            _ssrInterpolate(item.title)\n          }</a></div>`)\n        })\n        _push(`<!--]--><span class=\"absolute flex h-full top-0 left-0 p-1 py-1.5 overflow-hidden transition-all duration-300\" style=\"${\n          _ssrRenderStyle({ zIndex: 1 })\n        }\"${\n          _scopeId\n        }><span class=\"flex-1 bg-gray-500/40 rounded-lg\"${\n          _scopeId\n        }></span></span></div>`)\n      } else {\n        return [\n          _createVNode(\"div\", { class: \"tabs-header relative overflow-hidden flex space-x-6 text-sm font-bold text-gray-300 bg-primary-700 rounded-t-lg px-5 py-3\" }, [\n            (_openBlock(true), _createBlock(_Fragment, null, _renderList(_unref(tabItems), (item) => {\n              return (_openBlock(), _createBlock(\"div\", {\n                key: item.name,\n                class: {\n            'tabs-header-item': true,\n            'text-white': _unref(activeTab) === item.name,\n          },\n                style: {\n            zIndex: 2,\n          },\n                onClick: ($event: any) => (activeTab.value = item.name)\n              }, [\n                _createVNode(\"a\", {\n                  href: \"#\",\n                  onClick: _withModifiers(($event: any) => (_ctx.$emit('click')), [\"prevent\"])\n                }, _toDisplayString(item.title), 9, [\"onClick\"])\n              ], 10, [\"onClick\"]))\n            }), 128)),\n            _createVNode(\"span\", {\n              ref_key: \"tabHeaderIndicator\",\n              ref: tabHeaderIndicator,\n              class: \"absolute flex h-full top-0 left-0 p-1 py-1.5 overflow-hidden transition-all duration-300\",\n              style: { zIndex: 1 }\n            }, [\n              _createVNode(\"span\", { class: \"flex-1 bg-gray-500/40 rounded-lg\" })\n            ], 512)\n          ])\n        ]\n      }\n    }),\n    _: 1\n  }, _parent))\n  _push(`<div class=\"tabs-body relative text-gray-800 dark:text-white bg-gray-200 dark:bg-gray-800 shadow rounded-b-lg\">`)\n  _ssrRenderSlot(_ctx.$slots, \"default\", {}, null, _push, _parent)\n  _push(`</div></div>`)\n}\n}\n\n})",
-      "start": 1713269989169,
-      "end": 1713269989169,
+      "start": 1716304643047,
+      "end": 1716304643047,
       "sourcemaps": {
         "version": 3,
         "sources": [
@@ -20,57 +20,57 @@
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269989169,
-      "end": 1713269989169,
+      "start": 1716304643047,
+      "end": 1716304643047,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269989169,
-      "end": 1713269989169,
+      "start": 1716304643047,
+      "end": 1716304643047,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269989169,
-      "end": 1713269989169,
+      "start": 1716304643047,
+      "end": 1716304643047,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269989169,
-      "end": 1713269989169,
+      "start": 1716304643047,
+      "end": 1716304643047,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269989169,
-      "end": 1713269989169,
+      "start": 1716304643047,
+      "end": 1716304643047,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269989169,
-      "end": 1713269989169,
+      "start": 1716304643047,
+      "end": 1716304643047,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269989169,
-      "end": 1713269989169,
+      "start": 1716304643047,
+      "end": 1716304643047,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269989169,
-      "end": 1713269989169,
+      "start": 1716304643047,
+      "end": 1716304643047,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, unref as _unref, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock, toDisplayString as _toDisplayString, withModifiers as _withModifiers, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderClass as _ssrRenderClass, ssrRenderStyle as _ssrRenderStyle, ssrRenderComponent as _ssrRenderComponent, ssrRenderSlot as _ssrRenderSlot, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Tabs\",\n  __ssrInlineRender: true,\n  emits: [\"click\"],\n  setup(__props) {\n    const slots = useSlots();\n    const tabs = ref();\n    const tabHeaderIndicator = ref();\n    const tabItems = ref([]);\n    const activeTab = ref();\n    provide(\"activeTab\", activeTab);\n    const updateIndicator = () => {\n      if (!tabs.value || !tabHeaderIndicator.value)\n        return;\n      const dom = tabHeaderIndicator.value;\n      const currentActiveIndex = tabItems.value.findIndex(\n        ({ name }) => name === activeTab.value\n      );\n      const tabItem = tabs.value.querySelectorAll(\".tabs-header-item\")[currentActiveIndex];\n      if (!tabItem)\n        return;\n      const padding = 24;\n      const diff = 30;\n      dom.style.width = `${tabItem.offsetWidth + diff}px`;\n      dom.style.left = `${tabItem.offsetLeft - padding - diff / 2}px`;\n    };\n    watch(tabItems, () => updateIndicator());\n    watch(activeTab, () => updateIndicator());\n    onBeforeMount(() => {\n      if (slots.default) {\n        slots.default().forEach((element, i) => {\n          const tab = element.props;\n          tabItems.value.push(tab);\n          if (i === 0)\n            activeTab.value = tab.name;\n        });\n      }\n    });\n    onMounted(() => {\n      ;\n      (async () => {\n        while (typeof tabHeaderIndicator.value === \"undefined\" || typeof tabs.value === \"undefined\") {\n          await new Promise((resolve) => setTimeout(resolve, 10));\n        }\n        setTimeout(() => {\n          updateIndicator();\n        }, 350);\n      })();\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_ClientOnly = _resolveComponent(\"ClientOnly\");\n      _push(`<div${_ssrRenderAttrs(_mergeProps({\n        ref_key: \"tabs\",\n        ref: tabs,\n        class: \"tabs\"\n      }, _attrs))}>`);\n      _push(_ssrRenderComponent(_component_ClientOnly, null, {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(`<div class=\"tabs-header relative overflow-hidden flex space-x-6 text-sm font-bold text-gray-300 bg-primary-700 rounded-t-lg px-5 py-3\"${_scopeId}><!--[-->`);\n            _ssrRenderList(_unref(tabItems), (item) => {\n              _push2(`<div class=\"${_ssrRenderClass({\n                \"tabs-header-item\": true,\n                \"text-white\": _unref(activeTab) === item.name\n              })}\" style=\"${_ssrRenderStyle({\n                zIndex: 2\n              })}\"${_scopeId}><a href=\"#\"${_scopeId}>${_ssrInterpolate(item.title)}</a></div>`);\n            });\n            _push2(`<!--]--><span class=\"absolute flex h-full top-0 left-0 p-1 py-1.5 overflow-hidden transition-all duration-300\" style=\"${_ssrRenderStyle({ zIndex: 1 })}\"${_scopeId}><span class=\"flex-1 bg-gray-500/40 rounded-lg\"${_scopeId}></span></span></div>`);\n          } else {\n            return [\n              _createVNode(\"div\", { class: \"tabs-header relative overflow-hidden flex space-x-6 text-sm font-bold text-gray-300 bg-primary-700 rounded-t-lg px-5 py-3\" }, [\n                (_openBlock(true), _createBlock(_Fragment, null, _renderList(_unref(tabItems), (item) => {\n                  return _openBlock(), _createBlock(\"div\", {\n                    key: item.name,\n                    class: {\n                      \"tabs-header-item\": true,\n                      \"text-white\": _unref(activeTab) === item.name\n                    },\n                    style: {\n                      zIndex: 2\n                    },\n                    onClick: ($event) => activeTab.value = item.name\n                  }, [\n                    _createVNode(\"a\", {\n                      href: \"#\",\n                      onClick: _withModifiers(($event) => _ctx.$emit(\"click\"), [\"prevent\"])\n                    }, _toDisplayString(item.title), 9, [\"onClick\"])\n                  ], 10, [\"onClick\"]);\n                }), 128)),\n                _createVNode(\"span\", {\n                  ref_key: \"tabHeaderIndicator\",\n                  ref: tabHeaderIndicator,\n                  class: \"absolute flex h-full top-0 left-0 p-1 py-1.5 overflow-hidden transition-all duration-300\",\n                  style: { zIndex: 1 }\n                }, [\n                  _createVNode(\"span\", { class: \"flex-1 bg-gray-500/40 rounded-lg\" })\n                ], 512)\n              ])\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n      _push(`<div class=\"tabs-body relative text-gray-800 dark:text-white bg-gray-200 dark:bg-gray-800 shadow rounded-b-lg\">`);\n      _ssrRenderSlot(_ctx.$slots, \"default\", {}, null, _push, _parent);\n      _push(`</div></div>`);\n    };\n  }\n});\n",
-      "start": 1713269989169,
-      "end": 1713269989412,
+      "start": 1716304643047,
+      "end": 1716304643311,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -89,141 +89,141 @@
     },
     {
       "name": "vite:json",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269989412,
-      "end": 1713269989412,
+      "start": 1716304643311,
+      "end": 1716304643311,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { useSlots, ref, provide, watch, onBeforeMount, onMounted } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, unref as _unref, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock, toDisplayString as _toDisplayString, withModifiers as _withModifiers, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderClass as _ssrRenderClass, ssrRenderStyle as _ssrRenderStyle, ssrRenderComponent as _ssrRenderComponent, ssrRenderSlot as _ssrRenderSlot, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Tabs\",\n  __ssrInlineRender: true,\n  emits: [\"click\"],\n  setup(__props) {\n    const slots = useSlots();\n    const tabs = ref();\n    const tabHeaderIndicator = ref();\n    const tabItems = ref([]);\n    const activeTab = ref();\n    provide(\"activeTab\", activeTab);\n    const updateIndicator = () => {\n      if (!tabs.value || !tabHeaderIndicator.value)\n        return;\n      const dom = tabHeaderIndicator.value;\n      const currentActiveIndex = tabItems.value.findIndex(\n        ({ name }) => name === activeTab.value\n      );\n      const tabItem = tabs.value.querySelectorAll(\".tabs-header-item\")[currentActiveIndex];\n      if (!tabItem)\n        return;\n      const padding = 24;\n      const diff = 30;\n      dom.style.width = `${tabItem.offsetWidth + diff}px`;\n      dom.style.left = `${tabItem.offsetLeft - padding - diff / 2}px`;\n    };\n    watch(tabItems, () => updateIndicator());\n    watch(activeTab, () => updateIndicator());\n    onBeforeMount(() => {\n      if (slots.default) {\n        slots.default().forEach((element, i) => {\n          const tab = element.props;\n          tabItems.value.push(tab);\n          if (i === 0)\n            activeTab.value = tab.name;\n        });\n      }\n    });\n    onMounted(() => {\n      ;\n      (async () => {\n        while (typeof tabHeaderIndicator.value === \"undefined\" || typeof tabs.value === \"undefined\") {\n          await new Promise((resolve) => setTimeout(resolve, 10));\n        }\n        setTimeout(() => {\n          updateIndicator();\n        }, 350);\n      })();\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_ClientOnly = _resolveComponent(\"ClientOnly\");\n      _push(`<div${_ssrRenderAttrs(_mergeProps({\n        ref_key: \"tabs\",\n        ref: tabs,\n        class: \"tabs\"\n      }, _attrs))}>`);\n      _push(_ssrRenderComponent(_component_ClientOnly, null, {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(`<div class=\"tabs-header relative overflow-hidden flex space-x-6 text-sm font-bold text-gray-300 bg-primary-700 rounded-t-lg px-5 py-3\"${_scopeId}><!--[-->`);\n            _ssrRenderList(_unref(tabItems), (item) => {\n              _push2(`<div class=\"${_ssrRenderClass({\n                \"tabs-header-item\": true,\n                \"text-white\": _unref(activeTab) === item.name\n              })}\" style=\"${_ssrRenderStyle({\n                zIndex: 2\n              })}\"${_scopeId}><a href=\"#\"${_scopeId}>${_ssrInterpolate(item.title)}</a></div>`);\n            });\n            _push2(`<!--]--><span class=\"absolute flex h-full top-0 left-0 p-1 py-1.5 overflow-hidden transition-all duration-300\" style=\"${_ssrRenderStyle({ zIndex: 1 })}\"${_scopeId}><span class=\"flex-1 bg-gray-500/40 rounded-lg\"${_scopeId}></span></span></div>`);\n          } else {\n            return [\n              _createVNode(\"div\", { class: \"tabs-header relative overflow-hidden flex space-x-6 text-sm font-bold text-gray-300 bg-primary-700 rounded-t-lg px-5 py-3\" }, [\n                (_openBlock(true), _createBlock(_Fragment, null, _renderList(_unref(tabItems), (item) => {\n                  return _openBlock(), _createBlock(\"div\", {\n                    key: item.name,\n                    class: {\n                      \"tabs-header-item\": true,\n                      \"text-white\": _unref(activeTab) === item.name\n                    },\n                    style: {\n                      zIndex: 2\n                    },\n                    onClick: ($event) => activeTab.value = item.name\n                  }, [\n                    _createVNode(\"a\", {\n                      href: \"#\",\n                      onClick: _withModifiers(($event) => _ctx.$emit(\"click\"), [\"prevent\"])\n                    }, _toDisplayString(item.title), 9, [\"onClick\"])\n                  ], 10, [\"onClick\"]);\n                }), 128)),\n                _createVNode(\"span\", {\n                  ref_key: \"tabHeaderIndicator\",\n                  ref: tabHeaderIndicator,\n                  class: \"absolute flex h-full top-0 left-0 p-1 py-1.5 overflow-hidden transition-all duration-300\",\n                  style: { zIndex: 1 }\n                }, [\n                  _createVNode(\"span\", { class: \"flex-1 bg-gray-500/40 rounded-lg\" })\n                ], 512)\n              ])\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n      _push(`<div class=\"tabs-body relative text-gray-800 dark:text-white bg-gray-200 dark:bg-gray-800 shadow rounded-b-lg\">`);\n      _ssrRenderSlot(_ctx.$slots, \"default\", {}, null, _push, _parent);\n      _push(`</div></div>`);\n    };\n  }\n});\n",
-      "start": 1713269989412,
-      "end": 1713269989413,
+      "start": 1716304643311,
+      "end": 1716304643312,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -237,8 +237,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { useSlots, ref, provide, watch, onBeforeMount, onMounted } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, unref as _unref, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock, toDisplayString as _toDisplayString, withModifiers as _withModifiers, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderClass as _ssrRenderClass, ssrRenderStyle as _ssrRenderStyle, ssrRenderComponent as _ssrRenderComponent, ssrRenderSlot as _ssrRenderSlot, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Tabs\",\n  __ssrInlineRender: true,\n  emits: [\"click\"],\n  setup(__props) {\n    const slots = useSlots();\n    const tabs = ref();\n    const tabHeaderIndicator = ref();\n    const tabItems = ref([]);\n    const activeTab = ref();\n    provide(\"activeTab\", activeTab);\n    const updateIndicator = () => {\n      if (!tabs.value || !tabHeaderIndicator.value)\n        return;\n      const dom = tabHeaderIndicator.value;\n      const currentActiveIndex = tabItems.value.findIndex(\n        ({ name }) => name === activeTab.value\n      );\n      const tabItem = tabs.value.querySelectorAll(\".tabs-header-item\")[currentActiveIndex];\n      if (!tabItem)\n        return;\n      const padding = 24;\n      const diff = 30;\n      dom.style.width = `${tabItem.offsetWidth + diff}px`;\n      dom.style.left = `${tabItem.offsetLeft - padding - diff / 2}px`;\n    };\n    watch(tabItems, () => updateIndicator());\n    watch(activeTab, () => updateIndicator());\n    onBeforeMount(() => {\n      if (slots.default) {\n        slots.default().forEach((element, i) => {\n          const tab = element.props;\n          tabItems.value.push(tab);\n          if (i === 0)\n            activeTab.value = tab.name;\n        });\n      }\n    });\n    onMounted(() => {\n      ;\n      (async () => {\n        while (typeof tabHeaderIndicator.value === \"undefined\" || typeof tabs.value === \"undefined\") {\n          await new Promise((resolve) => setTimeout(resolve, 10));\n        }\n        setTimeout(() => {\n          updateIndicator();\n        }, 350);\n      })();\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_ClientOnly = _resolveComponent(\"ClientOnly\");\n      _push(`<div${_ssrRenderAttrs(_mergeProps({\n        ref_key: \"tabs\",\n        ref: tabs,\n        class: \"tabs\"\n      }, _attrs))}>`);\n      _push(_ssrRenderComponent(_component_ClientOnly, null, {\n        default: _withCtx((_, _push2, _parent2, _scopeId) => {\n          if (_push2) {\n            _push2(`<div class=\"tabs-header relative overflow-hidden flex space-x-6 text-sm font-bold text-gray-300 bg-primary-700 rounded-t-lg px-5 py-3\"${_scopeId}><!--[-->`);\n            _ssrRenderList(_unref(tabItems), (item) => {\n              _push2(`<div class=\"${_ssrRenderClass({\n                \"tabs-header-item\": true,\n                \"text-white\": _unref(activeTab) === item.name\n              })}\" style=\"${_ssrRenderStyle({\n                zIndex: 2\n              })}\"${_scopeId}><a href=\"#\"${_scopeId}>${_ssrInterpolate(item.title)}</a></div>`);\n            });\n            _push2(`<!--]--><span class=\"absolute flex h-full top-0 left-0 p-1 py-1.5 overflow-hidden transition-all duration-300\" style=\"${_ssrRenderStyle({ zIndex: 1 })}\"${_scopeId}><span class=\"flex-1 bg-gray-500/40 rounded-lg\"${_scopeId}></span></span></div>`);\n          } else {\n            return [\n              _createVNode(\"div\", { class: \"tabs-header relative overflow-hidden flex space-x-6 text-sm font-bold text-gray-300 bg-primary-700 rounded-t-lg px-5 py-3\" }, [\n                (_openBlock(true), _createBlock(_Fragment, null, _renderList(_unref(tabItems), (item) => {\n                  return _openBlock(), _createBlock(\"div\", {\n                    key: item.name,\n                    class: {\n                      \"tabs-header-item\": true,\n                      \"text-white\": _unref(activeTab) === item.name\n                    },\n                    style: {\n                      zIndex: 2\n                    },\n                    onClick: ($event) => activeTab.value = item.name\n                  }, [\n                    _createVNode(\"a\", {\n                      href: \"#\",\n                      onClick: _withModifiers(($event) => _ctx.$emit(\"click\"), [\"prevent\"])\n                    }, _toDisplayString(item.title), 9, [\"onClick\"])\n                  ], 10, [\"onClick\"]);\n                }), 128)),\n                _createVNode(\"span\", {\n                  ref_key: \"tabHeaderIndicator\",\n                  ref: tabHeaderIndicator,\n                  class: \"absolute flex h-full top-0 left-0 p-1 py-1.5 overflow-hidden transition-all duration-300\",\n                  style: { zIndex: 1 }\n                }, [\n                  _createVNode(\"span\", { class: \"flex-1 bg-gray-500/40 rounded-lg\" })\n                ], 512)\n              ])\n            ];\n          }\n        }),\n        _: 1\n      }, _parent));\n      _push(`<div class=\"tabs-body relative text-gray-800 dark:text-white bg-gray-200 dark:bg-gray-800 shadow rounded-b-lg\">`);\n      _ssrRenderSlot(_ctx.$slots, \"default\", {}, null, _push, _parent);\n      _push(`</div></div>`);\n    };\n  }\n});\n",
-      "start": 1713269989412,
-      "end": 1713269989413,
+      "start": 1716304643311,
+      "end": 1716304643312,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -251,33 +251,33 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1713269989413,
-      "end": 1713269989413,
+      "start": 1716304643312,
+      "end": 1716304643312,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269989413,
-      "end": 1713269989413,
+      "start": 1716304643312,
+      "end": 1716304643312,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269989413,
-      "end": 1713269989413,
+      "start": 1716304643312,
+      "end": 1716304643312,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269989413,
-      "end": 1713269989413,
+      "start": 1716304643312,
+      "end": 1716304643312,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
       "result": "import { useSlots, ref, provide, watch, onBeforeMount, onMounted } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, unref as _unref, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock, toDisplayString as _toDisplayString, withModifiers as _withModifiers, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderClass as _ssrRenderClass, ssrRenderStyle as _ssrRenderStyle, ssrRenderComponent as _ssrRenderComponent, ssrRenderSlot as _ssrRenderSlot, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Tabs\",\n  __ssrInlineRender: true,\n  emits: [\"click\"],\n  setup(__props) {\n    const slots = useSlots();\n    const tabs = ref();\n    const tabHeaderIndicator = ref();\n    const tabItems = ref([]);\n    const activeTab = ref();\n    provide(\"activeTab\", activeTab);\n    const updateIndicator = () => {\n      if (!tabs.value || !tabHeaderIndicator.value)\n        return;\n      const dom = tabHeaderIndicator.value;\n      const currentActiveIndex = tabItems.value.findIndex(\n        ({ name }) => name === activeTab.value\n      );\n      const tabItem = tabs.value.querySelectorAll(\".tabs-header-item\")[currentActiveIndex];\n      if (!tabItem)\n        return;\n      const padding = 24;\n      const diff = 30;\n      dom.style.width = `${tabItem.offsetWidth + diff}px`;\n      dom.style.left = `${tabItem.offsetLeft - padding - diff / 2}px`;\n    };\n    watch(tabItems, () => updateIndicator());\n    watch(activeTab, () => updateIndicator());\n    onBeforeMount(() => {\n      if (slots.default) {\n        slots.default().forEach((element, i) => {\n          const tab = element.props;\n          tabItems.value.push(tab);\n          if (i === 0)\n            activeTab.value = tab.name;\n        });\n      }\n    });\n    onMounted(() => {\n      ;\n      (async () => {\n        while (typeof tabHeaderIndicator.value === \"undefined\" || typeof tabs.value === \"undefined\") {\n          await new Promise((resolve) => setTimeout(resolve, 10));\n        }\n        setTimeout(() => {\n          updateIndicator();\n        }, 350);\n      })();\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_ClientOnly = _resolveComponent(\"ClientOnly\");\n      _push(`<div${_ssrRenderAttrs(_mergeProps({\n        ref_key: \"tabs\",\n        ref: tabs,\n        class: \"tabs\"\n      }, _attrs))}>`);\n      _push(_ssrRenderComponent(_component_ClientOnly, null, {\n        \n              }, _parent));\n      _push(`<div class=\"tabs-body relative text-gray-800 dark:text-white bg-gray-200 dark:bg-gray-800 shadow rounded-b-lg\">`);\n      _ssrRenderSlot(_ctx.$slots, \"default\", {}, null, _push, _parent);\n      _push(`</div></div>`);\n    };\n  }\n});\n",
-      "start": 1713269989413,
-      "end": 1713269989414,
+      "start": 1716304643312,
+      "end": 1716304643314,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -291,8 +291,8 @@
     {
       "name": "nuxt:components-loader",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/app/components/client-only\";\nimport { useSlots, ref, provide, watch, onBeforeMount, onMounted } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, unref as _unref, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock, toDisplayString as _toDisplayString, withModifiers as _withModifiers, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderClass as _ssrRenderClass, ssrRenderStyle as _ssrRenderStyle, ssrRenderComponent as _ssrRenderComponent, ssrRenderSlot as _ssrRenderSlot, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Tabs\",\n  __ssrInlineRender: true,\n  emits: [\"click\"],\n  setup(__props) {\n    const slots = useSlots();\n    const tabs = ref();\n    const tabHeaderIndicator = ref();\n    const tabItems = ref([]);\n    const activeTab = ref();\n    provide(\"activeTab\", activeTab);\n    const updateIndicator = () => {\n      if (!tabs.value || !tabHeaderIndicator.value)\n        return;\n      const dom = tabHeaderIndicator.value;\n      const currentActiveIndex = tabItems.value.findIndex(\n        ({ name }) => name === activeTab.value\n      );\n      const tabItem = tabs.value.querySelectorAll(\".tabs-header-item\")[currentActiveIndex];\n      if (!tabItem)\n        return;\n      const padding = 24;\n      const diff = 30;\n      dom.style.width = `${tabItem.offsetWidth + diff}px`;\n      dom.style.left = `${tabItem.offsetLeft - padding - diff / 2}px`;\n    };\n    watch(tabItems, () => updateIndicator());\n    watch(activeTab, () => updateIndicator());\n    onBeforeMount(() => {\n      if (slots.default) {\n        slots.default().forEach((element, i) => {\n          const tab = element.props;\n          tabItems.value.push(tab);\n          if (i === 0)\n            activeTab.value = tab.name;\n        });\n      }\n    });\n    onMounted(() => {\n      ;\n      (async () => {\n        while (typeof tabHeaderIndicator.value === \"undefined\" || typeof tabs.value === \"undefined\") {\n          await new Promise((resolve) => setTimeout(resolve, 10));\n        }\n        setTimeout(() => {\n          updateIndicator();\n        }, 350);\n      })();\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_ClientOnly = __nuxt_component_0;\n      _push(`<div${_ssrRenderAttrs(_mergeProps({\n        ref_key: \"tabs\",\n        ref: tabs,\n        class: \"tabs\"\n      }, _attrs))}>`);\n      _push(_ssrRenderComponent(_component_ClientOnly, null, {\n        \n              }, _parent));\n      _push(`<div class=\"tabs-body relative text-gray-800 dark:text-white bg-gray-200 dark:bg-gray-800 shadow rounded-b-lg\">`);\n      _ssrRenderSlot(_ctx.$slots, \"default\", {}, null, _push, _parent);\n      _push(`</div></div>`);\n    };\n  }\n});\n",
-      "start": 1713269989414,
-      "end": 1713269989414,
+      "start": 1716304643314,
+      "end": 1716304643314,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -306,8 +306,8 @@
     {
       "name": "nuxt:tree-shake-composables:transform",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/app/components/client-only\";\nimport { useSlots, ref, provide, watch, onBeforeMount, onMounted } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, unref as _unref, withCtx as _withCtx, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createBlock as _createBlock, toDisplayString as _toDisplayString, withModifiers as _withModifiers, createVNode as _createVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderClass as _ssrRenderClass, ssrRenderStyle as _ssrRenderStyle, ssrRenderComponent as _ssrRenderComponent, ssrRenderSlot as _ssrRenderSlot, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Tabs\",\n  __ssrInlineRender: true,\n  emits: [\"click\"],\n  setup(__props) {\n    const slots = useSlots();\n    const tabs = ref();\n    const tabHeaderIndicator = ref();\n    const tabItems = ref([]);\n    const activeTab = ref();\n    provide(\"activeTab\", activeTab);\n    const updateIndicator = () => {\n      if (!tabs.value || !tabHeaderIndicator.value)\n        return;\n      const dom = tabHeaderIndicator.value;\n      const currentActiveIndex = tabItems.value.findIndex(\n        ({ name }) => name === activeTab.value\n      );\n      const tabItem = tabs.value.querySelectorAll(\".tabs-header-item\")[currentActiveIndex];\n      if (!tabItem)\n        return;\n      const padding = 24;\n      const diff = 30;\n      dom.style.width = `${tabItem.offsetWidth + diff}px`;\n      dom.style.left = `${tabItem.offsetLeft - padding - diff / 2}px`;\n    };\n    watch(tabItems, () => updateIndicator());\n    watch(activeTab, () => updateIndicator());\n     false && /*@__PURE__*/ onBeforeMount(() => {\n      if (slots.default) {\n        slots.default().forEach((element, i) => {\n          const tab = element.props;\n          tabItems.value.push(tab);\n          if (i === 0)\n            activeTab.value = tab.name;\n        });\n      }\n    });\n     false && /*@__PURE__*/ onMounted(() => {\n      ;\n      (async () => {\n        while (typeof tabHeaderIndicator.value === \"undefined\" || typeof tabs.value === \"undefined\") {\n          await new Promise((resolve) => setTimeout(resolve, 10));\n        }\n        setTimeout(() => {\n          updateIndicator();\n        }, 350);\n      })();\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_ClientOnly = __nuxt_component_0;\n      _push(`<div${_ssrRenderAttrs(_mergeProps({\n        ref_key: \"tabs\",\n        ref: tabs,\n        class: \"tabs\"\n      }, _attrs))}>`);\n      _push(_ssrRenderComponent(_component_ClientOnly, null, {\n        \n              }, _parent));\n      _push(`<div class=\"tabs-body relative text-gray-800 dark:text-white bg-gray-200 dark:bg-gray-800 shadow rounded-b-lg\">`);\n      _ssrRenderSlot(_ctx.$slots, \"default\", {}, null, _push, _parent);\n      _push(`</div></div>`);\n    };\n  }\n});\n",
-      "start": 1713269989414,
-      "end": 1713269989415,
+      "start": 1716304643314,
+      "end": 1716304643314,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -320,14 +320,14 @@
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269989415,
-      "end": 1713269989415,
+      "start": 1716304643314,
+      "end": 1716304643314,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269989415,
-      "end": 1713269989415,
+      "start": 1716304643314,
+      "end": 1716304643314,
       "order": "normal"
     }
   ]

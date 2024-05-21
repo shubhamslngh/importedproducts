@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "import { c as createElementIfNotDefined } from '../shared/create-element-if-not-defined.mjs';\nimport { m as makeElementsArray } from '../shared/utils.mjs';\n\nfunction Navigation(_ref) {\n  let {\n    swiper,\n    extendParams,\n    on,\n    emit\n  } = _ref;\n  extendParams({\n    navigation: {\n      nextEl: null,\n      prevEl: null,\n      hideOnClick: false,\n      disabledClass: 'swiper-button-disabled',\n      hiddenClass: 'swiper-button-hidden',\n      lockClass: 'swiper-button-lock',\n      navigationDisabledClass: 'swiper-navigation-disabled'\n    }\n  });\n  swiper.navigation = {\n    nextEl: null,\n    prevEl: null\n  };\n  function getEl(el) {\n    let res;\n    if (el && typeof el === 'string' && swiper.isElement) {\n      res = swiper.el.querySelector(el);\n      if (res) return res;\n    }\n    if (el) {\n      if (typeof el === 'string') res = [...document.querySelectorAll(el)];\n      if (swiper.params.uniqueNavElements && typeof el === 'string' && res && res.length > 1 && swiper.el.querySelectorAll(el).length === 1) {\n        res = swiper.el.querySelector(el);\n      } else if (res && res.length === 1) {\n        res = res[0];\n      }\n    }\n    if (el && !res) return el;\n    // if (Array.isArray(res) && res.length === 1) res = res[0];\n    return res;\n  }\n  function toggleEl(el, disabled) {\n    const params = swiper.params.navigation;\n    el = makeElementsArray(el);\n    el.forEach(subEl => {\n      if (subEl) {\n        subEl.classList[disabled ? 'add' : 'remove'](...params.disabledClass.split(' '));\n        if (subEl.tagName === 'BUTTON') subEl.disabled = disabled;\n        if (swiper.params.watchOverflow && swiper.enabled) {\n          subEl.classList[swiper.isLocked ? 'add' : 'remove'](params.lockClass);\n        }\n      }\n    });\n  }\n  function update() {\n    // Update Navigation Buttons\n    const {\n      nextEl,\n      prevEl\n    } = swiper.navigation;\n    if (swiper.params.loop) {\n      toggleEl(prevEl, false);\n      toggleEl(nextEl, false);\n      return;\n    }\n    toggleEl(prevEl, swiper.isBeginning && !swiper.params.rewind);\n    toggleEl(nextEl, swiper.isEnd && !swiper.params.rewind);\n  }\n  function onPrevClick(e) {\n    e.preventDefault();\n    if (swiper.isBeginning && !swiper.params.loop && !swiper.params.rewind) return;\n    swiper.slidePrev();\n    emit('navigationPrev');\n  }\n  function onNextClick(e) {\n    e.preventDefault();\n    if (swiper.isEnd && !swiper.params.loop && !swiper.params.rewind) return;\n    swiper.slideNext();\n    emit('navigationNext');\n  }\n  function init() {\n    const params = swiper.params.navigation;\n    swiper.params.navigation = createElementIfNotDefined(swiper, swiper.originalParams.navigation, swiper.params.navigation, {\n      nextEl: 'swiper-button-next',\n      prevEl: 'swiper-button-prev'\n    });\n    if (!(params.nextEl || params.prevEl)) return;\n    let nextEl = getEl(params.nextEl);\n    let prevEl = getEl(params.prevEl);\n    Object.assign(swiper.navigation, {\n      nextEl,\n      prevEl\n    });\n    nextEl = makeElementsArray(nextEl);\n    prevEl = makeElementsArray(prevEl);\n    const initButton = (el, dir) => {\n      if (el) {\n        el.addEventListener('click', dir === 'next' ? onNextClick : onPrevClick);\n      }\n      if (!swiper.enabled && el) {\n        el.classList.add(...params.lockClass.split(' '));\n      }\n    };\n    nextEl.forEach(el => initButton(el, 'next'));\n    prevEl.forEach(el => initButton(el, 'prev'));\n  }\n  function destroy() {\n    let {\n      nextEl,\n      prevEl\n    } = swiper.navigation;\n    nextEl = makeElementsArray(nextEl);\n    prevEl = makeElementsArray(prevEl);\n    const destroyButton = (el, dir) => {\n      el.removeEventListener('click', dir === 'next' ? onNextClick : onPrevClick);\n      el.classList.remove(...swiper.params.navigation.disabledClass.split(' '));\n    };\n    nextEl.forEach(el => destroyButton(el, 'next'));\n    prevEl.forEach(el => destroyButton(el, 'prev'));\n  }\n  on('init', () => {\n    if (swiper.params.navigation.enabled === false) {\n      // eslint-disable-next-line\n      disable();\n    } else {\n      init();\n      update();\n    }\n  });\n  on('toEdge fromEdge lock unlock', () => {\n    update();\n  });\n  on('destroy', () => {\n    destroy();\n  });\n  on('enable disable', () => {\n    let {\n      nextEl,\n      prevEl\n    } = swiper.navigation;\n    nextEl = makeElementsArray(nextEl);\n    prevEl = makeElementsArray(prevEl);\n    if (swiper.enabled) {\n      update();\n      return;\n    }\n    [...nextEl, ...prevEl].filter(el => !!el).forEach(el => el.classList.add(swiper.params.navigation.lockClass));\n  });\n  on('click', (_s, e) => {\n    let {\n      nextEl,\n      prevEl\n    } = swiper.navigation;\n    nextEl = makeElementsArray(nextEl);\n    prevEl = makeElementsArray(prevEl);\n    const targetEl = e.target;\n    if (swiper.params.navigation.hideOnClick && !prevEl.includes(targetEl) && !nextEl.includes(targetEl)) {\n      if (swiper.pagination && swiper.params.pagination && swiper.params.pagination.clickable && (swiper.pagination.el === targetEl || swiper.pagination.el.contains(targetEl))) return;\n      let isHidden;\n      if (nextEl.length) {\n        isHidden = nextEl[0].classList.contains(swiper.params.navigation.hiddenClass);\n      } else if (prevEl.length) {\n        isHidden = prevEl[0].classList.contains(swiper.params.navigation.hiddenClass);\n      }\n      if (isHidden === true) {\n        emit('navigationShow');\n      } else {\n        emit('navigationHide');\n      }\n      [...nextEl, ...prevEl].filter(el => !!el).forEach(el => el.classList.toggle(swiper.params.navigation.hiddenClass));\n    }\n  });\n  const enable = () => {\n    swiper.el.classList.remove(...swiper.params.navigation.navigationDisabledClass.split(' '));\n    init();\n    update();\n  };\n  const disable = () => {\n    swiper.el.classList.add(...swiper.params.navigation.navigationDisabledClass.split(' '));\n    destroy();\n  };\n  Object.assign(swiper.navigation, {\n    enable,\n    disable,\n    update,\n    init,\n    destroy\n  });\n}\n\nexport { Navigation as default };\n",
-      "start": 1713269986007,
-      "end": 1713269986029,
+      "start": 1716304639707,
+      "end": 1716304639721,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269986029,
-      "end": 1713269986029,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269986029,
-      "end": 1713269986029,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269986029,
-      "end": 1713269986029,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269986029,
-      "end": 1713269986029,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269986029,
-      "end": 1713269986029,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1713269986029,
-      "end": 1713269986029,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1713269986029,
-      "end": 1713269986029,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269986029,
-      "end": 1713269986029,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269986029,
-      "end": 1713269986029,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269986029,
-      "end": 1713269986029,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986029,
-      "end": 1713269986029,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269986029,
-      "end": 1713269986029,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1713269986044,
-      "end": 1713269986045,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269986046,
-      "end": 1713269986046,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269986046,
-      "end": 1713269986046,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986047,
-      "end": 1713269986047,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269986048,
-      "end": 1713269986048,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269986048,
-      "end": 1713269986048,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269986048,
-      "end": 1713269986048,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269986058,
-      "end": 1713269986058,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269986059,
-      "end": 1713269986060,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269986062,
-      "end": 1713269986062,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269986062,
-      "end": 1713269986063,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269986064,
-      "end": 1713269986064,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269986064,
-      "end": 1713269986064,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269986064,
-      "end": 1713269986064,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269986075,
-      "end": 1713269986076,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269986076,
-      "end": 1713269986076,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269986078,
-      "end": 1713269986078,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1713269986078,
-      "end": 1713269986078,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1713269986079,
-      "end": 1713269986079,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269986079,
-      "end": 1713269986079,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269986079,
-      "end": 1713269986079,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269986079,
-      "end": 1713269986079,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269986079,
-      "end": 1713269986079,
+      "start": 1716304639721,
+      "end": 1716304639721,
       "order": "normal"
     }
   ]

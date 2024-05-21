@@ -4,44 +4,44 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, createVNode as _createVNode, resolveDynamicComponent as _resolveDynamicComponent, normalizeClass as _normalizeClass, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nconst _hoisted_1 = { class: \"text-center mb-6 leading-3\" }\nconst _hoisted_2 = { class: \"font-bold text-8xl block\" }\nconst _hoisted_3 = { class: \"block italic\" }\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'Error',\n  props: {\n  code: {\n    type: Number,\n    default: 400,\n  },\n  wrap: {\n    type: Boolean,\n    default: false,\n  },\n},\n  setup(__props) {\n\n// components\nconst PageWrapper = resolveComponent('LayoutPageWrapper')\n\n// compiler macro\nconst props = __props\n\n// computed\nconst errorsMap: {\n  [key: string]: string\n} = {\n  '400': 'Bad Request',\n  '401': 'Unauthorized',\n  '403': 'Forbidden',\n  '404': 'Not Found',\n}\nconst error = computed(() => {\n  const { code } = props\n  return {\n    code,\n    message: errorsMap[code.toString()] || 'Unknown Error',\n  }\n})\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_AwesomeButton = _resolveComponent(\"AwesomeButton\")!\n\n  return (_openBlock(), _createBlock(_resolveDynamicComponent(props.wrap ? _unref(PageWrapper) : 'div'), {\n    class: _normalizeClass(props.wrap ? 'flex flex-col items-center justify-center' : '')\n  }, {\n    default: _withCtx(() => [\n      _createElementVNode(\"h1\", _hoisted_1, [\n        _createElementVNode(\"span\", _hoisted_2, _toDisplayString(_unref(error).code), 1),\n        _createElementVNode(\"span\", _hoisted_3, _toDisplayString(_unref(error).message), 1)\n      ]),\n      _createVNode(_component_AwesomeButton, {\n        text: \"Home\",\n        to: \"/\",\n        size: \"sm\"\n      })\n    ]),\n    _: 1\n  }, 8, [\"class\"]))\n}\n}\n\n})",
-      "start": 1713269985959,
-      "end": 1713269985959
+      "start": 1716304639650,
+      "end": 1716304639650
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269985959,
-      "end": 1713269985959,
+      "start": 1716304639650,
+      "end": 1716304639650,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269985959,
-      "end": 1713269985959,
+      "start": 1716304639650,
+      "end": 1716304639650,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269985959,
-      "end": 1713269985959,
+      "start": 1716304639651,
+      "end": 1716304639651,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269985959,
-      "end": 1713269985959,
+      "start": 1716304639651,
+      "end": 1716304639651,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269985959,
-      "end": 1713269985959,
+      "start": 1716304639651,
+      "end": 1716304639651,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, createVNode as _createVNode, resolveDynamicComponent as _resolveDynamicComponent, normalizeClass as _normalizeClass, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nconst _hoisted_1 = { class: \"text-center mb-6 leading-3\" };\nconst _hoisted_2 = { class: \"font-bold text-8xl block\" };\nconst _hoisted_3 = { class: \"block italic\" };\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Error\",\n  props: {\n    code: {\n      type: Number,\n      default: 400\n    },\n    wrap: {\n      type: Boolean,\n      default: false\n    }\n  },\n  setup(__props) {\n    const PageWrapper = resolveComponent(\"LayoutPageWrapper\");\n    const props = __props;\n    const errorsMap = {\n      \"400\": \"Bad Request\",\n      \"401\": \"Unauthorized\",\n      \"403\": \"Forbidden\",\n      \"404\": \"Not Found\"\n    };\n    const error = computed(() => {\n      const { code } = props;\n      return {\n        code,\n        message: errorsMap[code.toString()] || \"Unknown Error\"\n      };\n    });\n    return (_ctx, _cache) => {\n      const _component_AwesomeButton = _resolveComponent(\"AwesomeButton\");\n      return _openBlock(), _createBlock(_resolveDynamicComponent(props.wrap ? _unref(PageWrapper) : \"div\"), {\n        class: _normalizeClass(props.wrap ? \"flex flex-col items-center justify-center\" : \"\")\n      }, {\n        default: _withCtx(() => [\n          _createElementVNode(\"h1\", _hoisted_1, [\n            _createElementVNode(\"span\", _hoisted_2, _toDisplayString(_unref(error).code), 1),\n            _createElementVNode(\"span\", _hoisted_3, _toDisplayString(_unref(error).message), 1)\n          ]),\n          _createVNode(_component_AwesomeButton, {\n            text: \"Home\",\n            to: \"/\",\n            size: \"sm\"\n          })\n        ]),\n        _: 1\n      }, 8, [\"class\"]);\n    };\n  }\n});\n",
-      "start": 1713269985959,
-      "end": 1713269986502,
+      "start": 1716304639651,
+      "end": 1716304639970,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -57,129 +57,129 @@
     },
     {
       "name": "vite:json",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269986502,
-      "end": 1713269986502,
+      "start": 1716304639970,
+      "end": 1716304639970,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { resolveComponent, computed } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, createVNode as _createVNode, resolveDynamicComponent as _resolveDynamicComponent, normalizeClass as _normalizeClass, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nconst _hoisted_1 = { class: \"text-center mb-6 leading-3\" };\nconst _hoisted_2 = { class: \"font-bold text-8xl block\" };\nconst _hoisted_3 = { class: \"block italic\" };\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Error\",\n  props: {\n    code: {\n      type: Number,\n      default: 400\n    },\n    wrap: {\n      type: Boolean,\n      default: false\n    }\n  },\n  setup(__props) {\n    const PageWrapper = resolveComponent(\"LayoutPageWrapper\");\n    const props = __props;\n    const errorsMap = {\n      \"400\": \"Bad Request\",\n      \"401\": \"Unauthorized\",\n      \"403\": \"Forbidden\",\n      \"404\": \"Not Found\"\n    };\n    const error = computed(() => {\n      const { code } = props;\n      return {\n        code,\n        message: errorsMap[code.toString()] || \"Unknown Error\"\n      };\n    });\n    return (_ctx, _cache) => {\n      const _component_AwesomeButton = _resolveComponent(\"AwesomeButton\");\n      return _openBlock(), _createBlock(_resolveDynamicComponent(props.wrap ? _unref(PageWrapper) : \"div\"), {\n        class: _normalizeClass(props.wrap ? \"flex flex-col items-center justify-center\" : \"\")\n      }, {\n        default: _withCtx(() => [\n          _createElementVNode(\"h1\", _hoisted_1, [\n            _createElementVNode(\"span\", _hoisted_2, _toDisplayString(_unref(error).code), 1),\n            _createElementVNode(\"span\", _hoisted_3, _toDisplayString(_unref(error).message), 1)\n          ]),\n          _createVNode(_component_AwesomeButton, {\n            text: \"Home\",\n            to: \"/\",\n            size: \"sm\"\n          })\n        ]),\n        _: 1\n      }, 8, [\"class\"]);\n    };\n  }\n});\n",
-      "start": 1713269986502,
-      "end": 1713269986503,
+      "start": 1716304639970,
+      "end": 1716304639971,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -192,51 +192,51 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1713269986503,
-      "end": 1713269986503,
+      "start": 1716304639971,
+      "end": 1716304639971,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269986503,
-      "end": 1713269986503,
+      "start": 1716304639971,
+      "end": 1716304639971,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1713269986503,
-      "end": 1713269986503,
+      "start": 1716304639971,
+      "end": 1716304639971,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1713269986503,
-      "end": 1713269986503,
+      "start": 1716304639971,
+      "end": 1716304639971,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Wrapper.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/shubhamsingh/namma/importedProds/components/awesome/Button/index.vue\";\nimport { resolveComponent, computed } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, toDisplayString as _toDisplayString, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, createVNode as _createVNode, resolveDynamicComponent as _resolveDynamicComponent, normalizeClass as _normalizeClass, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nconst _hoisted_1 = { class: \"text-center mb-6 leading-3\" };\nconst _hoisted_2 = { class: \"font-bold text-8xl block\" };\nconst _hoisted_3 = { class: \"block italic\" };\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Error\",\n  props: {\n    code: {\n      type: Number,\n      default: 400\n    },\n    wrap: {\n      type: Boolean,\n      default: false\n    }\n  },\n  setup(__props) {\n    const PageWrapper = __nuxt_component_0;\n    const props = __props;\n    const errorsMap = {\n      \"400\": \"Bad Request\",\n      \"401\": \"Unauthorized\",\n      \"403\": \"Forbidden\",\n      \"404\": \"Not Found\"\n    };\n    const error = computed(() => {\n      const { code } = props;\n      return {\n        code,\n        message: errorsMap[code.toString()] || \"Unknown Error\"\n      };\n    });\n    return (_ctx, _cache) => {\n      const _component_AwesomeButton = __nuxt_component_1;\n      return _openBlock(), _createBlock(_resolveDynamicComponent(props.wrap ? _unref(PageWrapper) : \"div\"), {\n        class: _normalizeClass(props.wrap ? \"flex flex-col items-center justify-center\" : \"\")\n      }, {\n        default: _withCtx(() => [\n          _createElementVNode(\"h1\", _hoisted_1, [\n            _createElementVNode(\"span\", _hoisted_2, _toDisplayString(_unref(error).code), 1),\n            _createElementVNode(\"span\", _hoisted_3, _toDisplayString(_unref(error).message), 1)\n          ]),\n          _createVNode(_component_AwesomeButton, {\n            text: \"Home\",\n            to: \"/\",\n            size: \"sm\"\n          })\n        ]),\n        _: 1\n      }, 8, [\"class\"]);\n    };\n  }\n});\n",
-      "start": 1713269986503,
-      "end": 1713269986503,
+      "start": 1716304639971,
+      "end": 1716304639971,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269986503,
-      "end": 1713269986503,
+      "start": 1716304639971,
+      "end": 1716304639971,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269986503,
-      "end": 1713269986503,
+      "start": 1716304639971,
+      "end": 1716304639971,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269986503,
-      "end": 1713269986503,
+      "start": 1716304639971,
+      "end": 1716304639971,
       "order": "normal"
     }
   ]

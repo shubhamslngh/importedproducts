@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "import { e as extend, p as paramsList, i as isObject, n as needsNavigation, a as needsPagination, b as needsScrollbar } from './update-swiper.mjs';\nimport { d as defaults } from './swiper-core.mjs';\n\nfunction getParams(obj, splitEvents) {\n  if (obj === void 0) {\n    obj = {};\n  }\n  if (splitEvents === void 0) {\n    splitEvents = true;\n  }\n  const params = {\n    on: {}\n  };\n  const events = {};\n  const passedParams = {};\n  extend(params, defaults);\n  params._emitClasses = true;\n  params.init = false;\n  const rest = {};\n  const allowedParams = paramsList.map(key => key.replace(/_/, ''));\n  const plainObj = Object.assign({}, obj);\n  Object.keys(plainObj).forEach(key => {\n    if (typeof obj[key] === 'undefined') return;\n    if (allowedParams.indexOf(key) >= 0) {\n      if (isObject(obj[key])) {\n        params[key] = {};\n        passedParams[key] = {};\n        extend(params[key], obj[key]);\n        extend(passedParams[key], obj[key]);\n      } else {\n        params[key] = obj[key];\n        passedParams[key] = obj[key];\n      }\n    } else if (key.search(/on[A-Z]/) === 0 && typeof obj[key] === 'function') {\n      if (splitEvents) {\n        events[`${key[2].toLowerCase()}${key.substr(3)}`] = obj[key];\n      } else {\n        params.on[`${key[2].toLowerCase()}${key.substr(3)}`] = obj[key];\n      }\n    } else {\n      rest[key] = obj[key];\n    }\n  });\n  ['navigation', 'pagination', 'scrollbar'].forEach(key => {\n    if (params[key] === true) params[key] = {};\n    if (params[key] === false) delete params[key];\n  });\n  return {\n    params,\n    passedParams,\n    rest,\n    events\n  };\n}\n\nfunction mountSwiper(_ref, swiperParams) {\n  let {\n    el,\n    nextEl,\n    prevEl,\n    paginationEl,\n    scrollbarEl,\n    swiper\n  } = _ref;\n  if (needsNavigation(swiperParams) && nextEl && prevEl) {\n    swiper.params.navigation.nextEl = nextEl;\n    swiper.originalParams.navigation.nextEl = nextEl;\n    swiper.params.navigation.prevEl = prevEl;\n    swiper.originalParams.navigation.prevEl = prevEl;\n  }\n  if (needsPagination(swiperParams) && paginationEl) {\n    swiper.params.pagination.el = paginationEl;\n    swiper.originalParams.pagination.el = paginationEl;\n  }\n  if (needsScrollbar(swiperParams) && scrollbarEl) {\n    swiper.params.scrollbar.el = scrollbarEl;\n    swiper.originalParams.scrollbar.el = scrollbarEl;\n  }\n  swiper.init(el);\n}\n\nfunction getChangedParams(swiperParams, oldParams, children, oldChildren, getKey) {\n  const keys = [];\n  if (!oldParams) return keys;\n  const addKey = key => {\n    if (keys.indexOf(key) < 0) keys.push(key);\n  };\n  if (children && oldChildren) {\n    const oldChildrenKeys = oldChildren.map(getKey);\n    const childrenKeys = children.map(getKey);\n    if (oldChildrenKeys.join('') !== childrenKeys.join('')) addKey('children');\n    if (oldChildren.length !== children.length) addKey('children');\n  }\n  const watchParams = paramsList.filter(key => key[0] === '_').map(key => key.replace(/_/, ''));\n  watchParams.forEach(key => {\n    if (key in swiperParams && key in oldParams) {\n      if (isObject(swiperParams[key]) && isObject(oldParams[key])) {\n        const newKeys = Object.keys(swiperParams[key]);\n        const oldKeys = Object.keys(oldParams[key]);\n        if (newKeys.length !== oldKeys.length) {\n          addKey(key);\n        } else {\n          newKeys.forEach(newKey => {\n            if (swiperParams[key][newKey] !== oldParams[key][newKey]) {\n              addKey(key);\n            }\n          });\n          oldKeys.forEach(oldKey => {\n            if (swiperParams[key][oldKey] !== oldParams[key][oldKey]) addKey(key);\n          });\n        }\n      } else if (swiperParams[key] !== oldParams[key]) {\n        addKey(key);\n      }\n    }\n  });\n  return keys;\n}\n\nconst updateOnVirtualData = swiper => {\n  if (!swiper || swiper.destroyed || !swiper.params.virtual || swiper.params.virtual && !swiper.params.virtual.enabled) return;\n  swiper.updateSlides();\n  swiper.updateProgress();\n  swiper.updateSlidesClasses();\n  if (swiper.parallax && swiper.params.parallax && swiper.params.parallax.enabled) {\n    swiper.parallax.setTranslate();\n  }\n};\n\nexport { getChangedParams as a, getParams as g, mountSwiper as m, updateOnVirtualData as u };\n",
-      "start": 1713269986006,
-      "end": 1713269986024,
+      "start": 1716304639705,
+      "end": 1716304639718,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1713269986024,
-      "end": 1713269986024,
+      "start": 1716304639718,
+      "end": 1716304639718,
       "order": "normal"
     }
   ]
