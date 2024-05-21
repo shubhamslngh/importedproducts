@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "import { invariant } from '../../../jsutils/invariant.mjs';\nimport { GraphQLError } from '../../../error/GraphQLError.mjs';\nimport { getNamedType, isInputObjectType } from '../../../type/definition.mjs';\n\n/**\n * No deprecated\n *\n * A GraphQL document is only valid if all selected fields and all used enum values have not been\n * deprecated.\n *\n * Note: This rule is optional and is not part of the Validation section of the GraphQL\n * Specification. The main purpose of this rule is detection of deprecated usages and not\n * necessarily to forbid their use when querying a service.\n */\nexport function NoDeprecatedCustomRule(context) {\n  return {\n    Field(node) {\n      const fieldDef = context.getFieldDef();\n      const deprecationReason =\n        fieldDef === null || fieldDef === void 0\n          ? void 0\n          : fieldDef.deprecationReason;\n\n      if (fieldDef && deprecationReason != null) {\n        const parentType = context.getParentType();\n        parentType != null || invariant(false);\n        context.reportError(\n          new GraphQLError(\n            `The field ${parentType.name}.${fieldDef.name} is deprecated. ${deprecationReason}`,\n            {\n              nodes: node,\n            },\n          ),\n        );\n      }\n    },\n\n    Argument(node) {\n      const argDef = context.getArgument();\n      const deprecationReason =\n        argDef === null || argDef === void 0\n          ? void 0\n          : argDef.deprecationReason;\n\n      if (argDef && deprecationReason != null) {\n        const directiveDef = context.getDirective();\n\n        if (directiveDef != null) {\n          context.reportError(\n            new GraphQLError(\n              `Directive \"@${directiveDef.name}\" argument \"${argDef.name}\" is deprecated. ${deprecationReason}`,\n              {\n                nodes: node,\n              },\n            ),\n          );\n        } else {\n          const parentType = context.getParentType();\n          const fieldDef = context.getFieldDef();\n          (parentType != null && fieldDef != null) || invariant(false);\n          context.reportError(\n            new GraphQLError(\n              `Field \"${parentType.name}.${fieldDef.name}\" argument \"${argDef.name}\" is deprecated. ${deprecationReason}`,\n              {\n                nodes: node,\n              },\n            ),\n          );\n        }\n      }\n    },\n\n    ObjectField(node) {\n      const inputObjectDef = getNamedType(context.getParentInputType());\n\n      if (isInputObjectType(inputObjectDef)) {\n        const inputFieldDef = inputObjectDef.getFields()[node.name.value];\n        const deprecationReason =\n          inputFieldDef === null || inputFieldDef === void 0\n            ? void 0\n            : inputFieldDef.deprecationReason;\n\n        if (deprecationReason != null) {\n          context.reportError(\n            new GraphQLError(\n              `The input field ${inputObjectDef.name}.${inputFieldDef.name} is deprecated. ${deprecationReason}`,\n              {\n                nodes: node,\n              },\n            ),\n          );\n        }\n      }\n    },\n\n    EnumValue(node) {\n      const enumValueDef = context.getEnumValue();\n      const deprecationReason =\n        enumValueDef === null || enumValueDef === void 0\n          ? void 0\n          : enumValueDef.deprecationReason;\n\n      if (enumValueDef && deprecationReason != null) {\n        const enumTypeDef = getNamedType(context.getInputType());\n        enumTypeDef != null || invariant(false);\n        context.reportError(\n          new GraphQLError(\n            `The enum value \"${enumTypeDef.name}.${enumValueDef.name}\" is deprecated. ${deprecationReason}`,\n            {\n              nodes: node,\n            },\n          ),\n        );\n      }\n    },\n  };\n}\n",
-      "start": 1716304640018,
-      "end": 1716304640033,
+      "start": 1716330189465,
+      "end": 1716330189475,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189475,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189475,
+      "end": 1716330189476,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189476,
+      "end": 1716330189476,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189476,
+      "end": 1716330189476,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189476,
+      "end": 1716330189476,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189476,
+      "end": 1716330189476,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189476,
+      "end": 1716330189476,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189476,
+      "end": 1716330189476,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304640033,
-      "end": 1716304640033,
+      "start": 1716330189476,
+      "end": 1716330189476,
       "order": "normal"
     }
   ]

@@ -4,81 +4,81 @@
     {
       "name": "vite:load-fallback",
       "result": "<template>\n  <div v-if=\"data.products.edges\" class=\"swiper\">\n    <h1 class=\"mx-auto mb-6 py-16 ml-10 text-center text-2xl sm:text-md font-bold\">\n     SELECT CASES\n    </h1>\n\n    <div class=\"swiper-wrapper\">\n      <div\n        v-for=\"(product, index) in data.products.edges\"\n        :key=\"index\"\n        class=\"swiper-slide\"\n        :id=\"product.node.name\"\n      >\n        <div>\n          <img\n            @click=\"handleClick(product.node.databaseId)\"\n            :src=\"product.node.image ? product.node.image.link : ''\"\n            alt=\"Product Image\"\n            class=\"transition-all ease-in-out\"\n          />\n          <h3\n            class=\"grid text-wrap text-center text-[0.75rem]/5 font-MONO font-semibold hover:font-bold\"\n          >\n            {{ product.node.name }}\n          </h3>\n          <template v-if=\"selectedProductId === product.node.databaseId\">\n            <div\n              class=\"swiper-container overscroll-auto focus:overscroll-contain grid m-5 mt-12\"\n            >\n              {{ console.log(selectedProductId) }}\n              <AwesomeVariations :productId=\"selectedProductId\" />\n              <!-- <AwesomeCardstest :productId=\"selectedProductId\" /> -->\n            </div>\n          </template>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div v-else>\n    <div class=\"swiper-lazy-preloader swiper-lazy-preloader-black\">Loading...</div>\n  </div>\n</template>\n\n<script setup>\nimport { ref, onMounted } from \"vue\";\n// import { cartItem } from \"../../utils/cart\";\nimport Swiper from \"swiper\";\nimport { Navigation, Pagination, Scrollbar, Autoplay } from \"swiper/modules\";\nimport \"swiper/swiper-bundle.css\";\nimport gql from \"graphql-tag\";\nconst selectedProductId = ref(0);\n// const { Data1 } = await useAsyncQuery(cartItem);\n// console.log(\"cart\",Data1)\nconst query = gql`\n  query MyQuery {\n    products(where: { category: \"cases\" }) {\n      edges {\n        node {\n          image {\n            link\n          }\n          name\n          id\n          databaseId\n        }\n      }\n    }\n  }\n`;\n\nconst initializeSwiper = () => {\n\n\n  const swiper = new Swiper(\".swiper\", {\n    slidesPerView: 5,\n    rewind: true,\n    spaceBetween: 40,\n    allowSlideNext: true,\n    autoplay: true,\n    loop: true,\n    resizeObserver: true,\n    grabCursor: true,\n    shortSwipes: true,\n    slideShadows: false,\n    breakpointsBase: window,\n    pagination: {\n      el: \".swiper-pagination\",\n      type: \"bullets\",\n      clickable: true,\n    },\n    navigation: {\n      nextEl: \".swiper-button-next\",\n      prevEl: \".swiper-button-prev\",\n    },\n    breakpoints: {\n      0: {\n        slidesPerView: 1,\n        spaceBetween: 10,\n      },\n      630: {\n        slidesPerView: 3,\n        spaceBetween: 10,\n      },\n      720: {\n        slidesPerView: 4,\n        spaceBetween: 10,\n      },\n      1440: {\n        slidesPerView: 5,\n        spaceBetween: 40,\n      },\n    },\n  });\n  return swiper;\n};\n\nconst products = ref([]);\nonMounted(() => {\n  initializeSwiper();\n});\n\nconst { data } = await useAsyncQuery(query);\n// console.log(data._value.products.edges, \"here in cards\");\nproducts.value = data._value.products.edges.map((edges) => ({\n  name: edges.node.name,\n  img: edges.node.image.link,\n}));\nconsole.log(products.value, \"cases is obj\");\n\nconst handleClick = (productId) => {\n  selectedProductId.value = productId;\n};\n</script>\n\n<style scoped>\n.swiper-slide {\n  width: cover;\n  height: cover;\n  text-align: center;\n  font-size: 10px;\n  display: grid;\n  justify-content: center;\n  align-items: center;\n}\n.swiper-container {\n  width: auto;\n  height: auto;\n}\n</style>\n",
-      "start": 1716304642008,
-      "end": 1716304642127,
+      "start": 1716330192097,
+      "end": 1716330192390,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304642127,
-      "end": 1716304642127,
+      "start": 1716330192390,
+      "end": 1716330192390,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304642127,
-      "end": 1716304642127,
+      "start": 1716330192390,
+      "end": 1716330192390,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304642127,
-      "end": 1716304642127,
+      "start": 1716330192390,
+      "end": 1716330192390,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304642127,
-      "end": 1716304642127,
+      "start": 1716330192390,
+      "end": 1716330192390,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304642127,
-      "end": 1716304642127,
+      "start": 1716330192390,
+      "end": 1716330192390,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304642127,
-      "end": 1716304642127,
+      "start": 1716330192390,
+      "end": 1716330192390,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304642127,
-      "end": 1716304642127,
+      "start": 1716330192390,
+      "end": 1716330192390,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304642127,
-      "end": 1716304642127,
+      "start": 1716330192390,
+      "end": 1716330192390,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716304642127,
-      "end": 1716304642127,
+      "start": 1716330192390,
+      "end": 1716330192390,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716304642127,
-      "end": 1716304642127,
+      "start": 1716330192390,
+      "end": 1716330192390,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304642127,
-      "end": 1716304642127,
+      "start": 1716330192390,
+      "end": 1716330192390,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "import { withAsyncContext as _withAsyncContext } from 'vue'\nimport { unref as _unref, resolveComponent as _resolveComponent, mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\"\n\nimport { ref, onMounted } from \"vue\";\n// import { cartItem } from \"../../utils/cart\";\nimport Swiper from \"swiper\";\nimport { Navigation, Pagination, Scrollbar, Autoplay } from \"swiper/modules\";\nimport \"swiper/swiper-bundle.css\";\nimport gql from \"graphql-tag\";\n\nconst _sfc_main = {\n  __name: 'Cases',\n  __ssrInlineRender: true,\n  async setup(__props) {\n\nlet __temp, __restore\n\nconst selectedProductId = ref(0);\n// const { Data1 } = await useAsyncQuery(cartItem);\n// console.log(\"cart\",Data1)\nconst query = gql`\n  query MyQuery {\n    products(where: { category: \"cases\" }) {\n      edges {\n        node {\n          image {\n            link\n          }\n          name\n          id\n          databaseId\n        }\n      }\n    }\n  }\n`;\n\nconst initializeSwiper = () => {\n\n\n  const swiper = new Swiper(\".swiper\", {\n    slidesPerView: 5,\n    rewind: true,\n    spaceBetween: 40,\n    allowSlideNext: true,\n    autoplay: true,\n    loop: true,\n    resizeObserver: true,\n    grabCursor: true,\n    shortSwipes: true,\n    slideShadows: false,\n    breakpointsBase: window,\n    pagination: {\n      el: \".swiper-pagination\",\n      type: \"bullets\",\n      clickable: true,\n    },\n    navigation: {\n      nextEl: \".swiper-button-next\",\n      prevEl: \".swiper-button-prev\",\n    },\n    breakpoints: {\n      0: {\n        slidesPerView: 1,\n        spaceBetween: 10,\n      },\n      630: {\n        slidesPerView: 3,\n        spaceBetween: 10,\n      },\n      720: {\n        slidesPerView: 4,\n        spaceBetween: 10,\n      },\n      1440: {\n        slidesPerView: 5,\n        spaceBetween: 40,\n      },\n    },\n  });\n  return swiper;\n};\n\nconst products = ref([]);\nonMounted(() => {\n  initializeSwiper();\n});\n\nconst { data } = (\n  ([__temp,__restore] = _withAsyncContext(() => useAsyncQuery(query))),\n  __temp = await __temp,\n  __restore(),\n  __temp\n);\n// console.log(data._value.products.edges, \"here in cards\");\nproducts.value = data._value.products.edges.map((edges) => ({\n  name: edges.node.name,\n  img: edges.node.image.link,\n}));\nconsole.log(products.value, \"cases is obj\");\n\nconst handleClick = (productId) => {\n  selectedProductId.value = productId;\n};\n\nreturn (_ctx, _push, _parent, _attrs) => {\n  const _component_AwesomeVariations = _resolveComponent(\"AwesomeVariations\")\n\n  if (_unref(data).products.edges) {\n    _push(`<div${_ssrRenderAttrs(_mergeProps({ class: \"swiper\" }, _attrs))} data-v-2bafa2a1><h1 class=\"mx-auto mb-6 py-16 ml-10 text-center text-2xl sm:text-md font-bold\" data-v-2bafa2a1> SELECT CASES </h1><div class=\"swiper-wrapper\" data-v-2bafa2a1><!--[-->`)\n    _ssrRenderList(_unref(data).products.edges, (product, index) => {\n      _push(`<div class=\"swiper-slide\"${\n        _ssrRenderAttr(\"id\", product.node.name)\n      } data-v-2bafa2a1><div data-v-2bafa2a1><img${\n        _ssrRenderAttr(\"src\", product.node.image ? product.node.image.link : '')\n      } alt=\"Product Image\" class=\"transition-all ease-in-out\" data-v-2bafa2a1><h3 class=\"grid text-wrap text-center text-[0.75rem]/5 font-MONO font-semibold hover:font-bold\" data-v-2bafa2a1>${\n        _ssrInterpolate(product.node.name)\n      }</h3>`)\n      if (selectedProductId.value === product.node.databaseId) {\n        _push(`<div class=\"swiper-container overscroll-auto focus:overscroll-contain grid m-5 mt-12\" data-v-2bafa2a1>${_ssrInterpolate(console.log(selectedProductId.value))} `)\n        _push(_ssrRenderComponent(_component_AwesomeVariations, { productId: selectedProductId.value }, null, _parent))\n        _push(`</div>`)\n      } else {\n        _push(`<!---->`)\n      }\n      _push(`</div></div>`)\n    })\n    _push(`<!--]--></div></div>`)\n  } else {\n    _push(`<div${_ssrRenderAttrs(_attrs)} data-v-2bafa2a1><div class=\"swiper-lazy-preloader swiper-lazy-preloader-black\" data-v-2bafa2a1>Loading...</div></div>`)\n  }\n}\n}\n\n}\n\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Cases.vue?vue&type=style&index=0&scoped=2bafa2a1&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"../components/awesome/Cases.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\"data-v-2bafa2a1\"]])",
-      "start": 1716304642127,
-      "end": 1716304642128,
+      "start": 1716330192390,
+      "end": 1716330192392,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -94,184 +94,184 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Cases.vue\").then(r => r.default))",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304642128,
-      "end": 1716304642128,
+      "start": 1716330192392,
+      "end": 1716330192392,
       "order": "normal"
     }
   ]

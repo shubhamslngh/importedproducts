@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "import { Trie } from \"@wry/trie\";\nimport { canUseWeakMap, canUseWeakSet } from \"../common/canUse.js\";\nimport { checkDocument } from \"./getFromAST.js\";\nimport { invariant } from \"../globals/index.js\";\nimport { WeakCache } from \"@wry/caches\";\nimport { wrap } from \"optimism\";\nimport { cacheSizes } from \"../caching/index.js\";\nfunction identity(document) {\n    return document;\n}\nvar DocumentTransform = /** @class */ (function () {\n    function DocumentTransform(transform, options) {\n        if (options === void 0) { options = Object.create(null); }\n        this.resultCache = canUseWeakSet ? new WeakSet() : new Set();\n        this.transform = transform;\n        if (options.getCacheKey) {\n            // Override default `getCacheKey` function, which returns [document].\n            this.getCacheKey = options.getCacheKey;\n        }\n        this.cached = options.cache !== false;\n        this.resetCache();\n    }\n    // This default implementation of getCacheKey can be overridden by providing\n    // options.getCacheKey to the DocumentTransform constructor. In general, a\n    // getCacheKey function may either return an array of keys (often including\n    // the document) to be used as a cache key, or undefined to indicate the\n    // transform for this document should not be cached.\n    DocumentTransform.prototype.getCacheKey = function (document) {\n        return [document];\n    };\n    DocumentTransform.identity = function () {\n        // No need to cache this transform since it just returns the document\n        // unchanged. This should save a bit of memory that would otherwise be\n        // needed to populate the `documentCache` of this transform.\n        return new DocumentTransform(identity, { cache: false });\n    };\n    DocumentTransform.split = function (predicate, left, right) {\n        if (right === void 0) { right = DocumentTransform.identity(); }\n        return Object.assign(new DocumentTransform(function (document) {\n            var documentTransform = predicate(document) ? left : right;\n            return documentTransform.transformDocument(document);\n        }, \n        // Reasonably assume both `left` and `right` transforms handle their own caching\n        { cache: false }), { left: left, right: right });\n    };\n    /**\n     * Resets the internal cache of this transform, if it has one.\n     */\n    DocumentTransform.prototype.resetCache = function () {\n        var _this = this;\n        if (this.cached) {\n            var stableCacheKeys_1 = new Trie(canUseWeakMap);\n            this.performWork = wrap(DocumentTransform.prototype.performWork.bind(this), {\n                makeCacheKey: function (document) {\n                    var cacheKeys = _this.getCacheKey(document);\n                    if (cacheKeys) {\n                        invariant(Array.isArray(cacheKeys), 66);\n                        return stableCacheKeys_1.lookupArray(cacheKeys);\n                    }\n                },\n                max: cacheSizes[\"documentTransform.cache\"],\n                cache: (WeakCache),\n            });\n        }\n    };\n    DocumentTransform.prototype.performWork = function (document) {\n        checkDocument(document);\n        return this.transform(document);\n    };\n    DocumentTransform.prototype.transformDocument = function (document) {\n        // If a user passes an already transformed result back to this function,\n        // immediately return it.\n        if (this.resultCache.has(document)) {\n            return document;\n        }\n        var transformedDocument = this.performWork(document);\n        this.resultCache.add(transformedDocument);\n        return transformedDocument;\n    };\n    DocumentTransform.prototype.concat = function (otherTransform) {\n        var _this = this;\n        return Object.assign(new DocumentTransform(function (document) {\n            return otherTransform.transformDocument(_this.transformDocument(document));\n        }, \n        // Reasonably assume both transforms handle their own caching\n        { cache: false }), {\n            left: this,\n            right: otherTransform,\n        });\n    };\n    return DocumentTransform;\n}());\nexport { DocumentTransform };\n//# sourceMappingURL=DocumentTransform.js.map",
-      "start": 1716304639369,
-      "end": 1716304639384,
+      "start": 1716330188779,
+      "end": 1716330188796,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304639384,
-      "end": 1716304639384,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304639384,
-      "end": 1716304639385,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304639385,
-      "end": 1716304639385,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304639385,
-      "end": 1716304639385,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304639385,
-      "end": 1716304639385,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304639385,
-      "end": 1716304639385,
+      "start": 1716330188796,
+      "end": 1716330188796,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304639385,
-      "end": 1716304639385,
+      "start": 1716330188796,
+      "end": 1716330188797,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304639385,
-      "end": 1716304639385,
+      "start": 1716330188797,
+      "end": 1716330188797,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716304639385,
-      "end": 1716304639385,
+      "start": 1716330188797,
+      "end": 1716330188797,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716304639385,
-      "end": 1716304639385,
+      "start": 1716330188797,
+      "end": 1716330188797,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716304639385,
-      "end": 1716304639385,
+      "start": 1716330188797,
+      "end": 1716330188797,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716304639385,
-      "end": 1716304639385,
+      "start": 1716330188797,
+      "end": 1716330188797,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304639385,
-      "end": 1716304639385,
+      "start": 1716330188797,
+      "end": 1716330188797,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304639385,
-      "end": 1716304639385,
+      "start": 1716330188797,
+      "end": 1716330188797,
       "order": "normal"
     }
   ]

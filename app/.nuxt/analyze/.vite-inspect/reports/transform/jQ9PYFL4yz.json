@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "function appendSlide(slides) {\n  const swiper = this;\n  const {\n    params,\n    slidesEl\n  } = swiper;\n  if (params.loop) {\n    swiper.loopDestroy();\n  }\n  const appendElement = slideEl => {\n    if (typeof slideEl === 'string') {\n      const tempDOM = document.createElement('div');\n      tempDOM.innerHTML = slideEl;\n      slidesEl.append(tempDOM.children[0]);\n      tempDOM.innerHTML = '';\n    } else {\n      slidesEl.append(slideEl);\n    }\n  };\n  if (typeof slides === 'object' && 'length' in slides) {\n    for (let i = 0; i < slides.length; i += 1) {\n      if (slides[i]) appendElement(slides[i]);\n    }\n  } else {\n    appendElement(slides);\n  }\n  swiper.recalcSlides();\n  if (params.loop) {\n    swiper.loopCreate();\n  }\n  if (!params.observer || swiper.isElement) {\n    swiper.update();\n  }\n}\n\nfunction prependSlide(slides) {\n  const swiper = this;\n  const {\n    params,\n    activeIndex,\n    slidesEl\n  } = swiper;\n  if (params.loop) {\n    swiper.loopDestroy();\n  }\n  let newActiveIndex = activeIndex + 1;\n  const prependElement = slideEl => {\n    if (typeof slideEl === 'string') {\n      const tempDOM = document.createElement('div');\n      tempDOM.innerHTML = slideEl;\n      slidesEl.prepend(tempDOM.children[0]);\n      tempDOM.innerHTML = '';\n    } else {\n      slidesEl.prepend(slideEl);\n    }\n  };\n  if (typeof slides === 'object' && 'length' in slides) {\n    for (let i = 0; i < slides.length; i += 1) {\n      if (slides[i]) prependElement(slides[i]);\n    }\n    newActiveIndex = activeIndex + slides.length;\n  } else {\n    prependElement(slides);\n  }\n  swiper.recalcSlides();\n  if (params.loop) {\n    swiper.loopCreate();\n  }\n  if (!params.observer || swiper.isElement) {\n    swiper.update();\n  }\n  swiper.slideTo(newActiveIndex, 0, false);\n}\n\nfunction addSlide(index, slides) {\n  const swiper = this;\n  const {\n    params,\n    activeIndex,\n    slidesEl\n  } = swiper;\n  let activeIndexBuffer = activeIndex;\n  if (params.loop) {\n    activeIndexBuffer -= swiper.loopedSlides;\n    swiper.loopDestroy();\n    swiper.recalcSlides();\n  }\n  const baseLength = swiper.slides.length;\n  if (index <= 0) {\n    swiper.prependSlide(slides);\n    return;\n  }\n  if (index >= baseLength) {\n    swiper.appendSlide(slides);\n    return;\n  }\n  let newActiveIndex = activeIndexBuffer > index ? activeIndexBuffer + 1 : activeIndexBuffer;\n  const slidesBuffer = [];\n  for (let i = baseLength - 1; i >= index; i -= 1) {\n    const currentSlide = swiper.slides[i];\n    currentSlide.remove();\n    slidesBuffer.unshift(currentSlide);\n  }\n  if (typeof slides === 'object' && 'length' in slides) {\n    for (let i = 0; i < slides.length; i += 1) {\n      if (slides[i]) slidesEl.append(slides[i]);\n    }\n    newActiveIndex = activeIndexBuffer > index ? activeIndexBuffer + slides.length : activeIndexBuffer;\n  } else {\n    slidesEl.append(slides);\n  }\n  for (let i = 0; i < slidesBuffer.length; i += 1) {\n    slidesEl.append(slidesBuffer[i]);\n  }\n  swiper.recalcSlides();\n  if (params.loop) {\n    swiper.loopCreate();\n  }\n  if (!params.observer || swiper.isElement) {\n    swiper.update();\n  }\n  if (params.loop) {\n    swiper.slideTo(newActiveIndex + swiper.loopedSlides, 0, false);\n  } else {\n    swiper.slideTo(newActiveIndex, 0, false);\n  }\n}\n\nfunction removeSlide(slidesIndexes) {\n  const swiper = this;\n  const {\n    params,\n    activeIndex\n  } = swiper;\n  let activeIndexBuffer = activeIndex;\n  if (params.loop) {\n    activeIndexBuffer -= swiper.loopedSlides;\n    swiper.loopDestroy();\n  }\n  let newActiveIndex = activeIndexBuffer;\n  let indexToRemove;\n  if (typeof slidesIndexes === 'object' && 'length' in slidesIndexes) {\n    for (let i = 0; i < slidesIndexes.length; i += 1) {\n      indexToRemove = slidesIndexes[i];\n      if (swiper.slides[indexToRemove]) swiper.slides[indexToRemove].remove();\n      if (indexToRemove < newActiveIndex) newActiveIndex -= 1;\n    }\n    newActiveIndex = Math.max(newActiveIndex, 0);\n  } else {\n    indexToRemove = slidesIndexes;\n    if (swiper.slides[indexToRemove]) swiper.slides[indexToRemove].remove();\n    if (indexToRemove < newActiveIndex) newActiveIndex -= 1;\n    newActiveIndex = Math.max(newActiveIndex, 0);\n  }\n  swiper.recalcSlides();\n  if (params.loop) {\n    swiper.loopCreate();\n  }\n  if (!params.observer || swiper.isElement) {\n    swiper.update();\n  }\n  if (params.loop) {\n    swiper.slideTo(newActiveIndex + swiper.loopedSlides, 0, false);\n  } else {\n    swiper.slideTo(newActiveIndex, 0, false);\n  }\n}\n\nfunction removeAllSlides() {\n  const swiper = this;\n  const slidesIndexes = [];\n  for (let i = 0; i < swiper.slides.length; i += 1) {\n    slidesIndexes.push(i);\n  }\n  swiper.removeSlide(slidesIndexes);\n}\n\nfunction Manipulation(_ref) {\n  let {\n    swiper\n  } = _ref;\n  Object.assign(swiper, {\n    appendSlide: appendSlide.bind(swiper),\n    prependSlide: prependSlide.bind(swiper),\n    addSlide: addSlide.bind(swiper),\n    removeSlide: removeSlide.bind(swiper),\n    removeAllSlides: removeAllSlides.bind(swiper)\n  });\n}\n\nexport { Manipulation as default };\n",
-      "start": 1716304639718,
-      "end": 1716304639841,
+      "start": 1716330189155,
+      "end": 1716330189249,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304639841,
-      "end": 1716304639841,
+      "start": 1716330189249,
+      "end": 1716330189249,
       "order": "normal"
     }
   ]

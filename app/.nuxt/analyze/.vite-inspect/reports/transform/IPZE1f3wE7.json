@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "import { __assign } from \"tslib\";\nimport { parse } from 'graphql';\nvar docCache = new Map();\nvar fragmentSourceMap = new Map();\nvar printFragmentWarnings = true;\nvar experimentalFragmentVariables = false;\nfunction normalize(string) {\n    return string.replace(/[\\s,]+/g, ' ').trim();\n}\nfunction cacheKeyFromLoc(loc) {\n    return normalize(loc.source.body.substring(loc.start, loc.end));\n}\nfunction processFragments(ast) {\n    var seenKeys = new Set();\n    var definitions = [];\n    ast.definitions.forEach(function (fragmentDefinition) {\n        if (fragmentDefinition.kind === 'FragmentDefinition') {\n            var fragmentName = fragmentDefinition.name.value;\n            var sourceKey = cacheKeyFromLoc(fragmentDefinition.loc);\n            var sourceKeySet = fragmentSourceMap.get(fragmentName);\n            if (sourceKeySet && !sourceKeySet.has(sourceKey)) {\n                if (printFragmentWarnings) {\n                    console.warn(\"Warning: fragment with name \" + fragmentName + \" already exists.\\n\"\n                        + \"graphql-tag enforces all fragment names across your application to be unique; read more about\\n\"\n                        + \"this in the docs: http://dev.apollodata.com/core/fragments.html#unique-names\");\n                }\n            }\n            else if (!sourceKeySet) {\n                fragmentSourceMap.set(fragmentName, sourceKeySet = new Set);\n            }\n            sourceKeySet.add(sourceKey);\n            if (!seenKeys.has(sourceKey)) {\n                seenKeys.add(sourceKey);\n                definitions.push(fragmentDefinition);\n            }\n        }\n        else {\n            definitions.push(fragmentDefinition);\n        }\n    });\n    return __assign(__assign({}, ast), { definitions: definitions });\n}\nfunction stripLoc(doc) {\n    var workSet = new Set(doc.definitions);\n    workSet.forEach(function (node) {\n        if (node.loc)\n            delete node.loc;\n        Object.keys(node).forEach(function (key) {\n            var value = node[key];\n            if (value && typeof value === 'object') {\n                workSet.add(value);\n            }\n        });\n    });\n    var loc = doc.loc;\n    if (loc) {\n        delete loc.startToken;\n        delete loc.endToken;\n    }\n    return doc;\n}\nfunction parseDocument(source) {\n    var cacheKey = normalize(source);\n    if (!docCache.has(cacheKey)) {\n        var parsed = parse(source, {\n            experimentalFragmentVariables: experimentalFragmentVariables,\n            allowLegacyFragmentVariables: experimentalFragmentVariables\n        });\n        if (!parsed || parsed.kind !== 'Document') {\n            throw new Error('Not a valid GraphQL document.');\n        }\n        docCache.set(cacheKey, stripLoc(processFragments(parsed)));\n    }\n    return docCache.get(cacheKey);\n}\nexport function gql(literals) {\n    var args = [];\n    for (var _i = 1; _i < arguments.length; _i++) {\n        args[_i - 1] = arguments[_i];\n    }\n    if (typeof literals === 'string') {\n        literals = [literals];\n    }\n    var result = literals[0];\n    args.forEach(function (arg, i) {\n        if (arg && arg.kind === 'Document') {\n            result += arg.loc.source.body;\n        }\n        else {\n            result += arg;\n        }\n        result += literals[i + 1];\n    });\n    return parseDocument(result);\n}\nexport function resetCaches() {\n    docCache.clear();\n    fragmentSourceMap.clear();\n}\nexport function disableFragmentWarnings() {\n    printFragmentWarnings = false;\n}\nexport function enableExperimentalFragmentVariables() {\n    experimentalFragmentVariables = true;\n}\nexport function disableExperimentalFragmentVariables() {\n    experimentalFragmentVariables = false;\n}\nvar extras = {\n    gql: gql,\n    resetCaches: resetCaches,\n    disableFragmentWarnings: disableFragmentWarnings,\n    enableExperimentalFragmentVariables: enableExperimentalFragmentVariables,\n    disableExperimentalFragmentVariables: disableExperimentalFragmentVariables\n};\n(function (gql_1) {\n    gql_1.gql = extras.gql, gql_1.resetCaches = extras.resetCaches, gql_1.disableFragmentWarnings = extras.disableFragmentWarnings, gql_1.enableExperimentalFragmentVariables = extras.enableExperimentalFragmentVariables, gql_1.disableExperimentalFragmentVariables = extras.disableExperimentalFragmentVariables;\n})(gql || (gql = {}));\ngql[\"default\"] = gql;\nexport default gql;\n//# sourceMappingURL=index.js.map",
-      "start": 1716304639396,
-      "end": 1716304639557,
+      "start": 1716330188825,
+      "end": 1716330188977,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304639557,
-      "end": 1716304639557,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304639557,
-      "end": 1716304639557,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304639557,
-      "end": 1716304639557,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304639557,
-      "end": 1716304639557,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304639557,
-      "end": 1716304639557,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716304639557,
-      "end": 1716304639557,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716304639557,
-      "end": 1716304639557,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304639557,
-      "end": 1716304639557,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716304639557,
-      "end": 1716304639557,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304639557,
-      "end": 1716304639557,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304639557,
-      "end": 1716304639557,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304639557,
-      "end": 1716304639557,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716304639557,
-      "end": 1716304639557,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304639557,
-      "end": 1716304639557,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716304639557,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304639558,
-      "end": 1716304639558,
+      "start": 1716330188977,
+      "end": 1716330188977,
       "order": "normal"
     }
   ]

@@ -4,8 +4,8 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, resolveComponent as _resolveComponent, withCtx as _withCtx, renderSlot as _renderSlot, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderSlot as _ssrRenderSlot, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\"\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'index',\n  __ssrInlineRender: true,\n  props: {\n  text: {\n    type: String,\n    default: '',\n  },\n  to: {\n    type: [String, Object],\n    default: undefined,\n  },\n  href: {\n    type: String,\n    default: '',\n  },\n},\n  setup(__props) {\n\n// micro compiler\nconst props = __props\n// state\nconst href = toRef(props, 'href')\nconst to = toRef(props, 'to')\n\nreturn (_ctx: any,_push: any,_parent: any,_attrs: any) => {\n  const _component_NuxtLink = _resolveComponent(\"NuxtLink\")!\n\n  if (_unref(to)) {\n    _push(_ssrRenderComponent(_component_NuxtLink, _mergeProps({\n      tag: \"a\",\n      to: _unref(to),\n      class: `transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`\n    }, _attrs), {\n      default: _withCtx((_, _push, _parent, _scopeId) => {\n        if (_push) {\n          _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n            _push(`${_ssrInterpolate(__props.text)}`)\n          }, _push, _parent, _scopeId)\n        } else {\n          return [\n            _renderSlot(_ctx.$slots, \"default\", {}, () => [\n              _createTextVNode(_toDisplayString(__props.text), 1)\n            ])\n          ]\n        }\n      }),\n      _: 3\n    }, _parent))\n  } else if (!_unref(href)) {\n    _push(`<a${_ssrRenderAttrs(_mergeProps({\n      class: `transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`,\n      href: \"#\"\n    }, _attrs))}>`)\n    _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n      _push(`${_ssrInterpolate(__props.text)}`)\n    }, _push, _parent)\n    _push(`</a>`)\n  } else {\n    _push(`<a${_ssrRenderAttrs(_mergeProps({\n      class: `transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`,\n      href: _unref(href)\n    }, _attrs))}>`)\n    _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n      _push(`${_ssrInterpolate(__props.text)}`)\n    }, _push, _parent)\n    _push(`</a>`)\n  }\n}\n}\n\n})",
-      "start": 1716304643019,
-      "end": 1716304643019,
+      "start": 1716330193658,
+      "end": 1716330193658,
       "sourcemaps": {
         "version": 3,
         "sources": [
@@ -20,57 +20,57 @@
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304643019,
-      "end": 1716304643019,
+      "start": 1716330193658,
+      "end": 1716330193658,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304643019,
-      "end": 1716304643019,
+      "start": 1716330193658,
+      "end": 1716330193658,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304643019,
-      "end": 1716304643019,
+      "start": 1716330193658,
+      "end": 1716330193658,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304643019,
-      "end": 1716304643019,
+      "start": 1716330193658,
+      "end": 1716330193658,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304643019,
-      "end": 1716304643019,
+      "start": 1716330193658,
+      "end": 1716330193658,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304643019,
-      "end": 1716304643019,
+      "start": 1716330193658,
+      "end": 1716330193658,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304643019,
-      "end": 1716304643019,
+      "start": 1716330193658,
+      "end": 1716330193658,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304643019,
-      "end": 1716304643019,
+      "start": 1716330193658,
+      "end": 1716330193658,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, resolveComponent as _resolveComponent, withCtx as _withCtx, renderSlot as _renderSlot, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderSlot as _ssrRenderSlot, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"index\",\n  __ssrInlineRender: true,\n  props: {\n    text: {\n      type: String,\n      default: \"\"\n    },\n    to: {\n      type: [String, Object],\n      default: void 0\n    },\n    href: {\n      type: String,\n      default: \"\"\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const href = toRef(props, \"href\");\n    const to = toRef(props, \"to\");\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_NuxtLink = _resolveComponent(\"NuxtLink\");\n      if (_unref(to)) {\n        _push(_ssrRenderComponent(_component_NuxtLink, _mergeProps({\n          tag: \"a\",\n          to: _unref(to),\n          class: `transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`\n        }, _attrs), {\n          default: _withCtx((_, _push2, _parent2, _scopeId) => {\n            if (_push2) {\n              _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n                _push2(`${_ssrInterpolate(__props.text)}`);\n              }, _push2, _parent2, _scopeId);\n            } else {\n              return [\n                _renderSlot(_ctx.$slots, \"default\", {}, () => [\n                  _createTextVNode(_toDisplayString(__props.text), 1)\n                ])\n              ];\n            }\n          }),\n          _: 3\n        }, _parent));\n      } else if (!_unref(href)) {\n        _push(`<a${_ssrRenderAttrs(_mergeProps({\n          class: `transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`,\n          href: \"#\"\n        }, _attrs))}>`);\n        _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n          _push(`${_ssrInterpolate(__props.text)}`);\n        }, _push, _parent);\n        _push(`</a>`);\n      } else {\n        _push(`<a${_ssrRenderAttrs(_mergeProps({\n          class: `transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`,\n          href: _unref(href)\n        }, _attrs))}>`);\n        _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n          _push(`${_ssrInterpolate(__props.text)}`);\n        }, _push, _parent);\n        _push(`</a>`);\n      }\n    };\n  }\n});\n",
-      "start": 1716304643019,
-      "end": 1716304643298,
+      "start": 1716330193658,
+      "end": 1716330193999,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -89,141 +89,141 @@
     },
     {
       "name": "vite:json",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304643298,
-      "end": 1716304643298,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { toRef } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, resolveComponent as _resolveComponent, withCtx as _withCtx, renderSlot as _renderSlot, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderSlot as _ssrRenderSlot, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"index\",\n  __ssrInlineRender: true,\n  props: {\n    text: {\n      type: String,\n      default: \"\"\n    },\n    to: {\n      type: [String, Object],\n      default: void 0\n    },\n    href: {\n      type: String,\n      default: \"\"\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const href = toRef(props, \"href\");\n    const to = toRef(props, \"to\");\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_NuxtLink = _resolveComponent(\"NuxtLink\");\n      if (_unref(to)) {\n        _push(_ssrRenderComponent(_component_NuxtLink, _mergeProps({\n          tag: \"a\",\n          to: _unref(to),\n          class: `transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`\n        }, _attrs), {\n          default: _withCtx((_, _push2, _parent2, _scopeId) => {\n            if (_push2) {\n              _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n                _push2(`${_ssrInterpolate(__props.text)}`);\n              }, _push2, _parent2, _scopeId);\n            } else {\n              return [\n                _renderSlot(_ctx.$slots, \"default\", {}, () => [\n                  _createTextVNode(_toDisplayString(__props.text), 1)\n                ])\n              ];\n            }\n          }),\n          _: 3\n        }, _parent));\n      } else if (!_unref(href)) {\n        _push(`<a${_ssrRenderAttrs(_mergeProps({\n          class: `transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`,\n          href: \"#\"\n        }, _attrs))}>`);\n        _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n          _push(`${_ssrInterpolate(__props.text)}`);\n        }, _push, _parent);\n        _push(`</a>`);\n      } else {\n        _push(`<a${_ssrRenderAttrs(_mergeProps({\n          class: `transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`,\n          href: _unref(href)\n        }, _attrs))}>`);\n        _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n          _push(`${_ssrInterpolate(__props.text)}`);\n        }, _push, _parent);\n        _push(`</a>`);\n      }\n    };\n  }\n});\n",
-      "start": 1716304643298,
-      "end": 1716304643299,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -237,8 +237,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { toRef } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, resolveComponent as _resolveComponent, withCtx as _withCtx, renderSlot as _renderSlot, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderSlot as _ssrRenderSlot, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"index\",\n  __ssrInlineRender: true,\n  props: {\n    text: {\n      type: String,\n      default: \"\"\n    },\n    to: {\n      type: [String, Object],\n      default: void 0\n    },\n    href: {\n      type: String,\n      default: \"\"\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const href = toRef(props, \"href\");\n    const to = toRef(props, \"to\");\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_NuxtLink = _resolveComponent(\"NuxtLink\");\n      if (_unref(to)) {\n        _push(_ssrRenderComponent(_component_NuxtLink, _mergeProps({\n          tag: \"a\",\n          to: _unref(to),\n          class: `transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`\n        }, _attrs), {\n          default: _withCtx((_, _push2, _parent2, _scopeId) => {\n            if (_push2) {\n              _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n                _push2(`${_ssrInterpolate(__props.text)}`);\n              }, _push2, _parent2, _scopeId);\n            } else {\n              return [\n                _renderSlot(_ctx.$slots, \"default\", {}, () => [\n                  _createTextVNode(_toDisplayString(__props.text), 1)\n                ])\n              ];\n            }\n          }),\n          _: 3\n        }, _parent));\n      } else if (!_unref(href)) {\n        _push(`<a${_ssrRenderAttrs(_mergeProps({\n          class: `transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`,\n          href: \"#\"\n        }, _attrs))}>`);\n        _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n          _push(`${_ssrInterpolate(__props.text)}`);\n        }, _push, _parent);\n        _push(`</a>`);\n      } else {\n        _push(`<a${_ssrRenderAttrs(_mergeProps({\n          class: `transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`,\n          href: _unref(href)\n        }, _attrs))}>`);\n        _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n          _push(`${_ssrInterpolate(__props.text)}`);\n        }, _push, _parent);\n        _push(`</a>`);\n      }\n    };\n  }\n});\n",
-      "start": 1716304643298,
-      "end": 1716304643299,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -251,39 +251,39 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1716304643299,
-      "end": 1716304643299,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304643299,
-      "end": 1716304643299,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304643299,
-      "end": 1716304643299,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304643299,
-      "end": 1716304643299,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1716304643299,
-      "end": 1716304643299,
+      "start": 1716330193999,
+      "end": 1716330193999,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/app/components/nuxt-link\";\nimport { toRef } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, resolveComponent as _resolveComponent, withCtx as _withCtx, renderSlot as _renderSlot, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderSlot as _ssrRenderSlot, ssrRenderComponent as _ssrRenderComponent, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"index\",\n  __ssrInlineRender: true,\n  props: {\n    text: {\n      type: String,\n      default: \"\"\n    },\n    to: {\n      type: [String, Object],\n      default: void 0\n    },\n    href: {\n      type: String,\n      default: \"\"\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const href = toRef(props, \"href\");\n    const to = toRef(props, \"to\");\n    return (_ctx, _push, _parent, _attrs) => {\n      const _component_NuxtLink = __nuxt_component_0;\n      if (_unref(to)) {\n        _push(_ssrRenderComponent(_component_NuxtLink, _mergeProps({\n          tag: \"a\",\n          to: _unref(to),\n          class: `transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`\n        }, _attrs), {\n          default: _withCtx((_, _push2, _parent2, _scopeId) => {\n            if (_push2) {\n              _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n                _push2(`${_ssrInterpolate(__props.text)}`);\n              }, _push2, _parent2, _scopeId);\n            } else {\n              return [\n                _renderSlot(_ctx.$slots, \"default\", {}, () => [\n                  _createTextVNode(_toDisplayString(__props.text), 1)\n                ])\n              ];\n            }\n          }),\n          _: 3\n        }, _parent));\n      } else if (!_unref(href)) {\n        _push(`<a${_ssrRenderAttrs(_mergeProps({\n          class: `transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`,\n          href: \"#\"\n        }, _attrs))}>`);\n        _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n          _push(`${_ssrInterpolate(__props.text)}`);\n        }, _push, _parent);\n        _push(`</a>`);\n      } else {\n        _push(`<a${_ssrRenderAttrs(_mergeProps({\n          class: `transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`,\n          href: _unref(href)\n        }, _attrs))}>`);\n        _ssrRenderSlot(_ctx.$slots, \"default\", {}, () => {\n          _push(`${_ssrInterpolate(__props.text)}`);\n        }, _push, _parent);\n        _push(`</a>`);\n      }\n    };\n  }\n});\n",
-      "start": 1716304643299,
-      "end": 1716304643299,
+      "start": 1716330193999,
+      "end": 1716330194000,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -296,20 +296,20 @@
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716304643299,
-      "end": 1716304643299,
+      "start": 1716330194000,
+      "end": 1716330194000,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304643299,
-      "end": 1716304643299,
+      "start": 1716330194000,
+      "end": 1716330194000,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304643299,
-      "end": 1716304643299,
+      "start": 1716330194000,
+      "end": 1716330194000,
       "order": "normal"
     }
   ]

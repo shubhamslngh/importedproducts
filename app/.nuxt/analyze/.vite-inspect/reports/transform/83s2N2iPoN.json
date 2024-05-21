@@ -4,44 +4,44 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, renderSlot as _renderSlot, resolveComponent as _resolveComponent, normalizeClass as _normalizeClass, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, createVNode as _createVNode, withCtx as _withCtx } from \"vue\"\n\nconst _hoisted_1 = { class: \"flex items-center justify-center\" }\nconst _hoisted_2 = { class: \"flex-1\" }\nconst _hoisted_3 = { class: \"text-gray-700 dark:text-gray-100\" }\n\nimport { TransitionRoot, TransitionChild } from '@headlessui/vue'\nexport type IStyles = 'primary' | 'success' | 'warning' | 'danger'\n\n// props\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'AlertBanner',\n  props: {\n  title: {\n    type: String,\n    default: undefined,\n  },\n  text: {\n    type: String,\n    default: undefined,\n  },\n  type: {\n    type: String,\n    default: 'primary',\n  },\n},\n  setup(__props) {\n\nconst props = __props\n\n// styles\nconst styles = reactive<{\n  [key: string]: string\n}>({\n  primary: '',\n  success:\n    'dark:from-green-500/50 via-gray-200 to-gray-200 dark:via-gray-900 dark:to-gray-900',\n  warning:\n    'dark:from-yellow-500/50 via-gray-200 to-gray-200 dark:via-gray-900 dark:to-gray-900',\n  danger:\n    'dark:from-red-500/50 via-gray-200 to-gray-200 dark:via-gray-900 dark:to-gray-900',\n})\nconst textStyles = reactive<{\n  [key: string]: string\n}>({\n  primary: 'text-black dark:text-white',\n  success: 'text-green-500',\n  warning: 'text-orange-500',\n  danger: 'text-red-500',\n})\n\n// selected\nconst isDestroyed = ref<Boolean>(false)\nconst selectedType = computed<IStyles>((): IStyles => {\n  if (['primary', 'success', 'warning', 'danger'].includes(props.type))\n    return props.type as IStyles\n  return 'primary'\n})\nconst selectedStyle = computed(() => styles[selectedType.value])\nconst selectedTextStyle = computed(() => textStyles[selectedType.value])\n\n// actions\nconst close = () => {\n  isDestroyed.value = true\n}\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_Icon = _resolveComponent(\"Icon\")!\n\n  return (_openBlock(), _createBlock(_unref(TransitionRoot), {\n    show: !_unref(isDestroyed),\n    appear: \"\"\n  }, {\n    default: _withCtx(() => [\n      _createVNode(_unref(TransitionChild), {\n        as: \"template\",\n        enter: \"duration-300 ease-out\",\n        \"enter-from\": \"opacity-0\",\n        \"enter-to\": \"opacity-100\",\n        leave: \"duration-300 ease-in\",\n        \"leave-from\": \"opacity-100\",\n        \"leave-to\": \"opacity-0\"\n      }, {\n        default: _withCtx(() => [\n          _createElementVNode(\"div\", {\n            class: _normalizeClass(`bg-gray-200 dark:bg-gray-800 bg-gradient-to-r shadow-white/50 dark:shadow-gray-950/50 px-6 py-6 rounded-md shadow-lg flex space-x-6 ${_unref(selectedStyle)}`)\n          }, [\n            _createElementVNode(\"div\", _hoisted_1, [\n              _renderSlot(_ctx.$slots, \"icon\", {}, () => [\n                (_unref(selectedType) === 'success')\n                  ? (_openBlock(), _createBlock(_component_Icon, {\n                      key: 0,\n                      name: \"mdi:check-circle\",\n                      class: _normalizeClass(`text-2xl ${_unref(selectedTextStyle)}`)\n                    }, null, 8, [\"class\"]))\n                  : _createCommentVNode(\"\", true),\n                (_unref(selectedType) === 'danger')\n                  ? (_openBlock(), _createBlock(_component_Icon, {\n                      key: 1,\n                      name: \"icon-clarity:times-circle-solid\",\n                      class: _normalizeClass(`text-2xl ${_unref(selectedTextStyle)}`)\n                    }, null, 8, [\"class\"]))\n                  : _createCommentVNode(\"\", true),\n                (_unref(selectedType) === 'warning')\n                  ? (_openBlock(), _createBlock(_component_Icon, {\n                      key: 2,\n                      name: \"icon-bi:exclamation-circle-fill\",\n                      class: _normalizeClass(`text-2xl ${_unref(selectedTextStyle)}`)\n                    }, null, 8, [\"class\"]))\n                  : _createCommentVNode(\"\", true)\n              ])\n            ]),\n            _createElementVNode(\"div\", _hoisted_2, [\n              _createElementVNode(\"div\", {\n                class: _normalizeClass(`font-bold text-lg mb-0.5 ${_unref(selectedTextStyle)}`)\n              }, [\n                _renderSlot(_ctx.$slots, \"title\", {}, () => [\n                  _createTextVNode(_toDisplayString(props.title), 1)\n                ])\n              ], 2),\n              _createElementVNode(\"div\", _hoisted_3, [\n                _renderSlot(_ctx.$slots, \"title\", {}, () => [\n                  _createTextVNode(_toDisplayString(props.text), 1)\n                ])\n              ])\n            ]),\n            _createElementVNode(\"div\", null, [\n              _createElementVNode(\"button\", {\n                class: \"text-gray-600 hover:text-red-500 dark:text-gray-400 font-bold\",\n                onClick: close\n              }, [\n                _createVNode(_component_Icon, { name: \"clarity:times-line\" })\n              ])\n            ])\n          ], 2)\n        ]),\n        _: 3\n      })\n    ]),\n    _: 3\n  }, 8, [\"show\"]))\n}\n}\n\n})",
-      "start": 1716304639924,
-      "end": 1716304639924
+      "start": 1716330189115,
+      "end": 1716330189115
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304639924,
-      "end": 1716304639924,
+      "start": 1716330189115,
+      "end": 1716330189115,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304639924,
-      "end": 1716304639924,
+      "start": 1716330189115,
+      "end": 1716330189115,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304639924,
-      "end": 1716304639924,
+      "start": 1716330189115,
+      "end": 1716330189115,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304639924,
-      "end": 1716304639924,
+      "start": 1716330189115,
+      "end": 1716330189115,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304639924,
-      "end": 1716304639924,
+      "start": 1716330189115,
+      "end": 1716330189115,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderSlot as _renderSlot, resolveComponent as _resolveComponent, normalizeClass as _normalizeClass, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, createVNode as _createVNode, withCtx as _withCtx } from \"vue\";\nconst _hoisted_1 = { class: \"flex items-center justify-center\" };\nconst _hoisted_2 = { class: \"flex-1\" };\nconst _hoisted_3 = { class: \"text-gray-700 dark:text-gray-100\" };\nimport { TransitionRoot, TransitionChild } from \"@headlessui/vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"AlertBanner\",\n  props: {\n    title: {\n      type: String,\n      default: void 0\n    },\n    text: {\n      type: String,\n      default: void 0\n    },\n    type: {\n      type: String,\n      default: \"primary\"\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const styles = reactive({\n      primary: \"\",\n      success: \"dark:from-green-500/50 via-gray-200 to-gray-200 dark:via-gray-900 dark:to-gray-900\",\n      warning: \"dark:from-yellow-500/50 via-gray-200 to-gray-200 dark:via-gray-900 dark:to-gray-900\",\n      danger: \"dark:from-red-500/50 via-gray-200 to-gray-200 dark:via-gray-900 dark:to-gray-900\"\n    });\n    const textStyles = reactive({\n      primary: \"text-black dark:text-white\",\n      success: \"text-green-500\",\n      warning: \"text-orange-500\",\n      danger: \"text-red-500\"\n    });\n    const isDestroyed = ref(false);\n    const selectedType = computed(() => {\n      if ([\"primary\", \"success\", \"warning\", \"danger\"].includes(props.type))\n        return props.type;\n      return \"primary\";\n    });\n    const selectedStyle = computed(() => styles[selectedType.value]);\n    const selectedTextStyle = computed(() => textStyles[selectedType.value]);\n    const close = () => {\n      isDestroyed.value = true;\n    };\n    return (_ctx, _cache) => {\n      const _component_Icon = _resolveComponent(\"Icon\");\n      return _openBlock(), _createBlock(_unref(TransitionRoot), {\n        show: !_unref(isDestroyed),\n        appear: \"\"\n      }, {\n        default: _withCtx(() => [\n          _createVNode(_unref(TransitionChild), {\n            as: \"template\",\n            enter: \"duration-300 ease-out\",\n            \"enter-from\": \"opacity-0\",\n            \"enter-to\": \"opacity-100\",\n            leave: \"duration-300 ease-in\",\n            \"leave-from\": \"opacity-100\",\n            \"leave-to\": \"opacity-0\"\n          }, {\n            default: _withCtx(() => [\n              _createElementVNode(\"div\", {\n                class: _normalizeClass(`bg-gray-200 dark:bg-gray-800 bg-gradient-to-r shadow-white/50 dark:shadow-gray-950/50 px-6 py-6 rounded-md shadow-lg flex space-x-6 ${_unref(selectedStyle)}`)\n              }, [\n                _createElementVNode(\"div\", _hoisted_1, [\n                  _renderSlot(_ctx.$slots, \"icon\", {}, () => [\n                    _unref(selectedType) === \"success\" ? (_openBlock(), _createBlock(_component_Icon, {\n                      key: 0,\n                      name: \"mdi:check-circle\",\n                      class: _normalizeClass(`text-2xl ${_unref(selectedTextStyle)}`)\n                    }, null, 8, [\"class\"])) : _createCommentVNode(\"\", true),\n                    _unref(selectedType) === \"danger\" ? (_openBlock(), _createBlock(_component_Icon, {\n                      key: 1,\n                      name: \"icon-clarity:times-circle-solid\",\n                      class: _normalizeClass(`text-2xl ${_unref(selectedTextStyle)}`)\n                    }, null, 8, [\"class\"])) : _createCommentVNode(\"\", true),\n                    _unref(selectedType) === \"warning\" ? (_openBlock(), _createBlock(_component_Icon, {\n                      key: 2,\n                      name: \"icon-bi:exclamation-circle-fill\",\n                      class: _normalizeClass(`text-2xl ${_unref(selectedTextStyle)}`)\n                    }, null, 8, [\"class\"])) : _createCommentVNode(\"\", true)\n                  ])\n                ]),\n                _createElementVNode(\"div\", _hoisted_2, [\n                  _createElementVNode(\"div\", {\n                    class: _normalizeClass(`font-bold text-lg mb-0.5 ${_unref(selectedTextStyle)}`)\n                  }, [\n                    _renderSlot(_ctx.$slots, \"title\", {}, () => [\n                      _createTextVNode(_toDisplayString(props.title), 1)\n                    ])\n                  ], 2),\n                  _createElementVNode(\"div\", _hoisted_3, [\n                    _renderSlot(_ctx.$slots, \"title\", {}, () => [\n                      _createTextVNode(_toDisplayString(props.text), 1)\n                    ])\n                  ])\n                ]),\n                _createElementVNode(\"div\", null, [\n                  _createElementVNode(\"button\", {\n                    class: \"text-gray-600 hover:text-red-500 dark:text-gray-400 font-bold\",\n                    onClick: close\n                  }, [\n                    _createVNode(_component_Icon, { name: \"clarity:times-line\" })\n                  ])\n                ])\n              ], 2)\n            ]),\n            _: 3\n          })\n        ]),\n        _: 3\n      }, 8, [\"show\"]);\n    };\n  }\n});\n",
-      "start": 1716304639924,
-      "end": 1716304640371,
+      "start": 1716330189115,
+      "end": 1716330189606,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -57,129 +57,129 @@
     },
     {
       "name": "vite:json",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304640371,
-      "end": 1716304640371,
+      "start": 1716330189606,
+      "end": 1716330189606,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { reactive, ref, computed } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderSlot as _renderSlot, resolveComponent as _resolveComponent, normalizeClass as _normalizeClass, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, createVNode as _createVNode, withCtx as _withCtx } from \"vue\";\nconst _hoisted_1 = { class: \"flex items-center justify-center\" };\nconst _hoisted_2 = { class: \"flex-1\" };\nconst _hoisted_3 = { class: \"text-gray-700 dark:text-gray-100\" };\nimport { TransitionRoot, TransitionChild } from \"@headlessui/vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"AlertBanner\",\n  props: {\n    title: {\n      type: String,\n      default: void 0\n    },\n    text: {\n      type: String,\n      default: void 0\n    },\n    type: {\n      type: String,\n      default: \"primary\"\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const styles = reactive({\n      primary: \"\",\n      success: \"dark:from-green-500/50 via-gray-200 to-gray-200 dark:via-gray-900 dark:to-gray-900\",\n      warning: \"dark:from-yellow-500/50 via-gray-200 to-gray-200 dark:via-gray-900 dark:to-gray-900\",\n      danger: \"dark:from-red-500/50 via-gray-200 to-gray-200 dark:via-gray-900 dark:to-gray-900\"\n    });\n    const textStyles = reactive({\n      primary: \"text-black dark:text-white\",\n      success: \"text-green-500\",\n      warning: \"text-orange-500\",\n      danger: \"text-red-500\"\n    });\n    const isDestroyed = ref(false);\n    const selectedType = computed(() => {\n      if ([\"primary\", \"success\", \"warning\", \"danger\"].includes(props.type))\n        return props.type;\n      return \"primary\";\n    });\n    const selectedStyle = computed(() => styles[selectedType.value]);\n    const selectedTextStyle = computed(() => textStyles[selectedType.value]);\n    const close = () => {\n      isDestroyed.value = true;\n    };\n    return (_ctx, _cache) => {\n      const _component_Icon = _resolveComponent(\"Icon\");\n      return _openBlock(), _createBlock(_unref(TransitionRoot), {\n        show: !_unref(isDestroyed),\n        appear: \"\"\n      }, {\n        default: _withCtx(() => [\n          _createVNode(_unref(TransitionChild), {\n            as: \"template\",\n            enter: \"duration-300 ease-out\",\n            \"enter-from\": \"opacity-0\",\n            \"enter-to\": \"opacity-100\",\n            leave: \"duration-300 ease-in\",\n            \"leave-from\": \"opacity-100\",\n            \"leave-to\": \"opacity-0\"\n          }, {\n            default: _withCtx(() => [\n              _createElementVNode(\"div\", {\n                class: _normalizeClass(`bg-gray-200 dark:bg-gray-800 bg-gradient-to-r shadow-white/50 dark:shadow-gray-950/50 px-6 py-6 rounded-md shadow-lg flex space-x-6 ${_unref(selectedStyle)}`)\n              }, [\n                _createElementVNode(\"div\", _hoisted_1, [\n                  _renderSlot(_ctx.$slots, \"icon\", {}, () => [\n                    _unref(selectedType) === \"success\" ? (_openBlock(), _createBlock(_component_Icon, {\n                      key: 0,\n                      name: \"mdi:check-circle\",\n                      class: _normalizeClass(`text-2xl ${_unref(selectedTextStyle)}`)\n                    }, null, 8, [\"class\"])) : _createCommentVNode(\"\", true),\n                    _unref(selectedType) === \"danger\" ? (_openBlock(), _createBlock(_component_Icon, {\n                      key: 1,\n                      name: \"icon-clarity:times-circle-solid\",\n                      class: _normalizeClass(`text-2xl ${_unref(selectedTextStyle)}`)\n                    }, null, 8, [\"class\"])) : _createCommentVNode(\"\", true),\n                    _unref(selectedType) === \"warning\" ? (_openBlock(), _createBlock(_component_Icon, {\n                      key: 2,\n                      name: \"icon-bi:exclamation-circle-fill\",\n                      class: _normalizeClass(`text-2xl ${_unref(selectedTextStyle)}`)\n                    }, null, 8, [\"class\"])) : _createCommentVNode(\"\", true)\n                  ])\n                ]),\n                _createElementVNode(\"div\", _hoisted_2, [\n                  _createElementVNode(\"div\", {\n                    class: _normalizeClass(`font-bold text-lg mb-0.5 ${_unref(selectedTextStyle)}`)\n                  }, [\n                    _renderSlot(_ctx.$slots, \"title\", {}, () => [\n                      _createTextVNode(_toDisplayString(props.title), 1)\n                    ])\n                  ], 2),\n                  _createElementVNode(\"div\", _hoisted_3, [\n                    _renderSlot(_ctx.$slots, \"title\", {}, () => [\n                      _createTextVNode(_toDisplayString(props.text), 1)\n                    ])\n                  ])\n                ]),\n                _createElementVNode(\"div\", null, [\n                  _createElementVNode(\"button\", {\n                    class: \"text-gray-600 hover:text-red-500 dark:text-gray-400 font-bold\",\n                    onClick: close\n                  }, [\n                    _createVNode(_component_Icon, { name: \"clarity:times-line\" })\n                  ])\n                ])\n              ], 2)\n            ]),\n            _: 3\n          })\n        ]),\n        _: 3\n      }, 8, [\"show\"]);\n    };\n  }\n});\n",
-      "start": 1716304640371,
-      "end": 1716304640372,
+      "start": 1716330189606,
+      "end": 1716330189607,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -192,51 +192,51 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1716304640372,
-      "end": 1716304640372,
+      "start": 1716330189607,
+      "end": 1716330189607,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304640372,
-      "end": 1716304640372,
+      "start": 1716330189607,
+      "end": 1716330189607,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716304640372,
-      "end": 1716304640372,
+      "start": 1716330189607,
+      "end": 1716330189607,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716304640372,
-      "end": 1716304640372,
+      "start": 1716330189607,
+      "end": 1716330189607,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/nuxt-icon/dist/runtime/Icon.vue\";\nimport { reactive, ref, computed } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderSlot as _renderSlot, resolveComponent as _resolveComponent, normalizeClass as _normalizeClass, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, createVNode as _createVNode, withCtx as _withCtx } from \"vue\";\nconst _hoisted_1 = { class: \"flex items-center justify-center\" };\nconst _hoisted_2 = { class: \"flex-1\" };\nconst _hoisted_3 = { class: \"text-gray-700 dark:text-gray-100\" };\nimport { TransitionRoot, TransitionChild } from \"@headlessui/vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"AlertBanner\",\n  props: {\n    title: {\n      type: String,\n      default: void 0\n    },\n    text: {\n      type: String,\n      default: void 0\n    },\n    type: {\n      type: String,\n      default: \"primary\"\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const styles = reactive({\n      primary: \"\",\n      success: \"dark:from-green-500/50 via-gray-200 to-gray-200 dark:via-gray-900 dark:to-gray-900\",\n      warning: \"dark:from-yellow-500/50 via-gray-200 to-gray-200 dark:via-gray-900 dark:to-gray-900\",\n      danger: \"dark:from-red-500/50 via-gray-200 to-gray-200 dark:via-gray-900 dark:to-gray-900\"\n    });\n    const textStyles = reactive({\n      primary: \"text-black dark:text-white\",\n      success: \"text-green-500\",\n      warning: \"text-orange-500\",\n      danger: \"text-red-500\"\n    });\n    const isDestroyed = ref(false);\n    const selectedType = computed(() => {\n      if ([\"primary\", \"success\", \"warning\", \"danger\"].includes(props.type))\n        return props.type;\n      return \"primary\";\n    });\n    const selectedStyle = computed(() => styles[selectedType.value]);\n    const selectedTextStyle = computed(() => textStyles[selectedType.value]);\n    const close = () => {\n      isDestroyed.value = true;\n    };\n    return (_ctx, _cache) => {\n      const _component_Icon = __nuxt_component_0;\n      return _openBlock(), _createBlock(_unref(TransitionRoot), {\n        show: !_unref(isDestroyed),\n        appear: \"\"\n      }, {\n        default: _withCtx(() => [\n          _createVNode(_unref(TransitionChild), {\n            as: \"template\",\n            enter: \"duration-300 ease-out\",\n            \"enter-from\": \"opacity-0\",\n            \"enter-to\": \"opacity-100\",\n            leave: \"duration-300 ease-in\",\n            \"leave-from\": \"opacity-100\",\n            \"leave-to\": \"opacity-0\"\n          }, {\n            default: _withCtx(() => [\n              _createElementVNode(\"div\", {\n                class: _normalizeClass(`bg-gray-200 dark:bg-gray-800 bg-gradient-to-r shadow-white/50 dark:shadow-gray-950/50 px-6 py-6 rounded-md shadow-lg flex space-x-6 ${_unref(selectedStyle)}`)\n              }, [\n                _createElementVNode(\"div\", _hoisted_1, [\n                  _renderSlot(_ctx.$slots, \"icon\", {}, () => [\n                    _unref(selectedType) === \"success\" ? (_openBlock(), _createBlock(_component_Icon, {\n                      key: 0,\n                      name: \"mdi:check-circle\",\n                      class: _normalizeClass(`text-2xl ${_unref(selectedTextStyle)}`)\n                    }, null, 8, [\"class\"])) : _createCommentVNode(\"\", true),\n                    _unref(selectedType) === \"danger\" ? (_openBlock(), _createBlock(_component_Icon, {\n                      key: 1,\n                      name: \"icon-clarity:times-circle-solid\",\n                      class: _normalizeClass(`text-2xl ${_unref(selectedTextStyle)}`)\n                    }, null, 8, [\"class\"])) : _createCommentVNode(\"\", true),\n                    _unref(selectedType) === \"warning\" ? (_openBlock(), _createBlock(_component_Icon, {\n                      key: 2,\n                      name: \"icon-bi:exclamation-circle-fill\",\n                      class: _normalizeClass(`text-2xl ${_unref(selectedTextStyle)}`)\n                    }, null, 8, [\"class\"])) : _createCommentVNode(\"\", true)\n                  ])\n                ]),\n                _createElementVNode(\"div\", _hoisted_2, [\n                  _createElementVNode(\"div\", {\n                    class: _normalizeClass(`font-bold text-lg mb-0.5 ${_unref(selectedTextStyle)}`)\n                  }, [\n                    _renderSlot(_ctx.$slots, \"title\", {}, () => [\n                      _createTextVNode(_toDisplayString(props.title), 1)\n                    ])\n                  ], 2),\n                  _createElementVNode(\"div\", _hoisted_3, [\n                    _renderSlot(_ctx.$slots, \"title\", {}, () => [\n                      _createTextVNode(_toDisplayString(props.text), 1)\n                    ])\n                  ])\n                ]),\n                _createElementVNode(\"div\", null, [\n                  _createElementVNode(\"button\", {\n                    class: \"text-gray-600 hover:text-red-500 dark:text-gray-400 font-bold\",\n                    onClick: close\n                  }, [\n                    _createVNode(_component_Icon, { name: \"clarity:times-line\" })\n                  ])\n                ])\n              ], 2)\n            ]),\n            _: 3\n          })\n        ]),\n        _: 3\n      }, 8, [\"show\"]);\n    };\n  }\n});\n",
-      "start": 1716304640372,
-      "end": 1716304640372,
+      "start": 1716330189607,
+      "end": 1716330189607,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716304640372,
-      "end": 1716304640372,
+      "start": 1716330189607,
+      "end": 1716330189607,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304640372,
-      "end": 1716304640372,
+      "start": 1716330189607,
+      "end": 1716330189607,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304640372,
-      "end": 1716304640372,
+      "start": 1716330189607,
+      "end": 1716330189607,
       "order": "normal"
     }
   ]

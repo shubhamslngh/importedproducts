@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "/**\n *\n * server\n *\n */\nvar __asyncValues = (this && this.__asyncValues) || function (o) {\n    if (!Symbol.asyncIterator) throw new TypeError(\"Symbol.asyncIterator is not defined.\");\n    var m = o[Symbol.asyncIterator], i;\n    return m ? m.call(o) : (o = typeof __values === \"function\" ? __values(o) : o[Symbol.iterator](), i = {}, verb(\"next\"), verb(\"throw\"), verb(\"return\"), i[Symbol.asyncIterator] = function () { return this; }, i);\n    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }\n    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }\n};\nimport { parse, validate as graphqlValidate, execute as graphqlExecute, subscribe as graphqlSubscribe, getOperationAST, GraphQLError, } from 'graphql';\nimport { GRAPHQL_TRANSPORT_WS_PROTOCOL, CloseCode, MessageType, stringifyMessage, parseMessage, } from './common.mjs';\nimport { isObject, isAsyncGenerator, isAsyncIterable, areGraphQLErrors, } from './utils.mjs';\n/**\n * Makes a Protocol compliant WebSocket GraphQL server. The server\n * is actually an API which is to be used with your favourite WebSocket\n * server library!\n *\n * Read more about the [GraphQL over WebSocket Protocol](https://github.com/graphql/graphql-over-http/blob/main/rfcs/GraphQLOverWebSocket.md).\n *\n * @category Server\n */\nexport function makeServer(options) {\n    const { schema, context, roots, validate, execute, subscribe, connectionInitWaitTimeout = 3000, // 3 seconds\n    onConnect, onDisconnect, onClose, onSubscribe, onOperation, onNext, onError, onComplete, jsonMessageReviver: reviver, jsonMessageReplacer: replacer, } = options;\n    return {\n        opened(socket, extra) {\n            const ctx = {\n                connectionInitReceived: false,\n                acknowledged: false,\n                subscriptions: {},\n                extra,\n            };\n            if (socket.protocol !== GRAPHQL_TRANSPORT_WS_PROTOCOL) {\n                socket.close(CloseCode.SubprotocolNotAcceptable, 'Subprotocol not acceptable');\n                return async (code, reason) => {\n                    /* nothing was set up, just notify the closure */\n                    await (onClose === null || onClose === void 0 ? void 0 : onClose(ctx, code, reason));\n                };\n            }\n            // kick the client off (close socket) if the connection has\n            // not been initialised after the specified wait timeout\n            const connectionInitWait = connectionInitWaitTimeout > 0 && isFinite(connectionInitWaitTimeout)\n                ? setTimeout(() => {\n                    if (!ctx.connectionInitReceived)\n                        socket.close(CloseCode.ConnectionInitialisationTimeout, 'Connection initialisation timeout');\n                }, connectionInitWaitTimeout)\n                : null;\n            socket.onMessage(async function onMessage(data) {\n                var _a, e_1, _b, _c;\n                var _d;\n                let message;\n                try {\n                    message = parseMessage(data, reviver);\n                }\n                catch (err) {\n                    return socket.close(CloseCode.BadRequest, 'Invalid message received');\n                }\n                switch (message.type) {\n                    case MessageType.ConnectionInit: {\n                        if (ctx.connectionInitReceived)\n                            return socket.close(CloseCode.TooManyInitialisationRequests, 'Too many initialisation requests');\n                        // @ts-expect-error: I can write\n                        ctx.connectionInitReceived = true;\n                        if (isObject(message.payload))\n                            // @ts-expect-error: I can write\n                            ctx.connectionParams = message.payload;\n                        const permittedOrPayload = await (onConnect === null || onConnect === void 0 ? void 0 : onConnect(ctx));\n                        if (permittedOrPayload === false)\n                            return socket.close(CloseCode.Forbidden, 'Forbidden');\n                        // we should acknowledge before send to avoid race conditions (like those exampled in https://github.com/enisdenjo/graphql-ws/issues/501)\n                        // even if the send fails/throws, the connection should be closed because its malfunctioning\n                        // @ts-expect-error: I can write\n                        ctx.acknowledged = true;\n                        await socket.send(stringifyMessage(isObject(permittedOrPayload)\n                            ? {\n                                type: MessageType.ConnectionAck,\n                                payload: permittedOrPayload,\n                            }\n                            : {\n                                type: MessageType.ConnectionAck,\n                                // payload is completely absent if not provided\n                            }, replacer));\n                        return;\n                    }\n                    case MessageType.Ping: {\n                        if (socket.onPing)\n                            // if the onPing listener is registered, automatic pong is disabled\n                            return await socket.onPing(message.payload);\n                        await socket.send(stringifyMessage(message.payload\n                            ? { type: MessageType.Pong, payload: message.payload }\n                            : {\n                                type: MessageType.Pong,\n                                // payload is completely absent if not provided\n                            }));\n                        return;\n                    }\n                    case MessageType.Pong:\n                        return await ((_d = socket.onPong) === null || _d === void 0 ? void 0 : _d.call(socket, message.payload));\n                    case MessageType.Subscribe: {\n                        if (!ctx.acknowledged)\n                            return socket.close(CloseCode.Unauthorized, 'Unauthorized');\n                        const { id, payload } = message;\n                        if (id in ctx.subscriptions)\n                            return socket.close(CloseCode.SubscriberAlreadyExists, `Subscriber for ${id} already exists`);\n                        // if this turns out to be a streaming operation, the subscription value\n                        // will change to an `AsyncIterable`, otherwise it will stay as is\n                        ctx.subscriptions[id] = null;\n                        const emit = {\n                            next: async (result, args) => {\n                                let nextMessage = {\n                                    id,\n                                    type: MessageType.Next,\n                                    payload: result,\n                                };\n                                const maybeResult = await (onNext === null || onNext === void 0 ? void 0 : onNext(ctx, nextMessage, args, result));\n                                if (maybeResult)\n                                    nextMessage = Object.assign(Object.assign({}, nextMessage), { payload: maybeResult });\n                                await socket.send(stringifyMessage(nextMessage, replacer));\n                            },\n                            error: async (errors) => {\n                                let errorMessage = {\n                                    id,\n                                    type: MessageType.Error,\n                                    payload: errors,\n                                };\n                                const maybeErrors = await (onError === null || onError === void 0 ? void 0 : onError(ctx, errorMessage, errors));\n                                if (maybeErrors)\n                                    errorMessage = Object.assign(Object.assign({}, errorMessage), { payload: maybeErrors });\n                                await socket.send(stringifyMessage(errorMessage, replacer));\n                            },\n                            complete: async (notifyClient) => {\n                                const completeMessage = {\n                                    id,\n                                    type: MessageType.Complete,\n                                };\n                                await (onComplete === null || onComplete === void 0 ? void 0 : onComplete(ctx, completeMessage));\n                                if (notifyClient)\n                                    await socket.send(stringifyMessage(completeMessage, replacer));\n                            },\n                        };\n                        try {\n                            let execArgs;\n                            const maybeExecArgsOrErrors = await (onSubscribe === null || onSubscribe === void 0 ? void 0 : onSubscribe(ctx, message));\n                            if (maybeExecArgsOrErrors) {\n                                if (areGraphQLErrors(maybeExecArgsOrErrors))\n                                    return await emit.error(maybeExecArgsOrErrors);\n                                else if (Array.isArray(maybeExecArgsOrErrors))\n                                    throw new Error('Invalid return value from onSubscribe hook, expected an array of GraphQLError objects');\n                                // not errors, is exec args\n                                execArgs = maybeExecArgsOrErrors;\n                            }\n                            else {\n                                // you either provide a schema dynamically through\n                                // `onSubscribe` or you set one up during the server setup\n                                if (!schema)\n                                    throw new Error('The GraphQL schema is not provided');\n                                const args = {\n                                    operationName: payload.operationName,\n                                    document: parse(payload.query),\n                                    variableValues: payload.variables,\n                                };\n                                execArgs = Object.assign(Object.assign({}, args), { schema: typeof schema === 'function'\n                                        ? await schema(ctx, message, args)\n                                        : schema });\n                                const validationErrors = (validate !== null && validate !== void 0 ? validate : graphqlValidate)(execArgs.schema, execArgs.document);\n                                if (validationErrors.length > 0)\n                                    return await emit.error(validationErrors);\n                            }\n                            const operationAST = getOperationAST(execArgs.document, execArgs.operationName);\n                            if (!operationAST)\n                                return await emit.error([\n                                    new GraphQLError('Unable to identify operation'),\n                                ]);\n                            // if `onSubscribe` didn't specify a rootValue, inject one\n                            if (!('rootValue' in execArgs))\n                                execArgs.rootValue = roots === null || roots === void 0 ? void 0 : roots[operationAST.operation];\n                            // if `onSubscribe` didn't specify a context, inject one\n                            if (!('contextValue' in execArgs))\n                                execArgs.contextValue =\n                                    typeof context === 'function'\n                                        ? await context(ctx, message, execArgs)\n                                        : context;\n                            // the execution arguments have been prepared\n                            // perform the operation and act accordingly\n                            let operationResult;\n                            if (operationAST.operation === 'subscription')\n                                operationResult = await (subscribe !== null && subscribe !== void 0 ? subscribe : graphqlSubscribe)(execArgs);\n                            // operation === 'query' || 'mutation'\n                            else\n                                operationResult = await (execute !== null && execute !== void 0 ? execute : graphqlExecute)(execArgs);\n                            const maybeResult = await (onOperation === null || onOperation === void 0 ? void 0 : onOperation(ctx, message, execArgs, operationResult));\n                            if (maybeResult)\n                                operationResult = maybeResult;\n                            if (isAsyncIterable(operationResult)) {\n                                /** multiple emitted results */\n                                if (!(id in ctx.subscriptions)) {\n                                    // subscription was completed/canceled before the operation settled\n                                    if (isAsyncGenerator(operationResult))\n                                        operationResult.return(undefined);\n                                }\n                                else {\n                                    ctx.subscriptions[id] = operationResult;\n                                    try {\n                                        for (var _e = true, operationResult_1 = __asyncValues(operationResult), operationResult_1_1; operationResult_1_1 = await operationResult_1.next(), _a = operationResult_1_1.done, !_a; _e = true) {\n                                            _c = operationResult_1_1.value;\n                                            _e = false;\n                                            const result = _c;\n                                            await emit.next(result, execArgs);\n                                        }\n                                    }\n                                    catch (e_1_1) { e_1 = { error: e_1_1 }; }\n                                    finally {\n                                        try {\n                                            if (!_e && !_a && (_b = operationResult_1.return)) await _b.call(operationResult_1);\n                                        }\n                                        finally { if (e_1) throw e_1.error; }\n                                    }\n                                }\n                            }\n                            else {\n                                /** single emitted result */\n                                // if the client completed the subscription before the single result\n                                // became available, he effectively canceled it and no data should be sent\n                                if (id in ctx.subscriptions)\n                                    await emit.next(operationResult, execArgs);\n                            }\n                            // lack of subscription at this point indicates that the client\n                            // completed the subscription, he doesn't need to be reminded\n                            await emit.complete(id in ctx.subscriptions);\n                        }\n                        finally {\n                            // whatever happens to the subscription, we finally want to get rid of the reservation\n                            delete ctx.subscriptions[id];\n                        }\n                        return;\n                    }\n                    case MessageType.Complete: {\n                        const subscription = ctx.subscriptions[message.id];\n                        delete ctx.subscriptions[message.id]; // deleting the subscription means no further activity should take place\n                        if (isAsyncGenerator(subscription))\n                            await subscription.return(undefined);\n                        return;\n                    }\n                    default:\n                        throw new Error(`Unexpected message of type ${message.type} received`);\n                }\n            });\n            // wait for close, cleanup and the disconnect callback\n            return async (code, reason) => {\n                if (connectionInitWait)\n                    clearTimeout(connectionInitWait);\n                for (const [id, sub] of Object.entries(ctx.subscriptions)) {\n                    if (isAsyncGenerator(sub))\n                        await sub.return(undefined);\n                    delete ctx.subscriptions[id]; // deleting the subscription means no further activity should take place\n                }\n                if (ctx.acknowledged)\n                    await (onDisconnect === null || onDisconnect === void 0 ? void 0 : onDisconnect(ctx, code, reason));\n                await (onClose === null || onClose === void 0 ? void 0 : onClose(ctx, code, reason));\n            };\n        },\n    };\n}\n/**\n * Helper utility for choosing the \"graphql-transport-ws\" subprotocol from\n * a set of WebSocket subprotocols.\n *\n * Accepts a set of already extracted WebSocket subprotocols or the raw\n * Sec-WebSocket-Protocol header value. In either case, if the right\n * protocol appears, it will be returned.\n *\n * By specification, the server should not provide a value with Sec-WebSocket-Protocol\n * if it does not agree with client's subprotocols. The client has a responsibility\n * to handle the connection afterwards.\n *\n * @category Server\n */\nexport function handleProtocols(protocols) {\n    switch (true) {\n        case protocols instanceof Set &&\n            protocols.has(GRAPHQL_TRANSPORT_WS_PROTOCOL):\n        case Array.isArray(protocols) &&\n            protocols.includes(GRAPHQL_TRANSPORT_WS_PROTOCOL):\n        case typeof protocols === 'string' &&\n            protocols\n                .split(',')\n                .map((p) => p.trim())\n                .includes(GRAPHQL_TRANSPORT_WS_PROTOCOL):\n            return GRAPHQL_TRANSPORT_WS_PROTOCOL;\n        default:\n            return false;\n    }\n}\n",
-      "start": 1716304639704,
-      "end": 1716304639717,
+      "start": 1716330189129,
+      "end": 1716330189157,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304639717,
-      "end": 1716304639717,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304639717,
-      "end": 1716304639717,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304639717,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304639718,
-      "end": 1716304639718,
+      "start": 1716330189157,
+      "end": 1716330189157,
       "order": "normal"
     }
   ]

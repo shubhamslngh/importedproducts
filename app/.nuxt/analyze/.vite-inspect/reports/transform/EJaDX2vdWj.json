@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "import naturalCompare from \"./naturalCompare.mjs\";\n/**\n * Given an invalid input string and a list of valid options, returns a filtered\n * list of valid options sorted based on their similarity with the input.\n */\n\nexport default function suggestionList(input, options) {\n  var optionsByDistance = Object.create(null);\n  var lexicalDistance = new LexicalDistance(input);\n  var threshold = Math.floor(input.length * 0.4) + 1;\n\n  for (var _i2 = 0; _i2 < options.length; _i2++) {\n    var option = options[_i2];\n    var distance = lexicalDistance.measure(option, threshold);\n\n    if (distance !== undefined) {\n      optionsByDistance[option] = distance;\n    }\n  }\n\n  return Object.keys(optionsByDistance).sort(function (a, b) {\n    var distanceDiff = optionsByDistance[a] - optionsByDistance[b];\n    return distanceDiff !== 0 ? distanceDiff : naturalCompare(a, b);\n  });\n}\n/**\n * Computes the lexical distance between strings A and B.\n *\n * The \"distance\" between two strings is given by counting the minimum number\n * of edits needed to transform string A into string B. An edit can be an\n * insertion, deletion, or substitution of a single character, or a swap of two\n * adjacent characters.\n *\n * Includes a custom alteration from Damerau-Levenshtein to treat case changes\n * as a single edit which helps identify mis-cased values with an edit distance\n * of 1.\n *\n * This distance can be useful for detecting typos in input or sorting\n */\n\nvar LexicalDistance = /*#__PURE__*/function () {\n  function LexicalDistance(input) {\n    this._input = input;\n    this._inputLowerCase = input.toLowerCase();\n    this._inputArray = stringToArray(this._inputLowerCase);\n    this._rows = [new Array(input.length + 1).fill(0), new Array(input.length + 1).fill(0), new Array(input.length + 1).fill(0)];\n  }\n\n  var _proto = LexicalDistance.prototype;\n\n  _proto.measure = function measure(option, threshold) {\n    if (this._input === option) {\n      return 0;\n    }\n\n    var optionLowerCase = option.toLowerCase(); // Any case change counts as a single edit\n\n    if (this._inputLowerCase === optionLowerCase) {\n      return 1;\n    }\n\n    var a = stringToArray(optionLowerCase);\n    var b = this._inputArray;\n\n    if (a.length < b.length) {\n      var tmp = a;\n      a = b;\n      b = tmp;\n    }\n\n    var aLength = a.length;\n    var bLength = b.length;\n\n    if (aLength - bLength > threshold) {\n      return undefined;\n    }\n\n    var rows = this._rows;\n\n    for (var j = 0; j <= bLength; j++) {\n      rows[0][j] = j;\n    }\n\n    for (var i = 1; i <= aLength; i++) {\n      var upRow = rows[(i - 1) % 3];\n      var currentRow = rows[i % 3];\n      var smallestCell = currentRow[0] = i;\n\n      for (var _j = 1; _j <= bLength; _j++) {\n        var cost = a[i - 1] === b[_j - 1] ? 0 : 1;\n        var currentCell = Math.min(upRow[_j] + 1, // delete\n        currentRow[_j - 1] + 1, // insert\n        upRow[_j - 1] + cost // substitute\n        );\n\n        if (i > 1 && _j > 1 && a[i - 1] === b[_j - 2] && a[i - 2] === b[_j - 1]) {\n          // transposition\n          var doubleDiagonalCell = rows[(i - 2) % 3][_j - 2];\n          currentCell = Math.min(currentCell, doubleDiagonalCell + 1);\n        }\n\n        if (currentCell < smallestCell) {\n          smallestCell = currentCell;\n        }\n\n        currentRow[_j] = currentCell;\n      } // Early exit, since distance can't go smaller than smallest element of the previous row.\n\n\n      if (smallestCell > threshold) {\n        return undefined;\n      }\n    }\n\n    var distance = rows[aLength % 3][bLength];\n    return distance <= threshold ? distance : undefined;\n  };\n\n  return LexicalDistance;\n}();\n\nfunction stringToArray(str) {\n  var strLength = str.length;\n  var array = new Array(strLength);\n\n  for (var i = 0; i < strLength; ++i) {\n    array[i] = str.charCodeAt(i);\n  }\n\n  return array;\n}\n",
-      "start": 1716304640236,
-      "end": 1716304640246,
+      "start": 1716330189500,
+      "end": 1716330189504,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304640246,
-      "end": 1716304640246,
+      "start": 1716330189504,
+      "end": 1716330189504,
       "order": "normal"
     }
   ]

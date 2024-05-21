@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "// Spec Section: \"Executable Definitions\"\nimport { ExecutableDefinitionsRule } from './rules/ExecutableDefinitionsRule.mjs'; // Spec Section: \"Field Selections on Objects, Interfaces, and Unions Types\"\n\nimport { FieldsOnCorrectTypeRule } from './rules/FieldsOnCorrectTypeRule.mjs'; // Spec Section: \"Fragments on Composite Types\"\n\nimport { FragmentsOnCompositeTypesRule } from './rules/FragmentsOnCompositeTypesRule.mjs'; // Spec Section: \"Argument Names\"\n\nimport {\n  KnownArgumentNamesOnDirectivesRule,\n  KnownArgumentNamesRule,\n} from './rules/KnownArgumentNamesRule.mjs'; // Spec Section: \"Directives Are Defined\"\n\nimport { KnownDirectivesRule } from './rules/KnownDirectivesRule.mjs'; // Spec Section: \"Fragment spread target defined\"\n\nimport { KnownFragmentNamesRule } from './rules/KnownFragmentNamesRule.mjs'; // Spec Section: \"Fragment Spread Type Existence\"\n\nimport { KnownTypeNamesRule } from './rules/KnownTypeNamesRule.mjs'; // Spec Section: \"Lone Anonymous Operation\"\n\nimport { LoneAnonymousOperationRule } from './rules/LoneAnonymousOperationRule.mjs'; // SDL-specific validation rules\n\nimport { LoneSchemaDefinitionRule } from './rules/LoneSchemaDefinitionRule.mjs'; // Spec Section: \"Fragments must not form cycles\"\n\nimport { NoFragmentCyclesRule } from './rules/NoFragmentCyclesRule.mjs'; // Spec Section: \"All Variable Used Defined\"\n\nimport { NoUndefinedVariablesRule } from './rules/NoUndefinedVariablesRule.mjs'; // Spec Section: \"Fragments must be used\"\n\nimport { NoUnusedFragmentsRule } from './rules/NoUnusedFragmentsRule.mjs'; // Spec Section: \"All Variables Used\"\n\nimport { NoUnusedVariablesRule } from './rules/NoUnusedVariablesRule.mjs'; // Spec Section: \"Field Selection Merging\"\n\nimport { OverlappingFieldsCanBeMergedRule } from './rules/OverlappingFieldsCanBeMergedRule.mjs'; // Spec Section: \"Fragment spread is possible\"\n\nimport { PossibleFragmentSpreadsRule } from './rules/PossibleFragmentSpreadsRule.mjs';\nimport { PossibleTypeExtensionsRule } from './rules/PossibleTypeExtensionsRule.mjs'; // Spec Section: \"Argument Optionality\"\n\nimport {\n  ProvidedRequiredArgumentsOnDirectivesRule,\n  ProvidedRequiredArgumentsRule,\n} from './rules/ProvidedRequiredArgumentsRule.mjs'; // Spec Section: \"Leaf Field Selections\"\n\nimport { ScalarLeafsRule } from './rules/ScalarLeafsRule.mjs'; // Spec Section: \"Subscriptions with Single Root Field\"\n\nimport { SingleFieldSubscriptionsRule } from './rules/SingleFieldSubscriptionsRule.mjs';\nimport { UniqueArgumentDefinitionNamesRule } from './rules/UniqueArgumentDefinitionNamesRule.mjs'; // Spec Section: \"Argument Uniqueness\"\n\nimport { UniqueArgumentNamesRule } from './rules/UniqueArgumentNamesRule.mjs';\nimport { UniqueDirectiveNamesRule } from './rules/UniqueDirectiveNamesRule.mjs'; // Spec Section: \"Directives Are Unique Per Location\"\n\nimport { UniqueDirectivesPerLocationRule } from './rules/UniqueDirectivesPerLocationRule.mjs';\nimport { UniqueEnumValueNamesRule } from './rules/UniqueEnumValueNamesRule.mjs';\nimport { UniqueFieldDefinitionNamesRule } from './rules/UniqueFieldDefinitionNamesRule.mjs'; // Spec Section: \"Fragment Name Uniqueness\"\n\nimport { UniqueFragmentNamesRule } from './rules/UniqueFragmentNamesRule.mjs'; // Spec Section: \"Input Object Field Uniqueness\"\n\nimport { UniqueInputFieldNamesRule } from './rules/UniqueInputFieldNamesRule.mjs'; // Spec Section: \"Operation Name Uniqueness\"\n\nimport { UniqueOperationNamesRule } from './rules/UniqueOperationNamesRule.mjs';\nimport { UniqueOperationTypesRule } from './rules/UniqueOperationTypesRule.mjs';\nimport { UniqueTypeNamesRule } from './rules/UniqueTypeNamesRule.mjs'; // Spec Section: \"Variable Uniqueness\"\n\nimport { UniqueVariableNamesRule } from './rules/UniqueVariableNamesRule.mjs'; // Spec Section: \"Value Type Correctness\"\n\nimport { ValuesOfCorrectTypeRule } from './rules/ValuesOfCorrectTypeRule.mjs'; // Spec Section: \"Variables are Input Types\"\n\nimport { VariablesAreInputTypesRule } from './rules/VariablesAreInputTypesRule.mjs'; // Spec Section: \"All Variable Usages Are Allowed\"\n\nimport { VariablesInAllowedPositionRule } from './rules/VariablesInAllowedPositionRule.mjs';\n\n/**\n * This set includes all validation rules defined by the GraphQL spec.\n *\n * The order of the rules in this list has been adjusted to lead to the\n * most clear output when encountering multiple validation errors.\n */\nexport const specifiedRules = Object.freeze([\n  ExecutableDefinitionsRule,\n  UniqueOperationNamesRule,\n  LoneAnonymousOperationRule,\n  SingleFieldSubscriptionsRule,\n  KnownTypeNamesRule,\n  FragmentsOnCompositeTypesRule,\n  VariablesAreInputTypesRule,\n  ScalarLeafsRule,\n  FieldsOnCorrectTypeRule,\n  UniqueFragmentNamesRule,\n  KnownFragmentNamesRule,\n  NoUnusedFragmentsRule,\n  PossibleFragmentSpreadsRule,\n  NoFragmentCyclesRule,\n  UniqueVariableNamesRule,\n  NoUndefinedVariablesRule,\n  NoUnusedVariablesRule,\n  KnownDirectivesRule,\n  UniqueDirectivesPerLocationRule,\n  KnownArgumentNamesRule,\n  UniqueArgumentNamesRule,\n  ValuesOfCorrectTypeRule,\n  ProvidedRequiredArgumentsRule,\n  VariablesInAllowedPositionRule,\n  OverlappingFieldsCanBeMergedRule,\n  UniqueInputFieldNamesRule,\n]);\n/**\n * @internal\n */\n\nexport const specifiedSDLRules = Object.freeze([\n  LoneSchemaDefinitionRule,\n  UniqueOperationTypesRule,\n  UniqueTypeNamesRule,\n  UniqueEnumValueNamesRule,\n  UniqueFieldDefinitionNamesRule,\n  UniqueArgumentDefinitionNamesRule,\n  UniqueDirectiveNamesRule,\n  KnownTypeNamesRule,\n  KnownDirectivesRule,\n  UniqueDirectivesPerLocationRule,\n  PossibleTypeExtensionsRule,\n  KnownArgumentNamesOnDirectivesRule,\n  UniqueArgumentNamesRule,\n  UniqueInputFieldNamesRule,\n  ProvidedRequiredArgumentsOnDirectivesRule,\n]);\n",
-      "start": 1716304639980,
-      "end": 1716304640007,
+      "start": 1716330189438,
+      "end": 1716330189456,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304640007,
-      "end": 1716304640007,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304640007,
-      "end": 1716304640007,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304640007,
-      "end": 1716304640007,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304640007,
-      "end": 1716304640007,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304640007,
-      "end": 1716304640007,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716304640007,
-      "end": 1716304640007,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716304640007,
-      "end": 1716304640007,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304640007,
-      "end": 1716304640007,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716304640007,
-      "end": 1716304640007,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304640007,
-      "end": 1716304640007,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304640007,
-      "end": 1716304640007,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304640007,
-      "end": 1716304640007,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716304640007,
-      "end": 1716304640007,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304640007,
-      "end": 1716304640007,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716304640007,
-      "end": 1716304640007,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304640007,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304640008,
-      "end": 1716304640008,
+      "start": 1716330189456,
+      "end": 1716330189456,
       "order": "normal"
     }
   ]

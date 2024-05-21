@@ -3,82 +3,82 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "<template>\n  <div class=\"login-container\">\n    <form @submit.prevent=\"handleSubmit\" class=\"login-form\">\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"username\"\n          placeholder=\"Username or Email\"\n          autocomplete=\"email\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"password\"\n          v-model=\"password\"\n          autocomplete=\"current-password\"\n          placeholder=\"Password\"\n          class=\"form-control\"\n        />\n      </div>\n\n      <div class=\"grid gap-4\">\n        <button\n          type=\"submit\"\n          @click=\"signin\"\n          :disabled=\"isLoading\"\n          class=\"btn btn-primary\"\n        >\n          Sign in\n        </button>\n\n        <div v-if=\"errors\" class=\"error-message\">{{ errors }}</div>\n      </div>\n    </form>\n    <div class=\"grid mt-4 gap-4\">\n      <h1 class=\"text-center text-2xl\">or</h1>\n      <button @click=\"showSignUp\" class=\"btn btn-secondary\">New User</button>\n     \n    </div>\n  </div>\n  <div class=\"mx-auto mt-6\"> \n  <AwesomeSignup v-if=\"isSignUpVisible\" />\n  </div>\n</template>\n\n<script>\nimport { useAuthStore } from \"../../stores/auth\";\nimport { Login } from \"../../utils/graphql\";\nexport default {\n  data() {\n    return {\n      isSignUpVisible: false,\n      username: \"\",\n      password: \"\",\n      isLoading: false,\n      errors: null,\n    };\n  },\n  methods: {\n    async signin() {\n      this.isLoading = true;\n      try {\n        const { data } = await this.$apollo.mutate({\n          mutation: Login,\n          variables: {\n            input: {\n              provider: \"PASSWORD\",\n              credentials: {\n                username: this.username,\n                password: this.password,\n              },\n            },\n          },\n        });\n        const authStore = useAuthStore();\n        const { authToken, refreshToken, user } = data.login;\n        sessionStorage.setItem(\"authToken\", authToken);\n        sessionStorage.setItem(\"refreshToken\", refreshToken);\n        sessionStorage.setItem(\"username\", user.username);\n        authStore.setUser(user.username);\n        authStore.setToken(authToken);\n        authStore.setRToken(refreshToken);\n        await this.$router.push(\"/\");\n      } catch (error) {\n        console.error(\"Login failed:\", error.message);\n        this.errors = error.message;\n      } finally {\n        this.isLoading = false;\n      }\n    },\n    showSignUp() {\n      this.isSignUpVisible = true;\n    },\n  },\n};\n\n</script>\n\n<style scoped>\n.login-container {\n  max-width: 400px;\n  margin: auto;\n  padding: 20px;\n  border: 1px solid rgb(0, 0, 0);\n  border-radius: 5px;\n  background-color: #000000;\n  color: #ff0000;\n}\n\n.login-form {\n  display: flex;\n  flex-direction: column;\n}\n\n.form-group {\n  margin-bottom: 20px;\n}\n\n.form-control {\n  width: 100%;\n  padding: 10px;\n  font-size: 16px;\n  border: 1px solid #ccc;\n  border-radius: 5px;\n}\n\n.btn {\n  padding: 10px 20px;\n  font-size: 16px;\n  background-color: #4285f4;\n  color: #fff;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n}\n\n.btn:disabled {\n  background-color: rgb(83, 9, 9);\n  cursor: not-allowed;\n}\n\n.error-message {\n  margin-top: 10px;\n  color: #d50000;\n  font-size: 14px;\n}\n</style>\n",
-      "start": 1716304642015,
-      "end": 1716304642143,
+      "result": "<template>\n  <div class=\"login-container\">\n    <form @submit.prevent=\"handleSubmit\" class=\"login-form\">\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"username\"\n          placeholder=\"Username or Email\"\n          autocomplete=\"email\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"password\"\n          v-model=\"password\"\n          autocomplete=\"current-password\"\n          placeholder=\"Password\"\n          class=\"form-control\"\n        />\n      </div>\n\n      <div class=\"grid gap-4\">\n        <button\n          type=\"submit\"\n          @click=\"signin\"\n          :disabled=\"isLoading\"\n          class=\"btn btn-primary\"\n        >\n          Sign in\n        </button>\n        \n        <div v-if=\"errors\" class=\"error-message\">{{ errors }}</div>\n      </div>\n    </form>\n    <div class=\"grid mt-4 gap-4\">\n      <h1 class=\"text-center text-2xl\">or</h1>\n      <button @click=\"showSignUp\" class=\"btn btn-secondary\">New User</button>\n    </div>\n  </div>\n  <div ref=\"signupSection\" class=\"mx-auto mt-6\"> \n    <AwesomeSignup v-if=\"isSignUpVisible\" />\n  </div>\n</template>\n\n<script>\nimport { useAuthStore } from \"../../stores/auth\";\nimport { nextTick } from \"vue\";\n\nexport default {\n  middleware: 'authroute',\n  data() {\n    return {\n      isSignUpVisible: false,\n      username: \"\",\n      password: \"\",\n      isLoading: false,\n      errors: null,\n    };\n  },\n\n  methods: {\n    async signin() {\n      this.isLoading = true;\n      try {\n        const { data } = await this.$apollo.mutate({\n          mutation: gql`\n            mutation Login($input: LoginInput!) {\n              login(input: $input) {\n                authToken\n                refreshToken\n                user {\n                  id\n                  username\n                  email\n                }\n              }\n            }\n          `,\n          variables: {\n            input: {\n              provider: \"PASSWORD\",\n              credentials: {\n                username: this.username,\n                password: this.password,\n              },\n            },\n          },\n        });\n        const authStore = useAuthStore();\n\n        const { authToken, refreshToken, user } = data.login;\n        sessionStorage.setItem(\"authToken\", authToken);\n        sessionStorage.setItem(\"refreshToken\", refreshToken);\n        sessionStorage.setItem(\"user\", user.username);\n        authStore.setUser(user.username);\n        authStore.setToken(authToken);\n        authStore.setRToken(refreshToken);\n        console.log(\"Auth Token:\", authToken);\n        console.log(\"Refresh Token:\", refreshToken);\n        console.log(user.username, \"user\");\n        await this.$router.push(\"/\");\n      } catch (error) {\n        console.error(\"Login failed:\", error.message);\n        this.errors = error.message;\n      } finally {\n        this.isLoading = false;\n      }\n    },\n    showSignUp() {\n      this.isSignUpVisible = true;\n      this.$nextTick(() => {\n        const signupSection = this.$refs.signupSection;\n        if (signupSection) {\n          signupSection.scrollIntoView({ behavior: 'smooth' });\n        }\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n.login-container {\n  max-width: 400px;\n  margin: auto;\n  padding: 20px;\n  border: 1px solid rgb(0, 0, 0);\n  border-radius: 5px;\n  background-color: #000000;\n  color: #ff0000;\n}\n\n.login-form {\n  display: flex;\n  flex-direction: column;\n}\n\n.form-group {\n  margin-bottom: 20px;\n}\n\n.form-control {\n  width: 100%;\n  padding: 10px;\n  font-size: 16px;\n  border: 1px solid #ccc;\n  border-radius: 5px;\n}\n\n.btn {\n  padding: 10px 20px;\n  font-size: 16px;\n  background-color: #4285f4;\n  color: #fff;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n}\n\n.btn:disabled {\n  background-color: rgb(83, 9, 9);\n  cursor: not-allowed;\n}\n\n.error-message {\n  margin-top: 10px;\n  color: #d50000;\n  font-size: 14px;\n}\n</style>\n",
+      "start": 1716330192362,
+      "end": 1716330192407,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304642143,
-      "end": 1716304642143,
+      "start": 1716330192407,
+      "end": 1716330192407,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304642143,
-      "end": 1716304642143,
+      "start": 1716330192407,
+      "end": 1716330192407,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304642143,
-      "end": 1716304642143,
+      "start": 1716330192407,
+      "end": 1716330192407,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304642143,
-      "end": 1716304642143,
+      "start": 1716330192407,
+      "end": 1716330192407,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304642143,
-      "end": 1716304642143,
+      "start": 1716330192407,
+      "end": 1716330192407,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304642143,
-      "end": 1716304642143,
+      "start": 1716330192407,
+      "end": 1716330192407,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304642143,
-      "end": 1716304642143,
+      "start": 1716330192407,
+      "end": 1716330192407,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304642143,
-      "end": 1716304642143,
+      "start": 1716330192407,
+      "end": 1716330192407,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716304642143,
-      "end": 1716304642143,
+      "start": 1716330192407,
+      "end": 1716330192407,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716304642143,
-      "end": 1716304642143,
+      "start": 1716330192407,
+      "end": 1716330192407,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304642143,
-      "end": 1716304642143,
+      "start": 1716330192407,
+      "end": 1716330192407,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "result": "\nimport { useAuthStore } from \"../../stores/auth\";\nimport { Login } from \"../../utils/graphql\";\nconst _sfc_main = {\n  data() {\n    return {\n      isSignUpVisible: false,\n      username: \"\",\n      password: \"\",\n      isLoading: false,\n      errors: null,\n    };\n  },\n  methods: {\n    async signin() {\n      this.isLoading = true;\n      try {\n        const { data } = await this.$apollo.mutate({\n          mutation: Login,\n          variables: {\n            input: {\n              provider: \"PASSWORD\",\n              credentials: {\n                username: this.username,\n                password: this.password,\n              },\n            },\n          },\n        });\n        const authStore = useAuthStore();\n        const { authToken, refreshToken, user } = data.login;\n        sessionStorage.setItem(\"authToken\", authToken);\n        sessionStorage.setItem(\"refreshToken\", refreshToken);\n        sessionStorage.setItem(\"username\", user.username);\n        authStore.setUser(user.username);\n        authStore.setToken(authToken);\n        authStore.setRToken(refreshToken);\n        await this.$router.push(\"/\");\n      } catch (error) {\n        console.error(\"Login failed:\", error.message);\n        this.errors = error.message;\n      } finally {\n        this.isLoading = false;\n      }\n    },\n    showSignUp() {\n      this.isSignUpVisible = true;\n    },\n  },\n};\n\n\nimport { resolveComponent as _resolveComponent } from \"vue\"\nimport { ssrRenderAttr as _ssrRenderAttr, ssrIncludeBooleanAttr as _ssrIncludeBooleanAttr, ssrRenderComponent as _ssrRenderComponent, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\"\n\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  const _component_AwesomeSignup = _resolveComponent(\"AwesomeSignup\")\n\n  _push(`<!--[--><div class=\"login-container\" data-v-2e90d5ca><form class=\"login-form\" data-v-2e90d5ca><div class=\"form-group\" data-v-2e90d5ca><input type=\"text\"${\n    _ssrRenderAttr(\"value\", $data.username)\n  } placeholder=\"Username or Email\" autocomplete=\"email\" class=\"form-control\" data-v-2e90d5ca></div><div class=\"form-group\" data-v-2e90d5ca><input type=\"password\"${\n    _ssrRenderAttr(\"value\", $data.password)\n  } autocomplete=\"current-password\" placeholder=\"Password\" class=\"form-control\" data-v-2e90d5ca></div><div class=\"grid gap-4\" data-v-2e90d5ca><button type=\"submit\"${\n    (_ssrIncludeBooleanAttr($data.isLoading)) ? \" disabled\" : \"\"\n  } class=\"btn btn-primary\" data-v-2e90d5ca> Sign in </button>`)\n  if ($data.errors) {\n    _push(`<div class=\"error-message\" data-v-2e90d5ca>${_ssrInterpolate($data.errors)}</div>`)\n  } else {\n    _push(`<!---->`)\n  }\n  _push(`</div></form><div class=\"grid mt-4 gap-4\" data-v-2e90d5ca><h1 class=\"text-center text-2xl\" data-v-2e90d5ca>or</h1><button class=\"btn btn-secondary\" data-v-2e90d5ca>New User</button></div></div><div class=\"mx-auto mt-6\" data-v-2e90d5ca>`)\n  if ($data.isSignUpVisible) {\n    _push(_ssrRenderComponent(_component_AwesomeSignup, null, null, _parent))\n  } else {\n    _push(`<!---->`)\n  }\n  _push(`</div><!--]-->`)\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Login.vue?vue&type=style&index=0&scoped=2e90d5ca&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"../components/awesome/Login.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['ssrRender',_sfc_ssrRender],['__scopeId',\"data-v-2e90d5ca\"]])",
-      "start": 1716304642143,
-      "end": 1716304642144,
+      "result": "\nimport { useAuthStore } from \"../../stores/auth\";\nimport { nextTick } from \"vue\";\n\nconst _sfc_main = {\n  middleware: 'authroute',\n  data() {\n    return {\n      isSignUpVisible: false,\n      username: \"\",\n      password: \"\",\n      isLoading: false,\n      errors: null,\n    };\n  },\n\n  methods: {\n    async signin() {\n      this.isLoading = true;\n      try {\n        const { data } = await this.$apollo.mutate({\n          mutation: gql`\n            mutation Login($input: LoginInput!) {\n              login(input: $input) {\n                authToken\n                refreshToken\n                user {\n                  id\n                  username\n                  email\n                }\n              }\n            }\n          `,\n          variables: {\n            input: {\n              provider: \"PASSWORD\",\n              credentials: {\n                username: this.username,\n                password: this.password,\n              },\n            },\n          },\n        });\n        const authStore = useAuthStore();\n\n        const { authToken, refreshToken, user } = data.login;\n        sessionStorage.setItem(\"authToken\", authToken);\n        sessionStorage.setItem(\"refreshToken\", refreshToken);\n        sessionStorage.setItem(\"user\", user.username);\n        authStore.setUser(user.username);\n        authStore.setToken(authToken);\n        authStore.setRToken(refreshToken);\n        console.log(\"Auth Token:\", authToken);\n        console.log(\"Refresh Token:\", refreshToken);\n        console.log(user.username, \"user\");\n        await this.$router.push(\"/\");\n      } catch (error) {\n        console.error(\"Login failed:\", error.message);\n        this.errors = error.message;\n      } finally {\n        this.isLoading = false;\n      }\n    },\n    showSignUp() {\n      this.isSignUpVisible = true;\n      this.$nextTick(() => {\n        const signupSection = this.$refs.signupSection;\n        if (signupSection) {\n          signupSection.scrollIntoView({ behavior: 'smooth' });\n        }\n      });\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent } from \"vue\"\nimport { ssrRenderAttr as _ssrRenderAttr, ssrIncludeBooleanAttr as _ssrIncludeBooleanAttr, ssrRenderComponent as _ssrRenderComponent, ssrInterpolate as _ssrInterpolate } from \"vue/server-renderer\"\n\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  const _component_AwesomeSignup = _resolveComponent(\"AwesomeSignup\")\n\n  _push(`<!--[--><div class=\"login-container\" data-v-d349b423><form class=\"login-form\" data-v-d349b423><div class=\"form-group\" data-v-d349b423><input type=\"text\"${\n    _ssrRenderAttr(\"value\", $data.username)\n  } placeholder=\"Username or Email\" autocomplete=\"email\" class=\"form-control\" data-v-d349b423></div><div class=\"form-group\" data-v-d349b423><input type=\"password\"${\n    _ssrRenderAttr(\"value\", $data.password)\n  } autocomplete=\"current-password\" placeholder=\"Password\" class=\"form-control\" data-v-d349b423></div><div class=\"grid gap-4\" data-v-d349b423><button type=\"submit\"${\n    (_ssrIncludeBooleanAttr($data.isLoading)) ? \" disabled\" : \"\"\n  } class=\"btn btn-primary\" data-v-d349b423> Sign in </button>`)\n  if ($data.errors) {\n    _push(`<div class=\"error-message\" data-v-d349b423>${_ssrInterpolate($data.errors)}</div>`)\n  } else {\n    _push(`<!---->`)\n  }\n  _push(`</div></form><div class=\"grid mt-4 gap-4\" data-v-d349b423><h1 class=\"text-center text-2xl\" data-v-d349b423>or</h1><button class=\"btn btn-secondary\" data-v-d349b423>New User</button></div></div><div class=\"mx-auto mt-6\" data-v-d349b423>`)\n  if ($data.isSignUpVisible) {\n    _push(_ssrRenderComponent(_component_AwesomeSignup, null, null, _parent))\n  } else {\n    _push(`<!---->`)\n  }\n  _push(`</div><!--]-->`)\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Login.vue?vue&type=style&index=0&scoped=d349b423&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"../components/awesome/Login.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['ssrRender',_sfc_ssrRender],['__scopeId',\"data-v-d349b423\"]])",
+      "start": 1716330192407,
+      "end": 1716330192410,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -88,191 +88,191 @@
           "/Users/shubhamsingh/namma/importedProds/components/awesome/Login.vue"
         ],
         "sourcesContent": [
-          "<template>\n  <div class=\"login-container\">\n    <form @submit.prevent=\"handleSubmit\" class=\"login-form\">\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"username\"\n          placeholder=\"Username or Email\"\n          autocomplete=\"email\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"password\"\n          v-model=\"password\"\n          autocomplete=\"current-password\"\n          placeholder=\"Password\"\n          class=\"form-control\"\n        />\n      </div>\n\n      <div class=\"grid gap-4\">\n        <button\n          type=\"submit\"\n          @click=\"signin\"\n          :disabled=\"isLoading\"\n          class=\"btn btn-primary\"\n        >\n          Sign in\n        </button>\n\n        <div v-if=\"errors\" class=\"error-message\">{{ errors }}</div>\n      </div>\n    </form>\n    <div class=\"grid mt-4 gap-4\">\n      <h1 class=\"text-center text-2xl\">or</h1>\n      <button @click=\"showSignUp\" class=\"btn btn-secondary\">New User</button>\n     \n    </div>\n  </div>\n  <div class=\"mx-auto mt-6\"> \n  <AwesomeSignup v-if=\"isSignUpVisible\" />\n  </div>\n</template>\n\n<script>\nimport { useAuthStore } from \"../../stores/auth\";\nimport { Login } from \"../../utils/graphql\";\nexport default {\n  data() {\n    return {\n      isSignUpVisible: false,\n      username: \"\",\n      password: \"\",\n      isLoading: false,\n      errors: null,\n    };\n  },\n  methods: {\n    async signin() {\n      this.isLoading = true;\n      try {\n        const { data } = await this.$apollo.mutate({\n          mutation: Login,\n          variables: {\n            input: {\n              provider: \"PASSWORD\",\n              credentials: {\n                username: this.username,\n                password: this.password,\n              },\n            },\n          },\n        });\n        const authStore = useAuthStore();\n        const { authToken, refreshToken, user } = data.login;\n        sessionStorage.setItem(\"authToken\", authToken);\n        sessionStorage.setItem(\"refreshToken\", refreshToken);\n        sessionStorage.setItem(\"username\", user.username);\n        authStore.setUser(user.username);\n        authStore.setToken(authToken);\n        authStore.setRToken(refreshToken);\n        await this.$router.push(\"/\");\n      } catch (error) {\n        console.error(\"Login failed:\", error.message);\n        this.errors = error.message;\n      } finally {\n        this.isLoading = false;\n      }\n    },\n    showSignUp() {\n      this.isSignUpVisible = true;\n    },\n  },\n};\n\n</script>\n\n<style scoped>\n.login-container {\n  max-width: 400px;\n  margin: auto;\n  padding: 20px;\n  border: 1px solid rgb(0, 0, 0);\n  border-radius: 5px;\n  background-color: #000000;\n  color: #ff0000;\n}\n\n.login-form {\n  display: flex;\n  flex-direction: column;\n}\n\n.form-group {\n  margin-bottom: 20px;\n}\n\n.form-control {\n  width: 100%;\n  padding: 10px;\n  font-size: 16px;\n  border: 1px solid #ccc;\n  border-radius: 5px;\n}\n\n.btn {\n  padding: 10px 20px;\n  font-size: 16px;\n  background-color: #4285f4;\n  color: #fff;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n}\n\n.btn:disabled {\n  background-color: rgb(83, 9, 9);\n  cursor: not-allowed;\n}\n\n.error-message {\n  margin-top: 10px;\n  color: #d50000;\n  font-size: 14px;\n}\n</style>\n"
+          "<template>\n  <div class=\"login-container\">\n    <form @submit.prevent=\"handleSubmit\" class=\"login-form\">\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"username\"\n          placeholder=\"Username or Email\"\n          autocomplete=\"email\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"password\"\n          v-model=\"password\"\n          autocomplete=\"current-password\"\n          placeholder=\"Password\"\n          class=\"form-control\"\n        />\n      </div>\n\n      <div class=\"grid gap-4\">\n        <button\n          type=\"submit\"\n          @click=\"signin\"\n          :disabled=\"isLoading\"\n          class=\"btn btn-primary\"\n        >\n          Sign in\n        </button>\n        \n        <div v-if=\"errors\" class=\"error-message\">{{ errors }}</div>\n      </div>\n    </form>\n    <div class=\"grid mt-4 gap-4\">\n      <h1 class=\"text-center text-2xl\">or</h1>\n      <button @click=\"showSignUp\" class=\"btn btn-secondary\">New User</button>\n    </div>\n  </div>\n  <div ref=\"signupSection\" class=\"mx-auto mt-6\"> \n    <AwesomeSignup v-if=\"isSignUpVisible\" />\n  </div>\n</template>\n\n<script>\nimport { useAuthStore } from \"../../stores/auth\";\nimport { nextTick } from \"vue\";\n\nexport default {\n  middleware: 'authroute',\n  data() {\n    return {\n      isSignUpVisible: false,\n      username: \"\",\n      password: \"\",\n      isLoading: false,\n      errors: null,\n    };\n  },\n\n  methods: {\n    async signin() {\n      this.isLoading = true;\n      try {\n        const { data } = await this.$apollo.mutate({\n          mutation: gql`\n            mutation Login($input: LoginInput!) {\n              login(input: $input) {\n                authToken\n                refreshToken\n                user {\n                  id\n                  username\n                  email\n                }\n              }\n            }\n          `,\n          variables: {\n            input: {\n              provider: \"PASSWORD\",\n              credentials: {\n                username: this.username,\n                password: this.password,\n              },\n            },\n          },\n        });\n        const authStore = useAuthStore();\n\n        const { authToken, refreshToken, user } = data.login;\n        sessionStorage.setItem(\"authToken\", authToken);\n        sessionStorage.setItem(\"refreshToken\", refreshToken);\n        sessionStorage.setItem(\"user\", user.username);\n        authStore.setUser(user.username);\n        authStore.setToken(authToken);\n        authStore.setRToken(refreshToken);\n        console.log(\"Auth Token:\", authToken);\n        console.log(\"Refresh Token:\", refreshToken);\n        console.log(user.username, \"user\");\n        await this.$router.push(\"/\");\n      } catch (error) {\n        console.error(\"Login failed:\", error.message);\n        this.errors = error.message;\n      } finally {\n        this.isLoading = false;\n      }\n    },\n    showSignUp() {\n      this.isSignUpVisible = true;\n      this.$nextTick(() => {\n        const signupSection = this.$refs.signupSection;\n        if (signupSection) {\n          signupSection.scrollIntoView({ behavior: 'smooth' });\n        }\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n.login-container {\n  max-width: 400px;\n  margin: auto;\n  padding: 20px;\n  border: 1px solid rgb(0, 0, 0);\n  border-radius: 5px;\n  background-color: #000000;\n  color: #ff0000;\n}\n\n.login-form {\n  display: flex;\n  flex-direction: column;\n}\n\n.form-group {\n  margin-bottom: 20px;\n}\n\n.form-control {\n  width: 100%;\n  padding: 10px;\n  font-size: 16px;\n  border: 1px solid #ccc;\n  border-radius: 5px;\n}\n\n.btn {\n  padding: 10px 20px;\n  font-size: 16px;\n  background-color: #4285f4;\n  color: #fff;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n}\n\n.btn:disabled {\n  background-color: rgb(83, 9, 9);\n  cursor: not-allowed;\n}\n\n.error-message {\n  margin-top: 10px;\n  color: #d50000;\n  font-size: 14px;\n}\n</style>\n"
         ],
-        "mappings": "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CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QACpD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QACjD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QACjC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;MAC9B,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;QACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QAC7C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;MAC7B,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;QACR,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;MACxB;IACF,CAAC;IACD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;MACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC;IAC7B,CAAC;EACH,CAAC;AACH,CAAC;;;;;;;;;EA/FD;IAAA,eAAA,SAMmB,cAAQ;;IAN3B,eAAA,SAemB,cAAQ;;KAf3B,uBA0BqB,eAAS,KA1B9B,cAAA;;MAgCmB,YAAM;IAhCzB,oDAAA,gBAgCoD,YAAM;;IAhC1D;;EAAA;MA0CuB,qBAAe;IA1CtC,MAAA;;IAAA;;EAAA"
+        "mappings": "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CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QAC7C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QACjC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QACrC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QAC3C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QAClC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;MAC9B,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;QACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QAC7C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;MAC7B,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;QACR,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;MACxB;IACF,CAAC;IACD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;MACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC;MAC3B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE;QACnB,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QAC9C,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;UACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC;QACtD;MACF,CAAC,CAAC;IACJ,CAAC;EACH,CAAC;AACH,CAAC;;;;;;;;EAvHD;IAAA,eAAA,SAMmB,cAAQ;;IAN3B,eAAA,SAemB,cAAQ;;KAf3B,uBA0BqB,eAAS,KA1B9B,cAAA;;MAgCmB,YAAM;IAhCzB,oDAAA,gBAgCoD,YAAM;;IAhC1D;;EAAA;MAyCyB,qBAAe;IAzCxC,MAAA;;IAAA;;EAAA"
       }
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192410,
+      "end": 1716330192410,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192410,
+      "end": 1716330192410,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192410,
+      "end": 1716330192410,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192410,
+      "end": 1716330192410,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192410,
+      "end": 1716330192410,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192410,
+      "end": 1716330192410,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Login.vue\").then(r => r.default))",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192410,
+      "end": 1716330192410,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192410,
+      "end": 1716330192410,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192410,
+      "end": 1716330192411,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192411,
+      "end": 1716330192411,
       "order": "normal"
     }
   ]

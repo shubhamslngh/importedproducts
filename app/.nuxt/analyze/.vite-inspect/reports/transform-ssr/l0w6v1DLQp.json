@@ -3,263 +3,263 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "  let animations = {};\n  export default animations = {\n    runLamp: () => {\n      let backGlow = document.getElementById(\"backGlow\");\n      let lampLedHead = document.getElementById(\"lampLed\");\n      let lampGlow = document.getElementById(\"lampGlow\");\n      lampGlow.style.height = \"120%\";\n      lampGlow.style.transform = \"scale(1.8)\";\n      lampLedHead.style.width = \"30%\";\n      lampLedHead.style.blur = \"1px\";\n    },\n    lampOff: () => {\n      let glow = document.getElementById(\"tubecase\");\n      let lampGlow = document.getElementById(\"lampGlow\");\n      let lampLedHead = document.getElementById(\"lampLed\");\n      lampLedHead.style.width = \"150%\";\n      lampGlow.style.width = \"100%\";\n      // lampGlow.style.transform = \"scale(1.5)\";\n    }\n  }",
-      "start": 1716304642911,
-      "end": 1716304643017,
+      "result": "// src/utils/animations.js\n\nconst animations = {\n  runLamp: () => {\n    let backGlow = document.getElementById(\"backGlow\");\n    let lampLedHead = document.getElementById(\"lampLed\");\n    let lampGlow = document.getElementById(\"lampGlow\");\n\n    if (backGlow && lampLedHead && lampGlow) {\n      lampGlow.style.height = \"120%\";\n      lampGlow.style.transform = \"scale(1.8)\";\n      lampGlow.style.position = \"center\";\n      lampLedHead.style.width = \"30%\";\n      lampLedHead.style.blur = \"1px\";\n    }\n  },\n  lampOff: () => {\n    let glow = document.getElementById(\"tubecase\");\n    let lampGlow = document.getElementById(\"lampGlow\");\n    let lampLedHead = document.getElementById(\"lampLed\");\n\n    if (glow && lampGlow && lampLedHead) {\n      lampLedHead.style.width = \"150%\";\n      lampGlow.style.width = \"100%\";\n      lampGlow.style.transform = \"scale(1.5)\";\n    }\n  },\n  handleScrollAnimation: (products, flexContainerRef) => {\n    const scrollY = window.scrollY;\n    const flexContainerRect = flexContainerRef.getBoundingClientRect();\n\n    const startEffectScrollY = flexContainerRect.top - window.innerHeight + 100;\n\n    const scrollProgress = Math.min(\n      1,\n      Math.max(\n        0,\n        (scrollY - startEffectScrollY) /\n          (window.innerHeight + flexContainerRef.clientHeight)\n      )\n    );\n\n    products.forEach((product, index) => {\n      const offsetY = (2 - scrollProgress) * (index * 100);\n      product.style = {\n        transform: `translateY(${offsetY}px)`,\n        zIndex: `${100 - index}`,\n      };\n    });\n  }\n};\n\nexport default animations;\n",
+      "start": 1716330193507,
+      "end": 1716330193581,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304643017,
-      "end": 1716304643017,
+      "start": 1716330193581,
+      "end": 1716330193581,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "result": "let animations = {};\nexport default animations = {\n  runLamp: () => {\n    let backGlow = (void 0).getElementById(\"backGlow\");\n    let lampLedHead = (void 0).getElementById(\"lampLed\");\n    let lampGlow = (void 0).getElementById(\"lampGlow\");\n    lampGlow.style.height = \"120%\";\n    lampGlow.style.transform = \"scale(1.8)\";\n    lampLedHead.style.width = \"30%\";\n    lampLedHead.style.blur = \"1px\";\n  },\n  lampOff: () => {\n    let glow = (void 0).getElementById(\"tubecase\");\n    let lampGlow = (void 0).getElementById(\"lampGlow\");\n    let lampLedHead = (void 0).getElementById(\"lampLed\");\n    lampLedHead.style.width = \"150%\";\n    lampGlow.style.width = \"100%\";\n  }\n};\n",
-      "start": 1716304643017,
-      "end": 1716304643296,
+      "result": "const animations = {\n  runLamp: () => {\n    let backGlow = (void 0).getElementById(\"backGlow\");\n    let lampLedHead = (void 0).getElementById(\"lampLed\");\n    let lampGlow = (void 0).getElementById(\"lampGlow\");\n    if (backGlow && lampLedHead && lampGlow) {\n      lampGlow.style.height = \"120%\";\n      lampGlow.style.transform = \"scale(1.8)\";\n      lampGlow.style.position = \"center\";\n      lampLedHead.style.width = \"30%\";\n      lampLedHead.style.blur = \"1px\";\n    }\n  },\n  lampOff: () => {\n    let glow = (void 0).getElementById(\"tubecase\");\n    let lampGlow = (void 0).getElementById(\"lampGlow\");\n    let lampLedHead = (void 0).getElementById(\"lampLed\");\n    if (glow && lampGlow && lampLedHead) {\n      lampLedHead.style.width = \"150%\";\n      lampGlow.style.width = \"100%\";\n      lampGlow.style.transform = \"scale(1.5)\";\n    }\n  },\n  handleScrollAnimation: (products, flexContainerRef) => {\n    const scrollY = (void 0).scrollY;\n    const flexContainerRect = flexContainerRef.getBoundingClientRect();\n    const startEffectScrollY = flexContainerRect.top - (void 0).innerHeight + 100;\n    const scrollProgress = Math.min(\n      1,\n      Math.max(\n        0,\n        (scrollY - startEffectScrollY) / ((void 0).innerHeight + flexContainerRef.clientHeight)\n      )\n    );\n    products.forEach((product, index) => {\n      const offsetY = (2 - scrollProgress) * (index * 100);\n      product.style = {\n        transform: `translateY(${offsetY}px)`,\n        zIndex: `${100 - index}`\n      };\n    });\n  }\n};\nexport default animations;\n",
+      "start": 1716330193581,
+      "end": 1716330193959,
       "order": "normal",
-      "sourcemaps": "{\n  \"version\": 3,\n  \"sources\": [\"/Users/shubhamsingh/namma/importedProds/utils/animations.js\"],\n  \"sourcesContent\": [\"  let animations = {};\\n  export default animations = {\\n    runLamp: () => {\\n      let backGlow = document.getElementById(\\\"backGlow\\\");\\n      let lampLedHead = document.getElementById(\\\"lampLed\\\");\\n      let lampGlow = document.getElementById(\\\"lampGlow\\\");\\n      lampGlow.style.height = \\\"120%\\\";\\n      lampGlow.style.transform = \\\"scale(1.8)\\\";\\n      lampLedHead.style.width = \\\"30%\\\";\\n      lampLedHead.style.blur = \\\"1px\\\";\\n    },\\n    lampOff: () => {\\n      let glow = document.getElementById(\\\"tubecase\\\");\\n      let lampGlow = document.getElementById(\\\"lampGlow\\\");\\n      let lampLedHead = document.getElementById(\\\"lampLed\\\");\\n      lampLedHead.style.width = \\\"150%\\\";\\n      lampGlow.style.width = \\\"100%\\\";\\n      // lampGlow.style.transform = \\\"scale(1.5)\\\";\\n    }\\n  }\"],\n  \"mappings\": \"AAAE,IAAI,aAAa,CAAC;AAClB,eAAe,aAAa;AAAA,EAC1B,SAAS,MAAM;AACb,QAAI,WAAW,SAAS,eAAe,UAAU;AACjD,QAAI,cAAc,SAAS,eAAe,SAAS;AACnD,QAAI,WAAW,SAAS,eAAe,UAAU;AACjD,aAAS,MAAM,SAAS;AACxB,aAAS,MAAM,YAAY;AAC3B,gBAAY,MAAM,QAAQ;AAC1B,gBAAY,MAAM,OAAO;AAAA,EAC3B;AAAA,EACA,SAAS,MAAM;AACb,QAAI,OAAO,SAAS,eAAe,UAAU;AAC7C,QAAI,WAAW,SAAS,eAAe,UAAU;AACjD,QAAI,cAAc,SAAS,eAAe,SAAS;AACnD,gBAAY,MAAM,QAAQ;AAC1B,aAAS,MAAM,QAAQ;AAAA,EAEzB;AACF;\",\n  \"names\": []\n}\n"
+      "sourcemaps": "{\n  \"version\": 3,\n  \"sources\": [\"/Users/shubhamsingh/namma/importedProds/utils/animations.js\"],\n  \"sourcesContent\": [\"// src/utils/animations.js\\n\\nconst animations = {\\n  runLamp: () => {\\n    let backGlow = document.getElementById(\\\"backGlow\\\");\\n    let lampLedHead = document.getElementById(\\\"lampLed\\\");\\n    let lampGlow = document.getElementById(\\\"lampGlow\\\");\\n\\n    if (backGlow && lampLedHead && lampGlow) {\\n      lampGlow.style.height = \\\"120%\\\";\\n      lampGlow.style.transform = \\\"scale(1.8)\\\";\\n      lampGlow.style.position = \\\"center\\\";\\n      lampLedHead.style.width = \\\"30%\\\";\\n      lampLedHead.style.blur = \\\"1px\\\";\\n    }\\n  },\\n  lampOff: () => {\\n    let glow = document.getElementById(\\\"tubecase\\\");\\n    let lampGlow = document.getElementById(\\\"lampGlow\\\");\\n    let lampLedHead = document.getElementById(\\\"lampLed\\\");\\n\\n    if (glow && lampGlow && lampLedHead) {\\n      lampLedHead.style.width = \\\"150%\\\";\\n      lampGlow.style.width = \\\"100%\\\";\\n      lampGlow.style.transform = \\\"scale(1.5)\\\";\\n    }\\n  },\\n  handleScrollAnimation: (products, flexContainerRef) => {\\n    const scrollY = window.scrollY;\\n    const flexContainerRect = flexContainerRef.getBoundingClientRect();\\n\\n    const startEffectScrollY = flexContainerRect.top - window.innerHeight + 100;\\n\\n    const scrollProgress = Math.min(\\n      1,\\n      Math.max(\\n        0,\\n        (scrollY - startEffectScrollY) /\\n          (window.innerHeight + flexContainerRef.clientHeight)\\n      )\\n    );\\n\\n    products.forEach((product, index) => {\\n      const offsetY = (2 - scrollProgress) * (index * 100);\\n      product.style = {\\n        transform: `translateY(${offsetY}px)`,\\n        zIndex: `${100 - index}`,\\n      };\\n    });\\n  }\\n};\\n\\nexport default animations;\\n\"],\n  \"mappings\": \"AAEA,MAAM,aAAa;AAAA,EACjB,SAAS,MAAM;AACb,QAAI,WAAW,SAAS,eAAe,UAAU;AACjD,QAAI,cAAc,SAAS,eAAe,SAAS;AACnD,QAAI,WAAW,SAAS,eAAe,UAAU;AAEjD,QAAI,YAAY,eAAe,UAAU;AACvC,eAAS,MAAM,SAAS;AACxB,eAAS,MAAM,YAAY;AAC3B,eAAS,MAAM,WAAW;AAC1B,kBAAY,MAAM,QAAQ;AAC1B,kBAAY,MAAM,OAAO;AAAA,IAC3B;AAAA,EACF;AAAA,EACA,SAAS,MAAM;AACb,QAAI,OAAO,SAAS,eAAe,UAAU;AAC7C,QAAI,WAAW,SAAS,eAAe,UAAU;AACjD,QAAI,cAAc,SAAS,eAAe,SAAS;AAEnD,QAAI,QAAQ,YAAY,aAAa;AACnC,kBAAY,MAAM,QAAQ;AAC1B,eAAS,MAAM,QAAQ;AACvB,eAAS,MAAM,YAAY;AAAA,IAC7B;AAAA,EACF;AAAA,EACA,uBAAuB,CAAC,UAAU,qBAAqB;AACrD,UAAM,UAAU,SAAO;AACvB,UAAM,oBAAoB,iBAAiB,sBAAsB;AAEjE,UAAM,qBAAqB,kBAAkB,MAAM,SAAO,cAAc;AAExE,UAAM,iBAAiB,KAAK;AAAA,MAC1B;AAAA,MACA,KAAK;AAAA,QACH;AAAA,SACC,UAAU,uBACR,SAAO,cAAc,iBAAiB;AAAA,MAC3C;AAAA,IACF;AAEA,aAAS,QAAQ,CAAC,SAAS,UAAU;AACnC,YAAM,WAAW,IAAI,mBAAmB,QAAQ;AAChD,cAAQ,QAAQ;AAAA,QACd,WAAW,cAAc,OAAO;AAAA,QAChC,QAAQ,GAAG,MAAM,KAAK;AAAA,MACxB;AAAA,IACF,CAAC;AAAA,EACH;AACF;AAEA,eAAe;\",\n  \"names\": []\n}\n"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304643296,
-      "end": 1716304643296,
+      "start": 1716330193959,
+      "end": 1716330193959,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304643296,
-      "end": 1716304643296,
+      "start": 1716330193959,
+      "end": 1716330193959,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304643296,
-      "end": 1716304643296,
+      "start": 1716330193959,
+      "end": 1716330193959,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304643296,
-      "end": 1716304643296,
+      "start": 1716330193959,
+      "end": 1716330193959,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304643296,
-      "end": 1716304643296,
+      "start": 1716330193959,
+      "end": 1716330193959,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304643296,
-      "end": 1716304643296,
+      "start": 1716330193959,
+      "end": 1716330193959,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304643296,
-      "end": 1716304643296,
+      "start": 1716330193959,
+      "end": 1716330193959,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304643296,
-      "end": 1716304643296,
+      "start": 1716330193959,
+      "end": 1716330193959,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304643296,
-      "end": 1716304643296,
+      "start": 1716330193959,
+      "end": 1716330193959,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304643296,
-      "end": 1716304643297,
+      "start": 1716330193959,
+      "end": 1716330193960,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304643296,
-      "end": 1716304643297,
+      "start": 1716330193959,
+      "end": 1716330193960,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304643297,
-      "end": 1716304643297,
+      "start": 1716330193960,
+      "end": 1716330193960,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304643297,
-      "end": 1716304643297,
+      "start": 1716330193960,
+      "end": 1716330193960,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304643297,
-      "end": 1716304643297,
+      "start": 1716330193960,
+      "end": 1716330193960,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304643297,
-      "end": 1716304643297,
+      "start": 1716330193960,
+      "end": 1716330193960,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1716304643297,
-      "end": 1716304643297,
+      "start": 1716330193960,
+      "end": 1716330193960,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716304643297,
-      "end": 1716304643297,
+      "start": 1716330193960,
+      "end": 1716330193960,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716304643297,
-      "end": 1716304643297,
+      "start": 1716330193960,
+      "end": 1716330193960,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304643297,
-      "end": 1716304643297,
+      "start": 1716330193960,
+      "end": 1716330193960,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304643297,
-      "end": 1716304643297,
+      "start": 1716330193960,
+      "end": 1716330193960,
       "order": "normal"
     }
   ]

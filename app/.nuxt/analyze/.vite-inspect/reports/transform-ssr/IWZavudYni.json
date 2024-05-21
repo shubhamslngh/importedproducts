@@ -4,8 +4,8 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderAttr as _ssrRenderAttr, ssrIncludeBooleanAttr as _ssrIncludeBooleanAttr, ssrRenderSlot as _ssrRenderSlot, ssrRenderAttrs as _ssrRenderAttrs } from \"vue/server-renderer\"\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'Switch',\n  __ssrInlineRender: true,\n  props: {\n  modelValue: {\n    type: Boolean,\n    default: false,\n  },\n  on: {\n    type: Boolean,\n    default: false,\n  },\n  id: {\n    type: String,\n    default: undefined,\n  },\n},\n  emits: ['update:modelValue'],\n  setup(__props, { emit: __emit }) {\n\n// compiler macro\nconst props = __props\nconst emit = __emit\n\n// random\nconst randomId = () =>\n  Math.random().toString(36).substring(2, 15) +\n  Math.random().toString(36).substring(2, 15)\n\n// state\nconst id = ref(props.id || randomId())\nconst input = ref<HTMLInputElement>()\n\n// funcs\nconst checked = useSyncProps<boolean>(props, 'modelValue', emit)\nconst onInputChange = (e: Event) => {\n  const target = e.target as HTMLInputElement\n  checked.value = target.checked\n  emit('update:modelValue', target.checked)\n}\n\n// lifecycle\nonMounted(() => {\n  if (props.on) {\n    checked.value = true\n    emit('update:modelValue', true)\n    if (input.value) input.value.checked = true\n  }\n})\n\nreturn (_ctx: any,_push: any,_parent: any,_attrs: any) => {\n  _push(`<label${\n    _ssrRenderAttrs(_mergeProps({\n      for: _unref(id),\n      class: \"flex cursor-pointer\"\n    }, _attrs))\n  }><label${\n    _ssrRenderAttr(\"for\", _unref(id))\n  } class=\"relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in\"><input${\n    _ssrRenderAttr(\"id\", _unref(id))\n  } type=\"checkbox\" class=\"switch-checkbox absolute block w-6 h-6 rounded-full bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-600 appearance-none cursor-pointer\"${\n    (_ssrIncludeBooleanAttr(_unref(checked))) ? \" checked\" : \"\"\n  }><label${\n    _ssrRenderAttr(\"for\", _unref(id))\n  } class=\"switch-label block overflow-hidden h-6 rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer border border-gray-300 dark:border-gray-500\"></label></label>`)\n  _ssrRenderSlot(_ctx.$slots, \"default\", {}, null, _push, _parent)\n  _push(`</label>`)\n}\n}\n\n})",
-      "start": 1716304642939,
-      "end": 1716304642939,
+      "start": 1716330193629,
+      "end": 1716330193629,
       "sourcemaps": {
         "version": 3,
         "sources": [
@@ -20,57 +20,57 @@
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304642939,
-      "end": 1716304642939,
+      "start": 1716330193629,
+      "end": 1716330193629,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304642939,
-      "end": 1716304642939,
+      "start": 1716330193629,
+      "end": 1716330193629,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304642939,
-      "end": 1716304642939,
+      "start": 1716330193629,
+      "end": 1716330193629,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304642939,
-      "end": 1716304642939,
+      "start": 1716330193629,
+      "end": 1716330193629,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304642939,
-      "end": 1716304642939,
+      "start": 1716330193629,
+      "end": 1716330193629,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304642939,
-      "end": 1716304642939,
+      "start": 1716330193629,
+      "end": 1716330193629,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304642939,
-      "end": 1716304642939,
+      "start": 1716330193629,
+      "end": 1716330193629,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304642939,
-      "end": 1716304642939,
+      "start": 1716330193629,
+      "end": 1716330193629,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrIncludeBooleanAttr as _ssrIncludeBooleanAttr, ssrRenderSlot as _ssrRenderSlot, ssrRenderAttrs as _ssrRenderAttrs } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Switch\",\n  __ssrInlineRender: true,\n  props: {\n    modelValue: {\n      type: Boolean,\n      default: false\n    },\n    on: {\n      type: Boolean,\n      default: false\n    },\n    id: {\n      type: String,\n      default: void 0\n    }\n  },\n  emits: [\"update:modelValue\"],\n  setup(__props, { emit: __emit }) {\n    const props = __props;\n    const emit = __emit;\n    const randomId = () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);\n    const id = ref(props.id || randomId());\n    const input = ref();\n    const checked = useSyncProps(props, \"modelValue\", emit);\n    const onInputChange = (e) => {\n      const target = e.target;\n      checked.value = target.checked;\n      emit(\"update:modelValue\", target.checked);\n    };\n    onMounted(() => {\n      if (props.on) {\n        checked.value = true;\n        emit(\"update:modelValue\", true);\n        if (input.value)\n          input.value.checked = true;\n      }\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      _push(`<label${_ssrRenderAttrs(_mergeProps({\n        for: _unref(id),\n        class: \"flex cursor-pointer\"\n      }, _attrs))}><label${_ssrRenderAttr(\"for\", _unref(id))} class=\"relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in\"><input${_ssrRenderAttr(\"id\", _unref(id))} type=\"checkbox\" class=\"switch-checkbox absolute block w-6 h-6 rounded-full bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-600 appearance-none cursor-pointer\"${_ssrIncludeBooleanAttr(_unref(checked)) ? \" checked\" : \"\"}><label${_ssrRenderAttr(\"for\", _unref(id))} class=\"switch-label block overflow-hidden h-6 rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer border border-gray-300 dark:border-gray-500\"></label></label>`);\n      _ssrRenderSlot(_ctx.$slots, \"default\", {}, null, _push, _parent);\n      _push(`</label>`);\n    };\n  }\n});\n",
-      "start": 1716304642939,
-      "end": 1716304643276,
+      "start": 1716330193630,
+      "end": 1716330193974,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -86,141 +86,141 @@
     },
     {
       "name": "vite:json",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304643276,
-      "end": 1716304643276,
+      "start": 1716330193974,
+      "end": 1716330193974,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { ref, onMounted } from 'vue';\nimport { useSyncProps } from '/Users/shubhamsingh/namma/importedProds/composables/use-sync-props.ts';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrIncludeBooleanAttr as _ssrIncludeBooleanAttr, ssrRenderSlot as _ssrRenderSlot, ssrRenderAttrs as _ssrRenderAttrs } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Switch\",\n  __ssrInlineRender: true,\n  props: {\n    modelValue: {\n      type: Boolean,\n      default: false\n    },\n    on: {\n      type: Boolean,\n      default: false\n    },\n    id: {\n      type: String,\n      default: void 0\n    }\n  },\n  emits: [\"update:modelValue\"],\n  setup(__props, { emit: __emit }) {\n    const props = __props;\n    const emit = __emit;\n    const randomId = () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);\n    const id = ref(props.id || randomId());\n    const input = ref();\n    const checked = useSyncProps(props, \"modelValue\", emit);\n    const onInputChange = (e) => {\n      const target = e.target;\n      checked.value = target.checked;\n      emit(\"update:modelValue\", target.checked);\n    };\n    onMounted(() => {\n      if (props.on) {\n        checked.value = true;\n        emit(\"update:modelValue\", true);\n        if (input.value)\n          input.value.checked = true;\n      }\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      _push(`<label${_ssrRenderAttrs(_mergeProps({\n        for: _unref(id),\n        class: \"flex cursor-pointer\"\n      }, _attrs))}><label${_ssrRenderAttr(\"for\", _unref(id))} class=\"relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in\"><input${_ssrRenderAttr(\"id\", _unref(id))} type=\"checkbox\" class=\"switch-checkbox absolute block w-6 h-6 rounded-full bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-600 appearance-none cursor-pointer\"${_ssrIncludeBooleanAttr(_unref(checked)) ? \" checked\" : \"\"}><label${_ssrRenderAttr(\"for\", _unref(id))} class=\"switch-label block overflow-hidden h-6 rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer border border-gray-300 dark:border-gray-500\"></label></label>`);\n      _ssrRenderSlot(_ctx.$slots, \"default\", {}, null, _push, _parent);\n      _push(`</label>`);\n    };\n  }\n});\n",
-      "start": 1716304643276,
-      "end": 1716304643277,
+      "start": 1716330193974,
+      "end": 1716330193975,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -234,8 +234,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { ref, onMounted } from 'vue';\nimport { useSyncProps } from '/Users/shubhamsingh/namma/importedProds/composables/use-sync-props.ts';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrIncludeBooleanAttr as _ssrIncludeBooleanAttr, ssrRenderSlot as _ssrRenderSlot, ssrRenderAttrs as _ssrRenderAttrs } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Switch\",\n  __ssrInlineRender: true,\n  props: {\n    modelValue: {\n      type: Boolean,\n      default: false\n    },\n    on: {\n      type: Boolean,\n      default: false\n    },\n    id: {\n      type: String,\n      default: void 0\n    }\n  },\n  emits: [\"update:modelValue\"],\n  setup(__props, { emit: __emit }) {\n    const props = __props;\n    const emit = __emit;\n    const randomId = () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);\n    const id = ref(props.id || randomId());\n    const input = ref();\n    const checked = useSyncProps(props, \"modelValue\", emit);\n    const onInputChange = (e) => {\n      const target = e.target;\n      checked.value = target.checked;\n      emit(\"update:modelValue\", target.checked);\n    };\n    onMounted(() => {\n      if (props.on) {\n        checked.value = true;\n        emit(\"update:modelValue\", true);\n        if (input.value)\n          input.value.checked = true;\n      }\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      _push(`<label${_ssrRenderAttrs(_mergeProps({\n        for: _unref(id),\n        class: \"flex cursor-pointer\"\n      }, _attrs))}><label${_ssrRenderAttr(\"for\", _unref(id))} class=\"relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in\"><input${_ssrRenderAttr(\"id\", _unref(id))} type=\"checkbox\" class=\"switch-checkbox absolute block w-6 h-6 rounded-full bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-600 appearance-none cursor-pointer\"${_ssrIncludeBooleanAttr(_unref(checked)) ? \" checked\" : \"\"}><label${_ssrRenderAttr(\"for\", _unref(id))} class=\"switch-label block overflow-hidden h-6 rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer border border-gray-300 dark:border-gray-500\"></label></label>`);\n      _ssrRenderSlot(_ctx.$slots, \"default\", {}, null, _push, _parent);\n      _push(`</label>`);\n    };\n  }\n});\n",
-      "start": 1716304643276,
-      "end": 1716304643277,
+      "start": 1716330193974,
+      "end": 1716330193975,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -248,45 +248,45 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1716304643277,
-      "end": 1716304643277,
+      "start": 1716330193975,
+      "end": 1716330193975,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304643277,
-      "end": 1716304643277,
+      "start": 1716330193975,
+      "end": 1716330193975,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304643277,
-      "end": 1716304643277,
+      "start": 1716330193975,
+      "end": 1716330193975,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304643277,
-      "end": 1716304643277,
+      "start": 1716330193975,
+      "end": 1716330193975,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1716304643277,
-      "end": 1716304643277,
+      "start": 1716330193975,
+      "end": 1716330193975,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716304643277,
-      "end": 1716304643277,
+      "start": 1716330193975,
+      "end": 1716330193975,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
       "result": "import { ref, onMounted } from 'vue';\nimport { useSyncProps } from '/Users/shubhamsingh/namma/importedProds/composables/use-sync-props.ts';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrIncludeBooleanAttr as _ssrIncludeBooleanAttr, ssrRenderSlot as _ssrRenderSlot, ssrRenderAttrs as _ssrRenderAttrs } from \"vue/server-renderer\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Switch\",\n  __ssrInlineRender: true,\n  props: {\n    modelValue: {\n      type: Boolean,\n      default: false\n    },\n    on: {\n      type: Boolean,\n      default: false\n    },\n    id: {\n      type: String,\n      default: void 0\n    }\n  },\n  emits: [\"update:modelValue\"],\n  setup(__props, { emit: __emit }) {\n    const props = __props;\n    const emit = __emit;\n    const randomId = () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);\n    const id = ref(props.id || randomId());\n    const input = ref();\n    const checked = useSyncProps(props, \"modelValue\", emit);\n    const onInputChange = (e) => {\n      const target = e.target;\n      checked.value = target.checked;\n      emit(\"update:modelValue\", target.checked);\n    };\n     false && /*@__PURE__*/ onMounted(() => {\n      if (props.on) {\n        checked.value = true;\n        emit(\"update:modelValue\", true);\n        if (input.value)\n          input.value.checked = true;\n      }\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      _push(`<label${_ssrRenderAttrs(_mergeProps({\n        for: _unref(id),\n        class: \"flex cursor-pointer\"\n      }, _attrs))}><label${_ssrRenderAttr(\"for\", _unref(id))} class=\"relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in\"><input${_ssrRenderAttr(\"id\", _unref(id))} type=\"checkbox\" class=\"switch-checkbox absolute block w-6 h-6 rounded-full bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-600 appearance-none cursor-pointer\"${_ssrIncludeBooleanAttr(_unref(checked)) ? \" checked\" : \"\"}><label${_ssrRenderAttr(\"for\", _unref(id))} class=\"switch-label block overflow-hidden h-6 rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer border border-gray-300 dark:border-gray-500\"></label></label>`);\n      _ssrRenderSlot(_ctx.$slots, \"default\", {}, null, _push, _parent);\n      _push(`</label>`);\n    };\n  }\n});\n",
-      "start": 1716304643277,
-      "end": 1716304643277,
+      "start": 1716330193975,
+      "end": 1716330193975,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -299,14 +299,14 @@
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304643277,
-      "end": 1716304643278,
+      "start": 1716330193975,
+      "end": 1716330193975,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304643278,
-      "end": 1716304643278,
+      "start": 1716330193975,
+      "end": 1716330193975,
       "order": "normal"
     }
   ]

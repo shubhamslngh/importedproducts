@@ -4,81 +4,81 @@
     {
       "name": "vite:load-fallback",
       "result": "<template>\n  <div class=\"swiper\">\n    <!-- Additional required wrapper -->\n    <div class=\"swiper-wrapper\">\n      <!-- Slides -->\n      <div class=\"swiper-slide\">Slide 1</div>\n      <div class=\"swiper-slide\">Slide 2</div>\n      <div class=\"swiper-slide\">Slide 3</div>\n      ...\n    </div>\n    <!-- If we need pagination -->\n    <div class=\"swiper-pagination\"></div>\n\n    <!-- If we need navigation buttons -->\n    <div class=\"swiper-button-prev\"></div>\n    <div class=\"swiper-button-next\"></div>\n\n    <!-- If we need scrollbar -->\n    <div class=\"swiper-scrollbar\"></div>\n  </div>\n\n  <div class=\"swiper-button-next\"></div>\n  <div class=\"swiper-button-prev\"></div>\n</template>\n\n<script setup>\nimport { ref, onMounted, onBeforeUnmount, defineProps } from \"vue\";\nconst { $wordpressStore } = useNuxtApp();\nimport Swiper from \"swiper\";\nconst props = defineProps([\"caseproducts\"]);\nvar selectedColorHash = \"\";\n// console.log(\"here is the img\", caseproducts);\nconst initializeSwiper = () => {\n  const swiper = new Swiper(\".swiper\", {\n    slidesPerView: 1,\n    direction: \"vertical\",\n    loop: true,\n    spaceBetween: 20,\n    autoplay: { delay: 2500, disableOnInteraction: false },\n    direction: getDirection(),\n    pagination: {\n      el: \".swiper-pagination\",\n    },\n    scrollbar: {\n      el: \".swiper-scrollbar\",\n    },\n    navigation: {\n      nextEl: \".swiper-button-next\",\n      prevEl: \".swiper-button-prev\",\n    },\n  });\n\n  // Expose the swiper instance if needed\n  return swiper;\n};\nconst handleResize = () => {\n  swiper.value.changeDirection(getDirection());\n};\n\nconst getDirection = () => {\n  const windowWidth = window.innerWidth;\n  return windowWidth <= 760 ? \"vertical\" : \"horizontal\";\n};\n\nconst swiper = ref(null);\nconst runDetailsAnimations = (id, id2, model) => {\n  console.log(\"get vals\", $wordpressStore.productDetails);\n  var swiperSlides = [];\n  swiperSlides = document.getElementsByClassName(\"swiper-slide\");\n\n  console.log(swiperSlides, \"colorHAsh\");\n  for (let i = 0; i < swiperSlides.length; i++) {\n    console.log(\n      swiperSlides[i].lastChild.firstChild.innerText,\n      swiperSlides[i].firstChild\n    );\n\n    if (i !== 0) {\n      for (let i = 1; i < swiperSlides.length; i++) {\n        console.log(swiperSlides[i].id, \"color id\", model);\n        if (swiperSlides[i].id == model) {\n          $wordpressStore.selectedProduct = i;\n          swiperSlides[0].firstChild.src = swiperSlides[i].firstChild.src;\n          // document.getElementById(\"btn\").style.backgroundColor =\n          //   $wordpressStore.productDetails[i].colorHash;\n          swiperSlides[0].lastChild.firstChild.innerText =\n            swiperSlides[i].lastChild.firstChild.innerText;\n        }\n        swiperSlides[i].firstChild.src = swiperSlides[i].firstChild.src;\n      }\n\n      // swiperSlides[i].\n      swiperSlides[i].style.display = \"none\"; //none display\n      // swiperSlides[i].style.display = \"none\"; //none display\n    }\n  }\n  let gridWrapper = document.getElementById(\"gridWrapper\");\n  gridWrapper.classList.remove(\"lg:grid-cols-8\");\n  gridWrapper.classList.add(\"lg:grid-cols-3\");\n  swiperSlides[0].style.width = \"500px\";\n  document.getElementById(\"wrapperSwiper\").style.width = \"100vw\";\n};\n\nasync function getDetails(deviceId, deviceId2, model) {\n  console.log(\"ids\", deviceId, deviceId2);\n  await $wordpressStore.fetchDetails(deviceId, deviceId2);\n  runDetailsAnimations(deviceId, null, model);\n}\nconst selectColor = (selectedColor, selectedHash) => {\n  var swiperSlides = [];\n  swiperSlides = document.getElementsByClassName(\"swiper-slide\");\n  console.log(\"Selected Color:\", selectedColor);\n  console.log(\"selectedHash\", selectedHash);\n  // for (let i = productDetails; i < productDetails; i++) {\n  $wordpressStore.selectedProduct = selectedHash;\n  swiperSlides[0].firstChild.src = selectedColor;\n  // }\n};\nonMounted(() => {\n  swiper.value = initializeSwiper();\n\n  window.addEventListener(\"resize\", handleResize);\n});\n\nonBeforeUnmount(() => {\n  window.removeEventListener(\"resize\", handleResize);\n});\n</script>\n\n<style>\n.swiper {\n  width: 600px;\n  height: 300px;\n}\n.color-swatch {\n  width: 4rem;\n  height: 4rem;\n  display: block;\n  cursor: pointer;\n  background-size: contain;\n}\n/* Product Card Styling */\n.product-card {\n  background-color: #8dd1d1;\n  max-width: auto;\n  min-height: aito;\n  margin: 0 auto;\n  margin-top: 50px;\n  margin-bottom: 150px;\n  box-shadow: 8px 12px 30px var(--shadow-color);\n  color: #919495;\n  font-weight: normal;\n  text-align: left;\n  font-size: var(--font-size);\n  position: relative;\n}\n\n/* Product Details Styling */\n.product-details {\n  width: 100%;\n  float: left;\n  height: 100%;\n  padding: 30px;\n}\n\n.product-details h1 {\n  color: #333;\n  font-family: var(--cursive-font);\n  margin-bottom: 35px;\n}\n\n.product-details button {\n  width: 150px;\n  height: 50px;\n  margin-top: 20px;\n  background-color: var(--button-color);\n  border-radius: 0;\n  color: rgb(0, 0, 0);\n  box-shadow: 2px 2px 7px var(--button-shadow-color);\n}\n\n/* .product-details button:hover,\n.product-details button:active,\n.product-details button:focus {\n  color: black;\n\n  background-color: lightblue;\n} */\n\n/* Responsive Styling */\n@media (max-width: 700px) {\n  .product-card {\n    margin-left: 20px;\n    margin-right: 20px;\n  }\n}\n\n@media (max-width: 540px) {\n  .product-card {\n    overflow: hidden;\n    margin-bottom: 50px;\n  }\n\n  .product-details {\n    width: 60%;\n    z-index: 1;\n  }\n\n  .product-image {\n    width: 100%;\n    left: 40%;\n    top: -50px;\n  }\n}\n\n@media (max-width: 440px) {\n  .product-details {\n    width: 65%;\n  }\n}\n\n@media (max-width: 365px) {\n  .product-details {\n    width: 80%;\n    position: relative;\n    color: #333;\n    background-color: rgba(255, 255, 255, 0.7);\n  }\n}\n.box {\n  width: 100%;\n  height: 50%;\n}\n.swiper {\n  width: 100%;\n  height: 100%;\n}\n\n.swiper-slide {\n  text-align: center;\n  font-size: 18px;\n  background: #fff;\n\n  /* Center slide text vertically */\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.swiper-slide img {\n  display: block;\n  width: 100%;\n  height: 100%;\n  object-fit: contain;\n}\n\n.swiper {\n  width: 100%;\n  height: 80%;\n}\n\n.swiper-slide {\n  text-align: center;\n  font-size: 18px;\n  background: rgba(236, 0, 0, 0);\n  display: block;\n  justify-content: contain;\n  align-items: center;\n}\n\n.product-info {\n  padding: 10px;\n}\n\n@media (max-width: 760px) {\n  .swiper-button-next {\n    right: 20px;\n    transform: rotate(180deg);\n  }\n\n  .swiper-button-prev {\n    left: 20px;\n    transform: rotate(90deg);\n  }\n}\n.swiper-wrapper {\n  background-color: transparent;\n}\n</style>\n",
-      "start": 1716304642225,
-      "end": 1716304642252,
+      "start": 1716330192544,
+      "end": 1716330192584,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "\nimport { ref, onMounted, onBeforeUnmount } from \"vue\";\nimport Swiper from \"swiper\";\n\nconst _sfc_main = {\n  __name: 'Products',\n  __ssrInlineRender: true,\n  props: [\"caseproducts\"],\n  setup(__props) {\n\nconst { $wordpressStore } = useNuxtApp();\nconst props = __props;\nvar selectedColorHash = \"\";\n// console.log(\"here is the img\", caseproducts);\nconst initializeSwiper = () => {\n  const swiper = new Swiper(\".swiper\", {\n    slidesPerView: 1,\n    direction: \"vertical\",\n    loop: true,\n    spaceBetween: 20,\n    autoplay: { delay: 2500, disableOnInteraction: false },\n    direction: getDirection(),\n    pagination: {\n      el: \".swiper-pagination\",\n    },\n    scrollbar: {\n      el: \".swiper-scrollbar\",\n    },\n    navigation: {\n      nextEl: \".swiper-button-next\",\n      prevEl: \".swiper-button-prev\",\n    },\n  });\n\n  // Expose the swiper instance if needed\n  return swiper;\n};\nconst handleResize = () => {\n  swiper.value.changeDirection(getDirection());\n};\n\nconst getDirection = () => {\n  const windowWidth = window.innerWidth;\n  return windowWidth <= 760 ? \"vertical\" : \"horizontal\";\n};\n\nconst swiper = ref(null);\nconst runDetailsAnimations = (id, id2, model) => {\n  console.log(\"get vals\", $wordpressStore.productDetails);\n  var swiperSlides = [];\n  swiperSlides = document.getElementsByClassName(\"swiper-slide\");\n\n  console.log(swiperSlides, \"colorHAsh\");\n  for (let i = 0; i < swiperSlides.length; i++) {\n    console.log(\n      swiperSlides[i].lastChild.firstChild.innerText,\n      swiperSlides[i].firstChild\n    );\n\n    if (i !== 0) {\n      for (let i = 1; i < swiperSlides.length; i++) {\n        console.log(swiperSlides[i].id, \"color id\", model);\n        if (swiperSlides[i].id == model) {\n          $wordpressStore.selectedProduct = i;\n          swiperSlides[0].firstChild.src = swiperSlides[i].firstChild.src;\n          // document.getElementById(\"btn\").style.backgroundColor =\n          //   $wordpressStore.productDetails[i].colorHash;\n          swiperSlides[0].lastChild.firstChild.innerText =\n            swiperSlides[i].lastChild.firstChild.innerText;\n        }\n        swiperSlides[i].firstChild.src = swiperSlides[i].firstChild.src;\n      }\n\n      // swiperSlides[i].\n      swiperSlides[i].style.display = \"none\"; //none display\n      // swiperSlides[i].style.display = \"none\"; //none display\n    }\n  }\n  let gridWrapper = document.getElementById(\"gridWrapper\");\n  gridWrapper.classList.remove(\"lg:grid-cols-8\");\n  gridWrapper.classList.add(\"lg:grid-cols-3\");\n  swiperSlides[0].style.width = \"500px\";\n  document.getElementById(\"wrapperSwiper\").style.width = \"100vw\";\n};\n\nasync function getDetails(deviceId, deviceId2, model) {\n  console.log(\"ids\", deviceId, deviceId2);\n  await $wordpressStore.fetchDetails(deviceId, deviceId2);\n  runDetailsAnimations(deviceId, null, model);\n}\nconst selectColor = (selectedColor, selectedHash) => {\n  var swiperSlides = [];\n  swiperSlides = document.getElementsByClassName(\"swiper-slide\");\n  console.log(\"Selected Color:\", selectedColor);\n  console.log(\"selectedHash\", selectedHash);\n  // for (let i = productDetails; i < productDetails; i++) {\n  $wordpressStore.selectedProduct = selectedHash;\n  swiperSlides[0].firstChild.src = selectedColor;\n  // }\n};\nonMounted(() => {\n  swiper.value = initializeSwiper();\n\n  window.addEventListener(\"resize\", handleResize);\n});\n\nonBeforeUnmount(() => {\n  window.removeEventListener(\"resize\", handleResize);\n});\n\nreturn (_ctx, _push, _parent, _attrs) => {\n  _push(`<!--[--><div class=\"swiper\"><div class=\"swiper-wrapper\"><div class=\"swiper-slide\">Slide 1</div><div class=\"swiper-slide\">Slide 2</div><div class=\"swiper-slide\">Slide 3</div> ... </div><div class=\"swiper-pagination\"></div><div class=\"swiper-button-prev\"></div><div class=\"swiper-button-next\"></div><div class=\"swiper-scrollbar\"></div></div><div class=\"swiper-button-next\"></div><div class=\"swiper-button-prev\"></div><!--]-->`)\n}\n}\n\n}\n\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue?vue&type=style&index=0&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"../components/awesome/Products.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nexport default _sfc_main",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -94,125 +94,125 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192584,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304642252,
-      "end": 1716304642252,
+      "start": 1716330192584,
+      "end": 1716330192585,
       "order": "normal"
     },
     {
       "name": "vite:define",
       "result": "import { ref, onMounted, onBeforeUnmount } from \"vue\";\nimport Swiper from \"swiper\";\nconst _sfc_main = {\n  __name: \"Products\",\n  __ssrInlineRender: true,\n  props: [\"caseproducts\"],\n  setup(__props) {\n    const { $wordpressStore } = useNuxtApp();\n    const props = __props;\n    var selectedColorHash = \"\";\n    const initializeSwiper = () => {\n      const swiper2 = new Swiper(\".swiper\", {\n        slidesPerView: 1,\n        direction: \"vertical\",\n        loop: true,\n        spaceBetween: 20,\n        autoplay: { delay: 2500, disableOnInteraction: false },\n        direction: getDirection(),\n        pagination: {\n          el: \".swiper-pagination\"\n        },\n        scrollbar: {\n          el: \".swiper-scrollbar\"\n        },\n        navigation: {\n          nextEl: \".swiper-button-next\",\n          prevEl: \".swiper-button-prev\"\n        }\n      });\n      return swiper2;\n    };\n    const handleResize = () => {\n      swiper.value.changeDirection(getDirection());\n    };\n    const getDirection = () => {\n      const windowWidth = (void 0).innerWidth;\n      return windowWidth <= 760 ? \"vertical\" : \"horizontal\";\n    };\n    const swiper = ref(null);\n    const runDetailsAnimations = (id, id2, model) => {\n      console.log(\"get vals\", $wordpressStore.productDetails);\n      var swiperSlides = [];\n      swiperSlides = (void 0).getElementsByClassName(\"swiper-slide\");\n      console.log(swiperSlides, \"colorHAsh\");\n      for (let i = 0; i < swiperSlides.length; i++) {\n        console.log(\n          swiperSlides[i].lastChild.firstChild.innerText,\n          swiperSlides[i].firstChild\n        );\n        if (i !== 0) {\n          for (let i2 = 1; i2 < swiperSlides.length; i2++) {\n            console.log(swiperSlides[i2].id, \"color id\", model);\n            if (swiperSlides[i2].id == model) {\n              $wordpressStore.selectedProduct = i2;\n              swiperSlides[0].firstChild.src = swiperSlides[i2].firstChild.src;\n              swiperSlides[0].lastChild.firstChild.innerText = swiperSlides[i2].lastChild.firstChild.innerText;\n            }\n            swiperSlides[i2].firstChild.src = swiperSlides[i2].firstChild.src;\n          }\n          swiperSlides[i].style.display = \"none\";\n        }\n      }\n      let gridWrapper = (void 0).getElementById(\"gridWrapper\");\n      gridWrapper.classList.remove(\"lg:grid-cols-8\");\n      gridWrapper.classList.add(\"lg:grid-cols-3\");\n      swiperSlides[0].style.width = \"500px\";\n      (void 0).getElementById(\"wrapperSwiper\").style.width = \"100vw\";\n    };\n    async function getDetails(deviceId, deviceId2, model) {\n      console.log(\"ids\", deviceId, deviceId2);\n      await $wordpressStore.fetchDetails(deviceId, deviceId2);\n      runDetailsAnimations(deviceId, null, model);\n    }\n    const selectColor = (selectedColor, selectedHash) => {\n      var swiperSlides = [];\n      swiperSlides = (void 0).getElementsByClassName(\"swiper-slide\");\n      console.log(\"Selected Color:\", selectedColor);\n      console.log(\"selectedHash\", selectedHash);\n      $wordpressStore.selectedProduct = selectedHash;\n      swiperSlides[0].firstChild.src = selectedColor;\n    };\n    onMounted(() => {\n      swiper.value = initializeSwiper();\n      (void 0).addEventListener(\"resize\", handleResize);\n    });\n    onBeforeUnmount(() => {\n      (void 0).removeEventListener(\"resize\", handleResize);\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      _push(`<!--[--><div class=\"swiper\"><div class=\"swiper-wrapper\"><div class=\"swiper-slide\">Slide 1</div><div class=\"swiper-slide\">Slide 2</div><div class=\"swiper-slide\">Slide 3</div> ... </div><div class=\"swiper-pagination\"></div><div class=\"swiper-button-prev\"></div><div class=\"swiper-button-next\"></div><div class=\"swiper-scrollbar\"></div></div><div class=\"swiper-button-next\"></div><div class=\"swiper-button-prev\"></div><!--]-->`);\n    };\n  }\n};\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue?vue&type=style&index=0&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"../components/awesome/Products.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nexport default _sfc_main;\n",
-      "start": 1716304642252,
-      "end": 1716304642822,
+      "start": 1716330192585,
+      "end": 1716330193520,
       "order": "normal",
       "sourcemaps": "{\n  \"version\": 3,\n  \"sources\": [\"/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue\"],\n  \"sourcesContent\": [\"\\nimport { ref, onMounted, onBeforeUnmount } from \\\"vue\\\";\\nimport Swiper from \\\"swiper\\\";\\n\\nconst _sfc_main = {\\n  __name: 'Products',\\n  __ssrInlineRender: true,\\n  props: [\\\"caseproducts\\\"],\\n  setup(__props) {\\n\\nconst { $wordpressStore } = useNuxtApp();\\nconst props = __props;\\nvar selectedColorHash = \\\"\\\";\\n// console.log(\\\"here is the img\\\", caseproducts);\\nconst initializeSwiper = () => {\\n  const swiper = new Swiper(\\\".swiper\\\", {\\n    slidesPerView: 1,\\n    direction: \\\"vertical\\\",\\n    loop: true,\\n    spaceBetween: 20,\\n    autoplay: { delay: 2500, disableOnInteraction: false },\\n    direction: getDirection(),\\n    pagination: {\\n      el: \\\".swiper-pagination\\\",\\n    },\\n    scrollbar: {\\n      el: \\\".swiper-scrollbar\\\",\\n    },\\n    navigation: {\\n      nextEl: \\\".swiper-button-next\\\",\\n      prevEl: \\\".swiper-button-prev\\\",\\n    },\\n  });\\n\\n  // Expose the swiper instance if needed\\n  return swiper;\\n};\\nconst handleResize = () => {\\n  swiper.value.changeDirection(getDirection());\\n};\\n\\nconst getDirection = () => {\\n  const windowWidth = window.innerWidth;\\n  return windowWidth <= 760 ? \\\"vertical\\\" : \\\"horizontal\\\";\\n};\\n\\nconst swiper = ref(null);\\nconst runDetailsAnimations = (id, id2, model) => {\\n  console.log(\\\"get vals\\\", $wordpressStore.productDetails);\\n  var swiperSlides = [];\\n  swiperSlides = document.getElementsByClassName(\\\"swiper-slide\\\");\\n\\n  console.log(swiperSlides, \\\"colorHAsh\\\");\\n  for (let i = 0; i < swiperSlides.length; i++) {\\n    console.log(\\n      swiperSlides[i].lastChild.firstChild.innerText,\\n      swiperSlides[i].firstChild\\n    );\\n\\n    if (i !== 0) {\\n      for (let i = 1; i < swiperSlides.length; i++) {\\n        console.log(swiperSlides[i].id, \\\"color id\\\", model);\\n        if (swiperSlides[i].id == model) {\\n          $wordpressStore.selectedProduct = i;\\n          swiperSlides[0].firstChild.src = swiperSlides[i].firstChild.src;\\n          // document.getElementById(\\\"btn\\\").style.backgroundColor =\\n          //   $wordpressStore.productDetails[i].colorHash;\\n          swiperSlides[0].lastChild.firstChild.innerText =\\n            swiperSlides[i].lastChild.firstChild.innerText;\\n        }\\n        swiperSlides[i].firstChild.src = swiperSlides[i].firstChild.src;\\n      }\\n\\n      // swiperSlides[i].\\n      swiperSlides[i].style.display = \\\"none\\\"; //none display\\n      // swiperSlides[i].style.display = \\\"none\\\"; //none display\\n    }\\n  }\\n  let gridWrapper = document.getElementById(\\\"gridWrapper\\\");\\n  gridWrapper.classList.remove(\\\"lg:grid-cols-8\\\");\\n  gridWrapper.classList.add(\\\"lg:grid-cols-3\\\");\\n  swiperSlides[0].style.width = \\\"500px\\\";\\n  document.getElementById(\\\"wrapperSwiper\\\").style.width = \\\"100vw\\\";\\n};\\n\\nasync function getDetails(deviceId, deviceId2, model) {\\n  console.log(\\\"ids\\\", deviceId, deviceId2);\\n  await $wordpressStore.fetchDetails(deviceId, deviceId2);\\n  runDetailsAnimations(deviceId, null, model);\\n}\\nconst selectColor = (selectedColor, selectedHash) => {\\n  var swiperSlides = [];\\n  swiperSlides = document.getElementsByClassName(\\\"swiper-slide\\\");\\n  console.log(\\\"Selected Color:\\\", selectedColor);\\n  console.log(\\\"selectedHash\\\", selectedHash);\\n  // for (let i = productDetails; i < productDetails; i++) {\\n  $wordpressStore.selectedProduct = selectedHash;\\n  swiperSlides[0].firstChild.src = selectedColor;\\n  // }\\n};\\nonMounted(() => {\\n  swiper.value = initializeSwiper();\\n\\n  window.addEventListener(\\\"resize\\\", handleResize);\\n});\\n\\nonBeforeUnmount(() => {\\n  window.removeEventListener(\\\"resize\\\", handleResize);\\n});\\n\\nreturn (_ctx, _push, _parent, _attrs) => {\\n  _push(`<!--[--><div class=\\\"swiper\\\"><div class=\\\"swiper-wrapper\\\"><div class=\\\"swiper-slide\\\">Slide 1</div><div class=\\\"swiper-slide\\\">Slide 2</div><div class=\\\"swiper-slide\\\">Slide 3</div> ... </div><div class=\\\"swiper-pagination\\\"></div><div class=\\\"swiper-button-prev\\\"></div><div class=\\\"swiper-button-next\\\"></div><div class=\\\"swiper-scrollbar\\\"></div></div><div class=\\\"swiper-button-next\\\"></div><div class=\\\"swiper-button-prev\\\"></div><!--]-->`)\\n}\\n}\\n\\n}\\n\\n\\nimport \\\"/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue?vue&type=style&index=0&lang.css\\\"\\n\\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\\nconst _sfc_setup = _sfc_main.setup\\n_sfc_main.setup = (props, ctx) => {\\n  const ssrContext = __vite_useSSRContext()\\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\\\"../components/awesome/Products.vue\\\")\\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\\n}\\nexport default _sfc_main\"],\n  \"mappings\": \"AACA,SAAS,KAAK,WAAW,uBAAuB;AAChD,OAAO,YAAY;AAEnB,MAAM,YAAY;AAAA,EAChB,QAAQ;AAAA,EACR,mBAAmB;AAAA,EACnB,OAAO,CAAC,cAAc;AAAA,EACtB,MAAM,SAAS;AAEjB,UAAM,EAAE,gBAAgB,IAAI,WAAW;AACvC,UAAM,QAAQ;AACd,QAAI,oBAAoB;AAExB,UAAM,mBAAmB,MAAM;AAC7B,YAAMA,UAAS,IAAI,OAAO,WAAW;AAAA,QACnC,eAAe;AAAA,QACf,WAAW;AAAA,QACX,MAAM;AAAA,QACN,cAAc;AAAA,QACd,UAAU,EAAE,OAAO,MAAM,sBAAsB,MAAM;AAAA,QACrD,WAAW,aAAa;AAAA,QACxB,YAAY;AAAA,UACV,IAAI;AAAA,QACN;AAAA,QACA,WAAW;AAAA,UACT,IAAI;AAAA,QACN;AAAA,QACA,YAAY;AAAA,UACV,QAAQ;AAAA,UACR,QAAQ;AAAA,QACV;AAAA,MACF,CAAC;AAGD,aAAOA;AAAA,IACT;AACA,UAAM,eAAe,MAAM;AACzB,aAAO,MAAM,gBAAgB,aAAa,CAAC;AAAA,IAC7C;AAEA,UAAM,eAAe,MAAM;AACzB,YAAM,cAAc,SAAO;AAC3B,aAAO,eAAe,MAAM,aAAa;AAAA,IAC3C;AAEA,UAAM,SAAS,IAAI,IAAI;AACvB,UAAM,uBAAuB,CAAC,IAAI,KAAK,UAAU;AAC/C,cAAQ,IAAI,YAAY,gBAAgB,cAAc;AACtD,UAAI,eAAe,CAAC;AACpB,qBAAe,SAAS,uBAAuB,cAAc;AAE7D,cAAQ,IAAI,cAAc,WAAW;AACrC,eAAS,IAAI,GAAG,IAAI,aAAa,QAAQ,KAAK;AAC5C,gBAAQ;AAAA,UACN,aAAa,CAAC,EAAE,UAAU,WAAW;AAAA,UACrC,aAAa,CAAC,EAAE;AAAA,QAClB;AAEA,YAAI,MAAM,GAAG;AACX,mBAASC,KAAI,GAAGA,KAAI,aAAa,QAAQA,MAAK;AAC5C,oBAAQ,IAAI,aAAaA,EAAC,EAAE,IAAI,YAAY,KAAK;AACjD,gBAAI,aAAaA,EAAC,EAAE,MAAM,OAAO;AAC/B,8BAAgB,kBAAkBA;AAClC,2BAAa,CAAC,EAAE,WAAW,MAAM,aAAaA,EAAC,EAAE,WAAW;AAG5D,2BAAa,CAAC,EAAE,UAAU,WAAW,YACnC,aAAaA,EAAC,EAAE,UAAU,WAAW;AAAA,YACzC;AACA,yBAAaA,EAAC,EAAE,WAAW,MAAM,aAAaA,EAAC,EAAE,WAAW;AAAA,UAC9D;AAGA,uBAAa,CAAC,EAAE,MAAM,UAAU;AAAA,QAElC;AAAA,MACF;AACA,UAAI,cAAc,SAAS,eAAe,aAAa;AACvD,kBAAY,UAAU,OAAO,gBAAgB;AAC7C,kBAAY,UAAU,IAAI,gBAAgB;AAC1C,mBAAa,CAAC,EAAE,MAAM,QAAQ;AAC9B,eAAS,eAAe,eAAe,EAAE,MAAM,QAAQ;AAAA,IACzD;AAEA,mBAAe,WAAW,UAAU,WAAW,OAAO;AACpD,cAAQ,IAAI,OAAO,UAAU,SAAS;AACtC,YAAM,gBAAgB,aAAa,UAAU,SAAS;AACtD,2BAAqB,UAAU,MAAM,KAAK;AAAA,IAC5C;AACA,UAAM,cAAc,CAAC,eAAe,iBAAiB;AACnD,UAAI,eAAe,CAAC;AACpB,qBAAe,SAAS,uBAAuB,cAAc;AAC7D,cAAQ,IAAI,mBAAmB,aAAa;AAC5C,cAAQ,IAAI,gBAAgB,YAAY;AAExC,sBAAgB,kBAAkB;AAClC,mBAAa,CAAC,EAAE,WAAW,MAAM;AAAA,IAEnC;AACA,cAAU,MAAM;AACd,aAAO,QAAQ,iBAAiB;AAEhC,eAAO,iBAAiB,UAAU,YAAY;AAAA,IAChD,CAAC;AAED,oBAAgB,MAAM;AACpB,eAAO,oBAAoB,UAAU,YAAY;AAAA,IACnD,CAAC;AAED,WAAO,CAAC,MAAM,OAAO,SAAS,WAAW;AACvC,YAAM,yaAAya;AAAA,IACjb;AAAA,EACA;AAEA;AAGA,OAAO;AAEP,SAAS,iBAAiB,4BAA4B;AACtD,MAAM,aAAa,UAAU;AAC7B,UAAU,QAAQ,CAAC,OAAO,QAAQ;AAChC,QAAM,aAAa,qBAAqB;AACvC,GAAC,WAAW,YAAY,WAAW,UAAU,oBAAI,IAAI,IAAI,IAAI,oCAAoC;AAClG,SAAO,aAAa,WAAW,OAAO,GAAG,IAAI;AAC/C;AACA,eAAe;\",\n  \"names\": [\"swiper\", \"i\"]\n}\n"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304642822,
-      "end": 1716304642822,
+      "start": 1716330193520,
+      "end": 1716330193520,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304642822,
-      "end": 1716304642822,
+      "start": 1716330193520,
+      "end": 1716330193520,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304642822,
-      "end": 1716304642822,
+      "start": 1716330193520,
+      "end": 1716330193520,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304642822,
-      "end": 1716304642822,
+      "start": 1716330193520,
+      "end": 1716330193520,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304642822,
-      "end": 1716304642822,
+      "start": 1716330193520,
+      "end": 1716330193520,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304642822,
-      "end": 1716304642822,
+      "start": 1716330193520,
+      "end": 1716330193520,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304642822,
-      "end": 1716304642822,
+      "start": 1716330193520,
+      "end": 1716330193520,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304642822,
-      "end": 1716304642822,
+      "start": 1716330193520,
+      "end": 1716330193520,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304642822,
-      "end": 1716304642822,
+      "start": 1716330193520,
+      "end": 1716330193520,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { useNuxtApp } from '#app/nuxt';\nimport { ref, onMounted, onBeforeUnmount } from \"vue\";\nimport Swiper from \"swiper\";\nconst _sfc_main = {\n  __name: \"Products\",\n  __ssrInlineRender: true,\n  props: [\"caseproducts\"],\n  setup(__props) {\n    const { $wordpressStore } = useNuxtApp();\n    const props = __props;\n    var selectedColorHash = \"\";\n    const initializeSwiper = () => {\n      const swiper2 = new Swiper(\".swiper\", {\n        slidesPerView: 1,\n        direction: \"vertical\",\n        loop: true,\n        spaceBetween: 20,\n        autoplay: { delay: 2500, disableOnInteraction: false },\n        direction: getDirection(),\n        pagination: {\n          el: \".swiper-pagination\"\n        },\n        scrollbar: {\n          el: \".swiper-scrollbar\"\n        },\n        navigation: {\n          nextEl: \".swiper-button-next\",\n          prevEl: \".swiper-button-prev\"\n        }\n      });\n      return swiper2;\n    };\n    const handleResize = () => {\n      swiper.value.changeDirection(getDirection());\n    };\n    const getDirection = () => {\n      const windowWidth = (void 0).innerWidth;\n      return windowWidth <= 760 ? \"vertical\" : \"horizontal\";\n    };\n    const swiper = ref(null);\n    const runDetailsAnimations = (id, id2, model) => {\n      console.log(\"get vals\", $wordpressStore.productDetails);\n      var swiperSlides = [];\n      swiperSlides = (void 0).getElementsByClassName(\"swiper-slide\");\n      console.log(swiperSlides, \"colorHAsh\");\n      for (let i = 0; i < swiperSlides.length; i++) {\n        console.log(\n          swiperSlides[i].lastChild.firstChild.innerText,\n          swiperSlides[i].firstChild\n        );\n        if (i !== 0) {\n          for (let i2 = 1; i2 < swiperSlides.length; i2++) {\n            console.log(swiperSlides[i2].id, \"color id\", model);\n            if (swiperSlides[i2].id == model) {\n              $wordpressStore.selectedProduct = i2;\n              swiperSlides[0].firstChild.src = swiperSlides[i2].firstChild.src;\n              swiperSlides[0].lastChild.firstChild.innerText = swiperSlides[i2].lastChild.firstChild.innerText;\n            }\n            swiperSlides[i2].firstChild.src = swiperSlides[i2].firstChild.src;\n          }\n          swiperSlides[i].style.display = \"none\";\n        }\n      }\n      let gridWrapper = (void 0).getElementById(\"gridWrapper\");\n      gridWrapper.classList.remove(\"lg:grid-cols-8\");\n      gridWrapper.classList.add(\"lg:grid-cols-3\");\n      swiperSlides[0].style.width = \"500px\";\n      (void 0).getElementById(\"wrapperSwiper\").style.width = \"100vw\";\n    };\n    async function getDetails(deviceId, deviceId2, model) {\n      console.log(\"ids\", deviceId, deviceId2);\n      await $wordpressStore.fetchDetails(deviceId, deviceId2);\n      runDetailsAnimations(deviceId, null, model);\n    }\n    const selectColor = (selectedColor, selectedHash) => {\n      var swiperSlides = [];\n      swiperSlides = (void 0).getElementsByClassName(\"swiper-slide\");\n      console.log(\"Selected Color:\", selectedColor);\n      console.log(\"selectedHash\", selectedHash);\n      $wordpressStore.selectedProduct = selectedHash;\n      swiperSlides[0].firstChild.src = selectedColor;\n    };\n    onMounted(() => {\n      swiper.value = initializeSwiper();\n      (void 0).addEventListener(\"resize\", handleResize);\n    });\n    onBeforeUnmount(() => {\n      (void 0).removeEventListener(\"resize\", handleResize);\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      _push(`<!--[--><div class=\"swiper\"><div class=\"swiper-wrapper\"><div class=\"swiper-slide\">Slide 1</div><div class=\"swiper-slide\">Slide 2</div><div class=\"swiper-slide\">Slide 3</div> ... </div><div class=\"swiper-pagination\"></div><div class=\"swiper-button-prev\"></div><div class=\"swiper-button-next\"></div><div class=\"swiper-scrollbar\"></div></div><div class=\"swiper-button-next\"></div><div class=\"swiper-button-prev\"></div><!--]-->`);\n    };\n  }\n};\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue?vue&type=style&index=0&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"../components/awesome/Products.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nexport default _sfc_main;\n",
-      "start": 1716304642822,
-      "end": 1716304642823,
+      "start": 1716330193520,
+      "end": 1716330193521,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -226,8 +226,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { useNuxtApp } from '#app/nuxt';\nimport { ref, onMounted, onBeforeUnmount } from \"vue\";\nimport Swiper from \"swiper\";\nconst _sfc_main = {\n  __name: \"Products\",\n  __ssrInlineRender: true,\n  props: [\"caseproducts\"],\n  setup(__props) {\n    const { $wordpressStore } = useNuxtApp();\n    const props = __props;\n    var selectedColorHash = \"\";\n    const initializeSwiper = () => {\n      const swiper2 = new Swiper(\".swiper\", {\n        slidesPerView: 1,\n        direction: \"vertical\",\n        loop: true,\n        spaceBetween: 20,\n        autoplay: { delay: 2500, disableOnInteraction: false },\n        direction: getDirection(),\n        pagination: {\n          el: \".swiper-pagination\"\n        },\n        scrollbar: {\n          el: \".swiper-scrollbar\"\n        },\n        navigation: {\n          nextEl: \".swiper-button-next\",\n          prevEl: \".swiper-button-prev\"\n        }\n      });\n      return swiper2;\n    };\n    const handleResize = () => {\n      swiper.value.changeDirection(getDirection());\n    };\n    const getDirection = () => {\n      const windowWidth = (void 0).innerWidth;\n      return windowWidth <= 760 ? \"vertical\" : \"horizontal\";\n    };\n    const swiper = ref(null);\n    const runDetailsAnimations = (id, id2, model) => {\n      console.log(\"get vals\", $wordpressStore.productDetails);\n      var swiperSlides = [];\n      swiperSlides = (void 0).getElementsByClassName(\"swiper-slide\");\n      console.log(swiperSlides, \"colorHAsh\");\n      for (let i = 0; i < swiperSlides.length; i++) {\n        console.log(\n          swiperSlides[i].lastChild.firstChild.innerText,\n          swiperSlides[i].firstChild\n        );\n        if (i !== 0) {\n          for (let i2 = 1; i2 < swiperSlides.length; i2++) {\n            console.log(swiperSlides[i2].id, \"color id\", model);\n            if (swiperSlides[i2].id == model) {\n              $wordpressStore.selectedProduct = i2;\n              swiperSlides[0].firstChild.src = swiperSlides[i2].firstChild.src;\n              swiperSlides[0].lastChild.firstChild.innerText = swiperSlides[i2].lastChild.firstChild.innerText;\n            }\n            swiperSlides[i2].firstChild.src = swiperSlides[i2].firstChild.src;\n          }\n          swiperSlides[i].style.display = \"none\";\n        }\n      }\n      let gridWrapper = (void 0).getElementById(\"gridWrapper\");\n      gridWrapper.classList.remove(\"lg:grid-cols-8\");\n      gridWrapper.classList.add(\"lg:grid-cols-3\");\n      swiperSlides[0].style.width = \"500px\";\n      (void 0).getElementById(\"wrapperSwiper\").style.width = \"100vw\";\n    };\n    async function getDetails(deviceId, deviceId2, model) {\n      console.log(\"ids\", deviceId, deviceId2);\n      await $wordpressStore.fetchDetails(deviceId, deviceId2);\n      runDetailsAnimations(deviceId, null, model);\n    }\n    const selectColor = (selectedColor, selectedHash) => {\n      var swiperSlides = [];\n      swiperSlides = (void 0).getElementsByClassName(\"swiper-slide\");\n      console.log(\"Selected Color:\", selectedColor);\n      console.log(\"selectedHash\", selectedHash);\n      $wordpressStore.selectedProduct = selectedHash;\n      swiperSlides[0].firstChild.src = selectedColor;\n    };\n    onMounted(() => {\n      swiper.value = initializeSwiper();\n      (void 0).addEventListener(\"resize\", handleResize);\n    });\n    onBeforeUnmount(() => {\n      (void 0).removeEventListener(\"resize\", handleResize);\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      _push(`<!--[--><div class=\"swiper\"><div class=\"swiper-wrapper\"><div class=\"swiper-slide\">Slide 1</div><div class=\"swiper-slide\">Slide 2</div><div class=\"swiper-slide\">Slide 3</div> ... </div><div class=\"swiper-pagination\"></div><div class=\"swiper-button-prev\"></div><div class=\"swiper-button-next\"></div><div class=\"swiper-scrollbar\"></div></div><div class=\"swiper-button-next\"></div><div class=\"swiper-button-prev\"></div><!--]-->`);\n    };\n  }\n};\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue?vue&type=style&index=0&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"../components/awesome/Products.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nexport default _sfc_main;\n",
-      "start": 1716304642822,
-      "end": 1716304642823,
+      "start": 1716330193520,
+      "end": 1716330193521,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -240,45 +240,45 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1716304642823,
-      "end": 1716304642823,
+      "start": 1716330193521,
+      "end": 1716330193521,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304642823,
-      "end": 1716304642823,
+      "start": 1716330193521,
+      "end": 1716330193521,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304642823,
-      "end": 1716304642823,
+      "start": 1716330193521,
+      "end": 1716330193521,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304642823,
-      "end": 1716304642823,
+      "start": 1716330193521,
+      "end": 1716330193521,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1716304642823,
-      "end": 1716304642823,
+      "start": 1716330193521,
+      "end": 1716330193521,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716304642823,
-      "end": 1716304642823,
+      "start": 1716330193521,
+      "end": 1716330193521,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
       "result": "import { useNuxtApp } from '#app/nuxt';\nimport { ref, onMounted, onBeforeUnmount } from \"vue\";\nimport Swiper from \"swiper\";\nconst _sfc_main = {\n  __name: \"Products\",\n  __ssrInlineRender: true,\n  props: [\"caseproducts\"],\n  setup(__props) {\n    const { $wordpressStore } = useNuxtApp();\n    const props = __props;\n    var selectedColorHash = \"\";\n    const initializeSwiper = () => {\n      const swiper2 = new Swiper(\".swiper\", {\n        slidesPerView: 1,\n        direction: \"vertical\",\n        loop: true,\n        spaceBetween: 20,\n        autoplay: { delay: 2500, disableOnInteraction: false },\n        direction: getDirection(),\n        pagination: {\n          el: \".swiper-pagination\"\n        },\n        scrollbar: {\n          el: \".swiper-scrollbar\"\n        },\n        navigation: {\n          nextEl: \".swiper-button-next\",\n          prevEl: \".swiper-button-prev\"\n        }\n      });\n      return swiper2;\n    };\n    const handleResize = () => {\n      swiper.value.changeDirection(getDirection());\n    };\n    const getDirection = () => {\n      const windowWidth = (void 0).innerWidth;\n      return windowWidth <= 760 ? \"vertical\" : \"horizontal\";\n    };\n    const swiper = ref(null);\n    const runDetailsAnimations = (id, id2, model) => {\n      console.log(\"get vals\", $wordpressStore.productDetails);\n      var swiperSlides = [];\n      swiperSlides = (void 0).getElementsByClassName(\"swiper-slide\");\n      console.log(swiperSlides, \"colorHAsh\");\n      for (let i = 0; i < swiperSlides.length; i++) {\n        console.log(\n          swiperSlides[i].lastChild.firstChild.innerText,\n          swiperSlides[i].firstChild\n        );\n        if (i !== 0) {\n          for (let i2 = 1; i2 < swiperSlides.length; i2++) {\n            console.log(swiperSlides[i2].id, \"color id\", model);\n            if (swiperSlides[i2].id == model) {\n              $wordpressStore.selectedProduct = i2;\n              swiperSlides[0].firstChild.src = swiperSlides[i2].firstChild.src;\n              swiperSlides[0].lastChild.firstChild.innerText = swiperSlides[i2].lastChild.firstChild.innerText;\n            }\n            swiperSlides[i2].firstChild.src = swiperSlides[i2].firstChild.src;\n          }\n          swiperSlides[i].style.display = \"none\";\n        }\n      }\n      let gridWrapper = (void 0).getElementById(\"gridWrapper\");\n      gridWrapper.classList.remove(\"lg:grid-cols-8\");\n      gridWrapper.classList.add(\"lg:grid-cols-3\");\n      swiperSlides[0].style.width = \"500px\";\n      (void 0).getElementById(\"wrapperSwiper\").style.width = \"100vw\";\n    };\n    async function getDetails(deviceId, deviceId2, model) {\n      console.log(\"ids\", deviceId, deviceId2);\n      await $wordpressStore.fetchDetails(deviceId, deviceId2);\n      runDetailsAnimations(deviceId, null, model);\n    }\n    const selectColor = (selectedColor, selectedHash) => {\n      var swiperSlides = [];\n      swiperSlides = (void 0).getElementsByClassName(\"swiper-slide\");\n      console.log(\"Selected Color:\", selectedColor);\n      console.log(\"selectedHash\", selectedHash);\n      $wordpressStore.selectedProduct = selectedHash;\n      swiperSlides[0].firstChild.src = selectedColor;\n    };\n     false && /*@__PURE__*/ onMounted(() => {\n      swiper.value = initializeSwiper();\n      (void 0).addEventListener(\"resize\", handleResize);\n    });\n     false && /*@__PURE__*/ onBeforeUnmount(() => {\n      (void 0).removeEventListener(\"resize\", handleResize);\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      _push(`<!--[--><div class=\"swiper\"><div class=\"swiper-wrapper\"><div class=\"swiper-slide\">Slide 1</div><div class=\"swiper-slide\">Slide 2</div><div class=\"swiper-slide\">Slide 3</div> ... </div><div class=\"swiper-pagination\"></div><div class=\"swiper-button-prev\"></div><div class=\"swiper-button-next\"></div><div class=\"swiper-scrollbar\"></div></div><div class=\"swiper-button-next\"></div><div class=\"swiper-button-prev\"></div><!--]-->`);\n    };\n  }\n};\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Products.vue?vue&type=style&index=0&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"../components/awesome/Products.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nexport default _sfc_main;\n",
-      "start": 1716304642823,
-      "end": 1716304642823,
+      "start": 1716330193521,
+      "end": 1716330193521,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -291,14 +291,14 @@
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304642823,
-      "end": 1716304642823,
+      "start": 1716330193521,
+      "end": 1716330193521,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304642824,
-      "end": 1716304642824,
+      "start": 1716330193521,
+      "end": 1716330193521,
       "order": "normal"
     }
   ]

@@ -1,0 +1,306 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/components/awesome/Login.vue?vue&type=style&index=0&scoped=d349b423&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.login-container {\n  max-width: 400px;\n  margin: auto;\n  padding: 20px;\n  border: 1px solid rgb(0, 0, 0);\n  border-radius: 5px;\n  background-color: #000000;\n  color: #ff0000;\n}\n\n.login-form {\n  display: flex;\n  flex-direction: column;\n}\n\n.form-group {\n  margin-bottom: 20px;\n}\n\n.form-control {\n  width: 100%;\n  padding: 10px;\n  font-size: 16px;\n  border: 1px solid #ccc;\n  border-radius: 5px;\n}\n\n.btn {\n  padding: 10px 20px;\n  font-size: 16px;\n  background-color: #4285f4;\n  color: #fff;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n}\n\n.btn:disabled {\n  background-color: rgb(83, 9, 9);\n  cursor: not-allowed;\n}\n\n.error-message {\n  margin-top: 10px;\n  color: #d50000;\n  font-size: 14px;\n}\n",
+      "start": 1716330192914,
+      "end": 1716330192914,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Login.vue"
+        ],
+        "names": [],
+        "mappings": ";AA2HA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;EAChB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC;EAC9B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC;EAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACzB,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChB;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACV,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxB;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACV,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;AACrB;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACZ,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC;AACpB;;AAEA,CAAC,CAAC,CAAC,EAAE;EACH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACzB,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC;EAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC;EAC/B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrB;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;EAChB,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;AACjB",
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Login.vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<template>\n  <div class=\"login-container\">\n    <form @submit.prevent=\"handleSubmit\" class=\"login-form\">\n      <div class=\"form-group\">\n        <input\n          type=\"text\"\n          v-model=\"username\"\n          placeholder=\"Username or Email\"\n          autocomplete=\"email\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          type=\"password\"\n          v-model=\"password\"\n          autocomplete=\"current-password\"\n          placeholder=\"Password\"\n          class=\"form-control\"\n        />\n      </div>\n\n      <div class=\"grid gap-4\">\n        <button\n          type=\"submit\"\n          @click=\"signin\"\n          :disabled=\"isLoading\"\n          class=\"btn btn-primary\"\n        >\n          Sign in\n        </button>\n        \n        <div v-if=\"errors\" class=\"error-message\">{{ errors }}</div>\n      </div>\n    </form>\n    <div class=\"grid mt-4 gap-4\">\n      <h1 class=\"text-center text-2xl\">or</h1>\n      <button @click=\"showSignUp\" class=\"btn btn-secondary\">New User</button>\n    </div>\n  </div>\n  <div ref=\"signupSection\" class=\"mx-auto mt-6\"> \n    <AwesomeSignup v-if=\"isSignUpVisible\" />\n  </div>\n</template>\n\n<script>\nimport { useAuthStore } from \"../../stores/auth\";\nimport { nextTick } from \"vue\";\n\nexport default {\n  middleware: 'authroute',\n  data() {\n    return {\n      isSignUpVisible: false,\n      username: \"\",\n      password: \"\",\n      isLoading: false,\n      errors: null,\n    };\n  },\n\n  methods: {\n    async signin() {\n      this.isLoading = true;\n      try {\n        const { data } = await this.$apollo.mutate({\n          mutation: gql`\n            mutation Login($input: LoginInput!) {\n              login(input: $input) {\n                authToken\n                refreshToken\n                user {\n                  id\n                  username\n                  email\n                }\n              }\n            }\n          `,\n          variables: {\n            input: {\n              provider: \"PASSWORD\",\n              credentials: {\n                username: this.username,\n                password: this.password,\n              },\n            },\n          },\n        });\n        const authStore = useAuthStore();\n\n        const { authToken, refreshToken, user } = data.login;\n        sessionStorage.setItem(\"authToken\", authToken);\n        sessionStorage.setItem(\"refreshToken\", refreshToken);\n        sessionStorage.setItem(\"user\", user.username);\n        authStore.setUser(user.username);\n        authStore.setToken(authToken);\n        authStore.setRToken(refreshToken);\n        console.log(\"Auth Token:\", authToken);\n        console.log(\"Refresh Token:\", refreshToken);\n        console.log(user.username, \"user\");\n        await this.$router.push(\"/\");\n      } catch (error) {\n        console.error(\"Login failed:\", error.message);\n        this.errors = error.message;\n      } finally {\n        this.isLoading = false;\n      }\n    },\n    showSignUp() {\n      this.isSignUpVisible = true;\n      this.$nextTick(() => {\n        const signupSection = this.$refs.signupSection;\n        if (signupSection) {\n          signupSection.scrollIntoView({ behavior: 'smooth' });\n        }\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n.login-container {\n  max-width: 400px;\n  margin: auto;\n  padding: 20px;\n  border: 1px solid rgb(0, 0, 0);\n  border-radius: 5px;\n  background-color: #000000;\n  color: #ff0000;\n}\n\n.login-form {\n  display: flex;\n  flex-direction: column;\n}\n\n.form-group {\n  margin-bottom: 20px;\n}\n\n.form-control {\n  width: 100%;\n  padding: 10px;\n  font-size: 16px;\n  border: 1px solid #ccc;\n  border-radius: 5px;\n}\n\n.btn {\n  padding: 10px 20px;\n  font-size: 16px;\n  background-color: #4285f4;\n  color: #fff;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n}\n\n.btn:disabled {\n  background-color: rgb(83, 9, 9);\n  cursor: not-allowed;\n}\n\n.error-message {\n  margin-top: 10px;\n  color: #d50000;\n  font-size: 14px;\n}\n</style>\n"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1716330192915,
+      "end": 1716330192915,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1716330192915,
+      "end": 1716330192915,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1716330192915,
+      "end": 1716330192915,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1716330192915,
+      "end": 1716330192915,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1716330192915,
+      "end": 1716330192915,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1716330192915,
+      "end": 1716330192915,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1716330192915,
+      "end": 1716330192915,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".login-container{background-color:#000;border:1px solid #000;border-radius:5px;color:red;margin:auto;max-width:400px;padding:20px}.login-form{display:flex;flex-direction:column}.form-group{margin-bottom:20px}.form-control{border:1px solid #ccc;border-radius:5px;font-size:16px;padding:10px;width:100%}.btn{background-color:#4285f4;border:none;border-radius:5px;color:#fff;cursor:pointer;font-size:16px;padding:10px 20px}.btn:disabled{background-color:#530909;cursor:not-allowed}.error-message{color:#d50000;font-size:14px;margin-top:10px}",
+      "start": 1716330192915,
+      "end": 1716330192931,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Login.vue",
+        "mappings": "AACA,iBAME,qBAAyB,CAFzB,qBAA8B,CAC9B,iBAAkB,CAElB,SAAc,CALd,WAAY,CADZ,eAAgB,CAEhB,YAKF,CAEA,YACE,YAAa,CACb,qBACF,CAEA,YACE,kBACF,CAEA,cAIE,qBAAsB,CACtB,iBAAkB,CAFlB,cAAe,CADf,YAAa,CADb,UAKF,CAEA,KAGE,wBAAyB,CAEzB,WAAY,CACZ,iBAAkB,CAFlB,UAAW,CAGX,cAAe,CALf,cAAe,CADf,iBAOF,CAEA,cACE,wBAA+B,CAC/B,kBACF,CAEA,eAEE,aAAc,CACd,cAAe,CAFf,eAGF",
+        "names": [],
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Login.vue"
+        ],
+        "sourcesContent": [
+          "\n.login-container {\n  max-width: 400px;\n  margin: auto;\n  padding: 20px;\n  border: 1px solid rgb(0, 0, 0);\n  border-radius: 5px;\n  background-color: #000000;\n  color: #ff0000;\n}\n\n.login-form {\n  display: flex;\n  flex-direction: column;\n}\n\n.form-group {\n  margin-bottom: 20px;\n}\n\n.form-control {\n  width: 100%;\n  padding: 10px;\n  font-size: 16px;\n  border: 1px solid #ccc;\n  border-radius: 5px;\n}\n\n.btn {\n  padding: 10px 20px;\n  font-size: 16px;\n  background-color: #4285f4;\n  color: #fff;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n}\n\n.btn:disabled {\n  background-color: rgb(83, 9, 9);\n  cursor: not-allowed;\n}\n\n.error-message {\n  margin-top: 10px;\n  color: #d50000;\n  font-size: 14px;\n}\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1716330192931,
+      "end": 1716330192931,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1716330192931,
+      "end": 1716330192931,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1716330192931,
+      "end": 1716330192931,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".login-container[data-v-d349b423]{background-color:#000;border:1px solid #000;border-radius:5px;color:red;margin:auto;max-width:400px;padding:20px}.login-form[data-v-d349b423]{display:flex;flex-direction:column}.form-group[data-v-d349b423]{margin-bottom:20px}.form-control[data-v-d349b423]{border:1px solid #ccc;border-radius:5px;font-size:16px;padding:10px;width:100%}.btn[data-v-d349b423]{background-color:#4285f4;border:none;border-radius:5px;color:#fff;cursor:pointer;font-size:16px;padding:10px 20px}.btn[data-v-d349b423]:disabled{background-color:#530909;cursor:not-allowed}.error-message[data-v-d349b423]{color:#d50000;font-size:14px;margin-top:10px}",
+      "start": 1716330192931,
+      "end": 1716330192932,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Login.vue",
+        "mappings": "AAAA,kCAAiB,qBAAqB,CAAC,qBAAqB,CAAC,iBAAiB,CAAC,SAAS,CAAC,WAAW,CAAC,eAAe,CAAC,YAAY,CAAC,6BAAY,YAAY,CAAC,qBAAqB,CAAC,6BAAY,kBAAkB,CAAC,+BAAc,qBAAqB,CAAC,iBAAiB,CAAC,cAAc,CAAC,YAAY,CAAC,UAAU,CAAC,sBAAK,wBAAwB,CAAC,WAAW,CAAC,iBAAiB,CAAC,UAAU,CAAC,cAAc,CAAC,cAAc,CAAC,iBAAiB,CAAC,+BAAc,wBAAwB,CAAC,kBAAkB,CAAC,gCAAe,aAAa,CAAC,cAAc,CAAC,eAAe",
+        "names": [],
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Login.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1716330192932,
+      "end": 1716330192932,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716330192932,
+      "end": 1716330192932,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716330192932,
+      "end": 1716330192932,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1716330192932,
+      "end": 1716330192932,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1716330192932,
+      "end": 1716330192932,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1716330192932,
+      "end": 1716330192932,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1716330192932,
+      "end": 1716330192932,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1716330192932,
+      "end": 1716330192932,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1716330192947,
+      "end": 1716330192988,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1716330192989,
+      "end": 1716330192989,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "",
+      "start": 1716330192989,
+      "end": 1716330192989,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1716330192990,
+      "end": 1716330192990,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1716330192991,
+      "end": 1716330192991,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1716330192991,
+      "end": 1716330192991,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1716330192991,
+      "end": 1716330192991,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1716330192991,
+      "end": 1716330192994,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1716330193007,
+      "end": 1716330193007,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1716330193008,
+      "end": 1716330193008,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1716330193008,
+      "end": 1716330193008,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1716330193009,
+      "end": 1716330193009,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1716330193009,
+      "end": 1716330193009,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1716330193009,
+      "end": 1716330193009,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1716330193009,
+      "end": 1716330193009,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1716330193009,
+      "end": 1716330193009,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1716330193009,
+      "end": 1716330193009,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1716330193009,
+      "end": 1716330193009,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1716330193009,
+      "end": 1716330193009,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1716330193009,
+      "end": 1716330193009,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1716330193010,
+      "end": 1716330193010,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1716330193010,
+      "end": 1716330193010,
+      "order": "normal"
+    }
+  ]
+}

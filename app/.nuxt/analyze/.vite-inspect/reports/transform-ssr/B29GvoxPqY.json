@@ -3,82 +3,82 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "<template>\n \n  <div class=\"flex-container\" ref=\"flexContainer\">\n    \n    <div\n      class=\"flex-item\"\n      v-for=\"product in products\"\n      :key=\"product.id\"\n      :style=\"product.style\"\n    >\n      <img :src=\"product.imageUrl\" :alt=\"product.name\" class=\"product-image \" />\n       <div class=\"flex-item z-20\">\n     <AwesomeWelcome\n      :style=\"{ width: '100px', height: '5px', fontSize: '12px',scale: .3 }\"\n      :name=\"product.name\"\n      :startColor=\"['green','grey','blue']\"\n      :endColor=\"['black','red','white']\"\n    />\n</div>\n    </div>\n    \n  </div>\n\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      products: [\n        {\n          id: 1,\n          name: \"IPhone 14 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-7inch-product-red_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 2,\n          name: \"IPhone 14 Plus \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 3,\n          name: \"IPhone 14 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-pro-finish-select-202209-6-7inch_AV2_GEO_EMEA-Photoroom.png-Photoroom-2.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 4,\n          name: \"IPhone 15 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-finish-select-202309-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 5,\n          name: \"IPhone 15 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-pro-finish-select-202309-6-1inch_AV2_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n      ],\n    };\n  },\n  mounted() {\n    window.addEventListener(\"scroll\", this.handleScroll);\n    this.handleScroll();\n  },\n  beforeDestroy() {\n    window.removeEventListener(\"scroll\", this.handleScroll);\n  },\n  methods: {\n    handleScroll() {\n      const scrollY = window.scrollY;\n      const flexContainerRect =\n        this.$refs.flexContainer.getBoundingClientRect();\n\n      // The point at which the scroll effect should start\n      const startEffectScrollY =\n        flexContainerRect.top - window.innerHeight + 100; // Adjust the offset to start the effect\n\n      // Determine how much the user has scrolled within the effect range\n      const scrollProgress = Math.min(\n        1,\n        Math.max(\n          0,\n          (scrollY - startEffectScrollY) /\n            (window.innerHeight + this.$refs.flexContainer.clientHeight)\n        )\n      );\n\n      // Apply a style transformation to align items into a single line\n      this.products.forEach((product, index) => {\n        const offsetY = (2 - scrollProgress) * (index * 100); // This will space out the items more as they move up\n        product.style = {\n          transform: `translateY(${offsetY}px)`,\n\n          // opacity: `${1 - 0.2 * index * scrollProgress}`,\n          zIndex: `${100 - index}`, // Ensure items stack correctly during transition\n        };\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n\n.flex-container {\n  min-height: 100vh; \n  display: flex;\n  flex-wrap: wrap;\n  align-items: flex-end;\n  justify-content: space-around;\n  padding: 50px;\n  perspective: 1000px; \n}\n\n.flex-item {\n  transition:\n    transform 1s,\n    opacity 1s;\n  will-change: transform, opacity;\n}\n\n.product-image {\n  width: auto;\n  height: auto;\n  max-width: 200px; /* Adjust to suit your needs */\n  max-height: 200px; /* Adjust to suit your needs */\n  scale: 4.3;\n}\n\n</style>\n",
-      "start": 1716304642028,
-      "end": 1716304642144,
+      "result": "<template>\n  <div class=\"flex-container\" ref=\"flexContainer\">\n    <div\n      class=\"flex-item\"\n      v-for=\"product in products\"\n      :key=\"product.id\"\n      :style=\"product.style\"\n    >\n      <img :src=\"product.imageUrl\" :alt=\"product.name\" class=\"product-image \" />\n      <div class=\"flex-item z-20\">\n        <AwesomeWelcome\n          :style=\"{ width: '100px', height: '5px', fontSize: '12px', scale: .3 }\"\n          :name=\"product.name\"\n          :startColor=\"['green','grey','blue']\"\n          :endColor=\"['black','red','white']\"\n        />\n      </div>\n    </div>\n  </div>\n</template>\n\n<script>\nimport animations from '@/utils/animations'; // Ensure you have this import if you are using the utility file\n\nexport default {\n  data() {\n    return {\n      products: [\n        {\n          id: 1,\n          name: \"IPhone 14 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-7inch-product-red_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 2,\n          name: \"IPhone 14 Plus \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 3,\n          name: \"IPhone 14 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-pro-finish-select-202209-6-7inch_AV2_GEO_EMEA-Photoroom.png-Photoroom-2.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 4,\n          name: \"IPhone 15 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-finish-select-202309-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 5,\n          name: \"IPhone 15 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-pro-finish-select-202309-6-1inch_AV2_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n      ],\n    };\n  },\n  mounted() {\n    if (this.$refs.flexContainer) {\n      window.addEventListener(\"scroll\", this.handleScroll);\n      this.handleScroll();\n    }\n  },\n  beforeDestroy() {\n    if (this.$refs.flexContainer) {\n      window.removeEventListener(\"scroll\", this.handleScroll);\n    }\n  },\n  methods: {\n    handleScroll() {\n      if (!this.$refs.flexContainer) return;\n\n      const scrollY = window.scrollY;\n      const flexContainerRect =\n        this.$refs.flexContainer.getBoundingClientRect();\n\n      // The point at which the scroll effect should start\n      const startEffectScrollY =\n        flexContainerRect.top - window.innerHeight + 100; // Adjust the offset to start the effect\n\n      // Determine how much the user has scrolled within the effect range\n      const scrollProgress = Math.min(\n        1,\n        Math.max(\n          0,\n          (scrollY - startEffectScrollY) /\n            (window.innerHeight + this.$refs.flexContainer.clientHeight)\n        )\n      );\n\n      // Apply a style transformation to align items into a single line\n      this.products.forEach((product, index) => {\n        const offsetY = (2 - scrollProgress) * (index * 100); // This will space out the items more as they move up\n        product.style = {\n          transform: `translateY(${offsetY}px)`,\n          zIndex: `${100 - index}`, // Ensure items stack correctly during transition\n        };\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n.flex-container {\n  min-height: 100vh;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: flex-end;\n  justify-content: space-around;\n  padding: 50px;\n  perspective: 1000px;\n}\n\n.flex-item {\n  transition: transform 1s, opacity 1s;\n  will-change: transform, opacity;\n}\n\n.product-image {\n  width: auto;\n  height: auto;\n  max-width: 200px; /* Adjust to suit your needs */\n  max-height: 200px; /* Adjust to suit your needs */\n  scale: 4.3;\n}\n</style>\n",
+      "start": 1716330192373,
+      "end": 1716330192423,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192423,
+      "end": 1716330192423,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192423,
+      "end": 1716330192423,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192423,
+      "end": 1716330192423,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192423,
+      "end": 1716330192423,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192423,
+      "end": 1716330192423,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192423,
+      "end": 1716330192423,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192423,
+      "end": 1716330192423,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192423,
+      "end": 1716330192423,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192423,
+      "end": 1716330192423,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192423,
+      "end": 1716330192423,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304642144,
-      "end": 1716304642144,
+      "start": 1716330192423,
+      "end": 1716330192423,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "result": "\nconst _sfc_main = {\n  data() {\n    return {\n      products: [\n        {\n          id: 1,\n          name: \"IPhone 14 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-7inch-product-red_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 2,\n          name: \"IPhone 14 Plus \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 3,\n          name: \"IPhone 14 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-pro-finish-select-202209-6-7inch_AV2_GEO_EMEA-Photoroom.png-Photoroom-2.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 4,\n          name: \"IPhone 15 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-finish-select-202309-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 5,\n          name: \"IPhone 15 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-pro-finish-select-202309-6-1inch_AV2_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n      ],\n    };\n  },\n  mounted() {\n    window.addEventListener(\"scroll\", this.handleScroll);\n    this.handleScroll();\n  },\n  beforeDestroy() {\n    window.removeEventListener(\"scroll\", this.handleScroll);\n  },\n  methods: {\n    handleScroll() {\n      const scrollY = window.scrollY;\n      const flexContainerRect =\n        this.$refs.flexContainer.getBoundingClientRect();\n\n      // The point at which the scroll effect should start\n      const startEffectScrollY =\n        flexContainerRect.top - window.innerHeight + 100; // Adjust the offset to start the effect\n\n      // Determine how much the user has scrolled within the effect range\n      const scrollProgress = Math.min(\n        1,\n        Math.max(\n          0,\n          (scrollY - startEffectScrollY) /\n            (window.innerHeight + this.$refs.flexContainer.clientHeight)\n        )\n      );\n\n      // Apply a style transformation to align items into a single line\n      this.products.forEach((product, index) => {\n        const offsetY = (2 - scrollProgress) * (index * 100); // This will space out the items more as they move up\n        product.style = {\n          transform: `translateY(${offsetY}px)`,\n\n          // opacity: `${1 - 0.2 * index * scrollProgress}`,\n          zIndex: `${100 - index}`, // Ensure items stack correctly during transition\n        };\n      });\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderComponent as _ssrRenderComponent, ssrRenderStyle as _ssrRenderStyle, ssrRenderAttrs as _ssrRenderAttrs, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\"\n\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  const _component_AwesomeWelcome = _resolveComponent(\"AwesomeWelcome\")\n\n  _push(`<div${_ssrRenderAttrs(_mergeProps({\n    class: \"flex-container\",\n    ref: \"flexContainer\"\n  }, _attrs))} data-v-70ee88ff><!--[-->`)\n  _ssrRenderList($data.products, (product) => {\n    _push(`<div class=\"flex-item\" style=\"${\n      _ssrRenderStyle(product.style)\n    }\" data-v-70ee88ff><img${\n      _ssrRenderAttr(\"src\", product.imageUrl)\n    }${\n      _ssrRenderAttr(\"alt\", product.name)\n    } class=\"product-image\" data-v-70ee88ff><div class=\"flex-item z-20\" data-v-70ee88ff>`)\n    _push(_ssrRenderComponent(_component_AwesomeWelcome, {\n      style: { width: '100px', height: '5px', fontSize: '12px',scale: .3 },\n      name: product.name,\n      startColor: ['green','grey','blue'],\n      endColor: ['black','red','white']\n    }, null, _parent))\n    _push(`</div></div>`)\n  })\n  _push(`<!--]--></div>`)\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue?vue&type=style&index=0&scoped=70ee88ff&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"../components/awesome/Parallax.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['ssrRender',_sfc_ssrRender],['__scopeId',\"data-v-70ee88ff\"]])",
-      "start": 1716304642144,
-      "end": 1716304642146,
+      "result": "\nimport animations from '@/utils/animations'; // Ensure you have this import if you are using the utility file\n\nconst _sfc_main = {\n  data() {\n    return {\n      products: [\n        {\n          id: 1,\n          name: \"IPhone 14 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-7inch-product-red_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 2,\n          name: \"IPhone 14 Plus \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 3,\n          name: \"IPhone 14 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-pro-finish-select-202209-6-7inch_AV2_GEO_EMEA-Photoroom.png-Photoroom-2.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 4,\n          name: \"IPhone 15 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-finish-select-202309-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 5,\n          name: \"IPhone 15 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-pro-finish-select-202309-6-1inch_AV2_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n      ],\n    };\n  },\n  mounted() {\n    if (this.$refs.flexContainer) {\n      window.addEventListener(\"scroll\", this.handleScroll);\n      this.handleScroll();\n    }\n  },\n  beforeDestroy() {\n    if (this.$refs.flexContainer) {\n      window.removeEventListener(\"scroll\", this.handleScroll);\n    }\n  },\n  methods: {\n    handleScroll() {\n      if (!this.$refs.flexContainer) return;\n\n      const scrollY = window.scrollY;\n      const flexContainerRect =\n        this.$refs.flexContainer.getBoundingClientRect();\n\n      // The point at which the scroll effect should start\n      const startEffectScrollY =\n        flexContainerRect.top - window.innerHeight + 100; // Adjust the offset to start the effect\n\n      // Determine how much the user has scrolled within the effect range\n      const scrollProgress = Math.min(\n        1,\n        Math.max(\n          0,\n          (scrollY - startEffectScrollY) /\n            (window.innerHeight + this.$refs.flexContainer.clientHeight)\n        )\n      );\n\n      // Apply a style transformation to align items into a single line\n      this.products.forEach((product, index) => {\n        const offsetY = (2 - scrollProgress) * (index * 100); // This will space out the items more as they move up\n        product.style = {\n          transform: `translateY(${offsetY}px)`,\n          zIndex: `${100 - index}`, // Ensure items stack correctly during transition\n        };\n      });\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderAttr as _ssrRenderAttr, ssrRenderComponent as _ssrRenderComponent, ssrRenderStyle as _ssrRenderStyle, ssrRenderAttrs as _ssrRenderAttrs, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\"\n\nfunction _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {\n  const _component_AwesomeWelcome = _resolveComponent(\"AwesomeWelcome\")\n\n  _push(`<div${_ssrRenderAttrs(_mergeProps({\n    class: \"flex-container\",\n    ref: \"flexContainer\"\n  }, _attrs))} data-v-fbd81939><!--[-->`)\n  _ssrRenderList($data.products, (product) => {\n    _push(`<div class=\"flex-item\" style=\"${\n      _ssrRenderStyle(product.style)\n    }\" data-v-fbd81939><img${\n      _ssrRenderAttr(\"src\", product.imageUrl)\n    }${\n      _ssrRenderAttr(\"alt\", product.name)\n    } class=\"product-image\" data-v-fbd81939><div class=\"flex-item z-20\" data-v-fbd81939>`)\n    _push(_ssrRenderComponent(_component_AwesomeWelcome, {\n      style: { width: '100px', height: '5px', fontSize: '12px', scale: .3 },\n      name: product.name,\n      startColor: ['green','grey','blue'],\n      endColor: ['black','red','white']\n    }, null, _parent))\n    _push(`</div></div>`)\n  })\n  _push(`<!--]--></div>`)\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue?vue&type=style&index=0&scoped=fbd81939&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"../components/awesome/Parallax.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['ssrRender',_sfc_ssrRender],['__scopeId',\"data-v-fbd81939\"]])",
+      "start": 1716330192423,
+      "end": 1716330192425,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -88,191 +88,191 @@
           "/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue"
         ],
         "sourcesContent": [
-          "<template>\n \n  <div class=\"flex-container\" ref=\"flexContainer\">\n    \n    <div\n      class=\"flex-item\"\n      v-for=\"product in products\"\n      :key=\"product.id\"\n      :style=\"product.style\"\n    >\n      <img :src=\"product.imageUrl\" :alt=\"product.name\" class=\"product-image \" />\n       <div class=\"flex-item z-20\">\n     <AwesomeWelcome\n      :style=\"{ width: '100px', height: '5px', fontSize: '12px',scale: .3 }\"\n      :name=\"product.name\"\n      :startColor=\"['green','grey','blue']\"\n      :endColor=\"['black','red','white']\"\n    />\n</div>\n    </div>\n    \n  </div>\n\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      products: [\n        {\n          id: 1,\n          name: \"IPhone 14 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-7inch-product-red_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 2,\n          name: \"IPhone 14 Plus \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 3,\n          name: \"IPhone 14 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-pro-finish-select-202209-6-7inch_AV2_GEO_EMEA-Photoroom.png-Photoroom-2.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 4,\n          name: \"IPhone 15 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-finish-select-202309-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 5,\n          name: \"IPhone 15 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-pro-finish-select-202309-6-1inch_AV2_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n      ],\n    };\n  },\n  mounted() {\n    window.addEventListener(\"scroll\", this.handleScroll);\n    this.handleScroll();\n  },\n  beforeDestroy() {\n    window.removeEventListener(\"scroll\", this.handleScroll);\n  },\n  methods: {\n    handleScroll() {\n      const scrollY = window.scrollY;\n      const flexContainerRect =\n        this.$refs.flexContainer.getBoundingClientRect();\n\n      // The point at which the scroll effect should start\n      const startEffectScrollY =\n        flexContainerRect.top - window.innerHeight + 100; // Adjust the offset to start the effect\n\n      // Determine how much the user has scrolled within the effect range\n      const scrollProgress = Math.min(\n        1,\n        Math.max(\n          0,\n          (scrollY - startEffectScrollY) /\n            (window.innerHeight + this.$refs.flexContainer.clientHeight)\n        )\n      );\n\n      // Apply a style transformation to align items into a single line\n      this.products.forEach((product, index) => {\n        const offsetY = (2 - scrollProgress) * (index * 100); // This will space out the items more as they move up\n        product.style = {\n          transform: `translateY(${offsetY}px)`,\n\n          // opacity: `${1 - 0.2 * index * scrollProgress}`,\n          zIndex: `${100 - index}`, // Ensure items stack correctly during transition\n        };\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n\n.flex-container {\n  min-height: 100vh; \n  display: flex;\n  flex-wrap: wrap;\n  align-items: flex-end;\n  justify-content: space-around;\n  padding: 50px;\n  perspective: 1000px; \n}\n\n.flex-item {\n  transition:\n    transform 1s,\n    opacity 1s;\n  will-change: transform, opacity;\n}\n\n.product-image {\n  width: auto;\n  height: auto;\n  max-width: 200px; /* Adjust to suit your needs */\n  max-height: 200px; /* Adjust to suit your needs */\n  scale: 4.3;\n}\n\n</style>\n"
+          "<template>\n  <div class=\"flex-container\" ref=\"flexContainer\">\n    <div\n      class=\"flex-item\"\n      v-for=\"product in products\"\n      :key=\"product.id\"\n      :style=\"product.style\"\n    >\n      <img :src=\"product.imageUrl\" :alt=\"product.name\" class=\"product-image \" />\n      <div class=\"flex-item z-20\">\n        <AwesomeWelcome\n          :style=\"{ width: '100px', height: '5px', fontSize: '12px', scale: .3 }\"\n          :name=\"product.name\"\n          :startColor=\"['green','grey','blue']\"\n          :endColor=\"['black','red','white']\"\n        />\n      </div>\n    </div>\n  </div>\n</template>\n\n<script>\nimport animations from '@/utils/animations'; // Ensure you have this import if you are using the utility file\n\nexport default {\n  data() {\n    return {\n      products: [\n        {\n          id: 1,\n          name: \"IPhone 14 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-7inch-product-red_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 2,\n          name: \"IPhone 14 Plus \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 3,\n          name: \"IPhone 14 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-pro-finish-select-202209-6-7inch_AV2_GEO_EMEA-Photoroom.png-Photoroom-2.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 4,\n          name: \"IPhone 15 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-finish-select-202309-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 5,\n          name: \"IPhone 15 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-pro-finish-select-202309-6-1inch_AV2_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n      ],\n    };\n  },\n  mounted() {\n    if (this.$refs.flexContainer) {\n      window.addEventListener(\"scroll\", this.handleScroll);\n      this.handleScroll();\n    }\n  },\n  beforeDestroy() {\n    if (this.$refs.flexContainer) {\n      window.removeEventListener(\"scroll\", this.handleScroll);\n    }\n  },\n  methods: {\n    handleScroll() {\n      if (!this.$refs.flexContainer) return;\n\n      const scrollY = window.scrollY;\n      const flexContainerRect =\n        this.$refs.flexContainer.getBoundingClientRect();\n\n      // The point at which the scroll effect should start\n      const startEffectScrollY =\n        flexContainerRect.top - window.innerHeight + 100; // Adjust the offset to start the effect\n\n      // Determine how much the user has scrolled within the effect range\n      const scrollProgress = Math.min(\n        1,\n        Math.max(\n          0,\n          (scrollY - startEffectScrollY) /\n            (window.innerHeight + this.$refs.flexContainer.clientHeight)\n        )\n      );\n\n      // Apply a style transformation to align items into a single line\n      this.products.forEach((product, index) => {\n        const offsetY = (2 - scrollProgress) * (index * 100); // This will space out the items more as they move up\n        product.style = {\n          transform: `translateY(${offsetY}px)`,\n          zIndex: `${100 - index}`, // Ensure items stack correctly during transition\n        };\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n.flex-container {\n  min-height: 100vh;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: flex-end;\n  justify-content: space-around;\n  padding: 50px;\n  perspective: 1000px;\n}\n\n.flex-item {\n  transition: transform 1s, opacity 1s;\n  will-change: transform, opacity;\n}\n\n.product-image {\n  width: auto;\n  height: auto;\n  max-width: 200px; /* Adjust to suit your needs */\n  max-height: 200px; /* Adjust to suit your needs */\n  scale: 4.3;\n}\n</style>\n"
         ],
-        "mappings": "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,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;;MAE3F,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;MAClE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QAC7B,CAAC;QACD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;UACN,CAAC;UACD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;YAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QAC/D;MACF,CAAC;;MAED,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC;MAChE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE;QACxC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC;QAC1G,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE;UACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;;UAErC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;UACjD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;QAC5E,CAAC;MACH,CAAC,CAAC;IACJ,CAAC;EACH,CAAC;AACH,CAAC;;;;;;;;EAhHD,aAAA,gBAAA;IAEO,KAAK,EAAC,gBAAgB;IAAC,GAAG,EAAC,eAAe;KAFjD;EAAA,eAMwB,cAAQ,EANhC,CAMa,OAAO;IANpB;MAAA,gBAQc,OAAO,CAAC,KAAK;;MAR3B,eAUY,KAAG,EAAE,OAAO,CAAC,QAAQ;;MAVjC,eAUoC,KAAG,EAAE,OAAO,CAAC,IAAI;;IAVrD,MAAA;MAaO,KAAK,EAAE,6DAA6D;MACpE,IAAI,EAAE,OAAO,CAAC,IAAI;MAClB,UAAU,EAAE,uBAAuB;MACnC,QAAQ,EAAE,uBAAuB;;IAhBxC;;EAAA"
+        "mappings": "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AAC;;MAErC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;MAC9B,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;QACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;;MAElD,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;MACnD,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;QACvB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAA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"
       }
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue\").then(r => r.default))",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192425,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192425,
+      "end": 1716330192426,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192426,
+      "end": 1716330192426,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192426,
+      "end": 1716330192426,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304642146,
-      "end": 1716304642146,
+      "start": 1716330192426,
+      "end": 1716330192426,
       "order": "normal"
     }
   ]

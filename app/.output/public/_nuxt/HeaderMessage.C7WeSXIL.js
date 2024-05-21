@@ -1,1 +1,0 @@
-import{j as a,J as s,X as r,a7 as n,O as o,Y as l}from"./swiper-vue.rgMx2r3g.js";const c={class:"text-xs text-center text-gray-700 dark:text-gray-500"},i=a({__name:"HeaderMessage",props:{text:{type:String,default:""}},setup(e){return(t,d)=>(s(),r("div",c,[n(t.$slots,"default",{},()=>[o("span",null,l(e.text),1)])]))}});export{i as default};

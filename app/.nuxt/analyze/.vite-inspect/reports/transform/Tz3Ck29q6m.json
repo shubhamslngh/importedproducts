@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "import inspect from \"../../jsutils/inspect.mjs\";\nimport invariant from \"../../jsutils/invariant.mjs\";\nimport { GraphQLError } from \"../../error/GraphQLError.mjs\";\nimport { Kind } from \"../../language/kinds.mjs\";\nimport { DirectiveLocation } from \"../../language/directiveLocation.mjs\";\nimport { specifiedDirectives } from \"../../type/directives.mjs\";\n\n/**\n * Known directives\n *\n * A GraphQL document is only valid if all `@directives` are known by the\n * schema and legally positioned.\n */\nexport function KnownDirectivesRule(context) {\n  var locationsMap = Object.create(null);\n  var schema = context.getSchema();\n  var definedDirectives = schema ? schema.getDirectives() : specifiedDirectives;\n\n  for (var _i2 = 0; _i2 < definedDirectives.length; _i2++) {\n    var directive = definedDirectives[_i2];\n    locationsMap[directive.name] = directive.locations;\n  }\n\n  var astDefinitions = context.getDocument().definitions;\n\n  for (var _i4 = 0; _i4 < astDefinitions.length; _i4++) {\n    var def = astDefinitions[_i4];\n\n    if (def.kind === Kind.DIRECTIVE_DEFINITION) {\n      locationsMap[def.name.value] = def.locations.map(function (name) {\n        return name.value;\n      });\n    }\n  }\n\n  return {\n    Directive: function Directive(node, _key, _parent, _path, ancestors) {\n      var name = node.name.value;\n      var locations = locationsMap[name];\n\n      if (!locations) {\n        context.reportError(new GraphQLError(\"Unknown directive \\\"@\".concat(name, \"\\\".\"), node));\n        return;\n      }\n\n      var candidateLocation = getDirectiveLocationForASTPath(ancestors);\n\n      if (candidateLocation && locations.indexOf(candidateLocation) === -1) {\n        context.reportError(new GraphQLError(\"Directive \\\"@\".concat(name, \"\\\" may not be used on \").concat(candidateLocation, \".\"), node));\n      }\n    }\n  };\n}\n\nfunction getDirectiveLocationForASTPath(ancestors) {\n  var appliedTo = ancestors[ancestors.length - 1];\n  !Array.isArray(appliedTo) || invariant(0);\n\n  switch (appliedTo.kind) {\n    case Kind.OPERATION_DEFINITION:\n      return getDirectiveLocationForOperation(appliedTo.operation);\n\n    case Kind.FIELD:\n      return DirectiveLocation.FIELD;\n\n    case Kind.FRAGMENT_SPREAD:\n      return DirectiveLocation.FRAGMENT_SPREAD;\n\n    case Kind.INLINE_FRAGMENT:\n      return DirectiveLocation.INLINE_FRAGMENT;\n\n    case Kind.FRAGMENT_DEFINITION:\n      return DirectiveLocation.FRAGMENT_DEFINITION;\n\n    case Kind.VARIABLE_DEFINITION:\n      return DirectiveLocation.VARIABLE_DEFINITION;\n\n    case Kind.SCHEMA_DEFINITION:\n    case Kind.SCHEMA_EXTENSION:\n      return DirectiveLocation.SCHEMA;\n\n    case Kind.SCALAR_TYPE_DEFINITION:\n    case Kind.SCALAR_TYPE_EXTENSION:\n      return DirectiveLocation.SCALAR;\n\n    case Kind.OBJECT_TYPE_DEFINITION:\n    case Kind.OBJECT_TYPE_EXTENSION:\n      return DirectiveLocation.OBJECT;\n\n    case Kind.FIELD_DEFINITION:\n      return DirectiveLocation.FIELD_DEFINITION;\n\n    case Kind.INTERFACE_TYPE_DEFINITION:\n    case Kind.INTERFACE_TYPE_EXTENSION:\n      return DirectiveLocation.INTERFACE;\n\n    case Kind.UNION_TYPE_DEFINITION:\n    case Kind.UNION_TYPE_EXTENSION:\n      return DirectiveLocation.UNION;\n\n    case Kind.ENUM_TYPE_DEFINITION:\n    case Kind.ENUM_TYPE_EXTENSION:\n      return DirectiveLocation.ENUM;\n\n    case Kind.ENUM_VALUE_DEFINITION:\n      return DirectiveLocation.ENUM_VALUE;\n\n    case Kind.INPUT_OBJECT_TYPE_DEFINITION:\n    case Kind.INPUT_OBJECT_TYPE_EXTENSION:\n      return DirectiveLocation.INPUT_OBJECT;\n\n    case Kind.INPUT_VALUE_DEFINITION:\n      {\n        var parentNode = ancestors[ancestors.length - 3];\n        return parentNode.kind === Kind.INPUT_OBJECT_TYPE_DEFINITION ? DirectiveLocation.INPUT_FIELD_DEFINITION : DirectiveLocation.ARGUMENT_DEFINITION;\n      }\n  }\n}\n\nfunction getDirectiveLocationForOperation(operation) {\n  switch (operation) {\n    case 'query':\n      return DirectiveLocation.QUERY;\n\n    case 'mutation':\n      return DirectiveLocation.MUTATION;\n\n    case 'subscription':\n      return DirectiveLocation.SUBSCRIPTION;\n  } // istanbul ignore next (Not reachable. All possible types have been considered)\n\n\n  false || invariant(0, 'Unexpected operation: ' + inspect(operation));\n}\n",
-      "start": 1716304640138,
-      "end": 1716304640158,
+      "start": 1716330189372,
+      "end": 1716330189397,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189397,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189397,
+      "end": 1716330189398,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189398,
+      "end": 1716330189398,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189398,
+      "end": 1716330189398,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716304640158,
-      "end": 1716304640158,
+      "start": 1716330189398,
+      "end": 1716330189398,
       "order": "normal"
     }
   ]

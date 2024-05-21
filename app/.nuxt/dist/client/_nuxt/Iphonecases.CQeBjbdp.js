@@ -1,0 +1,1 @@
+import{J as e,X as a,a3 as l,Z as c,Y as s,O as p,a2 as u}from"./swiper-vue.CoqLb3VA.js";const d={__name:"Iphonecases",props:["Cases"],setup(o){return(n,i)=>(e(!0),a(u,null,l(o.Cases,(r,t)=>(e(),a("div",{key:t},[c(s(console.log("value in Iphoneacase",{IphoneCase:n.IphoneCase}))+" ",1),p("li",null,s(r.color),1)]))),128))}};export{d as default};
