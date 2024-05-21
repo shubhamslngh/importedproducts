@@ -1,7 +1,5 @@
 <template>
- 
   <div class="flex-container" ref="flexContainer">
-    
     <div
       class="flex-item"
       v-for="product in products"
@@ -9,21 +7,21 @@
       :style="product.style"
     >
       <img :src="product.imageUrl" :alt="product.name" class="product-image " />
-       <div class="flex-item z-20">
-     <AwesomeWelcome
-      :style="{ width: '100px', height: '5px', fontSize: '12px',scale: .3 }"
-      :name="product.name"
-      :startColor="['green','grey','blue']"
-      :endColor="['black','red','white']"
-    />
-</div>
+      <div class="flex-item z-20">
+        <AwesomeWelcome
+          :style="{ width: '100px', height: '5px', fontSize: '12px', scale: .3 }"
+          :name="product.name"
+          :startColor="['green','grey','blue']"
+          :endColor="['black','red','white']"
+        />
+      </div>
     </div>
-    
   </div>
-
 </template>
 
 <script>
+import animations from '@/utils/animations'; // Ensure you have this import if you are using the utility file
+
 export default {
   data() {
     return {
@@ -72,14 +70,20 @@ export default {
     };
   },
   mounted() {
-    window.addEventListener("scroll", this.handleScroll);
-    this.handleScroll();
+    if (this.$refs.flexContainer) {
+      window.addEventListener("scroll", this.handleScroll);
+      this.handleScroll();
+    }
   },
   beforeDestroy() {
-    window.removeEventListener("scroll", this.handleScroll);
+    if (this.$refs.flexContainer) {
+      window.removeEventListener("scroll", this.handleScroll);
+    }
   },
   methods: {
     handleScroll() {
+      if (!this.$refs.flexContainer) return;
+
       const scrollY = window.scrollY;
       const flexContainerRect =
         this.$refs.flexContainer.getBoundingClientRect();
@@ -103,8 +107,6 @@ export default {
         const offsetY = (2 - scrollProgress) * (index * 100); // This will space out the items more as they move up
         product.style = {
           transform: `translateY(${offsetY}px)`,
-
-          // opacity: `${1 - 0.2 * index * scrollProgress}`,
           zIndex: `${100 - index}`, // Ensure items stack correctly during transition
         };
       });
@@ -114,21 +116,18 @@ export default {
 </script>
 
 <style scoped>
-
 .flex-container {
-  min-height: 100vh; 
+  min-height: 100vh;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-around;
   padding: 50px;
-  perspective: 1000px; 
+  perspective: 1000px;
 }
 
 .flex-item {
-  transition:
-    transform 1s,
-    opacity 1s;
+  transition: transform 1s, opacity 1s;
   will-change: transform, opacity;
 }
 
@@ -139,5 +138,4 @@ export default {
   max-height: 200px; /* Adjust to suit your needs */
   scale: 4.3;
 }
-
 </style>

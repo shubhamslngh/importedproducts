@@ -21,26 +21,37 @@
       </div>
 
       <div class="grid gap-4">
-        <button type="submit" :disabled="isLoading" class="btn btn-primary">
+        <button
+          type="submit"
+          @click="signin"
+          :disabled="isLoading"
+          class="btn btn-primary"
+        >
           Sign in
-        </button>
-        <button type="signup" :disabled="isLoading" class="btn btn-primary">
-          Sign Up
         </button>
         
         <div v-if="errors" class="error-message">{{ errors }}</div>
-        <!-- <AwesomeSignup/> -->
       </div>
     </form>
+    <div class="grid mt-4 gap-4">
+      <h1 class="text-center text-2xl">or</h1>
+      <button @click="showSignUp" class="btn btn-secondary">New User</button>
+    </div>
+  </div>
+  <div ref="signupSection" class="mx-auto mt-6"> 
+    <AwesomeSignup v-if="isSignUpVisible" />
   </div>
 </template>
 
 <script>
 import { useAuthStore } from "../../stores/auth";
+import { nextTick } from "vue";
 
 export default {
+  middleware: 'authroute',
   data() {
     return {
+      isSignUpVisible: false,
       username: "",
       password: "",
       isLoading: false,
@@ -49,7 +60,7 @@ export default {
   },
 
   methods: {
-    async handleSubmit() {
+    async signin() {
       this.isLoading = true;
       try {
         const { data } = await this.$apollo.mutate({
@@ -96,11 +107,20 @@ export default {
         this.isLoading = false;
       }
     },
+    showSignUp() {
+      this.isSignUpVisible = true;
+      this.$nextTick(() => {
+        const signupSection = this.$refs.signupSection;
+        if (signupSection) {
+          signupSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    },
   },
 };
 </script>
 
-<style >
+<style scoped>
 .login-container {
   max-width: 400px;
   margin: auto;
@@ -139,7 +159,7 @@ export default {
 }
 
 .btn:disabled {
-  background-color: #ccc;
+  background-color: rgb(83, 9, 9);
   cursor: not-allowed;
 }
 

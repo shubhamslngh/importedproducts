@@ -2,7 +2,7 @@
 
 useHead({ titleTemplate: "", title: "home" });
 const authStore = useAuthStore();
-console.log(authStore.token);
+// console.log(authStore.token);
 const user = authStore.user;
 const { awesome } = useAppConfig();
 definePageMeta({ layout: "page" });
@@ -10,7 +10,7 @@ definePageMeta({ layout: "page" });
 </script>
 <template>
        
-  <div><h1 v-if="user">Welcome, {{ user }}</h1><AwesomeLout class="z-index:100" v-if="user"/>
+  <div>
     <AwesomeLamp />
     <!-- <AwesomeCardstest /> -->
     <!-- {{ console.log(user, "username") }} -->
