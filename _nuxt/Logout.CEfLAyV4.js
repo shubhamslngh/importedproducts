@@ -1,0 +1,1 @@
+import{a as e}from"./entry.BX3CV9hu.js";import{J as a,X as n,O as r}from"./swiper-vue.CoqLb3VA.js";const _={__name:"Logout",setup(c){const o=e(),t=()=>{o.logout(),window.location.href="/login"};return(s,u)=>(a(),n("div",null,[r("button",{onClick:t},"Logout")]))}};export{_ as default};
