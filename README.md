@@ -1,6 +1,11 @@
 <img width="1470" alt="Screenshot 2024-05-21 at 14 51 02" src="https://github.com/shubhamslngh/importedproducts/assets/82943350/60976347-2d81-498a-8a33-2742840247da">HEADLESS Wordpress
-# SCREENSHOTS
-![Screenshot](https://drive.google.com/file/d/10qWaj9FhFDDmXxJ8PYl1xxXz7AZLw5dj/view?usp=sharing, https://drive.google.com/file/d/13TK0TdXJO6AZ-YwlzZL1DLTGibpxgZaz/view?usp=sharing, https://drive.google.com/file/d/1HiLn58ZLCyl3MVnFnMt_shb5EhdSa6bg/view?usp=sharing, https://drive.google.com/file/d/1Xi7NzWJryyFYTO19QYxpENGZfY5B7Y5j/view?usp=sharing, https://drive.google.com/file/d/1nbpNWRxO7xX78RgaGb4QdL6tdGoOn2Wn/view?usp=sharing, https://drive.google.com/file/d/1vA8NXqJzE__eqAt_LxUNDbaayG66iLHU/view?usp=sharing)
+# SCREENSHOTS Home
+![Screenshot](https://drive.google.com/file/d/10qWaj9FhFDDmXxJ8PYl1xxXz7AZLw5dj/view?usp=sharing) 
+![Screenshot](https://drive.google.com/file/d/13TK0TdXJO6AZ-YwlzZL1DLTGibpxgZaz/view?usp=sharing)
+![ SCREENSHOTS ](https://drive.google.com/file/d/1HiLn58ZLCyl3MVnFnMt_shb5EhdSa6bg/view?usp=sharing) 
+![Cart](https://drive.google.com/file/d/1Xi7NzWJryyFYTO19QYxpENGZfY5B7Y5j/view?usp=sharing)
+![SCREENSHOTS](https://drive.google.com/file/d/1nbpNWRxO7xX78RgaGb4QdL6tdGoOn2Wn/view?usp=sharing)
+![Screen](https://drive.google.com/file/d/1vA8NXqJzE__eqAt_LxUNDbaayG66iLHU/view?usp=sharing)
 # WordPress to Vue.js Nuxt Migration with GraphQL
 
 ## Overview
