@@ -1,0 +1,134 @@
+import __nuxt_component_0 from "./Signup-f100nxzr.js";
+import { gql } from "graphql-tag";
+import { f as useAuthStore } from "../server.mjs";
+import { useSSRContext } from "vue";
+import { ssrRenderAttr, ssrIncludeBooleanAttr, ssrInterpolate, ssrRenderComponent } from "vue/server-renderer";
+import { _ as _export_sfc } from "./_plugin-vue_export-helper-1tPrXgE0.js";
+import "./Welcome-yK_QkzMg.js";
+import "./Wrapper-CSw0DXQZ.js";
+import "./index-CHg0DFwX.js";
+import "hookable";
+import "#internal/nitro";
+import "ofetch";
+import "unctx";
+import "h3";
+import "unhead";
+import "@unhead/shared";
+import "vue-router";
+import "ufo";
+import "@vue/devtools-api";
+import "defu";
+import "klona";
+import "destr";
+import "devalue";
+import "ts-invariant";
+import "zen-observable-ts";
+import "symbol-observable";
+import "@wry/caches";
+import "@vue/apollo-option";
+import "throttle-debounce";
+import "cookie-es";
+import "ohash";
+import "graphql";
+import "optimism";
+import "@wry/equality";
+import "@wry/trie";
+import "pinia-plugin-persistedstate";
+import "axios";
+import "./cart-9njyDUNv.js";
+const _sfc_main = {
+  middleware: "authroute",
+  data() {
+    return {
+      isSignUpVisible: false,
+      username: "",
+      password: "",
+      isLoading: false,
+      errors: null
+    };
+  },
+  methods: {
+    async signin() {
+      this.isLoading = true;
+      try {
+        const { data } = await this.$apollo.mutate({
+          mutation: gql`
+            mutation Login($input: LoginInput!) {
+              login(input: $input) {
+                authToken
+                refreshToken
+                user {
+                  id
+                  username
+                  email
+                }
+              }
+            }
+          `,
+          variables: {
+            input: {
+              provider: "PASSWORD",
+              credentials: {
+                username: this.username,
+                password: this.password
+              }
+            }
+          }
+        });
+        const authStore = useAuthStore();
+        const { authToken, refreshToken, user } = data.login;
+        sessionStorage.setItem("authToken", authToken);
+        sessionStorage.setItem("refreshToken", refreshToken);
+        sessionStorage.setItem("user", user.username);
+        authStore.setUser(user.username);
+        authStore.setToken(authToken);
+        authStore.setRToken(refreshToken);
+        console.log("Auth Token:", authToken);
+        console.log("Refresh Token:", refreshToken);
+        console.log(user.username, "user");
+        await this.$router.push("/");
+      } catch (error) {
+        console.error("Login failed:", error.message);
+        this.errors = error.message;
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    showSignUp() {
+      this.isSignUpVisible = true;
+      this.$nextTick(() => {
+        const signupSection = this.$refs.signupSection;
+        if (signupSection) {
+          signupSection.scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    }
+  }
+};
+function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  const _component_AwesomeSignup = __nuxt_component_0;
+  _push(`<!--[--><div class="login-container" data-v-d349b423><form class="login-form" data-v-d349b423><div class="form-group" data-v-d349b423><input type="text"${ssrRenderAttr("value", $data.username)} placeholder="Username or Email" autocomplete="email" class="form-control" data-v-d349b423></div><div class="form-group" data-v-d349b423><input type="password"${ssrRenderAttr("value", $data.password)} autocomplete="current-password" placeholder="Password" class="form-control" data-v-d349b423></div><div class="grid gap-4" data-v-d349b423><button type="submit"${ssrIncludeBooleanAttr($data.isLoading) ? " disabled" : ""} class="btn btn-primary" data-v-d349b423> Sign in </button>`);
+  if ($data.errors) {
+    _push(`<div class="error-message" data-v-d349b423>${ssrInterpolate($data.errors)}</div>`);
+  } else {
+    _push(`<!---->`);
+  }
+  _push(`</div></form><div class="grid mt-4 gap-4" data-v-d349b423><h1 class="text-center text-2xl" data-v-d349b423>or</h1><button class="btn btn-secondary" data-v-d349b423>New User</button></div></div><div class="mx-auto mt-6" data-v-d349b423>`);
+  if ($data.isSignUpVisible) {
+    _push(ssrRenderComponent(_component_AwesomeSignup, null, null, _parent));
+  } else {
+    _push(`<!---->`);
+  }
+  _push(`</div><!--]-->`);
+}
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("../components/awesome/Login.vue");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+const __nuxt_component_2 = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender], ["__scopeId", "data-v-d349b423"]]);
+export {
+  __nuxt_component_2 as default
+};
+//# sourceMappingURL=Login-IbKFrzm-.js.map

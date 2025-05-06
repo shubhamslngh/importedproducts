@@ -1,4 +1,4 @@
-import { hasInjectionContext, inject, version as version$1, ref, watchEffect, watch, getCurrentInstance, shallowRef, toRef, onServerPrefetch, isRef, defineComponent, provide, createElementBlock, defineAsyncComponent, onBeforeUnmount, reactive, h, computed, unref, shallowReactive, Suspense, nextTick, Transition, useSSRContext, mergeProps, withCtx, createVNode, createApp, effectScope, markRaw, isReactive, toRaw, getCurrentScope, onScopeDispose, onErrorCaptured, resolveDynamicComponent, isReadonly, toRefs, isShallow } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/vue/index.mjs';
+import { hasInjectionContext, inject, version as version$1, ref, watchEffect, watch, getCurrentInstance, shallowRef, toRef, onServerPrefetch, isRef, defineComponent, provide, createElementBlock, defineAsyncComponent, computed, unref, nextTick, onBeforeUnmount, reactive, h, shallowReactive, Suspense, Transition, useSSRContext, mergeProps, withCtx, createVNode, createApp, effectScope, markRaw, isReactive, toRaw, getCurrentScope, onScopeDispose, onErrorCaptured, resolveDynamicComponent, toRefs, isReadonly, isShallow } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/vue/index.mjs';
 import { $fetch } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/ofetch/dist/node.mjs';
 import { createHooks } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/hookable/dist/index.mjs';
 import { getContext } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/unctx/dist/index.mjs';
@@ -14,6 +14,7 @@ import { invariant as invariant$1, InvariantError } from 'file:///Users/shubhams
 import { Observable } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/zen-observable-ts/index.cjs';
 import { WeakCache, StrongCache } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/@wry/caches/lib/bundle.cjs';
 import { createApolloProvider } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/@vue/apollo-option/dist/vue-apollo-option.esm.mjs';
+import { throttle, debounce } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/throttle-debounce/esm/index.js';
 import { parse } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/cookie-es/dist/index.mjs';
 import { hash, isEqual } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/ohash/dist/index.mjs';
 import { print as print$1, Kind, visit, BREAK, isSelectionNode } from 'file:///Users/shubhamsingh/namma/importedProds/node_modules/graphql/index.js';
@@ -631,7 +632,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0 ,
-    component: () => import('./about-8oDMrBIc.mjs').then((m) => m.default || m)
+    component: () => import('./about-BqLYSd2l.mjs').then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$8 == null ? void 0 : __nuxt_page_meta$8.name) ?? "cart",
@@ -639,7 +640,7 @@ const _routes = [
     meta: __nuxt_page_meta$8 || {},
     alias: (__nuxt_page_meta$8 == null ? void 0 : __nuxt_page_meta$8.alias) || [],
     redirect: __nuxt_page_meta$8 == null ? void 0 : __nuxt_page_meta$8.redirect,
-    component: () => import('./cart-BmEeXo8B.mjs').then((m) => m.default || m)
+    component: () => import('./cart-DjcJ5pSZ.mjs').then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$7 == null ? void 0 : __nuxt_page_meta$7.name) ?? "docs-components",
@@ -647,7 +648,7 @@ const _routes = [
     meta: __nuxt_page_meta$7 || {},
     alias: (__nuxt_page_meta$7 == null ? void 0 : __nuxt_page_meta$7.alias) || [],
     redirect: __nuxt_page_meta$7 == null ? void 0 : __nuxt_page_meta$7.redirect,
-    component: () => import('./components-BshM-9Iq.mjs').then((m) => m.default || m)
+    component: () => import('./components-CKkECrWW.mjs').then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$6 == null ? void 0 : __nuxt_page_meta$6.name) ?? "index",
@@ -655,7 +656,7 @@ const _routes = [
     meta: __nuxt_page_meta$6 || {},
     alias: (__nuxt_page_meta$6 == null ? void 0 : __nuxt_page_meta$6.alias) || [],
     redirect: __nuxt_page_meta$6 == null ? void 0 : __nuxt_page_meta$6.redirect,
-    component: () => import('./index-aeqMvsX3.mjs').then((m) => m.default || m)
+    component: () => import('./index-DZG3joXr.mjs').then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$5 == null ? void 0 : __nuxt_page_meta$5.name) ?? "login",
@@ -663,7 +664,7 @@ const _routes = [
     meta: __nuxt_page_meta$5 || {},
     alias: (__nuxt_page_meta$5 == null ? void 0 : __nuxt_page_meta$5.alias) || [],
     redirect: __nuxt_page_meta$5 == null ? void 0 : __nuxt_page_meta$5.redirect,
-    component: () => import('./login-CfhKR-3c.mjs').then((m) => m.default || m)
+    component: () => import('./login-GTjKp11T.mjs').then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$4 == null ? void 0 : __nuxt_page_meta$4.name) ?? "post-slug",
@@ -671,7 +672,7 @@ const _routes = [
     meta: __nuxt_page_meta$4 || {},
     alias: (__nuxt_page_meta$4 == null ? void 0 : __nuxt_page_meta$4.alias) || [],
     redirect: __nuxt_page_meta$4 == null ? void 0 : __nuxt_page_meta$4.redirect,
-    component: () => import('./_slug_-BoOMpPLp.mjs').then((m) => m.default || m)
+    component: () => import('./_slug_-CcBLWxiG.mjs').then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$3 == null ? void 0 : __nuxt_page_meta$3.name) ?? "post",
@@ -679,7 +680,7 @@ const _routes = [
     meta: __nuxt_page_meta$3 || {},
     alias: (__nuxt_page_meta$3 == null ? void 0 : __nuxt_page_meta$3.alias) || [],
     redirect: __nuxt_page_meta$3 == null ? void 0 : __nuxt_page_meta$3.redirect,
-    component: () => import('./index-COeIgwlW.mjs').then((m) => m.default || m)
+    component: () => import('./index-jUU5KF9k.mjs').then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.name) ?? "products",
@@ -687,7 +688,7 @@ const _routes = [
     meta: __nuxt_page_meta$2 || {},
     alias: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.alias) || [],
     redirect: __nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.redirect,
-    component: () => import('./products-BOopilOO.mjs').then((m) => m.default || m)
+    component: () => import('./products-YDl2NRzh.mjs').then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.name) ?? "setting",
@@ -695,7 +696,7 @@ const _routes = [
     meta: __nuxt_page_meta$1 || {},
     alias: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.alias) || [],
     redirect: __nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.redirect,
-    component: () => import('./setting-DU0YH3Fl.mjs').then((m) => m.default || m)
+    component: () => import('./setting-B98Jvd4y.mjs').then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.name) ?? "travel",
@@ -703,7 +704,7 @@ const _routes = [
     meta: __nuxt_page_meta || {},
     alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
     redirect: __nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect,
-    component: () => import('./travel-Cx7aCnt5.mjs').then((m) => m.default || m)
+    component: () => import('./travel-esvtEkAD.mjs').then((m) => m.default || m)
   }
 ];
 const _wrapIf = (component, props, slots) => {
@@ -806,295 +807,6 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
   }
   {
     return result;
-  }
-});
-const cfg0 = defineAppConfig({
-  awesome: {
-    name: "Imported Products",
-    description: "Headless E-commerce website.",
-    project: {
-      links: {
-        github: "https://github.com/shubhamslngh/importedproducts.git"
-      }
-    },
-    layout: {
-      page: {
-        navbar: {
-          menus: [
-            { type: "link", title: "Cases", to: { name: "products" } },
-            { type: "link", title: "Post", to: { name: "post" } },
-            { type: "link", title: "Travel", to: { name: "travel" } },
-            { type: "link", title: "Login", to: { name: "login" } },
-            {
-              type: "dropdown",
-              title: "Cart",
-              children: [
-                {
-                  type: "link",
-                  title: "My Cart",
-                  to: { name: "cart" }
-                }
-              ]
-            },
-            { type: "button", title: "Setting", to: { name: "setting" } }
-          ]
-        }
-      },
-      footer: {
-        year: (/* @__PURE__ */ new Date()).getFullYear()
-      },
-      welcome: {
-        title: "Nuxt&nbsp;3 Awesome Starter",
-        disableInfoReplaceIndexInWelcomePage: true
-      }
-    },
-    author: {
-      name: "shubhamslngh",
-      links: {
-        github: "https://github.com/shubhamslngh/importedproducts.git",
-        website: "www.importedproducts.in"
-      }
-    }
-  }
-});
-const cfg1 = defineAppConfig({
-  awesome: {
-    name: "Nuxt 3 Awesome Starter",
-    description: "a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.",
-    project: {
-      links: {
-        github: "https://github.com/shubhamslngh/importedproducts.git"
-      }
-    },
-    layout: {
-      page: {
-        navbar: {
-          menus: []
-        }
-      },
-      footer: {
-        year: (/* @__PURE__ */ new Date()).getFullYear()
-      },
-      welcome: {
-        title: "ImportedProducts",
-        disableInfoReplaceIndexInWelcomePage: true,
-        primaryActionButton: {
-          title: "Nuxt 3",
-          to: "https://nuxt.com/"
-        },
-        secondaryActionButton: {
-          title: "Github",
-          to: "https://github.com/shubhamslngh/importedproducts.git"
-        }
-      }
-    },
-    author: {
-      name: "shubhamslngh",
-      links: {
-        github: "https://github.com/shubhamslngh/importedproducts.git",
-        website: "www.importedproducts.in"
-      }
-    },
-    disableInfoReplaceIndexInWelcomePage: false
-  },
-  nuxtIcon: {
-    aliases: {},
-    class: "",
-    size: "1em"
-  }
-});
-const inlineConfig = {
-  "nuxt": {
-    "buildId": "dev"
-  }
-};
-const __appConfig = /* @__PURE__ */ defuFn(cfg0, cfg1, inlineConfig);
-function useAppConfig() {
-  const nuxtApp = /* @__PURE__ */ useNuxtApp();
-  if (!nuxtApp._appConfig) {
-    nuxtApp._appConfig = klona(__appConfig);
-  }
-  return nuxtApp._appConfig;
-}
-const manifest_45route_45rule = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
-  {
-    return;
-  }
-});
-const globalMiddleware = [
-  validate,
-  manifest_45route_45rule
-];
-const namedMiddleware = {
-  authroute: () => import('./authroute-IVl1_s0k.mjs')
-};
-const plugin$1 = /* @__PURE__ */ defineNuxtPlugin({
-  name: "nuxt:router",
-  enforce: "pre",
-  async setup(nuxtApp) {
-    var _a, _b, _c;
-    let __temp, __restore;
-    let routerBase = (/* @__PURE__ */ useRuntimeConfig()).app.baseURL;
-    if (routerOptions.hashMode && !routerBase.includes("#")) {
-      routerBase += "#";
-    }
-    const history = ((_a = routerOptions.history) == null ? void 0 : _a.call(routerOptions, routerBase)) ?? createMemoryHistory(routerBase);
-    const routes = ((_b = routerOptions.routes) == null ? void 0 : _b.call(routerOptions, _routes)) ?? _routes;
-    let startPosition;
-    const initialURL = nuxtApp.ssrContext.url;
-    const router = createRouter({
-      ...routerOptions,
-      scrollBehavior: (to, from, savedPosition) => {
-        if (from === START_LOCATION) {
-          startPosition = savedPosition;
-          return;
-        }
-        if (routerOptions.scrollBehavior) {
-          router.options.scrollBehavior = routerOptions.scrollBehavior;
-          if ("scrollRestoration" in (void 0).history) {
-            const unsub = router.beforeEach(() => {
-              unsub();
-              (void 0).history.scrollRestoration = "manual";
-            });
-          }
-          return routerOptions.scrollBehavior(to, START_LOCATION, startPosition || savedPosition);
-        }
-      },
-      history,
-      routes
-    });
-    nuxtApp.vueApp.use(router);
-    const previousRoute = shallowRef(router.currentRoute.value);
-    router.afterEach((_to, from) => {
-      previousRoute.value = from;
-    });
-    Object.defineProperty(nuxtApp.vueApp.config.globalProperties, "previousRoute", {
-      get: () => previousRoute.value
-    });
-    const _route = shallowRef(router.resolve(initialURL));
-    const syncCurrentRoute = () => {
-      _route.value = router.currentRoute.value;
-    };
-    nuxtApp.hook("page:finish", syncCurrentRoute);
-    router.afterEach((to, from) => {
-      var _a2, _b2, _c2, _d;
-      if (((_b2 = (_a2 = to.matched[0]) == null ? void 0 : _a2.components) == null ? void 0 : _b2.default) === ((_d = (_c2 = from.matched[0]) == null ? void 0 : _c2.components) == null ? void 0 : _d.default)) {
-        syncCurrentRoute();
-      }
-    });
-    const route = {};
-    for (const key in _route.value) {
-      Object.defineProperty(route, key, {
-        get: () => _route.value[key]
-      });
-    }
-    nuxtApp._route = shallowReactive(route);
-    nuxtApp._middleware = nuxtApp._middleware || {
-      global: [],
-      named: {}
-    };
-    useError();
-    try {
-      if (true) {
-        ;
-        [__temp, __restore] = executeAsync(() => router.push(initialURL)), await __temp, __restore();
-        ;
-      }
-      ;
-      [__temp, __restore] = executeAsync(() => router.isReady()), await __temp, __restore();
-      ;
-    } catch (error2) {
-      [__temp, __restore] = executeAsync(() => nuxtApp.runWithContext(() => showError(error2))), await __temp, __restore();
-    }
-    if ((_c = nuxtApp.ssrContext) == null ? void 0 : _c.islandContext) {
-      return { provide: { router } };
-    }
-    const initialLayout = nuxtApp.payload.state._layout;
-    router.beforeEach(async (to, from) => {
-      var _a2, _b2;
-      await nuxtApp.callHook("page:loading:start");
-      to.meta = reactive(to.meta);
-      if (nuxtApp.isHydrating && initialLayout && !isReadonly(to.meta.layout)) {
-        to.meta.layout = initialLayout;
-      }
-      nuxtApp._processingMiddleware = true;
-      if (!((_a2 = nuxtApp.ssrContext) == null ? void 0 : _a2.islandContext)) {
-        const middlewareEntries = /* @__PURE__ */ new Set([...globalMiddleware, ...nuxtApp._middleware.global]);
-        for (const component of to.matched) {
-          const componentMiddleware = component.meta.middleware;
-          if (!componentMiddleware) {
-            continue;
-          }
-          for (const entry2 of toArray(componentMiddleware)) {
-            middlewareEntries.add(entry2);
-          }
-        }
-        for (const entry2 of middlewareEntries) {
-          const middleware = typeof entry2 === "string" ? nuxtApp._middleware.named[entry2] || await ((_b2 = namedMiddleware[entry2]) == null ? void 0 : _b2.call(namedMiddleware).then((r) => r.default || r)) : entry2;
-          if (!middleware) {
-            throw new Error(`Unknown route middleware: '${entry2}'.`);
-          }
-          const result = await nuxtApp.runWithContext(() => middleware(to, from));
-          {
-            if (result === false || result instanceof Error) {
-              const error2 = result || createError$1({
-                statusCode: 404,
-                statusMessage: `Page Not Found: ${initialURL}`
-              });
-              await nuxtApp.runWithContext(() => showError(error2));
-              return false;
-            }
-          }
-          if (result === true) {
-            continue;
-          }
-          if (result || result === false) {
-            return result;
-          }
-        }
-      }
-    });
-    router.onError(async () => {
-      delete nuxtApp._processingMiddleware;
-      await nuxtApp.callHook("page:loading:end");
-    });
-    router.afterEach(async (to, _from, failure) => {
-      delete nuxtApp._processingMiddleware;
-      if (failure) {
-        await nuxtApp.callHook("page:loading:end");
-      }
-      if ((failure == null ? void 0 : failure.type) === 4) {
-        return;
-      }
-      if (to.matched.length === 0) {
-        await nuxtApp.runWithContext(() => showError(createError$1({
-          statusCode: 404,
-          fatal: false,
-          statusMessage: `Page not found: ${to.fullPath}`,
-          data: {
-            path: to.fullPath
-          }
-        })));
-      } else if (to.redirectedFrom && to.fullPath !== initialURL) {
-        await nuxtApp.runWithContext(() => navigateTo(to.fullPath || "/"));
-      }
-    });
-    nuxtApp.hooks.hookOnce("app:created", async () => {
-      try {
-        const to = router.resolve(initialURL);
-        if ("name" in to) {
-          to.name = void 0;
-        }
-        await router.replace({
-          ...to,
-          force: true
-        });
-        router.options.scrollBehavior = routerOptions.scrollBehavior;
-      } catch (error2) {
-        await nuxtApp.runWithContext(() => showError(error2));
-      }
-    });
-    return { provide: { router } };
   }
 });
 function set(target, key, val) {
@@ -1608,6 +1320,340 @@ This will fail in production.`);
   useStore.$id = id;
   return useStore;
 }
+const useAuthStore = defineStore("auth", {
+  state: () => ({
+    user: null,
+    token: null,
+    refreshToken: null
+  }),
+  actions: {
+    setUser(user) {
+      this.user = user;
+      sessionStorage.setItem("username", user);
+    },
+    setToken(token) {
+      this.token = token;
+      sessionStorage.setItem("authToken", token);
+    },
+    setRToken(refreshToken) {
+      this.refreshToken = refreshToken;
+      sessionStorage.setItem("refreshToken", refreshToken);
+    },
+    initialize() {
+      const storedUser = sessionStorage.getItem("username");
+      const storedToken = sessionStorage.getItem("authToken");
+      const storedRefreshToken = sessionStorage.getItem("refreshToken");
+      this.user = storedUser;
+      this.token = storedToken;
+      this.refreshToken = storedRefreshToken;
+    },
+    logout() {
+      this.user = null;
+      this.token = null;
+      this.refreshToken = null;
+      sessionStorage.removeItem("username");
+      sessionStorage.removeItem("authToken");
+      sessionStorage.removeItem("refreshToken");
+    }
+  },
+  getters: {
+    isAuthenticated: (state) => !!state.user
+  }
+});
+const authroute_45global = /* @__PURE__ */ defineNuxtRouteMiddleware((to, from) => {
+  const authStore = useAuthStore();
+  if (authStore.isAuthenticated && to.path === "/login") {
+    return navigateTo("/");
+  }
+});
+const cfg0 = defineAppConfig({
+  awesome: {
+    name: "Imported Products",
+    description: "Headless E-commerce website.",
+    project: {
+      links: {
+        github: "https://github.com/shubhamslngh/importedproducts.git"
+      }
+    },
+    layout: {
+      page: {
+        navbar: {
+          menus: [
+            { type: "link", title: "Products", to: { name: "products" } },
+            { type: "link", title: "Subscriptions", to: { name: "post" } },
+            // { type: 'link', title: 'Travel', to: { name: 'travel' } },
+            { type: "link", title: "Login", to: { name: "login" } },
+            {
+              type: "dropdown",
+              title: "Cart",
+              children: [
+                {
+                  type: "link",
+                  title: "My Cart",
+                  to: { name: "cart" }
+                }
+              ]
+            },
+            { type: "button", title: "Setting", to: { name: "setting" } }
+          ]
+        }
+      },
+      footer: {
+        year: (/* @__PURE__ */ new Date()).getFullYear()
+      },
+      welcome: {
+        title: "Nuxt&nbsp;3 Awesome Starter",
+        disableInfoReplaceIndexInWelcomePage: true
+      }
+    },
+    author: {
+      name: "shubhamslngh",
+      links: {
+        github: "https://github.com/shubhamslngh/importedproducts.git",
+        website: "www.importedproducts.in"
+      }
+    }
+  }
+});
+const cfg1 = defineAppConfig({
+  awesome: {
+    name: "Nuxt 3 Awesome Starter",
+    description: "a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.",
+    project: {
+      links: {
+        github: "https://github.com/shubhamslngh/importedproducts.git"
+      }
+    },
+    layout: {
+      page: {
+        navbar: {
+          menus: []
+        }
+      },
+      footer: {
+        year: (/* @__PURE__ */ new Date()).getFullYear()
+      },
+      welcome: {
+        title: "ImportedProducts",
+        disableInfoReplaceIndexInWelcomePage: true,
+        primaryActionButton: {
+          title: "Nuxt 3",
+          to: "https://nuxt.com/"
+        },
+        secondaryActionButton: {
+          title: "Github",
+          to: "https://github.com/shubhamslngh/importedproducts.git"
+        }
+      }
+    },
+    author: {
+      name: "shubhamslngh",
+      links: {
+        github: "https://github.com/shubhamslngh/importedproducts.git",
+        website: "www.importedproducts.in"
+      }
+    },
+    disableInfoReplaceIndexInWelcomePage: false
+  },
+  nuxtIcon: {
+    aliases: {},
+    class: "",
+    size: "1em"
+  }
+});
+const inlineConfig = {
+  "nuxt": {
+    "buildId": "bfb152fd-1de4-451d-90cd-64abfffbf8b2"
+  }
+};
+const __appConfig = /* @__PURE__ */ defuFn(cfg0, cfg1, inlineConfig);
+function useAppConfig() {
+  const nuxtApp = /* @__PURE__ */ useNuxtApp();
+  if (!nuxtApp._appConfig) {
+    nuxtApp._appConfig = klona(__appConfig);
+  }
+  return nuxtApp._appConfig;
+}
+const manifest_45route_45rule = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
+  {
+    return;
+  }
+});
+const globalMiddleware = [
+  validate,
+  authroute_45global,
+  manifest_45route_45rule
+];
+const namedMiddleware = {};
+const plugin$1 = /* @__PURE__ */ defineNuxtPlugin({
+  name: "nuxt:router",
+  enforce: "pre",
+  async setup(nuxtApp) {
+    var _a, _b, _c;
+    let __temp, __restore;
+    let routerBase = (/* @__PURE__ */ useRuntimeConfig()).app.baseURL;
+    if (routerOptions.hashMode && !routerBase.includes("#")) {
+      routerBase += "#";
+    }
+    const history = ((_a = routerOptions.history) == null ? void 0 : _a.call(routerOptions, routerBase)) ?? createMemoryHistory(routerBase);
+    const routes = ((_b = routerOptions.routes) == null ? void 0 : _b.call(routerOptions, _routes)) ?? _routes;
+    let startPosition;
+    const initialURL = nuxtApp.ssrContext.url;
+    const router = createRouter({
+      ...routerOptions,
+      scrollBehavior: (to, from, savedPosition) => {
+        if (from === START_LOCATION) {
+          startPosition = savedPosition;
+          return;
+        }
+        if (routerOptions.scrollBehavior) {
+          router.options.scrollBehavior = routerOptions.scrollBehavior;
+          if ("scrollRestoration" in (void 0).history) {
+            const unsub = router.beforeEach(() => {
+              unsub();
+              (void 0).history.scrollRestoration = "manual";
+            });
+          }
+          return routerOptions.scrollBehavior(to, START_LOCATION, startPosition || savedPosition);
+        }
+      },
+      history,
+      routes
+    });
+    nuxtApp.vueApp.use(router);
+    const previousRoute = shallowRef(router.currentRoute.value);
+    router.afterEach((_to, from) => {
+      previousRoute.value = from;
+    });
+    Object.defineProperty(nuxtApp.vueApp.config.globalProperties, "previousRoute", {
+      get: () => previousRoute.value
+    });
+    const _route = shallowRef(router.resolve(initialURL));
+    const syncCurrentRoute = () => {
+      _route.value = router.currentRoute.value;
+    };
+    nuxtApp.hook("page:finish", syncCurrentRoute);
+    router.afterEach((to, from) => {
+      var _a2, _b2, _c2, _d;
+      if (((_b2 = (_a2 = to.matched[0]) == null ? void 0 : _a2.components) == null ? void 0 : _b2.default) === ((_d = (_c2 = from.matched[0]) == null ? void 0 : _c2.components) == null ? void 0 : _d.default)) {
+        syncCurrentRoute();
+      }
+    });
+    const route = {};
+    for (const key in _route.value) {
+      Object.defineProperty(route, key, {
+        get: () => _route.value[key]
+      });
+    }
+    nuxtApp._route = shallowReactive(route);
+    nuxtApp._middleware = nuxtApp._middleware || {
+      global: [],
+      named: {}
+    };
+    useError();
+    try {
+      if (true) {
+        ;
+        [__temp, __restore] = executeAsync(() => router.push(initialURL)), await __temp, __restore();
+        ;
+      }
+      ;
+      [__temp, __restore] = executeAsync(() => router.isReady()), await __temp, __restore();
+      ;
+    } catch (error2) {
+      [__temp, __restore] = executeAsync(() => nuxtApp.runWithContext(() => showError(error2))), await __temp, __restore();
+    }
+    if ((_c = nuxtApp.ssrContext) == null ? void 0 : _c.islandContext) {
+      return { provide: { router } };
+    }
+    const initialLayout = nuxtApp.payload.state._layout;
+    router.beforeEach(async (to, from) => {
+      var _a2, _b2;
+      await nuxtApp.callHook("page:loading:start");
+      to.meta = reactive(to.meta);
+      if (nuxtApp.isHydrating && initialLayout && !isReadonly(to.meta.layout)) {
+        to.meta.layout = initialLayout;
+      }
+      nuxtApp._processingMiddleware = true;
+      if (!((_a2 = nuxtApp.ssrContext) == null ? void 0 : _a2.islandContext)) {
+        const middlewareEntries = /* @__PURE__ */ new Set([...globalMiddleware, ...nuxtApp._middleware.global]);
+        for (const component of to.matched) {
+          const componentMiddleware = component.meta.middleware;
+          if (!componentMiddleware) {
+            continue;
+          }
+          for (const entry2 of toArray(componentMiddleware)) {
+            middlewareEntries.add(entry2);
+          }
+        }
+        for (const entry2 of middlewareEntries) {
+          const middleware = typeof entry2 === "string" ? nuxtApp._middleware.named[entry2] || await ((_b2 = namedMiddleware[entry2]) == null ? void 0 : _b2.call(namedMiddleware).then((r) => r.default || r)) : entry2;
+          if (!middleware) {
+            throw new Error(`Unknown route middleware: '${entry2}'.`);
+          }
+          const result = await nuxtApp.runWithContext(() => middleware(to, from));
+          {
+            if (result === false || result instanceof Error) {
+              const error2 = result || createError$1({
+                statusCode: 404,
+                statusMessage: `Page Not Found: ${initialURL}`
+              });
+              await nuxtApp.runWithContext(() => showError(error2));
+              return false;
+            }
+          }
+          if (result === true) {
+            continue;
+          }
+          if (result || result === false) {
+            return result;
+          }
+        }
+      }
+    });
+    router.onError(async () => {
+      delete nuxtApp._processingMiddleware;
+      await nuxtApp.callHook("page:loading:end");
+    });
+    router.afterEach(async (to, _from, failure) => {
+      delete nuxtApp._processingMiddleware;
+      if (failure) {
+        await nuxtApp.callHook("page:loading:end");
+      }
+      if ((failure == null ? void 0 : failure.type) === 4) {
+        return;
+      }
+      if (to.matched.length === 0) {
+        await nuxtApp.runWithContext(() => showError(createError$1({
+          statusCode: 404,
+          fatal: false,
+          statusMessage: `Page not found: ${to.fullPath}`,
+          data: {
+            path: to.fullPath
+          }
+        })));
+      } else if (to.redirectedFrom && to.fullPath !== initialURL) {
+        await nuxtApp.runWithContext(() => navigateTo(to.fullPath || "/"));
+      }
+    });
+    nuxtApp.hooks.hookOnce("app:created", async () => {
+      try {
+        const to = router.resolve(initialURL);
+        if ("name" in to) {
+          to.name = void 0;
+        }
+        await router.replace({
+          ...to,
+          force: true
+        });
+        router.options.scrollBehavior = routerOptions.scrollBehavior;
+      } catch (error2) {
+        await nuxtApp.runWithContext(() => showError(error2));
+      }
+    });
+    return { provide: { router } };
+  }
+});
 const isDefer = (dedupe) => dedupe === "defer" || dedupe === false;
 function useAsyncData(...args) {
   var _a, _b;
@@ -1884,14 +1930,14 @@ const revive_payload_server_ICvz7TjQsJ = /* @__PURE__ */ defineNuxtPlugin({
   }
 });
 const LazyLayoutPageContent = defineAsyncComponent(() => import('./Content-C2f3kgVA.mjs').then((r) => r.default));
-const LazyLayoutPageFooter = defineAsyncComponent(() => import('./Footer-slvujmy-.mjs').then((r) => r.default));
+const LazyLayoutPageFooter = defineAsyncComponent(() => import('./Footer-DWjy7nXW.mjs').then((r) => r.default));
 const LazyLayoutPageHeader = defineAsyncComponent(() => import('./Header-B6zZF8Qh.mjs').then((r) => r.default));
-const LazyLayoutPageNavbar = defineAsyncComponent(() => import('./Navbar-Blf7Nm-a.mjs').then((r) => r.default));
-const LazyLayoutPageNavbarDropdownThemeSwitcher = defineAsyncComponent(() => import('./ThemeSwitcher-Brs8ppmy.mjs').then((r) => r.default));
-const LazyLayoutPageNavbarMenuItem = defineAsyncComponent(() => import('./Item-WKVZeniT.mjs').then(function(n) {
+const LazyLayoutPageNavbar = defineAsyncComponent(() => import('./Navbar-M2m5uUZb.mjs').then((r) => r.default));
+const LazyLayoutPageNavbarDropdownThemeSwitcher = defineAsyncComponent(() => import('./ThemeSwitcher-Cd7ambS2.mjs').then((r) => r.default));
+const LazyLayoutPageNavbarMenuItem = defineAsyncComponent(() => import('./Item-Dk5fGCz8.mjs').then(function(n) {
   return n.I;
 }).then((r) => r.default));
-const LazyLayoutPageNavbarMenuWrapper = defineAsyncComponent(() => import('./Wrapper-BxSDpiCs.mjs').then((r) => r.default));
+const LazyLayoutPageNavbarMenuWrapper = defineAsyncComponent(() => import('./Wrapper-s_Ct6b05.mjs').then((r) => r.default));
 const LazyLayoutPageSectionTitle = defineAsyncComponent(() => import('./Title-yS4Jz3G_.mjs').then((r) => r.default));
 const LazyLayoutPageSection = defineAsyncComponent(() => import('./index-CHg0DFwX.mjs').then((r) => r.default));
 const LazyLayoutPageTitle = defineAsyncComponent(() => import('./Title-BIa0rC2o.mjs').then((r) => r.default));
@@ -1903,42 +1949,44 @@ const LazyAwesomeActionSheetHeaderTitle = defineAsyncComponent(() => import('./H
 const LazyAwesomeActionSheetItem = defineAsyncComponent(() => import('./Item-CkBYsyYn.mjs').then((r) => r.default));
 const LazyAwesomeActionSheetItemButton = defineAsyncComponent(() => import('./ItemButton-Dw-r8Rgd.mjs').then((r) => r.default));
 const LazyAwesomeActionSheet = defineAsyncComponent(() => import('./index-BzXcNATq.mjs').then((r) => r.default));
-const LazyAwesomeAddtoCart = defineAsyncComponent(() => import('./AddtoCart-DnXKS_Kx.mjs').then((r) => r.default));
-const LazyAwesomeAlertBanner = defineAsyncComponent(() => import('./AlertBanner-DphZG_Yx.mjs').then((r) => r.default));
-const LazyAwesomeButton = defineAsyncComponent(() => import('./index-zPKawY5Q.mjs').then((r) => r.default));
+const LazyAwesomeAddtoCart = defineAsyncComponent(() => import('./AddtoCart-CK0EL1Z1.mjs').then((r) => r.default));
+const LazyAwesomeAlertBanner = defineAsyncComponent(() => import('./AlertBanner-CmWBQoWc.mjs').then((r) => r.default));
+const LazyAwesomeButton = defineAsyncComponent(() => import('./index-Dn3SGljY.mjs').then((r) => r.default));
 const LazyAwesomeCardContent = defineAsyncComponent(() => import('./Content-GxJTcNsd.mjs').then((r) => r.default));
 const LazyAwesomeCardFooter = defineAsyncComponent(() => import('./Footer-DQhInYNk.mjs').then((r) => r.default));
 const LazyAwesomeCardTitle = defineAsyncComponent(() => import('./Title-NbdIlZdg.mjs').then((r) => r.default));
 const LazyAwesomeCard = defineAsyncComponent(() => import('./index-BNuFT_1Q.mjs').then((r) => r.default));
-const LazyAwesomeCardstest = defineAsyncComponent(() => import('./Cardstest-DZQmDl_-.mjs').then((r) => r.default));
-const LazyAwesomeCart = defineAsyncComponent(() => import('./Cart-DQlfRRkG.mjs').then((r) => r.default));
-const LazyAwesomeCases = defineAsyncComponent(() => import('./Cases-Czq1e_54.mjs').then((r) => r.default));
-const LazyAwesomeColors = defineAsyncComponent(() => import('./Colors-W7y87PnZ.mjs').then((r) => r.default));
-const LazyAwesomeContentDoc = defineAsyncComponent(() => import('./Doc-Bv88CaEY.mjs').then((r) => r.default));
-const LazyAwesomeContentRenderer = defineAsyncComponent(() => import('./Renderer-Cq8zZaQs.mjs').then((r) => r.default));
-const LazyAwesomeError = defineAsyncComponent(() => import('./Error-BiJE1jVC.mjs').then((r) => r.default));
+const LazyAwesomeCardstest = defineAsyncComponent(() => import('./Cardstest-gZ8Ro0e8.mjs').then((r) => r.default));
+const LazyAwesomeCart = defineAsyncComponent(() => import('./Cart-8tt6vu--.mjs').then((r) => r.default));
+const LazyAwesomeCases = defineAsyncComponent(() => import('./Cases-62H0gYPI.mjs').then((r) => r.default));
+const LazyAwesomeCategories = defineAsyncComponent(() => import('./Categories-MZrsdFE2.mjs').then((r) => r.default));
+const LazyAwesomeColors = defineAsyncComponent(() => import('./Colors-Bg1Sp5Ww.mjs').then((r) => r.default));
+const LazyAwesomeContentDoc = defineAsyncComponent(() => import('./Doc-DTHIaF7h.mjs').then((r) => r.default));
+const LazyAwesomeContentRenderer = defineAsyncComponent(() => import('./Renderer-Bw4yT_Wh.mjs').then((r) => r.default));
+const LazyAwesomeError = defineAsyncComponent(() => import('./Error-CZ1-DXSP.mjs').then((r) => r.default));
 const LazyAwesomeForm = defineAsyncComponent(() => import('./Form-BVPj_Wlj.mjs').then((r) => r.default));
 const LazyAwesomeFormSwitch = defineAsyncComponent(() => import('./Switch-Cqztsofe.mjs').then((r) => r.default));
 const LazyAwesomeFormTextInput = defineAsyncComponent(() => import('./TextInput-C9rNrO2h.mjs').then((r) => r.default));
-const LazyAwesomeIphonecases = defineAsyncComponent(() => import('./Iphonecases-C8BW6pWF.mjs').then((r) => r.default));
-const LazyAwesomeLink = defineAsyncComponent(() => import('./index-wZZaSsjS.mjs').then((r) => r.default));
-const LazyAwesomeLogin = defineAsyncComponent(() => import('./Login-BZjL4jjC.mjs').then((r) => r.default));
-const LazyAwesomeLogout = defineAsyncComponent(() => import('./Logout-CH_lfxIv.mjs').then((r) => r.default));
-const LazyAwesomeParallax = defineAsyncComponent(() => import('./Parallax-DQHnQNeh.mjs').then((r) => r.default));
+const LazyAwesomeIphonecases = defineAsyncComponent(() => import('./Iphonecases-tycm0TXW.mjs').then((r) => r.default));
+const LazyAwesomeLink = defineAsyncComponent(() => import('./index-CIhkV-S9.mjs').then((r) => r.default));
+const LazyAwesomeLogin = defineAsyncComponent(() => import('./Login-IbKFrzm-.mjs').then((r) => r.default));
+const LazyAwesomeLogout = defineAsyncComponent(() => import('./Logout-dFPkXJmJ.mjs').then((r) => r.default));
+const LazyAwesomeParallax = defineAsyncComponent(() => import('./Parallax-CUarWRsb.mjs').then((r) => r.default));
 const LazyAwesomeProducts = defineAsyncComponent(() => import('./Products-C-q2irCC.mjs').then((r) => r.default));
-const LazyAwesomeSignup = defineAsyncComponent(() => import('./Signup-BcvFZsbP.mjs').then((r) => r.default));
-const LazyAwesomeSubscription = defineAsyncComponent(() => import('./Subscription-_zSxWhA7.mjs').then((r) => r.default));
+const LazyAwesomeShoes = defineAsyncComponent(() => import('./Shoes-DTRSmNHY.mjs').then((r) => r.default));
+const LazyAwesomeSignup = defineAsyncComponent(() => import('./Signup-f100nxzr.mjs').then((r) => r.default));
+const LazyAwesomeSubscription = defineAsyncComponent(() => import('./Subscription-YoUnmanK.mjs').then((r) => r.default));
 const LazyAwesomeTab = defineAsyncComponent(() => import('./Tab-C666GttA.mjs').then((r) => r.default));
-const LazyAwesomeTabs = defineAsyncComponent(() => import('./Tabs-DYQNldwo.mjs').then((r) => r.default));
-const LazyAwesomeVariations = defineAsyncComponent(() => import('./Variations-DSfc0m7k.mjs').then((r) => r.default));
-const LazyAwesomeWelcome = defineAsyncComponent(() => import('./Welcome-CMP_Faun.mjs').then((r) => r.default));
+const LazyAwesomeTabs = defineAsyncComponent(() => import('./Tabs-B_b6ebG6.mjs').then((r) => r.default));
+const LazyAwesomeVariations = defineAsyncComponent(() => import('./Variations-DyvXHKYo.mjs').then((r) => r.default));
+const LazyAwesomeWelcome = defineAsyncComponent(() => import('./Welcome-yK_QkzMg.mjs').then((r) => r.default));
 const LazyAwesomeLamp = defineAsyncComponent(() => import('./lamp-CRDIzU-b.mjs').then((r) => r.default));
-const LazyContentDoc = defineAsyncComponent(() => import('./ContentDoc-plknTGYu.mjs').then((r) => r.default));
-const LazyContentList = defineAsyncComponent(() => import('./ContentList-DYikT2M4.mjs').then((r) => r.default));
-const LazyContentNavigation = defineAsyncComponent(() => import('./ContentNavigation-BwHyctuz.mjs').then((r) => r.default));
-const LazyContentQuery = defineAsyncComponent(() => import('./ContentQuery-vTYXRXu1.mjs').then((r) => r.default));
-const LazyContentRenderer = defineAsyncComponent(() => import('./ContentRenderer-jZ6fP1wX.mjs').then((r) => r.default));
-const LazyContentRendererMarkdown = defineAsyncComponent(() => import('./ContentRendererMarkdown-CnMaRRHp.mjs').then((r) => r.default));
+const LazyContentDoc = defineAsyncComponent(() => import('./ContentDoc-DyIXBneT.mjs').then((r) => r.default));
+const LazyContentList = defineAsyncComponent(() => import('./ContentList-CNJr_9lZ.mjs').then((r) => r.default));
+const LazyContentNavigation = defineAsyncComponent(() => import('./ContentNavigation-BRiLC1Ik.mjs').then((r) => r.default));
+const LazyContentQuery = defineAsyncComponent(() => import('./ContentQuery-C-3JCyyK.mjs').then((r) => r.default));
+const LazyContentRenderer = defineAsyncComponent(() => import('./ContentRenderer-goSEjwAI.mjs').then((r) => r.default));
+const LazyContentRendererMarkdown = defineAsyncComponent(() => import('./ContentRendererMarkdown-Dk8Zbcyk.mjs').then((r) => r.default));
 const LazyContentSlot = defineAsyncComponent(() => import('./ContentSlot-DMYzPd4f.mjs').then((r) => r.default));
 const LazyDocumentDrivenEmpty = defineAsyncComponent(() => import('./DocumentDrivenEmpty-Cip47SHJ.mjs').then((r) => r.default));
 const LazyDocumentDrivenNotFound = defineAsyncComponent(() => import('./DocumentDrivenNotFound-CkdnlFZR.mjs').then((r) => r.default));
@@ -1946,17 +1994,17 @@ const LazyMarkdown = defineAsyncComponent(() => import('./Markdown-D-d4xgjn.mjs'
 const LazyProseCode = defineAsyncComponent(() => import('./ProseCode-uEOkztpX.mjs').then((r) => r.default));
 const LazyProseCodeInline = defineAsyncComponent(() => import('./ProseCodeInline-CWjUfFrX.mjs').then((r) => r.default));
 const LazyProsePre = defineAsyncComponent(() => import('./ProsePre-B1EInMfT.mjs').then((r) => r.default));
-const LazyProseA = defineAsyncComponent(() => import('./ProseA-TqJLZgaH.mjs').then((r) => r.default));
+const LazyProseA = defineAsyncComponent(() => import('./ProseA-BSoblIL-.mjs').then((r) => r.default));
 const LazyProseBlockquote = defineAsyncComponent(() => import('./ProseBlockquote-DyApPYHA.mjs').then((r) => r.default));
 const LazyProseEm = defineAsyncComponent(() => import('./ProseEm-C_uUhlbs.mjs').then((r) => r.default));
-const LazyProseH1 = defineAsyncComponent(() => import('./ProseH1-BYXd55bt.mjs').then((r) => r.default));
-const LazyProseH2 = defineAsyncComponent(() => import('./ProseH2-C9h6cW7L.mjs').then((r) => r.default));
-const LazyProseH3 = defineAsyncComponent(() => import('./ProseH3-DPbMsjs0.mjs').then((r) => r.default));
-const LazyProseH4 = defineAsyncComponent(() => import('./ProseH4-CZ_jY51J.mjs').then((r) => r.default));
-const LazyProseH5 = defineAsyncComponent(() => import('./ProseH5-BRWaSGEp.mjs').then((r) => r.default));
-const LazyProseH6 = defineAsyncComponent(() => import('./ProseH6-CTMKIiui.mjs').then((r) => r.default));
+const LazyProseH1 = defineAsyncComponent(() => import('./ProseH1-Bk9tzxwf.mjs').then((r) => r.default));
+const LazyProseH2 = defineAsyncComponent(() => import('./ProseH2-Bw-I9BP-.mjs').then((r) => r.default));
+const LazyProseH3 = defineAsyncComponent(() => import('./ProseH3-W-YDcySR.mjs').then((r) => r.default));
+const LazyProseH4 = defineAsyncComponent(() => import('./ProseH4-2N7ft4hR.mjs').then((r) => r.default));
+const LazyProseH5 = defineAsyncComponent(() => import('./ProseH5-CjUyuu3t.mjs').then((r) => r.default));
+const LazyProseH6 = defineAsyncComponent(() => import('./ProseH6-oYF72hUN.mjs').then((r) => r.default));
 const LazyProseHr = defineAsyncComponent(() => import('./ProseHr-oG3pCjd1.mjs').then((r) => r.default));
-const LazyProseImg = defineAsyncComponent(() => import('./ProseImg-ZrazNhok.mjs').then((r) => r.default));
+const LazyProseImg = defineAsyncComponent(() => import('./ProseImg-KQ5juTFg.mjs').then((r) => r.default));
 const LazyProseLi = defineAsyncComponent(() => import('./ProseLi-D-ygEFr_.mjs').then((r) => r.default));
 const LazyProseOl = defineAsyncComponent(() => import('./ProseOl-jswEvAGW.mjs').then((r) => r.default));
 const LazyProseP = defineAsyncComponent(() => import('./ProseP-CTzRno1G.mjs').then((r) => r.default));
@@ -1969,8 +2017,8 @@ const LazyProseTh = defineAsyncComponent(() => import('./ProseTh-kUIwP_pf.mjs').
 const LazyProseThead = defineAsyncComponent(() => import('./ProseThead-CAv2lFJN.mjs').then((r) => r.default));
 const LazyProseTr = defineAsyncComponent(() => import('./ProseTr-CDvXZgj4.mjs').then((r) => r.default));
 const LazyProseUl = defineAsyncComponent(() => import('./ProseUl-CesOWPBt.mjs').then((r) => r.default));
-const LazyIcon = defineAsyncComponent(() => import('./Icon-BLSQvnWJ.mjs').then((r) => r.default));
-const LazyIconCSS = defineAsyncComponent(() => import('./IconCSS-DF35i0eF.mjs').then((r) => r.default));
+const LazyIcon = defineAsyncComponent(() => import('./Icon-D6hvXZ-E.mjs').then((r) => r.default));
+const LazyIconCSS = defineAsyncComponent(() => import('./IconCSS-DtaNiCbT.mjs').then((r) => r.default));
 const lazyGlobalComponents = [
   ["LayoutPageContent", LazyLayoutPageContent],
   ["LayoutPageFooter", LazyLayoutPageFooter],
@@ -2000,6 +2048,7 @@ const lazyGlobalComponents = [
   ["AwesomeCardstest", LazyAwesomeCardstest],
   ["AwesomeCart", LazyAwesomeCart],
   ["AwesomeCases", LazyAwesomeCases],
+  ["AwesomeCategories", LazyAwesomeCategories],
   ["AwesomeColors", LazyAwesomeColors],
   ["AwesomeContentDoc", LazyAwesomeContentDoc],
   ["AwesomeContentRenderer", LazyAwesomeContentRenderer],
@@ -2013,6 +2062,7 @@ const lazyGlobalComponents = [
   ["AwesomeLogout", LazyAwesomeLogout],
   ["AwesomeParallax", LazyAwesomeParallax],
   ["AwesomeProducts", LazyAwesomeProducts],
+  ["AwesomeShoes", LazyAwesomeShoes],
   ["AwesomeSignup", LazyAwesomeSignup],
   ["AwesomeSubscription", LazyAwesomeSubscription],
   ["AwesomeTab", LazyAwesomeTab],
@@ -9600,6 +9650,26 @@ function provideApolloClients(clients) {
     return result;
   };
 }
+function paramToRef(param) {
+  if (isRef(param)) {
+    return param;
+  } else if (typeof param === "function") {
+    return computed(param);
+  } else {
+    return ref(param);
+  }
+}
+function paramToReactive(param) {
+  if (isRef(param)) {
+    return param;
+  } else if (typeof param === "function") {
+    return computed(param);
+  } else if (param) {
+    return reactive(param);
+  } else {
+    return param;
+  }
+}
 function useEventHook() {
   const fns = [];
   function on(fn) {
@@ -9646,6 +9716,335 @@ function toApolloError(error) {
     return error;
   }
   return new ApolloError({ networkError: error, errorMessage: error.message });
+}
+function resultErrorsToApolloError(errors) {
+  return new ApolloError({
+    graphQLErrors: errors,
+    errorMessage: `GraphQL response contains errors: ${errors.map((e) => e.message).join(" | ")}`
+  });
+}
+function useQuery(document, variables, options) {
+  return useQueryImpl(document, variables, options);
+}
+function useQueryImpl(document, variables, options = {}, lazy = false) {
+  var _a;
+  const vm = getCurrentInstance();
+  const currentOptions = ref();
+  const documentRef = paramToRef(document);
+  const variablesRef = paramToRef(variables);
+  const optionsRef = paramToReactive(options);
+  const result = shallowRef();
+  const resultEvent = useEventHook();
+  const error = shallowRef(null);
+  const errorEvent = useEventHook();
+  const loading = ref(false);
+  const networkStatus = ref();
+  let firstResolve;
+  let firstResolveTriggered = false;
+  let firstReject;
+  let firstRejectError;
+  const tryFirstResolve = () => {
+    firstResolveTriggered = true;
+    if (firstResolve)
+      firstResolve();
+  };
+  const tryFirstReject = (apolloError) => {
+    firstRejectError = apolloError;
+    if (firstReject)
+      firstReject(apolloError);
+  };
+  const resetFirstResolveReject = () => {
+    firstResolve = void 0;
+    firstReject = void 0;
+    firstResolveTriggered = false;
+    firstRejectError = void 0;
+  };
+  vm && ((_a = onServerPrefetch) == null ? void 0 : _a(() => {
+    var _a2;
+    if (!isEnabled.value || ((_a2 = currentOptions.value) == null ? void 0 : _a2.prefetch) === false)
+      return;
+    return new Promise((resolve, reject) => {
+      firstResolve = () => {
+        resetFirstResolveReject();
+        resolve();
+      };
+      firstReject = (apolloError) => {
+        resetFirstResolveReject();
+        reject(apolloError);
+      };
+      if (firstResolveTriggered) {
+        firstResolve();
+      } else if (firstRejectError) {
+        firstReject(firstRejectError);
+      }
+    }).finally(stop);
+  }));
+  const { resolveClient } = useApolloClient();
+  function getClient() {
+    var _a2;
+    return resolveClient((_a2 = currentOptions.value) == null ? void 0 : _a2.clientId);
+  }
+  const query = shallowRef();
+  let observer;
+  let started = false;
+  let ignoreNextResult = false;
+  function start() {
+    var _a2, _b;
+    if (started || !isEnabled.value || ((_a2 = currentOptions.value) == null ? void 0 : _a2.prefetch) === false || !currentDocument) {
+      tryFirstResolve();
+      return;
+    }
+    {
+      applyDocument(documentRef.value);
+      applyVariables(variablesRef.value);
+      applyOptions(unref(optionsRef));
+    }
+    started = true;
+    error.value = null;
+    loading.value = true;
+    const client = getClient();
+    query.value = client.watchQuery({
+      query: currentDocument,
+      variables: currentVariables != null ? currentVariables : {},
+      ...currentOptions.value,
+      ...((_b = currentOptions.value) == null ? void 0 : _b.fetchPolicy) !== "no-cache" ? {
+        fetchPolicy: "network-only"
+      } : {}
+    });
+    startQuerySubscription();
+  }
+  function startQuerySubscription() {
+    if (observer && !observer.closed)
+      return;
+    if (!query.value)
+      return;
+    ignoreNextResult = false;
+    observer = query.value.subscribe({
+      next: onNextResult,
+      error: onError2
+    });
+  }
+  function getErrorPolicy() {
+    var _a2, _b, _c, _d;
+    const client = resolveClient((_a2 = currentOptions.value) == null ? void 0 : _a2.clientId);
+    return ((_b = currentOptions.value) == null ? void 0 : _b.errorPolicy) || ((_d = (_c = client.defaultOptions) == null ? void 0 : _c.watchQuery) == null ? void 0 : _d.errorPolicy);
+  }
+  function onNextResult(queryResult) {
+    var _a2;
+    if (ignoreNextResult) {
+      ignoreNextResult = false;
+      return;
+    }
+    error.value = null;
+    processNextResult(queryResult);
+    const errorPolicy = getErrorPolicy();
+    if (errorPolicy && errorPolicy === "all" && !queryResult.error && ((_a2 = queryResult.errors) == null ? void 0 : _a2.length)) {
+      processError(resultErrorsToApolloError(queryResult.errors));
+    }
+    tryFirstResolve();
+  }
+  function processNextResult(queryResult) {
+    result.value = queryResult.data && Object.keys(queryResult.data).length === 0 ? void 0 : queryResult.data;
+    loading.value = queryResult.loading;
+    networkStatus.value = queryResult.networkStatus;
+    nextTick(() => {
+      resultEvent.trigger(queryResult, {
+        client: getClient()
+      });
+    });
+  }
+  function onError2(queryError) {
+    if (ignoreNextResult) {
+      ignoreNextResult = false;
+      return;
+    }
+    const apolloError = toApolloError(queryError);
+    const errorPolicy = getErrorPolicy();
+    if (errorPolicy && errorPolicy !== "none") {
+      processNextResult(query.value.getCurrentResult());
+    }
+    processError(apolloError);
+    tryFirstReject(apolloError);
+    resubscribeToQuery();
+  }
+  function processError(apolloError) {
+    error.value = apolloError;
+    loading.value = false;
+    networkStatus.value = 8;
+    nextTick(() => {
+      errorEvent.trigger(apolloError, {
+        client: getClient()
+      });
+    });
+  }
+  function resubscribeToQuery() {
+    if (!query.value)
+      return;
+    const lastError = query.value.getLastError();
+    const lastResult = query.value.getLastResult();
+    query.value.resetLastResults();
+    startQuerySubscription();
+    Object.assign(query.value, { lastError, lastResult });
+  }
+  let onStopHandlers = [];
+  function stop() {
+    tryFirstResolve();
+    if (!started)
+      return;
+    started = false;
+    loading.value = false;
+    onStopHandlers.forEach((handler) => handler());
+    onStopHandlers = [];
+    if (query.value) {
+      query.value.stopPolling();
+      query.value = null;
+    }
+    if (observer) {
+      observer.unsubscribe();
+      observer = void 0;
+    }
+  }
+  let restarting = false;
+  function baseRestart() {
+    if (!started || restarting)
+      return;
+    restarting = true;
+    nextTick(() => {
+      if (started) {
+        stop();
+        start();
+      }
+      restarting = false;
+    });
+  }
+  let debouncedRestart;
+  let isRestartDebounceSetup = false;
+  function updateRestartFn() {
+    var _a2, _b;
+    if (!currentOptions.value) {
+      debouncedRestart = baseRestart;
+    } else {
+      if ((_a2 = currentOptions.value) == null ? void 0 : _a2.throttle) {
+        debouncedRestart = throttle(currentOptions.value.throttle, baseRestart);
+      } else if ((_b = currentOptions.value) == null ? void 0 : _b.debounce) {
+        debouncedRestart = debounce(currentOptions.value.debounce, baseRestart);
+      } else {
+        debouncedRestart = baseRestart;
+      }
+      isRestartDebounceSetup = true;
+    }
+  }
+  function restart() {
+    if (!started || restarting)
+      return;
+    if (!isRestartDebounceSetup)
+      updateRestartFn();
+    debouncedRestart();
+  }
+  let currentDocument = documentRef.value;
+  const forceDisabled = ref(lazy);
+  const enabledOption = computed(() => !currentOptions.value || currentOptions.value.enabled == null || currentOptions.value.enabled);
+  const isEnabled = computed(() => enabledOption.value && !forceDisabled.value && !!documentRef.value);
+  watch(() => unref(optionsRef), applyOptions, {
+    deep: true,
+    immediate: true
+  });
+  function applyOptions(value) {
+    if (currentOptions.value && (currentOptions.value.throttle !== value.throttle || currentOptions.value.debounce !== value.debounce)) {
+      updateRestartFn();
+    }
+    currentOptions.value = value;
+    restart();
+  }
+  watch(documentRef, applyDocument);
+  function applyDocument(value) {
+    currentDocument = value;
+    restart();
+  }
+  let currentVariables;
+  let currentVariablesSerialized;
+  watch(() => {
+    if (isEnabled.value) {
+      return variablesRef.value;
+    } else {
+      return void 0;
+    }
+  }, applyVariables, {
+    deep: true,
+    immediate: true
+  });
+  function applyVariables(value) {
+    const serialized = JSON.stringify([value, isEnabled.value]);
+    if (serialized !== currentVariablesSerialized) {
+      currentVariables = value;
+      restart();
+    }
+    currentVariablesSerialized = serialized;
+  }
+  function refetch(variables2 = void 0) {
+    if (query.value) {
+      if (variables2) {
+        currentVariables = variables2;
+      }
+      error.value = null;
+      loading.value = true;
+      return query.value.refetch(variables2).then((refetchResult) => {
+        var _a2;
+        const currentResult = (_a2 = query.value) == null ? void 0 : _a2.getCurrentResult();
+        currentResult && processNextResult(currentResult);
+        return refetchResult;
+      });
+    }
+  }
+  function fetchMore(options2) {
+    if (query.value) {
+      error.value = null;
+      loading.value = true;
+      return query.value.fetchMore(options2).then((fetchMoreResult) => {
+        var _a2;
+        const currentResult = (_a2 = query.value) == null ? void 0 : _a2.getCurrentResult();
+        currentResult && processNextResult(currentResult);
+        return fetchMoreResult;
+      });
+    }
+  }
+  function subscribeToMore(options2) {
+    return;
+  }
+  watch(isEnabled, (value) => {
+    if (value) {
+      nextTick(() => {
+        start();
+      });
+    } else {
+      stop();
+    }
+  });
+  if (isEnabled.value) {
+    start();
+  }
+  vm && onBeforeUnmount(() => {
+    stop();
+  });
+  return {
+    result,
+    loading,
+    networkStatus,
+    error,
+    start,
+    stop,
+    restart,
+    forceDisabled,
+    document: documentRef,
+    variables: variablesRef,
+    options: optionsRef,
+    query,
+    refetch,
+    fetchMore,
+    subscribeToMore,
+    onResult: resultEvent.on,
+    onError: errorEvent.on
+  };
 }
 function useMutation(document, options = {}) {
   const vm = getCurrentInstance();
@@ -9745,7 +10144,7 @@ const NuxtApollo = {
   proxyCookies: true,
   clientAwareness: false,
   cookieAttributes: { "maxAge": 604800, "secure": true, "sameSite": "lax" },
-  clients: { "default": { "credentials": "include", "httpEndpoint": "https://importedproducts.in/graphql", "authType": "Bearer", "authHeader": "Authorization", "tokenName": "apollo:default.token", "tokenStorage": "cookie", "defaultOptions": void 0 } }
+  clients: { "default": { "httpEndpoint": "https://importedproducts.in/graphql", "authType": "Bearer", "authHeader": "Authorization", "tokenName": "apollo:default.token", "tokenStorage": "cookie", "defaultOptions": void 0 } }
 };
 function useAsyncQuery(...args) {
   const { key, fn, options } = prep(...args);
@@ -9991,46 +10390,6 @@ const plugin_cKrA5WGj38 = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
     storage: storage === "cookies" ? persistedState.cookiesWithOptions(cookieOptions) : persistedState[storage],
     debug
   }));
-});
-const useAuthStore = defineStore("auth", {
-  state: () => ({
-    user: null,
-    token: null,
-    refreshToken: null
-  }),
-  actions: {
-    setUser(user) {
-      this.user = user;
-      sessionStorage.setItem("username", user);
-    },
-    setToken(token) {
-      this.token = token;
-      sessionStorage.setItem("authToken", token);
-    },
-    setRToken(refreshToken) {
-      this.refreshToken = refreshToken;
-      sessionStorage.setItem("refreshToken", refreshToken);
-    },
-    initialize() {
-      const storedUser = sessionStorage.getItem("username");
-      const storedToken = sessionStorage.getItem("authToken");
-      const storedRefreshToken = sessionStorage.getItem("refreshToken");
-      this.user = storedUser;
-      this.token = storedToken;
-      this.refreshToken = storedRefreshToken;
-    },
-    logout() {
-      this.user = null;
-      this.token = null;
-      this.refreshToken = null;
-      sessionStorage.removeItem("username");
-      sessionStorage.removeItem("authToken");
-      sessionStorage.removeItem("refreshToken");
-    }
-  },
-  getters: {
-    isAuthenticated: (state) => !!state.user
-  }
 });
 const apollo_ieZFTqE1EA = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
   const AuthStore = useAuthStore();
@@ -10482,7 +10841,7 @@ const Body = defineComponent({
   setup: setupForUseMeta((bodyAttrs) => ({ bodyAttrs }), true)
 });
 const layouts = {
-  page: () => import('./page-BY1s2OH0.mjs').then((m) => m.default || m)
+  page: () => import('./page-BabCCr56.mjs').then((m) => m.default || m)
 };
 const LayoutLoader = defineComponent({
   name: "LayoutLoader",
@@ -10590,7 +10949,7 @@ function defaultEstimatedProgress(duration, elapsed) {
   return 2 / Math.PI * 100 * Math.atan(completionPercentage / 50);
 }
 function createLoadingIndicator(opts = {}) {
-  const { duration = 2e3, throttle = 200 } = opts;
+  const { duration = 2e3, throttle: throttle2 = 200 } = opts;
   opts.estimatedProgress || defaultEstimatedProgress;
   const nuxtApp = /* @__PURE__ */ useNuxtApp();
   const progress = ref(0);
@@ -10606,10 +10965,10 @@ function createLoadingIndicator(opts = {}) {
     }
     clear();
     progress.value = at < 0 ? 0 : at;
-    if (throttle && false) {
+    if (throttle2 && false) {
       _throttle = setTimeout(() => {
         isLoading.value = true;
-      }, throttle);
+      }, throttle2);
     } else {
       isLoading.value = true;
     }
@@ -10913,8 +11272,8 @@ const _sfc_main$1 = {
     const statusMessage = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import('./error-404-B4cDLnkg.mjs').then((r) => r.default || r));
-    const _Error = defineAsyncComponent(() => import('./error-500-DQuBJ_R8.mjs').then((r) => r.default || r));
+    const _Error404 = defineAsyncComponent(() => import('./error-404-BCSAKkGs.mjs').then((r) => r.default || r));
+    const _Error = defineAsyncComponent(() => import('./error-500-CZAg06_p.mjs').then((r) => r.default || r));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ statusCode: unref(statusCode), statusMessage: unref(statusMessage), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));
@@ -10932,7 +11291,7 @@ const _sfc_main = {
   __name: "nuxt-root",
   __ssrInlineRender: true,
   setup(__props) {
-    const IslandRenderer = defineAsyncComponent(() => import('./island-renderer-B02k6sNt.mjs').then((r) => r.default || r));
+    const IslandRenderer = defineAsyncComponent(() => import('./island-renderer-FoB0jjzY.mjs').then((r) => r.default || r));
     const nuxtApp = /* @__PURE__ */ useNuxtApp();
     nuxtApp.deferHydration();
     nuxtApp.ssrContext.url;
@@ -10994,5 +11353,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { __nuxt_component_0 as _, useRouter as a, useRuntimeConfig as b, createError as c, navigateTo as d, entry$1 as default, useAppConfig as e, useAuthStore as f, defineStore as g, useMutation as h, useRoute as i, useAsyncData as j, useRequestEvent as k, useCookie as l, useNuxtApp as m, nuxtLinkDefaults as n, useAsyncQuery as o, useState as p, abortNavigation as q, useHead as u };
+export { __nuxt_component_0 as _, useRouter as a, useRuntimeConfig as b, createError as c, navigateTo as d, entry$1 as default, useAppConfig as e, useAuthStore as f, useMutation as g, useRoute as h, useAsyncData as i, useRequestEvent as j, useCookie as k, useNuxtApp as l, useAsyncQuery as m, nuxtLinkDefaults as n, useApolloClient as o, useQuery as p, defineStore as q, useState as r, abortNavigation as s, useHead as u };
 //# sourceMappingURL=server.mjs.map

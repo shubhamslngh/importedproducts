@@ -1,0 +1,1 @@
+import{j as a,J as s,X as r,a7 as n,O as o,Y as l}from"./swiper-vue.7WXi4Gh3.js";const c={class:"text-xs font-bold text-center text-gray-800 dark:text-gray-400"},i=a({__name:"HeaderTitle",props:{text:{type:String,default:""}},setup(e){return(t,d)=>(s(),r("div",c,[n(t.$slots,"default",{},()=>[o("span",null,l(e.text),1)])]))}});export{i as _};

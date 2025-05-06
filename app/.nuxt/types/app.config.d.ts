@@ -6,7 +6,7 @@ import cfg1 from "/Users/shubhamsingh/namma/importedProds/app.config"
 
 declare const inlineConfig = {
   "nuxt": {
-    "buildId": "dev"
+    "buildId": "bfb152fd-1de4-451d-90cd-64abfffbf8b2"
   }
 }
 type ResolvedAppConfig = Defu<typeof inlineConfig, [typeof cfg0, typeof cfg1]>

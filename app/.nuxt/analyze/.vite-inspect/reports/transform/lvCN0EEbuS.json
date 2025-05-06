@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "import { inspect } from '../jsutils/inspect.mjs';\nimport { invariant } from '../jsutils/invariant.mjs';\nimport { keyMap } from '../jsutils/keyMap.mjs';\nimport { Kind } from '../language/kinds.mjs';\nimport {\n  isInputObjectType,\n  isLeafType,\n  isListType,\n  isNonNullType,\n} from '../type/definition.mjs';\n/**\n * Produces a JavaScript value given a GraphQL Value AST.\n *\n * A GraphQL type must be provided, which will be used to interpret different\n * GraphQL Value literals.\n *\n * Returns `undefined` when the value could not be validly coerced according to\n * the provided type.\n *\n * | GraphQL Value        | JSON Value    |\n * | -------------------- | ------------- |\n * | Input Object         | Object        |\n * | List                 | Array         |\n * | Boolean              | Boolean       |\n * | String               | String        |\n * | Int / Float          | Number        |\n * | Enum Value           | Unknown       |\n * | NullValue            | null          |\n *\n */\n\nexport function valueFromAST(valueNode, type, variables) {\n  if (!valueNode) {\n    // When there is no node, then there is also no value.\n    // Importantly, this is different from returning the value null.\n    return;\n  }\n\n  if (valueNode.kind === Kind.VARIABLE) {\n    const variableName = valueNode.name.value;\n\n    if (variables == null || variables[variableName] === undefined) {\n      // No valid return value.\n      return;\n    }\n\n    const variableValue = variables[variableName];\n\n    if (variableValue === null && isNonNullType(type)) {\n      return; // Invalid: intentionally return no value.\n    } // Note: This does no further checking that this variable is correct.\n    // This assumes that this query has been validated and the variable\n    // usage here is of the correct type.\n\n    return variableValue;\n  }\n\n  if (isNonNullType(type)) {\n    if (valueNode.kind === Kind.NULL) {\n      return; // Invalid: intentionally return no value.\n    }\n\n    return valueFromAST(valueNode, type.ofType, variables);\n  }\n\n  if (valueNode.kind === Kind.NULL) {\n    // This is explicitly returning the value null.\n    return null;\n  }\n\n  if (isListType(type)) {\n    const itemType = type.ofType;\n\n    if (valueNode.kind === Kind.LIST) {\n      const coercedValues = [];\n\n      for (const itemNode of valueNode.values) {\n        if (isMissingVariable(itemNode, variables)) {\n          // If an array contains a missing variable, it is either coerced to\n          // null or if the item type is non-null, it considered invalid.\n          if (isNonNullType(itemType)) {\n            return; // Invalid: intentionally return no value.\n          }\n\n          coercedValues.push(null);\n        } else {\n          const itemValue = valueFromAST(itemNode, itemType, variables);\n\n          if (itemValue === undefined) {\n            return; // Invalid: intentionally return no value.\n          }\n\n          coercedValues.push(itemValue);\n        }\n      }\n\n      return coercedValues;\n    }\n\n    const coercedValue = valueFromAST(valueNode, itemType, variables);\n\n    if (coercedValue === undefined) {\n      return; // Invalid: intentionally return no value.\n    }\n\n    return [coercedValue];\n  }\n\n  if (isInputObjectType(type)) {\n    if (valueNode.kind !== Kind.OBJECT) {\n      return; // Invalid: intentionally return no value.\n    }\n\n    const coercedObj = Object.create(null);\n    const fieldNodes = keyMap(valueNode.fields, (field) => field.name.value);\n\n    for (const field of Object.values(type.getFields())) {\n      const fieldNode = fieldNodes[field.name];\n\n      if (!fieldNode || isMissingVariable(fieldNode.value, variables)) {\n        if (field.defaultValue !== undefined) {\n          coercedObj[field.name] = field.defaultValue;\n        } else if (isNonNullType(field.type)) {\n          return; // Invalid: intentionally return no value.\n        }\n\n        continue;\n      }\n\n      const fieldValue = valueFromAST(fieldNode.value, field.type, variables);\n\n      if (fieldValue === undefined) {\n        return; // Invalid: intentionally return no value.\n      }\n\n      coercedObj[field.name] = fieldValue;\n    }\n\n    return coercedObj;\n  }\n\n  if (isLeafType(type)) {\n    // Scalars and Enums fulfill parsing a literal value via parseLiteral().\n    // Invalid values represent a failure to parse correctly, in which case\n    // no value is returned.\n    let result;\n\n    try {\n      result = type.parseLiteral(valueNode, variables);\n    } catch (_error) {\n      return; // Invalid: intentionally return no value.\n    }\n\n    if (result === undefined) {\n      return; // Invalid: intentionally return no value.\n    }\n\n    return result;\n  }\n  /* c8 ignore next 3 */\n  // Not reachable, all possible input types have been considered.\n\n  false || invariant(false, 'Unexpected input type: ' + inspect(type));\n} // Returns true if the provided valueNode is a variable which is not defined\n// in the set of variables.\n\nfunction isMissingVariable(valueNode, variables) {\n  return (\n    valueNode.kind === Kind.VARIABLE &&\n    (variables == null || variables[valueNode.name.value] === undefined)\n  );\n}\n",
-      "start": 1716330189473,
-      "end": 1716330189480,
+      "start": 1746507067755,
+      "end": 1746507067772,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716330189480,
-      "end": 1716330189480,
+      "start": 1746507067772,
+      "end": 1746507067772,
       "order": "normal"
     }
   ]

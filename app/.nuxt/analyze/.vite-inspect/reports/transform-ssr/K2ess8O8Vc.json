@@ -4,260 +4,260 @@
     {
       "name": "vite:load-fallback",
       "result": "import { invariant } from \"../../utilities/globals/index.js\";\nimport { argumentsObjectFromField, DeepMerger, isNonEmptyArray, isNonNullObject, } from \"../../utilities/index.js\";\nimport { hasOwn, isArray } from \"./helpers.js\";\n// Mapping from JSON-encoded KeySpecifier strings to associated information.\nvar specifierInfoCache = Object.create(null);\nfunction lookupSpecifierInfo(spec) {\n    // It's safe to encode KeySpecifier arrays with JSON.stringify, since they're\n    // just arrays of strings or nested KeySpecifier arrays, and the order of the\n    // array elements is important (and suitably preserved by JSON.stringify).\n    var cacheKey = JSON.stringify(spec);\n    return (specifierInfoCache[cacheKey] ||\n        (specifierInfoCache[cacheKey] = Object.create(null)));\n}\nexport function keyFieldsFnFromSpecifier(specifier) {\n    var info = lookupSpecifierInfo(specifier);\n    return (info.keyFieldsFn || (info.keyFieldsFn = function (object, context) {\n            var extract = function (from, key) {\n                return context.readField(key, from);\n            };\n            var keyObject = (context.keyObject = collectSpecifierPaths(specifier, function (schemaKeyPath) {\n                var extracted = extractKeyPath(context.storeObject, schemaKeyPath, \n                // Using context.readField to extract paths from context.storeObject\n                // allows the extraction to see through Reference objects and respect\n                // custom read functions.\n                extract);\n                if (extracted === void 0 &&\n                    object !== context.storeObject &&\n                    hasOwn.call(object, schemaKeyPath[0])) {\n                    // If context.storeObject fails to provide a value for the requested\n                    // path, fall back to the raw result object, if it has a top-level key\n                    // matching the first key in the path (schemaKeyPath[0]). This allows\n                    // key fields included in the written data to be saved in the cache\n                    // even if they are not selected explicitly in context.selectionSet.\n                    // Not being mentioned by context.selectionSet is convenient here,\n                    // since it means these extra fields cannot be affected by field\n                    // aliasing, which is why we can use extractKey instead of\n                    // context.readField for this extraction.\n                    extracted = extractKeyPath(object, schemaKeyPath, extractKey);\n                }\n                invariant(extracted !== void 0, 4, schemaKeyPath.join(\".\"), object);\n                return extracted;\n            }));\n            return \"\".concat(context.typename, \":\").concat(JSON.stringify(keyObject));\n        }));\n}\n// The keyArgs extraction process is roughly analogous to keyFields extraction,\n// but there are no aliases involved, missing fields are tolerated (by merely\n// omitting them from the key), and drawing from field.directives or variables\n// is allowed (in addition to drawing from the field's arguments object).\n// Concretely, these differences mean passing a different key path extractor\n// function to collectSpecifierPaths, reusing the shared extractKeyPath helper\n// wherever possible.\nexport function keyArgsFnFromSpecifier(specifier) {\n    var info = lookupSpecifierInfo(specifier);\n    return (info.keyArgsFn ||\n        (info.keyArgsFn = function (args, _a) {\n            var field = _a.field, variables = _a.variables, fieldName = _a.fieldName;\n            var collected = collectSpecifierPaths(specifier, function (keyPath) {\n                var firstKey = keyPath[0];\n                var firstChar = firstKey.charAt(0);\n                if (firstChar === \"@\") {\n                    if (field && isNonEmptyArray(field.directives)) {\n                        var directiveName_1 = firstKey.slice(1);\n                        // If the directive appears multiple times, only the first\n                        // occurrence's arguments will be used. TODO Allow repetition?\n                        // TODO Cache this work somehow, a la aliasMap?\n                        var d = field.directives.find(function (d) { return d.name.value === directiveName_1; });\n                        // Fortunately argumentsObjectFromField works for DirectiveNode!\n                        var directiveArgs = d && argumentsObjectFromField(d, variables);\n                        // For directives without arguments (d defined, but directiveArgs ===\n                        // null), the presence or absence of the directive still counts as\n                        // part of the field key, so we return null in those cases. If no\n                        // directive with this name was found for this field (d undefined and\n                        // thus directiveArgs undefined), we return undefined, which causes\n                        // this value to be omitted from the key object returned by\n                        // collectSpecifierPaths.\n                        return (directiveArgs &&\n                            extractKeyPath(directiveArgs, \n                            // If keyPath.length === 1, this code calls extractKeyPath with an\n                            // empty path, which works because it uses directiveArgs as the\n                            // extracted value.\n                            keyPath.slice(1)));\n                    }\n                    // If the key started with @ but there was no corresponding directive,\n                    // we want to omit this value from the key object, not fall through to\n                    // treating @whatever as a normal argument name.\n                    return;\n                }\n                if (firstChar === \"$\") {\n                    var variableName = firstKey.slice(1);\n                    if (variables && hasOwn.call(variables, variableName)) {\n                        var varKeyPath = keyPath.slice(0);\n                        varKeyPath[0] = variableName;\n                        return extractKeyPath(variables, varKeyPath);\n                    }\n                    // If the key started with $ but there was no corresponding variable, we\n                    // want to omit this value from the key object, not fall through to\n                    // treating $whatever as a normal argument name.\n                    return;\n                }\n                if (args) {\n                    return extractKeyPath(args, keyPath);\n                }\n            });\n            var suffix = JSON.stringify(collected);\n            // If no arguments were passed to this field, and it didn't have any other\n            // field key contributions from directives or variables, hide the empty\n            // :{} suffix from the field key. However, a field passed no arguments can\n            // still end up with a non-empty :{...} suffix if its key configuration\n            // refers to directives or variables.\n            if (args || suffix !== \"{}\") {\n                fieldName += \":\" + suffix;\n            }\n            return fieldName;\n        }));\n}\nexport function collectSpecifierPaths(specifier, extractor) {\n    // For each path specified by specifier, invoke the extractor, and repeatedly\n    // merge the results together, with appropriate ancestor context.\n    var merger = new DeepMerger();\n    return getSpecifierPaths(specifier).reduce(function (collected, path) {\n        var _a;\n        var toMerge = extractor(path);\n        if (toMerge !== void 0) {\n            // This path is not expected to contain array indexes, so the toMerge\n            // reconstruction will not contain arrays. TODO Fix this?\n            for (var i = path.length - 1; i >= 0; --i) {\n                toMerge = (_a = {}, _a[path[i]] = toMerge, _a);\n            }\n            collected = merger.merge(collected, toMerge);\n        }\n        return collected;\n    }, Object.create(null));\n}\nexport function getSpecifierPaths(spec) {\n    var info = lookupSpecifierInfo(spec);\n    if (!info.paths) {\n        var paths_1 = (info.paths = []);\n        var currentPath_1 = [];\n        spec.forEach(function (s, i) {\n            if (isArray(s)) {\n                getSpecifierPaths(s).forEach(function (p) { return paths_1.push(currentPath_1.concat(p)); });\n                currentPath_1.length = 0;\n            }\n            else {\n                currentPath_1.push(s);\n                if (!isArray(spec[i + 1])) {\n                    paths_1.push(currentPath_1.slice(0));\n                    currentPath_1.length = 0;\n                }\n            }\n        });\n    }\n    return info.paths;\n}\nfunction extractKey(object, key) {\n    return object[key];\n}\nexport function extractKeyPath(object, path, extract) {\n    // For each key in path, extract the corresponding child property from obj,\n    // flattening arrays if encountered (uncommon for keyFields and keyArgs, but\n    // possible). The final result of path.reduce is normalized so unexpected leaf\n    // objects have their keys safely sorted. That final result is difficult to\n    // type as anything other than any. You're welcome to try to improve the\n    // return type, but keep in mind extractKeyPath is not a public function\n    // (exported only for testing), so the effort may not be worthwhile unless the\n    // limited set of actual callers (see above) pass arguments that TypeScript\n    // can statically type. If we know only that path is some array of strings\n    // (and not, say, a specific tuple of statically known strings), any (or\n    // possibly unknown) is the honest answer.\n    extract = extract || extractKey;\n    return normalize(path.reduce(function reducer(obj, key) {\n        return isArray(obj) ?\n            obj.map(function (child) { return reducer(child, key); })\n            : obj && extract(obj, key);\n    }, object));\n}\nfunction normalize(value) {\n    // Usually the extracted value will be a scalar value, since most primary\n    // key fields are scalar, but just in case we get an object or an array, we\n    // need to do some normalization of the order of (nested) keys.\n    if (isNonNullObject(value)) {\n        if (isArray(value)) {\n            return value.map(normalize);\n        }\n        return collectSpecifierPaths(Object.keys(value).sort(), function (path) {\n            return extractKeyPath(value, path);\n        });\n    }\n    return value;\n}\n//# sourceMappingURL=key-extractor.js.map",
-      "start": 1716330193948,
-      "end": 1716330193960,
+      "start": 1746507072445,
+      "end": 1746507072455,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330193960,
-      "end": 1716330193960,
+      "start": 1746507072455,
+      "end": 1746507072455,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716330193960,
-      "end": 1716330193961,
+      "start": 1746507072455,
+      "end": 1746507072456,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716330193961,
-      "end": 1716330193961,
+      "start": 1746507072456,
+      "end": 1746507072456,
       "order": "normal"
     }
   ]

@@ -1,0 +1,1 @@
+import{J as e,X as a,a4 as r,O as o,Y as c,a3 as l}from"./swiper-vue.7WXi4Gh3.js";const _={__name:"Iphonecases",props:["Cases"],setup(s){return(p,u)=>(e(!0),a(l,null,r(s.Cases,(t,n)=>(e(),a("div",{key:n},[o("li",null,c(t.color),1)]))),128))}},m=_;export{m as default};

@@ -1,0 +1,5 @@
+const Parallax_vue_vue_type_style_index_0_scoped_86edbef1_lang = ".flex-container[data-v-86edbef1]{align-items:center;display:flex;flex-wrap:nowrap;justify-content:space-between;min-height:100vh;overflow-x:auto;padding:50px;perspective:1000px}.flex-item[data-v-86edbef1]{flex:1 1 auto;margin:10px;min-width:150px;transition:transform 1s,opacity 1s;will-change:transform,opacity}.product-image[data-v-86edbef1]{height:auto;max-height:200px;max-width:200px;scale:4.3;width:auto}@media (max-width:768px){.flex-container[data-v-86edbef1]{flex-wrap:wrap;justify-content:space-between;overflow-x:auto;padding:20px}.flex-item[data-v-86edbef1]{flex:0 0 auto;margin:5px}.product-image[data-v-86edbef1]{max-height:150px;max-width:150px;scale:1.5}}@media (max-width:480px){.flex-item[data-v-86edbef1]{flex:0 0 auto}.product-image[data-v-86edbef1]{max-height:100px;max-width:100px;scale:1}}";
+export {
+  Parallax_vue_vue_type_style_index_0_scoped_86edbef1_lang as default
+};
+//# sourceMappingURL=Parallax-styles-1.mjs-BzkFZRJS.js.map

@@ -4,218 +4,218 @@
     {
       "name": "vite:load-fallback",
       "result": "/**\n * Produce the GraphQL query recommended for a full schema introspection.\n * Accepts optional IntrospectionOptions.\n */\nexport function getIntrospectionQuery(options) {\n  const optionsWithDefault = {\n    descriptions: true,\n    specifiedByUrl: false,\n    directiveIsRepeatable: false,\n    schemaDescription: false,\n    inputValueDeprecation: false,\n    ...options,\n  };\n  const descriptions = optionsWithDefault.descriptions ? 'description' : '';\n  const specifiedByUrl = optionsWithDefault.specifiedByUrl\n    ? 'specifiedByURL'\n    : '';\n  const directiveIsRepeatable = optionsWithDefault.directiveIsRepeatable\n    ? 'isRepeatable'\n    : '';\n  const schemaDescription = optionsWithDefault.schemaDescription\n    ? descriptions\n    : '';\n\n  function inputDeprecation(str) {\n    return optionsWithDefault.inputValueDeprecation ? str : '';\n  }\n\n  return `\n    query IntrospectionQuery {\n      __schema {\n        ${schemaDescription}\n        queryType { name }\n        mutationType { name }\n        subscriptionType { name }\n        types {\n          ...FullType\n        }\n        directives {\n          name\n          ${descriptions}\n          ${directiveIsRepeatable}\n          locations\n          args${inputDeprecation('(includeDeprecated: true)')} {\n            ...InputValue\n          }\n        }\n      }\n    }\n\n    fragment FullType on __Type {\n      kind\n      name\n      ${descriptions}\n      ${specifiedByUrl}\n      fields(includeDeprecated: true) {\n        name\n        ${descriptions}\n        args${inputDeprecation('(includeDeprecated: true)')} {\n          ...InputValue\n        }\n        type {\n          ...TypeRef\n        }\n        isDeprecated\n        deprecationReason\n      }\n      inputFields${inputDeprecation('(includeDeprecated: true)')} {\n        ...InputValue\n      }\n      interfaces {\n        ...TypeRef\n      }\n      enumValues(includeDeprecated: true) {\n        name\n        ${descriptions}\n        isDeprecated\n        deprecationReason\n      }\n      possibleTypes {\n        ...TypeRef\n      }\n    }\n\n    fragment InputValue on __InputValue {\n      name\n      ${descriptions}\n      type { ...TypeRef }\n      defaultValue\n      ${inputDeprecation('isDeprecated')}\n      ${inputDeprecation('deprecationReason')}\n    }\n\n    fragment TypeRef on __Type {\n      kind\n      name\n      ofType {\n        kind\n        name\n        ofType {\n          kind\n          name\n          ofType {\n            kind\n            name\n            ofType {\n              kind\n              name\n              ofType {\n                kind\n                name\n                ofType {\n                  kind\n                  name\n                  ofType {\n                    kind\n                    name\n                    ofType {\n                      kind\n                      name\n                      ofType {\n                        kind\n                        name\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  `;\n}\n",
-      "start": 1716330189468,
-      "end": 1716330189477,
+      "start": 1746507067753,
+      "end": 1746507067769,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716330189477,
-      "end": 1716330189477,
+      "start": 1746507067769,
+      "end": 1746507067769,
       "order": "normal"
     }
   ]

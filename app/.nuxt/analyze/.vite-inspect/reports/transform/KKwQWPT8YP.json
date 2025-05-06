@@ -3,64 +3,64 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "<template>\n  <div v-if=\"data.products.edges\" class=\"swiper\">\n    <h1 class=\"mx-auto mb-6 py-16 ml-10 text-center text-2xl sm:text-md font-bold\">\n     SELECT CASES\n    </h1>\n\n    <div class=\"swiper-wrapper\">\n      <div\n        v-for=\"(product, index) in data.products.edges\"\n        :key=\"index\"\n        class=\"swiper-slide\"\n        :id=\"product.node.name\"\n      >\n        <div>\n          <img\n            @click=\"handleClick(product.node.databaseId)\"\n            :src=\"product.node.image ? product.node.image.link : ''\"\n            alt=\"Product Image\"\n            class=\"transition-all ease-in-out\"\n          />\n          <h3\n            class=\"grid text-wrap text-center text-[0.75rem]/5 font-MONO font-semibold hover:font-bold\"\n          >\n            {{ product.node.name }}\n          </h3>\n          <template v-if=\"selectedProductId === product.node.databaseId\">\n            <div\n              class=\"swiper-container overscroll-auto focus:overscroll-contain grid m-5 mt-12\"\n            >\n              {{ console.log(selectedProductId) }}\n              <AwesomeVariations :productId=\"selectedProductId\" />\n              <!-- <AwesomeCardstest :productId=\"selectedProductId\" /> -->\n            </div>\n          </template>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div v-else>\n    <div class=\"swiper-lazy-preloader swiper-lazy-preloader-black\">Loading...</div>\n  </div>\n</template>\n\n<script setup>\nimport { ref, onMounted } from \"vue\";\n// import { cartItem } from \"../../utils/cart\";\nimport Swiper from \"swiper\";\nimport { Navigation, Pagination, Scrollbar, Autoplay } from \"swiper/modules\";\nimport \"swiper/swiper-bundle.css\";\nimport gql from \"graphql-tag\";\nconst selectedProductId = ref(0);\n// const { Data1 } = await useAsyncQuery(cartItem);\n// console.log(\"cart\",Data1)\nconst query = gql`\n  query MyQuery {\n    products(where: { category: \"cases\" }) {\n      edges {\n        node {\n          image {\n            link\n          }\n          name\n          id\n          databaseId\n        }\n      }\n    }\n  }\n`;\n\nconst initializeSwiper = () => {\n\n\n  const swiper = new Swiper(\".swiper\", {\n    slidesPerView: 5,\n    rewind: true,\n    spaceBetween: 40,\n    allowSlideNext: true,\n    autoplay: true,\n    loop: true,\n    resizeObserver: true,\n    grabCursor: true,\n    shortSwipes: true,\n    slideShadows: false,\n    breakpointsBase: window,\n    pagination: {\n      el: \".swiper-pagination\",\n      type: \"bullets\",\n      clickable: true,\n    },\n    navigation: {\n      nextEl: \".swiper-button-next\",\n      prevEl: \".swiper-button-prev\",\n    },\n    breakpoints: {\n      0: {\n        slidesPerView: 1,\n        spaceBetween: 10,\n      },\n      630: {\n        slidesPerView: 3,\n        spaceBetween: 10,\n      },\n      720: {\n        slidesPerView: 4,\n        spaceBetween: 10,\n      },\n      1440: {\n        slidesPerView: 5,\n        spaceBetween: 40,\n      },\n    },\n  });\n  return swiper;\n};\n\nconst products = ref([]);\nonMounted(() => {\n  initializeSwiper();\n});\n\nconst { data } = await useAsyncQuery(query);\n// console.log(data._value.products.edges, \"here in cards\");\nproducts.value = data._value.products.edges.map((edges) => ({\n  name: edges.node.name,\n  img: edges.node.image.link,\n}));\nconsole.log(products.value, \"cases is obj\");\n\nconst handleClick = (productId) => {\n  selectedProductId.value = productId;\n};\n</script>\n\n<style scoped>\n.swiper-slide {\n  width: cover;\n  height: cover;\n  text-align: center;\n  font-size: 10px;\n  display: grid;\n  justify-content: center;\n  align-items: center;\n}\n.swiper-container {\n  width: auto;\n  height: auto;\n}\n</style>\n",
-      "start": 1716330188125,
-      "end": 1716330188366,
+      "result": "<template>\n  <div v-if=\"data.products.edges\" class=\"swiper\">\n<AwesomeWelcome :name=\"category\" class=\"text-sm\"/>\n\n    <div class=\"swiper-wrapper\">\n      <div\n        v-for=\"(product, index) in data.products.edges\"\n        :key=\"index\"\n        class=\"swiper-slide\"\n        :id=\"product.node.name\"\n      >\n        <div>\n          <img\n            @click=\"handleClick(product.node.databaseId)\"\n            :src=\"product.node.image ? product.node.image.link : ''\"\n            alt=\"Product Image\"\n            class=\"transition-all ease-in-out\"\n          />\n          <h3\n            class=\"grid text-wrap text-center text-[0.75rem]/5 font-MONO font-semibold hover:font-bold\"\n          >\n            {{ product.node.name }}\n          </h3>\n          <template v-if=\"selectedProductId === product.node.databaseId\">\n            <div\n              class=\"swiper-container overscroll-auto focus:overscroll-contain grid m-5 mt-12\"\n            >\n              {{ console.log(selectedProductId) }}\n              <AwesomeVariations :productId=\"selectedProductId\" />\n              <!-- <AwesomeCardstest :productId=\"selectedProductId\" /> -->\n            </div>\n          </template>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div v-else>\n    <div class=\"swiper-lazy-preloader swiper-lazy-preloader-black\">Loading...</div>\n  </div>\n</template>\n\n<script setup>\nimport { ref, onMounted, watch } from \"vue\";\nimport Swiper from \"swiper\";\nimport \"swiper/swiper-bundle.css\";\nimport gql from \"graphql-tag\";\nimport { useQuery } from \"@vue/apollo-composable\";\n\nconst props = defineProps({\n  category: {\n    type: String,\n    required: true,\n    default: \"Cases\",\n  },\n});\n\nconst selectedProductId = ref(0);\n\nconst query = gql`\n  query GetProducts($category: String!) {\n    products(where: { category: $category }) {\n      edges {\n        node {\n          image {\n            link\n          }\n          name\n          id\n          databaseId\n        }\n      }\n    }\n  }\n`;\n\nconst { result: data, refetch } = useQuery(query, () => ({\n  category: props.category,\n}));\n\nwatch(\n  () => props.category,\n  (newVal) => {\n    if (newVal) refetch();\n  }\n);\n\nonMounted(() => {\n  new Swiper(\".swiper\", {\n    slidesPerView: 5,\n    rewind: true,\n    spaceBetween: 40,\n    autoplay: true,\n    loop: true,\n    resizeObserver: true,\n    grabCursor: true,\n    pagination: {\n      el: \".swiper-pagination\",\n      type: \"bullets\",\n      clickable: true,\n    },\n    navigation: {\n      nextEl: \".swiper-button-next\",\n      prevEl: \".swiper-button-prev\",\n    },\n    breakpoints: {\n      0: { slidesPerView: 1, spaceBetween: 10 },\n      630: { slidesPerView: 3, spaceBetween: 10 },\n      720: { slidesPerView: 4, spaceBetween: 10 },\n      1440: { slidesPerView: 5, spaceBetween: 40 },\n    },\n  });\n});\n\nconst handleClick = (productId) => {\n  selectedProductId.value = productId;\n};\n</script>\n\n<style scoped>\n.swiper-slide {\n  width: cover;\n  height: cover;\n  text-align: center;\n  font-size: 10px;\n  display: grid;\n  justify-content: center;\n  align-items: center;\n}\n.swiper-container {\n  width: auto;\n  height: auto;\n}\n</style>\n",
+      "start": 1746507065763,
+      "end": 1746507065850,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716330188366,
-      "end": 1716330188366,
+      "start": 1746507065850,
+      "end": 1746507065850,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716330188366,
-      "end": 1716330188366,
+      "start": 1746507065850,
+      "end": 1746507065850,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716330188366,
-      "end": 1716330188366,
+      "start": 1746507065850,
+      "end": 1746507065850,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716330188366,
-      "end": 1716330188366,
+      "start": 1746507065850,
+      "end": 1746507065850,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716330188366,
-      "end": 1716330188366,
+      "start": 1746507065850,
+      "end": 1746507065850,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716330188366,
-      "end": 1716330188366,
+      "start": 1746507065850,
+      "end": 1746507065850,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716330188366,
-      "end": 1716330188366,
+      "start": 1746507065850,
+      "end": 1746507065850,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716330188366,
-      "end": 1716330188366,
+      "start": 1746507065850,
+      "end": 1746507065850,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "result": "import { withAsyncContext as _withAsyncContext } from 'vue'\nimport { unref as _unref, createElementVNode as _createElementVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, toDisplayString as _toDisplayString, resolveComponent as _resolveComponent, createVNode as _createVNode, createTextVNode as _createTextVNode, createCommentVNode as _createCommentVNode, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-2bafa2a1\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = {\n  key: 0,\n  class: \"swiper\"\n}\nconst _hoisted_2 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"h1\", { class: \"mx-auto mb-6 py-16 ml-10 text-center text-2xl sm:text-md font-bold\" }, \" SELECT CASES \", -1))\nconst _hoisted_3 = { class: \"swiper-wrapper\" }\nconst _hoisted_4 = [\"id\"]\nconst _hoisted_5 = [\"onClick\", \"src\"]\nconst _hoisted_6 = { class: \"grid text-wrap text-center text-[0.75rem]/5 font-MONO font-semibold hover:font-bold\" }\nconst _hoisted_7 = {\n  key: 0,\n  class: \"swiper-container overscroll-auto focus:overscroll-contain grid m-5 mt-12\"\n}\nconst _hoisted_8 = { key: 1 }\nconst _hoisted_9 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"div\", { class: \"swiper-lazy-preloader swiper-lazy-preloader-black\" }, \"Loading...\", -1))\nconst _hoisted_10 = [\n  _hoisted_9\n]\n\nimport { ref, onMounted } from \"vue\";\n// import { cartItem } from \"../../utils/cart\";\nimport Swiper from \"swiper\";\nimport { Navigation, Pagination, Scrollbar, Autoplay } from \"swiper/modules\";\nimport \"swiper/swiper-bundle.css\";\nimport gql from \"graphql-tag\";\n\nconst _sfc_main = {\n  __name: 'Cases',\n  async setup(__props) {\n\nlet __temp, __restore\n\nconst selectedProductId = ref(0);\n// const { Data1 } = await useAsyncQuery(cartItem);\n// console.log(\"cart\",Data1)\nconst query = gql`\n  query MyQuery {\n    products(where: { category: \"cases\" }) {\n      edges {\n        node {\n          image {\n            link\n          }\n          name\n          id\n          databaseId\n        }\n      }\n    }\n  }\n`;\n\nconst initializeSwiper = () => {\n\n\n  const swiper = new Swiper(\".swiper\", {\n    slidesPerView: 5,\n    rewind: true,\n    spaceBetween: 40,\n    allowSlideNext: true,\n    autoplay: true,\n    loop: true,\n    resizeObserver: true,\n    grabCursor: true,\n    shortSwipes: true,\n    slideShadows: false,\n    breakpointsBase: window,\n    pagination: {\n      el: \".swiper-pagination\",\n      type: \"bullets\",\n      clickable: true,\n    },\n    navigation: {\n      nextEl: \".swiper-button-next\",\n      prevEl: \".swiper-button-prev\",\n    },\n    breakpoints: {\n      0: {\n        slidesPerView: 1,\n        spaceBetween: 10,\n      },\n      630: {\n        slidesPerView: 3,\n        spaceBetween: 10,\n      },\n      720: {\n        slidesPerView: 4,\n        spaceBetween: 10,\n      },\n      1440: {\n        slidesPerView: 5,\n        spaceBetween: 40,\n      },\n    },\n  });\n  return swiper;\n};\n\nconst products = ref([]);\nonMounted(() => {\n  initializeSwiper();\n});\n\nconst { data } = (\n  ([__temp,__restore] = _withAsyncContext(() => useAsyncQuery(query))),\n  __temp = await __temp,\n  __restore(),\n  __temp\n);\n// console.log(data._value.products.edges, \"here in cards\");\nproducts.value = data._value.products.edges.map((edges) => ({\n  name: edges.node.name,\n  img: edges.node.image.link,\n}));\nconsole.log(products.value, \"cases is obj\");\n\nconst handleClick = (productId) => {\n  selectedProductId.value = productId;\n};\n\nreturn (_ctx, _cache) => {\n  const _component_AwesomeVariations = _resolveComponent(\"AwesomeVariations\")\n\n  return (_unref(data).products.edges)\n    ? (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _hoisted_2,\n        _createElementVNode(\"div\", _hoisted_3, [\n          (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(_unref(data).products.edges, (product, index) => {\n            return (_openBlock(), _createElementBlock(\"div\", {\n              key: index,\n              class: \"swiper-slide\",\n              id: product.node.name\n            }, [\n              _createElementVNode(\"div\", null, [\n                _createElementVNode(\"img\", {\n                  onClick: $event => (handleClick(product.node.databaseId)),\n                  src: product.node.image ? product.node.image.link : '',\n                  alt: \"Product Image\",\n                  class: \"transition-all ease-in-out\"\n                }, null, 8, _hoisted_5),\n                _createElementVNode(\"h3\", _hoisted_6, _toDisplayString(product.node.name), 1),\n                (selectedProductId.value === product.node.databaseId)\n                  ? (_openBlock(), _createElementBlock(\"div\", _hoisted_7, [\n                      _createTextVNode(_toDisplayString(console.log(selectedProductId.value)) + \" \", 1),\n                      _createVNode(_component_AwesomeVariations, { productId: selectedProductId.value }, null, 8, [\"productId\"])\n                    ]))\n                  : _createCommentVNode(\"\", true)\n              ])\n            ], 8, _hoisted_4))\n          }), 128))\n        ])\n      ]))\n    : (_openBlock(), _createElementBlock(\"div\", _hoisted_8, _hoisted_10))\n}\n}\n\n}\n\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Cases.vue?vue&type=style&index=0&scoped=2bafa2a1&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\"data-v-2bafa2a1\"]])",
-      "start": 1716330188366,
-      "end": 1716330188367,
+      "result": "import { unref as _unref, resolveComponent as _resolveComponent, createVNode as _createVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createElementVNode as _createElementVNode, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, createCommentVNode as _createCommentVNode, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-53158188\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = {\n  key: 0,\n  class: \"swiper\"\n}\nconst _hoisted_2 = { class: \"swiper-wrapper\" }\nconst _hoisted_3 = [\"id\"]\nconst _hoisted_4 = [\"onClick\", \"src\"]\nconst _hoisted_5 = { class: \"grid text-wrap text-center text-[0.75rem]/5 font-MONO font-semibold hover:font-bold\" }\nconst _hoisted_6 = {\n  key: 0,\n  class: \"swiper-container overscroll-auto focus:overscroll-contain grid m-5 mt-12\"\n}\nconst _hoisted_7 = { key: 1 }\nconst _hoisted_8 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"div\", { class: \"swiper-lazy-preloader swiper-lazy-preloader-black\" }, \"Loading...\", -1))\nconst _hoisted_9 = [\n  _hoisted_8\n]\n\nimport { ref, onMounted, watch } from \"vue\";\nimport Swiper from \"swiper\";\nimport \"swiper/swiper-bundle.css\";\nimport gql from \"graphql-tag\";\nimport { useQuery } from \"@vue/apollo-composable\";\n\n\nconst _sfc_main = {\n  __name: 'Cases',\n  props: {\n  category: {\n    type: String,\n    required: true,\n    default: \"Cases\",\n  },\n},\n  setup(__props) {\n\nconst props = __props;\n\nconst selectedProductId = ref(0);\n\nconst query = gql`\n  query GetProducts($category: String!) {\n    products(where: { category: $category }) {\n      edges {\n        node {\n          image {\n            link\n          }\n          name\n          id\n          databaseId\n        }\n      }\n    }\n  }\n`;\n\nconst { result: data, refetch } = useQuery(query, () => ({\n  category: props.category,\n}));\n\nwatch(\n  () => props.category,\n  (newVal) => {\n    if (newVal) refetch();\n  }\n);\n\nonMounted(() => {\n  new Swiper(\".swiper\", {\n    slidesPerView: 5,\n    rewind: true,\n    spaceBetween: 40,\n    autoplay: true,\n    loop: true,\n    resizeObserver: true,\n    grabCursor: true,\n    pagination: {\n      el: \".swiper-pagination\",\n      type: \"bullets\",\n      clickable: true,\n    },\n    navigation: {\n      nextEl: \".swiper-button-next\",\n      prevEl: \".swiper-button-prev\",\n    },\n    breakpoints: {\n      0: { slidesPerView: 1, spaceBetween: 10 },\n      630: { slidesPerView: 3, spaceBetween: 10 },\n      720: { slidesPerView: 4, spaceBetween: 10 },\n      1440: { slidesPerView: 5, spaceBetween: 40 },\n    },\n  });\n});\n\nconst handleClick = (productId) => {\n  selectedProductId.value = productId;\n};\n\nreturn (_ctx, _cache) => {\n  const _component_AwesomeWelcome = _resolveComponent(\"AwesomeWelcome\")\n  const _component_AwesomeVariations = _resolveComponent(\"AwesomeVariations\")\n\n  return (_unref(data).products.edges)\n    ? (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createVNode(_component_AwesomeWelcome, {\n          name: __props.category,\n          class: \"text-sm\"\n        }, null, 8, [\"name\"]),\n        _createElementVNode(\"div\", _hoisted_2, [\n          (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(_unref(data).products.edges, (product, index) => {\n            return (_openBlock(), _createElementBlock(\"div\", {\n              key: index,\n              class: \"swiper-slide\",\n              id: product.node.name\n            }, [\n              _createElementVNode(\"div\", null, [\n                _createElementVNode(\"img\", {\n                  onClick: $event => (handleClick(product.node.databaseId)),\n                  src: product.node.image ? product.node.image.link : '',\n                  alt: \"Product Image\",\n                  class: \"transition-all ease-in-out\"\n                }, null, 8, _hoisted_4),\n                _createElementVNode(\"h3\", _hoisted_5, _toDisplayString(product.node.name), 1),\n                (selectedProductId.value === product.node.databaseId)\n                  ? (_openBlock(), _createElementBlock(\"div\", _hoisted_6, [\n                      _createTextVNode(_toDisplayString(console.log(selectedProductId.value)) + \" \", 1),\n                      _createVNode(_component_AwesomeVariations, { productId: selectedProductId.value }, null, 8, [\"productId\"])\n                    ]))\n                  : _createCommentVNode(\"\", true)\n              ])\n            ], 8, _hoisted_3))\n          }), 128))\n        ])\n      ]))\n    : (_openBlock(), _createElementBlock(\"div\", _hoisted_7, _hoisted_9))\n}\n}\n\n}\n\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Cases.vue?vue&type=style&index=0&scoped=53158188&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\"data-v-53158188\"]])",
+      "start": 1746507065850,
+      "end": 1746507065855,
       "order": "normal",
       "sourcemaps": {
         "mappings": ""
@@ -68,162 +68,162 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Cases.vue\").then(r => r.default))",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065855,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716330188367,
-      "end": 1716330188367,
+      "start": 1746507065855,
+      "end": 1746507065856,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716330188367,
-      "end": 1716330188368,
+      "start": 1746507065856,
+      "end": 1746507065856,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716330188368,
-      "end": 1716330188368,
+      "start": 1746507065856,
+      "end": 1746507065856,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716330188368,
-      "end": 1716330188368,
+      "start": 1746507065856,
+      "end": 1746507065856,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716330188368,
-      "end": 1716330188368,
+      "start": 1746507065856,
+      "end": 1746507065856,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716330188368,
-      "end": 1716330188368,
+      "start": 1746507065856,
+      "end": 1746507065856,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716330188368,
-      "end": 1716330188368,
+      "start": 1746507065856,
+      "end": 1746507065856,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716330188368,
-      "end": 1716330188368,
+      "start": 1746507065856,
+      "end": 1746507065856,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
       "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Cases.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(r => r.default))",
-      "start": 1716330188368,
-      "end": 1716330188368,
+      "start": 1746507065856,
+      "end": 1746507065856,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "vite:reporter",
-      "start": 1716330188368,
-      "end": 1716330188368,
+      "start": 1746507065856,
+      "end": 1746507065856,
       "order": "normal"
     }
   ]

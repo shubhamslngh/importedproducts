@@ -1,0 +1,306 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue?vue&type=style&index=0&scoped=86edbef1&lang.css?inline&used",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.flex-container {\n  min-height: 100vh;\n  display: flex;\n  flex-wrap: nowrap; /* Prevent wrapping */\n  align-items: center;\n  justify-content: space-between;\n  padding: 50px;\n  perspective: 1000px;\n  overflow-x: auto; /* Enable horizontal scrolling if items overflow */\n}\n\n.flex-item {\n  flex: 1 1 auto;\n  margin: 10px;\n  transition: transform 1s, opacity 1s;\n  will-change: transform, opacity;\n  min-width: 150px; /* Ensure that items have a minimum size */\n}\n\n.product-image {\n  width: auto;\n  height: auto;\n  max-width: 200px; /* Set max size */\n  max-height: 200px; /* Set max size */\n  scale: 4.3;\n}\n\n@media (max-width: 768px) {\n  .flex-container {\n    flex-wrap: wrap;\n    justify-content: space-between;\n    padding: 20px;\n    overflow-x: auto; /* Allow scrolling on smaller screens */\n  }\n\n  .flex-item {\n    flex: 0 0 auto; /* Ensure items remain on the same line */\n    margin: 5px;\n  }\n\n  .product-image {\n    max-width: 150px;\n    max-height: 150px;\n    scale: 1.5;\n  }\n}\n\n@media (max-width: 480px) {\n  .flex-item {\n    flex: 0 0 auto; /* Ensure items remain on the same line */\n  }\n\n  .product-image {\n    max-width: 100px;\n    max-height: 100px;\n    scale: 1;\n  }\n}\n",
+      "start": 1746507071041,
+      "end": 1746507071041,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue"
+        ],
+        "names": [],
+        "mappings": "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",
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<template>\n  <h1 class=\"text-6xl font-extrabold text-bold text-center mt-5 dark:text-white light:text-black\">\n    Best Products\n  </h1>\n\n  <div class=\"flex min-h-[100vh] max-w-min \" ref=\"flexContainer\">\n    <div\n      class=\"flex-item\"\n      v-for=\"product in products\"\n      :key=\"product.id\"\n      :style=\"product.style\"\n    >\n      <img :src=\"product.imageUrl\" :alt=\"product.name\" class=\"product-image\" />\n      <div onclick=\"<AwesomeCases/>\" class=\"flex-item\">\n        <AwesomeWelcome\n          :style=\"{ maxwidth: '10vw', height: '5vh', fontSize: '12px', scale: .3 }\"\n          :name=\"product.name\"\n          :startColor=\"['green','grey','blue']\"\n          :endColor=\"['black','red','white']\"\n        />\n      </div>\n    </div>\n  </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      products: [\n        {\n          id: 1,\n          name: \"IPhone 14 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-7inch-product-red_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 2,\n          name: \"IPhone 14 Plus \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 3,\n          name: \"IPhone 14 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-pro-finish-select-202209-6-7inch_AV2_GEO_EMEA-Photoroom.png-Photoroom-2.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 4,\n          name: \"IPhone 15 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-finish-select-202309-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 5,\n          name: \"IPhone 15 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-pro-finish-select-202309-6-1inch_AV2_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n      ],\n    };\n  },\n  mounted() {\n    if (this.$refs.flexContainer) {\n      window.addEventListener(\"scroll\", this.handleScroll);\n      this.handleScroll();\n    }\n  },\n  beforeDestroy() {\n    if (this.$refs.flexContainer) {\n      window.removeEventListener(\"scroll\", this.handleScroll);\n    }\n  },\n  methods: {\n    handleScroll() {\n      if (!this.$refs.flexContainer) return;\n\n      const scrollY = window.scrollY;\n      const flexContainerRect =\n        this.$refs.flexContainer.getBoundingClientRect();\n\n      const startEffectScrollY =\n        flexContainerRect.top - window.innerHeight + 100;\n\n      const scrollProgress = Math.min(\n        1,\n        Math.max(\n          0,\n          (scrollY - startEffectScrollY) /\n            (window.innerHeight + this.$refs.flexContainer.clientHeight)\n        )\n      );\n\n      this.products.forEach((product, index) => {\n        const offsetY = scrollProgress * (index * 100);\n        product.style = {\n          transform: `translateY(${offsetY}px)`,\n          zIndex: `${10 - index}`,\n        };\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n.flex-container {\n  min-height: 100vh;\n  display: flex;\n  flex-wrap: nowrap; /* Prevent wrapping */\n  align-items: center;\n  justify-content: space-between;\n  padding: 50px;\n  perspective: 1000px;\n  overflow-x: auto; /* Enable horizontal scrolling if items overflow */\n}\n\n.flex-item {\n  flex: 1 1 auto;\n  margin: 10px;\n  transition: transform 1s, opacity 1s;\n  will-change: transform, opacity;\n  min-width: 150px; /* Ensure that items have a minimum size */\n}\n\n.product-image {\n  width: auto;\n  height: auto;\n  max-width: 200px; /* Set max size */\n  max-height: 200px; /* Set max size */\n  scale: 4.3;\n}\n\n@media (max-width: 768px) {\n  .flex-container {\n    flex-wrap: wrap;\n    justify-content: space-between;\n    padding: 20px;\n    overflow-x: auto; /* Allow scrolling on smaller screens */\n  }\n\n  .flex-item {\n    flex: 0 0 auto; /* Ensure items remain on the same line */\n    margin: 5px;\n  }\n\n  .product-image {\n    max-width: 150px;\n    max-height: 150px;\n    scale: 1.5;\n  }\n}\n\n@media (max-width: 480px) {\n  .flex-item {\n    flex: 0 0 auto; /* Ensure items remain on the same line */\n  }\n\n  .product-image {\n    max-width: 100px;\n    max-height: 100px;\n    scale: 1;\n  }\n}\n</style>\n"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1746507071042,
+      "end": 1746507071042,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1746507071042,
+      "end": 1746507071042,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1746507071044,
+      "end": 1746507071044,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1746507071044,
+      "end": 1746507071044,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1746507071044,
+      "end": 1746507071044,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1746507071044,
+      "end": 1746507071044,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1746507071044,
+      "end": 1746507071044,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".flex-container{align-items:center;display:flex;flex-wrap:nowrap;justify-content:space-between;min-height:100vh;overflow-x:auto;padding:50px;perspective:1000px}.flex-item{flex:1 1 auto;margin:10px;min-width:150px;transition:transform 1s,opacity 1s;will-change:transform,opacity}.product-image{height:auto;max-height:200px;max-width:200px;scale:4.3;width:auto}@media (max-width:768px){.flex-container{flex-wrap:wrap;justify-content:space-between;overflow-x:auto;padding:20px}.flex-item{flex:0 0 auto;margin:5px}.product-image{max-height:150px;max-width:150px;scale:1.5}}@media (max-width:480px){.flex-item{flex:0 0 auto}.product-image{max-height:100px;max-width:100px;scale:1}}",
+      "start": 1746507071044,
+      "end": 1746507071063,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue",
+        "mappings": "AACA,gBAIE,kBAAmB,CAFnB,YAAa,CACb,gBAAiB,CAEjB,6BAA8B,CAJ9B,gBAAiB,CAOjB,eAAgB,CAFhB,YAAa,CACb,kBAEF,CAEA,WACE,aAAc,CACd,WAAY,CAGZ,eAAgB,CAFhB,kCAAoC,CACpC,6BAEF,CAEA,eAEE,WAAY,CAEZ,gBAAiB,CADjB,eAAgB,CAEhB,SAAU,CAJV,UAKF,CAEA,yBACE,gBACE,cAAe,CACf,6BAA8B,CAE9B,eAAgB,CADhB,YAEF,CAEA,WACE,aAAc,CACd,UACF,CAEA,eAEE,gBAAiB,CADjB,eAAgB,CAEhB,SACF,CACF,CAEA,yBACE,WACE,aACF,CAEA,eAEE,gBAAiB,CADjB,eAAgB,CAEhB,OACF,CACF",
+        "names": [],
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue"
+        ],
+        "sourcesContent": [
+          "\n.flex-container {\n  min-height: 100vh;\n  display: flex;\n  flex-wrap: nowrap; /* Prevent wrapping */\n  align-items: center;\n  justify-content: space-between;\n  padding: 50px;\n  perspective: 1000px;\n  overflow-x: auto; /* Enable horizontal scrolling if items overflow */\n}\n\n.flex-item {\n  flex: 1 1 auto;\n  margin: 10px;\n  transition: transform 1s, opacity 1s;\n  will-change: transform, opacity;\n  min-width: 150px; /* Ensure that items have a minimum size */\n}\n\n.product-image {\n  width: auto;\n  height: auto;\n  max-width: 200px; /* Set max size */\n  max-height: 200px; /* Set max size */\n  scale: 4.3;\n}\n\n@media (max-width: 768px) {\n  .flex-container {\n    flex-wrap: wrap;\n    justify-content: space-between;\n    padding: 20px;\n    overflow-x: auto; /* Allow scrolling on smaller screens */\n  }\n\n  .flex-item {\n    flex: 0 0 auto; /* Ensure items remain on the same line */\n    margin: 5px;\n  }\n\n  .product-image {\n    max-width: 150px;\n    max-height: 150px;\n    scale: 1.5;\n  }\n}\n\n@media (max-width: 480px) {\n  .flex-item {\n    flex: 0 0 auto; /* Ensure items remain on the same line */\n  }\n\n  .product-image {\n    max-width: 100px;\n    max-height: 100px;\n    scale: 1;\n  }\n}\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1746507071063,
+      "end": 1746507071063,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1746507071064,
+      "end": 1746507071064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1746507071064,
+      "end": 1746507071064,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".flex-container[data-v-86edbef1]{align-items:center;display:flex;flex-wrap:nowrap;justify-content:space-between;min-height:100vh;overflow-x:auto;padding:50px;perspective:1000px}.flex-item[data-v-86edbef1]{flex:1 1 auto;margin:10px;min-width:150px;transition:transform 1s,opacity 1s;will-change:transform,opacity}.product-image[data-v-86edbef1]{height:auto;max-height:200px;max-width:200px;scale:4.3;width:auto}@media (max-width:768px){.flex-container[data-v-86edbef1]{flex-wrap:wrap;justify-content:space-between;overflow-x:auto;padding:20px}.flex-item[data-v-86edbef1]{flex:0 0 auto;margin:5px}.product-image[data-v-86edbef1]{max-height:150px;max-width:150px;scale:1.5}}@media (max-width:480px){.flex-item[data-v-86edbef1]{flex:0 0 auto}.product-image[data-v-86edbef1]{max-height:100px;max-width:100px;scale:1}}",
+      "start": 1746507071064,
+      "end": 1746507071064,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue",
+        "mappings": "AAAA,iCAAgB,kBAAkB,CAAC,YAAY,CAAC,gBAAgB,CAAC,6BAA6B,CAAC,gBAAgB,CAAC,eAAe,CAAC,YAAY,CAAC,kBAAkB,CAAC,4BAAW,aAAa,CAAC,WAAW,CAAC,eAAe,CAAC,kCAAkC,CAAC,6BAA6B,CAAC,gCAAe,WAAW,CAAC,gBAAgB,CAAC,eAAe,CAAC,SAAS,CAAC,UAAU,CAAC,yBAAyB,iCAAgB,cAAc,CAAC,6BAA6B,CAAC,eAAe,CAAC,YAAY,CAAC,4BAAW,aAAa,CAAC,UAAU,CAAC,gCAAe,gBAAgB,CAAC,eAAe,CAAC,SAAS,CAAC,CAAC,yBAAyB,4BAAW,aAAa,CAAC,gCAAe,gBAAgB,CAAC,eAAe,CAAC,OAAO,CAAC",
+        "names": [],
+        "sources": [
+          "/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1746507071064,
+      "end": 1746507071064,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1746507071064,
+      "end": 1746507071064,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1746507071064,
+      "end": 1746507071064,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1746507071064,
+      "end": 1746507071064,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1746507071064,
+      "end": 1746507071064,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "export default \".flex-container[data-v-86edbef1]{align-items:center;display:flex;flex-wrap:nowrap;justify-content:space-between;min-height:100vh;overflow-x:auto;padding:50px;perspective:1000px}.flex-item[data-v-86edbef1]{flex:1 1 auto;margin:10px;min-width:150px;transition:transform 1s,opacity 1s;will-change:transform,opacity}.product-image[data-v-86edbef1]{height:auto;max-height:200px;max-width:200px;scale:4.3;width:auto}@media (max-width:768px){.flex-container[data-v-86edbef1]{flex-wrap:wrap;justify-content:space-between;overflow-x:auto;padding:20px}.flex-item[data-v-86edbef1]{flex:0 0 auto;margin:5px}.product-image[data-v-86edbef1]{max-height:150px;max-width:150px;scale:1.5}}@media (max-width:480px){.flex-item[data-v-86edbef1]{flex:0 0 auto}.product-image[data-v-86edbef1]{max-height:100px;max-width:100px;scale:1}}\"",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1746507071065,
+      "end": 1746507071065,
+      "order": "normal"
+    }
+  ]
+}

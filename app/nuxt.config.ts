@@ -18,7 +18,7 @@ export default defineNuxtConfig(
     credentials: 'include',
     clients: {
       default: {
-        credentials: 'include',
+        // credentials: 'include',
           httpEndpoint: 'https://importedproducts.in/graphql',
       }
       }

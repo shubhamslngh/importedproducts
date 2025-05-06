@@ -1,15 +1,19 @@
 <template>
-  <div class="flex-container" ref="flexContainer">
+  <h1 class="text-6xl font-extrabold text-bold text-center mt-5 dark:text-white light:text-black">
+    Best Products
+  </h1>
+
+  <div class="flex min-h-[100vh] max-w-min " ref="flexContainer">
     <div
       class="flex-item"
       v-for="product in products"
       :key="product.id"
       :style="product.style"
     >
-      <img :src="product.imageUrl" :alt="product.name" class="product-image " />
-      <div class="flex-item z-20">
+      <img :src="product.imageUrl" :alt="product.name" class="product-image" />
+      <div onclick="<AwesomeCases/>" class="flex-item">
         <AwesomeWelcome
-          :style="{ width: '100px', height: '5px', fontSize: '12px', scale: .3 }"
+          :style="{ maxwidth: '10vw', height: '5vh', fontSize: '12px', scale: .3 }"
           :name="product.name"
           :startColor="['green','grey','blue']"
           :endColor="['black','red','white']"
@@ -20,8 +24,6 @@
 </template>
 
 <script>
-import animations from '@/utils/animations'; // Ensure you have this import if you are using the utility file
-
 export default {
   data() {
     return {
@@ -88,11 +90,9 @@ export default {
       const flexContainerRect =
         this.$refs.flexContainer.getBoundingClientRect();
 
-      // The point at which the scroll effect should start
       const startEffectScrollY =
-        flexContainerRect.top - window.innerHeight + 100; // Adjust the offset to start the effect
+        flexContainerRect.top - window.innerHeight + 100;
 
-      // Determine how much the user has scrolled within the effect range
       const scrollProgress = Math.min(
         1,
         Math.max(
@@ -102,12 +102,11 @@ export default {
         )
       );
 
-      // Apply a style transformation to align items into a single line
       this.products.forEach((product, index) => {
-        const offsetY = (2 - scrollProgress) * (index * 100); // This will space out the items more as they move up
+        const offsetY = scrollProgress * (index * 100);
         product.style = {
           transform: `translateY(${offsetY}px)`,
-          zIndex: `${100 - index}`, // Ensure items stack correctly during transition
+          zIndex: `${10 - index}`,
         };
       });
     },
@@ -119,23 +118,59 @@ export default {
 .flex-container {
   min-height: 100vh;
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-around;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  align-items: center;
+  justify-content: space-between;
   padding: 50px;
   perspective: 1000px;
+  overflow-x: auto; /* Enable horizontal scrolling if items overflow */
 }
 
 .flex-item {
+  flex: 1 1 auto;
+  margin: 10px;
   transition: transform 1s, opacity 1s;
   will-change: transform, opacity;
+  min-width: 150px; /* Ensure that items have a minimum size */
 }
 
 .product-image {
   width: auto;
   height: auto;
-  max-width: 200px; /* Adjust to suit your needs */
-  max-height: 200px; /* Adjust to suit your needs */
+  max-width: 200px; /* Set max size */
+  max-height: 200px; /* Set max size */
   scale: 4.3;
+}
+
+@media (max-width: 768px) {
+  .flex-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    overflow-x: auto; /* Allow scrolling on smaller screens */
+  }
+
+  .flex-item {
+    flex: 0 0 auto; /* Ensure items remain on the same line */
+    margin: 5px;
+  }
+
+  .product-image {
+    max-width: 150px;
+    max-height: 150px;
+    scale: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .flex-item {
+    flex: 0 0 auto; /* Ensure items remain on the same line */
+  }
+
+  .product-image {
+    max-width: 100px;
+    max-height: 100px;
+    scale: 1;
+  }
 }
 </style>

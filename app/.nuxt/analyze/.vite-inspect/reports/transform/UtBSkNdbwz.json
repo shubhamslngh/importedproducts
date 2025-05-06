@@ -4,63 +4,63 @@
     {
       "name": "vite:load-fallback",
       "result": "<template>\n  <AwesomeWelcome name=\"REGISTER  \" />\n  <div class=\"signup-container\">\n    <form @submit.prevent=\"handleSignup\" class=\"signup-form\">\n      <div class=\"form-group\">\n        <input\n          v-model=\"username\"\n          placeholder=\"Username\"\n          autocomplete=\"email\"\n          required\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          v-model=\"password\"\n          type=\"password\"\n          placeholder=\"Password\"\n          autocomplete=\"current-password\"\n          class=\"form-control\"\n          required\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          v-model=\"firstName\"\n          placeholder=\"First Name\"\n          required\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          v-model=\"lastName\"\n          placeholder=\"Last Name\"\n          required\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <input\n          v-model=\"email\"\n          type=\"email\"\n          placeholder=\"Email\"\n          autocomplete=\"email\"\n          required\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"grid gap-4\">\n        <button type=\"submit\" class=\"btn btn-primary\" :disabled=\"loading\">\n          Register\n        </button>\n      </div>\n      <div v-if=\"error\" class=\"error-message\">\n        {{ error.message }}\n      </div>\n    </form>\n  </div>\n</template>\n\n<script>\nimport { reactive, toRefs } from \"vue\";\nimport { useMutation } from \"@vue/apollo-composable\";\nimport { signup } from \"../../utils/cart\";\n\nexport default {\n  name: \"SignupForm\",\n  setup() {\n    const { mutate: createUser, loading, error } = useMutation(signup);\n\n    const state = reactive({\n      username: \"\",\n      password: \"\",\n      firstName: \"\",\n      lastName: \"\",\n      email: \"\",\n    });\n\n    const handleSignup = async () => {\n      try {\n        const response = await createUser({ variables: { ...state } });\n        console.log(\"Signup successful\", response);\n        // Handle post-signup logic (e.g., redirect or display success message)\n      } catch (err) {\n        console.error(\"Error signing up:\", err);\n        // Handle errors (e.g., display error message)\n      }\n    };\n\n    return { ...toRefs(state), handleSignup, loading, error };\n  },\n};\n</script>\n\n<style scoped>\n.signup-container {\n  max-width: 400px;\n  margin: auto;\n  padding: 20px;\n  border: 1px solid #000;\n  border-radius: 5px;\n  background-color: #000;\n  color: #fff;\n}\n\n.signup-form {\n  display: flex;\n  flex-direction: column;\n}\n\n.form-group {\n  margin-bottom: 20px;\n}\n\n.form-control {\n  width: 100%;\n  padding: 10px;\n  font-size: 16px;\n  border: 1px solid #810000;\n  border-radius: 5px;\n}\n\n.btn {\n  padding: 10px 20px;\n  font-size: 16px;\n  background-color: #4285f4;\n  color: #fff;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n}\n\n.btn:disabled {\n  background-color: #a10505;\n  cursor: not-allowed;\n}\n\n.error-message {\n  margin-top: 10px;\n  color: #d50000;\n  font-size: 14px;\n}\n</style>\n",
-      "start": 1716330188358,
-      "end": 1716330188532,
+      "start": 1746507065844,
+      "end": 1746507066231,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716330188532,
-      "end": 1716330188532,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716330188532,
-      "end": 1716330188532,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716330188532,
-      "end": 1716330188532,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716330188532,
-      "end": 1716330188532,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716330188532,
-      "end": 1716330188532,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716330188532,
-      "end": 1716330188532,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716330188532,
-      "end": 1716330188532,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716330188532,
-      "end": 1716330188532,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "\nimport { reactive, toRefs } from \"vue\";\nimport { useMutation } from \"@vue/apollo-composable\";\nimport { signup } from \"../../utils/cart\";\n\nconst _sfc_main = {\n  name: \"SignupForm\",\n  setup() {\n    const { mutate: createUser, loading, error } = useMutation(signup);\n\n    const state = reactive({\n      username: \"\",\n      password: \"\",\n      firstName: \"\",\n      lastName: \"\",\n      email: \"\",\n    });\n\n    const handleSignup = async () => {\n      try {\n        const response = await createUser({ variables: { ...state } });\n        console.log(\"Signup successful\", response);\n        // Handle post-signup logic (e.g., redirect or display success message)\n      } catch (err) {\n        console.error(\"Error signing up:\", err);\n        // Handle errors (e.g., display error message)\n      }\n    };\n\n    return { ...toRefs(state), handleSignup, loading, error };\n  },\n};\n\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, vModelText as _vModelText, createElementVNode as _createElementVNode, withDirectives as _withDirectives, toDisplayString as _toDisplayString, openBlock as _openBlock, createElementBlock as _createElementBlock, createCommentVNode as _createCommentVNode, withModifiers as _withModifiers, Fragment as _Fragment, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-0b5ce585\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"signup-container\" }\nconst _hoisted_2 = { class: \"form-group\" }\nconst _hoisted_3 = { class: \"form-group\" }\nconst _hoisted_4 = { class: \"form-group\" }\nconst _hoisted_5 = { class: \"form-group\" }\nconst _hoisted_6 = { class: \"form-group\" }\nconst _hoisted_7 = { class: \"grid gap-4\" }\nconst _hoisted_8 = [\"disabled\"]\nconst _hoisted_9 = {\n  key: 0,\n  class: \"error-message\"\n}\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_AwesomeWelcome = _resolveComponent(\"AwesomeWelcome\")\n\n  return (_openBlock(), _createElementBlock(_Fragment, null, [\n    _createVNode(_component_AwesomeWelcome, { name: \"REGISTER  \" }),\n    _createElementVNode(\"div\", _hoisted_1, [\n      _createElementVNode(\"form\", {\n        onSubmit: _cache[5] || (_cache[5] = _withModifiers((...args) => ($setup.handleSignup && $setup.handleSignup(...args)), [\"prevent\"])),\n        class: \"signup-form\"\n      }, [\n        _createElementVNode(\"div\", _hoisted_2, [\n          _withDirectives(_createElementVNode(\"input\", {\n            \"onUpdate:modelValue\": _cache[0] || (_cache[0] = $event => ((_ctx.username) = $event)),\n            placeholder: \"Username\",\n            autocomplete: \"email\",\n            required: \"\",\n            class: \"form-control\"\n          }, null, 512), [\n            [_vModelText, _ctx.username]\n          ])\n        ]),\n        _createElementVNode(\"div\", _hoisted_3, [\n          _withDirectives(_createElementVNode(\"input\", {\n            \"onUpdate:modelValue\": _cache[1] || (_cache[1] = $event => ((_ctx.password) = $event)),\n            type: \"password\",\n            placeholder: \"Password\",\n            autocomplete: \"current-password\",\n            class: \"form-control\",\n            required: \"\"\n          }, null, 512), [\n            [_vModelText, _ctx.password]\n          ])\n        ]),\n        _createElementVNode(\"div\", _hoisted_4, [\n          _withDirectives(_createElementVNode(\"input\", {\n            \"onUpdate:modelValue\": _cache[2] || (_cache[2] = $event => ((_ctx.firstName) = $event)),\n            placeholder: \"First Name\",\n            required: \"\",\n            class: \"form-control\"\n          }, null, 512), [\n            [_vModelText, _ctx.firstName]\n          ])\n        ]),\n        _createElementVNode(\"div\", _hoisted_5, [\n          _withDirectives(_createElementVNode(\"input\", {\n            \"onUpdate:modelValue\": _cache[3] || (_cache[3] = $event => ((_ctx.lastName) = $event)),\n            placeholder: \"Last Name\",\n            required: \"\",\n            class: \"form-control\"\n          }, null, 512), [\n            [_vModelText, _ctx.lastName]\n          ])\n        ]),\n        _createElementVNode(\"div\", _hoisted_6, [\n          _withDirectives(_createElementVNode(\"input\", {\n            \"onUpdate:modelValue\": _cache[4] || (_cache[4] = $event => ((_ctx.email) = $event)),\n            type: \"email\",\n            placeholder: \"Email\",\n            autocomplete: \"email\",\n            required: \"\",\n            class: \"form-control\"\n          }, null, 512), [\n            [_vModelText, _ctx.email]\n          ])\n        ]),\n        _createElementVNode(\"div\", _hoisted_7, [\n          _createElementVNode(\"button\", {\n            type: \"submit\",\n            class: \"btn btn-primary\",\n            disabled: $setup.loading\n          }, \" Register \", 8, _hoisted_8)\n        ]),\n        ($setup.error)\n          ? (_openBlock(), _createElementBlock(\"div\", _hoisted_9, _toDisplayString($setup.error.message), 1))\n          : _createCommentVNode(\"\", true)\n      ], 32)\n    ])\n  ], 64))\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Signup.vue?vue&type=style&index=0&scoped=0b5ce585&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render],['__scopeId',\"data-v-0b5ce585\"]])",
-      "start": 1716330188532,
-      "end": 1716330188533,
+      "start": 1746507066231,
+      "end": 1746507066233,
       "order": "normal",
       "sourcemaps": {
         "mappings": ""
@@ -68,162 +68,162 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Signup.vue\").then(r => r.default))",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
       "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Signup.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(r => r.default))",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "vite:reporter",
-      "start": 1716330188533,
-      "end": 1716330188533,
+      "start": 1746507066233,
+      "end": 1746507066233,
       "order": "normal"
     }
   ]

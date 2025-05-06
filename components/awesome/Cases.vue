@@ -1,8 +1,6 @@
 <template>
   <div v-if="data.products.edges" class="swiper">
-    <h1 class="mx-auto mb-6 py-16 ml-10 text-center text-2xl sm:text-md font-bold">
-     SELECT CASES
-    </h1>
+<AwesomeWelcome :name="category" class="text-sm"/>
 
     <div class="swiper-wrapper">
       <div
@@ -42,18 +40,25 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-// import { cartItem } from "../../utils/cart";
+import { ref, onMounted, watch } from "vue";
 import Swiper from "swiper";
-import { Navigation, Pagination, Scrollbar, Autoplay } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import gql from "graphql-tag";
+import { useQuery } from "@vue/apollo-composable";
+
+const props = defineProps({
+  category: {
+    type: String,
+    required: true,
+    default: "Cases",
+  },
+});
+
 const selectedProductId = ref(0);
-// const { Data1 } = await useAsyncQuery(cartItem);
-// console.log("cart",Data1)
+
 const query = gql`
-  query MyQuery {
-    products(where: { category: "cases" }) {
+  query GetProducts($category: String!) {
+    products(where: { category: $category }) {
       edges {
         node {
           image {
@@ -68,21 +73,26 @@ const query = gql`
   }
 `;
 
-const initializeSwiper = () => {
+const { result: data, refetch } = useQuery(query, () => ({
+  category: props.category,
+}));
 
+watch(
+  () => props.category,
+  (newVal) => {
+    if (newVal) refetch();
+  }
+);
 
-  const swiper = new Swiper(".swiper", {
+onMounted(() => {
+  new Swiper(".swiper", {
     slidesPerView: 5,
     rewind: true,
     spaceBetween: 40,
-    allowSlideNext: true,
     autoplay: true,
     loop: true,
     resizeObserver: true,
     grabCursor: true,
-    shortSwipes: true,
-    slideShadows: false,
-    breakpointsBase: window,
     pagination: {
       el: ".swiper-pagination",
       type: "bullets",
@@ -93,39 +103,13 @@ const initializeSwiper = () => {
       prevEl: ".swiper-button-prev",
     },
     breakpoints: {
-      0: {
-        slidesPerView: 1,
-        spaceBetween: 10,
-      },
-      630: {
-        slidesPerView: 3,
-        spaceBetween: 10,
-      },
-      720: {
-        slidesPerView: 4,
-        spaceBetween: 10,
-      },
-      1440: {
-        slidesPerView: 5,
-        spaceBetween: 40,
-      },
+      0: { slidesPerView: 1, spaceBetween: 10 },
+      630: { slidesPerView: 3, spaceBetween: 10 },
+      720: { slidesPerView: 4, spaceBetween: 10 },
+      1440: { slidesPerView: 5, spaceBetween: 40 },
     },
   });
-  return swiper;
-};
-
-const products = ref([]);
-onMounted(() => {
-  initializeSwiper();
 });
-
-const { data } = await useAsyncQuery(query);
-// console.log(data._value.products.edges, "here in cards");
-products.value = data._value.products.edges.map((edges) => ({
-  name: edges.node.name,
-  img: edges.node.image.link,
-}));
-console.log(products.value, "cases is obj");
 
 const handleClick = (productId) => {
   selectedProductId.value = productId;

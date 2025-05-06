@@ -4,81 +4,81 @@
     {
       "name": "vite:load-fallback",
       "result": "<template>\n  <div class=\"mx-auto  flex place-items-center  sm:place-items-center position: relative\">\n    <div\n      id=\"lampLed\"\n      class=\"sm:mx-auto  transition-[width] ease-in-out sm:max-w-xl md:max-w-3xl duration-[1s]\"\n    >\n      <div\n        id=\"backGlow\"\n        class=\"relative sm:max-w-20 md:max-w-7xl inset-20 -z-50 mx-auto align-baseline rounded-full bg-yellow-300 opacity-10 blur-3xl bg-blend-multiply\"\n      ></div>\n      <div\n        class=\"h-2 rounded-sm blur shadow-lg bg-blend-multiply md:shadow-xl md:shadow-red-500 trainsition-all duration-[12s]\"\n      ></div>\n\n      <div class=\"relative group grid mx-auto \">\n        <div\n          class=\"bg-black blur bg-blend-multiply blur p-2.5\"\n          style=\"z-index: 6\"\n        ></div>\n        <div id=\"tubecase\" class=\"bg-black w-auto p-0.5\"></div>\n        <div\n          id=\"lampLedGlow\"\n          class=\"absolute inset-[2px] opacity-50 blur-3xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-yellow-300 border-t-black duration-[2s] bg-blend-multiply ease-in-out duration-[2s]\"\n          style=\"z-index: 5\"\n        ></div>\n        <div\n\n          class=\"relative px-7 py-[1px] bg-yellow-200 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-center space-x-6 transtion-all ease-in-out duration-[2s]\"\n          style=\"z-index: 6\"\n        ></div>\n        <div\n          id=\"lampGlow\"\n          class=\"mx-auto overflow-hidden opacity-30 bg-blend-multiply blur-xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-[#a916c0] border-t-black duration-[2s]\"\n        ></div>\n\n      </div>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.neon {\n  text-shadow:\n    0 0 10px rgba(139, 92, 246, 0.5),\n    0 0 20px rgba(139, 92, 246, 0.5);\n}\n</style>\n<script setup>\nimport animations from \"../../utils/animations\";\nconst lampLed = \"lampLed\";\nonMounted(() => {\n  const element = document.getElementById(lampLed);\n  if (element) {\n    animations.runLamp();\n    window.addEventListener(\"scroll\", function () {\n      let scrollPosition = window.scrollY;\n      if (scrollPosition > 200) {\n        animations.lampOff();\n      } else if (scrollPosition <= 0) {\n        animations.runLamp();\n      } else {\n        animations.runLamp();\n      }\n    });\n  }\n});\n</script>\n",
-      "start": 1716330192579,
-      "end": 1716330192608,
+      "start": 1746507070776,
+      "end": 1746507070810,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716330192608,
-      "end": 1716330192608,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716330192608,
-      "end": 1716330192608,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716330192608,
-      "end": 1716330192608,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716330192608,
-      "end": 1716330192608,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716330192608,
-      "end": 1716330192608,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716330192608,
-      "end": 1716330192608,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716330192608,
-      "end": 1716330192608,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716330192608,
-      "end": 1716330192608,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716330192608,
-      "end": 1716330192608,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716330192608,
-      "end": 1716330192608,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716330192608,
-      "end": 1716330192608,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "import { mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderStyle as _ssrRenderStyle, ssrRenderAttrs as _ssrRenderAttrs } from \"vue/server-renderer\"\n\nimport animations from \"../../utils/animations\";\nconst lampLed = \"lampLed\";\n\nconst _sfc_main = {\n  __name: 'lamp',\n  __ssrInlineRender: true,\n  setup(__props) {\n\nonMounted(() => {\n  const element = document.getElementById(lampLed);\n  if (element) {\n    animations.runLamp();\n    window.addEventListener(\"scroll\", function () {\n      let scrollPosition = window.scrollY;\n      if (scrollPosition > 200) {\n        animations.lampOff();\n      } else if (scrollPosition <= 0) {\n        animations.runLamp();\n      } else {\n        animations.runLamp();\n      }\n    });\n  }\n});\n\nreturn (_ctx, _push, _parent, _attrs) => {\n  _push(`<div${\n    _ssrRenderAttrs(_mergeProps({ class: \"mx-auto flex place-items-center sm:place-items-center position: relative\" }, _attrs))\n  } data-v-e8a5bb74><div id=\"lampLed\" class=\"sm:mx-auto transition-[width] ease-in-out sm:max-w-xl md:max-w-3xl duration-[1s]\" data-v-e8a5bb74><div id=\"backGlow\" class=\"relative sm:max-w-20 md:max-w-7xl inset-20 -z-50 mx-auto align-baseline rounded-full bg-yellow-300 opacity-10 blur-3xl bg-blend-multiply\" data-v-e8a5bb74></div><div class=\"h-2 rounded-sm blur shadow-lg bg-blend-multiply md:shadow-xl md:shadow-red-500 trainsition-all duration-[12s]\" data-v-e8a5bb74></div><div class=\"relative group grid mx-auto\" data-v-e8a5bb74><div class=\"bg-black blur bg-blend-multiply blur p-2.5\" style=\"${\n    _ssrRenderStyle({\"z-index\":\"6\"})\n  }\" data-v-e8a5bb74></div><div id=\"tubecase\" class=\"bg-black w-auto p-0.5\" data-v-e8a5bb74></div><div id=\"lampLedGlow\" class=\"absolute inset-[2px] opacity-50 blur-3xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-yellow-300 border-t-black duration-[2s] bg-blend-multiply ease-in-out duration-[2s]\" style=\"${\n    _ssrRenderStyle({\"z-index\":\"5\"})\n  }\" data-v-e8a5bb74></div><div class=\"relative px-7 py-[1px] bg-yellow-200 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-center space-x-6 transtion-all ease-in-out duration-[2s]\" style=\"${\n    _ssrRenderStyle({\"z-index\":\"6\"})\n  }\" data-v-e8a5bb74></div><div id=\"lampGlow\" class=\"mx-auto overflow-hidden opacity-30 bg-blend-multiply blur-xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-[#a916c0] border-t-black duration-[2s]\" data-v-e8a5bb74></div></div></div></div>`)\n}\n}\n\n}\n\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/lamp.vue?vue&type=style&index=0&scoped=e8a5bb74&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"../components/awesome/lamp.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\"data-v-e8a5bb74\"]])",
-      "start": 1716330192608,
-      "end": 1716330192608,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -94,125 +94,125 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716330192609,
-      "end": 1716330192609,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330192609,
-      "end": 1716330192609,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330192609,
-      "end": 1716330192609,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716330192609,
-      "end": 1716330192609,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716330192609,
-      "end": 1716330192609,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716330192609,
-      "end": 1716330192609,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716330192609,
-      "end": 1716330192609,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330192609,
-      "end": 1716330192609,
+      "start": 1746507070810,
+      "end": 1746507070810,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716330192609,
-      "end": 1716330192610,
+      "start": 1746507070810,
+      "end": 1746507070811,
       "order": "normal"
     },
     {
       "name": "vite:define",
       "result": "import { mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderStyle as _ssrRenderStyle, ssrRenderAttrs as _ssrRenderAttrs } from \"vue/server-renderer\";\nimport animations from \"../../utils/animations\";\nconst lampLed = \"lampLed\";\nconst _sfc_main = {\n  __name: \"lamp\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    onMounted(() => {\n      const element = (void 0).getElementById(lampLed);\n      if (element) {\n        animations.runLamp();\n        (void 0).addEventListener(\"scroll\", function() {\n          let scrollPosition = (void 0).scrollY;\n          if (scrollPosition > 200) {\n            animations.lampOff();\n          } else if (scrollPosition <= 0) {\n            animations.runLamp();\n          } else {\n            animations.runLamp();\n          }\n        });\n      }\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      _push(`<div${_ssrRenderAttrs(_mergeProps({ class: \"mx-auto flex place-items-center sm:place-items-center position: relative\" }, _attrs))} data-v-e8a5bb74><div id=\"lampLed\" class=\"sm:mx-auto transition-[width] ease-in-out sm:max-w-xl md:max-w-3xl duration-[1s]\" data-v-e8a5bb74><div id=\"backGlow\" class=\"relative sm:max-w-20 md:max-w-7xl inset-20 -z-50 mx-auto align-baseline rounded-full bg-yellow-300 opacity-10 blur-3xl bg-blend-multiply\" data-v-e8a5bb74></div><div class=\"h-2 rounded-sm blur shadow-lg bg-blend-multiply md:shadow-xl md:shadow-red-500 trainsition-all duration-[12s]\" data-v-e8a5bb74></div><div class=\"relative group grid mx-auto\" data-v-e8a5bb74><div class=\"bg-black blur bg-blend-multiply blur p-2.5\" style=\"${_ssrRenderStyle({ \"z-index\": \"6\" })}\" data-v-e8a5bb74></div><div id=\"tubecase\" class=\"bg-black w-auto p-0.5\" data-v-e8a5bb74></div><div id=\"lampLedGlow\" class=\"absolute inset-[2px] opacity-50 blur-3xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-yellow-300 border-t-black duration-[2s] bg-blend-multiply ease-in-out duration-[2s]\" style=\"${_ssrRenderStyle({ \"z-index\": \"5\" })}\" data-v-e8a5bb74></div><div class=\"relative px-7 py-[1px] bg-yellow-200 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-center space-x-6 transtion-all ease-in-out duration-[2s]\" style=\"${_ssrRenderStyle({ \"z-index\": \"6\" })}\" data-v-e8a5bb74></div><div id=\"lampGlow\" class=\"mx-auto overflow-hidden opacity-30 bg-blend-multiply blur-xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-[#a916c0] border-t-black duration-[2s]\" data-v-e8a5bb74></div></div></div></div>`);\n    };\n  }\n};\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/lamp.vue?vue&type=style&index=0&scoped=e8a5bb74&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"../components/awesome/lamp.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-e8a5bb74\"]]);\n",
-      "start": 1716330192610,
-      "end": 1716330193600,
+      "start": 1746507070811,
+      "end": 1746507071937,
       "order": "normal",
       "sourcemaps": "{\n  \"version\": 3,\n  \"sources\": [\"/Users/shubhamsingh/namma/importedProds/components/awesome/lamp.vue\"],\n  \"sourcesContent\": [\"import { mergeProps as _mergeProps } from \\\"vue\\\"\\nimport { ssrRenderStyle as _ssrRenderStyle, ssrRenderAttrs as _ssrRenderAttrs } from \\\"vue/server-renderer\\\"\\n\\nimport animations from \\\"../../utils/animations\\\";\\nconst lampLed = \\\"lampLed\\\";\\n\\nconst _sfc_main = {\\n  __name: 'lamp',\\n  __ssrInlineRender: true,\\n  setup(__props) {\\n\\nonMounted(() => {\\n  const element = document.getElementById(lampLed);\\n  if (element) {\\n    animations.runLamp();\\n    window.addEventListener(\\\"scroll\\\", function () {\\n      let scrollPosition = window.scrollY;\\n      if (scrollPosition > 200) {\\n        animations.lampOff();\\n      } else if (scrollPosition <= 0) {\\n        animations.runLamp();\\n      } else {\\n        animations.runLamp();\\n      }\\n    });\\n  }\\n});\\n\\nreturn (_ctx, _push, _parent, _attrs) => {\\n  _push(`<div${\\n    _ssrRenderAttrs(_mergeProps({ class: \\\"mx-auto flex place-items-center sm:place-items-center position: relative\\\" }, _attrs))\\n  } data-v-e8a5bb74><div id=\\\"lampLed\\\" class=\\\"sm:mx-auto transition-[width] ease-in-out sm:max-w-xl md:max-w-3xl duration-[1s]\\\" data-v-e8a5bb74><div id=\\\"backGlow\\\" class=\\\"relative sm:max-w-20 md:max-w-7xl inset-20 -z-50 mx-auto align-baseline rounded-full bg-yellow-300 opacity-10 blur-3xl bg-blend-multiply\\\" data-v-e8a5bb74></div><div class=\\\"h-2 rounded-sm blur shadow-lg bg-blend-multiply md:shadow-xl md:shadow-red-500 trainsition-all duration-[12s]\\\" data-v-e8a5bb74></div><div class=\\\"relative group grid mx-auto\\\" data-v-e8a5bb74><div class=\\\"bg-black blur bg-blend-multiply blur p-2.5\\\" style=\\\"${\\n    _ssrRenderStyle({\\\"z-index\\\":\\\"6\\\"})\\n  }\\\" data-v-e8a5bb74></div><div id=\\\"tubecase\\\" class=\\\"bg-black w-auto p-0.5\\\" data-v-e8a5bb74></div><div id=\\\"lampLedGlow\\\" class=\\\"absolute inset-[2px] opacity-50 blur-3xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-yellow-300 border-t-black duration-[2s] bg-blend-multiply ease-in-out duration-[2s]\\\" style=\\\"${\\n    _ssrRenderStyle({\\\"z-index\\\":\\\"5\\\"})\\n  }\\\" data-v-e8a5bb74></div><div class=\\\"relative px-7 py-[1px] bg-yellow-200 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-center space-x-6 transtion-all ease-in-out duration-[2s]\\\" style=\\\"${\\n    _ssrRenderStyle({\\\"z-index\\\":\\\"6\\\"})\\n  }\\\" data-v-e8a5bb74></div><div id=\\\"lampGlow\\\" class=\\\"mx-auto overflow-hidden opacity-30 bg-blend-multiply blur-xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-[#a916c0] border-t-black duration-[2s]\\\" data-v-e8a5bb74></div></div></div></div>`)\\n}\\n}\\n\\n}\\n\\n\\nimport \\\"/Users/shubhamsingh/namma/importedProds/components/awesome/lamp.vue?vue&type=style&index=0&scoped=e8a5bb74&lang.css\\\"\\n\\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\\nconst _sfc_setup = _sfc_main.setup\\n_sfc_main.setup = (props, ctx) => {\\n  const ssrContext = __vite_useSSRContext()\\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\\\"../components/awesome/lamp.vue\\\")\\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\\n}\\nimport _export_sfc from '\\u0000plugin-vue:export-helper'\\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\\\"data-v-e8a5bb74\\\"]])\"],\n  \"mappings\": \"AAAA,SAAS,cAAc,mBAAmB;AAC1C,SAAS,kBAAkB,iBAAiB,kBAAkB,uBAAuB;AAErF,OAAO,gBAAgB;AACvB,MAAM,UAAU;AAEhB,MAAM,YAAY;AAAA,EAChB,QAAQ;AAAA,EACR,mBAAmB;AAAA,EACnB,MAAM,SAAS;AAEjB,cAAU,MAAM;AACd,YAAM,UAAU,SAAS,eAAe,OAAO;AAC/C,UAAI,SAAS;AACX,mBAAW,QAAQ;AACnB,iBAAO,iBAAiB,UAAU,WAAY;AAC5C,cAAI,iBAAiB,SAAO;AAC5B,cAAI,iBAAiB,KAAK;AACxB,uBAAW,QAAQ;AAAA,UACrB,WAAW,kBAAkB,GAAG;AAC9B,uBAAW,QAAQ;AAAA,UACrB,OAAO;AACL,uBAAW,QAAQ;AAAA,UACrB;AAAA,QACF,CAAC;AAAA,MACH;AAAA,IACF,CAAC;AAED,WAAO,CAAC,MAAM,OAAO,SAAS,WAAW;AACvC,YAAM,OACJ,gBAAgB,YAAY,EAAE,OAAO,2EAA2E,GAAG,MAAM,CAAC,CAC5H,klBACE,gBAAgB,EAAC,WAAU,IAAG,CAAC,CACjC,gXACE,gBAAgB,EAAC,WAAU,IAAG,CAAC,CACjC,mNACE,gBAAgB,EAAC,WAAU,IAAG,CAAC,CACjC,6SAA6S;AAAA,IAC/S;AAAA,EACA;AAEA;AAGA,OAAO;AAEP,SAAS,iBAAiB,4BAA4B;AACtD,MAAM,aAAa,UAAU;AAC7B,UAAU,QAAQ,CAAC,OAAO,QAAQ;AAChC,QAAM,aAAa,qBAAqB;AACvC,GAAC,WAAW,YAAY,WAAW,UAAU,oBAAI,IAAI,IAAI,IAAI,gCAAgC;AAC9F,SAAO,aAAa,WAAW,OAAO,GAAG,IAAI;AAC/C;AACA,OAAO,iBAAiB;AACxB,eAA4B,4BAAY,WAAW,CAAC,CAAC,aAAY,iBAAiB,CAAC,CAAC;\",\n  \"names\": []\n}\n"
     },
     {
       "name": "vite:css-post",
-      "start": 1716330193600,
-      "end": 1716330193600,
+      "start": 1746507071937,
+      "end": 1746507071937,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716330193600,
-      "end": 1716330193600,
+      "start": 1746507071937,
+      "end": 1746507071937,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716330193600,
-      "end": 1716330193600,
+      "start": 1746507071937,
+      "end": 1746507071937,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716330193600,
-      "end": 1716330193600,
+      "start": 1746507071937,
+      "end": 1746507071937,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716330193600,
-      "end": 1716330193600,
+      "start": 1746507071937,
+      "end": 1746507071937,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716330193600,
-      "end": 1716330193600,
+      "start": 1746507071937,
+      "end": 1746507071937,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716330193600,
-      "end": 1716330193600,
+      "start": 1746507071937,
+      "end": 1746507071937,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716330193600,
-      "end": 1716330193600,
+      "start": 1746507071937,
+      "end": 1746507071937,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716330193600,
-      "end": 1716330193600,
+      "start": 1746507071937,
+      "end": 1746507071937,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { onMounted } from 'vue';\nimport { mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderStyle as _ssrRenderStyle, ssrRenderAttrs as _ssrRenderAttrs } from \"vue/server-renderer\";\nimport animations from \"../../utils/animations\";\nconst lampLed = \"lampLed\";\nconst _sfc_main = {\n  __name: \"lamp\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    onMounted(() => {\n      const element = (void 0).getElementById(lampLed);\n      if (element) {\n        animations.runLamp();\n        (void 0).addEventListener(\"scroll\", function() {\n          let scrollPosition = (void 0).scrollY;\n          if (scrollPosition > 200) {\n            animations.lampOff();\n          } else if (scrollPosition <= 0) {\n            animations.runLamp();\n          } else {\n            animations.runLamp();\n          }\n        });\n      }\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      _push(`<div${_ssrRenderAttrs(_mergeProps({ class: \"mx-auto flex place-items-center sm:place-items-center position: relative\" }, _attrs))} data-v-e8a5bb74><div id=\"lampLed\" class=\"sm:mx-auto transition-[width] ease-in-out sm:max-w-xl md:max-w-3xl duration-[1s]\" data-v-e8a5bb74><div id=\"backGlow\" class=\"relative sm:max-w-20 md:max-w-7xl inset-20 -z-50 mx-auto align-baseline rounded-full bg-yellow-300 opacity-10 blur-3xl bg-blend-multiply\" data-v-e8a5bb74></div><div class=\"h-2 rounded-sm blur shadow-lg bg-blend-multiply md:shadow-xl md:shadow-red-500 trainsition-all duration-[12s]\" data-v-e8a5bb74></div><div class=\"relative group grid mx-auto\" data-v-e8a5bb74><div class=\"bg-black blur bg-blend-multiply blur p-2.5\" style=\"${_ssrRenderStyle({ \"z-index\": \"6\" })}\" data-v-e8a5bb74></div><div id=\"tubecase\" class=\"bg-black w-auto p-0.5\" data-v-e8a5bb74></div><div id=\"lampLedGlow\" class=\"absolute inset-[2px] opacity-50 blur-3xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-yellow-300 border-t-black duration-[2s] bg-blend-multiply ease-in-out duration-[2s]\" style=\"${_ssrRenderStyle({ \"z-index\": \"5\" })}\" data-v-e8a5bb74></div><div class=\"relative px-7 py-[1px] bg-yellow-200 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-center space-x-6 transtion-all ease-in-out duration-[2s]\" style=\"${_ssrRenderStyle({ \"z-index\": \"6\" })}\" data-v-e8a5bb74></div><div id=\"lampGlow\" class=\"mx-auto overflow-hidden opacity-30 bg-blend-multiply blur-xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-[#a916c0] border-t-black duration-[2s]\" data-v-e8a5bb74></div></div></div></div>`);\n    };\n  }\n};\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/lamp.vue?vue&type=style&index=0&scoped=e8a5bb74&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"../components/awesome/lamp.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-e8a5bb74\"]]);\n",
-      "start": 1716330193600,
-      "end": 1716330193601,
+      "start": 1746507071937,
+      "end": 1746507071938,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -226,8 +226,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { onMounted } from 'vue';\nimport { mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderStyle as _ssrRenderStyle, ssrRenderAttrs as _ssrRenderAttrs } from \"vue/server-renderer\";\nimport animations from \"../../utils/animations\";\nconst lampLed = \"lampLed\";\nconst _sfc_main = {\n  __name: \"lamp\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    onMounted(() => {\n      const element = (void 0).getElementById(lampLed);\n      if (element) {\n        animations.runLamp();\n        (void 0).addEventListener(\"scroll\", function() {\n          let scrollPosition = (void 0).scrollY;\n          if (scrollPosition > 200) {\n            animations.lampOff();\n          } else if (scrollPosition <= 0) {\n            animations.runLamp();\n          } else {\n            animations.runLamp();\n          }\n        });\n      }\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      _push(`<div${_ssrRenderAttrs(_mergeProps({ class: \"mx-auto flex place-items-center sm:place-items-center position: relative\" }, _attrs))} data-v-e8a5bb74><div id=\"lampLed\" class=\"sm:mx-auto transition-[width] ease-in-out sm:max-w-xl md:max-w-3xl duration-[1s]\" data-v-e8a5bb74><div id=\"backGlow\" class=\"relative sm:max-w-20 md:max-w-7xl inset-20 -z-50 mx-auto align-baseline rounded-full bg-yellow-300 opacity-10 blur-3xl bg-blend-multiply\" data-v-e8a5bb74></div><div class=\"h-2 rounded-sm blur shadow-lg bg-blend-multiply md:shadow-xl md:shadow-red-500 trainsition-all duration-[12s]\" data-v-e8a5bb74></div><div class=\"relative group grid mx-auto\" data-v-e8a5bb74><div class=\"bg-black blur bg-blend-multiply blur p-2.5\" style=\"${_ssrRenderStyle({ \"z-index\": \"6\" })}\" data-v-e8a5bb74></div><div id=\"tubecase\" class=\"bg-black w-auto p-0.5\" data-v-e8a5bb74></div><div id=\"lampLedGlow\" class=\"absolute inset-[2px] opacity-50 blur-3xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-yellow-300 border-t-black duration-[2s] bg-blend-multiply ease-in-out duration-[2s]\" style=\"${_ssrRenderStyle({ \"z-index\": \"5\" })}\" data-v-e8a5bb74></div><div class=\"relative px-7 py-[1px] bg-yellow-200 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-center space-x-6 transtion-all ease-in-out duration-[2s]\" style=\"${_ssrRenderStyle({ \"z-index\": \"6\" })}\" data-v-e8a5bb74></div><div id=\"lampGlow\" class=\"mx-auto overflow-hidden opacity-30 bg-blend-multiply blur-xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-[#a916c0] border-t-black duration-[2s]\" data-v-e8a5bb74></div></div></div></div>`);\n    };\n  }\n};\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/lamp.vue?vue&type=style&index=0&scoped=e8a5bb74&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"../components/awesome/lamp.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-e8a5bb74\"]]);\n",
-      "start": 1716330193600,
-      "end": 1716330193601,
+      "start": 1746507071937,
+      "end": 1746507071938,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -240,45 +240,45 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1716330193601,
-      "end": 1716330193601,
+      "start": 1746507071938,
+      "end": 1746507071938,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716330193601,
-      "end": 1716330193601,
+      "start": 1746507071938,
+      "end": 1746507071938,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716330193601,
-      "end": 1716330193601,
+      "start": 1746507071938,
+      "end": 1746507071938,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716330193601,
-      "end": 1716330193601,
+      "start": 1746507071938,
+      "end": 1746507071938,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1716330193601,
-      "end": 1716330193601,
+      "start": 1746507071938,
+      "end": 1746507071938,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716330193601,
-      "end": 1716330193601,
+      "start": 1746507071938,
+      "end": 1746507071938,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
       "result": "import { onMounted } from 'vue';\nimport { mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderStyle as _ssrRenderStyle, ssrRenderAttrs as _ssrRenderAttrs } from \"vue/server-renderer\";\nimport animations from \"../../utils/animations\";\nconst lampLed = \"lampLed\";\nconst _sfc_main = {\n  __name: \"lamp\",\n  __ssrInlineRender: true,\n  setup(__props) {\n     false && /*@__PURE__*/ onMounted(() => {\n      const element = (void 0).getElementById(lampLed);\n      if (element) {\n        animations.runLamp();\n        (void 0).addEventListener(\"scroll\", function() {\n          let scrollPosition = (void 0).scrollY;\n          if (scrollPosition > 200) {\n            animations.lampOff();\n          } else if (scrollPosition <= 0) {\n            animations.runLamp();\n          } else {\n            animations.runLamp();\n          }\n        });\n      }\n    });\n    return (_ctx, _push, _parent, _attrs) => {\n      _push(`<div${_ssrRenderAttrs(_mergeProps({ class: \"mx-auto flex place-items-center sm:place-items-center position: relative\" }, _attrs))} data-v-e8a5bb74><div id=\"lampLed\" class=\"sm:mx-auto transition-[width] ease-in-out sm:max-w-xl md:max-w-3xl duration-[1s]\" data-v-e8a5bb74><div id=\"backGlow\" class=\"relative sm:max-w-20 md:max-w-7xl inset-20 -z-50 mx-auto align-baseline rounded-full bg-yellow-300 opacity-10 blur-3xl bg-blend-multiply\" data-v-e8a5bb74></div><div class=\"h-2 rounded-sm blur shadow-lg bg-blend-multiply md:shadow-xl md:shadow-red-500 trainsition-all duration-[12s]\" data-v-e8a5bb74></div><div class=\"relative group grid mx-auto\" data-v-e8a5bb74><div class=\"bg-black blur bg-blend-multiply blur p-2.5\" style=\"${_ssrRenderStyle({ \"z-index\": \"6\" })}\" data-v-e8a5bb74></div><div id=\"tubecase\" class=\"bg-black w-auto p-0.5\" data-v-e8a5bb74></div><div id=\"lampLedGlow\" class=\"absolute inset-[2px] opacity-50 blur-3xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-yellow-300 border-t-black duration-[2s] bg-blend-multiply ease-in-out duration-[2s]\" style=\"${_ssrRenderStyle({ \"z-index\": \"5\" })}\" data-v-e8a5bb74></div><div class=\"relative px-7 py-[1px] bg-yellow-200 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-center space-x-6 transtion-all ease-in-out duration-[2s]\" style=\"${_ssrRenderStyle({ \"z-index\": \"6\" })}\" data-v-e8a5bb74></div><div id=\"lampGlow\" class=\"mx-auto overflow-hidden opacity-30 bg-blend-multiply blur-xl border-t-[10px] border-b-[250px] border-l-[180px] border-r-[180px] border-solid border-transparent border-b-[#a916c0] border-t-black duration-[2s]\" data-v-e8a5bb74></div></div></div></div>`);\n    };\n  }\n};\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/lamp.vue?vue&type=style&index=0&scoped=e8a5bb74&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"../components/awesome/lamp.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-e8a5bb74\"]]);\n",
-      "start": 1716330193601,
-      "end": 1716330193601,
+      "start": 1746507071938,
+      "end": 1746507071938,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -291,14 +291,14 @@
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716330193601,
-      "end": 1716330193601,
+      "start": 1746507071938,
+      "end": 1746507071938,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716330193601,
-      "end": 1716330193601,
+      "start": 1746507071938,
+      "end": 1746507071938,
       "order": "normal"
     }
   ]

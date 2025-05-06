@@ -4,7 +4,7 @@ const props = defineProps(["Cases"]);
 
 <template>
   <div v-for="(Iphonecase, index) in Cases" :key="index">
-    {{ console.log("value in Iphoneacase", { IphoneCase }) }}
+    <!-- {{ console.log("value in Iphoneacase", { IphoneCase }) }} -->
     <li>{{ Iphonecase.color }}</li>
   </div>
 </template>

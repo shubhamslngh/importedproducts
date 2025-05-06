@@ -94,9 +94,9 @@ const appConfig0 = defineAppConfig({
       page: {
         navbar: {
           menus: [
-            { type: "link", title: "Cases", to: { name: "products" } },
-            { type: "link", title: "Post", to: { name: "post" } },
-            { type: "link", title: "Travel", to: { name: "travel" } },
+            { type: "link", title: "Products", to: { name: "products" } },
+            { type: "link", title: "Subscriptions", to: { name: "post" } },
+            // { type: 'link', title: 'Travel', to: { name: 'travel' } },
             { type: "link", title: "Login", to: { name: "login" } },
             {
               type: "dropdown",
@@ -180,7 +180,7 @@ const appConfig1 = defineAppConfig({
 
 const inlineAppConfig = {
   "nuxt": {
-    "buildId": "9ff887c6-c3c6-485c-a37f-3b5bbdbeca62"
+    "buildId": "bfb152fd-1de4-451d-90cd-64abfffbf8b2"
   }
 };
 
@@ -265,7 +265,7 @@ const _inlineRuntimeConfig = {
     "content": {
       "locales": [],
       "defaultLocale": "",
-      "integrity": 1716330186969,
+      "integrity": 1746507064221,
       "experimental": {
         "stripQueryParameters": false,
         "advanceQuery": false,
@@ -3838,7 +3838,7 @@ const handlers = [
   { route: '/api/_content/query/:qid/**:params', handler: _R7ECok, lazy: false, middleware: false, method: "get" },
   { route: '/api/_content/query/:qid', handler: _R7ECok, lazy: false, middleware: false, method: "get" },
   { route: '/api/_content/query', handler: _R7ECok, lazy: false, middleware: false, method: "get" },
-  { route: '/api/_content/cache.1716330186969.json', handler: _nyNTH6, lazy: false, middleware: false, method: "get" },
+  { route: '/api/_content/cache.1746507064221.json', handler: _nyNTH6, lazy: false, middleware: false, method: "get" },
   { route: '/api/_content/navigation/:qid/**:params', handler: _PaOhSX, lazy: false, middleware: false, method: "get" },
   { route: '/api/_content/navigation/:qid', handler: _PaOhSX, lazy: false, middleware: false, method: "get" },
   { route: '/api/_content/navigation', handler: _PaOhSX, lazy: false, middleware: false, method: "get" },

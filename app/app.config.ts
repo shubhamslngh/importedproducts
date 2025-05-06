@@ -15,9 +15,9 @@ export default defineAppConfig({
       page: {
         navbar: {
           menus: [
-            { type: 'link', title: 'Cases', to: { name: 'products' } },
-            { type: 'link', title: 'Post', to: { name: 'post' } },
-            { type: 'link', title: 'Travel', to: { name: 'travel' } },
+            { type: 'link', title: 'Products', to: { name: 'products' } },
+            { type: 'link', title: 'Subscriptions', to: { name: 'post' } },
+            // { type: 'link', title: 'Travel', to: { name: 'travel' } },
             { type: 'link', title: 'Login', to: { name: 'login' } },
 
 

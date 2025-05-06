@@ -3,64 +3,64 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "<template>\n  <div class=\"flex-container\" ref=\"flexContainer\">\n    <div\n      class=\"flex-item\"\n      v-for=\"product in products\"\n      :key=\"product.id\"\n      :style=\"product.style\"\n    >\n      <img :src=\"product.imageUrl\" :alt=\"product.name\" class=\"product-image \" />\n      <div class=\"flex-item z-20\">\n        <AwesomeWelcome\n          :style=\"{ width: '100px', height: '5px', fontSize: '12px', scale: .3 }\"\n          :name=\"product.name\"\n          :startColor=\"['green','grey','blue']\"\n          :endColor=\"['black','red','white']\"\n        />\n      </div>\n    </div>\n  </div>\n</template>\n\n<script>\nimport animations from '@/utils/animations'; // Ensure you have this import if you are using the utility file\n\nexport default {\n  data() {\n    return {\n      products: [\n        {\n          id: 1,\n          name: \"IPhone 14 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-7inch-product-red_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 2,\n          name: \"IPhone 14 Plus \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 3,\n          name: \"IPhone 14 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-pro-finish-select-202209-6-7inch_AV2_GEO_EMEA-Photoroom.png-Photoroom-2.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 4,\n          name: \"IPhone 15 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-finish-select-202309-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 5,\n          name: \"IPhone 15 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-pro-finish-select-202309-6-1inch_AV2_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n      ],\n    };\n  },\n  mounted() {\n    if (this.$refs.flexContainer) {\n      window.addEventListener(\"scroll\", this.handleScroll);\n      this.handleScroll();\n    }\n  },\n  beforeDestroy() {\n    if (this.$refs.flexContainer) {\n      window.removeEventListener(\"scroll\", this.handleScroll);\n    }\n  },\n  methods: {\n    handleScroll() {\n      if (!this.$refs.flexContainer) return;\n\n      const scrollY = window.scrollY;\n      const flexContainerRect =\n        this.$refs.flexContainer.getBoundingClientRect();\n\n      // The point at which the scroll effect should start\n      const startEffectScrollY =\n        flexContainerRect.top - window.innerHeight + 100; // Adjust the offset to start the effect\n\n      // Determine how much the user has scrolled within the effect range\n      const scrollProgress = Math.min(\n        1,\n        Math.max(\n          0,\n          (scrollY - startEffectScrollY) /\n            (window.innerHeight + this.$refs.flexContainer.clientHeight)\n        )\n      );\n\n      // Apply a style transformation to align items into a single line\n      this.products.forEach((product, index) => {\n        const offsetY = (2 - scrollProgress) * (index * 100); // This will space out the items more as they move up\n        product.style = {\n          transform: `translateY(${offsetY}px)`,\n          zIndex: `${100 - index}`, // Ensure items stack correctly during transition\n        };\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n.flex-container {\n  min-height: 100vh;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: flex-end;\n  justify-content: space-around;\n  padding: 50px;\n  perspective: 1000px;\n}\n\n.flex-item {\n  transition: transform 1s, opacity 1s;\n  will-change: transform, opacity;\n}\n\n.product-image {\n  width: auto;\n  height: auto;\n  max-width: 200px; /* Adjust to suit your needs */\n  max-height: 200px; /* Adjust to suit your needs */\n  scale: 4.3;\n}\n</style>\n",
-      "start": 1716330188356,
-      "end": 1716330188528,
+      "result": "<template>\n  <h1 class=\"text-6xl font-extrabold text-bold text-center mt-5 dark:text-white light:text-black\">\n    Best Products\n  </h1>\n\n  <div class=\"flex min-h-[100vh] max-w-min \" ref=\"flexContainer\">\n    <div\n      class=\"flex-item\"\n      v-for=\"product in products\"\n      :key=\"product.id\"\n      :style=\"product.style\"\n    >\n      <img :src=\"product.imageUrl\" :alt=\"product.name\" class=\"product-image\" />\n      <div onclick=\"<AwesomeCases/>\" class=\"flex-item\">\n        <AwesomeWelcome\n          :style=\"{ maxwidth: '10vw', height: '5vh', fontSize: '12px', scale: .3 }\"\n          :name=\"product.name\"\n          :startColor=\"['green','grey','blue']\"\n          :endColor=\"['black','red','white']\"\n        />\n      </div>\n    </div>\n  </div>\n</template>\n\n<script>\nexport default {\n  data() {\n    return {\n      products: [\n        {\n          id: 1,\n          name: \"IPhone 14 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-7inch-product-red_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 2,\n          name: \"IPhone 14 Plus \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 3,\n          name: \"IPhone 14 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-pro-finish-select-202209-6-7inch_AV2_GEO_EMEA-Photoroom.png-Photoroom-2.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 4,\n          name: \"IPhone 15 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-finish-select-202309-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 5,\n          name: \"IPhone 15 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-pro-finish-select-202309-6-1inch_AV2_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n      ],\n    };\n  },\n  mounted() {\n    if (this.$refs.flexContainer) {\n      window.addEventListener(\"scroll\", this.handleScroll);\n      this.handleScroll();\n    }\n  },\n  beforeDestroy() {\n    if (this.$refs.flexContainer) {\n      window.removeEventListener(\"scroll\", this.handleScroll);\n    }\n  },\n  methods: {\n    handleScroll() {\n      if (!this.$refs.flexContainer) return;\n\n      const scrollY = window.scrollY;\n      const flexContainerRect =\n        this.$refs.flexContainer.getBoundingClientRect();\n\n      const startEffectScrollY =\n        flexContainerRect.top - window.innerHeight + 100;\n\n      const scrollProgress = Math.min(\n        1,\n        Math.max(\n          0,\n          (scrollY - startEffectScrollY) /\n            (window.innerHeight + this.$refs.flexContainer.clientHeight)\n        )\n      );\n\n      this.products.forEach((product, index) => {\n        const offsetY = scrollProgress * (index * 100);\n        product.style = {\n          transform: `translateY(${offsetY}px)`,\n          zIndex: `${10 - index}`,\n        };\n      });\n    },\n  },\n};\n</script>\n\n<style scoped>\n.flex-container {\n  min-height: 100vh;\n  display: flex;\n  flex-wrap: nowrap; /* Prevent wrapping */\n  align-items: center;\n  justify-content: space-between;\n  padding: 50px;\n  perspective: 1000px;\n  overflow-x: auto; /* Enable horizontal scrolling if items overflow */\n}\n\n.flex-item {\n  flex: 1 1 auto;\n  margin: 10px;\n  transition: transform 1s, opacity 1s;\n  will-change: transform, opacity;\n  min-width: 150px; /* Ensure that items have a minimum size */\n}\n\n.product-image {\n  width: auto;\n  height: auto;\n  max-width: 200px; /* Set max size */\n  max-height: 200px; /* Set max size */\n  scale: 4.3;\n}\n\n@media (max-width: 768px) {\n  .flex-container {\n    flex-wrap: wrap;\n    justify-content: space-between;\n    padding: 20px;\n    overflow-x: auto; /* Allow scrolling on smaller screens */\n  }\n\n  .flex-item {\n    flex: 0 0 auto; /* Ensure items remain on the same line */\n    margin: 5px;\n  }\n\n  .product-image {\n    max-width: 150px;\n    max-height: 150px;\n    scale: 1.5;\n  }\n}\n\n@media (max-width: 480px) {\n  .flex-item {\n    flex: 0 0 auto; /* Ensure items remain on the same line */\n  }\n\n  .product-image {\n    max-width: 100px;\n    max-height: 100px;\n    scale: 1;\n  }\n}\n</style>\n",
+      "start": 1746507065842,
+      "end": 1746507066229,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716330188528,
-      "end": 1716330188528,
+      "start": 1746507066229,
+      "end": 1746507066229,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716330188528,
-      "end": 1716330188528,
+      "start": 1746507066229,
+      "end": 1746507066229,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716330188528,
-      "end": 1716330188528,
+      "start": 1746507066229,
+      "end": 1746507066229,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716330188528,
-      "end": 1716330188528,
+      "start": 1746507066229,
+      "end": 1746507066229,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716330188528,
-      "end": 1716330188528,
+      "start": 1746507066229,
+      "end": 1746507066229,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1716330188528,
-      "end": 1716330188528,
+      "start": 1746507066229,
+      "end": 1746507066229,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1716330188528,
-      "end": 1716330188528,
+      "start": 1746507066229,
+      "end": 1746507066229,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716330188528,
-      "end": 1716330188528,
+      "start": 1746507066229,
+      "end": 1746507066229,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "result": "\nimport animations from '@/utils/animations'; // Ensure you have this import if you are using the utility file\n\nconst _sfc_main = {\n  data() {\n    return {\n      products: [\n        {\n          id: 1,\n          name: \"IPhone 14 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-7inch-product-red_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 2,\n          name: \"IPhone 14 Plus \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 3,\n          name: \"IPhone 14 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-pro-finish-select-202209-6-7inch_AV2_GEO_EMEA-Photoroom.png-Photoroom-2.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 4,\n          name: \"IPhone 15 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-finish-select-202309-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 5,\n          name: \"IPhone 15 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-pro-finish-select-202309-6-1inch_AV2_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n      ],\n    };\n  },\n  mounted() {\n    if (this.$refs.flexContainer) {\n      window.addEventListener(\"scroll\", this.handleScroll);\n      this.handleScroll();\n    }\n  },\n  beforeDestroy() {\n    if (this.$refs.flexContainer) {\n      window.removeEventListener(\"scroll\", this.handleScroll);\n    }\n  },\n  methods: {\n    handleScroll() {\n      if (!this.$refs.flexContainer) return;\n\n      const scrollY = window.scrollY;\n      const flexContainerRect =\n        this.$refs.flexContainer.getBoundingClientRect();\n\n      // The point at which the scroll effect should start\n      const startEffectScrollY =\n        flexContainerRect.top - window.innerHeight + 100; // Adjust the offset to start the effect\n\n      // Determine how much the user has scrolled within the effect range\n      const scrollProgress = Math.min(\n        1,\n        Math.max(\n          0,\n          (scrollY - startEffectScrollY) /\n            (window.innerHeight + this.$refs.flexContainer.clientHeight)\n        )\n      );\n\n      // Apply a style transformation to align items into a single line\n      this.products.forEach((product, index) => {\n        const offsetY = (2 - scrollProgress) * (index * 100); // This will space out the items more as they move up\n        product.style = {\n          transform: `translateY(${offsetY}px)`,\n          zIndex: `${100 - index}`, // Ensure items stack correctly during transition\n        };\n      });\n    },\n  },\n};\n\nimport { renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, createElementVNode as _createElementVNode, resolveComponent as _resolveComponent, createVNode as _createVNode, normalizeStyle as _normalizeStyle, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-fbd81939\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = {\n  class: \"flex-container\",\n  ref: \"flexContainer\"\n}\nconst _hoisted_2 = [\"src\", \"alt\"]\nconst _hoisted_3 = { class: \"flex-item z-20\" }\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_AwesomeWelcome = _resolveComponent(\"AwesomeWelcome\")\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    (_openBlock(true), _createElementBlock(_Fragment, null, _renderList($data.products, (product) => {\n      return (_openBlock(), _createElementBlock(\"div\", {\n        class: \"flex-item\",\n        key: product.id,\n        style: _normalizeStyle(product.style)\n      }, [\n        _createElementVNode(\"img\", {\n          src: product.imageUrl,\n          alt: product.name,\n          class: \"product-image\"\n        }, null, 8, _hoisted_2),\n        _createElementVNode(\"div\", _hoisted_3, [\n          _createVNode(_component_AwesomeWelcome, {\n            style: { width: '100px', height: '5px', fontSize: '12px', scale: .3 },\n            name: product.name,\n            startColor: ['green','grey','blue'],\n            endColor: ['black','red','white']\n          }, null, 8, [\"name\"])\n        ])\n      ], 4))\n    }), 128))\n  ], 512))\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue?vue&type=style&index=0&scoped=fbd81939&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render],['__scopeId',\"data-v-fbd81939\"]])",
-      "start": 1716330188528,
-      "end": 1716330188529,
+      "result": "\nconst _sfc_main = {\n  data() {\n    return {\n      products: [\n        {\n          id: 1,\n          name: \"IPhone 14 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-7inch-product-red_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 2,\n          name: \"IPhone 14 Plus \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-finish-select-202209-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 3,\n          name: \"IPhone 14 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-14-pro-finish-select-202209-6-7inch_AV2_GEO_EMEA-Photoroom.png-Photoroom-2.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 4,\n          name: \"IPhone 15 \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-finish-select-202309-6-1inch-blue_AV1_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n        {\n          id: 5,\n          name: \"IPhone 15 Pro \",\n          imageUrl:\n            \"https://importedproducts.in/wp-content/uploads/2024/04/iphone-15-pro-finish-select-202309-6-1inch_AV2_GEO_EMEA-Photoroom.png-Photoroom.png\",\n          initialOffsetY: 0,\n          style: {},\n        },\n      ],\n    };\n  },\n  mounted() {\n    if (this.$refs.flexContainer) {\n      window.addEventListener(\"scroll\", this.handleScroll);\n      this.handleScroll();\n    }\n  },\n  beforeDestroy() {\n    if (this.$refs.flexContainer) {\n      window.removeEventListener(\"scroll\", this.handleScroll);\n    }\n  },\n  methods: {\n    handleScroll() {\n      if (!this.$refs.flexContainer) return;\n\n      const scrollY = window.scrollY;\n      const flexContainerRect =\n        this.$refs.flexContainer.getBoundingClientRect();\n\n      const startEffectScrollY =\n        flexContainerRect.top - window.innerHeight + 100;\n\n      const scrollProgress = Math.min(\n        1,\n        Math.max(\n          0,\n          (scrollY - startEffectScrollY) /\n            (window.innerHeight + this.$refs.flexContainer.clientHeight)\n        )\n      );\n\n      this.products.forEach((product, index) => {\n        const offsetY = scrollProgress * (index * 100);\n        product.style = {\n          transform: `translateY(${offsetY}px)`,\n          zIndex: `${10 - index}`,\n        };\n      });\n    },\n  },\n};\n\nimport { createElementVNode as _createElementVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, resolveComponent as _resolveComponent, createVNode as _createVNode, normalizeStyle as _normalizeStyle, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-86edbef1\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"h1\", { class: \"text-6xl font-extrabold text-bold text-center mt-5 dark:text-white light:text-black\" }, \" Best Products \", -1))\nconst _hoisted_2 = {\n  class: \"flex min-h-[100vh] max-w-min\",\n  ref: \"flexContainer\"\n}\nconst _hoisted_3 = [\"src\", \"alt\"]\nconst _hoisted_4 = {\n  onclick: \"<AwesomeCases/>\",\n  class: \"flex-item\"\n}\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_AwesomeWelcome = _resolveComponent(\"AwesomeWelcome\")\n\n  return (_openBlock(), _createElementBlock(_Fragment, null, [\n    _hoisted_1,\n    _createElementVNode(\"div\", _hoisted_2, [\n      (_openBlock(true), _createElementBlock(_Fragment, null, _renderList($data.products, (product) => {\n        return (_openBlock(), _createElementBlock(\"div\", {\n          class: \"flex-item\",\n          key: product.id,\n          style: _normalizeStyle(product.style)\n        }, [\n          _createElementVNode(\"img\", {\n            src: product.imageUrl,\n            alt: product.name,\n            class: \"product-image\"\n          }, null, 8, _hoisted_3),\n          _createElementVNode(\"div\", _hoisted_4, [\n            _createVNode(_component_AwesomeWelcome, {\n              style: { maxwidth: '10vw', height: '5vh', fontSize: '12px', scale: .3 },\n              name: product.name,\n              startColor: ['green','grey','blue'],\n              endColor: ['black','red','white']\n            }, null, 8, [\"name\"])\n          ])\n        ], 4))\n      }), 128))\n    ], 512)\n  ], 64))\n}\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue?vue&type=style&index=0&scoped=86edbef1&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render],['__scopeId',\"data-v-86edbef1\"]])",
+      "start": 1746507066229,
+      "end": 1746507066230,
       "order": "normal",
       "sourcemaps": {
         "mappings": ""
@@ -68,162 +68,162 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066230,
+      "end": 1746507066230,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066230,
+      "end": 1746507066230,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066230,
+      "end": 1746507066230,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066230,
+      "end": 1746507066230,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066230,
+      "end": 1746507066230,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
       "result": "import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue\").then(r => r.default))",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066230,
+      "end": 1746507066230,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "replace",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066230,
+      "end": 1746507066230,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066230,
+      "end": 1746507066230,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066230,
+      "end": 1746507066230,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066230,
+      "end": 1746507066230,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066230,
+      "end": 1746507066230,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066230,
+      "end": 1746507066230,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066230,
+      "end": 1746507066230,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066230,
+      "end": 1746507066230,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066230,
+      "end": 1746507066231,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1716330188529,
-      "end": 1716330188529,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716330188530,
-      "end": 1716330188530,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716330188530,
-      "end": 1716330188530,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716330188530,
-      "end": 1716330188530,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716330188530,
-      "end": 1716330188530,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716330188530,
-      "end": 1716330188530,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
       "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import { defineAsyncComponent } from \"vue\"\nexport default defineAsyncComponent(() => __vitePreload(() => import(\"/Users/shubhamsingh/namma/importedProds/components/awesome/Parallax.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(r => r.default))",
-      "start": 1716330188530,
-      "end": 1716330188530,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "normal",
       "sourcemaps": null
     },
     {
       "name": "vite:reporter",
-      "start": 1716330188530,
-      "end": 1716330188530,
+      "start": 1746507066231,
+      "end": 1746507066231,
       "order": "normal"
     }
   ]

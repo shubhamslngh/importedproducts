@@ -1,0 +1,226 @@
+{
+  "resolvedId": "/Users/shubhamsingh/namma/importedProds/components/awesome/Categories.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div class=\"p-6 bg-gray-50 dark:bg-transparent rounded-lg shadow-inner\">\n    <!-- Centered Heading -->\n    <h2 class=\"text-2xl font-bold text-gray-800 dark:text-red-100 mb-6 text-center w-full\">\n      Whatever you need, we got it!\n    </h2>\n\n    <!-- Responsive Scrollable Flex Container -->\n    <div class=\"flex overflow-x-auto gap-4 pb-2\">\n      <div\n        v-for=\"(category, index) in categories\"\n        :key=\"index\"\n        @click=\"selectCategory(category)\"\n        :class=\"[\n          'cursor-pointer transform transition-all duration-300 ease-in-out shrink-0',\n          selectedCategory?.name === category.name\n            ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg scale-105'\n            : 'bg-white dark:bg-gray-800 hover:bg-indigo-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:scale-105'\n        ]\"\n        class=\"flex flex-col items-center p-4 w-36 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700\"\n      >\n        <div\n          class=\"w-14 h-14 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 flex items-center justify-center mb-3 text-2xl font-semibold\"\n        >\n          {{ category.name.charAt(0).toUpperCase() }}\n        </div>\n\n        <span class=\"text-center text-sm font-medium tracking-wide\">\n          {{ category.name }}\n        </span>\n      </div>\n    </div>\n  </div>\n</template>\n\n\n\n\n<script setup>\nimport { ref, onMounted } from \"vue\";\nimport gql from \"graphql-tag\";\nimport { useApolloClient } from \"@vue/apollo-composable\";\n\nconst emit = defineEmits([\"categorySelected\"]);\n\nconst categories = ref([]);\nconst selectedCategory = ref(null);\n\nconst GET_CATEGORIES = gql`\n  query GET_CATEGORIES {\n    productCategories(first: 200, where: { hideEmpty: true, parent: null }) {\n      edges {\n        node {\n          name\n          image {\n            altText\n            link\n          }\n        }\n      }\n    }\n  }\n`;\n\nconst apolloClient = useApolloClient().client;\n\nconst fetchCategories = async () => {\n  try {\n    const { data } = await apolloClient.query({ query: GET_CATEGORIES });\n    categories.value = data.productCategories.edges.map(edge => edge.node);\n  } catch (error) {\n    console.error(\"Error fetching categories:\", error);\n  }if (categories.value.length > 0) {\n    selectedCategory.value = categories.value[0].name;\n  }\n};\n\nconst selectCategory = (category) => {\n  selectedCategory.value = category;\n  emit(\"categorySelected\", category);\n};\n\nonMounted(() => {\n  fetchCategories();\n});\n</script>\n<style scoped>\n.no-scrollbar {\n  scrollbar-width: none; /* Firefox */\n  -ms-overflow-style: none; /* IE and Edge */\n}\n.no-scrollbar::-webkit-scrollbar {\n  display: none; /* Chrome, Safari */\n}\n</style>",
+      "start": 1746507066652,
+      "end": 1746507066698,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "pre"
+    },
+    {
+      "name": "content-slot",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { createElementVNode as _createElementVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, toDisplayString as _toDisplayString, normalizeClass as _normalizeClass, pushScopeId as _pushScopeId, popScopeId as _popScopeId } from \"vue\"\n\nconst _withScopeId = n => (_pushScopeId(\"data-v-de1dcd8b\"),n=n(),_popScopeId(),n)\nconst _hoisted_1 = { class: \"p-6 bg-gray-50 dark:bg-transparent rounded-lg shadow-inner\" }\nconst _hoisted_2 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_createElementVNode(\"h2\", { class: \"text-2xl font-bold text-gray-800 dark:text-red-100 mb-6 text-center w-full\" }, \" Whatever you need, we got it! \", -1))\nconst _hoisted_3 = { class: \"flex overflow-x-auto gap-4 pb-2\" }\nconst _hoisted_4 = [\"onClick\"]\nconst _hoisted_5 = { class: \"w-14 h-14 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 flex items-center justify-center mb-3 text-2xl font-semibold\" }\nconst _hoisted_6 = { class: \"text-center text-sm font-medium tracking-wide\" }\n\nimport { ref, onMounted } from \"vue\";\nimport gql from \"graphql-tag\";\nimport { useApolloClient } from \"@vue/apollo-composable\";\n\n\nconst _sfc_main = {\n  __name: 'Categories',\n  emits: [\"categorySelected\"],\n  setup(__props, { emit: __emit }) {\n\nconst emit = __emit;\n\nconst categories = ref([]);\nconst selectedCategory = ref(null);\n\nconst GET_CATEGORIES = gql`\n  query GET_CATEGORIES {\n    productCategories(first: 200, where: { hideEmpty: true, parent: null }) {\n      edges {\n        node {\n          name\n          image {\n            altText\n            link\n          }\n        }\n      }\n    }\n  }\n`;\n\nconst apolloClient = useApolloClient().client;\n\nconst fetchCategories = async () => {\n  try {\n    const { data } = await apolloClient.query({ query: GET_CATEGORIES });\n    categories.value = data.productCategories.edges.map(edge => edge.node);\n  } catch (error) {\n    console.error(\"Error fetching categories:\", error);\n  }if (categories.value.length > 0) {\n    selectedCategory.value = categories.value[0].name;\n  }\n};\n\nconst selectCategory = (category) => {\n  selectedCategory.value = category;\n  emit(\"categorySelected\", category);\n};\n\nonMounted(() => {\n  fetchCategories();\n});\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _hoisted_2,\n    _createElementVNode(\"div\", _hoisted_3, [\n      (_openBlock(true), _createElementBlock(_Fragment, null, _renderList(categories.value, (category, index) => {\n        return (_openBlock(), _createElementBlock(\"div\", {\n          key: index,\n          onClick: $event => (selectCategory(category)),\n          class: _normalizeClass([[\n          'cursor-pointer transform transition-all duration-300 ease-in-out shrink-0',\n          selectedCategory.value?.name === category.name\n            ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg scale-105'\n            : 'bg-white dark:bg-gray-800 hover:bg-indigo-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 hover:scale-105'\n        ], \"flex flex-col items-center p-4 w-36 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700\"])\n        }, [\n          _createElementVNode(\"div\", _hoisted_5, _toDisplayString(category.name.charAt(0).toUpperCase()), 1),\n          _createElementVNode(\"span\", _hoisted_6, _toDisplayString(category.name), 1)\n        ], 10, _hoisted_4))\n      }), 128))\n    ])\n  ]))\n}\n}\n\n}\n\n\nimport \"/Users/shubhamsingh/namma/importedProds/components/awesome/Categories.vue?vue&type=style&index=0&scoped=de1dcd8b&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['__scopeId',\"data-v-de1dcd8b\"]])",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "graphql",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1746507066698,
+      "end": 1746507066698,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1746507066698,
+      "end": 1746507066699,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1746507066699,
+      "end": 1746507066699,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1746507066699,
+      "end": 1746507066699,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1746507066699,
+      "end": 1746507066699,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1746507066699,
+      "end": 1746507066699,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1746507066699,
+      "end": 1746507066699,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1746507066699,
+      "end": 1746507066699,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1746507066699,
+      "end": 1746507066699,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1746507066699,
+      "end": 1746507066699,
+      "order": "normal"
+    }
+  ]
+}

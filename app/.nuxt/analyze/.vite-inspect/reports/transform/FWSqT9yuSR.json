@@ -4,44 +4,44 @@
     {
       "name": "vite:vue",
       "result": "import { withAsyncContext as _withAsyncContext, defineComponent as _defineComponent } from 'vue'\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, unref as _unref, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'Renderer',\n  props: {\n  path: {\n    type: String,\n    required: true,\n  },\n  pageTitle: {\n    type: String,\n    default: '',\n  },\n},\n  async setup(__props) {\n\nlet __temp: any, __restore: any\n\nconst props = __props\n\nconst { data } = (\n  ([__temp,__restore] = _withAsyncContext(() => useAsyncData(props.path, () =>\n  queryContent(props.path).findOne(),\n))),\n  __temp = await __temp,\n  __restore(),\n  __temp\n)\nif (!data) abortNavigation('404')\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_LayoutPageTitle = _resolveComponent(\"LayoutPageTitle\")!\n  const _component_LayoutPageHeader = _resolveComponent(\"LayoutPageHeader\")!\n  const _component_ContentRenderer = _resolveComponent(\"ContentRenderer\")!\n  const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\")!\n  const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\")!\n\n  return (_openBlock(), _createBlock(_component_LayoutPageWrapper, null, {\n    default: _withCtx(() => [\n      _createVNode(_component_LayoutPageHeader, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_LayoutPageTitle, {\n            text: __props.pageTitle,\n            class: \"capitalize\"\n          }, null, 8, [\"text\"])\n        ]),\n        _: 1\n      }),\n      _createVNode(_component_LayoutPageSection, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_ContentRenderer, {\n            value: _unref(data) as any\n          }, null, 8, [\"value\"])\n        ]),\n        _: 1\n      })\n    ]),\n    _: 1\n  }))\n}\n}\n\n})",
-      "start": 1716330189126,
-      "end": 1716330189126
+      "start": 1746507067211,
+      "end": 1746507067211
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716330189126,
-      "end": 1716330189126,
+      "start": 1746507067211,
+      "end": 1746507067211,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716330189126,
-      "end": 1716330189126,
+      "start": 1746507067211,
+      "end": 1746507067211,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716330189126,
-      "end": 1716330189126,
+      "start": 1746507067211,
+      "end": 1746507067211,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716330189126,
-      "end": 1716330189126,
+      "start": 1746507067211,
+      "end": 1746507067211,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716330189126,
-      "end": 1716330189126,
+      "start": 1746507067211,
+      "end": 1746507067211,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { withAsyncContext as _withAsyncContext, defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, unref as _unref, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Renderer\",\n  props: {\n    path: {\n      type: String,\n      required: true\n    },\n    pageTitle: {\n      type: String,\n      default: \"\"\n    }\n  },\n  async setup(__props) {\n    let __temp, __restore;\n    const props = __props;\n    const { data } = ([__temp, __restore] = _withAsyncContext(() => useAsyncData(\n      props.path,\n      () => queryContent(props.path).findOne()\n    )), __temp = await __temp, __restore(), __temp);\n    if (!data)\n      abortNavigation(\"404\");\n    return (_ctx, _cache) => {\n      const _component_LayoutPageTitle = _resolveComponent(\"LayoutPageTitle\");\n      const _component_LayoutPageHeader = _resolveComponent(\"LayoutPageHeader\");\n      const _component_ContentRenderer = _resolveComponent(\"ContentRenderer\");\n      const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\");\n      const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\");\n      return _openBlock(), _createBlock(_component_LayoutPageWrapper, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_LayoutPageHeader, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageTitle, {\n                text: __props.pageTitle,\n                class: \"capitalize\"\n              }, null, 8, [\"text\"])\n            ]),\n            _: 1\n          }),\n          _createVNode(_component_LayoutPageSection, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_ContentRenderer, {\n                value: _unref(data)\n              }, null, 8, [\"value\"])\n            ]),\n            _: 1\n          })\n        ]),\n        _: 1\n      });\n    };\n  }\n});\n",
-      "start": 1716330189126,
-      "end": 1716330189622,
+      "start": 1746507067211,
+      "end": 1746507067656,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -57,123 +57,123 @@
     },
     {
       "name": "vite:json",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716330189622,
-      "end": 1716330189622,
+      "start": 1746507067656,
+      "end": 1746507067656,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
       "result": "import { withAsyncContext as _withAsyncContext, defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, unref as _unref, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Renderer\",\n  props: {\n    path: {\n      type: String,\n      required: true\n    },\n    pageTitle: {\n      type: String,\n      default: \"\"\n    }\n  },\n  async setup(__props) {\n    let __temp, __restore;\n    const props = __props;\n    const { data } = ([__temp, __restore] = _withAsyncContext(() => useAsyncData(\n      props.path,\n      () => queryContent(props.path).findOne()\n    , '$OI1I4RU3aR')), __temp = await __temp, __restore(), __temp);\n    if (!data)\n      abortNavigation(\"404\");\n    return (_ctx, _cache) => {\n      const _component_LayoutPageTitle = _resolveComponent(\"LayoutPageTitle\");\n      const _component_LayoutPageHeader = _resolveComponent(\"LayoutPageHeader\");\n      const _component_ContentRenderer = _resolveComponent(\"ContentRenderer\");\n      const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\");\n      const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\");\n      return _openBlock(), _createBlock(_component_LayoutPageWrapper, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_LayoutPageHeader, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageTitle, {\n                text: __props.pageTitle,\n                class: \"capitalize\"\n              }, null, 8, [\"text\"])\n            ]),\n            _: 1\n          }),\n          _createVNode(_component_LayoutPageSection, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_ContentRenderer, {\n                value: _unref(data)\n              }, null, 8, [\"value\"])\n            ]),\n            _: 1\n          })\n        ]),\n        _: 1\n      });\n    };\n  }\n});\n",
-      "start": 1716330189622,
-      "end": 1716330189623,
+      "start": 1746507067656,
+      "end": 1746507067657,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -187,8 +187,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { useAsyncData } from '#app/composables/asyncData';\nimport { queryContent } from '/Users/shubhamsingh/namma/importedProds/node_modules/@nuxt/content/dist/runtime/legacy/composables/query';\nimport { abortNavigation } from '#app/composables/router';\nimport { withAsyncContext as _withAsyncContext, defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, unref as _unref, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Renderer\",\n  props: {\n    path: {\n      type: String,\n      required: true\n    },\n    pageTitle: {\n      type: String,\n      default: \"\"\n    }\n  },\n  async setup(__props) {\n    let __temp, __restore;\n    const props = __props;\n    const { data } = ([__temp, __restore] = _withAsyncContext(() => useAsyncData(\n      props.path,\n      () => queryContent(props.path).findOne()\n    , '$OI1I4RU3aR')), __temp = await __temp, __restore(), __temp);\n    if (!data)\n      abortNavigation(\"404\");\n    return (_ctx, _cache) => {\n      const _component_LayoutPageTitle = _resolveComponent(\"LayoutPageTitle\");\n      const _component_LayoutPageHeader = _resolveComponent(\"LayoutPageHeader\");\n      const _component_ContentRenderer = _resolveComponent(\"ContentRenderer\");\n      const _component_LayoutPageSection = _resolveComponent(\"LayoutPageSection\");\n      const _component_LayoutPageWrapper = _resolveComponent(\"LayoutPageWrapper\");\n      return _openBlock(), _createBlock(_component_LayoutPageWrapper, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_LayoutPageHeader, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageTitle, {\n                text: __props.pageTitle,\n                class: \"capitalize\"\n              }, null, 8, [\"text\"])\n            ]),\n            _: 1\n          }),\n          _createVNode(_component_LayoutPageSection, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_ContentRenderer, {\n                value: _unref(data)\n              }, null, 8, [\"value\"])\n            ]),\n            _: 1\n          })\n        ]),\n        _: 1\n      });\n    };\n  }\n});\n",
-      "start": 1716330189623,
-      "end": 1716330189623,
+      "start": 1746507067657,
+      "end": 1746507067658,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -201,51 +201,51 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1716330189623,
-      "end": 1716330189623,
+      "start": 1746507067658,
+      "end": 1746507067658,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716330189623,
-      "end": 1716330189623,
+      "start": 1746507067658,
+      "end": 1746507067658,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716330189623,
-      "end": 1716330189623,
+      "start": 1746507067658,
+      "end": 1746507067658,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716330189623,
-      "end": 1716330189623,
+      "start": 1746507067658,
+      "end": 1746507067658,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Title.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Header.vue\";\nimport { default as __nuxt_component_2 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/@nuxt/content/dist/runtime/components/ContentRenderer.vue\";\nimport { default as __nuxt_component_3 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Section/index.vue\";\nimport { default as __nuxt_component_4 } from \"/Users/shubhamsingh/namma/importedProds/components/layouts/Page/Wrapper.vue\";\nimport { useAsyncData } from '#app/composables/asyncData';\nimport { queryContent } from '/Users/shubhamsingh/namma/importedProds/node_modules/@nuxt/content/dist/runtime/legacy/composables/query';\nimport { abortNavigation } from '#app/composables/router';\nimport { withAsyncContext as _withAsyncContext, defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, unref as _unref, openBlock as _openBlock, createBlock as _createBlock } from \"vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"Renderer\",\n  props: {\n    path: {\n      type: String,\n      required: true\n    },\n    pageTitle: {\n      type: String,\n      default: \"\"\n    }\n  },\n  async setup(__props) {\n    let __temp, __restore;\n    const props = __props;\n    const { data } = ([__temp, __restore] = _withAsyncContext(() => useAsyncData(\n      props.path,\n      () => queryContent(props.path).findOne()\n    , '$OI1I4RU3aR')), __temp = await __temp, __restore(), __temp);\n    if (!data)\n      abortNavigation(\"404\");\n    return (_ctx, _cache) => {\n      const _component_LayoutPageTitle = __nuxt_component_0;\n      const _component_LayoutPageHeader = __nuxt_component_1;\n      const _component_ContentRenderer = __nuxt_component_2;\n      const _component_LayoutPageSection = __nuxt_component_3;\n      const _component_LayoutPageWrapper = __nuxt_component_4;\n      return _openBlock(), _createBlock(_component_LayoutPageWrapper, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_LayoutPageHeader, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_LayoutPageTitle, {\n                text: __props.pageTitle,\n                class: \"capitalize\"\n              }, null, 8, [\"text\"])\n            ]),\n            _: 1\n          }),\n          _createVNode(_component_LayoutPageSection, null, {\n            default: _withCtx(() => [\n              _createVNode(_component_ContentRenderer, {\n                value: _unref(data)\n              }, null, 8, [\"value\"])\n            ]),\n            _: 1\n          })\n        ]),\n        _: 1\n      });\n    };\n  }\n});\n",
-      "start": 1716330189623,
-      "end": 1716330189623,
+      "start": 1746507067658,
+      "end": 1746507067658,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716330189623,
-      "end": 1716330189623,
+      "start": 1746507067658,
+      "end": 1746507067658,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716330189623,
-      "end": 1716330189623,
+      "start": 1746507067658,
+      "end": 1746507067658,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716330189623,
-      "end": 1716330189623,
+      "start": 1746507067658,
+      "end": 1746507067658,
       "order": "normal"
     }
   ]

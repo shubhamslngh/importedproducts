@@ -1,14 +1,13 @@
 <template>
   <section class="relative">
-    <!-- Background Image Section -->
     <div
-      class="relative z-[-1] bg-auto hover: bg-origin-border p-2 bg-center mt-6 h-64 md:h-96 mb-20 lg:h-120"
+      class=" mx-auto relative z-[-1] bg-auto hover: bg-origin-border p-2 bg-center mt-0 h-64 md:h-96 mb-20 lg:h-120"
       style="
         background-image: url(&quot;https://importedproducts.in/wp-content/uploads/2024/02/pexels-darya-sannikova-2927585-scaled.jpg&quot;);
       "
     >
       <div
-        class="xl:text-6xl backdrop-blur-sm absolute inset-0 flex justify-center items-center"
+        class="mx-auto md:size-auto backdrop-blur-sm absolute inset-0 flex justify-center items-center"
       >
         <AwesomeWelcome name="Digital Subscriptions " />
       </div>
@@ -18,9 +17,8 @@
   <div>
     <!-- {{ console.log(subscriptions, "value in html") }} -->
   </div>
-  <div></div>
-  <div
-    class="mx-auto grid grid-cols- grid-row-2 lg:grid-cols-3 md:grid-cols-2 gap-y-10 max-h-fit gap-x-10 mb-5"
+  <div v-if="data"
+    class="mx-auto grid sm:grid-cols-1 grid-row-2 lg:grid-cols-3 md:grid-cols-2 gap-y-10 max-h-fit gap-x-2 mb-2"
   >
     <div v-for="(subscription, index) in subscriptions" :key="index">
       <div
@@ -53,6 +51,9 @@
         </div> -->
       </div>
     </div>
+  </div>
+  <div v-else>
+    loading .  .  .
   </div>
 </template>
 
@@ -94,7 +95,7 @@ const toggleForm = (index) => {
 
 <style>
 .card {
-  width: 500px;
+  width: auto;
   text-align: center;
   height: 250px;
   border-radius: 10px;
@@ -233,12 +234,12 @@ const toggleForm = (index) => {
   background-size: 80% !important;
 }
 #card-ZEE5:hover .card-premium {
-  margin-top: 18%;
+  margin-top: 25%;
   color: rgb(0, 0, 0) mportant;
 }
 #card-ZEE5:hover .card-description {
   margin-top: 25%;
-  color: rgba(13, 0, 0, 0) !important;
+  color: black !important;
 }
 
 #card-JIOCINEMA:hover {
@@ -253,22 +254,23 @@ const toggleForm = (index) => {
   background-repeat: no-repeat;
 }
 #card-JIOCINEMA .card-premium {
-  margin-top: 20%;
+  margin-top: 40%;
 }
 #card-JIOCINEMA .card-description {
   visibility: hidden;
 }
 #card-Hotstar:hover {
   background-color: #01147c !important;
-  color: white !important;
+  color: rgb(254, 245, 245) !important;
   background-size: 50% !important;
 }
 #card-Hotstar {
   background-size: 40% !important;
 }
 #card-Hotstar .card-premium {
-  margin-top: 20%;
+  margin-top: 30%;
   visibility: hidden;
+  
 }
 #card-Youtube:hover {
   background-color: rgb(170, 7, 7) !important;

@@ -4,44 +4,44 @@
     {
       "name": "vite:vue",
       "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { unref as _unref, renderSlot as _renderSlot, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, normalizeClass as _normalizeClass, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = {\n  key: 1,\n  class: /*#__PURE__*/_normalizeClass(`transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`),\n  href: \"#\"\n}\nconst _hoisted_2 = [\"href\"]\n\n\nexport default /*#__PURE__*/_defineComponent({\n  __name: 'index',\n  props: {\n  text: {\n    type: String,\n    default: '',\n  },\n  to: {\n    type: [String, Object],\n    default: undefined,\n  },\n  href: {\n    type: String,\n    default: '',\n  },\n},\n  setup(__props) {\n\n// micro compiler\nconst props = __props\n// state\nconst href = toRef(props, 'href')\nconst to = toRef(props, 'to')\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_NuxtLink = _resolveComponent(\"NuxtLink\")!\n\n  return (_unref(to))\n    ? (_openBlock(), _createBlock(_component_NuxtLink, {\n        key: 0,\n        tag: \"a\",\n        to: _unref(to),\n        class: _normalizeClass(`transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`)\n      }, {\n        default: _withCtx(() => [\n          _renderSlot(_ctx.$slots, \"default\", {}, () => [\n            _createTextVNode(_toDisplayString(__props.text), 1)\n          ])\n        ]),\n        _: 3\n      }, 8, [\"to\"]))\n    : (!_unref(href))\n      ? (_openBlock(), _createElementBlock(\"a\", _hoisted_1, [\n          _renderSlot(_ctx.$slots, \"default\", {}, () => [\n            _createTextVNode(_toDisplayString(__props.text), 1)\n          ])\n        ]))\n      : (_openBlock(), _createElementBlock(\"a\", {\n          key: 2,\n          class: _normalizeClass(`transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`),\n          href: _unref(href)\n        }, [\n          _renderSlot(_ctx.$slots, \"default\", {}, () => [\n            _createTextVNode(_toDisplayString(__props.text), 1)\n          ])\n        ], 8, _hoisted_2))\n}\n}\n\n})",
-      "start": 1716330189093,
-      "end": 1716330189093
+      "start": 1746507067230,
+      "end": 1746507067230
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716330189093,
-      "end": 1716330189093,
+      "start": 1746507067230,
+      "end": 1746507067230,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716330189093,
-      "end": 1716330189093,
+      "start": 1746507067230,
+      "end": 1746507067230,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716330189093,
-      "end": 1716330189093,
+      "start": 1746507067230,
+      "end": 1746507067230,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716330189093,
-      "end": 1716330189093,
+      "start": 1746507067230,
+      "end": 1746507067230,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716330189093,
-      "end": 1716330189093,
+      "start": 1746507067230,
+      "end": 1746507067230,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderSlot as _renderSlot, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, normalizeClass as _normalizeClass, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock, createElementBlock as _createElementBlock } from \"vue\";\nconst _hoisted_1 = {\n  key: 1,\n  class: /* @__PURE__ */ _normalizeClass(`transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`),\n  href: \"#\"\n};\nconst _hoisted_2 = [\"href\"];\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"index\",\n  props: {\n    text: {\n      type: String,\n      default: \"\"\n    },\n    to: {\n      type: [String, Object],\n      default: void 0\n    },\n    href: {\n      type: String,\n      default: \"\"\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const href = toRef(props, \"href\");\n    const to = toRef(props, \"to\");\n    return (_ctx, _cache) => {\n      const _component_NuxtLink = _resolveComponent(\"NuxtLink\");\n      return _unref(to) ? (_openBlock(), _createBlock(_component_NuxtLink, {\n        key: 0,\n        tag: \"a\",\n        to: _unref(to),\n        class: _normalizeClass(`transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`)\n      }, {\n        default: _withCtx(() => [\n          _renderSlot(_ctx.$slots, \"default\", {}, () => [\n            _createTextVNode(_toDisplayString(__props.text), 1)\n          ])\n        ]),\n        _: 3\n      }, 8, [\"to\"])) : !_unref(href) ? (_openBlock(), _createElementBlock(\"a\", _hoisted_1, [\n        _renderSlot(_ctx.$slots, \"default\", {}, () => [\n          _createTextVNode(_toDisplayString(__props.text), 1)\n        ])\n      ])) : (_openBlock(), _createElementBlock(\"a\", {\n        key: 2,\n        class: _normalizeClass(`transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`),\n        href: _unref(href)\n      }, [\n        _renderSlot(_ctx.$slots, \"default\", {}, () => [\n          _createTextVNode(_toDisplayString(__props.text), 1)\n        ])\n      ], 8, _hoisted_2));\n    };\n  }\n});\n",
-      "start": 1716330189093,
-      "end": 1716330189592,
+      "start": 1746507067230,
+      "end": 1746507067681,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -57,129 +57,129 @@
     },
     {
       "name": "vite:json",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716330189592,
-      "end": 1716330189592,
+      "start": 1746507067681,
+      "end": 1746507067681,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { toRef } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderSlot as _renderSlot, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, normalizeClass as _normalizeClass, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock, createElementBlock as _createElementBlock } from \"vue\";\nconst _hoisted_1 = {\n  key: 1,\n  class: /* @__PURE__ */ _normalizeClass(`transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`),\n  href: \"#\"\n};\nconst _hoisted_2 = [\"href\"];\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"index\",\n  props: {\n    text: {\n      type: String,\n      default: \"\"\n    },\n    to: {\n      type: [String, Object],\n      default: void 0\n    },\n    href: {\n      type: String,\n      default: \"\"\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const href = toRef(props, \"href\");\n    const to = toRef(props, \"to\");\n    return (_ctx, _cache) => {\n      const _component_NuxtLink = _resolveComponent(\"NuxtLink\");\n      return _unref(to) ? (_openBlock(), _createBlock(_component_NuxtLink, {\n        key: 0,\n        tag: \"a\",\n        to: _unref(to),\n        class: _normalizeClass(`transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`)\n      }, {\n        default: _withCtx(() => [\n          _renderSlot(_ctx.$slots, \"default\", {}, () => [\n            _createTextVNode(_toDisplayString(__props.text), 1)\n          ])\n        ]),\n        _: 3\n      }, 8, [\"to\"])) : !_unref(href) ? (_openBlock(), _createElementBlock(\"a\", _hoisted_1, [\n        _renderSlot(_ctx.$slots, \"default\", {}, () => [\n          _createTextVNode(_toDisplayString(__props.text), 1)\n        ])\n      ])) : (_openBlock(), _createElementBlock(\"a\", {\n        key: 2,\n        class: _normalizeClass(`transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`),\n        href: _unref(href)\n      }, [\n        _renderSlot(_ctx.$slots, \"default\", {}, () => [\n          _createTextVNode(_toDisplayString(__props.text), 1)\n        ])\n      ], 8, _hoisted_2));\n    };\n  }\n});\n",
-      "start": 1716330189592,
-      "end": 1716330189593,
+      "start": 1746507067681,
+      "end": 1746507067682,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -192,51 +192,51 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1716330189593,
-      "end": 1716330189593,
+      "start": 1746507067683,
+      "end": 1746507067683,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716330189593,
-      "end": 1716330189593,
+      "start": 1746507067683,
+      "end": 1746507067683,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716330189593,
-      "end": 1716330189593,
+      "start": 1746507067683,
+      "end": 1746507067683,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716330189593,
-      "end": 1716330189593,
+      "start": 1746507067683,
+      "end": 1746507067683,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
       "result": "import { default as __nuxt_component_0 } from \"/Users/shubhamsingh/namma/importedProds/node_modules/nuxt/dist/app/components/nuxt-link\";\nimport { toRef } from 'vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { unref as _unref, renderSlot as _renderSlot, toDisplayString as _toDisplayString, createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, normalizeClass as _normalizeClass, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock, createElementBlock as _createElementBlock } from \"vue\";\nconst _hoisted_1 = {\n  key: 1,\n  class: /* @__PURE__ */ _normalizeClass(`transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`),\n  href: \"#\"\n};\nconst _hoisted_2 = [\"href\"];\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"index\",\n  props: {\n    text: {\n      type: String,\n      default: \"\"\n    },\n    to: {\n      type: [String, Object],\n      default: void 0\n    },\n    href: {\n      type: String,\n      default: \"\"\n    }\n  },\n  setup(__props) {\n    const props = __props;\n    const href = toRef(props, \"href\");\n    const to = toRef(props, \"to\");\n    return (_ctx, _cache) => {\n      const _component_NuxtLink = __nuxt_component_0;\n      return _unref(to) ? (_openBlock(), _createBlock(_component_NuxtLink, {\n        key: 0,\n        tag: \"a\",\n        to: _unref(to),\n        class: _normalizeClass(`transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`)\n      }, {\n        default: _withCtx(() => [\n          _renderSlot(_ctx.$slots, \"default\", {}, () => [\n            _createTextVNode(_toDisplayString(__props.text), 1)\n          ])\n        ]),\n        _: 3\n      }, 8, [\"to\"])) : !_unref(href) ? (_openBlock(), _createElementBlock(\"a\", _hoisted_1, [\n        _renderSlot(_ctx.$slots, \"default\", {}, () => [\n          _createTextVNode(_toDisplayString(__props.text), 1)\n        ])\n      ])) : (_openBlock(), _createElementBlock(\"a\", {\n        key: 2,\n        class: _normalizeClass(`transition-colors duration-300 dark:hover:text-white hover:text-gray-900 hover:underline`),\n        href: _unref(href)\n      }, [\n        _renderSlot(_ctx.$slots, \"default\", {}, () => [\n          _createTextVNode(_toDisplayString(__props.text), 1)\n        ])\n      ], 8, _hoisted_2));\n    };\n  }\n});\n",
-      "start": 1716330189593,
-      "end": 1716330189593,
+      "start": 1746507067683,
+      "end": 1746507067683,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716330189593,
-      "end": 1716330189593,
+      "start": 1746507067683,
+      "end": 1746507067683,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716330189593,
-      "end": 1716330189593,
+      "start": 1746507067683,
+      "end": 1746507067683,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716330189593,
-      "end": 1716330189593,
+      "start": 1746507067683,
+      "end": 1746507067683,
       "order": "normal"
     }
   ]

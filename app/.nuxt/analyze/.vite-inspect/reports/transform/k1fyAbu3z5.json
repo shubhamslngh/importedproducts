@@ -4,45 +4,45 @@
     {
       "name": "vite:load-fallback",
       "result": "// stores/auth.js\nimport { defineStore } from 'pinia';\n\nexport const useAuthStore = defineStore('auth', {\n  state: () => ({\n    user: null,\n    token: null,\n    refreshToken: null,\n  }),\n  actions: {\n    setUser(user) {\n      this.user = user;\n      sessionStorage.setItem('username', user);\n    },\n    setToken(token) {\n      this.token = token;\n      sessionStorage.setItem('authToken', token);\n    },\n    setRToken(refreshToken) {\n      this.refreshToken = refreshToken;\n      sessionStorage.setItem('refreshToken', refreshToken);\n    },\n    initialize() {\n      // Retrieve authentication state from sessionStorage\n      const storedUser = sessionStorage.getItem('username');\n      const storedToken = sessionStorage.getItem('authToken');\n      const storedRefreshToken = sessionStorage.getItem('refreshToken');\n\n      // Set store state\n      this.user = storedUser;\n      this.token = storedToken;\n      this.refreshToken = storedRefreshToken;\n    },\n    logout() {\n      // Clear store state\n      this.user = null;\n      this.token = null;\n      this.refreshToken = null;\n\n      // Remove stored data from sessionStorage\n      sessionStorage.removeItem('username');\n      sessionStorage.removeItem('authToken');\n      sessionStorage.removeItem('refreshToken');\n    }\n  },\n  getters: {\n    isAuthenticated: (state) => !!state.user,\n  },\n});\n",
-      "start": 1716330188621,
-      "end": 1716330188646,
+      "start": 1746507066583,
+      "end": 1746507066617,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1716330188646,
-      "end": 1716330188646,
+      "start": 1746507066617,
+      "end": 1746507066617,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1716330188646,
-      "end": 1716330188646,
+      "start": 1746507066617,
+      "end": 1746507066617,
       "order": "pre"
     },
     {
       "name": "content-slot",
-      "start": 1716330188646,
-      "end": 1716330188646,
+      "start": 1746507066617,
+      "end": 1746507066617,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1716330188646,
-      "end": 1716330188646,
+      "start": 1746507066617,
+      "end": 1746507066617,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1716330188646,
-      "end": 1716330188646,
+      "start": 1746507066617,
+      "end": 1746507066617,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
       "result": "import { defineStore } from \"pinia\";\nexport const useAuthStore = defineStore(\"auth\", {\n  state: () => ({\n    user: null,\n    token: null,\n    refreshToken: null\n  }),\n  actions: {\n    setUser(user) {\n      this.user = user;\n      sessionStorage.setItem(\"username\", user);\n    },\n    setToken(token) {\n      this.token = token;\n      sessionStorage.setItem(\"authToken\", token);\n    },\n    setRToken(refreshToken) {\n      this.refreshToken = refreshToken;\n      sessionStorage.setItem(\"refreshToken\", refreshToken);\n    },\n    initialize() {\n      const storedUser = sessionStorage.getItem(\"username\");\n      const storedToken = sessionStorage.getItem(\"authToken\");\n      const storedRefreshToken = sessionStorage.getItem(\"refreshToken\");\n      this.user = storedUser;\n      this.token = storedToken;\n      this.refreshToken = storedRefreshToken;\n    },\n    logout() {\n      this.user = null;\n      this.token = null;\n      this.refreshToken = null;\n      sessionStorage.removeItem(\"username\");\n      sessionStorage.removeItem(\"authToken\");\n      sessionStorage.removeItem(\"refreshToken\");\n    }\n  },\n  getters: {\n    isAuthenticated: (state) => !!state.user\n  }\n});\n",
-      "start": 1716330188646,
-      "end": 1716330188661,
+      "start": 1746507066617,
+      "end": 1746507066631,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -58,129 +58,129 @@
     },
     {
       "name": "vite:json",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "vite:vue",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "nuxt:chunk-error",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "graphql",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "vite:define",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "vite:css-post",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import logout from '/Users/shubhamsingh/namma/importedProds/stores/logout.js';\nimport { defineStore } from \"pinia\";\nexport const useAuthStore = defineStore(\"auth\", {\n  state: () => ({\n    user: null,\n    token: null,\n    refreshToken: null\n  }),\n  actions: {\n    setUser(user) {\n      this.user = user;\n      sessionStorage.setItem(\"username\", user);\n    },\n    setToken(token) {\n      this.token = token;\n      sessionStorage.setItem(\"authToken\", token);\n    },\n    setRToken(refreshToken) {\n      this.refreshToken = refreshToken;\n      sessionStorage.setItem(\"refreshToken\", refreshToken);\n    },\n    initialize() {\n      const storedUser = sessionStorage.getItem(\"username\");\n      const storedToken = sessionStorage.getItem(\"authToken\");\n      const storedRefreshToken = sessionStorage.getItem(\"refreshToken\");\n      this.user = storedUser;\n      this.token = storedToken;\n      this.refreshToken = storedRefreshToken;\n    },\n    logout() {\n      this.user = null;\n      this.token = null;\n      this.refreshToken = null;\n      sessionStorage.removeItem(\"username\");\n      sessionStorage.removeItem(\"authToken\");\n      sessionStorage.removeItem(\"refreshToken\");\n    }\n  },\n  getters: {\n    isAuthenticated: (state) => !!state.user\n  }\n});\n",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -193,50 +193,50 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "post"
     },
     {
       "name": "nuxt:runtime-paths-dep",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "post"
     },
     {
       "name": "nuxt:route-injection-plugin",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1716330188661,
-      "end": 1716330188661,
+      "start": 1746507066631,
+      "end": 1746507066631,
       "order": "normal"
     }
   ]

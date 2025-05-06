@@ -38,26 +38,36 @@ const titlesText = computed(() => {
 // console.log("props.name:", props.name);
 // console.log("titlesText.value:", titlesText.value);
 
-const leadingsText = computed(() => [
-  {
-    text: titlesText.value[0],
-    startColor: props.startColor[0],
-    endColor: props.endColor[0],
-    delay: 0,
-  },
-  {
-    text: titlesText.value[1],
-    startColor: props.startColor[1],
-    endColor: props.endColor[1],
-    delay: 2,
-  },
-  {
-    text: titlesText.value[2],
-    startColor: props.startColor[2],
-    endColor: props.endColor[2],
-    delay: 4,
-  },
-]);
+const leadingsText = computed(() => {
+  const words = titlesText.value;
+
+  // Ensure we always have 3 elements to avoid "undefined"
+  while (words.length < 3) {
+    words.push(""); // empty string fallback
+  }
+
+  return [
+    {
+      text: words[0],
+      startColor: props.startColor[0],
+      endColor: props.endColor[0],
+      delay: 0,
+    },
+    {
+      text: words[1],
+      startColor: props.startColor[1],
+      endColor: props.endColor[1],
+      delay: 2,
+    },
+    {
+      text: words[2],
+      startColor: props.startColor[2],
+      endColor: props.endColor[2],
+      delay: 4,
+    },
+  ];
+});
+
 </script>
 
 <template>
